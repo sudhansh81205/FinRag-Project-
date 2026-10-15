@@ -1,0 +1,10 @@
+sec-edgar-downloader
+beautifulsoup4
+lxml
+html5lib
+pandas
+tabulate
+langchain-text-splitters
+chromadb
+sentence-transformers
+google-genai

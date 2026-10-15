@@ -1,0 +1,5 @@
+sec-edgar-filings/
+sec_vector_db/
+.ipynb_checkpoints/
+__pycache__/
+.env
