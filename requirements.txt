@@ -1,10 +1,23 @@
+# Data Ingestion & Parsing (Member 4)
 sec-edgar-downloader
 beautifulsoup4
 lxml
 html5lib
 pandas
 tabulate
+
+# RAG & Retrieval (Member 2)
 langchain-text-splitters
-chromadb
 sentence-transformers
+chromadb
+
+# LLM & Reasoning (Member 3)
 google-genai
+pydantic
+requests
+
+# MLOps, CI & Quality (Member 6)
+pytest
+ruff
+python-dotenv
+pyyaml

@@ -1,0 +1,26 @@
+# FinRAG System Configuration
+
+retrieval:
+  chunk_size: 1000
+  chunk_overlap: 200
+  min_chunk_length: 80
+  top_k_text: 3
+  top_k_tables: 3
+  rerank_top_n: 4
+
+models:
+  ollama:
+    base_url: "http://localhost:11434"
+    model_name: "llama3.2:3b"
+  gemini:
+    primary_model: "gemini-3.8-flash"
+    fallback_model: "gemini-3.5-flash-lite"
+  embedding:
+    model_name: "BAAI/bge-base-en-v1.5"
+
+evaluation:
+  default_test_ticker: "AAPL"
+  target_metrics:
+    - "Accuracy"
+    - "Faithfulness"
+    - "Latency"
