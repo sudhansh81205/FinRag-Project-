@@ -3,3 +3,9 @@ sec_vector_db/
 .ipynb_checkpoints/
 __pycache__/
 .env
+
+# Local planning builds, review state and generated reports
+/tmp/
+/output/
+/.pytest_cache/
+/.ruff_cache/

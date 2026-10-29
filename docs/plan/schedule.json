@@ -1,0 +1,341 @@
+{
+  "start": "2026-10-30",
+  "deadline": "2026-11-17",
+  "members": [
+    "Sudhansh Khandelwal",
+    "Agrawal Pavan Shailesh",
+    "B Rushil Mohan",
+    "Sri Sai Likhit Boddada",
+    "Ujjwal Chandak",
+    "Shanay Ghodasara",
+    "Muppidi Gowtham Sai"
+  ],
+  "hours_per_member": {
+    "Sudhansh": 6,
+    "Shanay": 6,
+    "Rushil": 6,
+    "Likhit": 6,
+    "Ujjwal": 6,
+    "Pavan": 6,
+    "Gowtham": 6
+  },
+  "days_per_member": {
+    "Sudhansh": 3,
+    "Shanay": 2,
+    "Rushil": 3,
+    "Likhit": 3,
+    "Ujjwal": 3,
+    "Pavan": 3,
+    "Gowtham": 2
+  },
+  "total_hours": 42,
+  "days": [
+    {
+      "owner": "Sudhansh",
+      "hours": 2,
+      "title": "Choose one runnable implementation",
+      "why": "The remote prototype has a UI, while the local branch has reusable modules. Select one integration route before changing either version.",
+      "need": "The two inspected revisions, supplied proposal and current course requirements.",
+      "steps": [
+        "Keep the existing Chroma, MiniLM and Gradio route. Select one Apple 10-K with comparative years; record a minimal scope and launch path.",
+        "Define the evidence record and answer status fields. Record which UI functions and local modules will be reused in the integration branch.",
+        "Create the acceptance checklist and a shared handoff file. Record the official delivery requirements, model-access assumption and November 17 cutoff."
+      ],
+      "done": "One integration checklist, one proposed filing, shared record examples and a fixed delivery checklist are saved.",
+      "learn": "The goal is to repair a small existing prototype and prove its answers, rather than start another implementation.",
+      "date": "2026-10-30"
+    },
+    {
+      "owner": "Shanay",
+      "hours": 3,
+      "title": "Make setup and launch reproducible",
+      "why": "The next owners need a working environment and a single application entry point. Repair setup before spending time on model or retrieval changes.",
+      "need": "The Day 1 integration checklist and evidence examples.",
+      "steps": [
+        "Review the previous handoff. Create the integration branch and port the chosen UI and module wiring without deleting the useful source versions.",
+        "Fix dependencies, including Gradio, and add one configuration loader and environment example. Keep credentials out of files and logs.",
+        "Run the existing lightweight tests and launch the UI in an explicit not-ready state. Document installation, data location and launch commands."
+      ],
+      "done": "The application starts from documented commands, reports missing data clearly and has a saved setup and test log.",
+      "learn": "A launchable application needs its dependencies, configuration and entry point to agree.",
+      "date": "2026-10-31"
+    },
+    {
+      "owner": "Rushil",
+      "hours": 2,
+      "title": "Connect a real model and remove false success",
+      "why": "A fixed mock answer must never appear as financial analysis when the actual provider fails.",
+      "need": "The configured application and status contract from Days 1 and 2.",
+      "steps": [
+        "Verify one real provider and model on the demo machine. Put the confirmed model identifier in configuration and construct an explicit API client.",
+        "Remove automatic mock fallback and process-wide credential mutation. Keep mock mode available only through an explicit test setting.",
+        "Return service_error for provider failures and insufficient_evidence when context is absent. Save one real-call check and one deliberate failure check."
+      ],
+      "done": "A real model call works; invalid credentials and empty evidence cannot return the fixed mock financial answer.",
+      "learn": "Model access failure and missing source evidence are different outcomes and must remain visible.",
+      "date": "2026-11-01"
+    },
+    {
+      "owner": "Likhit",
+      "hours": 2,
+      "title": "Parse one supported annual report",
+      "why": "One fully checked filing is a feasible foundation for the reduced schedule. Downloaded files alone are not searchable evidence.",
+      "need": "The filing choice, evidence schema and data path already recorded.",
+      "steps": [
+        "Record the exact accession, company, report fiscal year, original URL, local path and checksum for one Apple 10-K.",
+        "Move the required parsing cells into a repeatable function. Extract bounded sections from Items 1A, 7 and 8 and relevant statement tables.",
+        "Emit narrative and table records separately, preserving source locations, table titles, comparative periods and declared units. Save a parsing summary."
+      ],
+      "done": "One command parses the declared filing into traceable narrative and table records; the table of contents is not treated as risk-factor evidence.",
+      "learn": "The filing year and the comparative year of a table value are separate pieces of metadata.",
+      "date": "2026-11-02"
+    },
+    {
+      "owner": "Ujjwal",
+      "hours": 2,
+      "title": "Build and reopen the persistent index",
+      "why": "Search must use the intended parsed report and return the same records after restart or repeated ingestion.",
+      "need": "The Day 4 parsed records and original source manifest.",
+      "steps": [
+        "Index the supported records with the existing MiniLM embedder and Chroma. Use deterministic IDs containing filing identity, evidence type and location.",
+        "Preserve source metadata, parent-table links and embedding identity. Replace that filing cleanly so shortened reruns do not leave stale records.",
+        "Re-ingest twice, restart the application and compare IDs and counts. Save one retrieved narrative record and one table record with their sources."
+      ],
+      "done": "Repeated ingestion is stable, reopening the index preserves search and every returned record resolves to the supported report.",
+      "learn": "Persistent search is reproducible only when IDs, stored embeddings and source metadata remain consistent.",
+      "date": "2026-11-03"
+    },
+    {
+      "owner": "Pavan",
+      "hours": 2,
+      "title": "Preserve source records through retrieval",
+      "why": "Returning passage text alone loses the information needed to verify the company, period and cited source.",
+      "need": "The Day 5 populated index and evidence contract.",
+      "steps": [
+        "Return complete evidence records through retrieval and the existing reranker. Validate supported filing and value-period filters.",
+        "Define dense baseline and table-aware modes with the same generator, calculator and context limit. Baseline chunks retain flattened table facts.",
+        "Skip disabled retrieval streams instead of issuing zero-result queries. Handle empty collections and no eligible evidence before generation."
+      ],
+      "done": "A retrieved source ID survives ranking; baseline and table-aware modes return structured evidence and fail clearly when no eligible record exists.",
+      "learn": "The baseline measures retrieval changes fairly only when generation and available source facts are matched.",
+      "date": "2026-11-04"
+    },
+    {
+      "owner": "Gowtham",
+      "hours": 3,
+      "title": "Finish the source linked question interface",
+      "why": "A user should see the answer and the actual evidence without inspecting the notebook or developer logs.",
+      "need": "The real provider, persistent index and structured retrieval output.",
+      "steps": [
+        "Connect the UI to the selected backend. Show the supported report, question input, retrieval mode and an understandable loading state.",
+        "Display answer status, retrieved passages, table title, comparative period, units and original source links. Add the calculation area for later integration.",
+        "Check a narrative question, table question, empty input and missing-evidence case. Verify invalid credentials give a service error and inputs stay session-specific."
+      ],
+      "done": "The integrated UI shows real evidence and source links and handles the four checked cases without notebook execution.",
+      "learn": "Showing an answer is not enough; the interface must let the reader verify the source and recognize a failure.",
+      "date": "2026-11-05"
+    },
+    {
+      "owner": "Likhit",
+      "hours": 2,
+      "title": "Repair the tables needed for the demonstration",
+      "why": "Financial values are useful only when their row labels, comparative periods and scale survive parsing.",
+      "need": "The Day 7 evidence display and original annual report.",
+      "steps": [
+        "Select three representative financial tables from the supported report. Check their headers, units, parentheses, blank values and comparative-year columns.",
+        "Create self-describing row records with parent-table links. Keep raw values and normalized numeric values and exclude duplicate narrative table copies.",
+        "Save small hand-checked fixtures and refresh the index using the existing command. Verify the displayed source locations against the original report."
+      ],
+      "done": "The three selected tables have source-checked values, labels, years and units; row records expand back to their original table.",
+      "learn": "Table-aware retrieval preserves relationships that disappear when a grid is flattened into unrelated text.",
+      "date": "2026-11-06"
+    },
+    {
+      "owner": "Rushil",
+      "hours": 2,
+      "title": "Add a small source checked calculator",
+      "why": "The model can explain a calculation, but arithmetic should run in predictable code using values actually retrieved.",
+      "need": "The normalized values and parent references from Day 8.",
+      "steps": [
+        "Connect the existing math helpers to the answer path for sum, difference and percentage change. Use typed operations and evidence-linked operands.",
+        "Normalize the supported currency scale, preserve the requested periods and reject absent or incompatible operands. Do not execute arbitrary generated code.",
+        "Show the formula, substituted values, result and unit. Check positive-year growth, a negative amount, missing evidence and a zero denominator."
+      ],
+      "done": "A demonstrated calculation uses cited operands and checked arithmetic; zero-base or insufficient-data cases explain why no growth result is available.",
+      "learn": "A calculated answer needs correct inputs, units and periods as well as correct arithmetic.",
+      "date": "2026-11-07"
+    },
+    {
+      "owner": "Pavan",
+      "hours": 2,
+      "title": "Keep complete evidence in the model context",
+      "why": "A relevant table may be retrieved but still lose its important rows when a character slice cuts the model input.",
+      "need": "The row records, source-linked calculator and two retrieval modes.",
+      "steps": [
+        "Replace the 4000-character table slice with complete record selection under the configured input budget. Retain headers, units and required operand rows.",
+        "Preserve the included evidence IDs in the answer contract. Reject references or calculations that cannot be matched to included records.",
+        "Check a long-table fixture and an unsupported-period question. Keep baseline and enhanced generation settings and total context budget the same."
+      ],
+      "done": "The required rows reach final context, every citation maps to included evidence and unsupported periods produce clear abstention.",
+      "learn": "Retrieval quality is lost if context assembly removes the information needed to answer the question.",
+      "date": "2026-11-08"
+    },
+    {
+      "owner": "Sudhansh",
+      "hours": 2,
+      "title": "Prepare the small evaluation and report outline",
+      "why": "The submission needs a modest, honest test rather than a broad accuracy claim that the schedule cannot substantiate.",
+      "need": "The working integrated app, original report and matched retrieval modes.",
+      "steps": [
+        "Create 14 questions with source locations and checked answers: six narrative, four table, two calculation and two unanswerable cases.",
+        "Reserve seven development and seven held-out IDs before tuning: each split has three narrative, two table, one calculation and one unanswerable case.",
+        "Freeze a scoring checklist for answers, units, source support, evidence recall and timing. Create the report outline and an evaluation-results template."
+      ],
+      "done": "A versioned 14-case question file, fixed seven plus seven split, scoring rubric and report outline exist. No test answers are used to tune retrieval.",
+      "learn": "A small source-checked test supports a precise claim about this report; it does not establish broad financial accuracy.",
+      "date": "2026-11-09"
+    },
+    {
+      "owner": "Ujjwal",
+      "hours": 2,
+      "title": "Independently verify labels and freeze the split",
+      "why": "The answers used to score the app need an independent source check so a mistaken gold label does not reward a wrong result.",
+      "need": "The Day 11 question file, split and original source records.",
+      "steps": [
+        "Independently verify all 14 answers and supporting locations against the original report. Correct labels without moving difficult test questions into development.",
+        "Map baseline and table-aware records to the same source locations. Confirm repeatable record counts and the intended embedding version.",
+        "Run only the seven development questions to check the scoring process. Correct a blocking index or metadata defect and record the resulting version."
+      ],
+      "done": "Every gold case has an independent verification record and the split is locked. Only development examples have been used to guide corrections.",
+      "learn": "Citation identity and scoring must stay fair when baseline and enhanced chunk boundaries differ.",
+      "date": "2026-11-10"
+    },
+    {
+      "owner": "Rushil",
+      "hours": 2,
+      "title": "Verify final answers and freeze evaluation settings",
+      "why": "The final model, calculation path and failure states must be fixed before the reserved questions are run.",
+      "need": "The checked labels, development results and real generation provider.",
+      "steps": [
+        "Recheck model-unavailable, no-evidence, incompatible-unit and zero-denominator paths using development cases or dedicated fixtures.",
+        "Confirm mock mode is rejected by the real evaluation path. Keep the same model, prompt, calculator and context budget for both retrieval modes.",
+        "Freeze the code revision and run settings. Save a generation and calculation handoff explaining how to run the reserved cases and record failures."
+      ],
+      "done": "A frozen evaluation revision and configuration exist, with explicit failure checks and no hidden mock fallback.",
+      "learn": "Freezing settings before test evaluation prevents favorable-looking results from being selected through repeated tuning.",
+      "date": "2026-11-11"
+    },
+    {
+      "owner": "Gowtham",
+      "hours": 3,
+      "title": "Run the reserved evaluation and capture the demo",
+      "why": "Today measures the frozen app on the seven questions that were kept out of tuning and records what actually works.",
+      "need": "The Day 13 frozen revision, two modes, held-out IDs and scoring rubric.",
+      "steps": [
+        "Run all seven held-out questions in both modes and retain all 14 outputs, included evidence IDs, status, model settings and timing.",
+        "Score the six answerable and one unanswerable case per mode. Check sources, numerical periods and units, and compare evidence coverage fairly.",
+        "Save the metric table and error notes. Capture a short demo showing a real answer, source, calculation and abstention; label saved results and recordings clearly."
+      ],
+      "done": "Fourteen held-out outputs, a scored result table, source audits and a playable backup demo are saved, including failures.",
+      "learn": "Measured results may favor either mode. Reporting failures and denominators matters more than promising improvement.",
+      "date": "2026-11-12"
+    },
+    {
+      "owner": "Likhit",
+      "hours": 2,
+      "title": "Write the evidence based final report draft",
+      "why": "The report must explain the delivered system and actual measurements, with a clear boundary around the reduced scope.",
+      "need": "The report outline, source manifest and Day 14 results.",
+      "steps": [
+        "Draft the problem, one-report corpus, parsing method, table representation and implemented architecture using the saved handoff notes.",
+        "Insert the actual results with counts and explain source examples, limitations and unsupported layouts. Mark chart analysis and broad benchmarks as future work.",
+        "Include the seven-member contribution log, source references and AI-assistance disclosure draft. Add setup and calculator sections from the existing handoffs."
+      ],
+      "done": "A complete short report draft explains methods, actual results, limitations and all seven contributions; no unimplemented feature is claimed.",
+      "learn": "The report should describe the submitted software and evidence, including its limitations, rather than repeat an earlier ambitious proposal.",
+      "date": "2026-11-13"
+    },
+    {
+      "owner": "Pavan",
+      "hours": 2,
+      "title": "Audit results and review the report",
+      "why": "A separate review checks that the saved outputs justify the reported conclusions and that retrieval behavior is explained correctly.",
+      "need": "The Day 15 report draft and all evaluation artifacts.",
+      "steps": [
+        "Independently review the 14 saved outputs and recompute the reported counts. Check that incorrect periods, units and unsupported answers are scored as failures.",
+        "Classify remaining errors as parsing, retrieval, context, calculation or provider failures. Correct the report and add an annotated question-to-source walkthrough.",
+        "Fix only a reproducible release blocker. If a fix affects outputs, version it, rerun both modes and label the results as reused-test regression results."
+      ],
+      "done": "The report and result table have an independent review record. Every change has an explained effect on the saved evidence.",
+      "learn": "After the test run, investigate and report errors instead of treating the test answers as another tuning set.",
+      "date": "2026-11-14"
+    },
+    {
+      "owner": "Ujjwal",
+      "hours": 2,
+      "title": "Package data and prepare the final presentation",
+      "why": "The evaluator needs a clear source inventory and a short explanation of how the project works, alongside the runnable code.",
+      "need": "The reviewed report, final source revision and ingestion instructions.",
+      "steps": [
+        "Package the filing manifest, small fixtures, record-count summary and deterministic index rebuild instructions. Verify every original source link.",
+        "Assemble a short presentation from the report: problem, workflow, table treatment, calculated answer, actual comparison and limitations.",
+        "Create the release checklist and archive inventory. Check that the report, results, presentation, demo and contribution log refer to the intended versions."
+      ],
+      "done": "The data package, short presentation and release inventory are ready for a clean-machine check.",
+      "learn": "Data identity and source instructions are part of reproducibility, even when large raw files are not committed to Git.",
+      "date": "2026-11-15"
+    },
+    {
+      "owner": "Shanay",
+      "hours": 3,
+      "title": "Run the final clean machine and release check",
+      "why": "The last full technical check protects delivery from hidden local dependencies and missing files.",
+      "need": "The Day 17 release inventory, runnable source and both saved retrieval modes.",
+      "steps": [
+        "Build or restore the index on a fresh environment using the included instructions. Run a known question and confirm its cited source and calculation.",
+        "Check credentials, runtime requirements and the app launch command. Keep the verified native launch path; add no cloud deployment or new container dependency.",
+        "Recheck critical failure paths, open the report, slides and demo, then freeze and back up the archive. Save its checksum, exact revision and launch evidence."
+      ],
+      "done": "The final archive launches from documented inputs, all delivery files open and a backup plus verification log are ready.",
+      "learn": "The release check proves the project can leave the original developer machine without losing its data or setup knowledge.",
+      "date": "2026-11-16"
+    },
+    {
+      "owner": "Sudhansh",
+      "hours": 2,
+      "title": "Complete final verification and deliver the project",
+      "why": "November 17 is the final project delivery deadline. Use the verified package and retain proof of what was delivered.",
+      "need": "The Day 18 frozen archive, report, presentation, demo and verification log.",
+      "steps": [
+        "Check the exact package against the official delivery checklist. Verify seven correct names, final links, report results and contribution records.",
+        "Perform a short final demo using the frozen build or transparently labeled backup video. Make only necessary document corrections.",
+        "Deliver or submit before the confirmed November 17 cutoff and retain the receipt and exact archive. If the official portal opens later, retain this frozen ready-to-submit release."
+      ],
+      "done": "The project is complete by November 17, with its final package and verification record delivered. If submission is open, the receipt is retained; otherwise the frozen release is ready.",
+      "learn": "Finishing by the internal deadline means the code, evidence and documents are complete together, without relying on later development.",
+      "date": "2026-11-17"
+    }
+  ],
+  "section_titles": [
+    "FinRAG revised product requirements and daily plan",
+    "What the project does",
+    "Code review priorities for the reduced build",
+    "Product requirements and scope",
+    "Architecture and quality rules",
+    "Small evaluation and scoring plan",
+    "Seven member ownership and equal workload",
+    "Complete calendar with one owner per day",
+    "Daily work plan 1 and 2",
+    "Daily work plan 3 and 4",
+    "Daily work plan 5 and 6",
+    "Daily work plan 7 and 8",
+    "Daily work plan 9 and 10",
+    "Daily work plan 11 and 12",
+    "Daily work plan 13 and 14",
+    "Daily work plan 15 and 16",
+    "Daily work plan 17 and 18",
+    "Daily work plan 19",
+    "Release risks and final checklist",
+    "Plain language terms and source references"
+  ]
+}
