@@ -1,0 +1,52 @@
+{
+  "example_only": true,
+  "not_for_index_or_evaluation": true,
+  "records": [
+    {
+      "id": "0000320193-21-000105:item1a:EXAMPLE-locator:narrative:EXAMPLE-content-hash",
+      "content": "EXAMPLE narrative passage copied during ingestion, not an extracted fact.",
+      "metadata": {
+        "accession": "0000320193-21-000105",
+        "ticker": "AAPL",
+        "fiscal_year": 2021,
+        "section": "Item 1A",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+        "source_locator": "EXAMPLE: verified HTML selector goes here",
+        "source_sha256": "EXAMPLE: compute from downloaded source",
+        "type": "narrative_text",
+        "record_schema_version": 1
+      }
+    },
+    {
+      "id": "0000320193-21-000105:item8:EXAMPLE-row:table:EXAMPLE-content-hash",
+      "content": "EXAMPLE table row with original label, values, periods and units repeated here.",
+      "metadata": {
+        "accession": "0000320193-21-000105",
+        "ticker": "AAPL",
+        "fiscal_year": 2021,
+        "section": "Item 8",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+        "source_locator": "EXAMPLE: verified table and row selector",
+        "source_sha256": "EXAMPLE: compute from downloaded source",
+        "type": "clean_financial_table",
+        "record_schema_version": 1,
+        "parent_table_id": "EXAMPLE-stable-parent-id",
+        "table_title": "Consolidated Statements of Operations",
+        "row_label": "EXAMPLE row label",
+        "periods_json": "[2021, 2020, 2019]",
+        "units_json": "{\"EXAMPLE row\": \"USD millions\"}",
+        "headers_json": "[\"EXAMPLE exact source column labels\"]"
+      }
+    }
+  ],
+  "answer_example": {
+    "status": "not_ready",
+    "question": "Example question",
+    "answer": "",
+    "message": "Source index and real provider have not been validated.",
+    "evidence": [],
+    "calculations": [],
+    "provider": null,
+    "model": null
+  }
+}

@@ -1,0 +1,5 @@
+# Lightweight setup/UI dependencies; no embedding models or provider calls.
+-c constraints-setup.txt
+gradio==6.31.0
+python-dotenv==1.2.4
+PyYAML==6.0.3

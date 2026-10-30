@@ -1,0 +1,25 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+    ".git",
+    "__pycache__",
+    ".ipynb_checkpoints",
+    "Untitled.ipynb",
+    "sec-edgar-filings",
+    "sec_vector_db",
+    "prototypes",
+    ".venv",
+    "tmp",
+    "output",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = [
+    "E501", # Line length handled by formatter
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

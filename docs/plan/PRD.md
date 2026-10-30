@@ -1,7 +1,9 @@
 # FinRAG authoritative revised PRD snapshot
 
 Source: [editable Word document](FinRAG_PRD_17Nov2026.docx)
-Deadline: 2026-11-17. Timezone: Asia/Kolkata. Seven members; one assigned worker per date.
+Team completion target: 2026-11-17. Timezone: Asia/Kolkata. Seven members; one assigned worker per date.
+
+October 30 clarification: November 17 is the team's internal target, not a confirmed hard course cutoff. The user authorized completing Sudhansh's October 30 task and Shanay's October 31 task together on October 30; future assignments remain unchanged. See the [integration decision](INTEGRATION_CHECKLIST.md), [delivery checklist](DELIVERY_CHECKLIST.md), and [completion handoff](../handoffs/2026-10-30_days-01-02.md). These updates supersede deadline and branch-status wording in the original Word snapshot below; its task scope remains the reference.
 
 FinRAG revised product requirements and daily plan
 

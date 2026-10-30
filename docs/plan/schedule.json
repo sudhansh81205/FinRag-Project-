@@ -1,6 +1,9 @@
 {
   "start": "2026-10-30",
   "deadline": "2026-11-17",
+  "deadline_kind": "internal_team_completion_target",
+  "official_submission_cutoff": null,
+  "execution_notes": "User authorized the October 30 and October 31 first tasks together on October 30. Planned ownership/hours and all later dates remain unchanged; see docs/handoffs/2026-10-30_days-01-02.md for evidence.",
   "members": [
     "Sudhansh Khandelwal",
     "Agrawal Pavan Shailesh",

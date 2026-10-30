@@ -12,11 +12,15 @@ The revised plan runs from **October 30 through November 17, 2026**, with **seve
 - [Use the daily implementation master prompt](docs/review/MASTER_PROMPT.md)
 - [Understand the nightly review process](docs/review/README.md)
 
-## Prototype status
+## Run the shared project
 
-The default branch contains the notebook and Gradio application prototype. The `feature/engine-backend` branch contains the modular backend prototype for integration review. These versions need integration; the PRD records the remaining work and does not claim that the planned fixes have been implemented.
+Use **`main`** for the shared project. The UI, modular backend, PRD and review kit are combined here. The original UI/container are preserved under `prototypes/`, and the notebook remains an ingestion reference.
 
-The project currently uses Chroma, MiniLM embeddings, a cross encoder and a real language-model provider. The reduced delivery scope retains this stack. BM25 search, chart understanding, vector-store migration and broad benchmark evaluation are deferred.
+Start with the [setup guide](docs/SETUP.md). The single entry point is `python app.py`. This setup milestone launches without a key or model download and clearly reports `not_ready`. Real answering, validated ingestion, citations and calculations remain scheduled work.
+
+The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. November 17 is the team's completion target; the official course cutoff is unconfirmed.
+
+The planned integrated answering path retains Chroma, MiniLM embeddings, a cross encoder and a verified real language-model provider. BM25 search, chart understanding, vector-store migration and broad benchmark evaluation are deferred.
 
 ## Daily workflow
 

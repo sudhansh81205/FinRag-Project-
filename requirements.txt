@@ -1,10 +1,20 @@
-sec-edgar-downloader
-beautifulsoup4
-lxml
-html5lib
-pandas
-tabulate
-langchain-text-splitters
-chromadb
-sentence-transformers
-google-genai
+-r requirements-app.txt
+# Full ingestion/retrieval dependencies. Model weights are a separate download.
+sec-edgar-downloader==5.1.0
+beautifulsoup4==4.15.0
+lxml==6.1.3
+html5lib==1.1
+pandas==3.1.0
+tabulate==0.10.0
+
+# RAG & Retrieval (Member 2)
+langchain-text-splitters==1.1.3
+sentence-transformers==6.2.0
+chromadb==1.5.9
+
+# LLM & Reasoning (Member 3)
+google-genai==2.34.0
+pydantic==2.14.2
+requests==2.34.2
+
+# Development tools are in requirements-dev.txt.

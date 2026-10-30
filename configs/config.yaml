@@ -1,0 +1,23 @@
+# Paths resolve from the repository root, not the shell directory.
+app:
+  host: 127.0.0.1
+  port: 7860
+data:
+  raw_dir: data/raw
+  index_dir: sec_vector_db
+  collection: sec_10k_filings
+models:
+  embedding: sentence-transformers/all-MiniLM-L6-v2
+  reranker: cross-encoder/ms-marco-MiniLM-L-6-v2
+  # Select and verify the real provider/model during the November 1 task.
+  provider: unconfigured
+  model: ""
+  ollama_url: http://localhost:11434
+
+retrieval:
+  chunk_size: 1000
+  chunk_overlap: 200
+  min_chunk_length: 80
+  top_k_text: 3
+  top_k_tables: 3
+  rerank_top_n: 4

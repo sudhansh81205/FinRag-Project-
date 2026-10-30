@@ -3,6 +3,12 @@
 Run at 23:59 Asia/Kolkata for review dates October 30 through November 17, 2026. Read this file, docs/plan/PRD.md and docs/plan/schedule.json from the repository root, the editable PRD when needed, and previous reports in output/daily_reviews. Resolve all paths from the repository root. Human corrections in the chat override older documents. Seven members only and one scheduled worker per day; the reviewer does not assign additional same-day work to teammates. Do not modify application code, create GitHub issues/comments, commit, merge or push during this review.
 
 ## Source and time coverage
+
+Read the current remote `main` versions of `docs/plan/PRD.md`, `schedule.json` and
+the latest `docs/handoffs/` entries before using cached local planning copies.
+October 30 clarification: November 17 is an internal team completion target.
+The first Sudhansh/Shanay tasks were authorized together on October 30; compare
+their completion report with code evidence rather than assigning them twice.
 Review https://github.com/sudhansh81205/FinRag-Project- using the GitHub connector first; use a non-destructive fetch and git show/diff as fallback. Check default branch, recently active branches, open/merged PRs and available check results. Never check out, reset, stash or overwrite the user's work. Do not silently review only the stale local branch. Identify unpushed local changes separately; they are not GitHub-delivered work.
 
 Record scheduled date, actual run timestamp and cutoff in Asia/Kolkata with UTC equivalents. The snapshot at 23:59 is not the entire remaining minute of that date. For a delayed run reconstruct the scheduled cutoff if evidence permits; otherwise disclose actual coverage. Preserve prior reviewed branch/PR hashes, last successful cutoff and observed commits in output/daily_reviews/review_state.json. Include late-pushed/backdated commits newly visible since the last review, distinguish them from genuinely new same-day work, and do not double-count merged PR commits across branches. On first run, record a local setup baseline and clearly label older changes as backlog. The main revision inspected during planning was b3bb02fb54c68ff7fc3bda9c0959df3d61b0acbf; fetch current remote revisions before drawing conclusions. If history was rewritten, explain instead of assuming a linear diff. If GitHub access fails, produce a coverage-limited report, not a claim that nothing changed.

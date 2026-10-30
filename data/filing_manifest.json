@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "state": "selected_not_ingested",
+  "company": "Apple Inc.",
+  "ticker": "AAPL",
+  "cik": "0000320193",
+  "form": "10-K",
+  "accession": "0000320193-21-000105",
+  "fiscal_year": 2021,
+  "period_end": "2021-09-25",
+  "filed_date": "2021-10-29",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+  "selected_sections": ["Item 1A", "Item 7", "Item 8"],
+  "proposed_tables": [
+    "Consolidated Statements of Operations",
+    "Consolidated Balance Sheets",
+    "Consolidated Statements of Cash Flows"
+  ],
+  "comparative_years": [2021, 2020, 2019],
+  "note": "Not every table has all three years. Preserve each table's actual headers and units, including per-share exceptions.",
+  "raw_path": "data/raw/aapl-20210925.htm",
+  "raw_sha256": null,
+  "downloaded_at": null,
+  "parsed_record_count": null,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "index_collection": "sec_10k_filings",
+  "next_step": "Likhit downloads and checks the exact source, records checksum and selectors, then Ujjwal builds a validated persistent index."
+}
