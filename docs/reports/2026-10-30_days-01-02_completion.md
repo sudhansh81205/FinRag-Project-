@@ -71,6 +71,8 @@ that code. A new isolated Python 3.12.14 environment was used on Windows.
 | `python scripts/check_setup_ui.py` | Passed | HTTP 200; actual Gradio callback returned `not_ready`, empty answer/evidence; blank input returned `invalid_input` |
 | Git whitespace and targeted private-data scan | Passed | No conflict markers, whitespace failures, known credential patterns or private recipient in proposed tracked files |
 | Schedule consistency | Passed | 19 dates, 7 members, 42 planned hours, 6 per member |
+| Full requirements dry-run resolution | Passed | All pinned full-stack packages resolved; selected versions do not conflict with setup constraints. Full AI stack was not installed or exercised |
+| GitHub Linux CI | Passed | [Run 41094445214](https://github.com/sudhansh81205/FinRag-Project-/actions/runs/41094445214) on published revision `8bd768e` |
 | Real provider, Chroma retrieval, financial accuracy | **Not run** | No verified model/index in this milestone |
 
 The first UI attempt happened before installation finished and failed to import
@@ -190,4 +192,25 @@ real model access and the final dataset/evaluation remain open information or
 implementation items. This report is intentionally shared in GitHub at the user's
 request. No WhatsApp delivery or mobile push is claimed.
 
-Publication status is recorded below after remote verification.
+## Verified publication
+
+Published implementation and report to `main` at `8bd768e`; this final report
+addendum is a subsequent documentation-only commit. GitHub's Linux CI on that
+published implementation/report revision completed successfully.
+
+- [PR 1: modular backend](https://github.com/sudhansh81205/FinRag-Project-/pull/1)
+  and [PR 2: PRD/review kit](https://github.com/sudhansh81205/FinRag-Project-/pull/2)
+  are both closed and **merged**, with merge revision `9943b74`.
+- Remote `feature/engine-backend` and `codex/finrag-shared-plan` were removed only
+  after ancestry checks and conditional checks of their exact old remote tips.
+  Remote branch listing now contains **only `main`**. No commit history was rewritten.
+- The current working checkout is on `main`. Another existing local checkout may
+  still show its old backend branch; no private files or local work were reset.
+  Team members should follow the handoff's fetch/switch/pull instructions.
+- Shared review instructions and the private scheduler instruction file now direct
+  reviews to current remote main and this handoff before consulting cached PRD
+  copies. The 23:59 review schedule and private delivery preferences are unchanged.
+
+One branch-cleanup attempt encountered a Windows certificate trust error. The
+retry used Git's OpenSSL certificate backend with verification still enabled and
+succeeded. There was no insecure TLS bypass, force rewrite, or lost branch work.
