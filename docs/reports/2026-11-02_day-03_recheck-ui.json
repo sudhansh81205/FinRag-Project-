@@ -1,0 +1,8 @@
+{
+  "http_status": 200,
+  "question_status": "index_not_ready",
+  "empty_question_status": "invalid_request",
+  "answer_empty": true,
+  "evidence_empty": true,
+  "real_model_called": false
+}

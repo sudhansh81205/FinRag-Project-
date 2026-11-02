@@ -34,3 +34,6 @@ Real Gemini generation and explicit failure handling are verified with a checked
 source fixture. The full UI remains gated on the later filing/index work. See
 [Day 3 handoff](docs/handoffs/2026-11-02_day-03_rushil.md) and
 [completion evidence](docs/reports/2026-11-02_day-03_completion.md).
+
+The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
+final failure-boundary corrections, 59 tests and fresh live/UI evidence.

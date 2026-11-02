@@ -1,0 +1,110 @@
+{
+  "executed_at": "2026-11-02T22:07:07.151650+05:30",
+  "base_or_current_revision": "a4d5b9e81bbaa67b4c1711e05ce87590e3104f92",
+  "scope": "Provider and answer-boundary smoke check with manually transcribed SEC row; no index, final evaluation or citation audit.",
+  "provider": "gemini",
+  "configured_model": "gemini-3.5-flash-lite",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+  "source_location": "Item 7, Results of Operations, net sales by category table, Services row; printed page 21",
+  "failure_kind": "live invalid credential",
+  "checks": {
+    "real_provider_answer": true,
+    "fixture_value_period_unit": true,
+    "empty_evidence_abstains": true,
+    "empty_evidence_skips_provider": true,
+    "provider_failure_no_answer": true
+  },
+  "passed": true,
+  "live_answer": {
+    "status": "ok",
+    "question": "What were Apple's Services net sales in fiscal 2021? State the value in millions of US dollars and the fiscal year.",
+    "answer": "### Direct Answer:\nApple's Services net sales in fiscal 2021 were $68,425 million.\n\n### Step-by-Step Financial Evidence & Arithmetic:\n- **Fiscal Year:** 2021\n- **Services Net Sales:** $68,425 million\n- *No additional arithmetic was required for this query as the figure is directly stated in the evidence.*\n\n### Sources Cited:\n- Apple Inc. fiscal 2021 Form 10-K, Item 7 Results of Operations, Net sales by category table (Row: Services).",
+    "message": "",
+    "evidence": [
+      {
+        "id": "provider-smoke:aapl-2021:item7:services",
+        "content": "Apple Inc. fiscal 2021 Form 10-K. Item 7 Results of Operations. Net sales by category. Units: millions of US dollars. Row: Services. Fiscal 2021: 68,425. Fiscal 2020: 53,768. Fiscal 2019: 46,291.",
+        "metadata": {
+          "type": "financial_table",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "Item 7 / Results of Operations / net sales by category / Services row",
+          "filing_id": "0000320193-21-000105",
+          "parser_version": "manual-provider-smoke-v1"
+        },
+        "rerank_score": 28.5
+      }
+    ],
+    "calculations": [],
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "included_evidence_ids": [
+      "provider-smoke:aapl-2021:item7:services"
+    ],
+    "warnings": [],
+    "retrieved_evidence": {
+      "text_count": 0,
+      "table_count": 1,
+      "text_snippets": [],
+      "table_snippets": [
+        "Apple Inc. fiscal 2021 Form 10-K. Item 7 Results of Operations. Net sales by category. Units: millions of US dollars. Row: Services. Fiscal 2021: 68,425. Fiscal 2020: 53,768. Fiscal 2019: 46,291."
+      ]
+    },
+    "latency_seconds": 2.526
+  },
+  "empty_evidence": {
+    "status": "insufficient_evidence",
+    "question": "What were Apple's Services net sales in fiscal 2021? State the value in millions of US dollars and the fiscal year.",
+    "answer": "",
+    "message": "No source evidence was retrieved; no model call was made.",
+    "evidence": [],
+    "calculations": [],
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "included_evidence_ids": [],
+    "warnings": [],
+    "retrieved_evidence": {
+      "text_count": 0,
+      "table_count": 0,
+      "text_snippets": [],
+      "table_snippets": []
+    },
+    "latency_seconds": 0.0
+  },
+  "deliberate_provider_failure": {
+    "status": "service_error",
+    "question": "What were Apple's Services net sales in fiscal 2021? State the value in millions of US dollars and the fiscal year.",
+    "answer": "",
+    "message": "The configured real provider failed or returned no answer.",
+    "evidence": [
+      {
+        "id": "provider-smoke:aapl-2021:item7:services",
+        "content": "Apple Inc. fiscal 2021 Form 10-K. Item 7 Results of Operations. Net sales by category. Units: millions of US dollars. Row: Services. Fiscal 2021: 68,425. Fiscal 2020: 53,768. Fiscal 2019: 46,291.",
+        "metadata": {
+          "type": "financial_table",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "Item 7 / Results of Operations / net sales by category / Services row",
+          "filing_id": "0000320193-21-000105",
+          "parser_version": "manual-provider-smoke-v1"
+        },
+        "rerank_score": 28.5
+      }
+    ],
+    "calculations": [],
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "included_evidence_ids": [
+      "provider-smoke:aapl-2021:item7:services"
+    ],
+    "warnings": [],
+    "retrieved_evidence": {
+      "text_count": 0,
+      "table_count": 1,
+      "text_snippets": [],
+      "table_snippets": [
+        "Apple Inc. fiscal 2021 Form 10-K. Item 7 Results of Operations. Net sales by category. Units: millions of US dollars. Row: Services. Fiscal 2021: 68,425. Fiscal 2020: 53,768. Fiscal 2019: 46,291."
+      ]
+    },
+    "error_code": "generation_failed",
+    "latency_seconds": 0.455
+  }
+}
