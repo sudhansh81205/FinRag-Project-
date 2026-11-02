@@ -1,8 +1,4 @@
-"""
-FinRAG Engine (Members 2 & 3 Orchestration)
-Glues together the DualHybridRetriever, SimpleFinancialReranker, and UnifiedLLMClient.
-Provides a clean, unified API for Member 7 (Frontend) and Member 8 (Testing).
-"""
+"""Existing retrieval/reranking pipeline with explicit generation failure states."""
 
 import time
 from typing import Any
@@ -14,101 +10,89 @@ from ..retrieval.retriever import DualHybridRetriever
 
 
 class FinRAGEngine:
-    def __init__(
-        self,
-        retriever: DualHybridRetriever | None = None,
-        reranker: SimpleFinancialReranker | None = None,
-        llm_client: UnifiedLLMClient | None = None,
-    ):
-        self.retriever = retriever or DualHybridRetriever()
-        self.reranker = reranker or SimpleFinancialReranker()
-        self.llm_client = llm_client or UnifiedLLMClient(provider="auto")
+    def __init__(self, retriever=None, reranker=None, llm_client=None):
+        self.retriever = retriever if retriever is not None else DualHybridRetriever()
+        self.reranker = reranker if reranker is not None else SimpleFinancialReranker()
+        self.llm_client = llm_client if llm_client is not None else UnifiedLLMClient()
 
     def answer_financial_question(
-        self,
-        question: str,
-        top_k_text: int = 3,
-        top_k_tables: int = 3,
-        rerank_top_n: int = 4,
+        self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
+        rerank_top_n: int = 4, *, _baseline: bool = False,
     ) -> dict[str, Any]:
-        """
-        Executes end-to-end FinRAG inference:
-        1. Query analysis & Dual-retrieval (narrative + tables)
-        2. Candidate aggregation & Hierarchical reranking
-        3. CFA-level prompt formatting with strict grounding
-        4. LLM response generation with latency tracking
-        """
-        start_time = time.time()
-
-        # Step 1: Dual Retrieval
-        retrieval_res = self.retriever.retrieve(
-            query=question,
-            top_k_text=top_k_text,
-            top_k_tables=top_k_tables,
-        )
-
-        raw_candidates: list[dict[str, Any]] = (
-            retrieval_res.get("text_evidence", []) +
-            retrieval_res.get("table_evidence", [])
-        )
-
-        # Step 2: Reranking
-        reranked_items = self.reranker.rerank(
-            query=question,
-            candidates=raw_candidates,
-            top_n=rerank_top_n,
-        )
-
-        # Separate reranked evidence back into text and tables
-        final_text = [
-            item["content"] for item in reranked_items
-            if item.get("metadata", {}).get("type") == "narrative_text"
-        ]
-        final_tables = [
-            item["content"] for item in reranked_items
-            if item.get("metadata", {}).get("type") in ["financial_table", "clean_financial_table"]
-        ]
-
-        # Step 3: Prompt Building
-        prompt = build_finrag_prompt(
-            question=question,
-            text_evidence=final_text,
-            table_evidence=final_tables,
-        )
-
-        # Step 4: Generation
-        llm_response = self.llm_client.generate(prompt)
-
-        latency = round(time.time() - start_time, 3)
-
-        return {
-            "question": question,
-            "answer": llm_response.get("text", ""),
-            "provider": llm_response.get("provider", "unknown"),
-            "model": llm_response.get("model", "unknown"),
-            "latency_seconds": latency,
-            "retrieved_evidence": {
-                "text_count": len(final_text),
-                "table_count": len(final_tables),
-                "text_snippets": final_text,
-                "table_snippets": final_tables,
-            },
+        start = time.monotonic()
+        result = {
+            "status": "service_error", "question": question, "answer": "", "message": "",
+            "evidence": [], "calculations": [], "provider": self.llm_client.provider,
+            "model": self.llm_client.model, "included_evidence_ids": [], "warnings": [],
+            "retrieved_evidence": {"text_count": 0, "table_count": 0,
+                                   "text_snippets": [], "table_snippets": []},
         }
+
+        def finish(status, message=""):
+            result.update(status=status, message=message,
+                          latency_seconds=round(time.monotonic() - start, 3))
+            if status != "ok":
+                result["answer"] = ""
+            return result
+
+        if not isinstance(question, str) or not question.strip():
+            return finish("invalid_request", "Please enter a nonempty question.")
+        if (not isinstance(top_k_text, int) or not isinstance(top_k_tables, int)
+                or not isinstance(rerank_top_n, int) or min(top_k_text, top_k_tables) < 0
+                or top_k_text + top_k_tables == 0 or rerank_top_n < 1):
+            return finish("invalid_request", "Select positive retrieval and reranking limits.")
+        if isinstance(self.retriever, DualHybridRetriever) and self.retriever.vector_collection is None:
+            return finish("index_not_ready", "No validated search index is connected.")
+        try:
+            retrieval = self.retriever.retrieve(
+                query=question, top_k_text=top_k_text, top_k_tables=top_k_tables,
+            )
+            if retrieval.get("text_error") or retrieval.get("table_error"):
+                return finish("service_error", "Source retrieval failed; no answer was generated.")
+            candidates = retrieval.get("text_evidence", []) + retrieval.get("table_evidence", [])
+            if not candidates:
+                return finish("insufficient_evidence", "No source evidence was retrieved; no model call was made.")
+            ranked = self.reranker.rerank(query=question, candidates=candidates, top_n=rerank_top_n)
+            # Only content actually passed into the existing prompt counts as evidence.
+            allowed = {"narrative_text"} if _baseline else {
+                "narrative_text", "financial_table", "clean_financial_table",
+            }
+            included = [item for item in ranked if isinstance(item.get("content"), str)
+                        and item["content"].strip()
+                        and item.get("metadata", {}).get("type") in allowed]
+            if not included:
+                return finish("insufficient_evidence", "No usable source evidence remained after ranking.")
+            text = [item["content"] for item in included
+                    if item["metadata"]["type"] == "narrative_text"]
+            tables = [item["content"] for item in included
+                      if item["metadata"]["type"] != "narrative_text"]
+            result["evidence"] = included
+            result["included_evidence_ids"] = [item["id"] for item in included if item.get("id")]
+            result["retrieved_evidence"] = {"text_count": len(text), "table_count": len(tables),
+                                             "text_snippets": text, "table_snippets": tables}
+            prompt = (build_baseline_prompt(question, text) if _baseline
+                      else build_finrag_prompt(question, text, tables))
+            response = self.llm_client.generate(prompt)
+        except Exception:
+            return finish("service_error", "Retrieval, ranking or generation failed; no fallback answer was used.")
+        result["provider"] = response.get("provider", self.llm_client.provider)
+        result["model"] = response.get("model", self.llm_client.model)
+        if result["provider"] == "mock" or response.get("status") == "test_only":
+            return finish("service_error", "Test-only mock output is rejected by the financial answer path.")
+        if (not response.get("success") or response.get("status") != "ok"
+                or not isinstance(response.get("text"), str) or not response["text"].strip()):
+            # Provider is responsible for sanitizing its own diagnostics. Keep this boundary safe too.
+            result["error_code"] = "generation_failed"
+            return finish("service_error", "The configured real provider failed or returned no answer.")
+        result["answer"] = response["text"].strip()
+        return finish("ok")
 
     def run_baseline_comparison(self, question: str) -> dict[str, Any]:
-        """
-        Runs text-only baseline alongside FinRAG for evaluation comparison.
-        """
-        retrieval_res = self.retriever.retrieve(query=question, top_k_text=3, top_k_tables=0)
-        baseline_text = [t["content"] for t in retrieval_res.get("text_evidence", [])]
-        baseline_prompt = build_baseline_prompt(question, baseline_text)
-        baseline_out = self.llm_client.generate(baseline_prompt)
-
-        finrag_out = self.answer_financial_question(question)
-
-        return {
-            "question": question,
-            "baseline_answer": baseline_out.get("text", ""),
-            "finrag_answer": finrag_out.get("answer", ""),
-            "finrag_latency": finrag_out.get("latency_seconds", 0.0),
-        }
+        """Legacy development comparison, not the final matched evaluation design."""
+        if self.llm_client.provider not in {"gemini", "ollama"}:
+            raise ValueError("Comparison requires one explicitly configured real provider; mock is forbidden.")
+        baseline = self.answer_financial_question(question, top_k_tables=0, _baseline=True)
+        finrag = self.answer_financial_question(question)
+        return {"question": question, "baseline_answer": baseline["answer"],
+                "baseline_status": baseline["status"], "finrag_answer": finrag["answer"],
+                "finrag_status": finrag["status"], "finrag_latency": finrag["latency_seconds"]}

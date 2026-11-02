@@ -1,0 +1,21 @@
+{
+  "purpose": "Manually transcribed provider smoke fixture only; not a Chroma index or final evaluation case.",
+  "checked_on": "2026-11-02",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+  "source_location": "Item 7, Results of Operations, net sales by category table, Services row; printed page 21",
+  "question": "What were Apple's Services net sales in fiscal 2021? State the value in millions of US dollars and the fiscal year.",
+  "expected_value_millions": "68425",
+  "records": [
+    {
+      "id": "provider-smoke:aapl-2021:item7:services",
+      "content": "Apple Inc. fiscal 2021 Form 10-K. Item 7 Results of Operations. Net sales by category. Units: millions of US dollars. Row: Services. Fiscal 2021: 68,425. Fiscal 2020: 53,768. Fiscal 2019: 46,291.",
+      "metadata": {
+        "type": "financial_table",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+        "source_locator": "Item 7 / Results of Operations / net sales by category / Services row",
+        "filing_id": "0000320193-21-000105",
+        "parser_version": "manual-provider-smoke-v1"
+      }
+    }
+  ]
+}

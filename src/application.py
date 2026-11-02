@@ -34,18 +34,18 @@ class SetupApplication:
         else:
             blockers.append("An index file exists, but its collection, records and source identity are not validated.")
         if settings.provider == "unconfigured" or not settings.model:
-            blockers.append("No verified model configured. The provider connection is the next implementation task.")
+            blockers.append("No verified model configured. Configure the provider and run scripts/check_generation.py.")
         if settings.provider == "gemini" and not settings.gemini_api_key:
             blockers.append("Gemini credentials are missing. Set GEMINI_API_KEY privately when testing the provider.")
         # A folder/key alone must never enable the prototype's hidden mock fallback.
-        blockers.append("Answering is disabled in this setup build until real-provider and evidence checks are connected.")
-        return {"status": "not_ready", "blockers": blockers}
+        blockers.append("Answering is disabled in this setup build until the filing, persistent index and source checks are connected.")
+        return {"status": "index_not_ready", "blockers": blockers}
 
     def answer(self, question: str) -> dict[str, Any]:
         if not question.strip():
-            return asdict(AnswerResult(status="invalid_input", question=question,
+            return asdict(AnswerResult(status="invalid_request", question=question,
                                        message="Please enter a question."))
-        return asdict(AnswerResult(status="not_ready", question=question,
+        return asdict(AnswerResult(status="index_not_ready", question=question,
                                    message="\n".join(self.readiness()["blockers"])))
 
 
@@ -74,7 +74,7 @@ def assemble_engine(settings: Settings, *, collection, embedding_model, cross_en
 
 
 def configured_answer(engine, settings: Settings, question: str):
-    """One adapter for retrieval settings; the legacy return contract still needs repair."""
+    """One adapter for retrieval settings; generation failures propagate as explicit statuses."""
     return engine.answer_financial_question(
         question, top_k_text=settings.top_k_text,
         top_k_tables=settings.top_k_tables, rerank_top_n=settings.rerank_top_n,

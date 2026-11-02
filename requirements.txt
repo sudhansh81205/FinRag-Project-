@@ -13,8 +13,7 @@ sentence-transformers==6.2.0
 chromadb==1.5.9
 
 # LLM & Reasoning (Member 3)
-google-genai==2.34.0
+-r requirements-provider.txt
 pydantic==2.14.2
-requests==2.34.2
 
 # Development tools are in requirements-dev.txt.
