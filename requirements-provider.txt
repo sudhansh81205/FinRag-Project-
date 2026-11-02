@@ -1,0 +1,4 @@
+# Optional Gemini SDK; Ollama only needs requests from requirements-dev.txt.
+-c constraints-setup.txt
+google-genai==2.34.0
+requests==2.34.2

@@ -16,7 +16,7 @@ The revised plan runs from **October 30 through November 17, 2026**, with **seve
 
 Use **`main`** for the shared project. The UI, modular backend, PRD and review kit are combined here. The original UI/container are preserved under `prototypes/`, and the notebook remains an ingestion reference.
 
-Start with the [setup guide](docs/SETUP.md). The single entry point is `python app.py`. This setup milestone launches without a key or model download and clearly reports `not_ready`. Real answering, validated ingestion, citations and calculations remain scheduled work.
+Start with the [setup guide](docs/SETUP.md). The single entry point is `python app.py`. This setup milestone launches without a key or model download and clearly reports `index_not_ready`. Real answering, validated ingestion, citations and calculations remain scheduled work.
 
 The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. November 17 is the team's completion target; the official course cutoff is unconfirmed.
 
@@ -27,3 +27,13 @@ The planned integrated answering path retains Chroma, MiniLM embeddings, a cross
 The scheduled owner reads the revised PRD, their dated task and the latest available nightly review, then fills in the master prompt. Work includes verification and a written handoff for the next scheduled owner. Code and check results must support completion claims; commit messages alone are not proof.
 
 The nightly review is configured separately in the desktop app for 11:59 PM Asia/Kolkata. This repository provides its instructions and report template; cloning the repository does not start that automation. Generated reports and personal delivery settings stay local unless deliberately shared after review.
+
+### Rushil Day 3 generation work
+
+Real Gemini generation and explicit failure handling are verified with a checked
+source fixture. The full UI remains gated on the later filing/index work. See
+[Day 3 handoff](docs/handoffs/2026-11-02_day-03_rushil.md) and
+[completion evidence](docs/reports/2026-11-02_day-03_completion.md).
+
+The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
+final failure-boundary corrections, 59 tests and fresh live/UI evidence.

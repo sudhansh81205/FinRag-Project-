@@ -47,3 +47,12 @@ Calculations contain an allowlisted operation (`sum`, `difference`, `percent_cha
 typed operands, each operand's record ID/row/period/unit, formula, result and unit.
 Reject incompatible units, missing periods and zero denominators. Do not execute
 generated Python. Sign handling and rounding must be documented in calculator tests.
+
+## Day 3 status implementation update on 2 November
+
+The implementation now uses `index_not_ready` and `invalid_request` in place of
+the setup table's earlier `not_ready` and `invalid_input` aliases, matching the
+revised PRD. The engine guards empty evidence, reports `service_error` without
+an answer on retrieval/provider failure, and accepts only real-provider output
+for `ok`. Explicit mock output is test-only and rejected by financial answers.
+Final citation resolution and complete context selection remain later tasks.

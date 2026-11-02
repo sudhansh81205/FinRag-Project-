@@ -55,7 +55,7 @@ def test_malformed_config_has_safe_error(configured_root):
 def test_missing_data_returns_no_fabricated_answer(configured_root):
     app = SetupApplication(load_settings(root=configured_root, environ={}))
     result = app.answer("What is revenue?")
-    assert result["status"] == "not_ready"
+    assert result["status"] == "index_not_ready"
     assert result["answer"] == ""
     assert result["evidence"] == []
     assert "No source filing" in result["message"]
@@ -70,14 +70,15 @@ def test_existing_index_and_key_do_not_enable_unverified_backend(configured_root
     settings.index_dir.mkdir()
     (settings.index_dir / "chroma.sqlite3").touch()
     result = SetupApplication(settings).answer("What is revenue?")
-    assert result["status"] == "not_ready"
+    assert result["status"] == "index_not_ready"
     assert "not validated" in result["message"]
     assert result["answer"] == ""
 
 
-def test_empty_question_is_invalid(configured_root):
-    result = SetupApplication(load_settings(root=configured_root, environ={})).answer("  ")
-    assert result["status"] == "invalid_input"
+@pytest.mark.parametrize("question", ["  ", None, 123])
+def test_empty_or_nontext_question_is_invalid(configured_root, question):
+    result = SetupApplication(load_settings(root=configured_root, environ={})).answer(question)
+    assert result["status"] == "invalid_request"
     assert result["answer"] == ""
 
 

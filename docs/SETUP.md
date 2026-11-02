@@ -20,8 +20,8 @@ py -3.12 -m venv .venv
 ```
 
 Open `http://127.0.0.1:7860`. Enter a question and choose **Check readiness**.
-Expect `not_ready`, a missing-source/index/model explanation, and an empty answer.
-An empty question returns `invalid_input`. Stop the server with Ctrl+C. The server
+Expect `index_not_ready`, a missing-source/index/model explanation, and an empty answer.
+An empty question returns `invalid_request`. Stop the server with Ctrl+C. The server
 is local; no public share link is created.
 
 For macOS/Linux use `python3.12 -m venv .venv` and `.venv/bin/python` instead of
@@ -80,3 +80,24 @@ for the exact checks actually run and remaining limitations.
 Do not run historical `prototypes/` files or `scripts/run_eval.py` as the final
 application/evaluation. The next owner starts from `app.py`, `src/application.py`
 and the [handoff](handoffs/2026-10-30_days-01-02.md).
+
+## Day 3 verified generation checks
+
+Rushil's first assignment was implemented on 2 November. The configured real
+model is Gemini `gemini-3.5-flash-lite`; no automatic fallback or production mock
+is allowed. Install the optional provider dependencies in the same environment:
+
+```sh
+.venv/bin/python -m pip install -r requirements-provider.txt
+.venv/bin/python scripts/check_generation.py --output docs/reports/local_generation_check.json
+```
+
+On Windows replace `.venv/bin/python` with `.\.venv\Scripts\python.exe`. Put your
+own `GEMINI_API_KEY` privately in the root `.env`; never copy it into source or a
+shared archive. The live check uses a checked SEC row without a Chroma index,
+then deliberately tests bad credentials and empty evidence. It does not run the
+reserved evaluation. The canonical UI continues to return `index_not_ready`
+until ingestion, index validation and source integration are supplied.
+
+See [Rushil's handoff](handoffs/2026-11-02_day-03_rushil.md) and
+[verification report](reports/2026-11-02_day-03_completion.md).

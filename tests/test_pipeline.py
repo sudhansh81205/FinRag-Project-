@@ -16,11 +16,10 @@ def test_financial_math_verifier():
     assert parsed_neg == -2500.0
 
 
-def test_finrag_engine_end_to_end_mock():
-    mock_llm = UnifiedLLMClient(provider="mock")
+def test_finrag_engine_without_index_never_returns_mock_answer():
+    mock_llm = UnifiedLLMClient(provider="mock", allow_mock=True)
     engine = FinRAGEngine(llm_client=mock_llm)
-
     response = engine.answer_financial_question("What were Apple's total net sales in 2021?")
-    assert "Direct Answer" in response["answer"]
-    assert response["provider"] == "mock"
+    assert response["status"] == "index_not_ready"
+    assert response["answer"] == ""
     assert response["latency_seconds"] >= 0
