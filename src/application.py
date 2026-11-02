@@ -42,7 +42,7 @@ class SetupApplication:
         return {"status": "index_not_ready", "blockers": blockers}
 
     def answer(self, question: str) -> dict[str, Any]:
-        if not question.strip():
+        if not isinstance(question, str) or not question.strip():
             return asdict(AnswerResult(status="invalid_request", question=question,
                                        message="Please enter a question."))
         return asdict(AnswerResult(status="index_not_ready", question=question,

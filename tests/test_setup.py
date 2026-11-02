@@ -75,8 +75,9 @@ def test_existing_index_and_key_do_not_enable_unverified_backend(configured_root
     assert result["answer"] == ""
 
 
-def test_empty_question_is_invalid(configured_root):
-    result = SetupApplication(load_settings(root=configured_root, environ={})).answer("  ")
+@pytest.mark.parametrize("question", ["  ", None, 123])
+def test_empty_or_nontext_question_is_invalid(configured_root, question):
+    result = SetupApplication(load_settings(root=configured_root, environ={})).answer(question)
     assert result["status"] == "invalid_request"
     assert result["answer"] == ""
 

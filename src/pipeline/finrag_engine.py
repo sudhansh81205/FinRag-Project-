@@ -75,10 +75,14 @@ class FinRAGEngine:
             response = self.llm_client.generate(prompt)
         except Exception:
             return finish("service_error", "Retrieval, ranking or generation failed; no fallback answer was used.")
-        result["provider"] = response.get("provider", self.llm_client.provider)
-        result["model"] = response.get("model", self.llm_client.model)
-        if result["provider"] == "mock" or response.get("status") == "test_only":
+        if not isinstance(response, dict):
+            return finish("service_error", "The configured provider returned an invalid response.")
+        if response.get("provider") == "mock" or response.get("status") == "test_only":
             return finish("service_error", "Test-only mock output is rejected by the financial answer path.")
+        if (self.llm_client.provider not in {"gemini", "ollama"}
+                or response.get("provider") != self.llm_client.provider
+                or response.get("model") != self.llm_client.model):
+            return finish("service_error", "The response did not match the configured real provider and model.")
         if (not response.get("success") or response.get("status") != "ok"
                 or not isinstance(response.get("text"), str) or not response["text"].strip()):
             # Provider is responsible for sanitizing its own diagnostics. Keep this boundary safe too.

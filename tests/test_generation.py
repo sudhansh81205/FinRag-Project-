@@ -95,6 +95,22 @@ def test_failed_or_invalid_provider_response_is_never_an_answer(evidence, reply)
     assert result["answer"] == ""
 
 
+@pytest.mark.parametrize("reply", [
+    None, [], "invalid response",
+    {"success": True, "status": "ok", "provider": "unknown", "model": "configured-model", "text": "answer"},
+    {"success": True, "status": "ok", "provider": "ollama", "model": "unexpected-model", "text": "answer"},
+    {"success": True, "status": "ok", "text": "answer with no provider identity"},
+])
+def test_malformed_or_mismatched_provider_reply_fails_safely(evidence, reply):
+    client = real_stub()
+    client.generate.return_value = reply
+    result = engine_with([evidence], client).answer_financial_question("Services sales?")
+    assert result["status"] == "service_error"
+    assert result["answer"] == ""
+    assert result["provider"] == "ollama"
+    assert result["model"] == "configured-model"
+
+
 def test_thrown_exception_is_sanitized(evidence):
     client = real_stub()
     client.generate.side_effect = RuntimeError("secret-value-in-provider-error")
