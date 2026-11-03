@@ -1,685 +1,522 @@
-# FinRAG authoritative revised PRD snapshot
+# FinRAG unified product requirements
 
-Source: [editable Word document](FinRAG_PRD_17Nov2026.docx)
-Team completion target: 2026-11-17. Timezone: Asia/Kolkata. Seven members; one assigned worker per date.
+CV ++ Team 6 | CS F407 Artificial Intelligence | Application track | Consolidated 3 November 2026
 
-October 30 clarification: November 17 is the team's internal target, not a confirmed hard course cutoff. The user authorized completing Sudhansh's October 30 task and Shanay's October 31 task together on October 30; future assignments remain unchanged. See the [integration decision](INTEGRATION_CHECKLIST.md), [delivery checklist](DELIVERY_CHECKLIST.md), and [completion handoff](../handoffs/2026-10-30_days-01-02.md). These updates supersede deadline and branch-status wording in the original Word snapshot below; its task scope remains the reference.
+Build the financial question answering system described in the submitted proposal, repair the gaps identified by the professor, and make every contribution verifiable in code, evaluation and the viva. This revision replaces the reduced one-report product scope and 14-question evaluation as the definition of the final submission.
 
-FinRAG revised product requirements and daily plan
+The consolidation adopts the friend dependency gates and updated parser checkpoint while retaining full proposal scope, professor feedback and course alignment. Exactly one member is assigned per date. November 17 remains the internal release target; November 18-20 are explicit recovery/freeze slots.
 
-CV ++ Team 6
+### The decision
 
-Start 30 October 2026. Final project delivery 17 November 2026. All dates use Asia Kolkata time.
+Retain narrative, table and chart evidence; section-aware chunks; cell-level table decomposition; BGE embeddings; exact FAISS search; BM25 with reciprocal rank fusion; hierarchical reranking; routing and escalation; source-backed calculations; and Gradio. Restore the cumulative A through G experiment and all promised evaluation measures. A small one-report build remains an integration checkpoint, not completion of the proposal.
 
-## The revised commitment
+### Professor feedback addressed
 
-Finish a small, reproducible FinRAG application over one supported SEC 10-K annual report. The application retrieves narrative and table evidence, answers from those sources, performs a few checked calculations and shows verifiable citations. Deliver the runnable code, a short report, a small honest evaluation, slides and a backup demonstration by November 17.
+- State a testable research question alongside the application problem.
+- Add a precise Connection to Course Concepts section and carry that mapping into implementation, code review and the report.
+- Keep the controlled experiment the professor praised, including numerical tolerance and the 50-answer faithfulness audit.
+- Map all roles to named people, with acceptance evidence and a different reviewer on a later date.
 
-Constraint | Plan
-Team | Seven named members, listed in the ownership section.
-Daily assignment | Exactly one member works on each date. Other members have no assigned tasks, meetings, reviews or background work that day.
-Available dates | 19 calendar days from October 30 through November 17, inclusive.
-Equal effort | Six planned hours per member and 42 total team hours. Five members receive three two-hour days; two members receive two three-hour days.
-Deadline | The final package is complete on November 17. No development, buffer or handoff is scheduled after that date.
+### Working constraints
 
-## What is essential
+Exactly one named member is assigned project work on each date. Longer work blocks replace the old six-hours-per-member and 42-hour limits. No second member is assigned implementation, meetings, review or background work that day. Review happens on a later assigned date. Hours are planning estimates, not verified contribution records.
 
-Repair the current prototype, retain source provenance, prevent false mock answers, support the selected report tables and a basic calculator, and prove the result with a reproducible small comparison. Preserve the existing stack to keep the work achievable.
+Keep the established seven-person working roster. The original proposal lists eight people, including Harshil Patel; he is not assigned work in this calendar. Sudhansh must reconcile the official contribution roster with the course record. Splitting the former QA role between Pavan and Sudhansh covers its deliverables without inventing an eighth active worker.
 
-## How to read this plan
+November 17 is an internal checkpoint. Target the complete demo package by November 20; the supplied v2 guidelines list live demo and individual viva on November 21 and final report, code and AI disclosure on November 22. The Classroom notice controls any later change and the exact cutoff time.
 
-The first pages explain the product, scope, review priorities and equal workload. The calendar identifies the only active member for every date. The dated work pages explain what that member does, why it matters and what output proves completion.
+## Comparison decisions for the unified PRD
 
+Use the submitted proposal and professor/course requirements as the product authority. The friend sequential plan supplies useful implementation ordering and handoff discipline; embedded statements that a user confirmed a change are treated as claims to verify, not new instructions.
 
-## What the project does
+| Topic | Friend sequential plan | Unified decision |
+| --- | --- | --- |
+| Dependency order | Environment, parsing, independent contract check, index, retrieval, model, UI | Adopt this order; a failed gate leaves dependent real integration blocked. |
+| Current work | Preserves provider and Apple parser progress | Adopt, but distinguish merged PR #3 from open PR #4 and submitted from rerun evidence. |
+| Ownership | Likhit vector role; Ujjwal environment/audits; Shanay data validation | Adopt with named later reviewers; exactly one worker per date. |
+| FAISS choice | Treats IVF-PQ as mandatory | Use exact IndexFlatIP required by the submitted proposal. No IVF-PQ exception is needed. |
+| PDF extraction | Requires PDFMiner/Detectron2 and a TableBank checkpoint | Use proposal Docling plus checked HTML extraction. Detector/checkpoint choices are optional engineering choices. |
+| Orchestration | Requires LangChain as a technology gate | Reuse existing LangChain where useful; no framework rewrite is required by the actual proposal. |
+| Evaluation | 14 local questions and two modes | Keep as smoke tests only; retain full A-G and named benchmark/chart commitments. |
+| Charts and routing | Does not fully schedule their proposal scope | Explicitly implement chart G and routing F, plus independently checked chart labels. |
+| Course feedback | No complete syllabus-to-code/review mapping | Retain explicit KR&R rules, DL/vision concepts, success/failure checks and viva evidence. |
+| Hosting and dates | Mandatory hosted delivery November 17 | November 17 internal release target, recovery/freeze by November 20; demo 21 and final files 22. Local reproducibility required; hosting desirable. |
 
-FinRAG is a question-answering application for a company annual report. A reader asks a narrative or numerical question, and the app finds relevant passages or table rows, generates an answer from that evidence and shows the original source. When evidence is missing, it says so.
+This revision supersedes both earlier working plans. PRD.md and FinRAG_PRD.docx are synchronized representations of one current PRD. TASK_REQUIREMENTS.md and schedule.json are derived execution records, not separate product definitions. Older versions belong in history.
 
-## Example of the intended workflow
+## Problem scope and research question
 
-The user asks how revenue changed between two comparative fiscal years in the supported report. FinRAG retrieves both revenue values, checks their periods and units, calculates the change and displays the formula and cited table rows. It must not guess a missing value.
+### Application problem
 
-Illustration only: values of 120 million and 100 million imply (120 - 100) / 100 x 100 = 20 percent growth. These numbers explain the process and are not claimed project results.
+Financial readers need numerical and narrative answers whose evidence can be inspected in long annual reports. The proposal records two prototype failures: a table of contents ranked above Item 1A risk evidence, and Markdown conversion lost financial table headers. Preserve these as reproducible failure cases with the exact source, question, configuration and output; do not claim this revision reran them.
 
-Stage | Plain explanation
-Read the report | Extract selected narrative sections and financial tables without separating values from headers and units.
-Build the search index | Store small source-linked records and their meaning-based embeddings in the existing Chroma database.
-Find useful evidence | Use the current dense search and existing reranker; retain source identity while selecting relevant text and table rows.
-Calculate and answer | Calculate supported operations in typed code and ask a real language model to explain only what the evidence supports.
-Display proof | Show answer, status, original source, relevant rows, units and any formula or explicit missing-data explanation.
+FinanceBench reported that GPT-4-Turbo with retrieval answered incorrectly or refused 81% of its evaluated questions [E1]. This is a historical result for that tested configuration, not a measurement of FinRAG or every current model. It motivates testing evidence representation and retrieval rather than promising a hallucination-free system.
 
-## The AI and engineering contribution
+### Testable question
 
-Embeddings help find related language, the existing cross encoder can rank relevance, and the language model explains evidence. The project contribution is keeping financial table meaning and source identity intact, checking arithmetic in code and measuring the effect against a controlled dense baseline.
+With the corpus, embedder, answer model, prompt, calculator and final passage count held fixed, how does adding section-aware chunking, cell-level tables, hybrid retrieval, hierarchical reranking, routing and chart descriptions change evidence recall, answer accuracy, faithfulness and median latency compared with standard dense RAG?
 
-## Current and required behavior
+Expected direction: structure-preserving table units and hybrid retrieval improve evidence coverage and numerical answer accuracy; reranking improves the final ordering; chart descriptions improve chart-only answerability. Treat these as hypotheses. Report negative or uncertain effects and latency costs. The cumulative experiment measures the incremental effect in this order, not every interaction or universal causal contribution.
 
-The inspected prototype has useful ingestion, retrieval, model and interface pieces. The required delivery is a repaired integrated application with repeatable setup, traceable answers and a documented small evaluation. Accuracy targets below are proposed checks, not already measured results.
+### Corpus commitment
 
+Application documents remain SEC Form 10-K annual reports. Focus on Item 7 MD&A, Item 8 financial statements, their footnotes and embedded charts; support Item 1A as the original risk-factor failure case. Start with five exact Apple and five exact Microsoft filings, then expand to ten technology-sector companies. Use at least one declared 10-K for each additional company; the proposal does not specify five filings for every company. Validate the claimed downloads rather than assuming they are parsed or indexed.
 
-## Code review priorities for the reduced build
+Benchmark contexts are separate reproducible evaluation corpora containing the documents or contexts the named benchmarks reference. Audit filing types and available provenance. A benchmark context is not evidence of support for that document type in the application. Publish incompatible or inaccessible cases and coverage counts; an eligible subset must be labelled as a subset and does not satisfy a full-suite claim.
 
-The earlier inspection covered GitHub main b3bb02f and local feature/engine-backend c4b1a76. Seven local lightweight tests and configured lint passed. Those checks did not establish real retrieval, citations or answer quality. The issues below guide the revised schedule.
+### Scope boundary
 
-Issue | Required repair | Sole scheduled owner
-Divergent implementations | Keep one UI and launch route; port useful local modules without creating another pipeline. | Sudhansh Oct 30; Shanay Oct 31
-False mock success | Remove automatic fixed-answer fallback and block generation without evidence; propagate real provider failures. | Rushil Nov 1
-Notebook-only data setup | Parse the declared filing through a repeatable entry point with a manifest and source locations. | Likhit Nov 2
-Weak IDs and persistence | Use filing-specific deterministic IDs, remove stale records and verify reopen and rerun behavior. | Ujjwal Nov 3
-Lost provenance | Keep evidence IDs and metadata through ranking, context and UI; fix invalid zero-budget retrieval queries. | Pavan Nov 4
-Table meaning loss | Retain row labels, headers, comparative periods, units and parent references for three representative tables. | Likhit Nov 6
-Unused or inconsistent math | Wire helpers into answers, normalize supported units and handle zero or negative prior values explicitly. | Rushil Nov 7
-Context truncation | Replace the 4000-character slice with complete evidence selection inside a configured input budget. | Pavan Nov 8
-Unproven evaluation | Use checked questions, independent label review and saved matched-mode outputs rather than LLM self-grading alone. | Sudhansh Nov 9; Ujjwal Nov 10; Gowtham Nov 12
-Incomplete package | Repair dependencies and launch instructions; verify the final archive in a clean environment. | Shanay Oct 31; Shanay Nov 16
+Exclude live market data, investment advice, fine-tuning and unrelated agent or game features. Preserve the Application track. Course justification does not change an approved track or topic; any actual change of approved topic or track requires the IC sign-off specified in the v2 guidelines.
 
-Dates listed together identify separate sequential workdays, not shared work on the same date. Fixes remain proposed work until their dated completion checks pass.
+## Data indexing and model requirements
 
+| ID and owner | Required behavior | Acceptance evidence |
+| --- | --- | --- |
+| R1 Corpus \| Likhit | Manifest exact application filings, benchmark sources and chart images. Store issuer, accession, filing date, fiscal period, type, URL, checksum, parser version and counts. | Five Apple plus five Microsoft filings and ten companies accounted for; failures and supported sections listed. |
+| R2 Index \| Likhit | Use bge-base-en-v1.5, 768-dimensional L2-normalized embeddings and FAISS IndexFlatIP; keep BM25 and FAISS evidence IDs aligned. | Repeat ingest and restart preserve IDs, counts, source mapping and retrieval; changed models force a rebuild. |
+| R3 Evidence \| Likhit | Parse EDGAR HTML with BeautifulSoup/pandas and PDFs with Docling. Preserve title, multirow headers, fiscal period, units and footnotes at cell level. Keep the original grid. | Hand-checked fixtures show parent links, negative values, scales, missing cells and comparative years; locators resolve. |
+| R4 Generation \| Rushil | Use Gemma 3 through Ollama, initially 4B; use 12B only after memory/timing validation. Pin one choice for A-G; separate Llama 3.2 comparison. | Actual provider/model identifier, digest/quantization, hardware and success/failure traces saved; no automatic mock fallback. |
+| R5 Calculation \| Rushil | Translate evidence-backed arithmetic into a restricted typed expression or operation tree, validate rules, execute in code and display the program. | Source-backed operands and multi-step benchmark operations pass reviewed fixtures; arbitrary Python cannot execute. |
 
-## Product requirements and scope
+### Migration rule
 
-Requirement | Required November behavior | Completion evidence
-R1 Corpus | One exact Apple 10-K with comparative fiscal-year values; selected narrative from Items 1A, 7 and 8 and three representative financial tables. | Manifest, original URL, checksum, supported periods and accounted record counts.
-R2 Reproducible data | A documented parse and ingestion route builds the index and reopens it after restart. | Stable IDs and counts after two runs; no stale records for the filing.
-R3 Evidence | Preserve source identity, narrative section, table title, row, value period, original value and unit. | Cited evidence can be checked against the original report.
-R4 Grounded answers | Use the same real model configuration for both modes. Explicitly distinguish ok, insufficient_evidence, index_not_ready, invalid_request and service_error. | A real answer and deliberately triggered failure paths; no hidden mock result.
-R5 Calculations | Support sum, difference and percentage change over cited operands with matching periods and units. | Formula and values match the code result; missing data and zero denominators are handled.
-R6 Interface | Show the supported filing, question, status, answer, evidence, source links and calculation. | A simple demo runs without notebook execution.
-R7 Comparison | Compare dense baseline and table-aware retrieval on 14 checked local questions, with seven reserved for final evaluation. | Fixed settings, saved outputs, actual scores and independent review.
-R8 Delivery | Deliver code, setup guide, report, slides, results, contribution record and backup demo by November 17. | Clean-machine evidence, archive checksum and delivery or submission record.
+The existing MiniLM/Chroma prototype is a recovery aid and historical reference. It cannot be the final baseline if the enhanced system uses BGE/FAISS: that would change multiple factors. Rebuild A and B-G with the same pinned BGE model and index implementation. Do not reinterpret the proposal as an IVF-PQ requirement; its exact-search choice is explicit.
 
-## What this deadline excludes
+### Numerical execution
 
-Defer chart image understanding, BM25 and rank fusion, FAISS or BGE migration, corpus expansion, full external benchmarks, extra LLM comparisons, fine-tuning, cloud hosting, new Docker work, MLflow and DVC. These features must not appear as implemented contributions in the report.
+Allow only approved arithmetic operations required by the frozen task inventory, such as addition, subtraction, multiplication, division, sums and composed ratio or percentage calculations. Reject imports, function calls outside the allowlist, file/network access, unbounded expressions and uncited constants. Set expression size/depth limits. This tightens the proposal Python-expression step without changing its purpose: arithmetic runs in code and produces an inspectable trace.
 
-The existing narrative-and-table search is not BM25 hybrid search. Describe the delivered mode as table-aware retrieval. Keep financial evidence quality and honest failures ahead of new features.
+## Retrieval charts and application requirements
 
+### R10 Retrieval and routing
 
-## Architecture and quality rules
+Pavan owns the orchestration, section-aware chunks, BM25 orchestration, fusion, reranking, routing and complete context selection; Likhit owns the index adapters and rank-to-ID contract; Ujjwal independently checks integrity. Dense and BM25 candidates share one eligibility policy. Fuse with reciprocal rank fusion using k=60 and deterministic tie-breaking. Preserve the component ranks and final score trace.
 
-## Offline preparation
+Hierarchical selection first restricts candidates by company, requested value period and supported Item, then applies bge-reranker-base and selects five evidence passages. A request without a known filter must not receive an invented one. Apply comparable explicit query filters in A-G; reserve the hierarchical candidate stage and cross-encoder change for E. Log candidate counts and discarded records.
 
-Declared filing -> narrative and table parsing -> evidence records -> supported value normalization -> existing MiniLM embeddings -> Chroma persistence and a record-count summary. Baseline records contain the same source facts, with tables flattened into text. Enhanced records retain table rows and headers.
+Routing uses keyword rules plus a short model prompt to choose narrative, numerical or chart-based evidence. Escalate through the declared text, table and chart tiers when development-tuned relevance or requested metric/period coverage is inadequate. Cap attempts and record the route, threshold, missing facts and stopping reason. Scores are model-dependent relevance signals, not probabilities or admissible search heuristics.
 
-## Online question answering
+Select complete evidence objects inside a fixed input budget. Derive prompt content and reported included IDs from exactly that selection. Parent expansion, deduplication and chart descriptions must obey the same budget; do not slice away a source after reporting it as included. Disabled streams issue no retrieval query.
 
-Question and supported period -> readiness check -> dense search -> existing reranker where used -> complete evidence selection -> validated calculation and real model call -> answer, sources and timing, or an explicit failure state.
+### R11 Chart evidence
 
-Data contract | Required fields
-Evidence | evidence_id, filing_id, evidence type, source URL or file, section or table locator, readable content and parser version.
-Financial row | Parent-table ID, table title, row label, column label, value fiscal period, raw value, normalized value, currency and scale.
-Answer | Status, answer text, provider and model, included evidence IDs, citations, calculation, warnings and elapsed time.
-Calculation | Approved operation, cited operand IDs, raw and normalized values, periods, units, formula and result.
+Rushil owns Gemma 3 chart captioning; Likhit owns image extraction and independently checked chart labels. Describe each chart title, axes, legend, series, periods, units and only legible values. Save image hash, report/page or HTML locator, model configuration and description. Mark unclear values as unknown. Link every description to the original image; never present a generated caption as issuer-authored text.
 
-## Calculation policy
+Create about 50 chart-only questions from eligible filings and cross-check every answer visually. Target 50, with 15 development and 35 held-out cases; record actual counts and distinct images. Avoid near-duplicate images crossing the split. If the corpus contains too few usable charts, record the shortfall as unmet proposal scope rather than substituting unrelated images.
 
-Use fixed typed operations rather than executing generated Python. Percentage change for a positive prior value is (current - prior) / prior x 100. If the prior value is zero, return undefined. For a negative prior value, show absolute change and explain that ordinary growth percentage is not supported in this small build. Normalize scale before arithmetic and round only the final display value.
+### R6 Interface
 
-## Required reliability
+Gowtham owns the Gradio workflow: supported company/report/period, question, answer status, source passages, table headers and cells, original chart, calculation, route trace and timings. Keep user inputs session-specific. Show invalid_request, index_not_ready, insufficient_evidence and service_error distinctly. A local reproducible demo is essential; a public host is an enhancement subject to measured readiness.
 
-All citations must resolve to included evidence and a source location. Empty data or failed model calls must not produce a financial answer. Store no credentials in Git or logs, and do not mutate a shared environment variable from a user request. Use one configured embedder compatible with the stored index and rebuild if it changes.
+## Connection to course concepts
 
-## Performance and recovery
+The strongest course connection is Knowledge Representation and Reasoning combined with Applications of Deep Learning. The course handout names predicate logic, ontology/categories, word embeddings, transformers and computer vision. Implement and explain the connection below instead of merely listing retrieval packages.
 
-Record observed warm response times and cold setup separately; do not promise a latency threshold without measurements. The native local app is the required demo path. A backup video and saved evaluation outputs may demonstrate prior measured behavior if the real service fails, with that fact clearly stated.
+| Course topic | Concrete project behavior | Proof and viva question |
+| --- | --- | --- |
+| KR&R ontology and predicates \| T1 chapters 7-10 | Represent issuer, filing, period, statement, metric, unit, value, table cell and source as typed facts. Explicit rules check comparability and whether an operation is justified. | Show facts and a rule trace. Why is a 2023 consolidated USD-million value incompatible with a 2024 segment value? |
+| KR&R inference | Infer that a requested calculation is allowed only when all required operands are cited, comparable and valid. Record rule failures and abstain. | A missing operand or zero denominator blocks the result. Which premises established the displayed result? |
+| DL for NLP \| T1 chapter 25 | BGE embeds question and evidence; the cross-encoder jointly scores pairs; Gemma generates a grounded explanation. Use pretrained transformer models without fine-tuning. | Explain cosine retrieval versus cross-encoding, normalization and context limits. Save measured A-G outcomes. |
+| Computer vision \| T1 chapter 27 | Use a pretrained vision-language model to convert report images into cited chart descriptions. | Compare the image with its caption and explain an unreadable-value failure. No claim of training a vision model. |
+| Ethics and safety \| T1 chapter 28 | Disclose AI help, retain source provenance, expose uncertainty and provider failures, and avoid unsupported financial claims. | Show an abstention, an AI-use entry and source verification. |
 
+Search and Problem Solving is a limited supporting analogy: evidence candidates, constrained selection and tier escalation define a search process, but BM25/RRF/nearest-neighbour retrieval are information-retrieval methods, not implementations of A*, CSP, minimax or a syllabus state-space algorithm. Agents and Game Theory is not a claimed implemented contribution; bounded routing alone is not multi-agent planning or equilibrium reasoning. No extra game or planner is added merely to name all four areas.
 
-## Small evaluation and scoring plan
+In the report, include the explicit section title Connection to Course Concepts. In every meaningful code review, name the applicable concept, point to its implementation, inspect one successful and one failing case, and record what the member must explain in the viva. An ordinary packaging change may say supporting engineering rather than forcing a false algorithm connection.
 
-Use 14 manually checked local questions from the supported filing: six narrative, four table, two calculation and two unanswerable. Reserve seven development and seven held-out cases, each with three narrative, two table, one calculation and one unanswerable question. Keep related question templates together when selecting cases; use distinct facts to avoid near duplicates across splits.
+## Knowledge rules and evidence contracts
 
-Date | Sole owner | Evaluation responsibility
-Nov 9 | Sudhansh | Author 14 cases, preassign the split and write expected answers and source locations.
-Nov 10 | Ujjwal | Independently verify labels and source mappings; lock the split and use development cases only for checks.
-Nov 11 | Rushil | Freeze code, model, prompt, calculator and context budget before final test use.
-Nov 12 | Gowtham | Run seven test cases in both modes and score all 14 saved outputs.
-Nov 14 | Pavan | Independently audit results, recompute scores and explain limitations.
+### Minimal executable reasoning
 
-## Fair comparison
+Implement the rules as deterministic typed Python predicates with recorded premises and outcomes. This is a small rule-based reasoning layer; do not claim a general theorem prover, resolution engine, knowledge graph database or probabilistic inference system.
 
-Mode A uses dense retrieval over fixed chunks with table facts flattened into readable text. Mode B uses section and table-row records preserving headers and context. Keep the same source report, model, generation prompt, calculator, total context budget and reranker setting. If either path uses the existing reranker, both must use the same setting. Only representation and retrieval of that representation differ.
+- Value facts bind issuer, metric, period boundaries, statement, scope, currency, scale, normalized value and evidence ID.
+- Comparable requires matching issuer, metric meaning, scope, currency and appropriate periods for the requested operation. A year-over-year comparison deliberately allows two specified periods; a same-period comparison requires the same one.
+- Allowed division requires valid, cited operands and a nonzero denominator. Missing, ambiguous or incompatible facts cause an explicit rule failure.
+- For ordinary growth, a positive prior value permits (current - prior) / prior times 100. A zero prior is undefined. For a negative prior, display absolute change and an explanation unless a separately documented benchmark operation explicitly defines another calculation.
+- Conclusions retain operand IDs, rule IDs, normalized values, units, expression and result. The language model may explain a validated result but cannot override a failed rule.
 
-## Measures and proposed checks
+| Record | Mandatory contents |
+| --- | --- |
+| Evidence | Stable ID; issuer and filing identity; type; section/page/HTML locator; source URL; content hash; parser version; readable content; parent ID. |
+| Cell | Table title; row and column headers; raw value; metric; period boundaries; raw and normalized unit/currency/scale; footnote links; parent grid coordinates. |
+| Retrieval trace | Eligible corpus/filter; dense and BM25 ranks; RRF and reranker scores with type; route/escalation; candidate IDs; selected IDs; expansions; budget. |
+| Answer | Status; answer text; actual included IDs; resolvable citations; provider/model/configuration; operation tree and rule trace; warnings; timing. |
+| Run | Code SHA; data/model/configuration hashes; variant A-G; question/split IDs; output; scores; failure code; hardware; timestamp; duration. |
 
-Report answer correctness out of six answerable test cases per mode, table and calculation correctness out of three, and correct abstention out of one. A useful target is at least five of six answerable cases correct with all three numeric cases and the one abstention correct; report actual results even if the target is missed.
+### Reliability
 
-Check source support for every answer and operand, and report the fraction of gold evidence included within the top five results using common source-location mappings. For numbers, require matching period and unit, then use a predeclared 1 percent relative tolerance for nonzero amounts and 0.1 percentage point for percentage results. Define absolute tolerance separately for zero or near-zero values before testing.
+Reject missing indexes, invalid requests and unusable evidence before financial generation. Provider errors cannot turn into successful mock answers. Separate test fixtures from real outputs; never log secrets. Data replacement must not delete unrelated filings. Preserve cited context exactly; list retrieved-but-excluded IDs separately.
 
-## Honest interpretation
+## Controlled evaluation and ablation
 
-Retain failures in the outputs. Report counts beside percentages and state that the test is tiny and specific to one report. No published benchmark or unseen-company claim follows from it. If a real blocker is fixed after test use, version the change, rerun both modes and label the reused-test regression result. Do not tune features against the reserved answers.
+R7 is co-owned by Sudhansh for experiment design and reproducible runs and Pavan for independent audits and interpretation. One person owns each dated deliverable. The old 14-case local set may be retained as a smoke test; it cannot replace the promised experiment.
 
+| Variant | One cumulative change | Required isolation |
+| --- | --- | --- |
+| A | Fixed-size overlapping narrative chunks, flattened Markdown tables, dense retrieval only | Use common BGE, FAISS, answer model, prompt, calculator and passage count. |
+| B | A plus section-aware narrative chunking | Keep table representation and retrieval stages otherwise as A. |
+| C | B plus self-describing table cells and parent expansion | Same underlying source facts; no chart descriptions. |
+| D | C plus BM25/dense fusion with RRF k=60 | Save independent rankings; do not change generator or final budget. |
+| E | D plus hierarchical filtering and cross-encoder reranking | Record candidate restriction separately from explicit request filters. |
+| F | E plus query routing and bounded tier escalation | Freeze thresholds on development data; chart tier unavailable until G. |
+| G | F plus chart descriptions linked to original images | Chart-only failures in A-F remain in the measured results. |
 
-## Seven member ownership and equal workload
+### Matched conditions
 
-Member and ID | Main contribution | Days | Total hours
-Sudhansh Khandelwal; 2024AAPS0255H | Integration, evaluation design and submission | 3 | 6
-Agrawal Pavan Shailesh; 2024A3PS0399H | Retrieval, context and independent result review | 3 | 6
-B Rushil Mohan; 2024AAPS0235H | Real model calls, calculations and failure handling | 3 | 6
-Sri Sai Likhit Boddada; 2024A1PS0838H | One filing, parsing, source verification and report draft | 3 | 6
-Ujjwal Chandak; 2024A3PS0379H | Index persistence, gold-label verification and data package | 3 | 6
-Shanay Ghodasara; 2024AAPS0244H | Setup, packaging and clean-machine verification | 2 | 6
-Muppidi Gowtham Sai; 2024AAPS0207H | Interface, fixed evaluation run and demonstration | 2 | 6
+Recompute accuracy, retrieval Recall@5 and @10, MRR, RAGAS faithfulness and median latency for every row. Generate from five final passages under one fixed token limit; retrieval @10 uses the pre-context ranked list. When fewer than five valid passages exist, use only those available and record the shortfall. No padding with unsupported evidence. Keep model, prompt, calculator, corpus version and random settings identical within the comparison.
 
-## How equality works
+A-G is the primary Gemma 3 comparison. A Llama 3.2 comparison is a separately labelled secondary experiment using the same frozen inputs and selected baseline/final configuration. Do not combine its outputs with A-G. Pin the actual model sizes, revisions and quantization only after the hardware check.
 
-There are 19 available dates and seven members, so everyone cannot receive the same number of whole dates. Equal planned hours solve this: Sudhansh, Pavan, Rushil, Likhit and Ujjwal each receive three two-hour days; Shanay and Gowtham each receive two three-hour days. Every member receives six hours, and total scheduled effort is 42 hours.
+### Benchmark protocol
 
-Hours include reading the previous handoff, doing the bounded task, running its checks and leaving the next handoff. They are planning estimates; actual effort should be recorded. If a task overruns, narrow its nonessential part instead of silently assigning work to another person that day.
+Create versioned loaders for FinQA, TAT-QA and the FinanceBench open sample of 150 questions. FinQA evaluation pools the declared test contexts into one retrieval index, without answer/program leakage. For TAT-QA and FinanceBench, declare the candidate universe and source mapping. Separate benchmark splits from local development questions; use public labels only where permitted. Do not train or tune on final answers.
 
-## Exactly one active member per date
+Freeze complete eligible case IDs, exclusions, splits, source hashes and scoring before final runs. Where official labels or original locators are unavailable, report that limitation and use a clearly named accessible split; never claim an inaccessible official test was evaluated.
 
-Only the listed owner has work assigned on a given day. There are no shared standups, same-day code reviewers, background dataset assignments or extra tasks for other members. The next scheduled owner reviews the previous change during their own workday. Specific independent label and result checks are placed on different dates.
+## Scoring faithfulness and runtime gates
 
-## Daily handoff record
+### Answer and retrieval scoring
 
-Before stopping, save the changed files or revision, the result of the daily completion check, exact run instructions, source or configuration changes, actual time used and any unresolved defect. The next owner should be able to start from this record without a meeting.
+After currency/scale normalization, numerical answers with nonzero gold value pass when absolute(predicted - gold) / absolute(gold) is at most 0.01. For a zero gold value, use a separately declared absolute tolerance derived from source display precision; do not divide by zero or silently replace 1% with a broad epsilon. State percentage versus percentage-point conventions and sign rules. Incorrect periods, units or unsupported answers fail even if the number happens to match.
 
-## Scope control for this capacity
+Use reviewed narrative rubrics or official exact match/F1 where appropriate and report them separately from numerical accuracy. Map every gold span, cell or chart to stable source identities. Evidence Recall@k is recovered required gold evidence divided by required gold evidence; also report complete-evidence success for multi-operand questions. MRR uses the first relevant evidence unit. Publish the mapping and deduplication policy so cell and chunk variants remain comparable.
 
-Equal hours do not guarantee equal technical difficulty. Use existing modules and one tested example before expanding. Cut polish, extra questions or optional features before weakening citations, numerical correctness, honest failure states or the verified launch path. No recovery work is assigned after November 17.
+### Faithfulness audit
 
+Run RAGAS with pinned evaluator, prompt and settings. Treat it as an automated estimate, not financial truth. Before reading final scores, fix a seed and a stratified sample of 50 answer outputs covering A-G and narrative, table, numerical and chart questions. Record variant and question IDs; these 50 answers are separate from the 50 chart-only questions.
 
-## Complete calendar with one owner per day
+Likhit begins the non-self-authored-label portion on November 15 against exact included context and original sources. Pavan completes any self-authored-label exclusions and remaining cases on November 19, then reviews disagreements and high-risk numerical cases. No person independently validates their own labels. The combined audit contains 50 outputs; the schedule makes these reviews sequential. Save human labels, automated scores, unsupported claims, abstentions and disagreements; count failed calls separately rather than dropping them.
 
-The owner shown is the only assigned worker that date. All times are focused work estimates including checks and handoff.
+### Uncertainty and failures
 
-Date | Member | Hours | Daily outcome
-30 Oct | Sudhansh | 2 | Choose one runnable implementation
-31 Oct | Shanay | 3 | Make setup and launch reproducible
-01 Nov | Rushil | 2 | Connect a real model and remove false success
-02 Nov | Likhit | 2 | Parse one supported annual report
-03 Nov | Ujjwal | 2 | Build and reopen the persistent index
-04 Nov | Pavan | 2 | Preserve source records through retrieval
-05 Nov | Gowtham | 3 | Finish the source linked question interface
-06 Nov | Likhit | 2 | Repair the tables needed for the demonstration
-07 Nov | Rushil | 2 | Add a small source checked calculator
-08 Nov | Pavan | 2 | Keep complete evidence in the model context
-09 Nov | Sudhansh | 2 | Prepare the small evaluation and report outline
-10 Nov | Ujjwal | 2 | Independently verify labels and freeze the split
-11 Nov | Rushil | 2 | Verify final answers and freeze evaluation settings
-12 Nov | Gowtham | 3 | Run the reserved evaluation and capture the demo
-13 Nov | Likhit | 2 | Write the evidence based final report draft
-14 Nov | Pavan | 2 | Audit results and review the report
-15 Nov | Ujjwal | 2 | Package data and prepare the final presentation
-16 Nov | Shanay | 3 | Run the final clean machine and release check
-17 Nov | Sudhansh | 2 | Complete final verification and deliver the project
+Report 95% bootstrap confidence intervals for accuracy, recall, MRR, faithfulness and median latency, plus paired A-to-G or adjacent-row differences. Resample the same questions for every variant. Use a fixed seed and 10000 resamples; cluster by shared document or chart where feasible and state the unit. Give per-dataset counts, exclusions and denominators. Small or related samples support limited conclusions. Retain failures and timeouts; undefined metrics show the reason and count.
 
-Totals: 19 daily assignments, seven members, six hours each and 42 team hours. November 17 is the final delivery date; no additional workday or buffer follows it.
+### Capacity gate before full evaluation
 
+On November 3, record a preliminary resource check; by November 10, time a representative pilot on the intended hardware and estimate model and RAGAS work separately. Expected machine hours are the sum of case count times variants times observed seconds per case divided by 3600, plus extraction, captioning and evaluator overhead. Compare this with actual available machine hours through November 20, not human work hours. Save costs, memory, restart/checkpoint behavior and the uncertainty margin.
 
-## Daily work plan 1 and 2
+If the full promised runs or chart coverage will not fit, record unmet scope immediately. Use batching, cached immutable embeddings/captions and resumable execution without changing experimental conditions. A sampled interim table must remain labelled interim. Reducing the final commitment requires an explicit team scope decision and any required instructor approval; do not quietly replace the full plan with 14 local questions.
 
-## Day 1 30 October 2026
+## Named ownership and stack decisions
 
-Sudhansh is the only assigned member. Planned work 2 hours.
+Each module has one primary owner. A reviewer checks it on the reviewer own later scheduled workday. Ownership does not require two people to work together or prove actual effort. A handoff contains code revision, verified behavior, unresolved gaps, inputs and restart instructions.
 
-Choose one runnable implementation
+| Member and student ID | Primary accountability | Later reviewer |
+| --- | --- | --- |
+| Sudhansh Khandelwal<br>2024AAPS0255H | Coordination, integration, experiment design, report and submission | Pavan |
+| Agrawal Pavan Shailesh<br>2024A3PS0399H | Retrieval orchestration, BM25/RRF, reranking, routing and QA audit | Ujjwal |
+| B Rushil Mohan<br>2024AAPS0235H | Ollama generation, safe calculations, chart captions and regressions | Pavan |
+| Sri Sai Likhit Boddada<br>2024A1PS0838H | Parsing, cell/chart sources, BGE/FAISS, methods and manual output audit | Shanay and Ujjwal |
+| Ujjwal Chandak<br>2024A3PS0379H | Environment/data contracts, label/index audits, evaluation integrity and slides | Shanay |
+| Shanay Ghodasara<br>2024AAPS0244H | CI, DVC, MLflow, packaging, environment and clean-machine verification | Sudhansh |
+| Muppidi Gowtham Sai<br>2024AAPS0207H | Gradio, evidence and image display, demonstration and usability checks | Shanay |
 
-Why this matters: The remote prototype has a UI, while the local branch has reusable modules. Select one integration route before changing either version.
+### How the friend advice is used
 
-Start with: The two inspected revisions, supplied proposal and current course requirements.
+Adopt Rushil for Ollama, Likhit for PDF/table extraction, Shanay for reproducibility and operations, Gowtham for Gradio, and Sudhansh for coordination. Pavan leads retrieval and QA review; Sudhansh leads release accountability. Adopt Likhit as primary BGE/FAISS owner alongside parsing, as clarified in the sequential plan. Ujjwal owns environment/data contracts and independent label/index audits. Pavan retains retrieval orchestration, fusion, reranking and routing.
 
-1. Keep the existing Chroma, MiniLM and Gradio route. Select one Apple 10-K with comparative years; record a minimal scope and launch path.
+### Tools are means to the proposal deliverables
 
-2. Define the evidence record and answer status fields. Record which UI functions and local modules will be reused in the integration branch.
+Use Python, BeautifulSoup/pandas, Docling, BGE, FAISS IndexFlatIP, BM25/RRF, bge-reranker-base, Ollama/Gemma 3 and Gradio. Retain the current test/lint workflow where sound. Restore DVC data/index manifests and MLflow run tracking as promised; local tracking is enough if reproducible. GitHub Actions checks reviewed code. Hosting is desirable for the demo, but does not replace a clean local release.
 
-3. Create the acceptance checklist and a shared handoff file. Record the official delivery requirements, model-access assumption and November 17 cutoff.
+Do not add Detectron2, IVF-PQ, a new orchestration framework, fine-tuning or cloud complexity just because the strategy document names them. Record actual installed versions and APIs during implementation; planning is not evidence that model files, hardware or services are available.
 
-Completion check: One integration checklist, one proposed filing, shared record examples and a fixed delivery checklist are saved.
+## Daily schedule with one assigned member
 
-What we learn: The goal is to repair a small existing prototype and prove its answers, rather than start another implementation.
+The historical October 30 through November 2 assignments and evidence remain unchanged. The replacement execution calendar starts November 3. These blocks include reading, implementation, checks and handoff. They are demanding estimates; each owner records actual effort and unfinished work rather than claiming the scheduled hours were completed.
 
+| Date | Sole owner | Hours | Deliverable |
+| --- | --- | --- | --- |
+| 11-03 | Ujjwal | 8 | Verify environment resources and handoff contracts |
+| 11-04 | Likhit | 10 | Extend verified parsing to cells PDFs and chart sources |
+| 11-05 | Shanay | 8 | Independently validate canonical data and restore behavior |
+| 11-06 | Likhit | 10 | Build BGE exact FAISS and corpus coverage |
+| 11-07 | Pavan | 10 | Implement cumulative retrieval stages and routing |
+| 11-08 | Rushil | 10 | Integrate real models calculations and chart descriptions |
+| 11-09 | Gowtham | 8 | Connect the full interface and measure real throughput |
+| 11-10 | Sudhansh | 8 | Define full evaluation research question and capacity gate |
+| 11-11 | Ujjwal | 10 | Independently check labels and development runs |
+| 11-12 | Pavan | 8 | Fix development defects and freeze A through G |
+| 11-13 | Gowtham | 10 | Run full evaluation and capture the demo |
+| 11-14 | Shanay | 10 | Verify clean setup tracking and deployment readiness |
+| 11-15 | Likhit | 8 | Write methods and begin the fifty-output audit |
+| 11-16 | Ujjwal | 8 | Audit results and prepare the six-slide release candidate |
+| 11-17 | Sudhansh | 8 | Review the internal proposal release target |
+| 11-18 | Rushil | 8 | Use the recovery slot for numerical and chart defects |
+| 11-19 | Pavan | 8 | Finish the independent audit and release review |
+| 11-20 | Sudhansh | 8 | Freeze the single final package |
 
+Total planned execution capacity from November 3 through 20 is 158 person-hours across 18 dates. Planned totals: Gowtham 18 hours; Likhit 28 hours; Pavan 26 hours; Rushil 18 hours; Shanay 18 hours; Sudhansh 24 hours; Ujjwal 26 hours. These totals intentionally replace the earlier equal six-hour allocations; they are not a claim of equal actual contributions.
 
-## Day 2 31 October 2026
+Detailed steps, dependencies, requirement IDs, completion checks and course concepts are in TASK_REQUIREMENTS.md. Only the sole owner handles bounded prerequisite repairs or hands an unresolved dependency to a later dated slot.
 
-Shanay is the only assigned member. Planned work 3 hours.
+## Next steps and feasibility decisions
 
-Make setup and launch reproducible
+### Start with the actual handoff
 
-Why this matters: The next owners need a working environment and a single application entry point. Repair setup before spending time on model or retrieval changes.
+GitHub was inspected for this consolidation. Main at 6f9f236 contains Rushil provider/failure-boundary work from PR #3. Parser PR #4 at 384beea remains open and unmerged; its handoff reports 316 narrative records and three parent statements for Apple 2021, with 79 local tests. Those are submitted implementation/verification records, not independently rerun results here. Preserve the parser contribution and review the exact PR revision before reuse; parsing does not establish indexing, normalized cells, charts or final app readiness.
 
-Start with: The Day 1 integration checklist and evidence examples.
+- November 3-6: validate environment and completed parser input, add source-checked cells/PDFs, independently freeze canonical records, then build BGE/FAISS.
+- November 7-9: integrate A-G retrieval, safe typed calculations, real model/chart descriptions and the source-linked interface.
+- November 10-12: quantify complete evaluation time, independently verify labels, resolve development defects and freeze every experimental control.
+- November 13-16: execute/checkpoint the full experiment, verify clean setup, audit outputs, draft results and prepare the six required slides.
+- November 17: inspect the full requirement ledger and freeze a release candidate only if its gates pass. Use November 18-20 recovery slots for recorded defects/audit completion and final package freeze.
 
-1. Review the previous handoff. Create the integration branch and port the chosen UI and module wiring without deleting the useful source versions.
+### Risk decisions
 
-2. Fix dependencies, including Gradio, and add one configuration loader and environment example. Keep credentials out of files and logs.
+Unattended deterministic jobs may continue on a reserved machine across dates; only the member assigned to the current date actively monitors, changes or validates them. Automated completion alone does not establish correctness.
 
-3. Run the existing lightweight tests and launch the UI in an explicit not-ready state. Document installation, data location and launch commands.
+The full proposal is materially larger than the former 42-hour build. The execution estimate is a provisional planning envelope, not proof that every full benchmark and model comparison fits. Reserve November 18-20 for recovery and final freeze; aim for an internal release candidate November 17. Ten-hour blocks are difficult alongside coursework. Track remaining tasks and time after every handoff; do not add unrelated features or treat a capacity warning as authorization to omit the proposal.
 
-Completion check: The application starts from documented commands, reports missing data clearly and has a saved setup and test log.
+If a source, model, parser layout or benchmark label is unavailable, save the specific failure and affected counts. Keep the working narrative/table path demonstrable while the missing proposal feature stays open. If demo-critical work is late, the team must explicitly choose a recovery change; removing charts, BM25, full evaluation or the faithfulness audit is a scope change, not routine cleanup.
 
-What we learn: A launchable application needs its dependencies, configuration and entry point to agree.
+### R9 remains a separate extension
 
+Preserve the existing Phase 2 cross-report restatement specification. It compares the same issuer/metric/period/scope across two exact filings, keeps raw and normalized values, and distinguishes unchanged, potential_revision, confirmed_restatement, disclosed_reclassification, disclosed_recast, incomparable and insufficient_evidence. A confirmed label requires a cited issuer disclosure; a number mismatch alone cannot establish a restatement or fraud.
 
-## Daily work plan 3 and 4
+Retain versioned filings, both operand citations, precision-based tolerances and at least eight independently checked cases, including one real disclosed restatement. No R9 work is assigned before the original proposal release. Its separate estimate, owners and dates must be recorded before implementation. The previous detailed R9 text is preserved in R9_PHASE2.md.
 
-## Day 3 01 November 2026
+## Delivery course rubric and review rules
 
-Rushil is the only assigned member. Planned work 2 hours.
+### R8 Required final package
 
-Connect a real model and remove false success
+Deliver the written report with Introduction, Background/Related Work, Method, Results/Evaluation, Discussion and Limitations, Individual Contributions and AI Usage. Include the explicit course connection and testable question, architecture, frozen A-G settings, actual metric tables, confidence intervals, manual audit, errors and limits. The repository must include run/rebuild instructions, data manifests, dependency versions, tests, result artifacts and steady contribution history.
 
-Why this matters: A fixed mock answer must never appear as financial analysis when the actual provider fails.
+Prepare exactly six presentation slides: 1 Title with team name/number, project name, repository, track and relevant area; 2 Problem Statement; 3 Related Work; 4 Methods; 5 Results; 6 Project management and work division. Include a live narrative, numerical and chart example, one evidence inspection and a clear failure case in the demonstration. Save a backup video and reproducible outputs.
 
-Start with: The configured application and status contract from Days 1 and 2.
+| Course milestone | Project action | Scheduling rule |
+| --- | --- | --- |
+| November 17 internal checkpoint | Record requirement and experiment status | Sudhansh is sole assigned worker; this is not the official cutoff. |
+| November 20 package freeze | Finish complete demo/report/results archive | Sudhansh is sole assigned worker. |
+| November 21 live demo and viva | Gowtham handles demo setup and delivery | Every member must answer their own official viva. Assessment attendance is unavoidable and is not a second development assignment. |
+| November 22 final files | Sudhansh submits/checks final report, code and AI disclosure | Verify Classroom cutoff and save receipt; no new feature work. |
 
-1. Verify one real provider and model on the demo machine. Put the confirmed model identifier in configuration and construct an explicit API client.
+The one-worker rule governs assigned project work; it cannot waive the course requirement for individual viva attendance on the scheduled assessment date. Module handoffs include viva explanations ahead of time; no additional same-day team rehearsal is assigned.
 
-2. Remove automatic mock fallback and process-wide credential mutation. Keep mock mode available only through an explicit test setting.
+### R12 and R13 Review and accountability
 
-3. Return service_error for provider failures and insufficient_evidence when context is absent. Save one real-call check and one deliberate failure check.
+Final rubric: report technical correctness 5, track-specific quality 5, live demo 15, Q&A 5, GitHub code 5 and process/accountability 5 marks. Align review priorities with a working, defensible application, not only lint or test counts. Retain dated code/evidence, actual contribution records, AI tools/purpose/verification and licence/source acknowledgments.
 
-Completion check: A real model call works; invalid credentials and empty evidence cannot return the fixed mock financial answer.
+Every review identifies requirement and A-G variant, exact reviewed revision, observed issue and consequence, applicable syllabus concept, success/failure evidence, smallest repair and a viva question. Distinguish merged, PR-only, local-only and unverified work. A reviewer must not infer understanding or effort from commit counts. Preserve source integrity, arithmetic and experimental controls as release checks.
 
-What we learn: Model access failure and missing source evidence are different outcomes and must remain visible.
+AGENTS.md, task requirements, schedule, evidence contract, review template and implementation prompt use this unified revision. GitHub publication has a dedicated planning commit; implementation PRs remain separate. Historical reviews and state are retained. Editing these files does not reconfigure the external review scheduler.
 
+## Daily requirements 2026-11-03 to 2026-11-05
 
+### 2026-11-03 Ujjwal 8 planned hours
 
-## Day 4 02 November 2026
+Verify environment resources and handoff contracts. Requirements R2 R4 R13.
 
-Likhit is the only assigned member. Planned work 2 hours.
+Read current main and parser PR #4 at its exact revision; preserve completed setup/provider/parser work. Check BGE, exact FAISS, Docling, Ollama/Gemma, memory and machine access. Pin the canonical record/parent-table and index-sidecar contracts. Set up local DVC and MLflow with one restore/log smoke check and retain existing Ruff/pytest CI. Estimate full evaluation machine time from a small representative pilot or explicitly mark missing inputs.
 
-Parse one supported annual report
+Completion gate: Environment/resource inventory, input revision, canonical schema, successful DVC restore and MLflow smoke run exist. No model, parser or full-data readiness is inferred from installation alone.
 
-Why this matters: One fully checked filing is a feasible foundation for the reduced schedule. Downloaded files alone are not searchable evidence.
+Course connection: Reproducible AI and typed evidence contracts. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Start with: The filing choice, evidence schema and data path already recorded.
+### 2026-11-04 Likhit 10 planned hours
 
-1. Record the exact accession, company, report fiscal year, original URL, local path and checksum for one Apple 10-K.
+Extend verified parsing to cells PDFs and chart sources. Requirements R1 R3 R11.
 
-2. Move the required parsing cells into a repeatable function. Extract bounded sections from Items 1A, 7 and 8 and relevant statement tables.
+Consume the tested Apple 2021 HTML parser rather than rebuilding its completed work. Add self-describing table cells and parent grids with raw/normalized units, periods, footnotes and source coordinates. Add Docling PDF extraction on checked fixtures and original chart image locators. Expand the initial Apple/Microsoft manifest and record unsupported layouts and chart availability. Distinguish HTML/PDF renditions and avoid duplicate fact ingestion.
 
-3. Emit narrative and table records separately, preserving source locations, table titles, comparative periods and declared units. Save a parsing summary.
+Completion gate: Checked HTML/PDF cell fixtures, full parent tables, image/source manifests and deterministic records have resolvable provenance. Existing 316 narratives and three parent tables remain a preserved starting artifact, not final corpus coverage.
 
-Completion check: One command parses the declared filing into traceable narrative and table records; the table of contents is not treated as risk-factor evidence.
+Course connection: KR ontology and grounded chart evidence. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-What we learn: The filing year and the comparative year of a table value are separate pieces of metadata.
+### 2026-11-05 Shanay 8 planned hours
 
+Independently validate canonical data and restore behavior. Requirements R2 R3 R13.
 
-## Daily work plan 5 and 6
+Check representative source facts, periods, scales, parent links and deterministic IDs from the prior package. Validate row-to-ID mappings, metadata sidecars and a clean DVC restore with equal hashes. Retain any existing Chroma/MiniLM regression artifacts separately. Pin environment/configuration and validate storage replacement rules before the BGE/FAISS build.
 
-## Day 5 03 November 2026
+Completion gate: One canonical data package and restore log reproduce the same IDs, hashes and counts; malformed or mismatched metadata fails. This is input validation, not a claim that FAISS is complete.
 
-Ujjwal is the only assigned member. Planned work 2 hours.
+Course connection: Knowledge representation integrity and reproducibility. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Build and reopen the persistent index
+## Daily requirements 2026-11-06 to 2026-11-08
 
-Why this matters: Search must use the intended parsed report and return the same records after restart or repeated ingestion.
+### 2026-11-06 Likhit 10 planned hours
 
-Start with: The Day 4 parsed records and original source manifest.
+Build BGE exact FAISS and corpus coverage. Requirements R1 R2.
 
-1. Index the supported records with the existing MiniLM embedder and Chroma. Use deterministic IDs containing filing identity, evidence type and location.
+Use bge-base-en-v1.5 with pinned preprocessing/revision and normalized 768-dimensional vectors. Build exact IndexFlatIP with stable evidence/metadata mapping, separate parent-table storage and compatible manifests. Verify duplicate IDs, dimensions, filtered results, stale-record cleanup, rebuild and reload. Continue corpus expansion toward five Apple/five Microsoft filings and ten technology companies; show actual parsed/indexed counts and failures.
 
-2. Preserve source metadata, parent-table links and embedding identity. Replace that filing cleanly so shortened reruns do not leave stale records.
+Completion gate: Checked narrative and cell retrieval survive restart and identical reruns. Source/index hashes and required company/filing coverage reconcile. IVF-PQ is not a release requirement.
 
-3. Re-ingest twice, restart the application and compare IDs and counts. Save one retrieved narrative record and one table record with their sources.
+Course connection: Transformer embeddings and source identity. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Completion check: Repeated ingestion is stable, reopening the index preserves search and every returned record resolves to the supported report.
+### 2026-11-07 Pavan 10 planned hours
 
-What we learn: Persistent search is reproducible only when IDs, stored embeddings and source metadata remain consistent.
+Implement cumulative retrieval stages and routing. Requirements R3 R10 R12.
 
+Use the frozen record/index interfaces. Implement A-F flags for section chunks, table cells/parent expansion, BM25 and RRF k=60, eligibility and bge-reranker-base, and bounded narrative/numerical/chart routing. Keep the chart tier unavailable until descriptions exist. Preserve component ranks, IDs and complete evidence under the common budget. Use existing LangChain where it participates usefully; do not require a framework rewrite.
 
+Completion gate: A-F traces isolate each stage; exact-term, semantic, TOC, no-result, missing-metric and context-budget cases pass with preserved IDs. Disabled streams issue no query.
 
-## Day 6 04 November 2026
+Course connection: DL cross-encoding with explicit reasoning preconditions. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Pavan is the only assigned member. Planned work 2 hours.
+### 2026-11-08 Rushil 10 planned hours
 
-Preserve source records through retrieval
+Integrate real models calculations and chart descriptions. Requirements R4 R5 R11 R12.
 
-Why this matters: Returning passage text alone loses the information needed to verify the company, period and cited source.
+Reuse merged provider boundaries and pin a real Gemma 3/Ollama configuration. Implement restricted multi-step arithmetic with cited operands and typed period/unit/comparability rules. Produce source-linked chart descriptions, unknown-value handling and a candidate 50-question chart set with 15 development and 35 held-out items grouped by image. Record the separate Llama comparison configuration and remaining hardware limits.
 
-Start with: The Day 5 populated index and evidence contract.
+Completion gate: Real model and failure traces, safe calculation/rule fixtures, linked chart captions and candidate chart questions exist. No arbitrary generated Python executes, and unreadable chart values stay unknown.
 
-1. Return complete evidence records through retrieval and the existing reranker. Validate supported filing and value-period filters.
+Course connection: KR predicates and inference plus NLP and vision transformers. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-2. Define dense baseline and table-aware modes with the same generator, calculator and context limit. Baseline chunks retain flattened table facts.
+## Daily requirements 2026-11-09 to 2026-11-11
 
-3. Skip disabled retrieval streams instead of issuing zero-result queries. Handle empty collections and no eligible evidence before generation.
+### 2026-11-09 Gowtham 8 planned hours
 
-Completion check: A retrieved source ID survives ranking; baseline and table-aware modes return structured evidence and fail clearly when no eligible record exists.
+Connect the full interface and measure real throughput. Requirements R4 R6 R11.
 
-What we learn: The baseline measures retrieval changes fairly only when generation and available source facts are matched.
+Connect Gradio to real narrative/cell/chart retrieval, calculations, route traces and source links. Check session isolation and explicit invalid/not-ready/no-evidence/service-error states. Run separate development smoke cases. Measure actual model, extraction/caption and evaluator throughput on intended hardware; pass the measurements to Sudhansh for the full-run estimate.
 
+Completion gate: A notebook-free question-to-source walkthrough works for narrative, numerical and chart evidence with honest failures; real timing and memory evidence are saved.
 
-## Daily work plan 7 and 8
+Course connection: Explainable application behavior and measurement. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-## Day 7 05 November 2026
+### 2026-11-10 Sudhansh 8 planned hours
 
-Gowtham is the only assigned member. Planned work 3 hours.
+Define full evaluation research question and capacity gate. Requirements R7 R8 R12.
 
-Finish the source linked question interface
+Build versioned FinQA, TAT-QA and FinanceBench loaders and A-G runner with source-equivalent evidence mappings, no label leakage and all promised metrics. Freeze dataset eligibility and proposed splits; preserve 14 local cases only as smoke tests. Consolidate chart labels, research question, report/course sections and role records. Estimate full machine hours using actual case counts and measured generation/RAGAS throughput.
 
-Why this matters: A user should see the answer and the actual evidence without inspecting the notebook or developer logs.
+Completion gate: Case inventory, scoring/split protocol, audit sampling rule, report outline and quantified full-run capacity decision exist. Slow or inaccessible suites remain explicit scope risks rather than being replaced silently.
 
-Start with: The real provider, persistent index and structured retrieval output.
+Course connection: Experimental controls and course-linked hypotheses. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-1. Connect the UI to the selected backend. Show the supported report, question input, retrieval mode and an understandable loading state.
+### 2026-11-11 Ujjwal 10 planned hours
 
-2. Display answer status, retrieved passages, table title, comparative period, units and original source links. Add the calculation area for later integration.
+Independently check labels and development runs. Requirements R1 R2 R7 R11.
 
-3. Check a narrative question, table question, empty input and missing-evidence case. Verify invalid credentials give a service error and inputs stay session-specific.
+Verify chart questions and labels against images, benchmark evidence mappings, units/periods and duplicate-source split leakage. Check Likhit index integrity and source coverage. Run development cases only, log outputs and identify parser/retrieval/model/math defects. Require 50 checked chart cases or declare the exact shortfall before freeze.
 
-Completion check: The integrated UI shows real evidence and source links and handles the four checked cases without notebook execution.
+Completion gate: Independently checked gold/source manifests, unchanged splits, development results and concrete defect reproductions exist. No held-out answer is used for tuning.
 
-What we learn: Showing an answer is not enough; the interface must let the reader verify the source and recognize a failure.
+Course connection: Label validity and representation checks. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
+## Daily requirements 2026-11-12 to 2026-11-14
 
+### 2026-11-12 Pavan 8 planned hours
 
-## Day 8 06 November 2026
+Fix development defects and freeze A through G. Requirements R3 R7 R10 R12.
 
-Likhit is the only assigned member. Planned work 2 hours.
+Repair bounded development defects and finalize route thresholds using development data only. Verify chart G integration, complete-context IDs and calculator rule failures. Lock A-G and shared BGE/model/prompt/calculator/five-passage/token settings; freeze the full evaluation list and stratified 50-output manual audit selection rule. Save integration and course review evidence.
 
-Repair the tables needed for the demonstration
+Completion gate: One frozen experiment manifest, reviewed rule/context behavior and reproducible run commands exist. An unresolved mandatory gate stays open; no fake dependency artifact is substituted.
 
-Why this matters: Financial values are useful only when their row labels, comparative periods and scale survive parsing.
+Course connection: Controlled ablation and reasoning verification. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Start with: The Day 7 evidence display and original annual report.
+### 2026-11-13 Gowtham 10 planned hours
 
-1. Select three representative financial tables from the supported report. Check their headers, units, parentheses, blank values and comparative-year columns.
+Run full evaluation and capture the demo. Requirements R6 R7 R11 R13.
 
-2. Create self-describing row records with parent-table links. Keep raw values and normalized numeric values and exclude duplicate narrative table copies.
+Execute or checkpoint all frozen A-G runs over the named benchmark corpora and chart split, plus the separate Llama comparison. Save rankings, selected context, statuses, answers, score inputs, timings and failures. Capture a real source-linked backup demo. Keep the legacy 14-case smoke output separate from the final experiment.
 
-3. Save small hand-checked fixtures and refresh the index using the existing command. Verify the displayed source locations against the original report.
+Completion gate: The full case-variant ledger accounts for completed, failed and running cases, with resumable artifacts and measured outputs. No short interim run is called the completed proposal experiment.
 
-Completion check: The three selected tables have source-checked values, labels, years and units; row records expand back to their original table.
+Course connection: Reproducible AI evaluation. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-What we learn: Table-aware retrieval preserves relationships that disappear when a grid is flattened into unrelated text.
+### 2026-11-14 Shanay 10 planned hours
 
+Verify clean setup tracking and deployment readiness. Requirements R2 R6 R8 R13.
 
-## Daily work plan 9 and 10
+Restore the frozen data/index, rebuild or reopen on a clean environment, verify CI and DVC/MLflow records, and check real model/network access. Prepare a Docker/hosting route only if resources permit, using smoke cases separate from held-out data. Save hosting success or failure honestly; the reproducible local demo remains required. Continue immutable evaluation jobs if needed without changing their settings.
 
-## Day 9 07 November 2026
+Completion gate: Clean-machine logs, pinned environment, source/model/index/run identities and a usable local release route exist. Any hosted URL has actual pipeline checks; a Dockerfile alone is not deployment proof.
 
-Rushil is the only assigned member. Planned work 2 hours.
+Course connection: Supporting engineering for reproducible AI. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Add a small source checked calculator
+## Daily requirements 2026-11-15 to 2026-11-17
 
-Why this matters: The model can explain a calculation, but arithmetic should run in predictable code using values actually retrieved.
+### 2026-11-15 Likhit 8 planned hours
 
-Start with: The normalized values and parent references from Day 8.
+Write methods and begin the fifty-output audit. Requirements R3 R7 R8 R11.
 
-1. Connect the existing math helpers to the answer path for sum, difference and percentage change. Use typed operations and evidence-linked operands.
+Write source, parsing, indexing, chart and method sections from saved evidence. Audit the preselected 50 outputs against included context and original sources using gold labels you did not author; defer any self-authored-label cases to Pavan November 19. Compare with RAGAS and classify unsupported claims, numerical errors and abstentions. Keep incomplete benchmark runs explicit.
 
-2. Normalize the supported currency scale, preserve the requested periods and reject absent or incompatible operands. Do not execute arbitrary generated code.
+Completion gate: Evidence-based method draft, independently audited output records, unresolved case IDs and disagreement log exist; authored labels are not self-certified.
 
-3. Show the formula, substituted values, result and unit. Check positive-year growth, a negative amount, missing evidence and a zero denominator.
+Course connection: Source-grounded reasoning and faithfulness. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Completion check: A demonstrated calculation uses cited operands and checked arithmetic; zero-base or insufficient-data cases explain why no growth result is available.
+### 2026-11-16 Ujjwal 8 planned hours
 
-What we learn: A calculated answer needs correct inputs, units and periods as well as correct arithmetic.
+Audit results and prepare the six-slide release candidate. Requirements R7 R8 R12 R13.
 
+Recompute sampled scores and paired bootstrap intervals from the frozen outputs; verify failure denominators, source coverage and configuration equality. Review data/index evidence and report claims. Prepare exactly six slides in guideline order, contribution/viva notes and a release inventory with archive hashes. Record any incomplete audit or evaluation for the checkpoint.
 
+Completion gate: Independent metric checks, results draft, six slides and release-candidate inventory agree with actual evidence; unfinished requirements remain visible.
 
-## Day 10 08 November 2026
+Course connection: Measurement uncertainty and defensible AI results. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-Pavan is the only assigned member. Planned work 2 hours.
+### 2026-11-17 Sudhansh 8 planned hours
 
-Keep complete evidence in the model context
+Review the internal proposal release target. Requirements R7 R8 R12 R13.
 
-Why this matters: A relevant table may be retrieved but still lose its important rows when a character slice cuts the model input.
+Compare every requirement with implementation, full-run/audit status and the course rubric. Review reproducibility and the report, source references, seven-member contributions and AI disclosure. Freeze a release candidate if all gates pass; otherwise record remaining work and use only the dated recovery slots. The official demo/submission dates remain November 21/22.
 
-Start with: The row records, source-linked calculator and two retrieval modes.
+Completion gate: Internal checkpoint states complete/partial/unmet requirements, exact revision, remaining machine hours and release risks. November 17 is a target, not permission to label incomplete work complete.
 
-1. Replace the 4000-character table slice with complete record selection under the configured input budget. Retain headers, units and required operand rows.
+Course connection: Hypothesis assessment and accountability. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-2. Preserve the included evidence IDs in the answer contract. Reject references or calculations that cannot be matched to included records.
+## Daily requirements 2026-11-18 to 2026-11-20
 
-3. Check a long-table fixture and an unsupported-period question. Keep baseline and enhanced generation settings and total context budget the same.
+### 2026-11-18 Rushil 8 planned hours
 
-Completion check: The required rows reach final context, every citation maps to included evidence and unsupported periods produce clear abstention.
+Use the recovery slot for numerical and chart defects. Requirements R4 R5 R7 R11.
 
-What we learn: Retrieval quality is lost if context assembly removes the information needed to answer the question.
+Resolve reproducible critical defects from the checkpoint within this slot, or verify final provider, calculator and chart regressions if none remain. Preserve the frozen experiment when possible. Any output-affecting change gets a new version and affected A-G reruns, with held-out reuse disclosed; no new feature scope is added.
 
+Completion gate: Critical fixes have reproductions and regression evidence, or a verified unchanged release trace exists. Updated outputs are versioned honestly.
 
-## Daily work plan 11 and 12
+Course connection: Reasoning and model failure analysis. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-## Day 11 09 November 2026
+### 2026-11-19 Pavan 8 planned hours
 
-Sudhansh is the only assigned member. Planned work 2 hours.
+Finish the independent audit and release review. Requirements R7 R8 R10 R12.
 
-Prepare the small evaluation and report outline
+Complete any remaining manual audit cases whose labels Likhit authored so the combined independent audit reaches 50 outputs. Review high-risk disagreements and sampled metrics, retrieval/context regressions and report/course claims. Check Rushil recovery changes on this later date and reconcile all result versions.
 
-Why this matters: The submission needs a modest, honest test rather than a broad accuracy claim that the schedule cannot substantiate.
+Completion gate: Fifty independent audit outputs, disagreement analysis and final course/release review exist, with any unmet commitments explicitly recorded.
 
-Start with: The working integrated app, original report and matched retrieval modes.
+Course connection: Independent reasoning and experimental review. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
-1. Create 14 questions with source locations and checked answers: six narrative, four table, two calculation and two unanswerable cases.
+### 2026-11-20 Sudhansh 8 planned hours
 
-2. Reserve seven development and seven held-out IDs before tuning: each split has three narrative, two table, one calculation and one unanswerable case.
+Freeze the single final package. Requirements R6 R8 R13.
 
-3. Freeze a scoring checklist for answers, units, source support, evidence recall and timing. Create the report outline and an evaluation-results template.
+Finalize the unified report, exact six slides, results/audit files, contribution and AI-use sections, run instructions and backup demonstration. Verify source/code/configuration/archive hashes and submission access. Freeze the complete demo package and name any unmet requirement; do not assign another member same-day work.
 
-Completion check: A versioned 14-case question file, fixed seven plus seven split, scoring rubric and report outline exist. No test answers are used to tune retrieval.
+Completion gate: One frozen runnable archive, final report, six slides, complete evidence inventory and verified backup demo exist before assessment.
 
-What we learn: A small source-checked test supports a precise claim about this report; it does not establish broad financial accuracy.
+Course connection: Defending the course-linked application. Save the exact revision, commands, hashes, actual time, blockers and next-owner handoff. A failed prerequisite stays explicit; never substitute fabricated artifacts.
 
+## References and requirement authority
 
+### Supplied and retained project evidence
 
-## Day 12 10 November 2026
+- S1 Submitted project proposal Finrag .docx. Sections 1-7 and twelve references. This is the actual proposal matching the professor screenshot; retained locally from the earlier project work.
+- S2 Planning advice AI Project Planning Strategy.pdf. Architecture and staffing suggestions; its December schedule, IVF-PQ and peer-score normalization do not override S1 or S4.
+- S3 Supplied professor feedback screenshot. Problem 4/5; course connection 1/4; approach 5/5; feasibility/roles 2/3; writing 3/3. Visible feedback totals 15/20; not an independently verified grade record.
+- S4 Course rules AI_Project_Guidelines.v2.pdf. Page 1 dates/track rules; page 2 proposal and six-slide requirements; page 3 final rubric, AI use and accountability.
+- S5 Syllabus CS_F407_Artificial_Intelligence.pdf. Pages 2-3 list KR&R, NLP embeddings/transformers, vision and ethics; page 3 says official notices are on Classroom.
+- S6 Supplied friend ownership screenshot. Suggested work-to-owner mapping; used as advice and reconciled with current ownership.
+- S7 Previous reduced and proposal-aligned PRDs and retained November 2 review. Historical snapshots; fresh repository/PR metadata was checked for this consolidation. Seven-member roster and unscheduled R9 retained; obsolete reduced scope replaced.
 
-Ujjwal is the only assigned member. Planned work 2 hours.
+S8 Friend plan FinRAG_Sequential_Proposal_Plan_17Nov2026.docx, supplied November 3. Useful dependency/handoff guidance; its interpretations of IVF-PQ, PDF tools and reduced evaluation are superseded by S1 and this comparison. S9 Current GitHub main 6f9f236 and open parser PR #4 head 384beea, inspected November 3.
 
-Independently verify labels and freeze the split
+### Primary technical references checked
 
-Why this matters: The answers used to score the app need an independent source check so a mistaken gold label does not reward a wrong result.
+- E1 FinanceBench paper: https://arxiv.org/abs/2311.11944 and official open sample: https://github.com/patronus-ai/financebench
+- E2 FinQA official data/code: https://github.com/czyssrs/FinQA
+- E3 TAT-QA official data/code and evaluator: https://github.com/NExTplusplus/TAT-QA
+- E4 BGE embedder: https://huggingface.co/BAAI/bge-base-en-v1.5 and cross-encoder: https://huggingface.co/BAAI/bge-reranker-base
+- E5 Exact index API: https://faiss.ai/cpp_api/struct/structfaiss_1_1IndexFlatIP.html
+- E6 Ollama Gemma 3 model family: https://ollama.com/library/gemma3. Pin the installed tag/digest rather than relying on latest.
+- E7 Docling documentation: https://docling-project.github.io/docling/
+- E8 RAGAS faithfulness: https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/
 
-Start with: The Day 11 question file, split and original source records.
-
-1. Independently verify all 14 answers and supporting locations against the original report. Correct labels without moving difficult test questions into development.
-
-2. Map baseline and table-aware records to the same source locations. Confirm repeatable record counts and the intended embedding version.
-
-3. Run only the seven development questions to check the scoring process. Correct a blocking index or metadata defect and record the resulting version.
-
-Completion check: Every gold case has an independent verification record and the split is locked. Only development examples have been used to guide corrections.
-
-What we learn: Citation identity and scoring must stay fair when baseline and enhanced chunk boundaries differ.
-
-
-## Daily work plan 13 and 14
-
-## Day 13 11 November 2026
-
-Rushil is the only assigned member. Planned work 2 hours.
-
-Verify final answers and freeze evaluation settings
-
-Why this matters: The final model, calculation path and failure states must be fixed before the reserved questions are run.
-
-Start with: The checked labels, development results and real generation provider.
-
-1. Recheck model-unavailable, no-evidence, incompatible-unit and zero-denominator paths using development cases or dedicated fixtures.
-
-2. Confirm mock mode is rejected by the real evaluation path. Keep the same model, prompt, calculator and context budget for both retrieval modes.
-
-3. Freeze the code revision and run settings. Save a generation and calculation handoff explaining how to run the reserved cases and record failures.
-
-Completion check: A frozen evaluation revision and configuration exist, with explicit failure checks and no hidden mock fallback.
-
-What we learn: Freezing settings before test evaluation prevents favorable-looking results from being selected through repeated tuning.
-
-
-
-## Day 14 12 November 2026
-
-Gowtham is the only assigned member. Planned work 3 hours.
-
-Run the reserved evaluation and capture the demo
-
-Why this matters: Today measures the frozen app on the seven questions that were kept out of tuning and records what actually works.
-
-Start with: The Day 13 frozen revision, two modes, held-out IDs and scoring rubric.
-
-1. Run all seven held-out questions in both modes and retain all 14 outputs, included evidence IDs, status, model settings and timing.
-
-2. Score the six answerable and one unanswerable case per mode. Check sources, numerical periods and units, and compare evidence coverage fairly.
-
-3. Save the metric table and error notes. Capture a short demo showing a real answer, source, calculation and abstention; label saved results and recordings clearly.
-
-Completion check: Fourteen held-out outputs, a scored result table, source audits and a playable backup demo are saved, including failures.
-
-What we learn: Measured results may favor either mode. Reporting failures and denominators matters more than promising improvement.
-
-
-## Daily work plan 15 and 16
-
-## Day 15 13 November 2026
-
-Likhit is the only assigned member. Planned work 2 hours.
-
-Write the evidence based final report draft
-
-Why this matters: The report must explain the delivered system and actual measurements, with a clear boundary around the reduced scope.
-
-Start with: The report outline, source manifest and Day 14 results.
-
-1. Draft the problem, one-report corpus, parsing method, table representation and implemented architecture using the saved handoff notes.
-
-2. Insert the actual results with counts and explain source examples, limitations and unsupported layouts. Mark chart analysis and broad benchmarks as future work.
-
-3. Include the seven-member contribution log, source references and AI-assistance disclosure draft. Add setup and calculator sections from the existing handoffs.
-
-Completion check: A complete short report draft explains methods, actual results, limitations and all seven contributions; no unimplemented feature is claimed.
-
-What we learn: The report should describe the submitted software and evidence, including its limitations, rather than repeat an earlier ambitious proposal.
-
-
-
-## Day 16 14 November 2026
-
-Pavan is the only assigned member. Planned work 2 hours.
-
-Audit results and review the report
-
-Why this matters: A separate review checks that the saved outputs justify the reported conclusions and that retrieval behavior is explained correctly.
-
-Start with: The Day 15 report draft and all evaluation artifacts.
-
-1. Independently review the 14 saved outputs and recompute the reported counts. Check that incorrect periods, units and unsupported answers are scored as failures.
-
-2. Classify remaining errors as parsing, retrieval, context, calculation or provider failures. Correct the report and add an annotated question-to-source walkthrough.
-
-3. Fix only a reproducible release blocker. If a fix affects outputs, version it, rerun both modes and label the results as reused-test regression results.
-
-Completion check: The report and result table have an independent review record. Every change has an explained effect on the saved evidence.
-
-What we learn: After the test run, investigate and report errors instead of treating the test answers as another tuning set.
-
-
-## Daily work plan 17 and 18
-
-## Day 17 15 November 2026
-
-Ujjwal is the only assigned member. Planned work 2 hours.
-
-Package data and prepare the final presentation
-
-Why this matters: The evaluator needs a clear source inventory and a short explanation of how the project works, alongside the runnable code.
-
-Start with: The reviewed report, final source revision and ingestion instructions.
-
-1. Package the filing manifest, small fixtures, record-count summary and deterministic index rebuild instructions. Verify every original source link.
-
-2. Assemble a short presentation from the report: problem, workflow, table treatment, calculated answer, actual comparison and limitations.
-
-3. Create the release checklist and archive inventory. Check that the report, results, presentation, demo and contribution log refer to the intended versions.
-
-Completion check: The data package, short presentation and release inventory are ready for a clean-machine check.
-
-What we learn: Data identity and source instructions are part of reproducibility, even when large raw files are not committed to Git.
-
-
-
-## Day 18 16 November 2026
-
-Shanay is the only assigned member. Planned work 3 hours.
-
-Run the final clean machine and release check
-
-Why this matters: The last full technical check protects delivery from hidden local dependencies and missing files.
-
-Start with: The Day 17 release inventory, runnable source and both saved retrieval modes.
-
-1. Build or restore the index on a fresh environment using the included instructions. Run a known question and confirm its cited source and calculation.
-
-2. Check credentials, runtime requirements and the app launch command. Keep the verified native launch path; add no cloud deployment or new container dependency.
-
-3. Recheck critical failure paths, open the report, slides and demo, then freeze and back up the archive. Save its checksum, exact revision and launch evidence.
-
-Completion check: The final archive launches from documented inputs, all delivery files open and a backup plus verification log are ready.
-
-What we learn: The release check proves the project can leave the original developer machine without losing its data or setup knowledge.
-
-
-## Daily work plan 19
-
-## Day 19 17 November 2026
-
-Sudhansh is the only assigned member. Planned work 2 hours.
-
-Complete final verification and deliver the project
-
-Why this matters: November 17 is the final project delivery deadline. Use the verified package and retain proof of what was delivered.
-
-Start with: The Day 18 frozen archive, report, presentation, demo and verification log.
-
-1. Check the exact package against the official delivery checklist. Verify seven correct names, final links, report results and contribution records.
-
-2. Perform a short final demo using the frozen build or transparently labeled backup video. Make only necessary document corrections.
-
-3. Deliver or submit before the confirmed November 17 cutoff and retain the receipt and exact archive. If the official portal opens later, retain this frozen ready-to-submit release.
-
-Completion check: The project is complete by November 17, with its final package and verification record delivered. If submission is open, the receipt is retained; otherwise the frozen release is ready.
-
-What we learn: Finishing by the internal deadline means the code, evidence and documents are complete together, without relying on later development.
-
-
-## Release risks and final checklist
-
-Risk | Response inside the assigned day
-Scope exceeds available hours | Keep one filing and the required three tables; drop new features and cosmetic work. The named owner records what was cut.
-A scheduled day is missed | Reduce scope or move a future whole task within the remaining dates. Never assign two owners to the same date or assume work after November 17.
-Model access fails | Use another real provider only after a check and consistent settings. If all services fail, show the labeled backup video and saved outputs; never use hidden mock answers.
-Parser cannot handle a table | Choose a representative supported table from the same filing and document the excluded layout. Keep all question sources within the declared supported scope.
-Test result is weak | Report it with the actual denominator and failure analysis. Keep the distinction between the original test run and any regression rerun.
-A mandatory feature conflicts with scope | Verify course requirements on October 30 and replace optional scope early. Do not claim charts or broad benchmark coverage without implementing and checking them.
-Official upload is unavailable | Finish and retain the frozen release by November 17. If the portal opens later, submit the already-completed package when allowed.
-
-## Final package on November 17
-
-Include the frozen source revision, tested dependency setup, environment example without keys, one-filing manifest and source references, repeatable ingestion and launch guide, index rebuild or restore instructions, short report, question and split files, all evaluation outputs, scoring and audit notes, presentation, backup demo and seven-member contribution record with AI-use disclosure.
-
-## Final demonstration
-
-Show one supported narrative answer, one table answer, one checked calculation with periods and units, one verifiable original source and one abstention. Open the same verified build from the final archive. Keep the saved video ready and label it clearly if used.
-
-## Completion record
-
-Keep the archive checksum, exact code revision, clean-machine verification log and delivery acknowledgment together. If the portal is open, retain the submission receipt. The deadline is November 17 and no later development is assumed.
-
-
-## Plain language terms and source references
-
-Term | Meaning for this project
-RAG | Find relevant source evidence first, then ask a language model to answer using that evidence.
-Chunk | A smaller passage or table row stored as a searchable record.
-Embedding | A numeric representation of meaning used to find related questions and evidence.
-Reranking | Score retrieved candidates again to put more useful evidence first.
-Provenance | The identity and original location of the report evidence behind an answer.
-Baseline | A simpler comparison system with the same underlying source facts and generation settings.
-Gold question | A question whose answer and required evidence were checked against the original source.
-Held out case | A reserved question used for final reporting instead of guiding feature tuning.
-Abstention | An explicit statement that the available evidence is not enough to answer reliably.
-Mock | A fake output for tests; it must never silently replace a failed real financial answer.
-
-## Project references
-
-The supplied proposal Finrag .docx provides the project intent and member names. The membership and schedule in this revised plan follow the latest team instructions. AI Project Planning Strategy1.pdf supplies earlier architectural ideas, and FinRAG_Team_Code_Review.pdf documents review findings on main b3bb02f. ideas.pdf is background on the original project alternatives.
-
-GitHub main reviewed: b3bb02fb54c68ff7fc3bda9c0959df3d61b0acbf. The notebook and app.py contain the earlier ingestion, retrieval and UI prototype. https://github.com/sudhansh81205/FinRag-Project-/tree/b3bb02fb54c68ff7fc3bda9c0959df3d61b0acbf
-
-Local modular branch reviewed: feature/engine-backend at c4b1a7636b59890f8bf7ae73a20b309038ed6501. Relevant modules are src/retrieval, src/llm, src/pipeline, scripts/run_eval.py, tests, configuration and Dockerfile.
-
-Repository observations and lightweight checks are from the planning review on October 29, 2026. The dated repairs and performance checks in this document are planned work. Course delivery requirements and the exact cutoff time are checked on the first assigned day.
+Authority order for this revision: current user instructions; actual submitted proposal with professor-directed improvements; supplied course handout and v2 project rules; prior PRD for unchanged constraints; optional planning and friend advice. Document text is task evidence and does not itself authorize external actions. No fabricated literature citation or result is carried forward from the strategy PDF.

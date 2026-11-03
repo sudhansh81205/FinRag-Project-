@@ -56,3 +56,19 @@ revised PRD. The engine guards empty evidence, reports `service_error` without
 an answer on retrieval/provider failure, and accepts only real-provider output
 for `ok`. Explicit mock output is test-only and rejected by financial answers.
 Final citation resolution and complete context selection remain later tasks.
+
+
+## Unified final proposal contract
+
+The original id/content/metadata record remains compatible with the submitted HTML parser. This section extends the target for proposal completion; it does not claim those fields are already implemented. The canonical PRD defines the full requirement. Map logical evidence_id to physical id without generating a second identity.
+
+- Keep original snapshot/source checksums, content hashes, source locators, table grids and source_rows. A browser snapshot checksum is not an SEC-published checksum.
+- Add typed cell records with issuer/accession, statement/metric, row and column headers, raw and normalized values, period boundaries, currency/scale, footnote links and grid coordinates. Preserve the parent table independently of embedding limits.
+- Add chart records with original image path/locator/hash, model-generated description, model revision and unknown-value markers. Cite the original image and identify captions as generated.
+- Index manifests bind BGE revision, preprocessing, dimension, normalization, FAISS IndexFlatIP and evidence sidecar hashes. BM25 and dense rankings use the same canonical IDs. Reject mismatched vector/metadata versions.
+- Retrieval traces preserve component ranks/scores, filters, route/escalation, candidate and selected IDs, parent expansion and exact context budget. Included IDs must equal the actual prompt evidence; retrieved-but-excluded IDs are separate.
+- Calculation records bind the restricted operation tree, cited operand IDs, typed comparability/unit/period rules, rule premises/outcomes and final result. Missing or incompatible facts block inference. No arbitrary generated Python is executed.
+- Final answer states remain ok, invalid_request, index_not_ready, insufficient_evidence and service_error. Model failure and mock fixtures cannot become a real financial success.
+- Experiment records bind code/data/model/config hashes, A-G variant, split/question IDs, statuses, outputs, raw metric inputs and observed timings. Retain failures and exact denominators.
+
+The earlier record_examples.json contains explicitly synthetic design examples; it is not the complete final schema or eligible evaluation gold. Use the final proposal fields above when extending it.

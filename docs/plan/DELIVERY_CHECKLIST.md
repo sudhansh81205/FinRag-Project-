@@ -1,24 +1,17 @@
-# Team delivery checklist
+# FinRAG delivery checklist
 
-Target: complete and freeze by **November 17, 2026 (Asia/Kolkata)**. User clarified
-on October 30 that this is an internal team target. Official submission was
-previously described as November 21; exact cutoff, portal and course rubric are
-not supplied. Record them here when available; do not claim official confirmation.
+Source: November 3 proposal-aligned PRD and supplied AI_Project_Guidelines.v2.pdf. November 17 internal checkpoint; November 20 complete demo package freeze; November 21 demo/viva; November 22 final report/code/AI disclosure. Verify Classroom updates and exact cutoff. Do not mark any row complete from planning alone.
 
-| Required team artifact | Completion evidence | Status at setup |
-| --- | --- | --- |
-| Integrated source and configuration | One main revision, no keys, verified launch | Setup implemented; full system pending |
-| Source/data inventory | Exact filing URL, checksum, selectors, counts, rebuild instructions | Filing selected; ingestion pending |
-| Real model and failures | Real-call record; invalid-key and empty-evidence checks | Pending Nov 1 |
-| Provenance and calculations | Included citations, typed operands/periods/units/formulas | Contract defined; implementation pending |
-| Evaluation | 14 checked questions, 7/7 split, 14 held-out outputs across two modes | Pending |
-| Final report | Actual architecture, methods, measured counts, limitations, citations | Pending |
-| Slides and backup demo | Narrative/table/calculation/source/abstention walkthrough | Pending |
-| Seven-member contribution record | Evidence-linked work and AI-assistance disclosure | Started in handoff |
-| Final clean-machine package | Source revision, archive checksum, launch log and backup | Shanay Nov 16 |
-| Delivery verification | Package checklist and receipt if portal open | Sudhansh Nov 17 |
+- [ ] R1: exact filing manifests, five Apple/five Microsoft filings, ten companies and benchmark source/exclusion inventories.
+- [ ] R2/R3: repeatable real parsing/index/reopen; BGE plus exact FAISS; stable IDs, table cells, units/periods and source locators.
+- [ ] R4/R5: pinned real Ollama/Gemma configuration, explicit failures, restricted numerical operation tree and rule trace.
+- [ ] R6/R10/R11: Gradio with narrative/table/chart evidence, original images, source links, route trace and calculations; actual BM25/RRF/reranking/routing.
+- [ ] R7: frozen full evaluation inventory for FinQA/TAT-QA/FinanceBench/charts; A-G outputs; all metrics; numerical tolerance; RAGAS and separate 50-output independent manual audit; 95% intervals; failures/denominators.
+- [ ] R12: implemented KR&R and DL course mapping, reviewed success/failure examples and individual viva explanations.
+- [ ] R13: CI, DVC and MLflow records; reproducible setup; contribution history; source/licence acknowledgments; AI tools, purpose and verification.
+- [ ] Written report includes all required sections, explicit course connection, research question, measured results and honest limitations.
+- [ ] Exactly six slides in guideline order; live demo and backup recording; frozen archive/checksum and clean-machine evidence.
+- [ ] Official roster and per-person contributions reconciled; all members attend their own viva.
+- [ ] Final submitted files open correctly; receipt and exact submitted version retained.
 
-Official-course details still needed: required file formats/length, submission
-portal, any mandatory chart or model requirement, academic AI-use rules, and exact
-external submission cutoff. These are open information items, not invented rules
-or blockers to today's setup work.
+R9 restatement detection remains outside this release. Required proposal features that fail capacity gates remain unmet until implemented or an explicit scope decision is recorded.
