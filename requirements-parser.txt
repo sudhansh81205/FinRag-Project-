@@ -1,0 +1,4 @@
+# Offline filing parser; no model, provider, or vector database required.
+beautifulsoup4==4.15.0
+lxml==6.1.3
+soupsieve==3.0.4

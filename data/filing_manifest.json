@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "state": "selected_not_ingested",
+  "state": "parsed_not_indexed",
   "company": "Apple Inc.",
   "ticker": "AAPL",
   "cik": "0000320193",
@@ -10,19 +10,33 @@
   "period_end": "2021-09-25",
   "filed_date": "2021-10-29",
   "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
-  "selected_sections": ["Item 1A", "Item 7", "Item 8"],
+  "selected_sections": [
+    "Item 1A",
+    "Item 7",
+    "Item 8"
+  ],
   "proposed_tables": [
     "Consolidated Statements of Operations",
     "Consolidated Balance Sheets",
     "Consolidated Statements of Cash Flows"
   ],
-  "comparative_years": [2021, 2020, 2019],
+  "comparative_years": [
+    2021,
+    2020,
+    2019
+  ],
   "note": "Not every table has all three years. Preserve each table's actual headers and units, including per-share exceptions.",
-  "raw_path": "data/raw/aapl-20210925.htm",
-  "raw_sha256": null,
+  "raw_path": "data/raw/aapl-20210925.browser.html",
+  "raw_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
   "downloaded_at": null,
-  "parsed_record_count": null,
+  "parsed_record_count": 319,
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
   "index_collection": "sec_10k_filings",
-  "next_step": "Likhit downloads and checks the exact source, records checksum and selectors, then Ujjwal builds a validated persistent index."
+  "next_step": "Ujjwal indexes the parsed records with MiniLM/Chroma and verifies rerun/reopen behavior.",
+  "source_archive": "data/source/aapl-20210925.browser.html.gz",
+  "source_archive_sha256": "981074ca2e58fc0b5d5522ea1ea698e544d4d651ea0ae8aca2e2e4c190cf7915",
+  "capture_date": "2026-11-03",
+  "capture_method": "browser_dom_utf8_without_scripts_or_browser_overlay",
+  "capture_note": "Captured from the canonical SEC source URL after direct HTTP downloads returned 403. This checksum identifies the saved browser DOM snapshot, not original SEC HTTP response bytes. Filing text, inline XBRL, table cells and source anchors are retained. The compressed snapshot is included for reproducible offline parsing.",
+  "parser_version": "apple-2021-html-v1"
 }

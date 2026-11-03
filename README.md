@@ -4,10 +4,10 @@ FinRAG is a prototype for answering questions about SEC 10-K annual reports usin
 
 ## Team plan
 
-The revised plan runs from **October 30 through November 17, 2026**, with **seven members and exactly one assigned worker per day**. Each member has six planned hours across the schedule.
+The unified plan uses **seven members and exactly one assigned worker per day**. November 17, 2026 is the internal release target, followed by recovery/freeze slots and the assessment/submission dates recorded in the current PRD.
 
 - [Read the PRD](docs/plan/PRD.md)
-- [Download the editable PRD](docs/plan/FinRAG_PRD_17Nov2026.docx)
+- [Download the editable PRD](docs/plan/FinRAG_PRD.docx)
 - [See the dated assignments and completion checks](docs/plan/schedule.json)
 - [Use the daily implementation master prompt](docs/review/MASTER_PROMPT.md)
 - [Understand the nightly review process](docs/review/README.md)
@@ -18,9 +18,9 @@ Use **`main`** for the shared project. The UI, modular backend, PRD and review k
 
 Start with the [setup guide](docs/SETUP.md). The single entry point is `python app.py`. This setup milestone launches without a key or model download and clearly reports `index_not_ready`. Real answering, validated ingestion, citations and calculations remain scheduled work.
 
-The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. November 17 is the team's completion target; the official course cutoff is unconfirmed.
+The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. Those reports describe the historical checkpoint; the current PRD controls subsequent scope and dates.
 
-The planned integrated answering path retains Chroma, MiniLM embeddings, a cross encoder and a verified real language-model provider. BM25 search, chart understanding, vector-store migration and broad benchmark evaluation are deferred.
+The current proposal plan requires BGE with exact FAISS search, BM25/RRF, table and chart evidence, reranking, routing and controlled A-G evaluation. These are implementation requirements, not completion claims. The existing MiniLM/Chroma prototype remains a historical baseline and recovery aid.
 
 ## Daily workflow
 
@@ -38,6 +38,16 @@ source fixture. The full UI remains gated on the later filing/index work. See
 The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
 final failure-boundary corrections, 59 tests and fresh live/UI evidence.
 
+## November 2 filing parser
+
+The supported Apple 2021 filing now has a repeatable offline parsing entry point:
+`python scripts/parse_filing.py`. See [parsing instructions](docs/PARSING.md) for
+dependencies, source snapshot provenance, output records and the indexing handoff.
+This prepares data; it does not make the application/index ready.
+
+The parser handoff records the November 2 scope. Its single-filing output remains
+a starting artifact; later indexing, corpus expansion and evaluation must follow
+the current unified plan rather than the older handoff's scheduling assumptions.
 
 ## Current unified plan
 

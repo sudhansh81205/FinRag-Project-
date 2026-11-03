@@ -1,0 +1,92 @@
+{
+  "parser_version": "apple-2021-html-v1",
+  "accession": "0000320193-21-000105",
+  "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+  "source_bytes": 2048184,
+  "chunk_size": 1000,
+  "chunk_overlap": 200,
+  "sections": {
+    "Item 1A": {
+      "start": "#icffec2d5c553492089e1784044e3cc53_16",
+      "end_exclusive": "#icffec2d5c553492089e1784044e3cc53_19"
+    },
+    "Item 7": {
+      "start": "#icffec2d5c553492089e1784044e3cc53_40",
+      "end_exclusive": "#icffec2d5c553492089e1784044e3cc53_76"
+    },
+    "Item 8": {
+      "start": "#icffec2d5c553492089e1784044e3cc53_79",
+      "end_exclusive": "#icffec2d5c553492089e1784044e3cc53_151"
+    }
+  },
+  "narrative_records": 316,
+  "table_records": 3,
+  "total_records": 319,
+  "narrative_by_section": {
+    "Item 1A": 128,
+    "Item 7": 50,
+    "Item 8": 138
+  },
+  "excluded_blocks": {
+    "short_or_footer_blocks": 266,
+    "table_or_hidden_blocks": 291
+  },
+  "all_source_tables": 63,
+  "selected_statement_tables": [
+    {
+      "id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+      "title": "Consolidated Statements of Operations",
+      "periods": [
+        2021,
+        2020,
+        2019
+      ],
+      "units": {
+        "declared_text": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+        "normalization": "not_performed"
+      },
+      "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1)",
+      "source_rows": 32
+    },
+    {
+      "id": "0000320193-21-000105:item8:financial_table:18a44e8cab40:5648a99d54ec3179",
+      "title": "Consolidated Balance Sheets",
+      "periods": [
+        2021,
+        2020
+      ],
+      "units": {
+        "declared_text": "(In millions, except number of shares which are reflected in thousands and par value)",
+        "normalization": "not_performed"
+      },
+      "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(476) > table:nth-of-type(1)",
+      "source_rows": 42
+    },
+    {
+      "id": "0000320193-21-000105:item8:financial_table:7b2551636d7d:b3434e1b9d7330e1",
+      "title": "Consolidated Statements of Cash Flows",
+      "periods": [
+        2021,
+        2020,
+        2019
+      ],
+      "units": {
+        "declared_text": "(In millions)",
+        "normalization": "not_performed"
+      },
+      "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(493) > table:nth-of-type(1)",
+      "source_rows": 45
+    }
+  ],
+  "limitations": [
+    "Only the declared Apple 2021 layout is supported.",
+    "Only the three selected statements are table evidence; other tables are excluded.",
+    "Short headings/blocks under 80 characters are not standalone narrative evidence.",
+    "Full tables are parent records; numeric row normalization is Nov 6 work.",
+    "No embedding, index readiness, retrieval quality or financial answer is established."
+  ],
+  "output_sha256": {
+    "narrative.jsonl": "d0dfc2eb9760e9074e2860fcb8111ae38ca4a91350b25e8e3f95012f06cbbc98",
+    "tables.jsonl": "85cb7569ef3d260f9771507a1deb2618c0fb7e3f588b10e3f2d1b144e232a834"
+  }
+}
