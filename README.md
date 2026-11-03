@@ -37,3 +37,10 @@ source fixture. The full UI remains gated on the later filing/index work. See
 
 The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
 final failure-boundary corrections, 59 tests and fresh live/UI evidence.
+
+## November 2 filing parser
+
+The supported Apple 2021 filing now has a repeatable offline parsing entry point:
+`python scripts/parse_filing.py`. See [parsing instructions](docs/PARSING.md) for
+dependencies, source snapshot provenance, output records and the indexing handoff.
+This prepares data; it does not make the application/index ready.
