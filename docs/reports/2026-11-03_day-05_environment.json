@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task": "2026-11-03 Ujjwal: verify environment resources and handoff contracts",
+  "revision": "57c975e58a2bde8457c8b2bdc974f9388c373f9a",
+  "commands": {
+    "python": "Python 3.14.6",
+    "dvc": "3.67.1",
+    "git": "git version 2.45.2.windows.1"
+  },
+  "packages": {
+    "dvc": true,
+    "mlflow": true,
+    "faiss": false,
+    "docling": false,
+    "sentence_transformers": true,
+    "torch": true
+  },
+  "parser_contract": {
+    "status": "passed",
+    "record_count": 319,
+    "accession": "0000320193-21-000105",
+    "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+    "record_ids_sha256": "515781949cf725684a60d1d79401a7d4b8b3b7dfcb599b771dc1ba13b723ee1e",
+    "failure": null
+  },
+  "dvc_restore_smoke": {
+    "status": "passed",
+    "restored_sha256": "2540e4915233e59a10148d416f5e2d7e66f57c156f87405295c463f82bd9f32e"
+  },
+  "mlflow_logging_smoke": {
+    "status": "passed",
+    "run_id": "d675fec97eb947a2982b3cbd2764685d",
+    "tracking_uri": "file:///C:/Users/chand/AppData/Local/Temp/finrag-mlflow-j6brem_f/runs",
+    "contract_version": "unified-2026-11-03"
+  },
+  "capacity_estimate": {
+    "status": "blocked_pending_pilot",
+    "formula": "(cases * variants * observed_seconds_per_case / 3600) + extraction + captioning + evaluator_overhead",
+    "missing_inputs": [
+      "BGE/FAISS representative pilot timing",
+      "Gemma 3/Ollama hardware timing",
+      "RAGAS faithfulness timing",
+      "final A-G case and variant counts"
+    ],
+    "do_not_claim": "Full evaluation capacity is not established by this environment check."
+  }
+}
