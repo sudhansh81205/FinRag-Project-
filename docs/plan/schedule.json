@@ -1,9 +1,16 @@
 {
-  "start": "2026-10-30",
-  "deadline": "2026-11-17",
-  "deadline_kind": "internal_team_completion_target",
+  "schema_version": 2,
+  "revision_date": "2026-11-03",
+  "timezone": "Asia/Kolkata",
+  "start": "2026-11-03",
+  "deadline": "2026-11-20",
+  "deadline_kind": "full_demo_package_freeze",
+  "internal_checkpoint": "2026-11-17",
+  "official_demo_date": "2026-11-21",
+  "official_submission_date": "2026-11-22",
   "official_submission_cutoff": null,
-  "execution_notes": "User authorized the October 30 and October 31 first tasks together on October 30. Planned ownership/hours and all later dates remain unchanged; see docs/handoffs/2026-10-30_days-01-02.md for evidence.",
+  "source": "AI_Project_Guidelines.v2.pdf page 1; verify Classroom updates",
+  "one_assigned_worker_per_date": true,
   "members": [
     "Sudhansh Khandelwal",
     "Agrawal Pavan Shailesh",
@@ -14,331 +21,418 @@
     "Muppidi Gowtham Sai"
   ],
   "hours_per_member": {
-    "Sudhansh": 6,
-    "Shanay": 6,
-    "Rushil": 6,
-    "Likhit": 6,
-    "Ujjwal": 6,
-    "Pavan": 6,
-    "Gowtham": 6
+    "Ujjwal": 26,
+    "Likhit": 28,
+    "Shanay": 18,
+    "Pavan": 26,
+    "Rushil": 18,
+    "Gowtham": 18,
+    "Sudhansh": 24
   },
-  "days_per_member": {
-    "Sudhansh": 3,
-    "Shanay": 2,
-    "Rushil": 3,
-    "Likhit": 3,
-    "Ujjwal": 3,
-    "Pavan": 3,
-    "Gowtham": 2
-  },
-  "total_hours": 42,
+  "total_hours": 158,
+  "hours_kind": "planned_execution_Nov3_to_Nov20_excludes_historical_and_assessment",
+  "historical_assignments_unchanged_through": "2026-11-02",
   "days": [
     {
-      "owner": "Sudhansh",
-      "hours": 2,
-      "title": "Choose one runnable implementation",
-      "why": "The remote prototype has a UI, while the local branch has reusable modules. Select one integration route before changing either version.",
-      "need": "The two inspected revisions, supplied proposal and current course requirements.",
-      "steps": [
-        "Keep the existing Chroma, MiniLM and Gradio route. Select one Apple 10-K with comparative years; record a minimal scope and launch path.",
-        "Define the evidence record and answer status fields. Record which UI functions and local modules will be reused in the integration branch.",
-        "Create the acceptance checklist and a shared handoff file. Record the official delivery requirements, model-access assumption and November 17 cutoff."
-      ],
-      "done": "One integration checklist, one proposed filing, shared record examples and a fixed delivery checklist are saved.",
-      "learn": "The goal is to repair a small existing prototype and prove its answers, rather than start another implementation.",
-      "date": "2026-10-30"
-    },
-    {
-      "owner": "Shanay",
-      "hours": 3,
-      "title": "Make setup and launch reproducible",
-      "why": "The next owners need a working environment and a single application entry point. Repair setup before spending time on model or retrieval changes.",
-      "need": "The Day 1 integration checklist and evidence examples.",
-      "steps": [
-        "Review the previous handoff. Create the integration branch and port the chosen UI and module wiring without deleting the useful source versions.",
-        "Fix dependencies, including Gradio, and add one configuration loader and environment example. Keep credentials out of files and logs.",
-        "Run the existing lightweight tests and launch the UI in an explicit not-ready state. Document installation, data location and launch commands."
-      ],
-      "done": "The application starts from documented commands, reports missing data clearly and has a saved setup and test log.",
-      "learn": "A launchable application needs its dependencies, configuration and entry point to agree.",
-      "date": "2026-10-31"
-    },
-    {
-      "owner": "Rushil",
-      "hours": 2,
-      "title": "Connect a real model and remove false success",
-      "why": "A fixed mock answer must never appear as financial analysis when the actual provider fails.",
-      "need": "The configured application and status contract from Days 1 and 2.",
-      "steps": [
-        "Verify one real provider and model on the demo machine. Put the confirmed model identifier in configuration and construct an explicit API client.",
-        "Remove automatic mock fallback and process-wide credential mutation. Keep mock mode available only through an explicit test setting.",
-        "Return service_error for provider failures and insufficient_evidence when context is absent. Save one real-call check and one deliberate failure check."
-      ],
-      "done": "A real model call works; invalid credentials and empty evidence cannot return the fixed mock financial answer.",
-      "learn": "Model access failure and missing source evidence are different outcomes and must remain visible.",
-      "date": "2026-11-01"
-    },
-    {
-      "owner": "Likhit",
-      "hours": 2,
-      "title": "Parse one supported annual report",
-      "why": "One fully checked filing is a feasible foundation for the reduced schedule. Downloaded files alone are not searchable evidence.",
-      "need": "The filing choice, evidence schema and data path already recorded.",
-      "steps": [
-        "Record the exact accession, company, report fiscal year, original URL, local path and checksum for one Apple 10-K.",
-        "Move the required parsing cells into a repeatable function. Extract bounded sections from Items 1A, 7 and 8 and relevant statement tables.",
-        "Emit narrative and table records separately, preserving source locations, table titles, comparative periods and declared units. Save a parsing summary."
-      ],
-      "done": "One command parses the declared filing into traceable narrative and table records; the table of contents is not treated as risk-factor evidence.",
-      "learn": "The filing year and the comparative year of a table value are separate pieces of metadata.",
-      "date": "2026-11-02"
-    },
-    {
+      "date": "2026-11-03",
       "owner": "Ujjwal",
-      "hours": 2,
-      "title": "Build and reopen the persistent index",
-      "why": "Search must use the intended parsed report and return the same records after restart or repeated ingestion.",
-      "need": "The Day 4 parsed records and original source manifest.",
-      "steps": [
-        "Index the supported records with the existing MiniLM embedder and Chroma. Use deterministic IDs containing filing identity, evidence type and location.",
-        "Preserve source metadata, parent-table links and embedding identity. Replace that filing cleanly so shortened reruns do not leave stale records.",
-        "Re-ingest twice, restart the application and compare IDs and counts. Save one retrieved narrative record and one table record with their sources."
+      "hours": 8,
+      "title": "Verify environment resources and handoff contracts",
+      "requirements": [
+        "R2",
+        "R4",
+        "R13"
       ],
-      "done": "Repeated ingestion is stable, reopening the index preserves search and every returned record resolves to the supported report.",
-      "learn": "Persistent search is reproducible only when IDs, stored embeddings and source metadata remain consistent.",
-      "date": "2026-11-03"
+      "steps": "Read current main and parser PR #4 at its exact revision; preserve completed setup/provider/parser work. Check BGE, exact FAISS, Docling, Ollama/Gemma, memory and machine access. Pin the canonical record/parent-table and index-sidecar contracts. Set up local DVC and MLflow with one restore/log smoke check and retain existing Ruff/pytest CI. Estimate full evaluation machine time from a small representative pilot or explicitly mark missing inputs.",
+      "done": "Environment/resource inventory, input revision, canonical schema, successful DVC restore and MLflow smoke run exist. No model, parser or full-data readiness is inferred from installation alone.",
+      "course_concept": "Reproducible AI and typed evidence contracts",
+      "status": "planned",
+      "dependency_dates": [
+        "historical parser/provider handoffs at inspected revisions"
+      ],
+      "phase": "implementation_and_evaluation"
     },
     {
+      "date": "2026-11-04",
+      "owner": "Likhit",
+      "hours": 10,
+      "title": "Extend verified parsing to cells PDFs and chart sources",
+      "requirements": [
+        "R1",
+        "R3",
+        "R11"
+      ],
+      "steps": "Consume the tested Apple 2021 HTML parser rather than rebuilding its completed work. Add self-describing table cells and parent grids with raw/normalized units, periods, footnotes and source coordinates. Add Docling PDF extraction on checked fixtures and original chart image locators. Expand the initial Apple/Microsoft manifest and record unsupported layouts and chart availability. Distinguish HTML/PDF renditions and avoid duplicate fact ingestion.",
+      "done": "Checked HTML/PDF cell fixtures, full parent tables, image/source manifests and deterministic records have resolvable provenance. Existing 316 narratives and three parent tables remain a preserved starting artifact, not final corpus coverage.",
+      "course_concept": "KR ontology and grounded chart evidence",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-03"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-05",
+      "owner": "Shanay",
+      "hours": 8,
+      "title": "Independently validate canonical data and restore behavior",
+      "requirements": [
+        "R2",
+        "R3",
+        "R13"
+      ],
+      "steps": "Check representative source facts, periods, scales, parent links and deterministic IDs from the prior package. Validate row-to-ID mappings, metadata sidecars and a clean DVC restore with equal hashes. Retain any existing Chroma/MiniLM regression artifacts separately. Pin environment/configuration and validate storage replacement rules before the BGE/FAISS build.",
+      "done": "One canonical data package and restore log reproduce the same IDs, hashes and counts; malformed or mismatched metadata fails. This is input validation, not a claim that FAISS is complete.",
+      "course_concept": "Knowledge representation integrity and reproducibility",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-04"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-06",
+      "owner": "Likhit",
+      "hours": 10,
+      "title": "Build BGE exact FAISS and corpus coverage",
+      "requirements": [
+        "R1",
+        "R2"
+      ],
+      "steps": "Use bge-base-en-v1.5 with pinned preprocessing/revision and normalized 768-dimensional vectors. Build exact IndexFlatIP with stable evidence/metadata mapping, separate parent-table storage and compatible manifests. Verify duplicate IDs, dimensions, filtered results, stale-record cleanup, rebuild and reload. Continue corpus expansion toward five Apple/five Microsoft filings and ten technology companies; show actual parsed/indexed counts and failures.",
+      "done": "Checked narrative and cell retrieval survive restart and identical reruns. Source/index hashes and required company/filing coverage reconcile. IVF-PQ is not a release requirement.",
+      "course_concept": "Transformer embeddings and source identity",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-05"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-07",
       "owner": "Pavan",
-      "hours": 2,
-      "title": "Preserve source records through retrieval",
-      "why": "Returning passage text alone loses the information needed to verify the company, period and cited source.",
-      "need": "The Day 5 populated index and evidence contract.",
-      "steps": [
-        "Return complete evidence records through retrieval and the existing reranker. Validate supported filing and value-period filters.",
-        "Define dense baseline and table-aware modes with the same generator, calculator and context limit. Baseline chunks retain flattened table facts.",
-        "Skip disabled retrieval streams instead of issuing zero-result queries. Handle empty collections and no eligible evidence before generation."
+      "hours": 10,
+      "title": "Implement cumulative retrieval stages and routing",
+      "requirements": [
+        "R3",
+        "R10",
+        "R12"
       ],
-      "done": "A retrieved source ID survives ranking; baseline and table-aware modes return structured evidence and fail clearly when no eligible record exists.",
-      "learn": "The baseline measures retrieval changes fairly only when generation and available source facts are matched.",
-      "date": "2026-11-04"
+      "steps": "Use the frozen record/index interfaces. Implement A-F flags for section chunks, table cells/parent expansion, BM25 and RRF k=60, eligibility and bge-reranker-base, and bounded narrative/numerical/chart routing. Keep the chart tier unavailable until descriptions exist. Preserve component ranks, IDs and complete evidence under the common budget. Use existing LangChain where it participates usefully; do not require a framework rewrite.",
+      "done": "A-F traces isolate each stage; exact-term, semantic, TOC, no-result, missing-metric and context-budget cases pass with preserved IDs. Disabled streams issue no query.",
+      "course_concept": "DL cross-encoding with explicit reasoning preconditions",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-06"
+      ],
+      "phase": "implementation_and_evaluation"
     },
     {
+      "date": "2026-11-08",
+      "owner": "Rushil",
+      "hours": 10,
+      "title": "Integrate real models calculations and chart descriptions",
+      "requirements": [
+        "R4",
+        "R5",
+        "R11",
+        "R12"
+      ],
+      "steps": "Reuse merged provider boundaries and pin a real Gemma 3/Ollama configuration. Implement restricted multi-step arithmetic with cited operands and typed period/unit/comparability rules. Produce source-linked chart descriptions, unknown-value handling and a candidate 50-question chart set with 15 development and 35 held-out items grouped by image. Record the separate Llama comparison configuration and remaining hardware limits.",
+      "done": "Real model and failure traces, safe calculation/rule fixtures, linked chart captions and candidate chart questions exist. No arbitrary generated Python executes, and unreadable chart values stay unknown.",
+      "course_concept": "KR predicates and inference plus NLP and vision transformers",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-07"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-09",
+      "owner": "Gowtham",
+      "hours": 8,
+      "title": "Connect the full interface and measure real throughput",
+      "requirements": [
+        "R4",
+        "R6",
+        "R11"
+      ],
+      "steps": "Connect Gradio to real narrative/cell/chart retrieval, calculations, route traces and source links. Check session isolation and explicit invalid/not-ready/no-evidence/service-error states. Run separate development smoke cases. Measure actual model, extraction/caption and evaluator throughput on intended hardware; pass the measurements to Sudhansh for the full-run estimate.",
+      "done": "A notebook-free question-to-source walkthrough works for narrative, numerical and chart evidence with honest failures; real timing and memory evidence are saved.",
+      "course_concept": "Explainable application behavior and measurement",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-08"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-10",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Define full evaluation research question and capacity gate",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12"
+      ],
+      "steps": "Build versioned FinQA, TAT-QA and FinanceBench loaders and A-G runner with source-equivalent evidence mappings, no label leakage and all promised metrics. Freeze dataset eligibility and proposed splits; preserve 14 local cases only as smoke tests. Consolidate chart labels, research question, report/course sections and role records. Estimate full machine hours using actual case counts and measured generation/RAGAS throughput.",
+      "done": "Case inventory, scoring/split protocol, audit sampling rule, report outline and quantified full-run capacity decision exist. Slow or inaccessible suites remain explicit scope risks rather than being replaced silently.",
+      "course_concept": "Experimental controls and course-linked hypotheses",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-09"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-11",
+      "owner": "Ujjwal",
+      "hours": 10,
+      "title": "Independently check labels and development runs",
+      "requirements": [
+        "R1",
+        "R2",
+        "R7",
+        "R11"
+      ],
+      "steps": "Verify chart questions and labels against images, benchmark evidence mappings, units/periods and duplicate-source split leakage. Check Likhit index integrity and source coverage. Run development cases only, log outputs and identify parser/retrieval/model/math defects. Require 50 checked chart cases or declare the exact shortfall before freeze.",
+      "done": "Independently checked gold/source manifests, unchanged splits, development results and concrete defect reproductions exist. No held-out answer is used for tuning.",
+      "course_concept": "Label validity and representation checks",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-10"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-12",
+      "owner": "Pavan",
+      "hours": 8,
+      "title": "Fix development defects and freeze A through G",
+      "requirements": [
+        "R3",
+        "R7",
+        "R10",
+        "R12"
+      ],
+      "steps": "Repair bounded development defects and finalize route thresholds using development data only. Verify chart G integration, complete-context IDs and calculator rule failures. Lock A-G and shared BGE/model/prompt/calculator/five-passage/token settings; freeze the full evaluation list and stratified 50-output manual audit selection rule. Save integration and course review evidence.",
+      "done": "One frozen experiment manifest, reviewed rule/context behavior and reproducible run commands exist. An unresolved mandatory gate stays open; no fake dependency artifact is substituted.",
+      "course_concept": "Controlled ablation and reasoning verification",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-11"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-13",
+      "owner": "Gowtham",
+      "hours": 10,
+      "title": "Run full evaluation and capture the demo",
+      "requirements": [
+        "R6",
+        "R7",
+        "R11",
+        "R13"
+      ],
+      "steps": "Execute or checkpoint all frozen A-G runs over the named benchmark corpora and chart split, plus the separate Llama comparison. Save rankings, selected context, statuses, answers, score inputs, timings and failures. Capture a real source-linked backup demo. Keep the legacy 14-case smoke output separate from the final experiment.",
+      "done": "The full case-variant ledger accounts for completed, failed and running cases, with resumable artifacts and measured outputs. No short interim run is called the completed proposal experiment.",
+      "course_concept": "Reproducible AI evaluation",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-12"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-14",
+      "owner": "Shanay",
+      "hours": 10,
+      "title": "Verify clean setup tracking and deployment readiness",
+      "requirements": [
+        "R2",
+        "R6",
+        "R8",
+        "R13"
+      ],
+      "steps": "Restore the frozen data/index, rebuild or reopen on a clean environment, verify CI and DVC/MLflow records, and check real model/network access. Prepare a Docker/hosting route only if resources permit, using smoke cases separate from held-out data. Save hosting success or failure honestly; the reproducible local demo remains required. Continue immutable evaluation jobs if needed without changing their settings.",
+      "done": "Clean-machine logs, pinned environment, source/model/index/run identities and a usable local release route exist. Any hosted URL has actual pipeline checks; a Dockerfile alone is not deployment proof.",
+      "course_concept": "Supporting engineering for reproducible AI",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-13"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-15",
+      "owner": "Likhit",
+      "hours": 8,
+      "title": "Write methods and begin the fifty-output audit",
+      "requirements": [
+        "R3",
+        "R7",
+        "R8",
+        "R11"
+      ],
+      "steps": "Write source, parsing, indexing, chart and method sections from saved evidence. Audit the preselected 50 outputs against included context and original sources using gold labels you did not author; defer any self-authored-label cases to Pavan November 19. Compare with RAGAS and classify unsupported claims, numerical errors and abstentions. Keep incomplete benchmark runs explicit.",
+      "done": "Evidence-based method draft, independently audited output records, unresolved case IDs and disagreement log exist; authored labels are not self-certified.",
+      "course_concept": "Source-grounded reasoning and faithfulness",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-14"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-16",
+      "owner": "Ujjwal",
+      "hours": 8,
+      "title": "Audit results and prepare the six-slide release candidate",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12",
+        "R13"
+      ],
+      "steps": "Recompute sampled scores and paired bootstrap intervals from the frozen outputs; verify failure denominators, source coverage and configuration equality. Review data/index evidence and report claims. Prepare exactly six slides in guideline order, contribution/viva notes and a release inventory with archive hashes. Record any incomplete audit or evaluation for the checkpoint.",
+      "done": "Independent metric checks, results draft, six slides and release-candidate inventory agree with actual evidence; unfinished requirements remain visible.",
+      "course_concept": "Measurement uncertainty and defensible AI results",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-15"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-17",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Review the internal proposal release target",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12",
+        "R13"
+      ],
+      "steps": "Compare every requirement with implementation, full-run/audit status and the course rubric. Review reproducibility and the report, source references, seven-member contributions and AI disclosure. Freeze a release candidate if all gates pass; otherwise record remaining work and use only the dated recovery slots. The official demo/submission dates remain November 21/22.",
+      "done": "Internal checkpoint states complete/partial/unmet requirements, exact revision, remaining machine hours and release risks. November 17 is a target, not permission to label incomplete work complete.",
+      "course_concept": "Hypothesis assessment and accountability",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-16"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-18",
+      "owner": "Rushil",
+      "hours": 8,
+      "title": "Use the recovery slot for numerical and chart defects",
+      "requirements": [
+        "R4",
+        "R5",
+        "R7",
+        "R11"
+      ],
+      "steps": "Resolve reproducible critical defects from the checkpoint within this slot, or verify final provider, calculator and chart regressions if none remain. Preserve the frozen experiment when possible. Any output-affecting change gets a new version and affected A-G reruns, with held-out reuse disclosed; no new feature scope is added.",
+      "done": "Critical fixes have reproductions and regression evidence, or a verified unchanged release trace exists. Updated outputs are versioned honestly.",
+      "course_concept": "Reasoning and model failure analysis",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-17"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-19",
+      "owner": "Pavan",
+      "hours": 8,
+      "title": "Finish the independent audit and release review",
+      "requirements": [
+        "R7",
+        "R8",
+        "R10",
+        "R12"
+      ],
+      "steps": "Complete any remaining manual audit cases whose labels Likhit authored so the combined independent audit reaches 50 outputs. Review high-risk disagreements and sampled metrics, retrieval/context regressions and report/course claims. Check Rushil recovery changes on this later date and reconcile all result versions.",
+      "done": "Fifty independent audit outputs, disagreement analysis and final course/release review exist, with any unmet commitments explicitly recorded.",
+      "course_concept": "Independent reasoning and experimental review",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-18"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-20",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Freeze the single final package",
+      "requirements": [
+        "R6",
+        "R8",
+        "R13"
+      ],
+      "steps": "Finalize the unified report, exact six slides, results/audit files, contribution and AI-use sections, run instructions and backup demonstration. Verify source/code/configuration/archive hashes and submission access. Freeze the complete demo package and name any unmet requirement; do not assign another member same-day work.",
+      "done": "One frozen runnable archive, final report, six slides, complete evidence inventory and verified backup demo exist before assessment.",
+      "course_concept": "Defending the course-linked application",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-19"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-21",
       "owner": "Gowtham",
       "hours": 3,
-      "title": "Finish the source linked question interface",
-      "why": "A user should see the answer and the actual evidence without inspecting the notebook or developer logs.",
-      "need": "The real provider, persistent index and structured retrieval output.",
-      "steps": [
-        "Connect the UI to the selected backend. Show the supported report, question input, retrieval mode and an understandable loading state.",
-        "Display answer status, retrieved passages, table title, comparative period, units and original source links. Add the calculation area for later integration.",
-        "Check a narrative question, table question, empty input and missing-evidence case. Verify invalid credentials give a service error and inputs stay session-specific."
+      "title": "Demo setup and delivery",
+      "status": "planned",
+      "assessment_attendance": "Every member attends their own required viva; no extra development assignment.",
+      "dependency_dates": [
+        "2026-11-20"
       ],
-      "done": "The integrated UI shows real evidence and source links and handles the four checked cases without notebook execution.",
-      "learn": "Showing an answer is not enough; the interface must let the reader verify the source and recognize a failure.",
-      "date": "2026-11-05"
+      "phase": "assessment_or_submission"
     },
     {
-      "owner": "Likhit",
-      "hours": 2,
-      "title": "Repair the tables needed for the demonstration",
-      "why": "Financial values are useful only when their row labels, comparative periods and scale survive parsing.",
-      "need": "The Day 7 evidence display and original annual report.",
-      "steps": [
-        "Select three representative financial tables from the supported report. Check their headers, units, parentheses, blank values and comparative-year columns.",
-        "Create self-describing row records with parent-table links. Keep raw values and normalized numeric values and exclude duplicate narrative table copies.",
-        "Save small hand-checked fixtures and refresh the index using the existing command. Verify the displayed source locations against the original report."
-      ],
-      "done": "The three selected tables have source-checked values, labels, years and units; row records expand back to their original table.",
-      "learn": "Table-aware retrieval preserves relationships that disappear when a grid is flattened into unrelated text.",
-      "date": "2026-11-06"
-    },
-    {
-      "owner": "Rushil",
-      "hours": 2,
-      "title": "Add a small source checked calculator",
-      "why": "The model can explain a calculation, but arithmetic should run in predictable code using values actually retrieved.",
-      "need": "The normalized values and parent references from Day 8.",
-      "steps": [
-        "Connect the existing math helpers to the answer path for sum, difference and percentage change. Use typed operations and evidence-linked operands.",
-        "Normalize the supported currency scale, preserve the requested periods and reject absent or incompatible operands. Do not execute arbitrary generated code.",
-        "Show the formula, substituted values, result and unit. Check positive-year growth, a negative amount, missing evidence and a zero denominator."
-      ],
-      "done": "A demonstrated calculation uses cited operands and checked arithmetic; zero-base or insufficient-data cases explain why no growth result is available.",
-      "learn": "A calculated answer needs correct inputs, units and periods as well as correct arithmetic.",
-      "date": "2026-11-07"
-    },
-    {
-      "owner": "Pavan",
-      "hours": 2,
-      "title": "Keep complete evidence in the model context",
-      "why": "A relevant table may be retrieved but still lose its important rows when a character slice cuts the model input.",
-      "need": "The row records, source-linked calculator and two retrieval modes.",
-      "steps": [
-        "Replace the 4000-character table slice with complete record selection under the configured input budget. Retain headers, units and required operand rows.",
-        "Preserve the included evidence IDs in the answer contract. Reject references or calculations that cannot be matched to included records.",
-        "Check a long-table fixture and an unsupported-period question. Keep baseline and enhanced generation settings and total context budget the same."
-      ],
-      "done": "The required rows reach final context, every citation maps to included evidence and unsupported periods produce clear abstention.",
-      "learn": "Retrieval quality is lost if context assembly removes the information needed to answer the question.",
-      "date": "2026-11-08"
-    },
-    {
+      "date": "2026-11-22",
       "owner": "Sudhansh",
       "hours": 2,
-      "title": "Prepare the small evaluation and report outline",
-      "why": "The submission needs a modest, honest test rather than a broad accuracy claim that the schedule cannot substantiate.",
-      "need": "The working integrated app, original report and matched retrieval modes.",
-      "steps": [
-        "Create 14 questions with source locations and checked answers: six narrative, four table, two calculation and two unanswerable cases.",
-        "Reserve seven development and seven held-out IDs before tuning: each split has three narrative, two table, one calculation and one unanswerable case.",
-        "Freeze a scoring checklist for answers, units, source support, evidence recall and timing. Create the report outline and an evaluation-results template."
+      "title": "Final submission and receipt verification",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-21"
       ],
-      "done": "A versioned 14-case question file, fixed seven plus seven split, scoring rubric and report outline exist. No test answers are used to tune retrieval.",
-      "learn": "A small source-checked test supports a precise claim about this report; it does not establish broad financial accuracy.",
-      "date": "2026-11-09"
-    },
-    {
-      "owner": "Ujjwal",
-      "hours": 2,
-      "title": "Independently verify labels and freeze the split",
-      "why": "The answers used to score the app need an independent source check so a mistaken gold label does not reward a wrong result.",
-      "need": "The Day 11 question file, split and original source records.",
-      "steps": [
-        "Independently verify all 14 answers and supporting locations against the original report. Correct labels without moving difficult test questions into development.",
-        "Map baseline and table-aware records to the same source locations. Confirm repeatable record counts and the intended embedding version.",
-        "Run only the seven development questions to check the scoring process. Correct a blocking index or metadata defect and record the resulting version."
-      ],
-      "done": "Every gold case has an independent verification record and the split is locked. Only development examples have been used to guide corrections.",
-      "learn": "Citation identity and scoring must stay fair when baseline and enhanced chunk boundaries differ.",
-      "date": "2026-11-10"
-    },
-    {
-      "owner": "Rushil",
-      "hours": 2,
-      "title": "Verify final answers and freeze evaluation settings",
-      "why": "The final model, calculation path and failure states must be fixed before the reserved questions are run.",
-      "need": "The checked labels, development results and real generation provider.",
-      "steps": [
-        "Recheck model-unavailable, no-evidence, incompatible-unit and zero-denominator paths using development cases or dedicated fixtures.",
-        "Confirm mock mode is rejected by the real evaluation path. Keep the same model, prompt, calculator and context budget for both retrieval modes.",
-        "Freeze the code revision and run settings. Save a generation and calculation handoff explaining how to run the reserved cases and record failures."
-      ],
-      "done": "A frozen evaluation revision and configuration exist, with explicit failure checks and no hidden mock fallback.",
-      "learn": "Freezing settings before test evaluation prevents favorable-looking results from being selected through repeated tuning.",
-      "date": "2026-11-11"
-    },
-    {
-      "owner": "Gowtham",
-      "hours": 3,
-      "title": "Run the reserved evaluation and capture the demo",
-      "why": "Today measures the frozen app on the seven questions that were kept out of tuning and records what actually works.",
-      "need": "The Day 13 frozen revision, two modes, held-out IDs and scoring rubric.",
-      "steps": [
-        "Run all seven held-out questions in both modes and retain all 14 outputs, included evidence IDs, status, model settings and timing.",
-        "Score the six answerable and one unanswerable case per mode. Check sources, numerical periods and units, and compare evidence coverage fairly.",
-        "Save the metric table and error notes. Capture a short demo showing a real answer, source, calculation and abstention; label saved results and recordings clearly."
-      ],
-      "done": "Fourteen held-out outputs, a scored result table, source audits and a playable backup demo are saved, including failures.",
-      "learn": "Measured results may favor either mode. Reporting failures and denominators matters more than promising improvement.",
-      "date": "2026-11-12"
-    },
-    {
-      "owner": "Likhit",
-      "hours": 2,
-      "title": "Write the evidence based final report draft",
-      "why": "The report must explain the delivered system and actual measurements, with a clear boundary around the reduced scope.",
-      "need": "The report outline, source manifest and Day 14 results.",
-      "steps": [
-        "Draft the problem, one-report corpus, parsing method, table representation and implemented architecture using the saved handoff notes.",
-        "Insert the actual results with counts and explain source examples, limitations and unsupported layouts. Mark chart analysis and broad benchmarks as future work.",
-        "Include the seven-member contribution log, source references and AI-assistance disclosure draft. Add setup and calculator sections from the existing handoffs."
-      ],
-      "done": "A complete short report draft explains methods, actual results, limitations and all seven contributions; no unimplemented feature is claimed.",
-      "learn": "The report should describe the submitted software and evidence, including its limitations, rather than repeat an earlier ambitious proposal.",
-      "date": "2026-11-13"
-    },
-    {
-      "owner": "Pavan",
-      "hours": 2,
-      "title": "Audit results and review the report",
-      "why": "A separate review checks that the saved outputs justify the reported conclusions and that retrieval behavior is explained correctly.",
-      "need": "The Day 15 report draft and all evaluation artifacts.",
-      "steps": [
-        "Independently review the 14 saved outputs and recompute the reported counts. Check that incorrect periods, units and unsupported answers are scored as failures.",
-        "Classify remaining errors as parsing, retrieval, context, calculation or provider failures. Correct the report and add an annotated question-to-source walkthrough.",
-        "Fix only a reproducible release blocker. If a fix affects outputs, version it, rerun both modes and label the results as reused-test regression results."
-      ],
-      "done": "The report and result table have an independent review record. Every change has an explained effect on the saved evidence.",
-      "learn": "After the test run, investigate and report errors instead of treating the test answers as another tuning set.",
-      "date": "2026-11-14"
-    },
-    {
-      "owner": "Ujjwal",
-      "hours": 2,
-      "title": "Package data and prepare the final presentation",
-      "why": "The evaluator needs a clear source inventory and a short explanation of how the project works, alongside the runnable code.",
-      "need": "The reviewed report, final source revision and ingestion instructions.",
-      "steps": [
-        "Package the filing manifest, small fixtures, record-count summary and deterministic index rebuild instructions. Verify every original source link.",
-        "Assemble a short presentation from the report: problem, workflow, table treatment, calculated answer, actual comparison and limitations.",
-        "Create the release checklist and archive inventory. Check that the report, results, presentation, demo and contribution log refer to the intended versions."
-      ],
-      "done": "The data package, short presentation and release inventory are ready for a clean-machine check.",
-      "learn": "Data identity and source instructions are part of reproducibility, even when large raw files are not committed to Git.",
-      "date": "2026-11-15"
-    },
-    {
-      "owner": "Shanay",
-      "hours": 3,
-      "title": "Run the final clean machine and release check",
-      "why": "The last full technical check protects delivery from hidden local dependencies and missing files.",
-      "need": "The Day 17 release inventory, runnable source and both saved retrieval modes.",
-      "steps": [
-        "Build or restore the index on a fresh environment using the included instructions. Run a known question and confirm its cited source and calculation.",
-        "Check credentials, runtime requirements and the app launch command. Keep the verified native launch path; add no cloud deployment or new container dependency.",
-        "Recheck critical failure paths, open the report, slides and demo, then freeze and back up the archive. Save its checksum, exact revision and launch evidence."
-      ],
-      "done": "The final archive launches from documented inputs, all delivery files open and a backup plus verification log are ready.",
-      "learn": "The release check proves the project can leave the original developer machine without losing its data or setup knowledge.",
-      "date": "2026-11-16"
-    },
-    {
-      "owner": "Sudhansh",
-      "hours": 2,
-      "title": "Complete final verification and deliver the project",
-      "why": "November 17 is the final project delivery deadline. Use the verified package and retain proof of what was delivered.",
-      "need": "The Day 18 frozen archive, report, presentation, demo and verification log.",
-      "steps": [
-        "Check the exact package against the official delivery checklist. Verify seven correct names, final links, report results and contribution records.",
-        "Perform a short final demo using the frozen build or transparently labeled backup video. Make only necessary document corrections.",
-        "Deliver or submit before the confirmed November 17 cutoff and retain the receipt and exact archive. If the official portal opens later, retain this frozen ready-to-submit release."
-      ],
-      "done": "The project is complete by November 17, with its final package and verification record delivered. If submission is open, the receipt is retained; otherwise the frozen release is ready.",
-      "learn": "Finishing by the internal deadline means the code, evidence and documents are complete together, without relying on later development.",
-      "date": "2026-11-17"
+      "phase": "assessment_or_submission"
     }
   ],
-  "section_titles": [
-    "FinRAG revised product requirements and daily plan",
-    "What the project does",
-    "Code review priorities for the reduced build",
-    "Product requirements and scope",
-    "Architecture and quality rules",
-    "Small evaluation and scoring plan",
-    "Seven member ownership and equal workload",
-    "Complete calendar with one owner per day",
-    "Daily work plan 1 and 2",
-    "Daily work plan 3 and 4",
-    "Daily work plan 5 and 6",
-    "Daily work plan 7 and 8",
-    "Daily work plan 9 and 10",
-    "Daily work plan 11 and 12",
-    "Daily work plan 13 and 14",
-    "Daily work plan 15 and 16",
-    "Daily work plan 17 and 18",
-    "Daily work plan 19",
-    "Release risks and final checklist",
-    "Plain language terms and source references"
-  ]
+  "revision_id": "unified-proposal-sequential-2026-11-03",
+  "internal_checkpoint_kind": "proposal_release_candidate_target",
+  "recovery_dates": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20"
+  ],
+  "dependency_policy": "A failed prerequisite blocks dependent real integration; only the sole assigned owner handles bounded repairs or rebooks a later sole-owner slot.",
+  "historical_evidence": {
+    "provider": {
+      "pr": 3,
+      "state_at_inspection": "merged",
+      "main_sha": "6f9f2364fd541e0e86503db2e2662ff8565514c4"
+    },
+    "parser": {
+      "pr": 4,
+      "state_at_inspection": "open_unmerged",
+      "head_sha": "384beea9baf196e4b9596b8a304cd022dc3fe354",
+      "assignment_date": "2026-11-02",
+      "execution_date": "2026-11-03",
+      "reported_narrative_records": 316,
+      "reported_parent_tables": 3,
+      "reported_local_tests": 79,
+      "hosted_ci": "success",
+      "verification_note": "GitHub metadata and submitted artifacts inspected; application checks not rerun for this planning change."
+    }
+  }
 }

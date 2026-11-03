@@ -37,3 +37,10 @@ source fixture. The full UI remains gated on the later filing/index work. See
 
 The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
 final failure-boundary corrections, 59 tests and fresh live/UI evidence.
+
+
+## Current unified plan
+
+The single current [PRD](docs/plan/PRD.md) and its [editable Word copy](docs/plan/FinRAG_PRD.docx) consolidate the submitted proposal, professor feedback, course requirements and sequential implementation advice. The [dated tasks](docs/plan/TASK_REQUIREMENTS.md), [schedule](docs/plan/schedule.json), [course mapping](docs/plan/COURSE_ALIGNMENT.md) and [review guide](docs/review/README.md) use that same revision. Older plans in history are reference only.
+
+Exactly one member is assigned per date. November 17 is the internal release target, November 18-20 are recovery/freeze slots, November 21 is demo/viva and November 22 is final submission per the supplied v2 guidelines. Features and hours in the plan are requirements/estimates, not completion claims. Current code/PR evidence determines implementation status; parser PR #4 is separate from this planning update.

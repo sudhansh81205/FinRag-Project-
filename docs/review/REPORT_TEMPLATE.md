@@ -52,7 +52,7 @@ List fixed findings with verification evidence, still-open findings, regressions
 - Acceptance checks and verification commands:
 - Scope tradeoff if blockers do not fit the assigned hours:
 
-On November 17, give release follow-up only. Do not invent a development day after the deadline.
+Use the November 3 schedule through November 20; November 21/22 are assessment/submission only. Never assign a second active member on a date.
 
 ## Prompts for the next owner
 
@@ -73,3 +73,13 @@ Provide a copy-ready prompt that verifies the relevant real behavior, distinguis
 ## Blockers and delivery
 
 State missing evidence and required user action. Record report paths and actual delivery status without including private recipient details. Distinguish saved, sent, delivered and read. Never claim a notification arrived without evidence.
+
+## Course and proposal alignment
+
+| Requirement and variant | Code or artifact evidence | Syllabus concept | Success and failure checks | Viva question | Status |
+| --- | --- | --- | --- | --- | --- |
+| Use R IDs and A-G or common control | Exact SHA/location | KR&R, DL NLP, vision, safety or supporting engineering | Actual checks with limits | Explain the implementation | Complete, partial or unverified |
+
+Check all required datasets, 50 chart-only labels, the separate 50-output faithfulness audit, paired settings, 1% numerical tolerance, retrieval metrics, RAGAS, median latency and 95% confidence intervals. Keep capacity and scope shortfalls visible. A test count alone is not a course contribution or financial-accuracy result.
+
+Unified handoff gate: use schedule.json dependency_dates and phase. Preserve merged provider work and distinguish parser PR #4 from main until its actual merge. Likhit owns BGE/FAISS; Ujjwal owns environment/data contracts and audits. The 14 local cases are smoke checks only. Review the complete A-G, chart and course commitments.
