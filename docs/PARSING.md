@@ -111,3 +111,11 @@ not normalize numeric operands. It does not implement the later fair baseline,
 index replacement/reopening, final citations, arithmetic or provider/UI integration.
 Source acquisition and snapshot-byte provenance are explained in
 `data/source/README.md`; the canonical SEC URL remains the original reference.
+
+## November 4 cell and chart package
+
+Run `python -m pip install -r requirements-parser.txt` in the project environment,
+then `python scripts/prepare_evidence.py`. The command reads bundled source files
+offline and writes `data/processed/nov04/evidence.json` and the chart JPEG. Use
+`--output DIRECTORY` for a separate build. See the [Nov 4 handoff](handoffs/2026-11-04_likhit.md)
+for record semantics, source coverage and the pending Nov 3 contract review.

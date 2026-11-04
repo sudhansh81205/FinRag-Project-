@@ -1,0 +1,123 @@
+[
+  {
+    "ticker": "AAPL",
+    "issuer": "Apple Inc.",
+    "cik": "0000320193",
+    "accession": "0000320193-21-000105",
+    "form": "10-K",
+    "period_end": "2021-09-25",
+    "filed_date": "2021-10-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/0000320193-21-000105-index.htm",
+    "source_status": "pinned_html_and_pdf_renditions",
+    "html_manifest": "data/filing_manifest.json"
+  },
+  {
+    "ticker": "AAPL",
+    "issuer": "Apple Inc.",
+    "cik": "0000320193",
+    "accession": "0000320193-22-000108",
+    "form": "10-K",
+    "period_end": "2022-09-24",
+    "filed_date": "2022-10-28",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "AAPL",
+    "issuer": "Apple Inc.",
+    "cik": "0000320193",
+    "accession": "0000320193-23-000106",
+    "form": "10-K",
+    "period_end": "2023-09-30",
+    "filed_date": "2023-11-03",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/0000320193-23-000106-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "AAPL",
+    "issuer": "Apple Inc.",
+    "cik": "0000320193",
+    "accession": "0000320193-24-000123",
+    "form": "10-K",
+    "period_end": "2024-09-28",
+    "filed_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/0000320193-24-000123-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "AAPL",
+    "issuer": "Apple Inc.",
+    "cik": "0000320193",
+    "accession": "0000320193-25-000079",
+    "form": "10-K",
+    "period_end": "2025-09-27",
+    "filed_date": "2025-10-31",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "MSFT",
+    "issuer": "Microsoft Corporation",
+    "cik": "0000789019",
+    "accession": "0001564590-21-039151",
+    "form": "10-K",
+    "period_end": "2021-06-30",
+    "filed_date": "2021-07-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/0001564590-21-039151-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "MSFT",
+    "issuer": "Microsoft Corporation",
+    "cik": "0000789019",
+    "accession": "0001564590-22-026876",
+    "form": "10-K",
+    "period_end": "2022-06-30",
+    "filed_date": "2022-07-28",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/0001564590-22-026876-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "MSFT",
+    "issuer": "Microsoft Corporation",
+    "cik": "0000789019",
+    "accession": "0000950170-23-035122",
+    "form": "10-K",
+    "period_end": "2023-06-30",
+    "filed_date": "2023-07-27",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/0000950170-23-035122-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "MSFT",
+    "issuer": "Microsoft Corporation",
+    "cik": "0000789019",
+    "accession": "0000950170-24-087843",
+    "form": "10-K",
+    "period_end": "2024-06-30",
+    "filed_date": "2024-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/0000950170-24-087843-index.htm",
+    "source_status": "filing_identity_verified_only"
+  },
+  {
+    "ticker": "MSFT",
+    "issuer": "Microsoft Corporation",
+    "cik": "0000789019",
+    "accession": "0000950170-25-100235",
+    "form": "10-K",
+    "period_end": "2025-06-30",
+    "filed_date": "2025-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/0000950170-25-100235-index.htm",
+    "source_status": "filing_identity_verified_only"
+  }
+]
