@@ -55,7 +55,7 @@ def run(manifest_path, output, *, chunk_size=1000, overlap=200):
     manifest.update({
         "state": "parsed_not_indexed", "parser_version": summary["parser_version"],
         "raw_sha256": summary["source_sha256"], "parsed_record_count": summary["total_records"],
-        "next_step": "Ujjwal indexes the parsed records with MiniLM/Chroma and verifies rerun/reopen behavior.",
+        "next_step": "Follow docs/plan/schedule.json: Likhit cells/PDF/chart sources (Nov 4), Shanay independent validation (Nov 5), then Likhit BGE/exact FAISS (Nov 6) only after the input gate passes. MiniLM/Chroma is historical.",
     })
     write_atomic(manifest_path, json_bytes(manifest))
     return summary

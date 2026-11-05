@@ -34,3 +34,22 @@ jobs:
 
     - name: Check setup entry point without data or credentials
       run: python app.py --check
+
+    - name: Verify existing parser and environment smoke (not final pipeline readiness)
+      env:
+        DVC_NO_ANALYTICS: "1"
+        HF_HUB_OFFLINE: "1"
+        TRANSFORMERS_OFFLINE: "1"
+        GRADIO_ANALYTICS_ENABLED: "False"
+      run: |
+        python scripts/parse_filing.py
+        python scripts/prepare_evidence.py
+        python scripts/verify_day05_environment.py
+
+    - name: Preserve environment diagnostic and local smoke artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: environment-smoke
+        path: output/environment/
+        if-no-files-found: warn

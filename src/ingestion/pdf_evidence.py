@@ -68,7 +68,7 @@ def corroborate_pdf(path, spec, records):
         raise ParseError("PDF rendition checksum mismatch")
     by_row = defaultdict(list)
     for record in records:
-        by_row[record["metadata"]["table_title"], record["cell"]["row_label"]].append(record)
+        by_row[record["metadata"]["table_title"], record["metadata"]["row_label"]].append(record)
     parser = DoclingPdfParser(loglevel="fatal")
     pdf = parser.load(
         path,
@@ -85,20 +85,21 @@ def corroborate_pdf(path, spec, records):
                 html = by_row[page["title"], label]
                 if len(html) < 2:
                     raise ParseError(f"Missing comparative HTML evidence for {label}")
-                headers = [r["cell"]["column_header"] for r in html]
+                headers = [r["metadata"]["column_header"] for r in html]
                 for record, spans in zip(html, match_pdf_row(words, label, headers), strict=True):
                     raw = " ".join(w["text"] for w in spans)
-                    cell = record["cell"]
+                    cell = record["metadata"]
                     if (
                         not spans
-                        or displayed_amount(raw, cell["scale_power10"]) != cell["normalized_value"]
+                        or displayed_amount(raw, cell["scale_power10"])
+                        != cell["normalized_value_decimal"]
                     ):
                         raise ParseError(
                             f"PDF/HTML disagreement: {label} / {cell['column_header']}"
                         )
                     checks.append(
                         {
-                            "canonical_id": record["id"],
+                            "canonical_id": record["evidence_id"],
                             "page": page["page"],
                             "title": page["title"],
                             "row_label": label,

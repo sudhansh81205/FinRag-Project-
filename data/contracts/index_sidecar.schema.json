@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinRAG index sidecar",
+  "type": "object",
+  "required": [
+    "index_format",
+    "embedding_model",
+    "embedding_revision",
+    "dimension",
+    "normalization",
+    "evidence_ids_sha256",
+    "metadata_sidecar_sha256", "preprocessing", "record_count", "index_sha256",
+    "parent_table_storage", "parent_table_sha256", "id_order_encoding"
+  ],
+  "properties": {
+    "index_format": {"const": "faiss.IndexFlatIP"},
+    "embedding_model": {"const": "BAAI/bge-base-en-v1.5"},
+    "embedding_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "dimension": {"const": 768},
+    "normalization": {"const": "l2"},
+    "evidence_ids_sha256": {"$ref": "#/$defs/hash"},
+    "metadata_sidecar_sha256": {"$ref": "#/$defs/hash"},
+    "index_sha256": {"$ref": "#/$defs/hash"},
+    "parent_table_sha256": {"$ref": "#/$defs/hash"},
+    "parent_table_storage": {"type": "string", "minLength": 1},
+    "record_count": {"type": "integer", "minimum": 1},
+    "id_order_encoding": {"const": "utf8-json-array-compact-no-ascii-escape"},
+    "preprocessing": {"type": "object", "required": ["query_instruction", "document_instruction", "max_seq_length", "truncation_policy"], "properties": {
+      "query_instruction": {"type": "string"}, "document_instruction": {"type": "string"},
+      "max_seq_length": {"type": "integer", "minimum": 1}, "truncation_policy": {"type": "string", "minLength": 1}
+    }, "additionalProperties": false}
+  },
+  "additionalProperties": false,
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

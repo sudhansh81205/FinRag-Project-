@@ -1,0 +1,4 @@
+# Reproducibility tools; independent of the future embedding/model installation.
+dvc==3.67.1
+mlflow==3.17.2
+jsonschema==4.26.0

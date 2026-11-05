@@ -47,8 +47,10 @@ class DualHybridRetriever:
         """
         is_num = self.is_numerical_query(query)
 
-        text_limit = 2 if is_num else top_k_text
-        table_limit = top_k_tables if (is_num or force_multimodal) else 1
+        if any(type(limit) is not int or limit < 0 for limit in (top_k_text, top_k_tables)):
+            raise ValueError("Retrieval limits must be nonnegative integers.")
+        text_limit = min(2, top_k_text) if is_num else top_k_text
+        table_limit = top_k_tables if (is_num or force_multimodal) else min(1, top_k_tables)
 
         results = {
             "query": query,
@@ -57,47 +59,35 @@ class DualHybridRetriever:
             "table_evidence": [],
         }
 
-        if self.vector_collection is None:
+        if self.vector_collection is None or not (text_limit or table_limit):
             return results
 
         query_vector = self.embedding_fn(query) if self.embedding_fn else None
 
-        # 1. Retrieve narrative text
-        try:
-            text_query_kwargs = {
-                "n_results": text_limit,
-                "where": {"type": "narrative_text"},
-            }
-            if query_vector is not None:
-                text_query_kwargs["query_embeddings"] = [query_vector]
-            else:
-                text_query_kwargs["query_texts"] = [query]
-
-            text_res = self.vector_collection.query(**text_query_kwargs)
-            if text_res and "documents" in text_res and text_res["documents"]:
-                for i, doc in enumerate(text_res["documents"][0]):
-                    meta = text_res["metadatas"][0][i] if "metadatas" in text_res else {}
-                    results["text_evidence"].append({"content": doc, "metadata": meta})
-        except Exception as e:
-            results["text_error"] = str(e)
-
-        # 2. Retrieve financial tables
-        try:
-            table_query_kwargs = {
-                "n_results": table_limit,
-                "where": {"type": {"$in": ["financial_table", "clean_financial_table"]}},
-            }
-            if query_vector is not None:
-                table_query_kwargs["query_embeddings"] = [query_vector]
-            else:
-                table_query_kwargs["query_texts"] = [query]
-
-            table_res = self.vector_collection.query(**table_query_kwargs)
-            if table_res and "documents" in table_res and table_res["documents"]:
-                for i, doc in enumerate(table_res["documents"][0]):
-                    meta = table_res["metadatas"][0][i] if "metadatas" in table_res else {}
-                    results["table_evidence"].append({"content": doc, "metadata": meta})
-        except Exception as e:
-            results["table_error"] = str(e)
+        # A disabled stream must not call the backend, even for numerical intent.
+        for stream, limit, where in (
+            ("text", text_limit, {"type": "narrative_text"}),
+            ("table", table_limit, {"type": {"$in": ["financial_table", "clean_financial_table"]}}),
+        ):
+            if limit == 0:
+                continue
+            try:
+                kwargs = {"n_results": limit, "where": where}
+                kwargs.update({"query_embeddings": [query_vector]} if query_vector is not None
+                              else {"query_texts": [query]})
+                response = self.vector_collection.query(**kwargs)
+                documents = response["documents"][0]
+                identities = response["ids"][0]
+                metadata = response["metadatas"][0]
+                if not len(documents) == len(identities) == len(metadata):
+                    raise ValueError("Inconsistent index rows.")
+                records = []
+                for identity, document, meta in zip(identities, documents, metadata):
+                    if not isinstance(identity, str) or not identity.strip() or not isinstance(meta, dict):
+                        raise ValueError("Missing evidence identity or metadata.")
+                    records.append({"id": identity, "content": document, "metadata": meta})
+                results[f"{stream}_evidence"] = records
+            except Exception:
+                results[f"{stream}_error"] = "Index query or evidence mapping failed."
 
         return results

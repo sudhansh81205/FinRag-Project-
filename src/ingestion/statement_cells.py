@@ -106,7 +106,9 @@ def statement_cells(soup, parents):
                     raise ParseError(
                         f"Ambiguous value or untagged numeric cell: {label} / {headers[i]}"
                     )
-                attrs = fact_attributes(facts[0], ids, raw) if facts else {"normalized_value": None}
+                if not facts:
+                    raise ParseError(f"Missing typed context for {label} / {headers[i]}")
+                attrs = fact_attributes(facts[0], ids, raw)
                 node = facts[0].find_parent(["td", "th"]) if facts else parts[0]
                 source = locator(node)
                 footnotes = sorted(
@@ -143,19 +145,27 @@ def statement_cells(soup, parents):
                 )
                 records.append(
                     {
-                        "id": f"{parent['id']}:r{row_no}:c{start}",
+                        "evidence_id": f"{parent['id']}:r{row_no}:c{start}",
                         "content": content,
                         "metadata": {
                             **meta,
-                            "type": "financial_cell",
-                            "record_schema_version": 2,
+                            "type": "table_cell",
+                            "record_schema_version": 1,
                             "source_locator": source,
                             "content_sha256": sha256(content.encode()),
-                            "parser_version": "apple-2021-html-cells-v1",
+                            "parser_version": "apple-2021-html-cells-v2",
                             "units_json": json.dumps(units),
-                        },
-                        "cell": {
                             **attrs,
+                            "normalized_value_decimal": attrs["normalized_value"],
+                            "normalized_value": json_number(attrs["normalized_value"]),
+                            "raw_unit": units["declared_text"],
+                            "normalized_unit": attrs["unit"],
+                            "scale": 10 ** attrs["scale_power10"],
+                            "scope": json.dumps(attrs["dimensions"], sort_keys=True)
+                            if attrs["dimensions"]
+                            else "consolidated",
+                            "row_headers": [x for x in (qualifier, label) if x],
+                            "column_headers": [headers[i]],
                             "row_index": row_no,
                             "column_index": start,
                             "row_label": label,
@@ -166,6 +176,19 @@ def statement_cells(soup, parents):
                         },
                     }
                 )
-    if len({r["id"] for r in records}) != len(records):
+    if len({r["evidence_id"] for r in records}) != len(records):
         raise ParseError("Duplicate cell identity")
     return records
+
+
+def json_number(value):
+    """Satisfy the canonical number/null contract, retaining exact decimal text too."""
+    if value is None:
+        return None
+    number = Decimal(value)
+    if number == number.to_integral_value():
+        return int(number)
+    result = float(number)
+    if not Decimal(str(result)).is_finite() or Decimal(str(result)) != number:
+        raise ParseError("Amount cannot be represented by the canonical JSON number")
+    return result

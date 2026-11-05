@@ -6,13 +6,31 @@ import json
 import sys
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from scripts.parse_filing import json_bytes, write_atomic  # noqa: E402
+from src.contracts import canonical_record  # noqa: E402
 from src.ingestion.filing_parser import ParseError, parse_filing, sha256, validate_source  # noqa: E402
 from src.ingestion.pdf_evidence import corroborate_pdf, original_chart  # noqa: E402
 from src.ingestion.statement_cells import statement_cells  # noqa: E402
+
+
+def validate_records(records, schema):
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    identities = set()
+    for record in records:
+        errors = list(validator.iter_errors(record))
+        if errors:
+            raise ParseError(f"Canonical schema mismatch at {list(errors[0].absolute_path)}")
+        identity = record["evidence_id"]
+        if identity in identities:
+            raise ParseError("Duplicate canonical evidence identity")
+        identities.add(identity)
+        if sha256(record["content"].encode("utf-8")) != record["metadata"]["content_sha256"]:
+            raise ParseError("Canonical content hash mismatch")
 
 
 def prepare(output):
@@ -24,6 +42,11 @@ def prepare(output):
     narrative, parents, _ = parse_filing(raw, manifest)
     soup = validate_source(raw, manifest)
     cells = statement_cells(soup, parents)
+    narrative = [canonical_record(r) for r in narrative]
+    parents = [canonical_record(r) for r in parents]
+    records = narrative + parents + cells
+    schema_bytes = (ROOT / "data/contracts/canonical_record.schema.json").read_bytes()
+    validate_records(records, json.loads(schema_bytes))
     spec = json.loads((ROOT / "data/source/apple-2021-renditions.json").read_text())
     if spec["accession"] != manifest["accession"]:
         raise ParseError("HTML and PDF rendition accessions differ")
@@ -33,7 +56,7 @@ def prepare(output):
     asset_name = sha256(image) + ".jpg"
     chart = {
         **spec["chart"],
-        "id": f"{manifest['accession']}:chart:{sha256(image)}",
+        "source_asset_id": f"{manifest['accession']}:chart:{sha256(image)}",
         "asset": asset_name,
         "accession": manifest["accession"],
         "pdf_url": spec["url"],
@@ -43,15 +66,41 @@ def prepare(output):
     }
     package = {
         "accession": manifest["accession"],
-        "schema_version": "nov04-local-v1",
+        "schema_version": "nov04-canonical-v1",
+        "record_schema_sha256": sha256(schema_bytes),
         "narratives": narrative,
         "parent_tables": parents,
         "cells": cells,
         "pdf_corroboration": checks,
         "chart_sources": [chart],
     }
+    # Retain a self-contained HTML snapshot alongside the records for source audit.
+    for record in records:
+        record["metadata"]["source_file"] = "source.html"
+    payload = json_bytes(package)
+    ordered_ids = [r["evidence_id"] for r in narrative + cells]
+    build_manifest = {
+        "schema_version": 1,
+        "profile": "apple-2021-cells-pdf-chart-sources",
+        "record_schema_sha256": sha256(schema_bytes),
+        "record_count": len(records),
+        "candidate_count": len(ordered_ids),
+        "ordered_candidate_ids_sha256": sha256(
+            json.dumps(ordered_ids, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        ),
+        "files_sha256": {
+            "evidence.json": sha256(payload),
+            "source.html": sha256(raw),
+            asset_name: sha256(image),
+        },
+        "pdf_source": {"path": spec["path"], "sha256": spec["sha256"]},
+        "independent_source_audit": "pending",
+        "index_ready": False,
+    }
+    write_atomic(output / "source.html", raw)
     write_atomic(output / asset_name, image)
-    write_atomic(output / "evidence.json", json_bytes(package))
+    write_atomic(output / "evidence.json", payload)
+    write_atomic(output / "manifest.json", json_bytes(build_manifest))
     return {
         key: len(package[key])
         for key in ("narratives", "parent_tables", "cells", "pdf_corroboration", "chart_sources")

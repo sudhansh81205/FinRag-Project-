@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinRAG canonical evidence record",
+  "type": "object",
+  "required": ["evidence_id", "content", "metadata"],
+  "properties": {
+    "evidence_id": {
+      "type": "string", "minLength": 1, "pattern": "\\S",
+      "description": "The only logical evidence identity; physical indexes must map to it."
+    },
+    "content": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "source_rows": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["source_locator", "cells"], "properties": {
+      "source_locator": {"$ref": "#/$defs/nonempty"},
+      "cells": {"type": "array", "items": {"type": "object", "required": ["column", "colspan", "text"], "properties": {
+        "column": {"type": "integer", "minimum": 0}, "colspan": {"type": "integer", "minimum": 1}, "text": {"type": "string"}
+      }}}
+    }}},
+    "metadata": {
+      "type": "object",
+      "required": [
+        "accession",
+        "ticker",
+        "section",
+        "source_url",
+        "source_locator",
+        "source_sha256",
+        "type",
+        "record_schema_version", "content_sha256", "parser_version"
+      ],
+      "properties": {
+        "accession": {"$ref": "#/$defs/nonempty"},
+        "ticker": {"$ref": "#/$defs/nonempty"},
+        "section": {"$ref": "#/$defs/nonempty"},
+        "source_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+        "source_locator": {"$ref": "#/$defs/nonempty"},
+        "source_sha256": {"$ref": "#/$defs/hash"},
+        "content_sha256": {"$ref": "#/$defs/hash"},
+        "type": {
+          "enum": ["narrative_text", "financial_table", "table_cell", "chart"]
+        },
+        "record_schema_version": {"const": 1},
+        "parser_version": {"$ref": "#/$defs/nonempty"},
+        "parent_table_id": {"$ref": "#/$defs/nonempty"}, "table_title": {"$ref": "#/$defs/nonempty"},
+        "periods_json": {"$ref": "#/$defs/nonempty"}, "headers_json": {"$ref": "#/$defs/nonempty"}, "units_json": {"$ref": "#/$defs/nonempty"},
+        "row_headers": {"$ref": "#/$defs/labels"}, "column_headers": {"$ref": "#/$defs/labels"},
+        "raw_value": {"type": "string"}, "normalized_value": {"type": ["number", "null"]}, "metric": {"$ref": "#/$defs/nonempty"},
+        "period_start": {"type": ["string", "null"], "format": "date"}, "period_end": {"type": "string", "format": "date"},
+        "period_kind": {"enum": ["instant", "duration"]}, "scope": {"$ref": "#/$defs/nonempty"},
+        "raw_unit": {"$ref": "#/$defs/nonempty"}, "normalized_unit": {"$ref": "#/$defs/nonempty"},
+        "currency": {"type": ["string", "null"]}, "scale": {"type": "number", "exclusiveMinimum": 0},
+        "footnote_links": {"type": "array", "items": {"type": "string"}}, "row_index": {"type": "integer", "minimum": 0}, "column_index": {"type": "integer", "minimum": 0},
+        "image_path": {"$ref": "#/$defs/nonempty"}, "image_sha256": {"$ref": "#/$defs/hash"}, "image_locator": {"$ref": "#/$defs/nonempty"},
+        "unknown_values": {"type": "array", "items": {"type": "string"}}, "caption_model": {"$ref": "#/$defs/nonempty"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {"if": {"properties": {"metadata": {"properties": {"type": {"const": "financial_table"}}}}},
+     "then": {"required": ["source_rows"], "properties": {"metadata": {"required": ["parent_table_id", "table_title", "periods_json", "headers_json", "units_json"]}}}},
+    {"if": {"properties": {"metadata": {"properties": {"type": {"const": "table_cell"}}}}},
+     "then": {"properties": {"metadata": {"required": ["parent_table_id", "table_title", "row_headers", "column_headers", "raw_value", "normalized_value", "metric", "period_start", "period_end", "period_kind", "scope", "raw_unit", "normalized_unit", "currency", "scale", "footnote_links", "row_index", "column_index"]}}}},
+    {"if": {"properties": {"metadata": {"properties": {"type": {"const": "chart"}}}}},
+     "then": {"properties": {"metadata": {"required": ["image_path", "image_sha256", "image_locator", "unknown_values", "caption_model"]}}}},
+    {"if": {"properties": {"metadata": {"properties": {"type": {"enum": ["narrative_text", "table_cell", "chart"]}}}}}, "then": {"not": {"required": ["source_rows"]}}}
+  ],
+  "$defs": {
+    "nonempty": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "labels": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonempty"}}
+  }
+}

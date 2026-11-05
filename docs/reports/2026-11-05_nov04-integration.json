@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-05",
+  "scheduled_task": "2026-11-04 Likhit R1/R3/R11",
+  "reviewed_main": "e273b22",
+  "dependency_pr": 5,
+  "dependency_merged": true,
+  "python": "3.12.14",
+  "tests_passed": 131,
+  "ruff": "passed",
+  "pip_check": "passed",
+  "deterministic_two_builds": true,
+  "package_manifest": {
+    "schema_version": 1,
+    "profile": "apple-2021-cells-pdf-chart-sources",
+    "record_schema_sha256": "80be54983735b54d8c673fbd6c3265d2e5687c1cb31600690c6f8f192476f52f",
+    "record_count": 538,
+    "candidate_count": 535,
+    "ordered_candidate_ids_sha256": "e127dc3c07aacc70313726d41027175709546491a5a7d436672e61846d7a7d6f",
+    "files_sha256": {
+      "evidence.json": "bca3327be21b758c130cc51a4ffb94bcd100c7922f9d7a5e99cf6d8f3212d857",
+      "source.html": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+      "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9.jpg": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9"
+    },
+    "pdf_source": {
+      "path": "data/source/aapl-2021-rendition.pdf",
+      "sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107"
+    },
+    "independent_source_audit": "pending",
+    "index_ready": false
+  },
+  "environment_checks": {
+    "parser_contract": "passed",
+    "dvc_restore_smoke": "passed",
+    "mlflow_logging_smoke": "passed"
+  },
+  "code_lf_sha256": {
+    "scripts/prepare_evidence.py": "e8c279e0a56f9893940865a014c07f5e197273ca5dbcc88a761d9fe942b81692",
+    "src/ingestion/statement_cells.py": "5171a8f82d180aaaf3fac4a6afa3777d3347b659cbc71d318b93b468d3fa5716",
+    "src/ingestion/pdf_evidence.py": "5b328918c9c41edcc9b0917b8dbc239a2c173601a092a3ab11888d3561ac282b",
+    "tests/test_nov04_evidence.py": "b75dc1d89e86558069b285bf109c824b207a0e47fd4e42d4873a361d16b8ea3c"
+  },
+  "independent_audit": "pending Shanay",
+  "index_ready": false
+}

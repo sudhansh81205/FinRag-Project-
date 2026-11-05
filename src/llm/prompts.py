@@ -9,16 +9,17 @@ def build_finrag_prompt(
     question: str,
     text_evidence: list[str],
     table_evidence: list[str],
-    max_table_chars: int = 4000,
+    max_table_chars: int | None = None,
 ) -> str:
     """
-    Constructs a CFA-grade prompt optimized for financial QA over SEC filings.
-    Enforces Chain-of-Thought (CoT) and strict context attribution.
+    Render already selected complete evidence. Never silently slice a source.
     """
     joined_text = "\n\n".join(text_evidence) if text_evidence else "No narrative evidence retrieved."
-    joined_tables = "\n\n".join(table_evidence)[:max_table_chars] if table_evidence else "No tabular evidence retrieved."
+    joined_tables = "\n\n".join(table_evidence) if table_evidence else "No tabular evidence retrieved."
+    if max_table_chars is not None and table_evidence and len(joined_tables) > max_table_chars:
+        raise ValueError("Select complete tables within the budget before rendering.")
 
-    prompt = f"""You are a Chartered Financial Analyst (CFA) and expert financial AI assistant.
+    prompt = f"""You are a financial evidence assistant.
 Your objective is to answer the user's question accurately using ONLY the provided Narrative Evidence and Tabular Evidence from SEC filings.
 
 --- GROUNDING & REASONING RULES ---

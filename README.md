@@ -1,6 +1,6 @@
 # FinRAG
 
-FinRAG is a prototype for answering questions about SEC 10-K annual reports using retrieved narrative and table evidence. The completion plan focuses on source citations, checked calculations, clear failure states and a small measured comparison.
+FinRAG is a prototype for answering questions about SEC 10-K annual reports using retrieved narrative and table evidence. The unified completion plan adds grounded chart evidence, checked calculations, clear failure states and the matched A-G experiment with named benchmarks and independent audits.
 
 ## Team plan
 
@@ -11,6 +11,8 @@ The unified plan uses **seven members and exactly one assigned worker per day**.
 - [See the dated assignments and completion checks](docs/plan/schedule.json)
 - [Use the daily implementation master prompt](docs/review/MASTER_PROMPT.md)
 - [Understand the nightly review process](docs/review/README.md)
+- [Read the November 5 repair review and remaining gates](docs/reports/2026-11-05_gap-repair-review.md)
+- [Learn the repaired code and next-owner handoff](docs/handoffs/2026-11-05_gap-repair-learning.md)
 
 ## Run the shared project
 
