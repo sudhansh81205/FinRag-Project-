@@ -127,3 +127,33 @@ for canonical record semantics, source coverage and the next independent audit.
 The command validates the merged schema from `data/contracts/`, preserves all
 parent grids, and corroborates 11 cell values using Docling PDF word coordinates.
 It does not make the index or the application ready.
+
+## November 5 independent acceptance and real restore
+
+After building the package, run `python scripts/verify_canonical_data.py` using
+`requirements-dev.txt`. The command independently checks source text, grid
+coordinates, typed periods/units/scales, signs, scope, footnotes and identities.
+It checks the PDF with a second text extractor and verifies the original chart
+bytes; it does not generate captions or benchmark labels.
+
+The report is saved to `output/shanay/canonical_audit.json`, even on failure.
+Exit 0 means the bounded source audit, ordered candidate sidecars, real-package
+DVC restore and persistent MLflow readback all passed. Missing tools or data
+produce exit 1 and explicit blocker statuses. All DVC deletion/restoration
+occurs in a newly created local copy. Existing source, legacy indexes and other
+filings remain intact. Runtime stores and machine details remain under ignored
+`output/`; cloning does not carry a private cache or tracking service.
+
+Each run retains `candidate_ids.json`, `candidate_metadata.json` and complete
+`parent_tables.json` under its reported artifact directory. Candidate row i has
+the same evidence identity and metadata row i. There are 535 inputs, excluding
+the three parents and uncaptained chart. These are inputs for the later vector
+build; no actual FAISS row mapping or model revision is invented.
+
+`prepare_evidence.py` now treats an existing generation as immutable: an identical
+rerun succeeds; changed or unrelated contents require a fresh output directory.
+Use versioned directories for new filings and validate them before consumption.
+An interrupted/incomplete build is rejected; use a fresh directory to rebuild it.
+
+The [November 5 handoff](handoffs/2026-11-05_shanay.md) describes the checked
+profile, seven source fixtures, failures, commands and remaining index gate.

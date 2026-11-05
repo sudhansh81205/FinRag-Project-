@@ -56,3 +56,13 @@ the current unified plan rather than the older handoff's scheduling assumptions.
 The single current [PRD](docs/plan/PRD.md) and its [editable Word copy](docs/plan/FinRAG_PRD.docx) consolidate the submitted proposal, professor feedback, course requirements and sequential implementation advice. The [dated tasks](docs/plan/TASK_REQUIREMENTS.md), [schedule](docs/plan/schedule.json), [course mapping](docs/plan/COURSE_ALIGNMENT.md) and [review guide](docs/review/README.md) use that same revision. Older plans in history are reference only.
 
 Exactly one member is assigned per date. November 17 is the internal release target, November 18-20 are recovery/freeze slots, November 21 is demo/viva and November 22 is final submission per the supplied v2 guidelines. Features and hours in the plan are requirements/estimates, not completion claims. Current code/PR evidence determines implementation status; parser PR #4 is separate from this planning update.
+
+## Canonical data acceptance
+
+Build Likhit's merged source package with `python scripts/prepare_evidence.py`,
+then run `python scripts/verify_canonical_data.py` for Shanay's independent
+source/identity checks, real DVC restore and local tracking readback.
+See the [validation handoff](docs/handoffs/2026-11-05_shanay.md) and
+[review](docs/reports/2026-11-05_shanay-review.md). This validates the bounded
+Apple input package; BGE/exact FAISS, final models and A-G evaluation remain
+separate scheduled gates.
