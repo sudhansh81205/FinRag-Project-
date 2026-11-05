@@ -11,6 +11,21 @@ from src.retrieval.retriever import DualHybridRetriever
 from tests.test_generation import engine_with, real_stub
 
 
+@pytest.mark.parametrize("operation,args,key", [
+    (Math.calculate_yoy_growth, (1e308, -1e308), "growth_percentage"),
+    (Math.calculate_yoy_growth, (1e308, 1e-308), "growth_percentage"),
+    (Math.calculate_margin, (1e308, 1e-308), "margin_percentage"),
+    (Math.calculate_yoy_growth, (10 ** 400, 1), "growth_percentage"),
+    (Math.calculate_margin, (10 ** 400, 1), "margin_percentage"),
+])
+def test_out_of_range_arithmetic_returns_a_json_safe_failure(operation, args, key):
+    import json
+
+    result = operation(*args)
+    assert result["error"] and result[key] is None
+    json.dumps(result, allow_nan=False)
+
+
 def collection():
     return Mock(query=Mock(return_value={"ids": [["source-1"]], "documents": [["complete source"]],
                                          "metadatas": [[{"type": "narrative_text"}]]}))
