@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinRAG index sidecar",
+  "type": "object",
+  "required": [
+    "index_format",
+    "embedding_model",
+    "embedding_revision",
+    "dimension",
+    "normalization",
+    "evidence_ids_sha256",
+    "metadata_sidecar_sha256"
+  ],
+  "properties": {
+    "index_format": {"const": "faiss.IndexFlatIP"},
+    "embedding_model": {"const": "BAAI/bge-base-en-v1.5"},
+    "embedding_revision": {"type": "string"},
+    "dimension": {"const": 768},
+    "normalization": {"const": "l2"},
+    "evidence_ids_sha256": {"type": "string"},
+    "metadata_sidecar_sha256": {"type": "string"},
+    "parent_table_storage": {"type": "string"}
+  },
+  "additionalProperties": false
+}

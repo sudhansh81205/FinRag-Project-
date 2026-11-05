@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinRAG canonical evidence record",
+  "type": "object",
+  "required": ["evidence_id", "content", "metadata"],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "description": "The only logical evidence identity; physical indexes must map to it."
+    },
+    "content": {"type": "string"},
+    "metadata": {
+      "type": "object",
+      "required": [
+        "accession",
+        "ticker",
+        "section",
+        "source_url",
+        "source_locator",
+        "source_sha256",
+        "type",
+        "record_schema_version"
+      ],
+      "properties": {
+        "accession": {"type": "string"},
+        "ticker": {"type": "string"},
+        "section": {"type": "string"},
+        "source_url": {"type": "string", "format": "uri"},
+        "source_locator": {"type": "string"},
+        "source_sha256": {"type": "string"},
+        "content_sha256": {"type": "string"},
+        "type": {
+          "enum": ["narrative_text", "financial_table", "table_cell", "chart"]
+        },
+        "record_schema_version": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
