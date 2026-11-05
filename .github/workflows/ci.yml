@@ -43,6 +43,7 @@ jobs:
         GRADIO_ANALYTICS_ENABLED: "False"
       run: |
         python scripts/parse_filing.py
+        python scripts/prepare_evidence.py
         python scripts/verify_day05_environment.py
 
     - name: Preserve environment diagnostic and local smoke artifacts

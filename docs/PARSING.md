@@ -84,7 +84,7 @@ metadatas = [r["metadata"] for r in records]
 
 Tables use `financial_table`, which the existing retriever accepts. Their
 `parent_table_id` points to themselves; normalized child row records and
-typed `table_cell` records remain Likhit's November 4 prerequisite. The existing engine/UI
+typed `table_cell` records are produced by the separate November 4 command below. The existing engine/UI
 remain not ready until the scheduled index and retrieval integration is done.
 Full parent tables can exceed an embedder/context limit: retain them as parent
 evidence, and do not claim that embedding an automatically truncated table has
@@ -109,9 +109,21 @@ answer evaluation or evidence of improved retrieval accuracy.
 
 ## Limits to explain
 
-This supports one checked layout. It excludes other tables, chart images and
+The original `parse_filing.py` command supports one checked layout. It excludes other tables, chart images and
 short standalone blocks. It preserves raw values and unit declarations but does
 not normalize numeric operands. It does not implement the later fair baseline,
 index replacement/reopening, final citations, arithmetic or provider/UI integration.
 Source acquisition and snapshot-byte provenance are explained in
 `data/source/README.md`; the canonical SEC URL remains the original reference.
+
+## November 4 cell and chart package
+
+Run `python -m pip install -r requirements-parser.txt` in the project environment,
+then `python scripts/prepare_evidence.py`. The command reads bundled source files
+offline and writes `data/processed/nov04/evidence.json`, a source HTML copy, a hashed
+package manifest and the original chart JPEG. Use
+`--output DIRECTORY` for a separate build. See the [Nov 4 handoff](handoffs/2026-11-04_likhit.md)
+for canonical record semantics, source coverage and the next independent audit.
+The command validates the merged schema from `data/contracts/`, preserves all
+parent grids, and corroborates 11 cell values using Docling PDF word coordinates.
+It does not make the index or the application ready.
