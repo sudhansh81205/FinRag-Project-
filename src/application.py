@@ -30,9 +30,9 @@ class SetupApplication:
         if not settings.raw_dir.is_dir() or not any(settings.raw_dir.iterdir()):
             blockers.append("No source filing found. Add the selected Apple 2021 filing during ingestion.")
         if not (settings.index_dir / "chroma.sqlite3").is_file():
-            blockers.append("No persistent Chroma index found. Build and validate it during the indexing task.")
+            blockers.append("No legacy index found. Final readiness requires Likhit's validated BGE/exact FAISS package and adapter; see the unified schedule.")
         else:
-            blockers.append("An index file exists, but its collection, records and source identity are not validated.")
+            blockers.append("A legacy Chroma file exists, but it is not final BGE/FAISS readiness; source identity and integration remain unvalidated.")
         if settings.provider == "unconfigured" or not settings.model:
             blockers.append("No verified model configured. Configure the provider and run scripts/check_generation.py.")
         if settings.provider == "gemini" and not settings.gemini_api_key:

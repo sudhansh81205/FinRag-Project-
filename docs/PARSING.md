@@ -1,8 +1,10 @@
 # Parse the supported Apple filing
 
 This implements Likhit's November 2 assignment from the revised plan, executed
-November 3, 2026. It prepares source-linked records for Ujjwal's indexing task.
-It keeps the agreed Chroma/MiniLM stack and performs no index or provider calls.
+November 3, 2026. It prepares source-linked records for the unified dependency
+sequence: Ujjwal environment/contracts, Likhit cells/PDF/charts, Shanay validation,
+then Likhit BGE/exact FAISS. It performs no index or provider calls. MiniLM/Chroma
+is historical only. This direction was corrected November 5; extraction is unchanged.
 
 ## Run from a fresh checkout
 
@@ -66,7 +68,9 @@ Both JSONL files contain records with `id`, `content`, `metadata`, following
 as `periods_json`, `headers_json` and `units_json` are JSON-encoded strings for
 Chroma compatibility. Tables also have a top-level `source_rows` array containing
 source row locators, cell text, start-column offsets and colspans. Keep it as a
-source artifact; pass only `id`, `content` and `metadata` into Chroma.
+source artifact. `src.contracts.canonical_record` maps `id` to `evidence_id`
+without changing identity and retains `source_rows`; preserve the full parent
+separately from future vector metadata. Do not build a new Chroma baseline.
 
 Example consumer (does not ingest by itself):
 
@@ -80,7 +84,7 @@ metadatas = [r["metadata"] for r in records]
 
 Tables use `financial_table`, which the existing retriever accepts. Their
 `parent_table_id` points to themselves; normalized child row records and
-`clean_financial_table` records remain November 6 work. The existing engine/UI
+typed `table_cell` records remain Likhit's November 4 prerequisite. The existing engine/UI
 remain not ready until the scheduled index and retrieval integration is done.
 Full parent tables can exceed an embedder/context limit: retain them as parent
 evidence, and do not claim that embedding an automatically truncated table has

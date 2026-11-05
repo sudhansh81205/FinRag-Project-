@@ -10,10 +10,14 @@ from ..retrieval.retriever import DualHybridRetriever
 
 
 class FinRAGEngine:
-    def __init__(self, retriever=None, reranker=None, llm_client=None):
+    def __init__(self, retriever=None, reranker=None, llm_client=None, *, context_char_budget=8000):
         self.retriever = retriever if retriever is not None else DualHybridRetriever()
         self.reranker = reranker if reranker is not None else SimpleFinancialReranker()
         self.llm_client = llm_client if llm_client is not None else UnifiedLLMClient()
+        if type(context_char_budget) is not int or context_char_budget < 1:
+            raise ValueError("Context character budget must be a positive integer.")
+        # Intermediate safety budget; final matched A-G tokenizer budget remains future work.
+        self.context_char_budget = context_char_budget
 
     def answer_financial_question(
         self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
@@ -24,6 +28,7 @@ class FinRAGEngine:
             "status": "service_error", "question": question, "answer": "", "message": "",
             "evidence": [], "calculations": [], "provider": self.llm_client.provider,
             "model": self.llm_client.model, "included_evidence_ids": [], "warnings": [],
+            "excluded_evidence": [],
             "retrieved_evidence": {"text_count": 0, "table_count": 0,
                                    "text_snippets": [], "table_snippets": []},
         }
@@ -57,17 +62,40 @@ class FinRAGEngine:
             allowed = {"narrative_text"} if _baseline else {
                 "narrative_text", "financial_table", "clean_financial_table",
             }
-            included = [item for item in ranked if isinstance(item.get("content"), str)
-                        and item["content"].strip()
-                        and item.get("metadata", {}).get("type") in allowed]
+            included, seen, used_chars = [], set(), 0
+            rendered = {"narrative_text": [], "table": []}
+            for item in ranked:
+                identity = item.get("evidence_id", item.get("id"))
+                kind = item.get("metadata", {}).get("type")
+                content = item.get("content")
+                reason = None
+                if not isinstance(identity, str) or not identity.strip():
+                    reason = "missing_identity"
+                elif item.get("id", identity) != identity:
+                    reason = "conflicting_identity"
+                elif identity in seen:
+                    reason = "duplicate_identity"
+                elif not isinstance(content, str) or not content.strip() or kind not in allowed:
+                    reason = "unusable_content_or_type"
+                block = f"[Evidence ID: {identity}]\n{content}"
+                stream = "narrative_text" if kind == "narrative_text" else "table"
+                cost = len(block) + (2 if rendered[stream] else 0)
+                if reason is None and used_chars + cost > self.context_char_budget:
+                    reason = "context_budget"
+                if reason:
+                    result["excluded_evidence"].append({"id": identity, "reason": reason})
+                    continue
+                included.append(item)
+                seen.add(identity)
+                used_chars += cost
+                rendered[stream].append(block)
             if not included:
                 return finish("insufficient_evidence", "No usable source evidence remained after ranking.")
-            text = [item["content"] for item in included
-                    if item["metadata"]["type"] == "narrative_text"]
-            tables = [item["content"] for item in included
-                      if item["metadata"]["type"] != "narrative_text"]
+            text, tables = rendered["narrative_text"], rendered["table"]
             result["evidence"] = included
-            result["included_evidence_ids"] = [item["id"] for item in included if item.get("id")]
+            result["included_evidence_ids"] = [item.get("evidence_id", item.get("id")) for item in included]
+            result["context_budget"] = {"unit": "characters", "limit": self.context_char_budget,
+                                        "used": used_chars, "scope": "rendered evidence blocks"}
             result["retrieved_evidence"] = {"text_count": len(text), "table_count": len(tables),
                                              "text_snippets": text, "table_snippets": tables}
             prompt = (build_baseline_prompt(question, text) if _baseline

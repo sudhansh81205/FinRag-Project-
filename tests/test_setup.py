@@ -59,7 +59,7 @@ def test_missing_data_returns_no_fabricated_answer(configured_root):
     assert result["answer"] == ""
     assert result["evidence"] == []
     assert "No source filing" in result["message"]
-    assert "No persistent Chroma" in result["message"]
+    assert "BGE/exact FAISS" in result["message"]
     assert not app.settings.index_dir.exists()  # Startup must not create an empty index.
 
 
@@ -71,7 +71,7 @@ def test_existing_index_and_key_do_not_enable_unverified_backend(configured_root
     (settings.index_dir / "chroma.sqlite3").touch()
     result = SetupApplication(settings).answer("What is revenue?")
     assert result["status"] == "index_not_ready"
-    assert "not validated" in result["message"]
+    assert "unvalidated" in result["message"]
     assert result["answer"] == ""
 
 
