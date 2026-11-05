@@ -1,0 +1,13 @@
+{
+  "scope": "AI-assisted source audit fixtures, not benchmark gold or chart-question labels",
+  "accession": "0000320193-21-000105",
+  "cases": [
+    {"pdf_page": 32, "table": "Consolidated Statements of Operations", "row": "Total net sales", "period_end": "2021-09-25", "unit": "USD", "value": "365817000000"},
+    {"pdf_page": 32, "table": "Consolidated Statements of Operations", "row": "Total net sales", "period_end": "2020-09-26", "unit": "USD", "value": "274515000000"},
+    {"pdf_page": 32, "table": "Consolidated Statements of Operations", "row": "Diluted", "period_end": "2021-09-25", "unit": "USD/share", "value": "5.61"},
+    {"pdf_page": 32, "table": "Consolidated Statements of Operations", "row": "Diluted", "period_end": "2021-09-25", "unit": "shares", "value": "16864919000"},
+    {"pdf_page": 34, "table": "Consolidated Balance Sheets", "row": "Total assets", "period_end": "2021-09-25", "unit": "USD", "value": "351002000000"},
+    {"pdf_page": 36, "table": "Consolidated Statements of Cash Flows", "row": "Repurchases of common stock", "period_end": "2021-09-25", "unit": "USD", "value": "-85971000000"},
+    {"pdf_page": 36, "table": "Consolidated Statements of Cash Flows", "row": "Cash, cash equivalents and restricted cash, beginning balances", "period_end": "2020-09-26", "unit": "USD", "value": "39789000000"}
+  ]
+}

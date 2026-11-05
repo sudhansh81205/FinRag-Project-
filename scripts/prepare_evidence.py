@@ -97,10 +97,21 @@ def prepare(output):
         "independent_source_audit": "pending",
         "index_ready": False,
     }
-    write_atomic(output / "source.html", raw)
-    write_atomic(output / asset_name, image)
-    write_atomic(output / "evidence.json", payload)
-    write_atomic(output / "manifest.json", json_bytes(build_manifest))
+    payloads = {"source.html": raw, asset_name: image, "evidence.json": payload,
+                "manifest.json": json_bytes(build_manifest)}
+    # Published generations are immutable. A new/changed filing must use a new
+    # directory; neither another filing nor a partially changed package is erased.
+    if output.is_symlink():
+        raise ParseError("Evidence destination must not be a symbolic link")
+    if output.exists() and any(output.iterdir()):
+        if {p.name for p in output.iterdir()} != set(payloads) or any(
+            (output / name).is_symlink() or not (output / name).is_file()
+            or (output / name).read_bytes() != data for name, data in payloads.items()
+        ):
+            raise ParseError("Destination differs from this generation; choose a fresh output directory")
+    else:
+        for name, data in payloads.items():
+            write_atomic(output / name, data)
     return {
         key: len(package[key])
         for key in ("narratives", "parent_tables", "cells", "pdf_corroboration", "chart_sources")

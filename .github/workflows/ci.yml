@@ -45,11 +45,14 @@ jobs:
         python scripts/parse_filing.py
         python scripts/prepare_evidence.py
         python scripts/verify_day05_environment.py
+        python scripts/verify_canonical_data.py
 
     - name: Preserve environment diagnostic and local smoke artifacts
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: environment-smoke
-        path: output/environment/
+        path: |
+          output/environment/
+          output/shanay/
         if-no-files-found: warn
