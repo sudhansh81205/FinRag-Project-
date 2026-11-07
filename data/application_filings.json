@@ -10,7 +10,11 @@
     "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/0000320193-21-000105-index.htm",
     "source_status": "pinned_html_and_pdf_renditions",
-    "html_manifest": "data/filing_manifest.json"
+    "html_manifest": "data/filing_manifest.json",
+    "rendition_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+    "rendition_path": "data/source/aapl-2021-rendition.pdf",
+    "rendition_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "AAPL",
@@ -22,7 +26,11 @@
     "filed_date": "2022-10-28",
     "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2022.pdf",
+    "rendition_path": "data/raw/corpus/0000320193-22-000108.pdf",
+    "rendition_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "AAPL",
@@ -34,7 +42,11 @@
     "filed_date": "2023-11-03",
     "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/0000320193-23-000106-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2023.pdf",
+    "rendition_path": "data/raw/corpus/0000320193-23-000106.pdf",
+    "rendition_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "AAPL",
@@ -46,7 +58,11 @@
     "filed_date": "2024-11-01",
     "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/0000320193-24-000123-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000320193-24-000123.pdf",
+    "rendition_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "AAPL",
@@ -58,7 +74,11 @@
     "filed_date": "2025-10-31",
     "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://s2.q4cdn.com/470004039/files/doc_financials/2025/ar/_10-K-2025-As-Filed.pdf",
+    "rendition_path": "data/raw/corpus/0000320193-25-000079.pdf",
+    "rendition_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "MSFT",
@@ -70,7 +90,11 @@
     "filed_date": "2021-07-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/0001564590-21-039151-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2021.pdf",
+    "rendition_path": "data/raw/corpus/0001564590-21-039151.pdf",
+    "rendition_sha256": "71b4d3a9c8aa98d2b0a0b1165e979fc8ac3084925b2e778fc143b50badad1461",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "MSFT",
@@ -82,7 +106,9 @@
     "filed_date": "2022-07-28",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/0001564590-22-026876-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2022.pdf",
+    "rendition_path": "data/raw/corpus/0001564590-22-026876.pdf"
   },
   {
     "ticker": "MSFT",
@@ -94,7 +120,11 @@
     "filed_date": "2023-07-27",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/0000950170-23-035122-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2023.pdf",
+    "rendition_path": "data/raw/corpus/0000950170-23-035122.pdf",
+    "rendition_sha256": "3c318819680126f6817c2fbb3b8ffa7c01eae31dcfea7e174406e4fa70a5cf29",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "MSFT",
@@ -106,7 +136,11 @@
     "filed_date": "2024-07-30",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/0000950170-24-087843-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000950170-24-087843.pdf",
+    "rendition_sha256": "96de32a720641251b44c3e27e25ce2aa7ab035a15182b6260ef0ef06aa041dc0",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
   },
   {
     "ticker": "MSFT",
@@ -118,6 +152,136 @@
     "filed_date": "2025-07-30",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
     "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/0000950170-25-100235-index.htm",
-    "source_status": "filing_identity_verified_only"
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReports/PDF/NASDAQ_MSFT_2025.pdf",
+    "rendition_path": "data/raw/corpus/0000950170-25-100235.pdf",
+    "rendition_sha256": "e88c300dcc58dcc93a88fa4afc6bd7b2e63a2095c7a6479d49d57692e1d19a6d",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "ADBE",
+    "issuer": "Adobe Inc.",
+    "cik": "0000796343",
+    "accession": "0000796343-25-000004",
+    "form": "10-K",
+    "period_end": "2024-11-29",
+    "filed_date": "2025-01-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/0000796343-25-000004-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000796343-25-000004.pdf",
+    "rendition_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "NVDA",
+    "issuer": "NVIDIA Corporation",
+    "cik": "0001045810",
+    "accession": "0001045810-24-000029",
+    "form": "10-K",
+    "period_end": "2024-01-28",
+    "filed_date": "2024-02-21",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/0001045810-24-000029-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+    "rendition_path": "data/raw/corpus/0001045810-24-000029.pdf",
+    "rendition_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "CRM",
+    "issuer": "Salesforce, Inc.",
+    "cik": "0001108524",
+    "accession": "0001108524-24-000005",
+    "form": "10-K",
+    "period_end": "2024-01-31",
+    "filed_date": "2024-03-06",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/0001108524-24-000005-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://s205.q4cdn.com/626266368/files/doc_financials/2024/ar/salesforce-fy24-annual-report.pdf",
+    "rendition_path": "data/raw/corpus/0001108524-24-000005.pdf",
+    "rendition_sha256": "1c991a3f88288e877b5841a8bf9c919c59009d82c1f89ecf09af806a2d1aa24e",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "AMD",
+    "issuer": "Advanced Micro Devices, Inc.",
+    "cik": "0000002488",
+    "accession": "0000002488-25-000012",
+    "form": "10-K",
+    "period_end": "2024-12-28",
+    "filed_date": "2025-02-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/0000002488-25-000012-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000002488-25-000012.pdf",
+    "rendition_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "INTC",
+    "issuer": "Intel Corporation",
+    "cik": "0000050863",
+    "accession": "0000050863-25-000009",
+    "form": "10-K",
+    "period_end": "2024-12-28",
+    "filed_date": "2025-01-31",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/0000050863-25-000009-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000050863-25-000009.pdf",
+    "rendition_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "CSCO",
+    "issuer": "Cisco Systems, Inc.",
+    "cik": "0000858877",
+    "accession": "0000858877-24-000017",
+    "form": "10-K",
+    "period_end": "2024-07-27",
+    "filed_date": "2024-09-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/0000858877-24-000017-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000858877-24-000017.pdf",
+    "rendition_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89",
+    "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+  },
+  {
+    "ticker": "ORCL",
+    "issuer": "Oracle Corporation",
+    "cik": "0001341439",
+    "accession": "0000950170-24-075605",
+    "form": "10-K",
+    "period_end": "2024-05-31",
+    "filed_date": "2024-06-20",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/0000950170-24-075605-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/o/NYSE_ORCL_2024.pdf",
+    "rendition_path": "data/raw/corpus/0000950170-24-075605.pdf"
+  },
+  {
+    "ticker": "IBM",
+    "issuer": "International Business Machines Corporation",
+    "cik": "0000051143",
+    "accession": "0000051143-25-000015",
+    "form": "10-K",
+    "period_end": "2024-12-31",
+    "filed_date": "2025-02-25",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+    "filing_detail": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/0000051143-25-000015-index.htm",
+    "source_status": "filing_identity_verified_only",
+    "rendition_url": "https://www.ibm.com/downloads/documents/us-en/1227a45bcbb087c5",
+    "rendition_path": "data/raw/corpus/0000051143-25-000015.pdf",
+    "rendition_sha256": "54d613dfcc23cf7dd195b84625013e46b159b54a9a1cd6d3efc046c7181a0d17",
+    "rendition_note": "10-K incorporates financial sections by reference; this PDF alone is not full financial-statement coverage."
   }
 ]

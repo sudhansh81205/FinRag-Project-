@@ -60,7 +60,7 @@ class FinRAGEngine:
             ranked = self.reranker.rerank(query=question, candidates=candidates, top_n=rerank_top_n)
             # Only content actually passed into the existing prompt counts as evidence.
             allowed = {"narrative_text"} if _baseline else {
-                "narrative_text", "financial_table", "clean_financial_table",
+                "narrative_text", "financial_table", "clean_financial_table", "table_cell",
             }
             included, seen, used_chars = [], set(), 0
             rendered = {"narrative_text": [], "table": []}

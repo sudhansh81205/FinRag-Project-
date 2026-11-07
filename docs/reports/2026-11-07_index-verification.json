@@ -1,0 +1,366 @@
+{
+  "status": "passed",
+  "fixture_scope": "one independently accepted Apple 2021 filing; not benchmark evaluation",
+  "build": {
+    "accession": "0000320193-21-000105",
+    "generation": "304e6b85ad4804d0d240852e84e83ada33831b76c5cf20635561345074ec4a88",
+    "record_count": 535,
+    "manifest": {
+      "embedding_model": "BAAI/bge-base-en-v1.5",
+      "embedding_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+      "dimension": 768,
+      "normalization": "l2",
+      "preprocessing": {
+        "query_instruction": "Represent this sentence for searching relevant passages: ",
+        "document_instruction": "",
+        "max_seq_length": 512,
+        "truncation_policy": "reject_over_limit_including_special_tokens"
+      },
+      "index_format": "faiss.IndexFlatIP",
+      "record_count": 535,
+      "index_sha256": "bce8d96ca8c334f0278377b19f84375d2f74d55b4a1e5f96d93d9772036d6ba4",
+      "evidence_ids_sha256": "e127dc3c07aacc70313726d41027175709546491a5a7d436672e61846d7a7d6f",
+      "metadata_sidecar_sha256": "802c07e7046938cd8dcf1aa6abf4a11eef2be58d7469480f8ad08a11b2fa93d2",
+      "parent_table_storage": "parent_tables.json",
+      "parent_table_sha256": "d9066e229a141af7f55b28a7778b7eb914d18c9712365d86d299e1045f39c6b0",
+      "id_order_encoding": "utf8-json-array-compact-no-ascii-escape"
+    }
+  },
+  "candidate_types": {
+    "narrative_text": 316,
+    "table_cell": 219
+  },
+  "parents_stored_separately": 3,
+  "identical_rerun_and_fresh_store": true,
+  "fresh_process": {
+    "status": "passed",
+    "process_id": "fresh_subprocess",
+    "queries": [
+      {
+        "query": "What were Apple total net sales in 2021?",
+        "filters": {
+          "ticker": "AAPL",
+          "type": "table_cell",
+          "period_end": "2021-09-25"
+        },
+        "results": [
+          {
+            "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+            "content": "Apple Inc. | Consolidated Statements of Operations | Total net sales | September 25, 2021 | 365,817 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 365817000000 USD",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 8",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "63041a21d122a691cbeb15575a30231488cd1e04dadc0b9866433b35e0965510",
+              "type": "table_cell",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-cells-v2",
+              "table_title": "Consolidated Statements of Operations",
+              "periods_json": "[2021, 2020, 2019]",
+              "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+              "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+              "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+              "period_kind": "duration",
+              "period_start": "2020-09-27",
+              "period_end": "2021-09-25",
+              "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value": 365817000000,
+              "xbrl_sign": null,
+              "context_ref": "i55e5364a9af5491886caee077afe8d44_D20200927-20210925",
+              "unit_ref": "usd",
+              "dimensions": {},
+              "normalized_value_decimal": "365817000000",
+              "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+              "normalized_unit": "USD",
+              "scale": 1000000,
+              "scope": "consolidated",
+              "row_headers": [
+                "Total net sales"
+              ],
+              "column_headers": [
+                "September 25, 2021"
+              ],
+              "row_index": 6,
+              "column_index": 3,
+              "row_label": "Total net sales",
+              "row_group": "",
+              "column_header": "September 25, 2021",
+              "raw_value": "365,817",
+              "footnote_links": []
+            },
+            "score": 0.7455214262008667,
+            "score_type": "cosine",
+            "dense_rank": 1,
+            "eligible_count": 81
+          },
+          {
+            "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r4:c3",
+            "content": "Apple Inc. | Consolidated Statements of Operations | Net sales: | Products | September 25, 2021 | $ 297,392 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 297392000000 USD",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 8",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "a8d5cafc630bc3d5998d1f87d1c13148d7325ce0b54799b664f7f6c82f231a30",
+              "type": "table_cell",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-cells-v2",
+              "table_title": "Consolidated Statements of Operations",
+              "periods_json": "[2021, 2020, 2019]",
+              "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+              "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+              "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+              "period_kind": "duration",
+              "period_start": "2020-09-27",
+              "period_end": "2021-09-25",
+              "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value": 297392000000,
+              "xbrl_sign": null,
+              "context_ref": "ieeb8d7df86384aadb6bc7163ebae2cf9_D20200927-20210925",
+              "unit_ref": "usd",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "us-gaap:ProductMember"
+              },
+              "normalized_value_decimal": "297392000000",
+              "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+              "normalized_unit": "USD",
+              "scale": 1000000,
+              "scope": "{\"srt:ProductOrServiceAxis\": \"us-gaap:ProductMember\"}",
+              "row_headers": [
+                "Net sales:",
+                "Products"
+              ],
+              "column_headers": [
+                "September 25, 2021"
+              ],
+              "row_index": 4,
+              "column_index": 3,
+              "row_label": "Products",
+              "row_group": "Net sales:",
+              "column_header": "September 25, 2021",
+              "raw_value": "$ 297,392",
+              "footnote_links": []
+            },
+            "score": 0.7357769012451172,
+            "score_type": "cosine",
+            "dense_rank": 2,
+            "eligible_count": 81
+          },
+          {
+            "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r5:c3",
+            "content": "Apple Inc. | Consolidated Statements of Operations | Net sales: | Services | September 25, 2021 | 68,425 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 68425000000 USD",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 8",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "6c3f05f3c14189ef5c8f588b9ca50d353b041a759bfcc5e7a27607c9e656ab43",
+              "type": "table_cell",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-cells-v2",
+              "table_title": "Consolidated Statements of Operations",
+              "periods_json": "[2021, 2020, 2019]",
+              "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+              "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+              "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+              "period_kind": "duration",
+              "period_start": "2020-09-27",
+              "period_end": "2021-09-25",
+              "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value": 68425000000,
+              "xbrl_sign": null,
+              "context_ref": "i4a1ee49a01af4007b6691ed3db6bb5ad_D20200927-20210925",
+              "unit_ref": "usd",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+              },
+              "normalized_value_decimal": "68425000000",
+              "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+              "normalized_unit": "USD",
+              "scale": 1000000,
+              "scope": "{\"srt:ProductOrServiceAxis\": \"us-gaap:ServiceMember\"}",
+              "row_headers": [
+                "Net sales:",
+                "Services"
+              ],
+              "column_headers": [
+                "September 25, 2021"
+              ],
+              "row_index": 5,
+              "column_index": 3,
+              "row_label": "Services",
+              "row_group": "Net sales:",
+              "column_header": "September 25, 2021",
+              "raw_value": "68,425",
+              "footnote_links": []
+            },
+            "score": 0.7343754172325134,
+            "score_type": "cosine",
+            "dense_rank": 3,
+            "eligible_count": 81
+          }
+        ]
+      },
+      {
+        "query": "What risks arise from intense competition?",
+        "filters": {
+          "ticker": "AAPL",
+          "type": "narrative_text",
+          "section": "Item 1A"
+        },
+        "results": [
+          {
+            "content": "Additionally, the Company faces significant competition as competitors imitate the Company\u2019s product features and applications within their products or collaborate to offer solutions that are more competitive than those they currently offer. The Company also expects competition to intensify as competitors imitate the Company\u2019s approach to providing components seamlessly within their offerings or work collaboratively to offer integrated solutions.",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 1A",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(170)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "b815bee69aef2e872065cf25a0eedfa72a817ee17ef369b303a9d1d1346a111f",
+              "type": "narrative_text",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-v1",
+              "char_start": 0,
+              "char_end": 450
+            },
+            "evidence_id": "0000320193-21-000105:item1a:narrative_text:e68be8e9ac6a:b815bee69aef2e87",
+            "score": 0.6127448081970215,
+            "score_type": "cosine",
+            "dense_rank": 1,
+            "eligible_count": 128
+          },
+          {
+            "content": "The Company\u2019s products and services are offered in highly competitive global markets characterized by aggressive price competition and resulting downward pressure on gross margins, frequent introduction of new products and services, short product life cycles, evolving industry standards, continual improvement in product price and performance characteristics, rapid adoption of technological advancements by competitors, and price sensitivity on the part of consumers and businesses.",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 1A",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(166)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "e65131852d9ef8c562b02bfea7c4858aee4b124ef8f583c83bb0eac300512f93",
+              "type": "narrative_text",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-v1",
+              "char_start": 0,
+              "char_end": 484
+            },
+            "evidence_id": "0000320193-21-000105:item1a:narrative_text:aed324358dc5:e65131852d9ef8c5",
+            "score": 0.6076804399490356,
+            "score_type": "cosine",
+            "dense_rank": 2,
+            "eligible_count": 128
+          },
+          {
+            "content": "Global markets for the Company\u2019s products and services are highly competitive and subject to rapid technological change, and the Company may be unable to compete effectively in these markets.",
+            "metadata": {
+              "accession": "0000320193-21-000105",
+              "filing_id": "0000320193-21-000105",
+              "ticker": "AAPL",
+              "company": "Apple Inc.",
+              "fiscal_year": 2021,
+              "section": "Item 1A",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(165)",
+              "source_file": "source.html",
+              "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+              "content_sha256": "2608d9b888905ffe756251d764b70689e0f2edbb79ad21a8d1a3b95845da0d8e",
+              "type": "narrative_text",
+              "record_schema_version": 1,
+              "parser_version": "apple-2021-html-v1",
+              "char_start": 0,
+              "char_end": 191
+            },
+            "evidence_id": "0000320193-21-000105:item1a:narrative_text:90d985d938f0:2608d9b888905ffe",
+            "score": 0.5932536721229553,
+            "score_type": "cosine",
+            "dense_rank": 3,
+            "eligible_count": 128
+          }
+        ]
+      }
+    ],
+    "numpy_cosine_agrees": true,
+    "unindexed_company_returns_empty": true,
+    "overlong_text_rejected": true
+  },
+  "seconds": 91.05,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.14",
+  "packages": {
+    "sentence-transformers": "6.2.0",
+    "transformers": "5.22.2",
+    "torch": "2.15.0",
+    "faiss-cpu": "1.13.2",
+    "numpy": "2.5.4"
+  },
+  "code_sha256": {
+    "src/indexing/__init__.py": "2de5ef8e2a2cfc21282b830691e463696c2742c7691b79d189a7dd410f0b02cd",
+    "src/indexing/bge.py": "b513222e19744d0f3339303eccd7cb668eab09022641ab8d05e3007487735c49",
+    "src/indexing/store.py": "5cc29c6f674b74090f5c0ab91b69c0b1ee573d4dead02a7f70d5d206a63f3ab3",
+    "scripts/verify_index.py": "097062d3eab48b574860c1056aabbe7ac9e7e6f9443c879c3c37b8494c6c9d36",
+    "scripts/build_index.py": "8a2951841e4c7e25f5441b43f6a4316a0583a44e756699246582ff7507997d8f"
+  },
+  "source_acceptance": {
+    "profile": "apple-2021-cells-pdf-chart-sources",
+    "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+    "pdf_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+    "files_sha256": {
+      "evidence.json": "bca3327be21b758c130cc51a4ffb94bcd100c7922f9d7a5e99cf6d8f3212d857",
+      "source.html": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+      "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9.jpg": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9"
+    },
+    "ordered_candidate_ids_sha256": "e127dc3c07aacc70313726d41027175709546491a5a7d436672e61846d7a7d6f",
+    "record_schema_sha256": "80be54983735b54d8c673fbd6c3265d2e5687c1cb31600690c6f8f192476f52f",
+    "audit_code_sha256": {
+      "src/evidence_audit.py": "1e180cbe63713d2fbc3949cbc45405e491434f3b848413b321fc380950bc75cd",
+      "scripts/verify_canonical_data.py": "4cfbb26d1cbd21291c062519aca328976b98f1a96f3f74040c4fbb6dbd643a1e",
+      "scripts/prepare_evidence.py": "8e2253808854a452103c3f111fbaeb55707b1ee1d8630824e6cf7cd8af73bcb7"
+    },
+    "source_restore_gate": "passed"
+  },
+  "source_gate_results": {
+    "source_audit": "passed",
+    "sidecars": "passed",
+    "real_package_restore": "passed",
+    "tracking": "passed"
+  }
+}

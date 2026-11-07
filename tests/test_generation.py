@@ -32,6 +32,16 @@ def real_stub():
     return client
 
 
+def test_canonical_cell_is_kept_in_prompt_and_citations():
+    cell = {"evidence_id": "test-cell", "content": "TEST Apple revenue 365817 million USD",
+            "metadata": {"type": "table_cell", "parent_table_id": "test-parent"}}
+    client = real_stub()
+    response = engine_with([cell], client).answer_financial_question("revenue?")
+    assert response["status"] == "ok"
+    assert response["included_evidence_ids"] == ["test-cell"]
+    assert cell["content"] in client.generate.call_args.args[0]
+
+
 @pytest.mark.parametrize("provider", ["auto", "typo", ""])
 def test_unknown_or_automatic_provider_is_rejected(provider):
     with pytest.raises(ValueError, match="explicit"):

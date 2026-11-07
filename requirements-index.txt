@@ -1,0 +1,6 @@
+# Real BGE runtime and exact CPU FAISS. Weights are a separate pinned download.
+sentence-transformers==6.2.0
+transformers==5.22.2
+torch==2.15.0
+faiss-cpu==1.13.2
+numpy==2.5.4
