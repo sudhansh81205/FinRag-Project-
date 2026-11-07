@@ -64,5 +64,14 @@ then run `python scripts/verify_canonical_data.py` for Shanay's independent
 source/identity checks, real DVC restore and local tracking readback.
 See the [validation handoff](docs/handoffs/2026-11-05_shanay.md) and
 [review](docs/reports/2026-11-05_shanay-review.md). This validates the bounded
-Apple input package; BGE/exact FAISS, final models and A-G evaluation remain
-separate scheduled gates.
+Apple input package. The next gate now has a real pinned BGE/exact FAISS build:
+see [indexing and restart instructions](docs/INDEXING.md), the
+[November 6 handoff](docs/handoffs/2026-11-06_likhit.md), and the
+[proposal review and coverage limits](docs/reports/2026-11-07_index-review.md).
+Final models, cumulative retrieval stages and A-G evaluation remain separate gates.
+
+The current dense index contains 316 narratives and 219 cells from the accepted
+Apple 2021 package, with three parent tables stored separately. The expanded
+manifest accounts for 18 filings across ten companies; downloaded PDF renditions
+are **not** counted as parsed or indexed filings. The application UI remains gated
+until the complete answer path is validated.

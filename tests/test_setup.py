@@ -20,9 +20,9 @@ def configured_root(tmp_path):
 def test_config_paths_do_not_depend_on_working_directory(configured_root, monkeypatch):
     monkeypatch.chdir(configured_root.parent)
     settings = load_settings(root=configured_root, environ={})
-    assert settings.index_dir == configured_root / "sec_vector_db"
+    assert settings.index_dir == configured_root / "data/index/bge-faiss"
     assert settings.raw_dir == configured_root / "data/raw"
-    assert settings.embedding_model == "sentence-transformers/all-MiniLM-L6-v2"
+    assert settings.embedding_model == "BAAI/bge-base-en-v1.5"
 
 
 def test_environment_precedence_and_secret_redaction(configured_root, monkeypatch):
@@ -67,7 +67,7 @@ def test_existing_index_and_key_do_not_enable_unverified_backend(configured_root
     settings = load_settings(root=configured_root, environ={
         "FINRAG_PROVIDER": "gemini", "FINRAG_MODEL": "unverified-model", "GEMINI_API_KEY": "test-only",
     })
-    settings.index_dir.mkdir()
+    settings.index_dir.mkdir(parents=True)
     (settings.index_dir / "chroma.sqlite3").touch()
     result = SetupApplication(settings).answer("What is revenue?")
     assert result["status"] == "index_not_ready"
@@ -104,7 +104,7 @@ def test_explicit_backend_wiring_and_configured_limits(configured_root):
             return kwargs
 
     assert configured_answer(RecordingEngine(), settings, "query") == {
-        "top_k_text": 5, "top_k_tables": 2, "rerank_top_n": 4,
+        "top_k_text": 5, "top_k_tables": 2, "rerank_top_n": 5,
     }
 
 

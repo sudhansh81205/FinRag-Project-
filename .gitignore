@@ -13,6 +13,7 @@ __pycache__/
 /.gradio/
 /data/raw/
 /data/processed/
+/data/index/
 *.log
 .env.*
 !.env.example

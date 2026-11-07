@@ -1,8 +1,9 @@
 """Historical evaluation entry point, retired until the checked split is available.
 
 The old runner had no connected index and could report mock answers as success.
-Use scripts/check_generation.py for Day 3 provider checks. The matched, checked
-14-case evaluation is scheduled for November 9-12; it is not implemented here.
+Use scripts/check_generation.py for provider checks. The unified PRD requires
+matched A-G evaluation on the named benchmark corpora and chart split; the old
+14-case set is only a smoke test. The final runner is not implemented here.
 """
 
 
