@@ -10,6 +10,7 @@ def build_finrag_prompt(
     text_evidence: list[str],
     table_evidence: list[str],
     max_table_chars: int | None = None,
+    *, chart_evidence: list[str] | None = None,
 ) -> str:
     """
     Render already selected complete evidence. Never silently slice a source.
@@ -19,6 +20,8 @@ def build_finrag_prompt(
     if max_table_chars is not None and table_evidence and len(joined_tables) > max_table_chars:
         raise ValueError("Select complete tables within the budget before rendering.")
 
+    chart_section = ("\n--- GENERATED CHART DESCRIPTIONS (source-linked; values marked unknown remain unknown) ---\n"
+                     + "\n\n".join(chart_evidence)) if chart_evidence else ""
     prompt = f"""You are a financial evidence assistant.
 Your objective is to answer the user's question accurately using ONLY the provided Narrative Evidence and Tabular Evidence from SEC filings.
 
@@ -37,6 +40,7 @@ Your objective is to answer the user's question accurately using ONLY the provid
 
 --- TABULAR EVIDENCE ---
 {joined_tables}
+{chart_section}
 
 --- USER QUESTION ---
 {question}

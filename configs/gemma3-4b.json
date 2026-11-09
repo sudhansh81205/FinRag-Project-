@@ -1,0 +1,23 @@
+{
+  "provider": "ollama",
+  "model": "gemma3:4b",
+  "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+  "family": "gemma3",
+  "parameter_size": "3.9B",
+  "quantization_level": "Q4_K_M",
+  "capabilities": [
+    "completion",
+    "vision"
+  ],
+  "model_context_length": 131072,
+  "ollama_url": "http://127.0.0.1:11434",
+  "timeout_seconds": 180,
+  "options": {
+    "temperature": 0,
+    "num_ctx": 4096,
+    "num_predict": 768,
+    "seed": 42
+  },
+  "role": "shared A-G candidate; final matched integration pending",
+  "hardware_memory_gib": 8
+}

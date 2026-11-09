@@ -1,6 +1,7 @@
 """Load a single validated configuration without changing process credentials."""
 
 import os
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -34,6 +35,10 @@ class Settings:
     chunk_size: int
     chunk_overlap: int
     min_chunk_length: int
+    ollama_digest: str = ""
+    provider_timeout: int = 180
+    ollama_num_ctx: int = 4096
+    ollama_num_predict: int = 768
     gemini_api_key: str = field(default="", repr=False)
 
 
@@ -91,6 +96,12 @@ def load_settings(
     overlap = integer("retrieval", "chunk_overlap", minimum=0)
     if overlap >= chunk_size:
         raise ConfigurationError("retrieval.chunk_overlap must be smaller than chunk_size.")
+    digest = str(env.get("FINRAG_MODEL_DIGEST", sections["models"].get("ollama_digest", ""))).strip()
+    if digest and not re.fullmatch(r"[a-f0-9]{64}", digest):
+        raise ConfigurationError("Invalid model digest; use an exact SHA-256 manifest identity.")
+    # Defaults preserve configurations created before the pinned local-model profile.
+    for key, default in (("provider_timeout", 180), ("ollama_num_ctx", 4096), ("ollama_num_predict", 768)):
+        sections["models"].setdefault(key, default)
     return Settings(
         root=root,
         raw_dir=directory("raw_dir", "FINRAG_RAW_DIR"),
@@ -109,5 +120,9 @@ def load_settings(
         chunk_size=chunk_size,
         chunk_overlap=overlap,
         min_chunk_length=integer("retrieval", "min_chunk_length"),
+        ollama_digest=digest,
+        provider_timeout=integer("models", "provider_timeout", maximum=600),
+        ollama_num_ctx=integer("models", "ollama_num_ctx", minimum=512, maximum=32768),
+        ollama_num_predict=integer("models", "ollama_num_predict", maximum=4096),
         gemini_api_key=str(env.get("GEMINI_API_KEY") or ""),
     )
