@@ -152,3 +152,21 @@ def test_author_correction_preserves_model_draft_and_review_pending(tmp_path):
     assert draft['description']['units'] is None
     with pytest.raises(ValueError, match='mismatch'):
         apply_author_corrections(draft, {'image_sha256':'wrong','fields':{'units':'$'},'basis':'labels'}, path)
+
+
+def test_pdf_only_chart_locator_does_not_require_a_fabricated_html_selector(tmp_path):
+    raw=b'pdf-chart-fixture'
+    path=tmp_path/'chart.png'
+    path.write_bytes(raw)
+    source={'image_sha256':hashlib.sha256(raw).hexdigest(),'source_asset_id':'pdf-chart','accession':'test',
+            'pdf_url':'https://example.org/report.pdf','pdf_sha256':'b'*64,'page':101,
+            'source_locator':'PDF page 101; original chart region','company':'Adobe Inc.'}
+    class Client:
+        provider, model, expected_digest, ollama_options = 'ollama','gemma3:4b','a'*64,{}
+        def generate(self, prompt, **kwargs):
+            return {'status':'ok','provider':'ollama','model':self.model,'text':json.dumps(description()),
+                    'model_fingerprint':{'digest':self.expected_digest}}
+    result=caption_chart(source,path,Client())
+    assert result['status']=='candidate'
+    assert result['metadata']['company']=='Adobe Inc.'
+    assert result['metadata']['source_locator']==source['source_locator']

@@ -51,7 +51,8 @@ def caption_chart(source, image_path, client, *, allow_point_values=False):
     digest = hashlib.sha256(raw).hexdigest()
     if digest != source.get("image_sha256"):
         raise ValueError("Original image hash mismatch; generation skipped.")
-    if not all(source.get(k) for k in ("source_asset_id", "accession", "pdf_url", "pdf_sha256", "page", "html_selector")):
+    locator = source.get("source_locator") or source.get("html_selector")
+    if not locator or not all(source.get(k) for k in ("source_asset_id", "accession", "pdf_url", "pdf_sha256", "page")):
         raise ValueError("Original report/locator provenance is incomplete.")
     if client.provider != "ollama" or not client.expected_digest:
         raise ValueError("Chart captions require an explicitly pinned Ollama model.")
@@ -91,7 +92,7 @@ def caption_chart(source, image_path, client, *, allow_point_values=False):
             "content": content, "description": description, "source": source,
             "metadata": {"type": "chart_description", "company": source.get("company", "Apple Inc."),
                          "accession": source["accession"], "source_url": source["pdf_url"],
-                         "source_locator": source["html_selector"], "page": source["page"],
+                         "source_locator": locator, "page": source["page"],
                          "image_sha256": digest, "content_sha256": hashlib.sha256(content.encode()).hexdigest(),
                          "generated": True, "independent_review": "pending"},
             "model_fingerprint": response["model_fingerprint"],

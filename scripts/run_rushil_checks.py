@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.charts.caption import apply_author_corrections, caption_chart  # noqa: E402
-from src.charts.questions import audit_questions  # noqa: E402
+from src.charts.dataset import load_candidate_set  # noqa: E402
 from src.llm.client import UnifiedLLMClient  # noqa: E402
 from src.llm.typed_calculator import evaluate  # noqa: E402
 from src.pipeline.finrag_engine import FinRAGEngine  # noqa: E402
@@ -134,11 +134,8 @@ def run(args):
         captions.append(caption)
     write(args.output / "chart-model-captions.json", raw_captions)
     write(args.output / "chart-captions.json", captions)
-    questions = json.loads((ROOT / "data/charts/apple-2021-candidate-questions.json").read_text())
-    known_sources = {s["source_asset_id"]: s["image_sha256"] for s in package["chart_sources"]}
-    if any(known_sources.get(q["source_asset_id"]) != q["image_sha256"] for q in questions):
-        raise ValueError("Candidate question source differs from canonical source.")
-    question_audit = audit_questions(questions)
+    # Audit full split only after development-only generation; no heldout QA is sent to a model.
+    _, _, question_audit = load_candidate_set(ROOT / "data/charts")
     write(args.output / "chart-question-audit.json", question_audit)
     import requests
     memory_bytes = (int(subprocess.check_output(["sysctl", "-n", "hw.memsize"], text=True))
@@ -161,7 +158,9 @@ def run(args):
         "src/llm/calculation_planner.py", "src/config.py", "configs/config.yaml",
         "src/llm/client.py", "src/llm/prompts.py", "src/llm/typed_calculator.py", "src/llm/ollama_profile.py",
         "src/charts/caption.py", "src/charts/questions.py", "src/pipeline/finrag_engine.py",
-        "scripts/run_rushil_checks.py", "configs/gemma3-4b.json", "data/charts/apple-2021-candidate-questions.json", "data/charts/apple-2021-author-corrections.json")]
+        "scripts/run_rushil_checks.py", "configs/gemma3-4b.json", "data/charts/apple-2021-candidate-questions.json", "data/charts/apple-2021-author-corrections.json",
+        "src/charts/dataset.py", "data/charts/question-set.json", "data/charts/chart-sources.json",
+        "data/charts/heldout-35-candidate-questions.json")]
     report = {
         "executed_at": datetime.now(ZoneInfo("Asia/Kolkata")).isoformat(),
         "base_or_current_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
@@ -174,7 +173,7 @@ def run(args):
             "loaded_model_sizes_api_snapshot_not_peak_host_memory": loaded_models},
         "checks": checks, "passed": all(checks.values()), "chart_scope": question_audit,
         "full_day_scope_complete": False,
-        "blockers": ["35 additional heldout chart cases and distinct original images are missing; one image remains entirely dev.",
+        "blockers": ["Candidate chart split is 15 dev/35 heldout on six original images; independent source/label review remains pending.",
                      "Chart labels/captions require independent review before evaluation or production G indexing.",
                      "Pavan A-F retrieval/reranker/token budget integration is unavailable on this base.",
                      "Llama3.2 comparison profile is separate and unexecuted; Gemma12B not memory-validated."],
