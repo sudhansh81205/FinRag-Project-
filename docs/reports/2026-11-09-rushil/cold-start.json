@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "status": "ok",
+  "provider": "ollama",
+  "model": "gemma3:4b",
+  "text": "FinRAG local model ready.",
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "timing": {
+    "total_duration": 23370475166,
+    "load_duration": 20598373208,
+    "prompt_eval_count": 21,
+    "prompt_eval_duration": 1094333000,
+    "eval_count": 8,
+    "eval_duration": 1574403000
+  },
+  "wall_seconds": 23.578
+}

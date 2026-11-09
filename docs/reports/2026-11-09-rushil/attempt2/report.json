@@ -1,0 +1,88 @@
+{
+  "executed_at": "2026-11-09T20:38:12.578384+05:30",
+  "base_or_current_revision": "10e715cb6edb234028e5641f77ccf2e399021a07",
+  "worktree_dirty": true,
+  "source_files_sha256": {
+    "src/llm/calculation_planner.py": "12707787847028fbcced782e21a33318d3bafeb632884e667166adc8d2f0212f",
+    "src/config.py": "6114a28440a47047ec122ace77a88ff0775983712f67358fa5b9b3193d0dc768",
+    "configs/config.yaml": "e93cb194f32605479e7674d2eea3fd514331a425f9abc96265a0b278bcb3bd4d",
+    "src/llm/client.py": "083b9a21adb7ed6649405a0a4ff5193f7b1d24571f8a2de8659e3318a6b342d4",
+    "src/llm/typed_calculator.py": "07f2fbe677ade6ab9abaffe357e4db0dec92738120125a3ff6d825f96617f4df",
+    "src/llm/ollama_profile.py": "c9e71acf687493ab864d61ca504ebeba1bf338c0b57720fc09ace1f4f3af31fe",
+    "src/charts/caption.py": "86ef9d87c7bcdaa7334fdcd8ad8b0caa75b78d7a1625757d1a56318c955f6bfa",
+    "src/charts/questions.py": "5a4f0ff3dd5f03b66b5fb2b902ca5509f828f3f233407775754c4cd8b897b2bd",
+    "src/pipeline/finrag_engine.py": "5df52237042affc691062c506fcfb5c0e7e7e8dca2f422d15f950279f6ce9cf6",
+    "scripts/run_rushil_checks.py": "8ba2114b27df4484f9a238abf35b73b9af69fae1b480dc9ca9bd22ce4f51a1af",
+    "configs/gemma3-4b.json": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+    "data/charts/apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3"
+  },
+  "evidence_sha256": "c6e841d86bb8dbe2bbe4c20313689aa1293c3010152fbcaf05ffab7dfa1a6233",
+  "profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "scope": "Real source-selected calculator/generation/vision smoke; no BGE search, A-G evaluation, heldout scores or independent label approval.",
+  "model_profile": {
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072,
+    "ollama_url": "http://127.0.0.1:11434",
+    "timeout_seconds": 180,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "role": "shared A-G candidate; final matched integration pending",
+    "hardware_memory_gib": 8
+  },
+  "hardware": {
+    "machine": "arm64",
+    "memory_gib": 8,
+    "python": "3.14.2",
+    "model_process_rss_kib_snapshot_not_peak": []
+  },
+  "checks": {
+    "real_gemma_answer": false,
+    "real_model_planned_typed_tree": false,
+    "typed_multistep": true,
+    "source_growth": true,
+    "missing_operand_skips_model": true,
+    "missing_model_has_no_answer": true,
+    "wrong_digest_has_no_answer": true,
+    "real_image_captions": true
+  },
+  "passed": false,
+  "chart_scope": {
+    "status": "candidate_scope_unmet",
+    "counts": {
+      "dev": 15,
+      "heldout": 0
+    },
+    "distinct_original_images": 1,
+    "target": {
+      "dev": 15,
+      "heldout": 35
+    },
+    "shortfall": {
+      "dev": 0,
+      "heldout": 35
+    },
+    "independent_review": "pending",
+    "evaluation_ready": false
+  },
+  "full_day_scope_complete": false,
+  "blockers": [
+    "35 additional heldout chart cases and distinct original images are missing; one image remains entirely dev.",
+    "Chart labels/captions require independent review before evaluation or production G indexing.",
+    "Pavan A-F retrieval/reranker/token budget integration is unavailable on this base.",
+    "Llama3.2 comparison profile is separate and unexecuted; Gemma12B not memory-validated."
+  ],
+  "wall_seconds": 172.81
+}

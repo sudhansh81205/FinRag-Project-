@@ -1,0 +1,101 @@
+{
+  "executed_at": "2026-11-09T20:49:42.184196+05:30",
+  "base_or_current_revision": "23a046b1a4f1fa792ed55b61f0e40154ed5a2923",
+  "worktree_dirty": false,
+  "source_files_sha256": {
+    "src/llm/calculation_planner.py": "c5383cb8efd0bfe47b7b89ee5de422d96fff89e0ffae03a57f6d3bff464ad7ba",
+    "src/config.py": "6114a28440a47047ec122ace77a88ff0775983712f67358fa5b9b3193d0dc768",
+    "configs/config.yaml": "e93cb194f32605479e7674d2eea3fd514331a425f9abc96265a0b278bcb3bd4d",
+    "src/llm/client.py": "083b9a21adb7ed6649405a0a4ff5193f7b1d24571f8a2de8659e3318a6b342d4",
+    "src/llm/prompts.py": "2d1b712b5a8aa985da49983ef51ce66caaa905f4ceb8a01dd990d15086ecee09",
+    "src/llm/typed_calculator.py": "0376fdb89a80babea8a79b7d0e36d31196e3a4b4a0b3736043a9efb2e0733c07",
+    "src/llm/ollama_profile.py": "c9e71acf687493ab864d61ca504ebeba1bf338c0b57720fc09ace1f4f3af31fe",
+    "src/charts/caption.py": "f2db7f4b7a01854cae1ac4b1e88a9076f5c5840e37a62c5bb11c6a6f2b17c334",
+    "src/charts/questions.py": "5a4f0ff3dd5f03b66b5fb2b902ca5509f828f3f233407775754c4cd8b897b2bd",
+    "src/pipeline/finrag_engine.py": "58aea551047aa24495419e9e599103fda0b5b4588f0318ddc21d7c171b7c0276",
+    "scripts/run_rushil_checks.py": "24aacdf899e394ee5fabbd6bafa8d6a2e5ca47daa177441557e5bbc0f3a24493",
+    "configs/gemma3-4b.json": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+    "data/charts/apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
+    "data/charts/apple-2021-author-corrections.json": "44b27fa77404b80e71706357b3ab40b58cfa25de5e3022b92850976d267b7e6c"
+  },
+  "evidence_sha256": "c6e841d86bb8dbe2bbe4c20313689aa1293c3010152fbcaf05ffab7dfa1a6233",
+  "profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "scope": "Real source-selected calculator/generation/vision smoke; no BGE search, A-G evaluation, heldout scores or independent label approval.",
+  "model_profile": {
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072,
+    "ollama_url": "http://127.0.0.1:11434",
+    "timeout_seconds": 180,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "role": "shared A-G candidate; final matched integration pending",
+    "hardware_memory_gib": 8
+  },
+  "hardware": {
+    "machine": "arm64",
+    "memory_gib": 8.0,
+    "python": "3.14.2",
+    "ollama_version": {
+      "version": "0.40.13"
+    },
+    "loaded_model_sizes_api_snapshot_not_peak_host_memory": [
+      {
+        "name": "gemma3:4b",
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "size": 3533355087,
+        "size_vram": 2810393394,
+        "context_length": 4096
+      }
+    ]
+  },
+  "checks": {
+    "real_gemma_answer": true,
+    "real_model_planned_typed_tree": true,
+    "typed_multistep": true,
+    "source_growth": true,
+    "missing_operand_skips_model": true,
+    "missing_model_has_no_answer": true,
+    "wrong_digest_has_no_answer": true,
+    "real_image_captions": true
+  },
+  "passed": true,
+  "chart_scope": {
+    "status": "candidate_scope_unmet",
+    "counts": {
+      "dev": 15,
+      "heldout": 0
+    },
+    "distinct_original_images": 1,
+    "target": {
+      "dev": 15,
+      "heldout": 35
+    },
+    "shortfall": {
+      "dev": 0,
+      "heldout": 35
+    },
+    "independent_review": "pending",
+    "evaluation_ready": false
+  },
+  "full_day_scope_complete": false,
+  "blockers": [
+    "35 additional heldout chart cases and distinct original images are missing; one image remains entirely dev.",
+    "Chart labels/captions require independent review before evaluation or production G indexing.",
+    "Pavan A-F retrieval/reranker/token budget integration is unavailable on this base.",
+    "Llama3.2 comparison profile is separate and unexecuted; Gemma12B not memory-validated."
+  ],
+  "wall_seconds": 292.319
+}

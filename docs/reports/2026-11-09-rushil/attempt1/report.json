@@ -1,0 +1,84 @@
+{
+  "executed_at": "2026-11-09T20:33:40.407695+05:30",
+  "base_or_current_revision": "10e715cb6edb234028e5641f77ccf2e399021a07",
+  "worktree_dirty": true,
+  "source_files_sha256": {
+    "src/llm/client.py": "9a9ece60f1ba1aa15bed74447f986f1bbe1ce056381e2ccc671b5833f2dd32b4",
+    "src/llm/typed_calculator.py": "07f2fbe677ade6ab9abaffe357e4db0dec92738120125a3ff6d825f96617f4df",
+    "src/llm/ollama_profile.py": "c9e71acf687493ab864d61ca504ebeba1bf338c0b57720fc09ace1f4f3af31fe",
+    "src/charts/caption.py": "33992e0e35e56299227c0f23eb973044daeeae83bd4376ac0149afaecc852765",
+    "src/charts/questions.py": "2e46532d0489164acd1c1089e8b204c3eae81920407d1cf0ce0948bff9cf4e85",
+    "src/pipeline/finrag_engine.py": "efa416266cd9c6cb0869a2725190961f21a15157fb083dcea62daa637b179a60",
+    "scripts/run_rushil_checks.py": "8ba2114b27df4484f9a238abf35b73b9af69fae1b480dc9ca9bd22ce4f51a1af",
+    "configs/gemma3-4b.json": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+    "data/charts/apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3"
+  },
+  "evidence_sha256": "c6e841d86bb8dbe2bbe4c20313689aa1293c3010152fbcaf05ffab7dfa1a6233",
+  "profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "scope": "Real source-selected calculator/generation/vision smoke; no BGE search, A-G evaluation, heldout scores or independent label approval.",
+  "model_profile": {
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072,
+    "ollama_url": "http://127.0.0.1:11434",
+    "timeout_seconds": 180,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "role": "shared A-G candidate; final matched integration pending",
+    "hardware_memory_gib": 8
+  },
+  "hardware": {
+    "machine": "arm64",
+    "memory_gib": 8,
+    "python": "3.14.2",
+    "model_process_rss_kib_snapshot_not_peak": []
+  },
+  "checks": {
+    "real_gemma_answer": true,
+    "typed_multistep": true,
+    "source_growth": true,
+    "missing_operand_skips_model": true,
+    "missing_model_has_no_answer": true,
+    "wrong_digest_has_no_answer": true,
+    "real_image_captions": false
+  },
+  "passed": false,
+  "chart_scope": {
+    "status": "candidate_scope_unmet",
+    "counts": {
+      "dev": 15,
+      "heldout": 0
+    },
+    "distinct_original_images": 1,
+    "target": {
+      "dev": 15,
+      "heldout": 35
+    },
+    "shortfall": {
+      "dev": 0,
+      "heldout": 35
+    },
+    "independent_review": "pending",
+    "evaluation_ready": false
+  },
+  "full_day_scope_complete": false,
+  "blockers": [
+    "35 additional heldout chart cases and distinct original images are missing; one image remains entirely dev.",
+    "Chart labels/captions require independent review before evaluation or production G indexing.",
+    "Pavan A-F retrieval/reranker/token budget integration is unavailable on this base.",
+    "Llama3.2 comparison profile is separate and unexecuted; Gemma12B not memory-validated."
+  ],
+  "wall_seconds": 192.336
+}

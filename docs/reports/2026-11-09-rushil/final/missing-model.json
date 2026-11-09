@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "status": "service_error",
+  "provider": "ollama",
+  "model": "finrag-deliberately-missing-model:invalid",
+  "text": "",
+  "error_code": "provider_http_error",
+  "error": "Ollama rejected the request; check its model and service."
+}

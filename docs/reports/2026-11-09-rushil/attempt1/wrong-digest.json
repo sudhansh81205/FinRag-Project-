@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "status": "service_error",
+  "provider": "ollama",
+  "model": "gemma3:4b",
+  "text": "",
+  "error_code": "digest_mismatch",
+  "error": "Installed model differs from the pinned digest."
+}
