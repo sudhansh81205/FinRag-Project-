@@ -6,7 +6,7 @@ from typing import Any
 from ..llm.calculation_planner import propose_calculation
 from ..llm.client import UnifiedLLMClient
 from ..llm.prompts import build_baseline_prompt, build_finrag_prompt
-from ..llm.typed_calculator import evaluate
+from ..llm.typed_calculator import evaluate, render_result
 from ..retrieval.reranker import SimpleFinancialReranker
 from ..retrieval.retriever import DualHybridRetriever
 
@@ -153,6 +153,10 @@ class FinRAGEngine:
         result["generation"] = {"model_fingerprint": response.get("model_fingerprint"),
                                 "timing": response.get("timing")}
         result["answer"] = response["text"].strip()
+        if result["calculations"]:
+            # Keep raw generated prose reviewable, but never let it override exact math.
+            result["model_explanation"] = result["answer"]
+            result["answer"] = render_result(result["calculations"][0])
         return finish("ok")
 
     def run_baseline_comparison(self, question: str) -> dict[str, Any]:

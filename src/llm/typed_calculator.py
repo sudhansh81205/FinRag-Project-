@@ -203,3 +203,23 @@ def evaluate(plan, included_records):
     except (TypeError, KeyError, InvalidOperation, OverflowError, RecursionError):
         return {"status": "rule_failure", "error_code": "invalid_structure",
                 "message": "Malformed calculation input.", "rule_trace": trace}
+
+
+def render_result(calculation):
+    """Make the validated calculator, rather than generated prose, authoritative."""
+    require(calculation.get("status") == "ok", "validated_result", "Only successful calculations can be rendered.")
+    value, unit = calculation["result"], calculation["unit"]
+    display = f"{Decimal(value):.2f}%" if unit == "percent" else f"{value} {unit}"
+    expression = calculation["expression"]
+    for identity, operand in calculation["operands"].items():
+        expression = expression.replace(f"[{identity}]", operand["normalized_value_decimal"])
+    definitions = []
+    if 'ratio_percent(' in expression:
+        definitions.append("ratio_percent(x, y) = x / y × 100.")
+    if 'percent_change(' in expression:
+        definitions.append("For a positive prior, percent_change(current, prior) = (current − prior) / prior × 100.")
+    notes = [t["note"] for t in calculation["rule_trace"] if t.get("note")]
+    return (f"Verified result: {display}. Exact result: {value} {unit}.\n"
+            f"Program (normalized source values): {expression}.\n"
+            + " ".join(definitions + notes)
+            + "\nSources: " + ", ".join(f"[{identity}]" for identity in calculation["operand_ids"]))

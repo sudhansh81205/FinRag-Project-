@@ -126,6 +126,8 @@ def test_engine_calculates_only_after_actual_context_selection():
     result = engine.answer_financial_question("Gross profit?", calculation_plan=p)
     assert result["status"] == "ok" and spy.calls == 1
     assert result["calculations"][0]["result"] == "152836000000"
+    assert result["answer"].startswith("Verified result: 152836000000 USD")
+    assert result["model_explanation"] == "Fixture explanation"
     # Removed by reranking -> not allowed as operand; model isn't called.
     result = engine.answer_financial_question("Gross profit?", rerank_top_n=1, calculation_plan=copy.deepcopy(p))
     assert result["status"] == "insufficient_evidence" and spy.calls == 1
