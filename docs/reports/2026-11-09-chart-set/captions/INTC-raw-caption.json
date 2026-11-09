@@ -1,0 +1,103 @@
+{
+  "status": "candidate",
+  "evidence_id": "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568:caption-v1",
+  "content": "Generated chart description; independently unreviewed. {\"title\": null, \"chart_type\": \"line chart\", \"x_axis\": \"Year\", \"y_axis\": \"$\", \"units\": \"Dollars\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Intel Corporation\", \"S&P 100 Index\", \"S&P 500 Index\", \"S&P 500 IT Index\", \"SOX Index\"], \"unknowns\": [\"readable_values: []\"], \"readable_values\": []}",
+  "description": {
+    "title": null,
+    "chart_type": "line chart",
+    "x_axis": "Year",
+    "y_axis": "$",
+    "units": "Dollars",
+    "periods": [
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "series": [
+      "Intel Corporation",
+      "S&P 100 Index",
+      "S&P 500 Index",
+      "S&P 500 IT Index",
+      "SOX Index"
+    ],
+    "unknowns": [
+      "readable_values: []"
+    ],
+    "readable_values": []
+  },
+  "source": {
+    "source_asset_id": "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+    "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+    "asset": "assets/3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568.jpg",
+    "company": "Intel Corporation",
+    "ticker": "INTC",
+    "accession": "0000050863-25-000009",
+    "fiscal_period_end": "2024-12-28",
+    "title": "Comparison of Five-Year Cumulative Return",
+    "page": 52,
+    "source_locator": "PDF page 52; embedded image X204.jpg",
+    "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+    "pdf_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023",
+    "sec_source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+    "original_image_group": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+    "extraction": {
+      "method": "embedded_image",
+      "name": "X204.jpg"
+    },
+    "renderer": null,
+    "source_kind": "original_embedded_pdf_image",
+    "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+    "independent_review": "pending",
+    "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+    "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+    "filing_has_canonical_narrative_table_package": false,
+    "chart_description_indexed": false
+  },
+  "metadata": {
+    "type": "chart_description",
+    "company": "Intel Corporation",
+    "accession": "0000050863-25-000009",
+    "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+    "source_locator": "PDF page 52; embedded image X204.jpg",
+    "page": 52,
+    "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+    "content_sha256": "aa25269997cb03a89664bae151d49c36577142b32893f3c040a2cb786ee1fc64",
+    "generated": true,
+    "independent_review": "pending"
+  },
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "generation": {
+    "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+    "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+    "point_values_enabled": false,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "timing": {
+      "total_duration": 163645779666,
+      "load_duration": 15573833,
+      "prompt_eval_count": 492,
+      "prompt_eval_duration": 65616262000,
+      "eval_count": 193,
+      "eval_duration": 97390281000
+    }
+  },
+  "wall_seconds": 164.017
+}

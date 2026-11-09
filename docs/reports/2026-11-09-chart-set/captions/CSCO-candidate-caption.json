@@ -1,0 +1,159 @@
+{
+  "status": "candidate",
+  "evidence_id": "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098:caption-v1:author-corrected-v1",
+  "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": null, \"units\": \"$ (dollar symbol; ISO currency code not printed)\", \"periods\": [\"July 2019\", \"July 2020\", \"July 2021\", \"July 2022\", \"July 2023\", \"July 2024\"], \"series\": [\"Cisco Systems, Inc.\", \"S&P 500\", \"S&P 500 Information Technology\"], \"unknowns\": [\"Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount.\"], \"readable_values\": []}",
+  "description": {
+    "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index",
+    "chart_type": "line chart",
+    "x_axis": null,
+    "y_axis": null,
+    "units": "$ (dollar symbol; ISO currency code not printed)",
+    "periods": [
+      "July 2019",
+      "July 2020",
+      "July 2021",
+      "July 2022",
+      "July 2023",
+      "July 2024"
+    ],
+    "series": [
+      "Cisco Systems, Inc.",
+      "S&P 500",
+      "S&P 500 Information Technology"
+    ],
+    "unknowns": [
+      "Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount."
+    ],
+    "readable_values": []
+  },
+  "source": {
+    "source_asset_id": "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+    "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+    "asset": "assets/00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098.png",
+    "company": "Cisco Systems, Inc.",
+    "ticker": "CSCO",
+    "accession": "0000858877-24-000017",
+    "fiscal_period_end": "2024-07-27",
+    "title": "Comparison of 5-Year Cumulative Total Return",
+    "page": 50,
+    "source_locator": "PDF page 50; top-left point rectangle [40, 175, 560, 455]",
+    "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+    "pdf_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89",
+    "sec_source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+    "original_image_group": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+    "extraction": {
+      "method": "render_crop",
+      "bbox_top_left_points": [
+        40,
+        175,
+        560,
+        455
+      ],
+      "dpi": 144
+    },
+    "renderer": "pdftoppm version 26.05.0",
+    "source_kind": "original_pdf_chart_region_render",
+    "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+    "independent_review": "pending",
+    "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 19. Chart-inclusion/independent audit pending.",
+    "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+    "filing_has_canonical_narrative_table_package": false,
+    "chart_description_indexed": false
+  },
+  "metadata": {
+    "type": "chart_description",
+    "company": "Cisco Systems, Inc.",
+    "accession": "0000858877-24-000017",
+    "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+    "source_locator": "PDF page 50; top-left point rectangle [40, 175, 560, 455]",
+    "page": 50,
+    "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+    "content_sha256": "5c1dca1c90490a91816539e0f281be088db5166ef774cf05cceb6bc1c45e0d5b",
+    "generated": true,
+    "independent_review": "pending"
+  },
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "generation": {
+    "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+    "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+    "point_values_enabled": false,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "timing": {
+      "total_duration": 49745422292,
+      "load_duration": 19250459,
+      "prompt_eval_count": 492,
+      "prompt_eval_duration": 13341844000,
+      "eval_count": 242,
+      "eval_duration": 35385329000
+    }
+  },
+  "wall_seconds": 50.016,
+  "raw_model_description": {
+    "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P 500 Information Technology Index",
+    "chart_type": "line chart",
+    "x_axis": "Date",
+    "y_axis": "Dollars",
+    "units": "$",
+    "periods": [
+      "July 2019",
+      "July 2020",
+      "July 2021",
+      "July 2022",
+      "July 2023",
+      "July 2024"
+    ],
+    "series": [
+      "Cisco Systems, Inc.",
+      "S&P 500",
+      "S&P 500 Information Technology"
+    ],
+    "unknowns": [
+      "Readable values are empty due to the chart only displaying labeled data points. The exact plotted values are not printed."
+    ],
+    "readable_values": []
+  },
+  "author_review": {
+    "status": "corrected_pending_independent_review",
+    "fields": {
+      "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "July 2019",
+        "July 2020",
+        "July 2021",
+        "July 2022",
+        "July 2023",
+        "July 2024"
+      ],
+      "series": [
+        "Cisco Systems, Inc.",
+        "S&P 500",
+        "S&P 500 Information Technology"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  }
+}

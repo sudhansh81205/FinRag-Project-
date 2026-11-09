@@ -1,0 +1,107 @@
+{
+  "status": "candidate",
+  "evidence_id": "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a:caption-v1",
+  "content": "Generated chart description; independently unreviewed. {\"title\": \"Comparison of 5 Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": \"Date\", \"y_axis\": \"Return\", \"units\": \"percent\", \"periods\": [\"01/27/19\", \"01/26/20\", \"01/31/21\", \"01/30/22\", \"01/29/23\", \"01/28/24\"], \"series\": [\"NVIDIA Corporation\", \"S&P 500 Index\", \"Nasdaq 100 Index\"], \"unknowns\": [\"readable_values is empty because the exact plotted values are not printed.\"], \"readable_values\": []}",
+  "description": {
+    "title": "Comparison of 5 Year Cumulative Total Return",
+    "chart_type": "line chart",
+    "x_axis": "Date",
+    "y_axis": "Return",
+    "units": "percent",
+    "periods": [
+      "01/27/19",
+      "01/26/20",
+      "01/31/21",
+      "01/30/22",
+      "01/29/23",
+      "01/28/24"
+    ],
+    "series": [
+      "NVIDIA Corporation",
+      "S&P 500 Index",
+      "Nasdaq 100 Index"
+    ],
+    "unknowns": [
+      "readable_values is empty because the exact plotted values are not printed."
+    ],
+    "readable_values": []
+  },
+  "source": {
+    "source_asset_id": "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+    "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+    "asset": "assets/41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a.png",
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "accession": "0001045810-24-000029",
+    "fiscal_period_end": "2024-01-28",
+    "title": "Comparison of 5 Year Cumulative Total Return",
+    "page": 133,
+    "source_locator": "PDF page 133; top-left point rectangle [47, 163, 565, 485]",
+    "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+    "pdf_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960",
+    "sec_source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+    "original_image_group": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+    "extraction": {
+      "method": "render_crop",
+      "bbox_top_left_points": [
+        47,
+        163,
+        565,
+        485
+      ],
+      "dpi": 144
+    },
+    "renderer": "pdftoppm version 26.05.0",
+    "source_kind": "original_pdf_chart_region_render",
+    "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+    "independent_review": "pending",
+    "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 101. Chart-inclusion/independent audit pending.",
+    "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+    "filing_has_canonical_narrative_table_package": false,
+    "chart_description_indexed": false
+  },
+  "metadata": {
+    "type": "chart_description",
+    "company": "NVIDIA Corporation",
+    "accession": "0001045810-24-000029",
+    "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+    "source_locator": "PDF page 133; top-left point rectangle [47, 163, 565, 485]",
+    "page": 133,
+    "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+    "content_sha256": "fa052e0a9b14617af4191d61c16bf8a3ca90148aaf1302f564fcb68836f4986c",
+    "generated": true,
+    "independent_review": "pending"
+  },
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "generation": {
+    "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+    "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+    "point_values_enabled": false,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "timing": {
+      "total_duration": 63036598417,
+      "load_duration": 11678594417,
+      "prompt_eval_count": 492,
+      "prompt_eval_duration": 17267430000,
+      "eval_count": 214,
+      "eval_duration": 33816318000
+    }
+  },
+  "wall_seconds": 64.18
+}

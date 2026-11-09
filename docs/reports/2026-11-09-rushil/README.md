@@ -1,5 +1,7 @@
 # Rushil implementation verification — 9 November 2026
 
+> Initial-delivery snapshot: its chart shortfall was subsequently closed by the [50-question follow-up](../2026-11-09-chart-set/README.md). Original JSON traces are retained unchanged.
+
 Final live run: **8/8 checks passed** on clean code revision
 `23a046b1a4f1fa792ed55b61f0e40154ed5a2923`.
 The later evidence-only commit does not change these source files. Their SHA-256

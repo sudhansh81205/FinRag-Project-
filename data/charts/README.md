@@ -2,8 +2,10 @@
 
 **15 development + 35 heldout questions on six original chart images.** Candidate
 count target is met. Labels and captions are author-checked and still require a
-separate independent review before final evaluation. No heldout answer generation
-or scoring was performed while preparing this set.
+separate independent review before final evaluation. Candidate labels were authored
+with AI assistance and checked against the source images during implementation;
+this is not independent human review. No heldout application-QA prediction or
+scoring run was performed while preparing this set.
 
 | Issuer | Exact filing accession | PDF page (one based) | Split | Questions |
 | --- | --- | ---: | --- | ---: |

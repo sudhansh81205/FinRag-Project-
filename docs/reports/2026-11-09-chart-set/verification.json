@@ -1,0 +1,19 @@
+{
+  "tested_code_revision": "f0c91feb9f6af9c424286bcfc8b90db82eef4ee5",
+  "tests": {
+    "passed": 207,
+    "warnings": 3,
+    "seconds": 362.95
+  },
+  "new_chart_checks_passed": true,
+  "dataset_counts": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "source_images": 6,
+  "independent_review": "pending",
+  "live_caption_new": 5,
+  "live_caption_reused": 1,
+  "frozen_prompt_unchanged": true,
+  "full_application_ready": false
+}

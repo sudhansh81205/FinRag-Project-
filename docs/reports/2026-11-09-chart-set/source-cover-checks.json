@@ -1,0 +1,92 @@
+[
+  {
+    "ticker": "AAPL",
+    "accession": "0000320193-21-000105",
+    "cover_pdf_page": 1,
+    "pdf_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+    "cover_text_sha256": "290abb7eba76ab6bde6d963e2004ef14d293b209ed25b949b12731c9e79c3709",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  },
+  {
+    "ticker": "NVDA",
+    "accession": "0001045810-24-000029",
+    "cover_pdf_page": 101,
+    "pdf_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960",
+    "cover_text_sha256": "dad422e8ad175e3df20b0f7ae70a83ad1a8edf660fbe8f82dee2dc4b5eeeec04",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  },
+  {
+    "ticker": "AMD",
+    "accession": "0000002488-25-000012",
+    "cover_pdf_page": 1,
+    "pdf_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491",
+    "cover_text_sha256": "b70a287c8b3da65762936b253bda20a8608b40ba77ecf15f15c91383cc61b4d4",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  },
+  {
+    "ticker": "INTC",
+    "accession": "0000050863-25-000009",
+    "cover_pdf_page": 1,
+    "pdf_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023",
+    "cover_text_sha256": "50a100ef1248dc808d318599b730060590741451b01f5fc8a620b615f8cd4f6b",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  },
+  {
+    "ticker": "CSCO",
+    "accession": "0000858877-24-000017",
+    "cover_pdf_page": 19,
+    "pdf_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89",
+    "cover_text_sha256": "b7c1ea28a2b2afbcf12b89ace813c3181f196784cd322926b0c8210aa48878d3",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  },
+  {
+    "ticker": "ADBE",
+    "accession": "0000796343-25-000004",
+    "cover_pdf_page": 1,
+    "pdf_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe",
+    "cover_text_sha256": "1181dc8e825df98ba5ebb999001609e68d6fff4e6085fd4bac0230caf670dc4b",
+    "date_match_method": "Whitespace/punctuation-normalized month-day-year on the filing cover.",
+    "checks": {
+      "issuer_present": true,
+      "form_10k_present": true,
+      "sec_cover_present": true,
+      "exact_fiscal_end_present": true,
+      "fiscal_year_ended_label_present": true
+    }
+  }
+]
