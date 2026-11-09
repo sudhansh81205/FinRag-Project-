@@ -6,6 +6,7 @@ It does not certify arbitrary filings, financial inference, or an existing index
 """
 
 import json
+import math
 import re
 from datetime import date, datetime, timedelta
 from decimal import Decimal
@@ -517,6 +518,34 @@ def audit_package(directory: Path, root: Path) -> dict:
                 and " ".join(s["text"] for s in check["source_spans"]) == check["raw_value"],
                 "pdf_spans",
             )
+            # F13 fix: reject non-finite, reversed, zero-area or out-of-page bbox
+            # coordinates.  A valid span bbox is [x0, y0, x1, y1] with x0 < x1,
+            # y0 < y1 and all values finite and within the declared page dimensions.
+            # Negative or impossibly large values indicate a corrupt/placeholder
+            # citation; accepting them would make a positional claim unsupported.
+            _page = reader.pages[check["page"] - 1]
+            _page_w = float(_page.mediabox.width)
+            _page_h = float(_page.mediabox.height)
+            for _span in check["source_spans"]:
+                _bbox = _span.get("bbox")
+                require(
+                    _bbox is not None
+                    and len(_bbox) == 4
+                    and all(
+                        isinstance(_v, (int, float)) and math.isfinite(_v)
+                        for _v in _bbox
+                    ),
+                    "pdf_span_bbox_finite",
+                )
+                _x0, _y0, _x1, _y1 = _bbox
+                require(
+                    _x0 < _x1 and _y0 < _y1,
+                    "pdf_span_bbox_non_degenerate",
+                )
+                require(
+                    0 <= _x0 and _x1 <= _page_w and 0 <= _y0 and _y1 <= _page_h,
+                    "pdf_span_bbox_within_page",
+                )
         expected_checks = {
             r["evidence_id"]
             for r in package["cells"]
