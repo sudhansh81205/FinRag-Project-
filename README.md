@@ -4,7 +4,7 @@ FinRAG is a prototype for answering questions about SEC 10-K annual reports usin
 
 ## Team plan
 
-The current plan uses **seven members and exactly one assigned worker per day**. The submission deadline is **November 17, 2026**, under the latest user instruction. **Shanay owns November 17** for final verification, release and submission. Earlier calendars are preserved as history.
+The current plan uses **seven members and exactly one assigned worker per day**. The submission deadline is **November 17, 2026**, under the latest user instruction. **Sudhansh owns November 17** for final verification, release and submission. Earlier calendars are preserved as history.
 
 - [Read the PRD](docs/plan/PRD.md)
 - [Download the editable PRD](docs/plan/FinRAG_PRD.docx)
@@ -57,7 +57,7 @@ the current unified plan rather than the older handoff's scheduling assumptions.
 
 The single current [PRD](docs/plan/PRD.md) and its [editable Word copy](docs/plan/FinRAG_PRD.docx) consolidate the submitted proposal, professor feedback, course requirements and sequential implementation advice. The [dated tasks](docs/plan/TASK_REQUIREMENTS.md), [schedule](docs/plan/schedule.json), [course mapping](docs/plan/COURSE_ALIGNMENT.md) and [review guide](docs/review/README.md) use that same revision. Older plans in history are reference only.
 
-Exactly one member is assigned per date through November 17. Sudhansh handles November 12 integration, Likhit November 13 corpus and representations, Gowtham November 14 interface and runner, Ujjwal November 15 independent approvals and runs, Pavan November 16 results and reporting, and Shanay November 17 release and submission. The old later recovery dates are superseded. Features and hours are requirements and estimates, not completion claims. The current integration report distinguishes code fixes, accepted inputs and unverified runtime/evaluation gates.
+Exactly one member is assigned per date through November 17. Sudhansh handles November 12 integration, Likhit November 13 corpus and representations, Gowtham November 14 interface and runner, Ujjwal November 15 independent approvals and runs, Pavan November 16 results and reporting, and Sudhansh November 17 release and submission. The old later recovery dates are superseded. Features and hours are requirements and estimates, not completion claims. The current integration report distinguishes code fixes, accepted inputs and unverified runtime/evaluation gates.
 
 ## Canonical data acceptance
 

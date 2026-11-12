@@ -193,7 +193,7 @@ class TestRRF:
 # ---------------------------------------------------------------------------
 
 class TestParentExpansion:
-    def test_parent_injected_before_cell(self):
+    def test_parent_appended_after_primary_cells(self):
         already: set[str] = set()
         result = expand_parents(
             CELLS,
@@ -202,10 +202,10 @@ class TestParentExpansion:
             already_included=already,
         )
         ids = [r["evidence_id"] for r in result]
-        # Parent "p1" should appear before cells
+        # Optional context must not displace primary operands under the passage cap.
         assert "p1" in ids
         p_idx = ids.index("p1")
-        assert all(ids.index(c["evidence_id"]) > p_idx for c in CELLS if c["evidence_id"] in ids)
+        assert all(ids.index(c["evidence_id"]) < p_idx for c in CELLS if c["evidence_id"] in ids)
 
     def test_parent_injected_only_once(self):
         already: set[str] = set()

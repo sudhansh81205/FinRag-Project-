@@ -1,0 +1,13 @@
+{
+  "attachment_sha256": "6d6dbcdc90ea446ee767245a7c370a1846f7bee372f78beda07b3ea337ba6a64",
+  "repository_docx_sha256": "6d6dbcdc90ea446ee767245a7c370a1846f7bee372f78beda07b3ea337ba6a64",
+  "byte_identical": true,
+  "content_identical": true,
+  "comparison_base": "85b5593000ceb360be5db2868f2ddd56cc0f4994",
+  "paragraphs": 52,
+  "tables": 5,
+  "authorization": "explicit one-file user permission",
+  "attachment_read_in_full": true,
+  "additional_attachment_requirements": false,
+  "original_proposal_directly_rechecked": false
+}

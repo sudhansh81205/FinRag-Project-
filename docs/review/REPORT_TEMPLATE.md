@@ -52,7 +52,7 @@ List fixed findings with verification evidence, still-open findings, regressions
 - Acceptance checks and verification commands:
 - Scope tradeoff if blockers do not fit the assigned hours:
 
-Use the November 12 schedule through November 17, with Shanay the final-day owner. Preserve earlier dated assignments as history. Never assign a second active member on a date.
+Use the November 12 schedule through November 17, with Sudhansh the final-day owner. Preserve earlier dated assignments as history. Never assign a second active member on a date.
 
 ## Prompts for the next owner
 
