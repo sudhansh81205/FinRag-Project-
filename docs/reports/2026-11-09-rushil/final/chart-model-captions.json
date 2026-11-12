@@ -1,0 +1,92 @@
+[
+  {
+    "status": "candidate",
+    "evidence_id": "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9:caption-v1",
+    "content": "Generated chart description; independently unreviewed. {\"title\": \"Comparison of 5-Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": \"Date\", \"y_axis\": \"Dollars\", \"units\": \"$600\", \"periods\": [\"9/23/16\", \"9/29/17\", \"9/29/18\", \"9/28/19\", \"9/26/20\", \"9/25/21\"], \"series\": [\"Apple Inc.\", \"S&P 500 Index\", \"S&P Information Technology Index\", \"Dow Jones U.S. Technology Supersector Index\"], \"unknowns\": [\"Readable values are empty due to the chart only displaying labeled dates and series names. The exact plotted values are not printed.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Date",
+      "y_axis": "Dollars",
+      "units": "$600",
+      "periods": [
+        "9/23/16",
+        "9/29/17",
+        "9/29/18",
+        "9/28/19",
+        "9/26/20",
+        "9/25/21"
+      ],
+      "series": [
+        "Apple Inc.",
+        "S&P 500 Index",
+        "S&P Information Technology Index",
+        "Dow Jones U.S. Technology Supersector Index"
+      ],
+      "unknowns": [
+        "Readable values are empty due to the chart only displaying labeled dates and series names. The exact plotted values are not printed."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "page": 22,
+      "pdf_image": "Im197.jpg",
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "html_selector": "img[src='aapl-20210925_g2.jpg']",
+      "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "source_kind": "original_embedded_pdf_image",
+      "description_status": "pending_vision_stage",
+      "source_asset_id": "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "asset": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9.jpg",
+      "accession": "0000320193-21-000105",
+      "pdf_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "pdf_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+      "html_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "html_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2"
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "source_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "source_locator": "img[src='aapl-20210925_g2.jpg']",
+      "page": 22,
+      "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "content_sha256": "fab22c4376e2082e3b712099871ed44b9e3bfb0d5427f0b01b05db01fdaacd54",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 80418774208,
+        "load_duration": 21160417,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 7777719000,
+        "eval_count": 234,
+        "eval_duration": 61583946000
+      }
+    },
+    "wall_seconds": 84.823
+  }
+]

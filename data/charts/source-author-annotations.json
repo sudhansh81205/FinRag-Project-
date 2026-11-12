@@ -1,0 +1,146 @@
+{
+  "NVDA": {
+    "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+    "fields": {
+      "title": "Comparison of 5 Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": null,
+      "periods": [
+        "01/27/19",
+        "01/26/20",
+        "01/31/21",
+        "01/30/22",
+        "01/29/23",
+        "01/28/24"
+      ],
+      "series": [
+        "NVIDIA Corporation",
+        "S&P 500",
+        "Nasdaq 100"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed.",
+        "Vertical tick labels have no currency/percent symbol or explicit unit; do not infer a unit."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  },
+  "AMD": {
+    "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+    "fields": {
+      "title": "Comparison of Cumulative Five Year Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": "Index Value",
+      "units": "Index Value",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Advanced Micro Devices, Inc.",
+        "S&P 500 Index",
+        "S&P 500 Semiconductors Index"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  },
+  "INTC": {
+    "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+    "fields": {
+      "title": null,
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Intel Corporation",
+        "S&P 100 Index",
+        "S&P 500 Index",
+        "S&P 500 IT Index",
+        "SOX Index"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed.",
+        "This original embedded graph image contains no separate title or axis titles; the full source page supplies its heading."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  },
+  "CSCO": {
+    "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+    "fields": {
+      "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "July 2019",
+        "July 2020",
+        "July 2021",
+        "July 2022",
+        "July 2023",
+        "July 2024"
+      ],
+      "series": [
+        "Cisco Systems, Inc.",
+        "S&P 500",
+        "S&P 500 Information Technology"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  },
+  "ADBE": {
+    "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+    "fields": {
+      "title": "Comparison of Five-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Adobe Inc.",
+        "S&P 500 Index",
+        "S&P 500 Software & Services"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  }
+}

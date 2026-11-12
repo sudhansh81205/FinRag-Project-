@@ -1,0 +1,49 @@
+{
+  "canonical_storage": "Clg Books/ai/FinRAG/Filings; original Apple rendition reused from the repository",
+  "selected": [
+    {
+      "ticker": "AAPL",
+      "accession": "0000320193-21-000105",
+      "pdf_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "pdf_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107"
+    },
+    {
+      "ticker": "NVDA",
+      "accession": "0001045810-24-000029",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+      "pdf_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960"
+    },
+    {
+      "ticker": "AMD",
+      "accession": "0000002488-25-000012",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+      "pdf_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491"
+    },
+    {
+      "ticker": "INTC",
+      "accession": "0000050863-25-000009",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+      "pdf_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023"
+    },
+    {
+      "ticker": "CSCO",
+      "accession": "0000858877-24-000017",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+      "pdf_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89"
+    },
+    {
+      "ticker": "ADBE",
+      "accession": "0000796343-25-000004",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+      "pdf_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe"
+    }
+  ],
+  "failed_attempts": [
+    "Initial NVIDIA mirror HTTP 503; retry succeeded and matched the pinned checksum.",
+    "Initial cover-date check required whitespace; normalized punctuation/whitespace matching verified the exact fiscal end on all six covers."
+  ],
+  "excluded": [
+    "Microsoft annual-report rendition inspected but not selected: strict 10-K cover/section provenance was unresolved during this selection."
+  ],
+  "wider_parser_or_index_acceptance_claimed": false
+}

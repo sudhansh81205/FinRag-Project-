@@ -1,0 +1,931 @@
+[
+  {
+    "status": "candidate",
+    "evidence_id": "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of 5-Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": \"Date\", \"y_axis\": null, \"units\": \"$ (dollar symbol; ISO currency code not printed)\", \"periods\": [\"9/23/16\", \"9/30/17\", \"9/29/18\", \"9/28/19\", \"9/26/20\", \"9/25/21\"], \"series\": [\"Apple Inc.\", \"S&P 500 Index\", \"S&P Information Technology Index\", \"Dow Jones U.S. Technology Supersector Index\"], \"unknowns\": [\"Exact point values are not printed; curve positions must not be treated as exact values.\", \"An ISO currency code and explicit y-axis title are not printed.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Date",
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "9/23/16",
+        "9/30/17",
+        "9/29/18",
+        "9/28/19",
+        "9/26/20",
+        "9/25/21"
+      ],
+      "series": [
+        "Apple Inc.",
+        "S&P 500 Index",
+        "S&P Information Technology Index",
+        "Dow Jones U.S. Technology Supersector Index"
+      ],
+      "unknowns": [
+        "Exact point values are not printed; curve positions must not be treated as exact values.",
+        "An ISO currency code and explicit y-axis title are not printed."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "page": 22,
+      "pdf_image": "Im197.jpg",
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "html_selector": "img[src='aapl-20210925_g2.jpg']",
+      "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "source_kind": "original_embedded_pdf_image",
+      "description_status": "pending_vision_stage",
+      "source_asset_id": "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "asset": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9.jpg",
+      "accession": "0000320193-21-000105",
+      "pdf_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "pdf_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+      "html_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "html_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2"
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "source_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "source_locator": "img[src='aapl-20210925_g2.jpg']",
+      "page": 22,
+      "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+      "content_sha256": "a80ff415c69ea7530acfd7b46bb73007ed6a5562a1551aaaa2efb8900050b4bc",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 80418774208,
+        "load_duration": 21160417,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 7777719000,
+        "eval_count": 234,
+        "eval_duration": 61583946000
+      }
+    },
+    "wall_seconds": 84.823,
+    "raw_model_description": {
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Date",
+      "y_axis": "Dollars",
+      "units": "$600",
+      "periods": [
+        "9/23/16",
+        "9/29/17",
+        "9/29/18",
+        "9/28/19",
+        "9/26/20",
+        "9/25/21"
+      ],
+      "series": [
+        "Apple Inc.",
+        "S&P 500 Index",
+        "S&P Information Technology Index",
+        "Dow Jones U.S. Technology Supersector Index"
+      ],
+      "unknowns": [
+        "Readable values are empty due to the chart only displaying labeled dates and series names. The exact plotted values are not printed."
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "periods": [
+          "9/23/16",
+          "9/30/17",
+          "9/29/18",
+          "9/28/19",
+          "9/26/20",
+          "9/25/21"
+        ],
+        "y_axis": null,
+        "units": "$ (dollar symbol; ISO currency code not printed)",
+        "unknowns": [
+          "Exact point values are not printed; curve positions must not be treated as exact values.",
+          "An ISO currency code and explicit y-axis title are not printed."
+        ]
+      },
+      "basis": "Implementation author visually inspected the original embedded image: horizontal axis reads 9/30/17; vertical tick labels use $0 through $600 and no separate axis title. This is an author check, not independent review."
+    }
+  },
+  {
+    "status": "candidate",
+    "evidence_id": "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of 5 Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": null, \"units\": null, \"periods\": [\"01/27/19\", \"01/26/20\", \"01/31/21\", \"01/30/22\", \"01/29/23\", \"01/28/24\"], \"series\": [\"NVIDIA Corporation\", \"S&P 500\", \"Nasdaq 100\"], \"unknowns\": [\"Exact numeric point labels are not printed.\", \"Vertical tick labels have no currency/percent symbol or explicit unit; do not infer a unit.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of 5 Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": null,
+      "periods": [
+        "01/27/19",
+        "01/26/20",
+        "01/31/21",
+        "01/30/22",
+        "01/29/23",
+        "01/28/24"
+      ],
+      "series": [
+        "NVIDIA Corporation",
+        "S&P 500",
+        "Nasdaq 100"
+      ],
+      "unknowns": [
+        "Exact numeric point labels are not printed.",
+        "Vertical tick labels have no currency/percent symbol or explicit unit; do not infer a unit."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "source_asset_id": "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+      "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+      "asset": "assets/41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a.png",
+      "company": "NVIDIA Corporation",
+      "ticker": "NVDA",
+      "accession": "0001045810-24-000029",
+      "fiscal_period_end": "2024-01-28",
+      "title": "Comparison of 5 Year Cumulative Total Return",
+      "page": 133,
+      "source_locator": "PDF page 133; top-left point rectangle [47, 163, 565, 485]",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+      "pdf_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960",
+      "sec_source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "original_image_group": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+      "extraction": {
+        "method": "render_crop",
+        "bbox_top_left_points": [
+          47,
+          163,
+          565,
+          485
+        ],
+        "dpi": 144
+      },
+      "renderer": "pdftoppm version 26.05.0",
+      "source_kind": "original_pdf_chart_region_render",
+      "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+      "independent_review": "pending",
+      "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 101. Chart-inclusion/independent audit pending.",
+      "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+      "filing_has_canonical_narrative_table_package": false,
+      "chart_description_indexed": false
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+      "source_locator": "PDF page 133; top-left point rectangle [47, 163, 565, 485]",
+      "page": 133,
+      "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a",
+      "content_sha256": "b43abcc8b9f8ac2742dff7f2a773b8f8d6dcc6de9f8a6ac6e92ecb382d3ff6db",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 63036598417,
+        "load_duration": 11678594417,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 17267430000,
+        "eval_count": 214,
+        "eval_duration": 33816318000
+      }
+    },
+    "wall_seconds": 64.18,
+    "raw_model_description": {
+      "title": "Comparison of 5 Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Date",
+      "y_axis": "Return",
+      "units": "percent",
+      "periods": [
+        "01/27/19",
+        "01/26/20",
+        "01/31/21",
+        "01/30/22",
+        "01/29/23",
+        "01/28/24"
+      ],
+      "series": [
+        "NVIDIA Corporation",
+        "S&P 500 Index",
+        "Nasdaq 100 Index"
+      ],
+      "unknowns": [
+        "readable_values is empty because the exact plotted values are not printed."
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "title": "Comparison of 5 Year Cumulative Total Return",
+        "chart_type": "line chart",
+        "x_axis": null,
+        "y_axis": null,
+        "units": null,
+        "periods": [
+          "01/27/19",
+          "01/26/20",
+          "01/31/21",
+          "01/30/22",
+          "01/29/23",
+          "01/28/24"
+        ],
+        "series": [
+          "NVIDIA Corporation",
+          "S&P 500",
+          "Nasdaq 100"
+        ],
+        "readable_values": [],
+        "unknowns": [
+          "Exact numeric point labels are not printed.",
+          "Vertical tick labels have no currency/percent symbol or explicit unit; do not infer a unit."
+        ]
+      },
+      "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+    }
+  },
+  {
+    "status": "candidate",
+    "evidence_id": "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of Cumulative Five Year Total Return\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": \"Index Value\", \"units\": \"Index Value\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Advanced Micro Devices, Inc.\", \"S&P 500 Index\", \"S&P 500 Semiconductors Index\"], \"unknowns\": [\"Exact numeric point labels are not printed.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of Cumulative Five Year Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": "Index Value",
+      "units": "Index Value",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Advanced Micro Devices, Inc.",
+        "S&P 500 Index",
+        "S&P 500 Semiconductors Index"
+      ],
+      "unknowns": [
+        "Exact numeric point labels are not printed."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "source_asset_id": "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+      "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+      "asset": "assets/a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0.jpg",
+      "company": "Advanced Micro Devices, Inc.",
+      "ticker": "AMD",
+      "accession": "0000002488-25-000012",
+      "fiscal_period_end": "2024-12-28",
+      "title": "Comparison of Cumulative Five Year Total Return",
+      "page": 45,
+      "source_locator": "PDF page 45; embedded image X223.jpg",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+      "pdf_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491",
+      "sec_source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "original_image_group": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+      "extraction": {
+        "method": "embedded_image",
+        "name": "X223.jpg"
+      },
+      "renderer": null,
+      "source_kind": "original_embedded_pdf_image",
+      "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+      "independent_review": "pending",
+      "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+      "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+      "filing_has_canonical_narrative_table_package": false,
+      "chart_description_indexed": false
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+      "source_locator": "PDF page 45; embedded image X223.jpg",
+      "page": 45,
+      "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+      "content_sha256": "d91fd0c4665849c62655cad41c7d8926155e0e2ffd60fffcc9e1638c4a23d3ab",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 48199884500,
+        "load_duration": 78949917,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 13097325000,
+        "eval_count": 190,
+        "eval_duration": 34249862999
+      }
+    },
+    "wall_seconds": 48.585,
+    "raw_model_description": {
+      "title": "Comparison of Cumulative Five Year Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Year",
+      "y_axis": "Index Value",
+      "units": "Index Value",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Advanced Micro Devices, Inc.",
+        "S&P 500 Index",
+        "S&P 500 Semiconductors Index"
+      ],
+      "unknowns": [
+        "Readable values are not printed on the chart."
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "title": "Comparison of Cumulative Five Year Total Return",
+        "chart_type": "line chart",
+        "x_axis": null,
+        "y_axis": "Index Value",
+        "units": "Index Value",
+        "periods": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "series": [
+          "Advanced Micro Devices, Inc.",
+          "S&P 500 Index",
+          "S&P 500 Semiconductors Index"
+        ],
+        "readable_values": [],
+        "unknowns": [
+          "Exact numeric point labels are not printed."
+        ]
+      },
+      "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+    }
+  },
+  {
+    "status": "candidate",
+    "evidence_id": "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": null, \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": null, \"units\": \"$ (dollar symbol; ISO currency code not printed)\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Intel Corporation\", \"S&P 100 Index\", \"S&P 500 Index\", \"S&P 500 IT Index\", \"SOX Index\"], \"unknowns\": [\"Exact numeric point labels are not printed.\", \"This original embedded graph image contains no separate title or axis titles; the full source page supplies its heading.\"], \"readable_values\": []}",
+    "description": {
+      "title": null,
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Intel Corporation",
+        "S&P 100 Index",
+        "S&P 500 Index",
+        "S&P 500 IT Index",
+        "SOX Index"
+      ],
+      "unknowns": [
+        "Exact numeric point labels are not printed.",
+        "This original embedded graph image contains no separate title or axis titles; the full source page supplies its heading."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "source_asset_id": "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+      "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+      "asset": "assets/3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568.jpg",
+      "company": "Intel Corporation",
+      "ticker": "INTC",
+      "accession": "0000050863-25-000009",
+      "fiscal_period_end": "2024-12-28",
+      "title": "Comparison of Five-Year Cumulative Return",
+      "page": 52,
+      "source_locator": "PDF page 52; embedded image X204.jpg",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+      "pdf_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023",
+      "sec_source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "original_image_group": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+      "extraction": {
+        "method": "embedded_image",
+        "name": "X204.jpg"
+      },
+      "renderer": null,
+      "source_kind": "original_embedded_pdf_image",
+      "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+      "independent_review": "pending",
+      "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+      "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+      "filing_has_canonical_narrative_table_package": false,
+      "chart_description_indexed": false
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+      "source_locator": "PDF page 52; embedded image X204.jpg",
+      "page": 52,
+      "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568",
+      "content_sha256": "62bc6e5799d3e7581c8ebe14dec857d2c846ba27ac81ea9500b67f09b2dc19c9",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 163645779666,
+        "load_duration": 15573833,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 65616262000,
+        "eval_count": 193,
+        "eval_duration": 97390281000
+      }
+    },
+    "wall_seconds": 164.017,
+    "raw_model_description": {
+      "title": null,
+      "chart_type": "line chart",
+      "x_axis": "Year",
+      "y_axis": "$",
+      "units": "Dollars",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Intel Corporation",
+        "S&P 100 Index",
+        "S&P 500 Index",
+        "S&P 500 IT Index",
+        "SOX Index"
+      ],
+      "unknowns": [
+        "readable_values: []"
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "title": null,
+        "chart_type": "line chart",
+        "x_axis": null,
+        "y_axis": null,
+        "units": "$ (dollar symbol; ISO currency code not printed)",
+        "periods": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "series": [
+          "Intel Corporation",
+          "S&P 100 Index",
+          "S&P 500 Index",
+          "S&P 500 IT Index",
+          "SOX Index"
+        ],
+        "readable_values": [],
+        "unknowns": [
+          "Exact numeric point labels are not printed.",
+          "This original embedded graph image contains no separate title or axis titles; the full source page supplies its heading."
+        ]
+      },
+      "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+    }
+  },
+  {
+    "status": "candidate",
+    "evidence_id": "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": null, \"units\": \"$ (dollar symbol; ISO currency code not printed)\", \"periods\": [\"July 2019\", \"July 2020\", \"July 2021\", \"July 2022\", \"July 2023\", \"July 2024\"], \"series\": [\"Cisco Systems, Inc.\", \"S&P 500\", \"S&P 500 Information Technology\"], \"unknowns\": [\"Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "July 2019",
+        "July 2020",
+        "July 2021",
+        "July 2022",
+        "July 2023",
+        "July 2024"
+      ],
+      "series": [
+        "Cisco Systems, Inc.",
+        "S&P 500",
+        "S&P 500 Information Technology"
+      ],
+      "unknowns": [
+        "Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "source_asset_id": "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+      "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+      "asset": "assets/00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098.png",
+      "company": "Cisco Systems, Inc.",
+      "ticker": "CSCO",
+      "accession": "0000858877-24-000017",
+      "fiscal_period_end": "2024-07-27",
+      "title": "Comparison of 5-Year Cumulative Total Return",
+      "page": 50,
+      "source_locator": "PDF page 50; top-left point rectangle [40, 175, 560, 455]",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+      "pdf_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89",
+      "sec_source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "original_image_group": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+      "extraction": {
+        "method": "render_crop",
+        "bbox_top_left_points": [
+          40,
+          175,
+          560,
+          455
+        ],
+        "dpi": 144
+      },
+      "renderer": "pdftoppm version 26.05.0",
+      "source_kind": "original_pdf_chart_region_render",
+      "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+      "independent_review": "pending",
+      "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 19. Chart-inclusion/independent audit pending.",
+      "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+      "filing_has_canonical_narrative_table_package": false,
+      "chart_description_indexed": false
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+      "source_locator": "PDF page 50; top-left point rectangle [40, 175, 560, 455]",
+      "page": 50,
+      "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098",
+      "content_sha256": "5c1dca1c90490a91816539e0f281be088db5166ef774cf05cceb6bc1c45e0d5b",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 49745422292,
+        "load_duration": 19250459,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 13341844000,
+        "eval_count": 242,
+        "eval_duration": 35385329000
+      }
+    },
+    "wall_seconds": 50.016,
+    "raw_model_description": {
+      "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P 500 Information Technology Index",
+      "chart_type": "line chart",
+      "x_axis": "Date",
+      "y_axis": "Dollars",
+      "units": "$",
+      "periods": [
+        "July 2019",
+        "July 2020",
+        "July 2021",
+        "July 2022",
+        "July 2023",
+        "July 2024"
+      ],
+      "series": [
+        "Cisco Systems, Inc.",
+        "S&P 500",
+        "S&P 500 Information Technology"
+      ],
+      "unknowns": [
+        "Readable values are empty due to the chart only displaying labeled data points. The exact plotted values are not printed."
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "title": "Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&P 500 Index, and the S&P Information Technology Index",
+        "chart_type": "line chart",
+        "x_axis": null,
+        "y_axis": null,
+        "units": "$ (dollar symbol; ISO currency code not printed)",
+        "periods": [
+          "July 2019",
+          "July 2020",
+          "July 2021",
+          "July 2022",
+          "July 2023",
+          "July 2024"
+        ],
+        "series": [
+          "Cisco Systems, Inc.",
+          "S&P 500",
+          "S&P 500 Information Technology"
+        ],
+        "readable_values": [],
+        "unknowns": [
+          "Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount."
+        ]
+      },
+      "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+    }
+  },
+  {
+    "status": "candidate",
+    "evidence_id": "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97:caption-v1:author-corrected-v1",
+    "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of Five-Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": null, \"units\": \"$ (dollar symbol; ISO currency code not printed)\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Adobe Inc.\", \"S&P 500 Index\", \"S&P 500 Software & Services\"], \"unknowns\": [\"Exact numeric point labels are not printed.\"], \"readable_values\": []}",
+    "description": {
+      "title": "Comparison of Five-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": null,
+      "units": "$ (dollar symbol; ISO currency code not printed)",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Adobe Inc.",
+        "S&P 500 Index",
+        "S&P 500 Software & Services"
+      ],
+      "unknowns": [
+        "Exact numeric point labels are not printed."
+      ],
+      "readable_values": []
+    },
+    "source": {
+      "source_asset_id": "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+      "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+      "asset": "assets/18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97.png",
+      "company": "Adobe Inc.",
+      "ticker": "ADBE",
+      "accession": "0000796343-25-000004",
+      "fiscal_period_end": "2024-11-29",
+      "title": "Comparison of Five-Year Cumulative Total Return",
+      "page": 101,
+      "source_locator": "PDF page 101; top-left point rectangle [55, 265, 565, 565]",
+      "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+      "pdf_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe",
+      "sec_source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "original_image_group": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+      "extraction": {
+        "method": "render_crop",
+        "bbox_top_left_points": [
+          55,
+          265,
+          565,
+          565
+        ],
+        "dpi": 144
+      },
+      "renderer": "pdftoppm version 26.05.0",
+      "source_kind": "original_pdf_chart_region_render",
+      "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+      "independent_review": "pending",
+      "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+      "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+      "filing_has_canonical_narrative_table_package": false,
+      "chart_description_indexed": false
+    },
+    "metadata": {
+      "type": "chart_description",
+      "company": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+      "source_locator": "PDF page 101; top-left point rectangle [55, 265, 565, 565]",
+      "page": 101,
+      "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+      "content_sha256": "f9711aa3843a3478d062a1d641a792f2005c69db3c9813c67b5c54bffa0677e9",
+      "generated": true,
+      "independent_review": "pending"
+    },
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "generation": {
+      "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+      "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+      "point_values_enabled": false,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 768,
+        "seed": 42
+      },
+      "timing": {
+        "total_duration": 42900926042,
+        "load_duration": 22405625,
+        "prompt_eval_count": 492,
+        "prompt_eval_duration": 12955685000,
+        "eval_count": 186,
+        "eval_duration": 29492249000
+      }
+    },
+    "wall_seconds": 43.212,
+    "raw_model_description": {
+      "title": "Comparison of Five-Year Cumulative Total Return",
+      "chart_type": "line chart",
+      "x_axis": "Year",
+      "y_axis": "$",
+      "units": "USD",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Adobe Inc.",
+        "S&P 500 Index",
+        "S&P 500 Software & Services"
+      ],
+      "unknowns": [
+        "Readable values are not printed on the chart."
+      ],
+      "readable_values": []
+    },
+    "author_review": {
+      "status": "corrected_pending_independent_review",
+      "fields": {
+        "title": "Comparison of Five-Year Cumulative Total Return",
+        "chart_type": "line chart",
+        "x_axis": null,
+        "y_axis": null,
+        "units": "$ (dollar symbol; ISO currency code not printed)",
+        "periods": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "series": [
+          "Adobe Inc.",
+          "S&P 500 Index",
+          "S&P 500 Software & Services"
+        ],
+        "readable_values": [],
+        "unknowns": [
+          "Exact numeric point labels are not printed."
+        ]
+      },
+      "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+    }
+  }
+]

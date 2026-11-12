@@ -8,7 +8,7 @@ November 2 scope addition: R9 defines cross-report restatement detection as a pl
 
 ### Purpose and delivery phase
 
-Help an annual-report reader identify when a previously reported value for the same fiscal period changes in a later filing. R9 is a planned Phase 2 extension recorded on November 2, 2026. The original proposal scope takes priority; November 17 is an internal checkpoint and November 20 is the demo package freeze. R9 has no assigned delivery date or additional hours in the current calendar.
+Help an annual-report reader identify when a previously reported value for the same fiscal period changes in a later filing. R9 is a planned Phase 2 extension recorded on November 2, 2026. The original proposal scope takes priority through the current November 17 submission deadline. R9 has no assigned delivery date or additional hours in this calendar.
 
 ### Supported report pair
 

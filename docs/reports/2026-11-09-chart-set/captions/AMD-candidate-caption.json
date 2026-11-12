@@ -1,0 +1,153 @@
+{
+  "status": "candidate",
+  "evidence_id": "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0:caption-v1:author-corrected-v1",
+  "content": "Generated chart description with source-checked author corrections; independently unreviewed. {\"title\": \"Comparison of Cumulative Five Year Total Return\", \"chart_type\": \"line chart\", \"x_axis\": null, \"y_axis\": \"Index Value\", \"units\": \"Index Value\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Advanced Micro Devices, Inc.\", \"S&P 500 Index\", \"S&P 500 Semiconductors Index\"], \"unknowns\": [\"Exact numeric point labels are not printed.\"], \"readable_values\": []}",
+  "description": {
+    "title": "Comparison of Cumulative Five Year Total Return",
+    "chart_type": "line chart",
+    "x_axis": null,
+    "y_axis": "Index Value",
+    "units": "Index Value",
+    "periods": [
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "series": [
+      "Advanced Micro Devices, Inc.",
+      "S&P 500 Index",
+      "S&P 500 Semiconductors Index"
+    ],
+    "unknowns": [
+      "Exact numeric point labels are not printed."
+    ],
+    "readable_values": []
+  },
+  "source": {
+    "source_asset_id": "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+    "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+    "asset": "assets/a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0.jpg",
+    "company": "Advanced Micro Devices, Inc.",
+    "ticker": "AMD",
+    "accession": "0000002488-25-000012",
+    "fiscal_period_end": "2024-12-28",
+    "title": "Comparison of Cumulative Five Year Total Return",
+    "page": 45,
+    "source_locator": "PDF page 45; embedded image X223.jpg",
+    "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+    "pdf_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491",
+    "sec_source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+    "original_image_group": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+    "extraction": {
+      "method": "embedded_image",
+      "name": "X223.jpg"
+    },
+    "renderer": null,
+    "source_kind": "original_embedded_pdf_image",
+    "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+    "independent_review": "pending",
+    "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+    "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+    "filing_has_canonical_narrative_table_package": false,
+    "chart_description_indexed": false
+  },
+  "metadata": {
+    "type": "chart_description",
+    "company": "Advanced Micro Devices, Inc.",
+    "accession": "0000002488-25-000012",
+    "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+    "source_locator": "PDF page 45; embedded image X223.jpg",
+    "page": 45,
+    "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0",
+    "content_sha256": "d91fd0c4665849c62655cad41c7d8926155e0e2ffd60fffcc9e1638c4a23d3ab",
+    "generated": true,
+    "independent_review": "pending"
+  },
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "generation": {
+    "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+    "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+    "point_values_enabled": false,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "timing": {
+      "total_duration": 48199884500,
+      "load_duration": 78949917,
+      "prompt_eval_count": 492,
+      "prompt_eval_duration": 13097325000,
+      "eval_count": 190,
+      "eval_duration": 34249862999
+    }
+  },
+  "wall_seconds": 48.585,
+  "raw_model_description": {
+    "title": "Comparison of Cumulative Five Year Total Return",
+    "chart_type": "line chart",
+    "x_axis": "Year",
+    "y_axis": "Index Value",
+    "units": "Index Value",
+    "periods": [
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "series": [
+      "Advanced Micro Devices, Inc.",
+      "S&P 500 Index",
+      "S&P 500 Semiconductors Index"
+    ],
+    "unknowns": [
+      "Readable values are not printed on the chart."
+    ],
+    "readable_values": []
+  },
+  "author_review": {
+    "status": "corrected_pending_independent_review",
+    "fields": {
+      "title": "Comparison of Cumulative Five Year Total Return",
+      "chart_type": "line chart",
+      "x_axis": null,
+      "y_axis": "Index Value",
+      "units": "Index Value",
+      "periods": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "series": [
+        "Advanced Micro Devices, Inc.",
+        "S&P 500 Index",
+        "S&P 500 Semiconductors Index"
+      ],
+      "readable_values": [],
+      "unknowns": [
+        "Exact numeric point labels are not printed."
+      ]
+    },
+    "basis": "Author visually checked the original full PDF page and extracted graph before model captioning; literal labels/legend and absent point labels only. No neighboring data-table values used. These annotations do not constitute independent review."
+  }
+}

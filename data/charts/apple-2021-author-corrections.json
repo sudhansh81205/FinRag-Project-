@@ -1,0 +1,14 @@
+{
+  "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9",
+  "fields": {
+    "periods": ["9/23/16", "9/30/17", "9/29/18", "9/28/19", "9/26/20", "9/25/21"],
+    "y_axis": null,
+    "units": "$ (dollar symbol; ISO currency code not printed)",
+    "unknowns": [
+      "Exact point values are not printed; curve positions must not be treated as exact values.",
+      "An ISO currency code and explicit y-axis title are not printed."
+    ]
+  },
+  "basis": "Implementation author visually inspected the original embedded image: horizontal axis reads 9/30/17; vertical tick labels use $0 through $600 and no separate axis title. This is an author check, not independent review.",
+  "independent_review": "pending"
+}

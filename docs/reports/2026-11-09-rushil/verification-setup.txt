@@ -1,0 +1,8 @@
+{
+  "status": "index_not_ready",
+  "blockers": [
+    "No source filing found. Add the selected Apple 2021 filing during ingestion.",
+    "No BGE/exact FAISS catalog found. Run the source audit and scripts/build_index.py; see docs/INDEXING.md.",
+    "Answering is disabled in this setup build until the filing, persistent index and source checks are connected."
+  ]
+}

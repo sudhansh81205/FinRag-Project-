@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3.2:3b",
+  "digest": null,
+  "status": "planned_separate_comparison_not_executed",
+  "options": {"temperature": 0, "num_ctx": 4096, "num_predict": 768, "seed": 42},
+  "prompt_and_calculator": "same frozen answer prompt/calculator/corpus and final five evidence objects as A-G",
+  "vision": false,
+  "scope": "separate text-answer comparison; never silently substitutes for Gemma 3",
+  "hardware_limit": "8 GiB Mac; unload Gemma before loading comparison; pin digest and measure before reporting scores",
+  "gemma12b": "not attempted: memory/timing not validated on 8 GiB host"
+}

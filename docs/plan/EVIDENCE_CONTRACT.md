@@ -1,74 +1,69 @@
-# Evidence and answer contract, version 1
+# FinRAG evidence and answer contract
 
-Agreed implementation target for the October 30 scope task. This defines the next
-owners' interface; it does not claim the legacy chunker/engine already preserves it.
+Document revision November 12, 2026. This defines final acceptance interfaces alongside the current PRD; it does not assert every field/path is already implemented. The canonical record JSON Schema remains the executable shape authority at its recorded version. Historical example records are synthetic design examples, not indexed facts or gold labels.
 
-## Search record
+## Identity and source records
 
-Each record has `id`, `content` and `metadata`. A stable ID combines accession,
-section, source locator, record type and content hash; rebuilding identical inputs
-must produce identical IDs. A numeric loop counter alone is insufficient.
+A canonical record has evidence_id, content and metadata. Physical adapters may expose id, but it maps losslessly to the same logical evidence_id; do not generate a second identity. Stable IDs distinguish accession, section, source locator, record type and content identity. Identical inputs reproduce IDs; a numeric position alone is insufficient.
 
-Required metadata: `accession`, `ticker`, `fiscal_year`, `section`, `source_url`,
-`source_locator`, `source_sha256`, `type`, `record_schema_version`. Types remain
-`narrative_text`, `financial_table` or `clean_financial_table` to reuse the retriever.
-Table rows also carry `parent_table_id`, `table_title`, `row_label`, `periods_json`,
-`units_json` and `headers_json`. JSON strings keep complex values compatible with
-scalar Chroma metadata. Keep the original source hash separate from the record hash.
+Required metadata binds accession, issuer/ticker, filing and value periods where applicable, section/type, source URL/locator/file, source and content hashes, record schema and parser version. Preserve source snapshots and licence/rendition provenance. A browser snapshot checksum is not an issuer-published checksum. A PDF mirror is explicitly a rendition and must resolve to the exact issuer/form/period identity.
 
-The parent table retains complete headers, row labels and footnotes; table-row
-content repeats needed headers/units. A retrieval result adds distance/score while
-retaining the original ID and metadata. Reranking must not replace a record with
-only its text. Source locators are verified HTML IDs or documented table/row
-selectors, never invented page numbers.
+Keep raw, parsed, independently accepted and indexed coverage separate. Inventory and download counts, isolated chart images and schema passes cannot establish full corpus acceptance. Additional source layouts require supported fixtures, failure checks and original-source interpretation; missing assets or layouts remain visible.
 
-See [record_examples.json](record_examples.json). All `EXAMPLE` strings and null
-hashes are design examples and must be replaced during ingestion. Do not index
-these examples or use them as gold evaluation cases.
+## Typed cells parents and PDF positions
 
-## Answer response
+A cell binds original parent grid, table title, row/column headers and coordinates, raw display amount, metric/statement/scope, exact value-period kind/start/end, raw and normalized currency/unit/scale/value, footnotes and source identity. Keep original grids and source rows independent of embedding limits. Blank/missing is not zero. Parentheses, shares/per-share units, comparative years and dimensions must remain explicit.
 
-Required keys: `status`, `question`, `answer`, `message`, `evidence`, `calculations`,
-`provider`, `model`. Later evaluation adds latency, revision and frozen settings.
+Reject unresolved or ambiguous period/unit/parent identity; a shape-valid changed fact must fail its source-derived predicates. Do not derive a legal operand from an untyped PDF number by guessing its year or unit. Renditions corroborate existing facts rather than duplicating them.
 
-| Status | Meaning | Answer/evidence rule |
+A claimed PDF position needs the exact original PDF/page/hash, declared coordinate origin, valid finite nondegenerate in-page bounds and independently resolvable word/row/year binding. Text somewhere on a page or a rectangle inside its bounds is insufficient. Unsupported exact-position guarantees must be withheld honestly.
+
+Generations are immutable: identical re-ingestion is idempotent; changed/foreign destinations are rejected or use a new generation. A replacement affects only its declared filing and never erases unrelated packages.
+
+## Index and retrieval
+
+Index manifests bind code/schema/data/source hashes, pinned BGE revision and preprocessing/query instruction, 768 normalized dimensions, exact FAISS IndexFlatIP and ordered row-to-ID/metadata sidecars. BM25 shares canonical IDs and explicit eligibility. Reject duplicate IDs, row swaps, dimension/model/preprocessing mismatch, corrupt sidecars and incompatible reloads.
+
+Every request applies the same explicit issuer/company/value-period/source policy before dense and lexical top-k. Reject unsupported filters and state leakage. The E-only hierarchy is distinct from common explicit eligibility. Preserve dense/BM25 ranks, RRF60 score, candidate restriction, reranker score type/model and validation, route/escalation attempts/threshold/stop reason, candidates, selections/exclusions, parent expansion and budget. Disabled streams issue no query.
+
+Missing, raising, wrong-length or nonfinite cross-encoder output cannot silently yield successful E/F/G status. An explicitly labelled diagnostic/degraded path must not be miscounted as the requested final variant.
+
+## Context and answer states
+
+The actual prompt uses complete selected evidence objects under one pinned tokenizer/input budget and fixed five-final-passage control, reserving instructions/output capacity. Use fewer valid passages with recorded shortfall; do not pad unsupported records. Parent/chart expansion shares the same budget. Actual included IDs, rendered citations, prompt objects and permitted operands must agree exactly. Retrieved-but-excluded IDs remain separate; no truncation after claiming inclusion.
+
+Answers retain status, question, answer, message, evidence, calculations, provider/model/configuration and timings, with actual included IDs and source citations. Financial success requires real accepted provider output and valid evidence; exact numerical rendering remains authoritative over raw model explanation.
+
+| Status | Meaning | Output rule |
 | --- | --- | --- |
-| `not_ready` | Application prerequisites or integration incomplete | No financial answer or invented evidence |
-| `invalid_input` | Empty or unsupported request format | Explain how to correct it |
-| `insufficient_evidence` | A validated search did not find enough support | Abstain, distinguish from service failure |
-| `service_error` | Retrieval or provider failed | No successful-looking fallback answer |
-| `ok` | Verified real provider answered from included evidence | Citations map to included record IDs |
+| ok | Real accepted execution from included support | Preserve actual citations, result/rules and model provenance. |
+| invalid_request | Empty/malformed/unsupported request | Explain correction; no financial answer. |
+| index_not_ready | Required index/application integration unavailable | Name missing prerequisite; no invented evidence. |
+| insufficient_evidence | Valid execution found inadequate support or failed a financial premise | Abstain and preserve reasons. |
+| service_error | Retrieval/model/runtime stage failed | No successful-looking fallback or stale financial answer. |
 
-Only `not_ready` and `invalid_input` are implemented in the setup application.
-Rushil implements generation/error semantics next; retrieval provenance and final
-UI citation display remain the later owners' work.
+Internal typed errors may be more detailed, but public mapping must preserve failure meaning. Historical not_ready/invalid_input aliases are not the current public contract. Explicit mock mode remains test-only and cannot become a financial ok response.
 
-Calculations contain an allowlisted operation (`sum`, `difference`, `percent_change`),
-typed operands, each operand's record ID/row/period/unit, formula, result and unit.
-Reject incompatible units, missing periods and zero denominators. Do not execute
-generated Python. Sign handling and rounding must be documented in calculator tests.
+## Restricted calculation
 
-## Day 3 status implementation update on 2 November
+Only approved bounded arithmetic operations may execute. Leaves resolve to actual included canonical cells; no uncited numeric constants, arbitrary Python, imports, file/network calls or unbounded expressions. Bind caller-supplied issuer/scope/requested periods, validate source/content and raw/normalized value consistency, comparability, supported dimensions and nonzero denominators.
 
-The implementation now uses `index_not_ready` and `invalid_request` in place of
-the setup table's earlier `not_ready` and `invalid_input` aliases, matching the
-revised PRD. The engine guards empty evidence, reports `service_error` without
-an answer on retrieval/provider failure, and accepts only real-provider output
-for `ok`. Explicit mock output is test-only and rejected by financial answers.
-Final citation resolution and complete context selection remain later tasks.
+Retain operation tree, expression, raw/normalized operands, evidence IDs, exact result/unit, rule premises/outcomes and policy notes. Ordinary growth with positive prior permits percentage change; zero prior refuses; negative prior yields absolute change plus explanation unless a documented benchmark policy specifies otherwise. A model may propose an untrusted bounded tree and explain a validated conclusion; it cannot override failed rules or authoritative request constraints.
 
+## Charts and independent promotion
 
-## Unified final proposal contract
+A chart record binds original image bytes/path/hash, exact filing/page or HTML locator, source hash, generated description, model/digest/quantization/configuration/prompt/schema fingerprint and unknown-value markers. Retain raw model captions and author corrections separately; generated captions must not be presented as issuer-authored text.
 
-The original id/content/metadata record remains compatible with the submitted HTML parser. This section extends the target for proposal completion; it does not claim those fields are already implemented. The canonical PRD defines the full requirement. Map logical evidence_id to physical id without generating a second identity.
+Candidate questions/captions stay pending until independent decisions bind exact image, label and caption identities and an eligible reviewer different from their author. Preserve authorship/reviewer evidence, accept/reject reasons and immutable split mapping. Do not approve by flipping frozen flags or changing expected hashes to hide edits. Alternate crops/renditions of one image stay in one split; retain fifteen development/thirty-five held-out questions. Unprinted or ambiguous values remain unknown.
 
-- Keep original snapshot/source checksums, content hashes, source locators, table grids and source_rows. A browser snapshot checksum is not an SEC-published checksum.
-- Add typed cell records with issuer/accession, statement/metric, row and column headers, raw and normalized values, period boundaries, currency/scale, footnote links and grid coordinates. Preserve the parent table independently of embedding limits.
-- Add chart records with original image path/locator/hash, model-generated description, model revision and unknown-value markers. Cite the original image and identify captions as generated.
-- Index manifests bind BGE revision, preprocessing, dimension, normalization, FAISS IndexFlatIP and evidence sidecar hashes. BM25 and dense rankings use the same canonical IDs. Reject mismatched vector/metadata versions.
-- Retrieval traces preserve component ranks/scores, filters, route/escalation, candidate and selected IDs, parent expansion and exact context budget. Included IDs must equal the actual prompt evidence; retrieved-but-excluded IDs are separate.
-- Calculation records bind the restricted operation tree, cited operand IDs, typed comparability/unit/period rules, rule premises/outcomes and final result. Missing or incompatible facts block inference. No arbitrary generated Python is executed.
-- Final answer states remain ok, invalid_request, index_not_ready, insufficient_evidence and service_error. Model failure and mock fixtures cannot become a real financial success.
-- Experiment records bind code/data/model/config hashes, A-G variant, split/question IDs, statuses, outputs, raw metric inputs and observed timings. Retain failures and exact denominators.
+A validated approved-loader/promotion path must reject tampering, missing approvals, self-review and mismatched splits. Exact implementation/reproduction commands belong in the verified handoff. Fifty candidates are not fifty approvals or fifty independent images.
 
-The earlier record_examples.json contains explicitly synthetic design examples; it is not the complete final schema or eligible evaluation gold. Use the final proposal fields above when extending it.
+## Experiment and audit records
+
+Bind code/data/source/index/model/configuration hashes, canonical A-G, query/document preprocessing, prompt, calculator, tokenizer/budget/five-passage controls, route thresholds, random settings, eligible case/split IDs, outputs/statuses, raw metric inputs, hardware, timestamp and observed duration. Retain checkpoints, failures/timeouts/exclusions and denominators; missing timing is unknown, not zero.
+
+A-G uses one pinned Gemma configuration; separate Llama outputs remain separately labelled. Freeze complete FinQA/TAT-QA/FinanceBench and chart universes without label leakage. Fourteen local cases and injected tests remain smoke only.
+
+Score unit-normalized numerical answers at 1 percent relative tolerance for nonzero gold; declare zero-gold absolute tolerance from display precision. Preserve narrative measures, Recall@5/@10, MRR,RAGAS,latency and paired 95 percent confidence intervals. The independently reviewed fifty generated outputs are distinct from fifty chart questions; retain author/reviewer conflicts and exact included context/original source evidence.
+
+Likhit on November 13 supplies supported corpus and representations; Gowtham on November 14 supplies the UI/loaders/runner and measured real capacity. Ujjwal on November 15 independently checks inputs, freezes accepted controls and launches full jobs. Sudhansh on November 16 computes/reconciles metrics and audits non-self-authored outputs; Shanay on November 17 completes remaining independent exclusions and release. No same-day extra reviewer is assigned. Missing mandatory evidence prevents complete acceptance even when software tests pass.

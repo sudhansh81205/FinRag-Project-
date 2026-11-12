@@ -1,0 +1,45 @@
+{
+  "status": "candidate_target_met",
+  "counts": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "distinct_original_images": 6,
+  "target": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "shortfall": {
+    "dev": 0,
+    "heldout": 0
+  },
+  "independent_review": "pending",
+  "evaluation_ready": false,
+  "total": 50,
+  "question_files_sha256": {
+    "apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
+    "heldout-35-candidate-questions.json": "437e963dcba3ee1eb3f4d371556e213cbc6a3a7ca17ddfd70149919567315324"
+  },
+  "source_manifest_sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
+  "question_counts_by_source": {
+    "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9": 15,
+    "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a": 7,
+    "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0": 7,
+    "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568": 7,
+    "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098": 7,
+    "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97": 7
+  },
+  "asset_hashes_checked": 6,
+  "heldout_answers_generated_or_scored": false,
+  "scope": "Candidate image/question integrity; not independent label approval or A-G evaluation.",
+  "filing_inventory_verified": true,
+  "local_pdf_hashes_verified": [
+    "0000320193-21-000105",
+    "0001045810-24-000029",
+    "0000002488-25-000012",
+    "0000050863-25-000009",
+    "0000858877-24-000017",
+    "0000796343-25-000004"
+  ],
+  "local_pdf_verification_requested": true
+}

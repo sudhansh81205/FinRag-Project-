@@ -1,42 +1,32 @@
-# Implementation and code review course mapping
+# FinRAG implementation and course alignment
 
-## Connection to course concepts
+Effective November 12, 2026. Read the current PRD and one-owner calendar through November 17. A course mapping is a claim to demonstrate in code and evidence, not a substitute for a working feature or an experiment.
 
-The strongest course connection is Knowledge Representation and Reasoning combined with Applications of Deep Learning. The course handout names predicate logic, ontology/categories, word embeddings, transformers and computer vision. Implement and explain the connection below instead of merely listing retrieval packages.
+## Connection to Course Concepts
 
-| Course topic | Concrete project behavior | Proof and viva question |
-| --- | --- | --- |
-| KR&R ontology and predicates \| T1 chapters 7-10 | Represent issuer, filing, period, statement, metric, unit, value, table cell and source as typed facts. Explicit rules check comparability and whether an operation is justified. | Show facts and a rule trace. Why is a 2023 consolidated USD-million value incompatible with a 2024 segment value? |
-| KR&R inference | Infer that a requested calculation is allowed only when all required operands are cited, comparable and valid. Record rule failures and abstain. | A missing operand or zero denominator blocks the result. Which premises established the displayed result? |
-| DL for NLP \| T1 chapter 25 | BGE embeds question and evidence; the cross-encoder jointly scores pairs; Gemma generates a grounded explanation. Use pretrained transformer models without fine-tuning. | Explain cosine retrieval versus cross-encoding, normalization and context limits. Save measured A-G outcomes. |
-| Computer vision \| T1 chapter 27 | Use a pretrained vision-language model to convert report images into cited chart descriptions. | Compare the image with its caption and explain an unreadable-value failure. No claim of training a vision model. |
-| Ethics and safety \| T1 chapter 28 | Disclose AI help, retain source provenance, expose uncertainty and provider failures, and avoid unsupported financial claims. | Show an abstention, an AI-use entry and source verification. |
+| Course concept | Concrete implementation target | Success and relevant failure | Viva question |
+| --- | --- | --- | --- |
+| KR&R ontology and typed facts, T1 chapters 7-10 | A canonical source/cell binds issuer, accession, statement/metric, scope, period, value, currency/unit/scale, parent and original source. | Correct source-derived metadata survives restore; changed period, scale, parent or source hash is rejected. | Why can valid JSON and matching content bytes still contain a wrong financial fact? |
+| KR&R predicates and inference | Deterministic premises license only a restricted cited operation tree; retain rules, operands and exact conclusion. | Apple 2021 sales 365,817 and cost 212,981 USD million imply gross margin 41.78 percent; wrong issuer/period/unit, excluded operand or zero denominator blocks the result. | Which exact premises justify this conclusion, and which may a model never override? |
+| DL for NLP, T1 chapter 25 | Pinned BGE separately embeds question/evidence; bge-reranker-base jointly scores pairs; Gemma proposes bounded programs or grounded explanations. | Real compatible embeddings/scores/generation succeed; wrong model revision, malformed reranker scores or provider failure is explicit. | How does cross-encoding differ from cosine ranking, and why must its failure not count as a successful variant? |
+| Computer vision, T1 chapter 27 | A pretrained vision-language model describes an original report image with source/hash/model provenance and unknown values. | A readable printed title/axis is source-linked; unprinted or ambiguous point values remain unknown and pending labels stay excluded. | Why do a chart image hash and syntactically valid caption not prove that caption is true? |
+| Ethics and safety, T1 chapter 28 | AI-use disclosure, source checks, honest errors/coverage, independent labels and no unsupported financial advice. | A supported answer cites actual included sources; no-evidence/model failure clears output rather than returning a mock success. | What uncertainty and limitations should the user see? |
 
-Search and Problem Solving is a limited supporting analogy: evidence candidates, constrained selection and tier escalation define a search process, but BM25/RRF/nearest-neighbour retrieval are information-retrieval methods, not implementations of A*, CSP, minimax or a syllabus state-space algorithm. Agents and Game Theory is not a claimed implemented contribution; bounded routing alone is not multi-agent planning or equilibrium reasoning. No extra game or planner is added merely to name all four areas.
+These are pretrained-model applications, not model training or fine-tuning. BM25/RRF are information retrieval and routing is bounded control logic. Do not claim A star, CSP, minimax, game theory or multi-agent reasoning from them. Packaging, CI, DVC/MLflow and deployment are supporting engineering for reproducibility.
 
-In the report, include the explicit section title Connection to Course Concepts. In every meaningful code review, name the applicable concept, point to its implementation, inspect one successful and one failing case, and record what the member must explain in the viva. An ordinary packaging change may say supporting engineering rather than forcing a false algorithm connection.
+## Required proof in meaningful changes and reviews
 
-## Knowledge rules and evidence contracts
+Record the applicable R requirement and canonical A-G stage or common control, exact code/data/model revision, actual success and a relevant failure path, commands/results and unrun checks. Explain the rule or model boundary that causes each outcome. Distinguish real source/model evidence from injected tests, planned features and PR-only work; include a concrete viva explanation. Never infer understanding or hours from commits.
 
-### Minimal executable reasoning
+Canonical stages are A fixed overlapping narratives/flattened tables, B section-aware narratives, C cells/parents, D dense/BM25 RRF60, E hierarchical candidates/cross-encoder, F bounded routing and G approved source-linked chart descriptions. Common explicit eligibility is not the E-only hierarchical change. A-G share BGE/exact FAISS, corpus, answer model, prompt, calculator, five final passages, tokenizer/budget and random settings.
 
-Implement the rules as deterministic typed Python predicates with recorded premises and outcomes. This is a small rule-based reasoning layer; do not claim a general theorem prover, resolution engine, knowledge graph database or probabilistic inference system.
+For example, pre-top-k company/period eligibility implements an input precondition; typed calculator comparability implements financial inference. A parent/source hash alone does not do either. Original-image extraction is a source capability, not evidence that a vision model ran or an independent label passed.
 
-- Value facts bind issuer, metric, period boundaries, statement, scope, currency, scale, normalized value and evidence ID.
-- Comparable requires matching issuer, metric meaning, scope, currency and appropriate periods for the requested operation. A year-over-year comparison deliberately allows two specified periods; a same-period comparison requires the same one.
-- Allowed division requires valid, cited operands and a nonzero denominator. Missing, ambiguous or incompatible facts cause an explicit rule failure.
-- For ordinary growth, a positive prior value permits (current - prior) / prior times 100. A zero prior is undefined. For a negative prior, display absolute change and an explanation unless a separately documented benchmark operation explicitly defines another calculation.
-- Conclusions retain operand IDs, rule IDs, normalized values, units, expression and result. The language model may explain a validated result but cannot override a failed rule.
+## Sequential review and independent evidence
 
-| Record | Mandatory contents |
-| --- | --- |
-| Evidence | Stable ID; issuer and filing identity; type; section/page/HTML locator; source URL; content hash; parser version; readable content; parent ID. |
-| Cell | Table title; row and column headers; raw value; metric; period boundaries; raw and normalized unit/currency/scale; footnote links; parent grid coordinates. |
-| Retrieval trace | Eligible corpus/filter; dense and BM25 ranks; RRF and reranker scores with type; route/escalation; candidate IDs; selected IDs; expansions; budget. |
-| Answer | Status; answer text; actual included IDs; resolvable citations; provider/model/configuration; operation tree and rule trace; warnings; timing. |
-| Run | Code SHA; data/model/configuration hashes; variant A-G; question/split IDs; output; scores; failure code; hardware; timestamp; duration. |
+Pavan on November 12 accepts integration/common controls and the experiment scaffold. Likhit on November 13 builds supported corpus and matched representations with methods evidence. Gowtham on November 14 connects the UI, loaders/runner and measured real capacity. Ujjwal on November 15 independently checks source/index/benchmark/chart inputs, freezes accepted controls and launches complete jobs. Sudhansh on November 16 verifies metrics, audits non-self-authored outputs and completes report/six-slide drafts. Shanay on November 17 completes remaining independent exclusions and release/submission. One named worker owns each date, including reviews and handoffs; no off-day background reviewer is assigned.
 
-### Reliability
+Preserve named label authors and reviewers. A member cannot independently certify their own labels. Fifty chart questions with fifteen development/thirty-five held-out image groups are separate from fifty stratified generated outputs audited against exact included context and original sources.
 
-Reject missing indexes, invalid requests and unusable evidence before financial generation. Provider errors cannot turn into successful mock answers. Separate test fixtures from real outputs; never log secrets. Data replacement must not delete unrelated filings. Preserve cited context exactly; list retrieved-but-excluded IDs separately.
+The final report must contain the explicit section Connection to Course Concepts and a testable research question. Retain full benchmark/A-G metrics, 1 percent normalized numerical tolerance with zero-gold policy, RAGAS, latency, paired 95 percent confidence intervals and failure/exclusion denominators. Fourteen smoke cases are not the final experiment. Individual official viva attendance remains required when the course schedules it; project development/operational ownership remains one member per date.
 

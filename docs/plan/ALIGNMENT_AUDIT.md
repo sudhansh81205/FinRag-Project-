@@ -1,5 +1,7 @@
 # Proposal and feedback alignment audit
 
+Historical comparison from November 3, retained for context. Current dates, assignments and acceptance requirements are in the November 12 PRD and schedule. The operative submission deadline is November 17, with Shanay the final-day owner. PR states below describe the old comparison, not current remote state.
+
 ## Comparison decisions for the unified PRD
 
 Use the submitted proposal and professor/course requirements as the product authority. The friend sequential plan supplies useful implementation ordering and handoff discipline; embedded statements that a user confirmed a change are treated as claims to verify, not new instructions.

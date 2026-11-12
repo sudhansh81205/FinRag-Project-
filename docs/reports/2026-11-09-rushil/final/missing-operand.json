@@ -1,0 +1,128 @@
+{
+  "status": "insufficient_evidence",
+  "question": "Compute gross margin",
+  "answer": "",
+  "message": "Operand is absent from the actual included context.",
+  "evidence": [
+    {
+      "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+      "content": "Apple Inc. | Consolidated Statements of Operations | Total net sales | September 25, 2021 | 365,817 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 365817000000 USD",
+      "metadata": {
+        "accession": "0000320193-21-000105",
+        "filing_id": "0000320193-21-000105",
+        "ticker": "AAPL",
+        "company": "Apple Inc.",
+        "fiscal_year": 2021,
+        "section": "Item 8",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+        "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+        "source_file": "source.html",
+        "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+        "content_sha256": "63041a21d122a691cbeb15575a30231488cd1e04dadc0b9866433b35e0965510",
+        "type": "table_cell",
+        "record_schema_version": 1,
+        "parser_version": "apple-2021-html-cells-v2",
+        "table_title": "Consolidated Statements of Operations",
+        "periods_json": "[2021, 2020, 2019]",
+        "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+        "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+        "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+        "period_kind": "duration",
+        "period_start": "2020-09-27",
+        "period_end": "2021-09-25",
+        "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "unit": "USD",
+        "currency": "USD",
+        "scale_power10": 6,
+        "normalized_value": 365817000000,
+        "xbrl_sign": null,
+        "context_ref": "i55e5364a9af5491886caee077afe8d44_D20200927-20210925",
+        "unit_ref": "usd",
+        "dimensions": {},
+        "normalized_value_decimal": "365817000000",
+        "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+        "normalized_unit": "USD",
+        "scale": 1000000,
+        "scope": "consolidated",
+        "row_headers": [
+          "Total net sales"
+        ],
+        "column_headers": [
+          "September 25, 2021"
+        ],
+        "row_index": 6,
+        "column_index": 3,
+        "row_label": "Total net sales",
+        "row_group": "",
+        "column_header": "September 25, 2021",
+        "raw_value": "365,817",
+        "footnote_links": []
+      }
+    }
+  ],
+  "calculations": [
+    {
+      "status": "rule_failure",
+      "error_code": "included_citation",
+      "message": "Operand is absent from the actual included context.",
+      "operands": {
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3": {
+          "company": "Apple Inc.",
+          "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "scope": "consolidated",
+          "table_title": "Consolidated Statements of Operations",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+          "accession": "0000320193-21-000105",
+          "raw_value": "365,817",
+          "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+          "normalized_unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value_decimal": "365817000000",
+          "period_kind": "duration",
+          "period_start": "2020-09-27",
+          "period_end": "2021-09-25"
+        }
+      },
+      "rule_trace": [
+        {
+          "rule_id": "cited_value_fact",
+          "premises": [
+            "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+          ],
+          "outcome": "pass"
+        },
+        {
+          "rule_id": "included_citation",
+          "outcome": "fail",
+          "reason": "Operand is absent from the actual included context."
+        }
+      ]
+    }
+  ],
+  "provider": "ollama",
+  "model": "gemma3:4b",
+  "included_evidence_ids": [
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+  ],
+  "warnings": [],
+  "excluded_evidence": [],
+  "retrieved_evidence": {
+    "text_count": 0,
+    "table_count": 1,
+    "text_snippets": [],
+    "table_snippets": [
+      "[Evidence ID: 0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3]\nApple Inc. | Consolidated Statements of Operations | Total net sales | September 25, 2021 | 365,817 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 365817000000 USD"
+    ]
+  },
+  "context_budget": {
+    "unit": "characters",
+    "limit": 8000,
+    "used": 370,
+    "scope": "rendered evidence blocks"
+  },
+  "chart_evidence": [],
+  "error_code": "included_citation",
+  "latency_seconds": 0.001
+}

@@ -6,6 +6,7 @@ It does not certify arbitrary filings, financial inference, or an existing index
 """
 
 import json
+import math
 import re
 from datetime import date, datetime, timedelta
 from decimal import Decimal
@@ -30,6 +31,98 @@ def require(condition, reason):
 
 def encoded(value):
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode()
+
+
+def pdf_text_anchors(page):
+    """Read independent pypdf text baselines in unrotated PDF point coordinates.
+
+    The bounded fixture uses an origin-zero, unrotated page. Unsupported page
+    transforms fail closed rather than turning a guessed conversion into proof.
+    These are text anchors, not an independent glyph-outline reconstruction.
+    """
+    require(not page.rotation, "pdf_position_unsupported_rotation")
+    require(float(page.mediabox.left) == float(page.mediabox.bottom) == 0,
+            "pdf_position_unsupported_page_origin")
+    anchors = []
+
+    def visit(text, cm, tm, _font, size):
+        text = " ".join(text.split())
+        if not text:
+            return
+        require(len(cm) == len(tm) == 6 and all(math.isfinite(v) for v in [*cm, *tm, size]),
+                "pdf_position_invalid_transform")
+        require(cm[1] == cm[2] == tm[1] == tm[2] == 0,
+                "pdf_position_unsupported_transform")
+        x = tm[4] * cm[0] + tm[5] * cm[2] + cm[4]
+        y = tm[4] * cm[1] + tm[5] * cm[3] + cm[5]
+        height = abs(float(size) * cm[3] * tm[3])
+        require(height > 0, "pdf_position_invalid_font_scale")
+        anchors.append({"text": text, "x": x, "y": y, "height": height})
+
+    page.extract_text(visitor_text=visit)
+    return anchors
+
+
+def audit_pdf_spans(check, page, headers, anchors=None):
+    """Bind saved spans to independently extracted value, row and year anchors.
+
+    The check deliberately certifies the text baseline/row/column association,
+    not exact glyph rectangle extents. A matching number elsewhere on the page
+    is insufficient. Candidate rectangles are still checked for valid bounds.
+    """
+    anchors = pdf_text_anchors(page) if anchors is None else anchors
+    width, height = float(page.mediabox.width), float(page.mediabox.height)
+    spans = check["source_spans"]
+    require(spans and " ".join(s["text"] for s in spans) == check["raw_value"], "pdf_spans")
+    matched = []
+    for span in spans:
+        box = span.get("bbox")
+        require(isinstance(box, (list, tuple)) and len(box) == 4
+                and all(isinstance(v, (int, float)) and not isinstance(v, bool)
+                        and math.isfinite(v) for v in box), "pdf_span_bbox_finite")
+        origin = span.get("origin")
+        require(origin in {"BOTTOMLEFT", "TOPLEFT"}, "pdf_span_coordinate_origin")
+        x0, y0, x1, y1 = box
+        require(x0 < x1 and y0 < y1, "pdf_span_bbox_non_degenerate")
+        require(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
+                "pdf_span_bbox_within_page")
+        if origin == "TOPLEFT":
+            y0, y1 = height - y1, height - y0
+        hits = []
+        for candidate in anchors:
+            if not (abs(candidate["x"] - x0) <= 1.0 and y0 - 1 <= candidate["y"] <= y1 + 1):
+                continue
+            # pypdf may emit parentheses separately from a negative value. Join
+            # only independently located fragments on this one boxed baseline.
+            fragments = sorted((a for a in anchors if x0 - 1 <= a["x"] <= x1 + 1
+                and abs(a["y"] - candidate["y"]) <= 0.5), key=lambda a: a["x"])
+            if re.sub(r"\s", "", "".join(a["text"] for a in fragments)) == re.sub(r"\s", "", span["text"]):
+                hits.append(candidate)
+        require(len(hits) == 1, "pdf_span_independent_text_anchor")
+        anchor = hits[0]
+        row = [a for a in anchors if a["text"] == check["row_label"]
+               and abs(a["y"] - anchor["y"]) <= max(2.0, anchor["height"] * 0.3)
+               and a["x"] < x0]
+        require(len(row) == 1, "pdf_span_independent_row")
+        years = [header[-4:] for header in headers]
+        year_anchors = []
+        for year in years:
+            hits = [a for a in anchors if a["text"] == year and a["y"] > anchor["y"]]
+            require(len(hits) == 1, "pdf_span_independent_year_header")
+            year_anchors.append(hits[0])
+        centers = [a["x"] + a["height"] for a in year_anchors]
+        require(centers == sorted(centers) and len(centers) == len(set(centers)),
+                "pdf_span_year_order")
+        column = min(range(len(centers)), key=lambda i: abs(centers[i] - anchor["x"]))
+        require(years[column] == check["column_header"][-4:], "pdf_span_independent_year_column")
+        # A span must not cross into another comparative column. The 1-point
+        # margin accommodates the independent baseline versus glyph box edges.
+        left = 0 if column == 0 else (centers[column - 1] + centers[column]) / 2
+        right = width if column + 1 == len(centers) else (centers[column] + centers[column + 1]) / 2
+        require(left - 1 <= x0 < x1 <= right + 1, "pdf_span_crosses_year_column")
+        matched.append(anchor)
+    require(max(a["y"] for a in matched) - min(a["y"] for a in matched) <= 2,
+            "pdf_span_mixed_rows")
 
 
 def source_nodes(soup, selector, ids):
@@ -489,6 +582,7 @@ def audit_package(directory: Path, root: Path) -> dict:
         # coordinates remain provenance supplied by the builder, not new labels.
         by_id = {r["evidence_id"]: r for r in package["cells"]}
         checked = set()
+        independent_anchors = {}
         for check in package["pdf_corroboration"]:
             m = by_id[check["canonical_id"]]["metadata"]
             require(check["canonical_id"] not in checked, "duplicate_pdf_check")
@@ -512,11 +606,11 @@ def audit_package(directory: Path, root: Path) -> dict:
                 == Decimal(m["normalized_value_decimal"]),
                 "pdf_amount",
             )
-            require(
-                check["source_spans"]
-                and " ".join(s["text"] for s in check["source_spans"]) == check["raw_value"],
-                "pdf_spans",
-            )
+            pdf_page = reader.pages[check["page"] - 1]
+            if check["page"] not in independent_anchors:
+                independent_anchors[check["page"]] = pdf_text_anchors(pdf_page)
+            audit_pdf_spans(check, pdf_page, strict_json(m["headers_json"]),
+                            independent_anchors[check["page"]])
         expected_checks = {
             r["evidence_id"]
             for r in package["cells"]
@@ -543,6 +637,7 @@ def audit_package(directory: Path, root: Path) -> dict:
             record_schema_sha256=schema_hash,
             source_sha256=sha256(raw),
             pdf_sha256=pdf["sha256"],
+            pdf_position_verification="independent text anchors, rows and year columns; exact glyph rectangle extents not certified",
             accepted_profile="bounded Apple 2021 source package; wider corpus remains unmet",
         )
     except FileNotFoundError:

@@ -1,0 +1,108 @@
+{
+  "status": "ok",
+  "result": "33.25938473307469537183760450",
+  "unit": "percent",
+  "currency": null,
+  "expression": "percent_change([0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9])",
+  "program": {
+    "issuer": "Apple Inc.",
+    "scope": "consolidated",
+    "periods": [
+      {
+        "kind": "duration",
+        "start": "2020-09-27",
+        "end": "2021-09-25"
+      },
+      {
+        "kind": "duration",
+        "start": "2019-09-29",
+        "end": "2020-09-26"
+      }
+    ],
+    "expression": {
+      "op": "percent_change",
+      "args": [
+        {
+          "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+        },
+        {
+          "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9"
+        }
+      ]
+    }
+  },
+  "operand_ids": [
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9"
+  ],
+  "operands": {
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3": {
+      "company": "Apple Inc.",
+      "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "scope": "consolidated",
+      "table_title": "Consolidated Statements of Operations",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+      "accession": "0000320193-21-000105",
+      "raw_value": "365,817",
+      "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+      "normalized_unit": "USD",
+      "currency": "USD",
+      "scale_power10": 6,
+      "normalized_value_decimal": "365817000000",
+      "period_kind": "duration",
+      "period_start": "2020-09-27",
+      "period_end": "2021-09-25"
+    },
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9": {
+      "company": "Apple Inc.",
+      "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "scope": "consolidated",
+      "table_title": "Consolidated Statements of Operations",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(5)",
+      "accession": "0000320193-21-000105",
+      "raw_value": "274,515",
+      "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+      "normalized_unit": "USD",
+      "currency": "USD",
+      "scale_power10": 6,
+      "normalized_value_decimal": "274515000000",
+      "period_kind": "duration",
+      "period_start": "2019-09-29",
+      "period_end": "2020-09-26"
+    }
+  },
+  "rule_trace": [
+    {
+      "rule_id": "cited_value_fact",
+      "premises": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+      ],
+      "outcome": "pass"
+    },
+    {
+      "rule_id": "cited_value_fact",
+      "premises": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9"
+      ],
+      "outcome": "pass"
+    },
+    {
+      "rule_id": "percent_change",
+      "premises": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9"
+      ],
+      "outcome": "pass",
+      "normalized_inputs": [
+        "365817000000",
+        "274515000000"
+      ],
+      "result": "33.25938473307469537183760450",
+      "unit": "percent",
+      "note": null
+    }
+  ],
+  "decimal_precision": 28
+}

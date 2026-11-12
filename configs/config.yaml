@@ -9,10 +9,14 @@ data:
 models:
   embedding: BAAI/bge-base-en-v1.5
   reranker: BAAI/bge-reranker-base
-  # Verified with a real call on 2026-11-02; credentials stay private.
-  provider: gemini
-  model: gemini-3.5-flash-lite
-  ollama_url: http://localhost:11434
+  # R4 candidate verified locally 2026-11-09. Final A-G integration remains pending.
+  provider: ollama
+  model: gemma3:4b
+  ollama_url: http://127.0.0.1:11434
+  ollama_digest: 68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7
+  provider_timeout: 180
+  ollama_num_ctx: 4096
+  ollama_num_predict: 768
 
 retrieval:
   chunk_size: 1000

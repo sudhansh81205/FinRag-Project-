@@ -81,3 +81,38 @@ def configured_answer(engine, settings: Settings, question: str):
         question, top_k_text=settings.top_k_text,
         top_k_tables=settings.top_k_tables, rerank_top_n=settings.rerank_top_n,
     )
+
+
+def assemble_exact_engine(
+    settings: Settings, *, store, encoder, llm_client, variant="D", cross_encoder=None,
+    filters=None, token_counter=None, context_token_budget=None, tokenizer_id=None,
+    reranker_model_id=None, routing_policy=None,
+):
+    """Connect the persistent BGE/FAISS contract without the legacy Chroma API.
+
+    All runtime resources must be explicitly supplied and already available. This
+    performs no model/data download and does not enable the setup UI. C-F are
+    bounded components, not proof that a frozen A-G experiment is ready. Callers
+    must use the actual generator tokenizer for a declared shared token budget.
+    """
+    from src.pipeline.finrag_engine import FinRAGEngine
+    from src.retrieval.bm25 import BM25Retriever, HybridRRFRetriever
+    from src.retrieval.dense import DenseRetriever
+
+    if store is None or encoder is None or llm_client is None:
+        raise ValueError("An explicit exact store, encoder and real-provider client are required.")
+    if llm_client.provider not in {"ollama", "gemini"}:
+        raise ValueError("The financial engine requires an explicit real provider.")
+    if encoder.spec.manifest_fields() != store.spec.manifest_fields():
+        raise ValueError("Query encoder and persistent index identities differ.")
+    retriever = HybridRRFRetriever(
+        DenseRetriever(store, encoder, filters=filters),
+        BM25Retriever(store.records, filters=filters),
+        variant=variant, reranker=cross_encoder, reranker_model_id=reranker_model_id,
+        routing_policy=routing_policy,
+    )
+    return FinRAGEngine(
+        retriever=retriever, llm_client=llm_client,
+        token_counter=token_counter, context_token_budget=context_token_budget,
+        tokenizer_id=tokenizer_id,
+    )

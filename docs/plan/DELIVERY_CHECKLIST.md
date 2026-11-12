@@ -1,6 +1,6 @@
 # FinRAG delivery checklist
 
-Source: November 3 proposal-aligned PRD and supplied AI_Project_Guidelines.v2.pdf. November 17 internal checkpoint; November 20 complete demo package freeze; November 21 demo/viva; November 22 final report/code/AI disclosure. Verify Classroom updates and exact cutoff. Do not mark any row complete from planning alone.
+Source: the November 12 revision of the proposal-aligned PRD and the latest user instruction. Submit by November 17, with Shanay the sole final-day owner. Earlier guideline dates are historical; the exact official cutoff still needs the current course notice. Do not mark any row complete from planning alone.
 
 - [ ] R1: exact filing manifests, five Apple/five Microsoft filings, ten companies and benchmark source/exclusion inventories.
 - [ ] R2/R3: repeatable real parsing/index/reopen; BGE plus exact FAISS; stable IDs, table cells, units/periods and source locators.

@@ -1,0 +1,23 @@
+{
+  "code_revision": "f0c91feb9f6af9c424286bcfc8b90db82eef4ee5",
+  "scope": "Frozen-prompt original-image caption preprocessing only; no heldout QA, tuning, scoring or answer generation.",
+  "profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "source_manifest_sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
+  "author_annotation_sha256": "51c13d3ae41766d7818f78912f788dfd436f4143f7dc4b2d8a658af82192fd5d",
+  "new_model_caption_count": 5,
+  "reused_dev_caption_count": 1,
+  "candidate_count": 6,
+  "passed": true,
+  "independent_review": "pending",
+  "evaluation_ready": false,
+  "wall_seconds": 370.102,
+  "prompt_hashes": [
+    "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a"
+  ],
+  "source_files_sha256": {
+    "scripts/caption_chart_set.py": "9e505aa94117d36f764499c8236e9d96c50ed2d9dc8adb7dfeea4ff980312c11",
+    "src/charts/caption.py": "90eb0ffb9fcfd89aa1ad5beda4559a160cd446036a7be0af8b065c15f824769b",
+    "src/llm/client.py": "083b9a21adb7ed6649405a0a4ff5193f7b1d24571f8a2de8659e3318a6b342d4",
+    "src/llm/ollama_profile.py": "c9e71acf687493ab864d61ca504ebeba1bf338c0b57720fc09ace1f4f3af31fe"
+  }
+}

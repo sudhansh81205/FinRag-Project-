@@ -1,0 +1,438 @@
+{
+  "schema_version": 2,
+  "revision_date": "2026-11-03",
+  "timezone": "Asia/Kolkata",
+  "start": "2026-11-03",
+  "deadline": "2026-11-20",
+  "deadline_kind": "full_demo_package_freeze",
+  "internal_checkpoint": "2026-11-17",
+  "official_demo_date": "2026-11-21",
+  "official_submission_date": "2026-11-22",
+  "official_submission_cutoff": null,
+  "source": "AI_Project_Guidelines.v2.pdf page 1; verify Classroom updates",
+  "one_assigned_worker_per_date": true,
+  "members": [
+    "Sudhansh Khandelwal",
+    "Agrawal Pavan Shailesh",
+    "B Rushil Mohan",
+    "Sri Sai Likhit Boddada",
+    "Ujjwal Chandak",
+    "Shanay Ghodasara",
+    "Muppidi Gowtham Sai"
+  ],
+  "hours_per_member": {
+    "Ujjwal": 26,
+    "Likhit": 28,
+    "Shanay": 18,
+    "Pavan": 26,
+    "Rushil": 18,
+    "Gowtham": 18,
+    "Sudhansh": 24
+  },
+  "total_hours": 158,
+  "hours_kind": "planned_execution_Nov3_to_Nov20_excludes_historical_and_assessment",
+  "historical_assignments_unchanged_through": "2026-11-02",
+  "days": [
+    {
+      "date": "2026-11-03",
+      "owner": "Ujjwal",
+      "hours": 8,
+      "title": "Verify environment resources and handoff contracts",
+      "requirements": [
+        "R2",
+        "R4",
+        "R13"
+      ],
+      "steps": "Read current main and parser PR #4 at its exact revision; preserve completed setup/provider/parser work. Check BGE, exact FAISS, Docling, Ollama/Gemma, memory and machine access. Pin the canonical record/parent-table and index-sidecar contracts. Set up local DVC and MLflow with one restore/log smoke check and retain existing Ruff/pytest CI. Estimate full evaluation machine time from a small representative pilot or explicitly mark missing inputs.",
+      "done": "Environment/resource inventory, input revision, canonical schema, successful DVC restore and MLflow smoke run exist. No model, parser or full-data readiness is inferred from installation alone.",
+      "course_concept": "Reproducible AI and typed evidence contracts",
+      "status": "planned",
+      "dependency_dates": [
+        "historical parser/provider handoffs at inspected revisions"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-04",
+      "owner": "Likhit",
+      "hours": 10,
+      "title": "Extend verified parsing to cells PDFs and chart sources",
+      "requirements": [
+        "R1",
+        "R3",
+        "R11"
+      ],
+      "steps": "Consume the tested Apple 2021 HTML parser rather than rebuilding its completed work. Add self-describing table cells and parent grids with raw/normalized units, periods, footnotes and source coordinates. Add Docling PDF extraction on checked fixtures and original chart image locators. Expand the initial Apple/Microsoft manifest and record unsupported layouts and chart availability. Distinguish HTML/PDF renditions and avoid duplicate fact ingestion.",
+      "done": "Checked HTML/PDF cell fixtures, full parent tables, image/source manifests and deterministic records have resolvable provenance. Existing 316 narratives and three parent tables remain a preserved starting artifact, not final corpus coverage.",
+      "course_concept": "KR ontology and grounded chart evidence",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-03"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-05",
+      "owner": "Shanay",
+      "hours": 8,
+      "title": "Independently validate canonical data and restore behavior",
+      "requirements": [
+        "R2",
+        "R3",
+        "R13"
+      ],
+      "steps": "Check representative source facts, periods, scales, parent links and deterministic IDs from the prior package. Validate row-to-ID mappings, metadata sidecars and a clean DVC restore with equal hashes. Retain any existing Chroma/MiniLM regression artifacts separately. Pin environment/configuration and validate storage replacement rules before the BGE/FAISS build.",
+      "done": "One canonical data package and restore log reproduce the same IDs, hashes and counts; malformed or mismatched metadata fails. This is input validation, not a claim that FAISS is complete.",
+      "course_concept": "Knowledge representation integrity and reproducibility",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-04"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-06",
+      "owner": "Likhit",
+      "hours": 10,
+      "title": "Build BGE exact FAISS and corpus coverage",
+      "requirements": [
+        "R1",
+        "R2"
+      ],
+      "steps": "Use bge-base-en-v1.5 with pinned preprocessing/revision and normalized 768-dimensional vectors. Build exact IndexFlatIP with stable evidence/metadata mapping, separate parent-table storage and compatible manifests. Verify duplicate IDs, dimensions, filtered results, stale-record cleanup, rebuild and reload. Continue corpus expansion toward five Apple/five Microsoft filings and ten technology companies; show actual parsed/indexed counts and failures.",
+      "done": "Checked narrative and cell retrieval survive restart and identical reruns. Source/index hashes and required company/filing coverage reconcile. IVF-PQ is not a release requirement.",
+      "course_concept": "Transformer embeddings and source identity",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-05"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-07",
+      "owner": "Pavan",
+      "hours": 10,
+      "title": "Implement cumulative retrieval stages and routing",
+      "requirements": [
+        "R3",
+        "R10",
+        "R12"
+      ],
+      "steps": "Use the frozen record/index interfaces. Implement A-F flags for section chunks, table cells/parent expansion, BM25 and RRF k=60, eligibility and bge-reranker-base, and bounded narrative/numerical/chart routing. Keep the chart tier unavailable until descriptions exist. Preserve component ranks, IDs and complete evidence under the common budget. Use existing LangChain where it participates usefully; do not require a framework rewrite.",
+      "done": "A-F traces isolate each stage; exact-term, semantic, TOC, no-result, missing-metric and context-budget cases pass with preserved IDs. Disabled streams issue no query.",
+      "course_concept": "DL cross-encoding with explicit reasoning preconditions",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-06"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-08",
+      "owner": "Rushil",
+      "hours": 10,
+      "title": "Integrate real models calculations and chart descriptions",
+      "requirements": [
+        "R4",
+        "R5",
+        "R11",
+        "R12"
+      ],
+      "steps": "Reuse merged provider boundaries and pin a real Gemma 3/Ollama configuration. Implement restricted multi-step arithmetic with cited operands and typed period/unit/comparability rules. Produce source-linked chart descriptions, unknown-value handling and a candidate 50-question chart set with 15 development and 35 held-out items grouped by image. Record the separate Llama comparison configuration and remaining hardware limits.",
+      "done": "Real model and failure traces, safe calculation/rule fixtures, linked chart captions and candidate chart questions exist. No arbitrary generated Python executes, and unreadable chart values stay unknown.",
+      "course_concept": "KR predicates and inference plus NLP and vision transformers",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-07"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-09",
+      "owner": "Gowtham",
+      "hours": 8,
+      "title": "Connect the full interface and measure real throughput",
+      "requirements": [
+        "R4",
+        "R6",
+        "R11"
+      ],
+      "steps": "Connect Gradio to real narrative/cell/chart retrieval, calculations, route traces and source links. Check session isolation and explicit invalid/not-ready/no-evidence/service-error states. Run separate development smoke cases. Measure actual model, extraction/caption and evaluator throughput on intended hardware; pass the measurements to Sudhansh for the full-run estimate.",
+      "done": "A notebook-free question-to-source walkthrough works for narrative, numerical and chart evidence with honest failures; real timing and memory evidence are saved.",
+      "course_concept": "Explainable application behavior and measurement",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-08"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-10",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Define full evaluation research question and capacity gate",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12"
+      ],
+      "steps": "Build versioned FinQA, TAT-QA and FinanceBench loaders and A-G runner with source-equivalent evidence mappings, no label leakage and all promised metrics. Freeze dataset eligibility and proposed splits; preserve 14 local cases only as smoke tests. Consolidate chart labels, research question, report/course sections and role records. Estimate full machine hours using actual case counts and measured generation/RAGAS throughput.",
+      "done": "Case inventory, scoring/split protocol, audit sampling rule, report outline and quantified full-run capacity decision exist. Slow or inaccessible suites remain explicit scope risks rather than being replaced silently.",
+      "course_concept": "Experimental controls and course-linked hypotheses",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-09"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-11",
+      "owner": "Ujjwal",
+      "hours": 10,
+      "title": "Independently check labels and development runs",
+      "requirements": [
+        "R1",
+        "R2",
+        "R7",
+        "R11"
+      ],
+      "steps": "Verify chart questions and labels against images, benchmark evidence mappings, units/periods and duplicate-source split leakage. Check Likhit index integrity and source coverage. Run development cases only, log outputs and identify parser/retrieval/model/math defects. Require 50 checked chart cases or declare the exact shortfall before freeze.",
+      "done": "Independently checked gold/source manifests, unchanged splits, development results and concrete defect reproductions exist. No held-out answer is used for tuning.",
+      "course_concept": "Label validity and representation checks",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-10"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-12",
+      "owner": "Pavan",
+      "hours": 8,
+      "title": "Fix development defects and freeze A through G",
+      "requirements": [
+        "R3",
+        "R7",
+        "R10",
+        "R12"
+      ],
+      "steps": "Repair bounded development defects and finalize route thresholds using development data only. Verify chart G integration, complete-context IDs and calculator rule failures. Lock A-G and shared BGE/model/prompt/calculator/five-passage/token settings; freeze the full evaluation list and stratified 50-output manual audit selection rule. Save integration and course review evidence.",
+      "done": "One frozen experiment manifest, reviewed rule/context behavior and reproducible run commands exist. An unresolved mandatory gate stays open; no fake dependency artifact is substituted.",
+      "course_concept": "Controlled ablation and reasoning verification",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-11"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-13",
+      "owner": "Gowtham",
+      "hours": 10,
+      "title": "Run full evaluation and capture the demo",
+      "requirements": [
+        "R6",
+        "R7",
+        "R11",
+        "R13"
+      ],
+      "steps": "Execute or checkpoint all frozen A-G runs over the named benchmark corpora and chart split, plus the separate Llama comparison. Save rankings, selected context, statuses, answers, score inputs, timings and failures. Capture a real source-linked backup demo. Keep the legacy 14-case smoke output separate from the final experiment.",
+      "done": "The full case-variant ledger accounts for completed, failed and running cases, with resumable artifacts and measured outputs. No short interim run is called the completed proposal experiment.",
+      "course_concept": "Reproducible AI evaluation",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-12"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-14",
+      "owner": "Shanay",
+      "hours": 10,
+      "title": "Verify clean setup tracking and deployment readiness",
+      "requirements": [
+        "R2",
+        "R6",
+        "R8",
+        "R13"
+      ],
+      "steps": "Restore the frozen data/index, rebuild or reopen on a clean environment, verify CI and DVC/MLflow records, and check real model/network access. Prepare a Docker/hosting route only if resources permit, using smoke cases separate from held-out data. Save hosting success or failure honestly; the reproducible local demo remains required. Continue immutable evaluation jobs if needed without changing their settings.",
+      "done": "Clean-machine logs, pinned environment, source/model/index/run identities and a usable local release route exist. Any hosted URL has actual pipeline checks; a Dockerfile alone is not deployment proof.",
+      "course_concept": "Supporting engineering for reproducible AI",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-13"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-15",
+      "owner": "Likhit",
+      "hours": 8,
+      "title": "Write methods and begin the fifty-output audit",
+      "requirements": [
+        "R3",
+        "R7",
+        "R8",
+        "R11"
+      ],
+      "steps": "Write source, parsing, indexing, chart and method sections from saved evidence. Audit the preselected 50 outputs against included context and original sources using gold labels you did not author; defer any self-authored-label cases to Pavan November 19. Compare with RAGAS and classify unsupported claims, numerical errors and abstentions. Keep incomplete benchmark runs explicit.",
+      "done": "Evidence-based method draft, independently audited output records, unresolved case IDs and disagreement log exist; authored labels are not self-certified.",
+      "course_concept": "Source-grounded reasoning and faithfulness",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-14"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-16",
+      "owner": "Ujjwal",
+      "hours": 8,
+      "title": "Audit results and prepare the six-slide release candidate",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12",
+        "R13"
+      ],
+      "steps": "Recompute sampled scores and paired bootstrap intervals from the frozen outputs; verify failure denominators, source coverage and configuration equality. Review data/index evidence and report claims. Prepare exactly six slides in guideline order, contribution/viva notes and a release inventory with archive hashes. Record any incomplete audit or evaluation for the checkpoint.",
+      "done": "Independent metric checks, results draft, six slides and release-candidate inventory agree with actual evidence; unfinished requirements remain visible.",
+      "course_concept": "Measurement uncertainty and defensible AI results",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-15"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-17",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Review the internal proposal release target",
+      "requirements": [
+        "R7",
+        "R8",
+        "R12",
+        "R13"
+      ],
+      "steps": "Compare every requirement with implementation, full-run/audit status and the course rubric. Review reproducibility and the report, source references, seven-member contributions and AI disclosure. Freeze a release candidate if all gates pass; otherwise record remaining work and use only the dated recovery slots. The official demo/submission dates remain November 21/22.",
+      "done": "Internal checkpoint states complete/partial/unmet requirements, exact revision, remaining machine hours and release risks. November 17 is a target, not permission to label incomplete work complete.",
+      "course_concept": "Hypothesis assessment and accountability",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-16"
+      ],
+      "phase": "implementation_and_evaluation"
+    },
+    {
+      "date": "2026-11-18",
+      "owner": "Rushil",
+      "hours": 8,
+      "title": "Use the recovery slot for numerical and chart defects",
+      "requirements": [
+        "R4",
+        "R5",
+        "R7",
+        "R11"
+      ],
+      "steps": "Resolve reproducible critical defects from the checkpoint within this slot, or verify final provider, calculator and chart regressions if none remain. Preserve the frozen experiment when possible. Any output-affecting change gets a new version and affected A-G reruns, with held-out reuse disclosed; no new feature scope is added.",
+      "done": "Critical fixes have reproductions and regression evidence, or a verified unchanged release trace exists. Updated outputs are versioned honestly.",
+      "course_concept": "Reasoning and model failure analysis",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-17"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-19",
+      "owner": "Pavan",
+      "hours": 8,
+      "title": "Finish the independent audit and release review",
+      "requirements": [
+        "R7",
+        "R8",
+        "R10",
+        "R12"
+      ],
+      "steps": "Complete any remaining manual audit cases whose labels Likhit authored so the combined independent audit reaches 50 outputs. Review high-risk disagreements and sampled metrics, retrieval/context regressions and report/course claims. Check Rushil recovery changes on this later date and reconcile all result versions.",
+      "done": "Fifty independent audit outputs, disagreement analysis and final course/release review exist, with any unmet commitments explicitly recorded.",
+      "course_concept": "Independent reasoning and experimental review",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-18"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-20",
+      "owner": "Sudhansh",
+      "hours": 8,
+      "title": "Freeze the single final package",
+      "requirements": [
+        "R6",
+        "R8",
+        "R13"
+      ],
+      "steps": "Finalize the unified report, exact six slides, results/audit files, contribution and AI-use sections, run instructions and backup demonstration. Verify source/code/configuration/archive hashes and submission access. Freeze the complete demo package and name any unmet requirement; do not assign another member same-day work.",
+      "done": "One frozen runnable archive, final report, six slides, complete evidence inventory and verified backup demo exist before assessment.",
+      "course_concept": "Defending the course-linked application",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-19"
+      ],
+      "phase": "recovery_and_freeze"
+    },
+    {
+      "date": "2026-11-21",
+      "owner": "Gowtham",
+      "hours": 3,
+      "title": "Demo setup and delivery",
+      "status": "planned",
+      "assessment_attendance": "Every member attends their own required viva; no extra development assignment.",
+      "dependency_dates": [
+        "2026-11-20"
+      ],
+      "phase": "assessment_or_submission"
+    },
+    {
+      "date": "2026-11-22",
+      "owner": "Sudhansh",
+      "hours": 2,
+      "title": "Final submission and receipt verification",
+      "status": "planned",
+      "dependency_dates": [
+        "2026-11-21"
+      ],
+      "phase": "assessment_or_submission"
+    }
+  ],
+  "revision_id": "unified-proposal-sequential-2026-11-03",
+  "internal_checkpoint_kind": "proposal_release_candidate_target",
+  "recovery_dates": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20"
+  ],
+  "dependency_policy": "A failed prerequisite blocks dependent real integration; only the sole assigned owner handles bounded repairs or rebooks a later sole-owner slot.",
+  "historical_evidence": {
+    "provider": {
+      "pr": 3,
+      "state_at_inspection": "merged",
+      "main_sha": "6f9f2364fd541e0e86503db2e2662ff8565514c4"
+    },
+    "parser": {
+      "pr": 4,
+      "state_at_inspection": "open_unmerged",
+      "head_sha": "384beea9baf196e4b9596b8a304cd022dc3fe354",
+      "assignment_date": "2026-11-02",
+      "execution_date": "2026-11-03",
+      "reported_narrative_records": 316,
+      "reported_parent_tables": 3,
+      "reported_local_tests": 79,
+      "hosted_ci": "success",
+      "verification_note": "GitHub metadata and submitted artifacts inspected; application checks not rerun for this planning change."
+    }
+  }
+}

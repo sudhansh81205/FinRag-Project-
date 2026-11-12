@@ -4,7 +4,7 @@ FinRAG is a prototype for answering questions about SEC 10-K annual reports usin
 
 ## Team plan
 
-The unified plan uses **seven members and exactly one assigned worker per day**. November 17, 2026 is the internal release target, followed by recovery/freeze slots and the assessment/submission dates recorded in the current PRD.
+The current plan uses **seven members and exactly one assigned worker per day**. The submission deadline is **November 17, 2026**, under the latest user instruction. **Shanay owns November 17** for final verification, release and submission. Earlier calendars are preserved as history.
 
 - [Read the PRD](docs/plan/PRD.md)
 - [Download the editable PRD](docs/plan/FinRAG_PRD.docx)
@@ -13,6 +13,8 @@ The unified plan uses **seven members and exactly one assigned worker per day**.
 - [Understand the nightly review process](docs/review/README.md)
 - [Read the November 5 repair review and remaining gates](docs/reports/2026-11-05_gap-repair-review.md)
 - [Learn the repaired code and next-owner handoff](docs/handoffs/2026-11-05_gap-repair-learning.md)
+- [Review the combined November 12 repairs](docs/reports/2026-11-12_integration-review.md)
+- [Use the current code handoff](docs/handoffs/2026-11-12_integrated-repairs.md)
 
 ## Run the shared project
 
@@ -55,7 +57,7 @@ the current unified plan rather than the older handoff's scheduling assumptions.
 
 The single current [PRD](docs/plan/PRD.md) and its [editable Word copy](docs/plan/FinRAG_PRD.docx) consolidate the submitted proposal, professor feedback, course requirements and sequential implementation advice. The [dated tasks](docs/plan/TASK_REQUIREMENTS.md), [schedule](docs/plan/schedule.json), [course mapping](docs/plan/COURSE_ALIGNMENT.md) and [review guide](docs/review/README.md) use that same revision. Older plans in history are reference only.
 
-Exactly one member is assigned per date. November 17 is the internal release target, November 18-20 are recovery/freeze slots, November 21 is demo/viva and November 22 is final submission per the supplied v2 guidelines. Features and hours in the plan are requirements/estimates, not completion claims. Current code/PR evidence determines implementation status; parser PR #4 is separate from this planning update.
+Exactly one member is assigned per date through November 17. Pavan handles November 12 integration, Likhit November 13 corpus and representations, Gowtham November 14 interface and runner, Ujjwal November 15 independent approvals and runs, Sudhansh November 16 results and reporting, and Shanay November 17 release and submission. The old later recovery dates are superseded. Features and hours are requirements and estimates, not completion claims. The current integration report distinguishes code fixes, accepted inputs and unverified runtime/evaluation gates.
 
 ## Canonical data acceptance
 

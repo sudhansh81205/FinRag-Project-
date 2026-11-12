@@ -32,6 +32,9 @@ jobs:
       run: |
         pytest -v
 
+    - name: Verify frozen candidate chart split and asset integrity
+      run: python scripts/verify_chart_set.py
+
     - name: Check setup entry point without data or credentials
       run: python app.py --check
 
@@ -53,6 +56,7 @@ jobs:
       with:
         name: environment-smoke
         path: |
+          output/chart-set-verification.json
           output/environment/
           output/shanay/
         if-no-files-found: warn

@@ -1,4 +1,4 @@
-# Integration requirements after the November 3 revision
+# Integration requirements through November 17
 
 The proposal-aligned PRD supersedes the earlier reduced stack/scope decision. Preserve already useful prototype code while implementing the final interfaces; no prototype feature is considered complete merely because a helper exists.
 

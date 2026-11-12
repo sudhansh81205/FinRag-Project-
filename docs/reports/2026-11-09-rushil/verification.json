@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "name": "pytest",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 515.602,
+      "output_tail": "........................................................................ [ 35%]\n........................................................................ [ 71%]\n.........................................................                [100%]\n=============================== warnings summary ===============================\n<frozen importlib._bootstrap>:491\n  <frozen importlib._bootstrap>:491: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute\n\n<frozen importlib._bootstrap>:491\n  <frozen importlib._bootstrap>:491: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute\n\n<frozen importlib._bootstrap>:491\n  <frozen importlib._bootstrap>:491: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n201 passed, 3 warnings in 503.68s (0:08:23)\n"
+    },
+    {
+      "name": "ruff",
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.64,
+      "output_tail": "All checks passed!\n"
+    },
+    {
+      "name": "pip-check",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 2.769,
+      "output_tail": "No broken requirements found.\nWARNING: The directory '/Users/rushilmohan/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+    },
+    {
+      "name": "setup",
+      "command": [
+        ".venv/bin/python",
+        "app.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.197,
+      "output_tail": "{\n  \"status\": \"index_not_ready\",\n  \"blockers\": [\n    \"No source filing found. Add the selected Apple 2021 filing during ingestion.\",\n    \"No BGE/exact FAISS catalog found. Run the source audit and scripts/build_index.py; see docs/INDEXING.md.\",\n    \"Answering is disabled in this setup build until the filing, persistent index and source checks are connected.\"\n  ]\n}\n"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.041,
+      "output_tail": ""
+    }
+  ],
+  "passed": true,
+  "reported_head_at_completion": "23a046b1a4f1fa792ed55b61f0e40154ed5a2923",
+  "full_suite_started_at_revision": "34c99ce",
+  "scope_note": "Full 201-test suite began before the subsequent deterministic result renderer commit. Final renderer and source-context/provider/planner/chart paths were checked again with 111 focused tests on 23a046b. Full-suite completion HEAD is recorded separately to avoid conflating import-time code with later edits.",
+  "final_focused_revision": "23a046b1a4f1fa792ed55b61f0e40154ed5a2923"
+}

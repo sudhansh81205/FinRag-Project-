@@ -52,7 +52,7 @@ List fixed findings with verification evidence, still-open findings, regressions
 - Acceptance checks and verification commands:
 - Scope tradeoff if blockers do not fit the assigned hours:
 
-Use the November 3 schedule through November 20; November 21/22 are assessment/submission only. Never assign a second active member on a date.
+Use the November 12 schedule through November 17, with Shanay the final-day owner. Preserve earlier dated assignments as history. Never assign a second active member on a date.
 
 ## Prompts for the next owner
 
@@ -82,4 +82,4 @@ State missing evidence and required user action. Record report paths and actual 
 
 Check all required datasets, 50 chart-only labels, the separate 50-output faithfulness audit, paired settings, 1% numerical tolerance, retrieval metrics, RAGAS, median latency and 95% confidence intervals. Keep capacity and scope shortfalls visible. A test count alone is not a course contribution or financial-accuracy result.
 
-Unified handoff gate: use schedule.json dependency_dates and phase. Preserve merged provider work and distinguish parser PR #4 from main until its actual merge. Likhit owns BGE/FAISS; Ujjwal owns environment/data contracts and audits. The 14 local cases are smoke checks only. Review the complete A-G, chart and course commitments.
+Unified handoff gate: use current schedule.json dependency_dates and phase. Verify actual main and PR states; historical reports do not establish today's merge state. Likhit owns BGE/FAISS; Ujjwal owns environment/data contracts and audits. The 14 local cases are smoke checks only. Review the complete A-G, chart and course commitments.

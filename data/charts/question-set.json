@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "name": "FinRAG candidate chart set 50 v1",
+  "question_files": [
+    "apple-2021-candidate-questions.json",
+    "heldout-35-candidate-questions.json"
+  ],
+  "source_manifest": "chart-sources.json",
+  "target": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "dev_file_sha256_unchanged": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
+  "status": "candidate_pending_independent_review",
+  "evaluation_ready": false,
+  "split_rule": "Entire original image and its alternate crops/renditions stay in one split. Apple dev only; five different issuer sources heldout only.",
+  "freeze_note": "Heldout questions/answers are not passed to caption generation or development smoke; no heldout answering/scoring performed.",
+  "limitations": [
+    "Six image groups, not fifty independent images. All sources are stock-performance line charts; limited chart-type diversity.",
+    "Gold labels are author-checked candidates, not independently approved. Some graph facts also occur in adjacent source tables; candidates use chart-specific markers/styles/axes and record image-only evidence.",
+    "These additional chart assets do not establish wider narrative/table parsing, BGE indexing or A-G application readiness."
+  ],
+  "question_files_sha256": {
+    "apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
+    "heldout-35-candidate-questions.json": "437e963dcba3ee1eb3f4d371556e213cbc6a3a7ca17ddfd70149919567315324"
+  }
+}

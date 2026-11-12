@@ -1,0 +1,107 @@
+{
+  "status": "candidate",
+  "evidence_id": "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97:caption-v1",
+  "content": "Generated chart description; independently unreviewed. {\"title\": \"Comparison of Five-Year Cumulative Total Return\", \"chart_type\": \"line chart\", \"x_axis\": \"Year\", \"y_axis\": \"$\", \"units\": \"USD\", \"periods\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\"], \"series\": [\"Adobe Inc.\", \"S&P 500 Index\", \"S&P 500 Software & Services\"], \"unknowns\": [\"Readable values are not printed on the chart.\"], \"readable_values\": []}",
+  "description": {
+    "title": "Comparison of Five-Year Cumulative Total Return",
+    "chart_type": "line chart",
+    "x_axis": "Year",
+    "y_axis": "$",
+    "units": "USD",
+    "periods": [
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "series": [
+      "Adobe Inc.",
+      "S&P 500 Index",
+      "S&P 500 Software & Services"
+    ],
+    "unknowns": [
+      "Readable values are not printed on the chart."
+    ],
+    "readable_values": []
+  },
+  "source": {
+    "source_asset_id": "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+    "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+    "asset": "assets/18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97.png",
+    "company": "Adobe Inc.",
+    "ticker": "ADBE",
+    "accession": "0000796343-25-000004",
+    "fiscal_period_end": "2024-11-29",
+    "title": "Comparison of Five-Year Cumulative Total Return",
+    "page": 101,
+    "source_locator": "PDF page 101; top-left point rectangle [55, 265, 565, 565]",
+    "pdf_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+    "pdf_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe",
+    "sec_source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+    "original_image_group": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+    "extraction": {
+      "method": "render_crop",
+      "bbox_top_left_points": [
+        55,
+        265,
+        565,
+        565
+      ],
+      "dpi": 144
+    },
+    "renderer": "pdftoppm version 26.05.0",
+    "source_kind": "original_pdf_chart_region_render",
+    "author_visual_check": "Original page and extracted graph checked; neighboring numerical table excluded.",
+    "independent_review": "pending",
+    "filing_identity_note": "Pinned inventory rendition; Form 10-K cover at PDF page 1. Chart-inclusion/independent audit pending.",
+    "section_note": "Annual-report stock-performance graph. Regulatory non-filed-material notices are preserved in the linked original PDF; no legal filing-status claim for the graph.",
+    "filing_has_canonical_narrative_table_package": false,
+    "chart_description_indexed": false
+  },
+  "metadata": {
+    "type": "chart_description",
+    "company": "Adobe Inc.",
+    "accession": "0000796343-25-000004",
+    "source_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+    "source_locator": "PDF page 101; top-left point rectangle [55, 265, 565, 565]",
+    "page": 101,
+    "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97",
+    "content_sha256": "30a6c205cad229eeb2bf0b739f1fb18b220f4529f5a093a9e9cfb1e04a747bd5",
+    "generated": true,
+    "independent_review": "pending"
+  },
+  "model_fingerprint": {
+    "model": "gemma3:4b",
+    "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "family": "gemma3",
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "capabilities": [
+      "completion",
+      "vision"
+    ],
+    "model_context_length": 131072
+  },
+  "generation": {
+    "prompt_sha256": "320ce4ef97839a593e6c48342ed156cff6d660789d132be45dee43ca608e310a",
+    "schema_sha256": "f2f037214a94538a9618d95d493f92c28ae213934a7111d2a52b44e0ccd5c261",
+    "point_values_enabled": false,
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 768,
+      "seed": 42
+    },
+    "timing": {
+      "total_duration": 42900926042,
+      "load_duration": 22405625,
+      "prompt_eval_count": 492,
+      "prompt_eval_duration": 12955685000,
+      "eval_count": 186,
+      "eval_duration": 29492249000
+    }
+  },
+  "wall_seconds": 43.212
+}

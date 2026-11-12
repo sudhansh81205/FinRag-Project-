@@ -1,0 +1,18 @@
+{
+  "status": "candidate_scope_unmet",
+  "counts": {
+    "dev": 15,
+    "heldout": 0
+  },
+  "distinct_original_images": 1,
+  "target": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "shortfall": {
+    "dev": 0,
+    "heldout": 35
+  },
+  "independent_review": "pending",
+  "evaluation_ready": false
+}
