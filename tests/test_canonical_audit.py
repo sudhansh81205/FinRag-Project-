@@ -240,7 +240,9 @@ def test_artifact_startup_failure_still_saves_diagnostic(tmp_path, monkeypatch):
     monkeypatch.setattr(command, "build_report", lambda *_: pytest.fail("Startup guard should stop here"))
     assert command.main(["--artifacts-dir", str(blocked), "--output", str(output)]) == 1
     report = json.loads(output.read_bytes())
-    assert report["status"] == "failed" and report["exception_type"] == "FileExistsError"
+    assert report["status"] == "failed"
+    # mkdir beneath a regular file is reported differently on Windows and POSIX.
+    assert report["exception_type"] in {"FileExistsError", "NotADirectoryError"}
     assert blocked.read_text(encoding="utf-8") == "not a directory"
 
 

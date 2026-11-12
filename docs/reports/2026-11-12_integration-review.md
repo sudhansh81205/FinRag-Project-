@@ -25,6 +25,8 @@ The chart label loader now requires a separate all-50 independent human decision
 
 The full stable code-repair revision passed **341 tests** locally, including native FAISS and the calculation/chart prompt-identity regression. Ruff passed. The full published-revision CI result is recorded by GitHub checks, rather than treating a local result as hosted execution. Three native FAISS SWIG deprecation warnings were observed; they are not suppressed or described as application failures.
 
+The first Linux CI run found one Windows-specific test expectation: creating a directory below an existing file raises NotADirectoryError on POSIX and FileExistsError on Windows. Both correctly produce the saved failure report. The test now checks that narrow OS error family, preserves the original file, and requires the nonzero result; no application failure was hidden or converted to success.
+
 The actual bounded source package audit passed: 538 records including three parents, 535 candidates, 316 narratives, 219 cells and eleven PDF checks. Candidate chart verification passed 50 questions with 15 development, 35 held-out and six original images, but independent approval/evaluation readiness remains false. `app.py --check` honestly remains `index_not_ready`; the complete UI is not enabled by this repair.
 
 Current configured model is digest-pinned `gemma3:4b`, but a fresh Ollama readiness request failed with ConnectionError. PR8's earlier Mac live traces remain historical submitted evidence; no new live Gemma, real BGE encoding, cross-encoder inference, Llama comparison or paid RAGAS run was claimed. Native FAISS storage tests use declared synthetic vectors, and provider-boundary tests use labelled injected fixtures.
