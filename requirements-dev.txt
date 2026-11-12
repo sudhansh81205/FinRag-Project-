@@ -3,6 +3,9 @@
 pytest==9.2.0
 ruff==0.17.3
 requests==2.34.2
+# Native exact-index tests use synthetic vectors; no model weights are downloaded.
+faiss-cpu==1.13.2
+numpy==2.5.4
 -r requirements-environment.txt
 # Storage tests use real FAISS with synthetic vectors, without downloading BGE.
 faiss-cpu==1.13.2

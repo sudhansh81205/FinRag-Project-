@@ -4,17 +4,16 @@ No live model calls, no BGE downloads.  All fixtures use synthetic records
 identical in shape to canonical ExactStore records so the same interfaces
 are exercised.
 
-Stage coverage:
-  A/B  dense-only  — exercised in test_exact_index.py; imported helpers here
+Component coverage (not a complete A-G evaluation):
   C    parent expansion within budget
-  D    BM25 standalone
-  E    RRF fusion (dense + BM25)
-  F    cross-encoder reranking (stubbed)
+  D    BM25 plus RRF fusion
+  E    hierarchical restriction and cross-encoding (synthetic predictor)
+  F    bounded routing and explicit unavailable chart tier
   --   disabled-stream contract (no query issued)
   --   chart tier blocked
 """
 
-import math
+from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 import pytest
@@ -23,11 +22,13 @@ from src.retrieval.bm25 import (
     BM25Index,
     BM25Retriever,
     HybridRRFRetriever,
+    RetrievalStageError,
+    RoutingPolicy,
     expand_parents,
     reciprocal_rank_fusion,
 )
 from src.retrieval.dense import DenseRetriever
-
+from src.retrieval.eligibility import eligible
 
 # ---------------------------------------------------------------------------
 # Shared fixtures
@@ -265,7 +266,7 @@ def _make_hybrid(narrative_on=True, table_on=True, with_reranker=False):
     reranker = None
     if with_reranker:
         reranker = MagicMock()
-        reranker.predict.return_value = [0.9, 0.8, 0.7, 0.6, 0.5]
+        reranker.predict.side_effect = lambda pairs: [1.0 / (i + 1) for i in range(len(pairs))]
 
     return HybridRRFRetriever(dense_stub, bm25_stub, reranker=reranker, rrf_k=60)
 
@@ -279,11 +280,12 @@ class TestHybridRRFRetriever:
         assert "bm25" in stage_names
         assert "rrf_fusion" in stage_names
 
-    def test_included_evidence_ids_are_set(self):
+    def test_ranked_ids_do_not_claim_prompt_inclusion(self):
         hybrid = _make_hybrid()
         result = hybrid.retrieve("revenue", store_parents=PARENTS)
-        assert isinstance(result["included_evidence_ids"], list)
-        assert len(result["included_evidence_ids"]) > 0
+        assert result["ranked_evidence_ids"] == [c["evidence_id"] for c in result["all_evidence"]]
+        assert result["ranked_evidence_ids"]
+        assert "included_evidence_ids" not in result
 
     def test_chart_tier_always_blocked(self):
         hybrid = _make_hybrid()
@@ -342,98 +344,310 @@ class TestHybridRRFRetriever:
         assert result.get("insufficient_evidence") is True
 
 
-# ---------------------------------------------------------------------------
-# F13 coordinate predicate unit tests
-# ---------------------------------------------------------------------------
-
-class TestF13CoordinatePredicates:
-    """Confirm that the F13 fix correctly identifies invalid span bboxes.
-
-    These tests exercise the validation logic directly (not through audit_package
-    which requires the real Apple source package).  They confirm the predicate
-    semantics: finite, non-degenerate, within-page.
-    """
-
-    @staticmethod
-    def _check(bbox, page_w=612, page_h=792):
-        """Return True if bbox passes all F13 predicates, False otherwise."""
-        if bbox is None or len(bbox) != 4:
-            return False
-        if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in bbox):
-            return False
-        x0, y0, x1, y1 = bbox
-        if not (x0 < x1 and y0 < y1):
-            return False
-        if not (0 <= x0 and x1 <= page_w and 0 <= y0 and y1 <= page_h):
-            return False
-        return True
-
-    def test_valid_bbox_passes(self):
-        assert self._check([10, 20, 100, 50]) is True
-
-    def test_placeholder_negative_values_fail(self):
-        # The probe from F13 discovery: [-999999, -999999, -999998, -999998]
-        assert self._check([-999999, -999999, -999998, -999998]) is False
-
-    def test_non_finite_nan_fails(self):
-        assert self._check([float("nan"), 0, 100, 50]) is False
-
-    def test_non_finite_inf_fails(self):
-        assert self._check([float("inf"), 0, 100, 50]) is False
-
-    def test_zero_width_degenerate_fails(self):
-        assert self._check([50, 20, 50, 80]) is False  # x0 == x1
-
-    def test_reversed_bbox_fails(self):
-        assert self._check([100, 20, 10, 50]) is False  # x0 > x1
-
-    def test_exceeds_page_width_fails(self):
-        assert self._check([10, 20, 700, 50], page_w=612) is False
-
-    def test_none_bbox_fails(self):
-        assert self._check(None) is False
-
-    def test_wrong_length_fails(self):
-        assert self._check([10, 20, 100]) is False
-
-
-# ---------------------------------------------------------------------------
-# F14 guard unit test
+# F13/F14 production behavior belongs in evidence-audit/diagnostic integration
+# tests, not a copied predicate or source-text test. Retrieval regressions follow.
 # ---------------------------------------------------------------------------
 
-class TestF14DiagnosticGuard:
-    """Confirm that the F14 fix moves artifacts.mkdir inside the guarded block.
 
-    We verify the patch by inspecting the source code directly rather than
-    executing the full main() path (which requires bs4, mlflow, dvc and the
-    real Apple package).  The structural check confirms that artifacts.mkdir
-    can no longer raise before the report write.
-    """
+def _scoped_hybrid(*, base_filters=None, variant="D", reranker=None, **kwargs):
+    records = [
+        _record("m1", "revenue revenue revenue", ticker="MSFT"),
+        _record("a1", "revenue", ticker="AAPL"),
+        _record("a0", "revenue prior year", ticker="AAPL"),
+    ]
+    records[0]["metadata"]["fiscal_year"] = 2021
+    records[1]["metadata"]["fiscal_year"] = 2021
+    records[2]["metadata"]["fiscal_year"] = 2020
+    spec = SimpleNamespace(manifest_fields=lambda: {"model": "synthetic-encoder"})
 
-    def test_mkdir_inside_guarded_function(self):
-        """The mkdir call must appear inside _guarded_build, not before guarded()."""
-        import pathlib
-        source = pathlib.Path("scripts/verify_canonical_data.py").read_text(encoding="utf-8")
-        # After the F14 fix, artifacts.mkdir must be inside _guarded_build
-        assert "_guarded_build" in source, "F14 fix not applied: _guarded_build missing"
-        # The bare artifacts.mkdir(parents=True, exist_ok=False) must NOT appear
-        # outside the nested function (i.e., the old top-level call is gone).
-        import re
-        # Find all mkdir calls that are NOT inside the _guarded_build function
-        # Simple structural check: the guarded_build def must precede mkdir
-        guarded_pos = source.find("def _guarded_build()")
-        mkdir_pos = source.find("artifacts.mkdir(parents=True, exist_ok=False)")
-        assert guarded_pos != -1, "F14 fix: _guarded_build function not found"
-        assert mkdir_pos != -1, "F14 fix: artifacts.mkdir call not found"
-        # mkdir must appear AFTER the _guarded_build function definition
-        assert mkdir_pos > guarded_pos, (
-            "F14 fix: artifacts.mkdir still executes before the guarded block"
-        )
+    class Store:
+        parents = {}
+        def __init__(self):
+            self.spec, self.searches = spec, []
 
-    def test_output_parent_mkdir_added(self):
-        """The fix must also guard the output directory creation."""
-        import pathlib
-        source = pathlib.Path("scripts/verify_canonical_data.py").read_text(encoding="utf-8")
-        assert "args.output.parent.mkdir" in source, (
-            "F14 fix: output parent mkdir guard missing"
-        )
+        def search(self, vector, *, k, filters):
+            self.searches.append((k, filters))
+            # An excluded issuer leads the unfiltered order: post-top-k filtering
+            # would lose a valid AAPL match at k=1.
+            return [
+                {**record, "score": 1.0 / (i + 1), "score_type": "cosine"}
+                for i, record in enumerate(records)
+                if record["metadata"]["type"] == filters["type"] and eligible(
+                    record, {key: value for key, value in filters.items() if key != "type"})
+            ][:k]
+
+    encoder = SimpleNamespace(spec=spec, encode=MagicMock(return_value=[[1.0]]))
+    store = Store()
+    dense = DenseRetriever(store, encoder, filters=base_filters)
+    lexical = BM25Retriever(records, filters=base_filters)
+    hybrid = HybridRRFRetriever(dense, lexical, variant=variant,
+        expand_cell_parents=False, reranker=reranker, **kwargs)
+    return hybrid, store, encoder
+
+
+def test_request_filters_apply_before_both_top_k_and_do_not_leak_to_next_request():
+    hybrid, store, _ = _scoped_hybrid()
+    for ticker in ("AAPL", "MSFT", "AAPL"):
+        result = hybrid.retrieve("revenue", top_k_text=1, top_k_tables=0,
+                                 filters={"ticker": ticker, "fiscal_year": 2021})
+        assert [item["metadata"]["ticker"] for item in result["text_evidence"]] == [ticker]
+        assert len(result["text_evidence"]) == 1
+        components = result["text_evidence"][0]["rrf_component_ranks"]
+        assert set(components) == {"list_0_rank", "list_1_rank"}
+        assert store.searches[-1][1]["ticker"] == ticker
+    assert hybrid.dense.filters == hybrid.bm25.filters == {}
+
+
+def test_constructor_scope_cannot_be_widened_by_request():
+    hybrid, store, encoder = _scoped_hybrid(base_filters={"ticker": "AAPL"})
+    result = hybrid.retrieve("revenue", filters={"ticker": "MSFT"})
+    assert result["status"] == "insufficient_evidence"
+    assert not store.searches
+    encoder.encode.assert_not_called()
+    assert hybrid.dense.filters == {"ticker": "AAPL"}
+
+
+@pytest.mark.parametrize("filters", [
+    {"unknown": "AAPL"}, {"ticker": True}, {"fiscal_year": 2021.0},
+    {"ticker": {"nested": "AAPL"}}, {"ticker": ["AAPL", False]},
+    {"ticker": ""}, {"type": "narrative_text"}, [], "AAPL",
+])
+def test_invalid_filter_is_rejected_before_any_search(filters):
+    hybrid, store, encoder = _scoped_hybrid()
+    with pytest.raises(ValueError):
+        hybrid.retrieve("revenue", filters=filters)
+    assert not store.searches
+    encoder.encode.assert_not_called()
+
+
+def test_mutating_request_list_cannot_change_constructor_scope():
+    scope = {"ticker": ["AAPL", "MSFT"]}
+    hybrid, _, _ = _scoped_hybrid(base_filters=scope)
+    scope["ticker"].clear()
+    result = hybrid.retrieve("revenue", filters={"ticker": "AAPL"}, top_k_tables=0)
+    assert result["text_evidence"]
+    assert hybrid.dense.filters == {"ticker": ["AAPL", "MSFT"]}
+
+
+def test_component_ignoring_eligibility_is_typed_failure():
+    hybrid = _make_hybrid()
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue", filters={"ticker": "MSFT"})
+    assert caught.value.code == "eligibility_violation"
+    assert caught.value.trace["status"] == "service_error"
+    assert caught.value.trace["all_evidence"] == []
+
+
+@pytest.mark.parametrize("scores", [
+    [], [0.1], [0.1] * 20, [float("nan")] * 6, [float("inf")] * 6,
+    [[0.1]] * 6, ["0.1"] * 6, [True] * 6,
+])
+def test_invalid_reranker_scores_never_return_fallback_evidence(scores):
+    hybrid = _make_hybrid(with_reranker=True)
+    hybrid.reranker.predict.side_effect = lambda pairs: scores
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue", store_parents=PARENTS)
+    assert caught.value.code == "reranker_failed"
+    assert caught.value.trace["status"] == "service_error"
+    assert caught.value.trace["all_evidence"] == []
+    assert caught.value.trace["text_evidence"] == []
+
+
+def test_cross_encoder_exception_is_typed_failure():
+    hybrid = _make_hybrid(with_reranker=True)
+    hybrid.reranker.predict.side_effect = RuntimeError("unavailable")
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue", store_parents=PARENTS)
+    assert caught.value.stage == "cross_encoder"
+    assert caught.value.trace["error_class"] == "RuntimeError"
+
+
+def test_successful_reranker_does_not_mutate_canonical_candidates_or_claim_model():
+    hybrid = _make_hybrid(with_reranker=True)
+    result = hybrid.retrieve("revenue", store_parents=PARENTS)
+    assert result["variant"] == "E" and result["ranking_applied"]
+    stage = next(stage for stage in result["stages"] if stage["stage"] == "cross_encoder_rerank")
+    assert stage["model"] == "unverified injected predictor"
+    assert stage["output_count"] == 5
+    assert all("cross_encoder_score" not in record for record in ALL_RECORDS + list(PARENTS.values()))
+
+
+@pytest.mark.parametrize("variant,code", [("A", "variant_not_ready"), ("B", "variant_not_ready"), ("G", "chart_not_ready")])
+def test_missing_representation_or_chart_variant_is_not_relabelled_success(variant, code):
+    hybrid, store, encoder = _scoped_hybrid(variant=variant)
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue")
+    assert caught.value.code == code
+    assert not store.searches
+    encoder.encode.assert_not_called()
+
+
+def test_canonical_C_has_no_lexical_or_cross_encoder_call():
+    hybrid = _make_hybrid()
+    hybrid.variant = "C"
+    result = hybrid.retrieve("revenue", store_parents=PARENTS)
+    assert result["variant"] == "C"
+    hybrid.bm25.retrieve.assert_not_called()
+    assert "rrf_fusion" not in [stage["stage"] for stage in result["stages"]]
+
+
+def test_E_hierarchy_is_separate_from_common_eligibility():
+    hybrid = _make_hybrid(with_reranker=True)
+    hybrid.max_hierarchy_sections = 1
+    # Two eligible sections, but the declared stage-E hierarchy retains one.
+    hybrid.dense.retrieve.return_value = {"text_evidence": [
+        {**NARRATIVES[0], "metadata": {**NARRATIVES[0]["metadata"], "section": "Item 7"}},
+        {**NARRATIVES[1], "metadata": {**NARRATIVES[1]["metadata"], "section": "Item 1A"}},
+    ], "table_evidence": []}
+    hybrid.bm25.retrieve.return_value = {"text_evidence": [], "table_evidence": []}
+    result = hybrid.retrieve("revenue", top_k_tables=0, filters={"ticker": "AAPL"})
+    assert result["eligibility_filters"] == {"ticker": "AAPL"}
+    hierarchy = next(stage for stage in result["stages"] if stage["stage"] == "hierarchical_candidate_restriction")
+    assert len(hierarchy["retained_groups"]) == 1
+    assert hierarchy["excluded_ids"] == ["n2"]
+
+
+def test_F_escalates_at_most_once_and_records_actual_stream_limits():
+    predictor = SimpleNamespace(predict=lambda pairs: [0.9] * len(pairs))
+    hybrid, store, _ = _scoped_hybrid(variant="F", reranker=predictor,
+        routing_policy=RoutingPolicy(min_candidates=2, max_tiers=2))
+    result = hybrid.retrieve("revenue", top_k_text=3, top_k_tables=3)
+    attempts = result["routing"]["attempts"]
+    assert len(attempts) == 2
+    assert attempts[0]["narrative_limit"] == 0
+    assert attempts[1]["narrative_limit"] == 3
+    assert result["ranked_evidence_ids"]
+    assert len(store.searches) == 3  # table first, then narrative + table.
+
+
+def test_F_single_tier_configuration_never_issues_other_stream_query():
+    predictor = SimpleNamespace(predict=lambda pairs: [0.9] * len(pairs))
+    hybrid, store, _ = _scoped_hybrid(variant="F", reranker=predictor,
+        routing_policy=RoutingPolicy(max_tiers=1))
+    result = hybrid.retrieve("revenue")
+    assert len(result["routing"]["attempts"]) == 1
+    assert all(filters["type"] == "table_cell" for _, filters in store.searches)
+    assert result["status"] == "insufficient_evidence"
+
+
+def test_F_chart_request_stays_explicitly_unavailable_before_G():
+    hybrid, store, _ = _scoped_hybrid(variant="F",
+        reranker=SimpleNamespace(predict=lambda pairs: [0.9] * len(pairs)))
+    result = hybrid.retrieve("What does the chart show?")
+    assert result["status"] == "insufficient_evidence"
+    assert result["routing"]["stop_reason"] == "chart_tier_unavailable_before_G"
+    assert not store.searches
+
+
+def test_both_disabled_means_no_component_or_encoder_call():
+    hybrid, store, encoder = _scoped_hybrid()
+    result = hybrid.retrieve("revenue", top_k_text=0, top_k_tables=0)
+    assert result["status"] == "insufficient_evidence"
+    assert not store.searches
+    encoder.encode.assert_not_called()
+
+
+def test_parent_in_another_issuer_cannot_be_expanded():
+    wrong_parent = {"p1": {**PARENTS["p1"], "metadata": {**PARENTS["p1"]["metadata"], "ticker": "MSFT"}}}
+    with pytest.raises(ValueError, match="incompatible"):
+        expand_parents(CELLS, wrong_parent, budget_chars=100000, already_included=set())
+
+
+def test_conflicting_identity_is_not_silently_fused():
+    a = _record("same", "Apple revenue")
+    changed = _record("same", "different source text")
+    with pytest.raises(ValueError, match="Conflicting"):
+        reciprocal_rank_fusion([[a], [changed]])
+
+
+def test_component_score_types_survive_fusion():
+    a = {**_record("a", "revenue"), "score": 0.8, "score_type": "cosine"}
+    b = {**_record("a", "revenue"), "bm25_score": 1.2}
+    fused = reciprocal_rank_fusion([[a], [b]])[0]
+    assert fused["rrf_component_scores"] == {
+        "list_0": {"score": 0.8, "score_type": "cosine"},
+        "list_1": {"score": 1.2, "score_type": "bm25"},
+    }
+
+
+def test_native_faiss_and_bm25_share_request_scope_before_top_k(tmp_path_factory):
+    from src.indexing.bge import EmbeddingSpec
+    from src.indexing.store import ExactStore, publish_filing
+    from tests.test_exact_index import A, B, record, vectors
+
+    root = tmp_path_factory.mktemp("scope")
+    a, b = record("revenue"), record("revenue", B, "MSFT")
+    publish_filing(root, [a], [], vectors((0.5, 0.5)), {"test_only": True})
+    publish_filing(root, [b], [], vectors((1, 0)), {"test_only": True})
+    store = ExactStore(root)
+    encoder = SimpleNamespace(spec=EmbeddingSpec(), encode=lambda texts, query: vectors((1, 0)))
+    hybrid = HybridRRFRetriever(DenseRetriever(store, encoder), BM25Retriever(store.records))
+    for ticker, accession in (("AAPL", A), ("MSFT", B), ("AAPL", A)):
+        result = hybrid.retrieve("revenue", top_k_text=1, top_k_tables=0, filters={"ticker": ticker})
+        assert result["ranked_evidence_ids"] == [accession + ":revenue"]
+        assert result["text_evidence"][0]["rrf_component_ranks"] == {"list_0_rank": 1, "list_1_rank": 1}
+    # MSFT is globally first in native FAISS, proving the AAPL result was not
+    # post-top-k removal of a globally winning incompatible issuer.
+    assert store.search(vectors((1, 0))[0], k=1)[0]["metadata"]["ticker"] == "MSFT"
+
+
+def test_parent_lookup_defaults_to_dense_store_without_engine_kwargs():
+    hybrid = _make_hybrid()
+    hybrid.dense.store.parents = PARENTS
+    result = hybrid.retrieve("revenue")
+    assert "p1" in result["ranked_evidence_ids"]
+    parent_stage = next(stage for stage in result["stages"] if stage["stage"] == "parent_expansion")
+    assert parent_stage["injected_parents"] == 1
+
+
+def test_exhausted_F_score_threshold_abstains_instead_of_silent_fallback():
+    predictor = SimpleNamespace(predict=lambda pairs: [-1.0] * len(pairs))
+    hybrid, _, _ = _scoped_hybrid(variant="F", reranker=predictor,
+        routing_policy=RoutingPolicy(min_candidates=1, max_tiers=2, min_cross_encoder_score=0.0))
+    result = hybrid.retrieve("revenue")
+    assert result["status"] == "insufficient_evidence"
+    assert result["all_evidence"] == result["ranked_evidence_ids"] == []
+    assert result["rejected_evidence_ids"]
+    assert result["routing"]["stop_reason"] == "score_threshold_not_met"
+
+
+@pytest.mark.parametrize("failure", [
+    {"status": "service_error"}, {"failure_code": "failed"},
+    {"text_error": "failed"}, {"table_error": "failed"},
+    {"rerank_error": "failed"}, {"error_code": "failed"},
+    {"status": "insufficient_evidence"},
+    {"success": False}, {"error": "failed"},
+])
+def test_partial_component_failure_does_not_become_fused_success(failure):
+    hybrid = _make_hybrid()
+    hybrid.dense.retrieve.return_value.update(failure)
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue")
+    assert caught.value.trace["all_evidence"] == []
+    assert caught.value.trace["status"] == "service_error"
+    hybrid.bm25.retrieve.assert_not_called()
+
+
+@pytest.mark.parametrize("response", [
+    None, [], {"text_evidence": None}, {"text_evidence": {}},
+    {"text_evidence": ["plain text"]},
+    {"text_evidence": [{"evidence_id": "", "content": "bad", "metadata": {"type": "narrative_text"}}]},
+    {"text_evidence": [{"evidence_id": "a", "id": "b", "content": "bad", "metadata": {"type": "narrative_text"}}]},
+    {"text_evidence": [{"evidence_id": "a", "content": "", "metadata": {"type": "narrative_text"}}]},
+    {"text_evidence": [{"evidence_id": "a", "content": "bad", "metadata": {"type": "table_cell"}}]},
+    {"text_evidence": [NARRATIVES[0], NARRATIVES[0]]},
+])
+def test_invalid_component_shape_or_identity_is_rejected(response):
+    hybrid = _make_hybrid()
+    hybrid.dense.retrieve.return_value = response
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue")
+    assert caught.value.code in {"invalid_component_response", "invalid_component_evidence"}
+    assert caught.value.trace["all_evidence"] == []
+
+
+def test_disabled_stream_adapter_returning_evidence_is_a_contract_failure():
+    hybrid = _make_hybrid()
+    with pytest.raises(RetrievalStageError) as caught:
+        hybrid.retrieve("revenue", top_k_text=0, top_k_tables=3)
+    assert caught.value.code == "invalid_component_response"

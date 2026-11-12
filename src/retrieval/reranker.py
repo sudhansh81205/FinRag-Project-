@@ -3,7 +3,9 @@ Hierarchical Reranking Module (Member 2: Sprint 4)
 Reranks combined text chunks and financial tables to maximize quantitative relevance.
 """
 
+import math
 import re
+from numbers import Real
 from typing import Any
 
 
@@ -51,14 +53,25 @@ class SimpleFinancialReranker:
         """
         Reranks candidates and returns top_n items.
         """
+        if type(top_n) is not int or top_n < 1:
+            raise ValueError("Reranking limit must be a positive integer.")
         if not candidates:
             return []
 
+        # Never mutate the stored/shared evidence or accept a partial model result.
+        candidates = [dict(candidate) for candidate in candidates]
         if self.cross_encoder_model is not None:
             pairs = [[query, c["content"]] for c in candidates]
-            scores = self.cross_encoder_model.predict(pairs)
+            scores = list(self.cross_encoder_model.predict(pairs))
+            if len(scores) != len(candidates):
+                raise ValueError("Cross-encoder returned an inconsistent score count.")
+            if any(isinstance(score, bool) or not isinstance(score, Real) for score in scores):
+                raise ValueError("Cross-encoder scores must be real numerical scalars.")
+            scores = [float(score) for score in scores]
+            if not all(math.isfinite(score) for score in scores):
+                raise ValueError("Cross-encoder returned an invalid score.")
             for i, c in enumerate(candidates):
-                c["rerank_score"] = float(scores[i])
+                c["rerank_score"] = scores[i]
         else:
             for c in candidates:
                 doc_type = c.get("metadata", {}).get("type", "narrative_text")

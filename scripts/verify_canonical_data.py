@@ -212,8 +212,17 @@ def main(argv=None):
     # runtime errors; never convert missing prerequisites into success.
     # Guard output directory creation separately so a writable output path
     # can always receive the report even when the artifacts dir fails.
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    write_atomic(args.output, json_bytes(report))
+    try:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        write_atomic(args.output, json_bytes(report))
+    except OSError as exc:
+        # The filesystem cannot guarantee a saved report at an unwritable
+        # destination. Keep the failure observable on stdout and exit nonzero.
+        print(json.dumps({"report": None, "requested_report": str(args.output),
+                          "task_gate": "failed", "index_ready": False,
+                          "diagnostic_write_error": type(exc).__name__,
+                          "audit_status": report.get("task_gate", report.get("status", "failed"))}))
+        return 1
     print(
         json.dumps(
             {

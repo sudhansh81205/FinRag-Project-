@@ -17,6 +17,7 @@ from src.evidence_audit import (
     amount,
     audit_cell,
     audit_package,
+    audit_pdf_spans,
     candidate_sidecars,
     verify_sidecars,
 )
@@ -197,3 +198,56 @@ def test_storage_reingest_preserves_existing_packages(audited, tmp_path):
         prepare(foreign)
     assert original == command.tree_hashes(foreign)
     assert before == command.tree_hashes(directory)
+
+
+def test_pdf_positions_bind_an_independent_row_and_year(audited):
+    from pypdf import PdfReader
+
+    _, package, *_ = audited
+    check = copy.deepcopy(package["pdf_corroboration"][0])
+    page = PdfReader(ROOT / "data/source/aapl-2021-rendition.pdf").pages[check["page"] - 1]
+    headers = ["September 25, 2021", "September 26, 2020", "September 28, 2019"]
+    audit_pdf_spans(check, page, headers)
+    # Equivalent top-left coordinates are supported only after conversion.
+    top = copy.deepcopy(check)
+    for span in top["source_spans"]:
+        x0, y0, x1, y1 = span["bbox"]
+        span.update(origin="TOPLEFT", bbox=[x0, float(page.mediabox.height) - y1,
+                                          x1, float(page.mediabox.height) - y0])
+    audit_pdf_spans(top, page, headers)
+    wrong = copy.deepcopy(check)
+    wrong["source_spans"][0]["bbox"] = [100, 100, 120, 108]
+    with pytest.raises(AuditError, match="independent_text_anchor"):
+        audit_pdf_spans(wrong, page, headers)
+    wrong = copy.deepcopy(check)
+    wrong["source_spans"][0]["origin"] = "invented-origin"
+    with pytest.raises(AuditError, match="coordinate_origin"):
+        audit_pdf_spans(wrong, page, headers)
+    wrong = copy.deepcopy(check)
+    wrong["column_header"] = "September 26, 2020"
+    with pytest.raises(AuditError, match="year_column"):
+        audit_pdf_spans(wrong, page, headers)
+    wrong = copy.deepcopy(check)
+    wrong["row_label"] = "Total assets"
+    with pytest.raises(AuditError, match="independent_row"):
+        audit_pdf_spans(wrong, page, headers)
+
+
+def test_artifact_startup_failure_still_saves_diagnostic(tmp_path, monkeypatch):
+    blocked = tmp_path / "existing-file"
+    blocked.write_text("not a directory", encoding="utf-8")
+    output = tmp_path / "writable" / "report.json"
+    monkeypatch.setattr(command, "build_report", lambda *_: pytest.fail("Startup guard should stop here"))
+    assert command.main(["--artifacts-dir", str(blocked), "--output", str(output)]) == 1
+    report = json.loads(output.read_bytes())
+    assert report["status"] == "failed" and report["exception_type"] == "FileExistsError"
+    assert blocked.read_text(encoding="utf-8") == "not a directory"
+
+
+def test_unwritable_report_destination_is_not_claimed_saved(tmp_path, capsys):
+    blocked = tmp_path / "existing-file"
+    blocked.write_text("not a directory", encoding="utf-8")
+    assert command.main(["--package", str(tmp_path / "absent"), "--artifacts-dir", str(tmp_path / "runs"),
+                         "--output", str(blocked / "report.json")]) == 1
+    diagnostic = json.loads(capsys.readouterr().out)
+    assert diagnostic["report"] is None and diagnostic["diagnostic_write_error"]

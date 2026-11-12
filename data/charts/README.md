@@ -104,3 +104,43 @@ Independent review should inspect every image and label basis, confirm issuer,
 period/unit/marker mappings and source eligibility, resolve ambiguous questions,
 check duplicate groups/source overlap and record any changed label/version before
 freeze. The author cannot self-certify that independent gate.
+
+## Portable frozen bytes and independent label promotion
+
+The repository attributes pin JSON to UTF-8/LF checkout bytes on Windows and
+Unix. The published question-file and inventory hashes remain unchanged.
+Do not repair a hash failure by updating expected hashes to whatever a converted
+or edited checkout happens to contain. Restore authentic Git blob bytes and
+investigate any real content change as a new candidate version.
+
+`load_candidate_set` continues to accept only pending author candidates. It never
+turns author corrections into independent gold. The separate `load_reviewed_set`
+accepts an external JSON ledger only after all 50 decisions pass and bind to the
+unchanged question-set, question files, source manifest and complete per-case
+fingerprints. It returns reviewed copies; original answers, files and 15/35
+image-group splits remain unchanged. Model captions require their own independent
+approval before G and are not approved by this label-only gate.
+
+The ledger has `schema_version: 1`, `reviewer_identity`, an ISO `reviewed_at` with
+time zone, `method: human_original_image_and_source`, `candidate_binding`, and one
+entry per case in `decisions`. `candidate_binding` holds `question_set_sha256`,
+`question_files_sha256` and `source_manifest_sha256` from the candidate audit.
+Each decision holds `id`, `case_sha256` from `case_fingerprint(case)`,
+`decision: passed`, `original_image_checked: true`,
+`source_provenance_checked: true`, and the independent reviewer's nonempty `basis`.
+Pending, failed, missing, duplicate, stale and self-authored decisions block the
+gate. The caller supplies the verified reviewer allowlist and known original
+label authors; identities in the ledger alone are not trusted or authenticated.
+The human must actually inspect the original images and provenance, resolve
+ambiguities and authenticate their review through the team review process.
+Never create passing decisions merely to make this command succeed.
+
+After that real review, use the existing Python environment:
+
+```text
+python scripts/promote_chart_set.py --approvals PATH_TO_REAL_REVIEW_LEDGER --trusted-reviewer VERIFIED_REVIEWER_ID --label-author VERIFIED_LABEL_AUTHOR_ID --output output/chart_label_gate.json
+```
+
+Multiple `--trusted-reviewer` and `--label-author` options are allowed. A saved
+passing label gate is not proof of accepted captions, an A-G run, benchmark
+accuracy or the separate independent 50-output faithfulness audit.

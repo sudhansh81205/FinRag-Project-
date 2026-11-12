@@ -1,0 +1,14 @@
+# Frozen JSON manifests contain hashes of exact UTF-8/LF file bytes.
+# Make Windows clones and git archive use the same canonical text bytes.
+* text=auto
+*.json text eol=lf
+*.jsonl text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.docx binary
