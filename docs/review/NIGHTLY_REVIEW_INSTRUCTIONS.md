@@ -1,6 +1,6 @@
 # FinRAG nightly review specification
 
-Use the current user instruction and current remote canonical PRD/schedule, then exact code evidence. The November 12 revision sets November 17 as the operative submission deadline and assigns Shanay the final day. Review dates are October 30 through November 17 inclusive under this revised plan; preserve earlier reports and historical assignments. No project recovery after November 17 is implied by older November 20/21/22 planning. Exact course cutoff/changed notice remains unverified. Updating this repository does not itself update an external scheduler.
+Use the current user instruction and current remote canonical PRD/schedule, then exact code evidence. The November 12 revision sets November 17 as the operative submission deadline and assigns Sudhansh the final day. Review dates are October 30 through November 17 inclusive under this revised plan; preserve earlier reports and historical assignments. No project recovery after November 17 is implied by older November 20/21/22 planning. Exact course cutoff/changed notice remains unverified. Updating this repository does not itself update an external scheduler.
 
 ## Scope and source precedence
 

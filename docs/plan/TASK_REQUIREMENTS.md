@@ -1,6 +1,6 @@
 # FinRAG daily task requirements through November 17
 
-Effective November 12, 2026. November 17 is the operative user-requested submission deadline; exact cutoff and changed official notice are unconfirmed. Shanay owns the final day. Read PRD.md, COURSE_ALIGNMENT.md, EVIDENCE_CONTRACT.md, schedule.json and the newest dated repair/review before work. Exactly one assigned member per date. Hours include reading, implementation, checks and handoff and are estimates, not evidence of effort.
+Effective November 12, 2026. November 17 is the operative user-requested submission deadline; exact cutoff and changed official notice are unconfirmed. Sudhansh owns the final day, reassigned from Shanay. Read PRD.md, COURSE_ALIGNMENT.md, EVIDENCE_CONTRACT.md, schedule.json and the newest dated repair/review before work. Exactly one assigned member per date. Hours include reading, implementation, checks and handoff and are estimates, not evidence of effort.
 
 ## Preserved history and current baseline
 
@@ -99,7 +99,7 @@ Dependency: 2026-11-14.
 2. Bind each decision to exact source/image/label/caption hashes and preserve fifteen development/thirty-five held-out image groups. Unknown/unprinted values remain unknown; cross-split alternate crops, changed hashes and ambiguous claims fail.
 3. Validate development-only behavior, supported corpus counts, full case/split/exclusion inventory and scoring/model/control compatibility. Check actual November 14 capacity, legal service access and remaining available machine time. One accepted filing cannot pass full R1; missing corpus or models remains mandatory unmet scope.
 4. Freeze accepted code/data/index/model/prompt/calculator/token/five-passage/random controls, route thresholds, checkpoint schema and full eligible case list. Predeclare seeded stratified fifty-output faithfulness sampling across A-G/question types before score inspection.
-5. Launch/resume complete primary Gemma A-G, RAGAS and separately labelled secondary Llama runs only when prerequisites pass. Retain real outputs, ranking/context/rules/timing, failures/timeouts/exclusions and denominators. Publish completed/running/failed counts and exact partial/blocked scope for Sudhansh.
+5. Launch/resume complete primary Gemma A-G, RAGAS and separately labelled secondary Llama runs only when prerequisites pass. Retain real outputs, ranking/context/rules/timing, failures/timeouts/exclusions and denominators. Publish completed/running/failed counts and exact partial/blocked scope for Pavan on November 16.
 
 Success/failure proof: approved hash-bound source/label/model identities allow reproducible execution; self-review, wrong source period, missing stage, swapped index row or inconsistent resume manifest blocks acceptance. Viva: what does a cryptographic hash establish, and why does it not certify a gold answer?
 
@@ -113,7 +113,7 @@ Course concept: Independent label validity, controlled experiments and grounded 
 
 Audit outputs compute metrics and finalize report and slides | 10 estimated hours | R7 R8 R12 R13
 
-Purpose: Reconcile frozen completed/running/failed outputs and reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics with paired confidence intervals and failure/exclusion denominators. Independently audit the predeclared fifty-output sample only where labels were not self-authored; record exact included context, original-source judgments, disagreements and author exclusions for Shanay. Complete the written report, exactly six slides, contribution/AI-use/source records, methods integration and final backup demo from actual evidence. Continue immutable jobs without settings changes.
+Purpose: Reconcile frozen completed/running/failed outputs and reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics with paired confidence intervals and failure/exclusion denominators. Independently audit the predeclared fifty-output sample only where labels were not self-authored; record exact included context, original-source judgments, disagreements and author exclusions for Sudhansh. Complete the written report, exactly six slides, contribution/AI-use/source records, methods integration and final backup demo from actual evidence. Continue immutable jobs without settings changes.
 
 Dependency: 2026-11-15; completed eligible outputs from frozen run ledger.
 
@@ -121,9 +121,9 @@ Dependency: 2026-11-15; completed eligible outputs from frozen run ledger.
 
 1. Reconcile immutable completed/running/failed job outputs and versions; continue jobs without changing frozen settings. Missing results stay unknown, not zero or successful placeholders.
 2. Reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics from saved raw inputs and exact denominators. Use declared zero-gold policy, paired question resampling, fixed seed and10,000 bootstrap resamples; cluster shared documents/charts where feasible and explain limits.
-3. Independently audit the predeclared fifty generated outputs against exact included context and original sources where labels were not authored by Pavan. Record unsupported claims, wrong periods/units, arithmetic failures, abstentions, RAGAS disagreements, reviewer identity and precise exclusions for Shanay.
+3. Independently audit the predeclared fifty generated outputs against exact included context and original sources where labels were not authored by Pavan. Record unsupported claims, wrong periods/units, arithmetic failures, abstentions, RAGAS disagreements, reviewer identity and precise exclusions for Sudhansh.
 4. Complete Introduction, Background/Related Work, Method, Results/Evaluation, Discussion/Limitations, Contributions, AI Usage and Connection to Course Concepts using Likhit's methods evidence and actual result tables/intervals. Finish exactly six slides in guideline order and real backup demo evidence.
-5. Hand Shanay final drafts, metrics/audit records, source and configuration inventories, complete versus unmet requirement ledger, remaining independent exclusions, exact package contents and restart instructions.
+5. Hand Sudhansh final drafts, metrics/audit records, source and configuration inventories, complete versus unmet requirement ledger, remaining independent exclusions, exact package contents and restart instructions.
 
 Success/failure proof: an answer whose cited premises and measured scores reconcile may pass; a plausible matching number with wrong period or missing included operand fails support. Viva: why are fifty chart questions and fifty independently audited generated outputs different artifacts?
 
@@ -133,25 +133,25 @@ Completion gate: Evidence-backed report and six-slide draft, metric inputs/resul
 
 Course concept: Independent faithfulness, uncertainty, hypothesis assessment and accountability.
 
-## 2026-11-17 Shanay
+## 2026-11-17 Sudhansh
 
 Verify clean release finish independent exclusions and submit | 10 estimated hours | R2 R6 R7 R8 R12 R13
 
-Purpose: Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Sudhansh while rejecting self-approval of Shanay-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.
+Purpose: Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Pavan while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.
 
 Dependency: 2026-11-16; full outputs and actual submission route/cutoff.
 
 ### Ordered work and verification
 
 1. Restore exact release data/index in a clean prepared environment, verify source/schema/ordered-ID/vector/model/config hashes, configured CI, restart, real provider access and saved DVC/MLflow evidence.
-2. Independently finish audit cases excluded because Sudhansh authored labels; never approve a Shanay-authored label as independent. Record unresolved identity conflicts or insufficient completed outputs. Reconcile fifty independent decisions or state exact shortfall.
+2. Independently finish audit cases excluded because Pavan authored labels; never approve a Sudhansh-authored label as independent. Record unresolved identity conflicts or insufficient completed outputs. Reconcile fifty independent decisions or state exact shortfall.
 3. Independently spot-check metric inputs, denominators and controls against the frozen ledger. Match full actual results, failure/timeout/exclusion counts, narrative/numerical/retrieval/RAGAS/latency measures and intervals to final report claims.
-4. Consolidate the report and exactly six slides, actual contributions/AI-use/source acknowledgements, real source-linked backup demo, limitations and complete/partial requirement ledger. Earlier owners supply drafts; Shanay handles final consolidation within this slot.
+4. Consolidate the report and exactly six slides, actual contributions/AI-use/source acknowledgements, real source-linked backup demo, limitations and complete/partial requirement ledger. Earlier owners supply drafts; Sudhansh handles final consolidation within this slot.
 5. Freeze one code/data/model/config/archive manifest and verified command set. Open all final files, demonstrate a supported real path and meaningful failure, obtain the actual authorized submission route/cutoff if still missing, submit by November 17 and retain acknowledgement.
 
 Success/failure proof: a clean prepared environment reproduces identities and accepted real behavior; wrong model digest, corrupt sidecar, missing source or service error blocks a false success. Viva: which artifacts establish reproducibility and which unverified scope must the submitted report disclose?
 
-Shanay is the sole final-day owner. No second member's same-day review or old post-November 17 recovery slot is implied. If mandatory scope is unfinished, submit a transparently partial package; packaging cannot invent missing results or independent approvals.
+Sudhansh is the sole final-day owner. No second member's same-day review or old post-November 17 recovery slot is implied. If mandatory scope is unfinished, submit a transparently partial package; packaging cannot invent missing results or independent approvals.
 
 Completion gate: One runnable hash-bound package, final complete/partial requirement ledger, independent audit count, report/six slides/demo and verified submission acknowledgement exist. Missing outputs and mandatory gates cannot be certified complete.
 
