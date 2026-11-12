@@ -199,10 +199,20 @@ def main(argv=None):
     parser.add_argument("--artifacts-dir", type=Path, default=ROOT / "output/shanay/runs")
     args = parser.parse_args(argv)
     artifacts = args.artifacts_dir.resolve() / uuid.uuid4().hex
-    artifacts.mkdir(parents=True, exist_ok=False)
-    report = guarded(lambda: build_report(args.package.resolve(), artifacts))
+    # F14 fix: create the run directory inside the guarded block so a startup
+    # storage failure (e.g. FileExistsError, PermissionError) is captured in
+    # the report rather than hiding its own evidence.  The output file is
+    # written even when directory creation fails so callers always receive a
+    # structured diagnostic from a non-zero exit code.
+    def _guarded_build():
+        artifacts.mkdir(parents=True, exist_ok=False)
+        return build_report(args.package.resolve(), artifacts)
+    report = guarded(_guarded_build)
     # Always leave a diagnostic, including absent packages/tools or unexpected
     # runtime errors; never convert missing prerequisites into success.
+    # Guard output directory creation separately so a writable output path
+    # can always receive the report even when the artifacts dir fails.
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     write_atomic(args.output, json_bytes(report))
     print(
         json.dumps(
