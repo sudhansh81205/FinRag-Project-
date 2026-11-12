@@ -1,225 +1,162 @@
-# FinRAG daily task requirements
+# FinRAG daily task requirements through November 17
 
-Effective November 3 2026. Exactly one assigned worker per date; hours include checks and handoff. Read PRD.md and COURSE_ALIGNMENT.md. All tasks are planned, not claims of completion.
+Effective November 12, 2026. November 17 is the operative user-requested submission deadline; exact cutoff and changed official notice are unconfirmed. Shanay owns the final day. Read PRD.md, COURSE_ALIGNMENT.md, EVIDENCE_CONTRACT.md, schedule.json and the newest dated repair/review before work. Exactly one assigned member per date. Hours include reading, implementation, checks and handoff and are estimates, not evidence of effort.
 
-## 2026-11-03 Ujjwal
+## Preserved history and current baseline
 
-**Verify environment resources and handoff contracts** | 8 planned hours | R2 R4 R13
+October 30 through November 11 assignments remain unchanged in schedule.json. Earlier task prose is archived in history/TASK_REQUIREMENTS_unified_2026-11-03_before_2026-11-12.md and the prior schedule files. Preserve early authorized completion of the first Sudhansh/Shanay tasks. PR8 and PR9 were later submissions for November 8 and November 7, respectively; their publication must not be credited to the November 8 cutoff. The current authorized AI-assisted repair is recorded at its actual revision, not as invented member hours.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+One accepted/indexed Apple filing has 535 candidates and three parents. Eighteen inventoried/sixteen previously acquired filings are not accepted wider coverage. Six chart images with fifty author-checked candidate questions are not fifty independently approved cases. Actual model assets, cross-encoder, approved chart loading, A/B representations, full UI and full experiment remain acceptance gates until their real checks pass. Read the repair report for newly implemented boundaries rather than treating this document as completion evidence.
 
-Read current main and parser PR #4 at its exact revision; preserve completed setup/provider/parser work. Check BGE, exact FAISS, Docling, Ollama/Gemma, memory and machine access. Pin the canonical record/parent-table and index-sidecar contracts. Set up local DVC and MLflow with one restore/log smoke check and retain existing Ruff/pytest CI. Estimate full evaluation machine time from a small representative pilot or explicitly mark missing inputs.
+## Common workflow and handoff
 
-Completion evidence: Environment/resource inventory, input revision, canonical schema, successful DVC restore and MLflow smoke run exist. No model, parser or full-data readiness is inferred from installation alone.
+At the start, record actual main/PR/local revisions, data/index/model/configuration hashes and prerequisite status. Read the previous owner's exact artifacts inside the assigned block. Do only bounded prerequisites that fit; preserve mandatory missing work in a clear ledger. Do not add another member's same-day review, tutorial or meeting. Frozen unattended jobs may continue across dates, with active management only by the current owner.
 
-Course connection: Reproducible AI and typed evidence contracts. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Every meaningful change maps to R requirements and canonical A-G stage/common control. Explain the accurate course concept, one success, a relevant failure and a viva answer. The handoff contains exact revision/files, input/output/schema hashes, commands actually run and results, real versus injected/model paths, installed versions or unknowns, remaining defects, measured time if available and restart instructions. Do not invent hours, contributor identity, package/model availability or independent approval.
 
-## 2026-11-04 Likhit
+Use current Python dependencies and official installed-version APIs. Preserve BeautifulSoup/Docling evidence, BGE/exact FAISS, BM25/RRF60, bge-reranker-base, Ollama/Gemma and Gradio as applicable. DVC/MLflow retain reproducibility. Never compare MiniLM/Chroma A against BGE/FAISS G as a controlled representation experiment. Missing credentials or hardware are manual-input gates: obtain the actual service/account/notebook/access route without putting passwords or API keys in docs, logs or chat.
 
-**Extend verified parsing to cells PDFs and chart sources** | 10 planned hours | R1 R3 R11
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Consume the tested Apple 2021 HTML parser rather than rebuilding its completed work. Add self-describing table cells and parent grids with raw/normalized units, periods, footnotes and source coordinates. Add Docling PDF extraction on checked fixtures and original chart image locators. Expand the initial Apple/Microsoft manifest and record unsupported layouts and chart availability. Distinguish HTML/PDF renditions and avoid duplicate fact ingestion.
-
-Completion evidence: Checked HTML/PDF cell fixtures, full parent tables, image/source manifests and deterministic records have resolvable provenance. Existing 316 narratives and three parent tables remain a preserved starting artifact, not final corpus coverage.
-
-Course connection: KR ontology and grounded chart evidence. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-05 Shanay
-
-**Independently validate canonical data and restore behavior** | 8 planned hours | R2 R3 R13
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Check representative source facts, periods, scales, parent links and deterministic IDs from the prior package. Validate row-to-ID mappings, metadata sidecars and a clean DVC restore with equal hashes. Retain any existing Chroma/MiniLM regression artifacts separately. Pin environment/configuration and validate storage replacement rules before the BGE/FAISS build.
-
-Completion evidence: One canonical data package and restore log reproduce the same IDs, hashes and counts; malformed or mismatched metadata fails. This is input validation, not a claim that FAISS is complete.
-
-Course connection: Knowledge representation integrity and reproducibility. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-06 Likhit
-
-**Build BGE exact FAISS and corpus coverage** | 10 planned hours | R1 R2
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Use bge-base-en-v1.5 with pinned preprocessing/revision and normalized 768-dimensional vectors. Build exact IndexFlatIP with stable evidence/metadata mapping, separate parent-table storage and compatible manifests. Verify duplicate IDs, dimensions, filtered results, stale-record cleanup, rebuild and reload. Continue corpus expansion toward five Apple/five Microsoft filings and ten technology companies; show actual parsed/indexed counts and failures.
-
-Completion evidence: Checked narrative and cell retrieval survive restart and identical reruns. Source/index hashes and required company/filing coverage reconcile. IVF-PQ is not a release requirement.
-
-Course connection: Transformer embeddings and source identity. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-07 Pavan
-
-**Implement cumulative retrieval stages and routing** | 10 planned hours | R3 R10 R12
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Use the frozen record/index interfaces. Implement A-F flags for section chunks, table cells/parent expansion, BM25 and RRF k=60, eligibility and bge-reranker-base, and bounded narrative/numerical/chart routing. Keep the chart tier unavailable until descriptions exist. Preserve component ranks, IDs and complete evidence under the common budget. Use existing LangChain where it participates usefully; do not require a framework rewrite.
-
-Completion evidence: A-F traces isolate each stage; exact-term, semantic, TOC, no-result, missing-metric and context-budget cases pass with preserved IDs. Disabled streams issue no query.
-
-Course connection: DL cross-encoding with explicit reasoning preconditions. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-08 Rushil
-
-**Integrate real models calculations and chart descriptions** | 10 planned hours | R4 R5 R11 R12
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Reuse merged provider boundaries and pin a real Gemma 3/Ollama configuration. Implement restricted multi-step arithmetic with cited operands and typed period/unit/comparability rules. Produce source-linked chart descriptions, unknown-value handling and a candidate 50-question chart set with 15 development and 35 held-out items grouped by image. Record the separate Llama comparison configuration and remaining hardware limits.
-
-Completion evidence: Real model and failure traces, safe calculation/rule fixtures, linked chart captions and candidate chart questions exist. No arbitrary generated Python executes, and unreadable chart values stay unknown.
-
-Course connection: KR predicates and inference plus NLP and vision transformers. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-09 Gowtham
-
-**Connect the full interface and measure real throughput** | 8 planned hours | R4 R6 R11
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Connect Gradio to real narrative/cell/chart retrieval, calculations, route traces and source links. Check session isolation and explicit invalid/not-ready/no-evidence/service-error states. Run separate development smoke cases. Measure actual model, extraction/caption and evaluator throughput on intended hardware; pass the measurements to Sudhansh for the full-run estimate.
-
-Completion evidence: A notebook-free question-to-source walkthrough works for narrative, numerical and chart evidence with honest failures; real timing and memory evidence are saved.
-
-Course connection: Explainable application behavior and measurement. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-10 Sudhansh
-
-**Define full evaluation research question and capacity gate** | 8 planned hours | R7 R8 R12
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Build versioned FinQA, TAT-QA and FinanceBench loaders and A-G runner with source-equivalent evidence mappings, no label leakage and all promised metrics. Freeze dataset eligibility and proposed splits; preserve 14 local cases only as smoke tests. Consolidate chart labels, research question, report/course sections and role records. Estimate full machine hours using actual case counts and measured generation/RAGAS throughput.
-
-Completion evidence: Case inventory, scoring/split protocol, audit sampling rule, report outline and quantified full-run capacity decision exist. Slow or inaccessible suites remain explicit scope risks rather than being replaced silently.
-
-Course connection: Experimental controls and course-linked hypotheses. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
-
-## 2026-11-11 Ujjwal
-
-**Independently check labels and development runs** | 10 planned hours | R1 R2 R7 R11
-
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
-
-Verify chart questions and labels against images, benchmark evidence mappings, units/periods and duplicate-source split leakage. Check Likhit index integrity and source coverage. Run development cases only, log outputs and identify parser/retrieval/model/math defects. Require 50 checked chart cases or declare the exact shortfall before freeze.
-
-Completion evidence: Independently checked gold/source manifests, unchanged splits, development results and concrete defect reproductions exist. No held-out answer is used for tuning.
-
-Course connection: Label validity and representation checks. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Available command forms to check in the prepared current environment include python -m ruff check ., python -m pytest -q and python app.py --check. The last is a setup diagnosis, not a complete answer demo. Existing parser/source/chart commands must be inspected before use. No verified complete benchmark-runner or approved-label-promotion command is presumed; its implementer must document and actually run the final command before calling it verified. Synthetic fixtures check software boundaries, not financial accuracy or real model throughput.
 
 ## 2026-11-12 Pavan
 
-**Fix development defects and freeze A through G** | 8 planned hours | R3 R7 R10 R12
+Complete integration controls and experiment scaffold | 8 estimated hours | R3 R7 R10 R12 R5
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Purpose: Accept the repaired combined code and prove shared pre-top-k eligibility, explicit failed-stage semantics, canonical C-F boundaries and truthful complete context. Implement any missing common retrieval/control and versioned experiment scaffold required by the next owners; distinguish A/B representations and real model assets from configuration. Save tests, development success/failure traces, exact interfaces and unresolved gates.
 
-Repair bounded development defects and finalize route thresholds using development data only. Verify chart G integration, complete-context IDs and calculator rule failures. Lock A-G and shared BGE/model/prompt/calculator/five-passage/token settings; freeze the full evaluation list and stratified 50-output manual audit selection rule. Save integration and course review evidence.
+Dependency: historical through-November-8 handoffs and authorized repair at its actual revision.
 
-Completion evidence: One frozen experiment manifest, reviewed rule/context behavior and reproducible run commands exist. An unresolved mandatory gate stays open; no fake dependency artifact is substituted.
+### Ordered work and verification
 
-Course connection: Controlled ablation and reasoning verification. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+1. Refresh main/PR heads and the actual repair evidence. Retain both submissions' ancestry and F1-F12 safeguards. Confirm each newly repaired F13-F18 boundary with success and meaningful failure tests.
+2. Check pre-top-k company/period/source eligibility on both components, zero disabled-stream calls and consecutive-filter isolation. Validate canonical stage configuration and expose A/B representation or real model shortfalls; stage names cannot certify missing implementations.
+3. Implement remaining common control/runner scaffold needed by later owners, with immutable variant/config and complete context/ID contracts. Missing or malformed reranker output cannot count as a successful E/F/G result.
+4. Verify calculator operands are exactly actual included objects under the declared context budget; a missing/excluded/wrong-period operand refuses financial generation. Publish prerequisites rather than freezing unready full experiments.
 
-## 2026-11-13 Gowtham
+Success/failure proof: an eligible source reaches identical prompt/ID/citation traces; wrong company/period, reranker failure or excluded operand prevents a false success. Viva: why does a finite rank score or schema-valid fact not establish an admissible financial conclusion?
 
-**Run full evaluation and capture the demo** | 10 planned hours | R6 R7 R11 R13
+Completion gate: Exact revision, repair and limitation matrix, configured checks, typed failure/context traces and a usable common runner/control scaffold are handed to Likhit. Mandatory missing inputs prevent full freeze.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Course concept: Typed input predicates, transformer failure semantics and controlled ablations.
 
-Execute or checkpoint all frozen A-G runs over the named benchmark corpora and chart split, plus the separate Llama comparison. Save rankings, selected context, statuses, answers, score inputs, timings and failures. Capture a real source-linked backup demo. Keep the legacy 14-case smoke output separate from the final experiment.
+## 2026-11-13 Likhit
 
-Completion evidence: The full case-variant ledger accounts for completed, failed and running cases, with resumable artifacts and measured outputs. No short interim run is called the completed proposal experiment.
+Expand supported corpus and build matched representations | 10 estimated hours | R1 R2 R3 R8 R12
 
-Course connection: Reproducible AI evaluation. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Purpose: Recover declared source assets by verified identity/hash, implement supported wider HTML/PDF parsing with source fixtures and explicit unsupported-layout failures, and reconcile five Apple/five Microsoft/ten-company requirements. Build matched A fixed-overlap/flattened-table, B section-aware and C cell/parent representations with common pinned BGE/exact FAISS and stable source-equivalent identities. Preserve the accepted Apple package. Save new source/cell/index candidates for Ujjwal's independent audit and draft methods from real artifacts.
 
-## 2026-11-14 Shanay
+Dependency: 2026-11-12.
 
-**Verify clean setup tracking and deployment readiness** | 10 planned hours | R2 R6 R8 R13
+### Ordered work and verification
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+1. Inspect each declared source path and recover only the exact identity/hash-checked rendition. Existing acquisition reports do not prove source files are currently present. Record missing/rejected sources and preserve the accepted Apple package unchanged.
+2. Implement supported wider parsing using real original-source fixtures: narrative sections, full parent grids, self-describing cells, exact periods/units/footnotes and resolvable HTML/PDF coordinates. Do not force an Apple-hardcoded parser onto arbitrary layouts or infer legal cell metadata from an untyped PDF number.
+3. Reconcile required five Apple/five Microsoft and ten-company coverage with separate raw, parsed, candidate, independently accepted and indexed counts. Unsupported layouts and unknown charts stay explicit mandatory shortfalls.
+4. Build matched A fixed-overlap narratives/flattened tables, B section-aware narratives with same table form, and C cells/parent expansion using the same source-equivalent facts, pinned BGE/exact FAISS, ordered IDs and preprocessing. Save deterministic rebuild/reload and row/source mismatch rejection.
+5. Draft methods and hand Ujjwal exact source/index candidates for independent November 15 review. Installation, automatic schema checks and authored fixtures are not independent acceptance.
 
-Restore the frozen data/index, rebuild or reopen on a clean environment, verify CI and DVC/MLflow records, and check real model/network access. Prepare a Docker/hosting route only if resources permit, using smoke cases separate from held-out data. Save hosting success or failure honestly; the reproducible local demo remains required. Continue immutable evaluation jobs if needed without changing their settings.
+Success/failure proof: a supported original cell maps its raw amount, year, unit and parent through reload; altered source/scale/row or ambiguous unsupported layout fails. Viva: why do sixteen downloaded PDFs not mean sixteen accepted indexed filings?
 
-Completion evidence: Clean-machine logs, pinned environment, source/model/index/run identities and a usable local release route exist. Any hosted URL has actual pipeline checks; a Dockerfile alone is not deployment proof.
+Completion gate: Reproducible source/parse/index coverage ledger, matched A/B/C artifacts and rejection fixtures exist, with exact raw/parsed/candidate/independently accepted counts. Missing assets/layouts or coverage stay mandatory shortfalls; no automatic source approval.
 
-Course connection: Supporting engineering for reproducible AI. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Course concept: Source-grounded representation, transformer embeddings and identity preservation.
 
-## 2026-11-15 Likhit
+## 2026-11-14 Gowtham
 
-**Write methods and begin the fifty-output audit** | 8 planned hours | R3 R7 R8 R11
+Connect application benchmark runner and measured capacity | 10 estimated hours | R4 R6 R7 R11 R12 R13 R5
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Purpose: Connect full per-session Gradio narrative/cell/chart/math/source/status flow to accepted APIs. Complete and verify versioned FinQA/TAT-QA/FinanceBench open 150 loaders and source-equivalent candidate universes plus resumable A-G/RAGAS and separate Llama runner wiring; official gold stays outside prompts. Verify actual Gemma/cross-encoder/tokenizer/evaluator assets and measure intended-machine cold/warm generation/evaluator throughput, memory and capacity through November 17. Test two sessions and meaningful errors; save a real backup walkthrough.
 
-Write source, parsing, indexing, chart and method sections from saved evidence. Audit the preselected 50 outputs against included context and original sources using gold labels you did not author; defer any self-authored-label cases to Pavan November 19. Compare with RAGAS and classify unsupported claims, numerical errors and abstentions. Keep incomplete benchmark runs explicit.
+Dependency: 2026-11-13.
 
-Completion evidence: Evidence-based method draft, independently audited output records, unresolved case IDs and disagreement log exist; authored labels are not self-certified.
+### Ordered work and verification
 
-Course connection: Source-grounded reasoning and faithfulness. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+1. Connect company/filing/value-period/question inputs to accepted narrative, cell and approved-chart APIs, authoritative math, original sources, route/model/status/timings and exact included IDs. Keep inputs and results per client; incomplete dependencies remain honestly unavailable.
+2. Complete versioned FinQA/TAT-QA/FinanceBench open 150 loaders and full eligible case inventory, source-equivalent retrieval universes, accessible splits and exclusions. Keep official gold/programs outside prompts and never tune on held-out answers.
+3. Reconcile benchmark operation requirements with the restricted calculator; implement required safe typed operations or record exact incompatible cases. Finish resumable A-G and separate Llama execution, scoring/metric inputs and RAGAS wiring, including normalized numerical/zero-gold rules, Recall@5/@10, MRR,narrative metrics, latency and paired bootstrap routines. Expose missing A/B/G/model stages as blocked variants, not baseline aliases.
+4. Verify actual Gemma/cross-encoder/tokenizer/evaluator model identities and runtime assets. Measure real cold/warm generation, embedding/reranking, caption/extraction and RAGAS timing/memory/counts separately. Compute case-count times variant-count times observed seconds plus overhead against available machine hours through November 17; blocked timing is unknown.
+5. Test two clients and empty/malformed/no-index/no-evidence/provider/reranker/unknown-chart/missing-premise failures; no stale answer survives. Capture a real source-linked backup walkthrough and hand Ujjwal exact executable commands, manifests and capacity decision.
 
-## 2026-11-16 Ujjwal
+Success/failure proof: an accepted real numerical request displays cited rule premises and deterministic result; failed service clears financial output, malformed case mapping fails before run, and incompatible experiment identities cannot resume. Viva: which differences make two A-G rows incomparable even if both return answers?
 
-**Audit results and prepare the six-slide release candidate** | 8 planned hours | R7 R8 R12 R13
+This ten-hour estimate is demanding. If full loader/runner/UI scope does not fit, identify the exact unfinished module and downstream blocked variants; do not fabricate a runnable command or replace full suites with fourteen smoke cases.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Completion gate: Runnable UI and loader/runner commands, exact case/variant inventory, real-versus-injected tests, model/config/hardware evidence and quantified generation/RAGAS capacity decision or exact blockers reach Ujjwal.
 
-Recompute sampled scores and paired bootstrap intervals from the frozen outputs; verify failure denominators, source coverage and configuration equality. Review data/index evidence and report claims. Prepare exactly six slides in guideline order, contribution/viva notes and a release inventory with archive hashes. Record any incomplete audit or evaluation for the checkpoint.
+Course concept: Explainable AI, leakage-free experiment execution and runtime measurement.
 
-Completion evidence: Independent metric checks, results draft, six slides and release-candidate inventory agree with actual evidence; unfinished requirements remain visible.
+## 2026-11-15 Ujjwal
 
-Course connection: Measurement uncertainty and defensible AI results. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Independently approve inputs freeze controls and launch full runs | 10 estimated hours | R1 R2 R3 R7 R11 R12
 
-## 2026-11-17 Sudhansh
+Purpose: Independently inspect source/index identities, benchmark mappings and all fifty chart question/caption decisions against original images and sources, recording label authors and hash-bound accept/reject evidence without self-approval. Preserve 15 development/35 held-out image groups. Validate development behavior, complete case/exclusion inventory, scoring controls and measured capacity. Freeze accepted code/data/model/prompt/calculator/token/five-passage/random settings plus stratified fifty-output sampling rule, then launch or resume complete Gemma A-G, RAGAS and separately labelled Llama jobs. Retain failures and exact incomplete scope.
 
-**Review the internal proposal release target** | 8 planned hours | R7 R8 R12 R13
+Dependency: 2026-11-14.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+### Ordered work and verification
 
-Compare every requirement with implementation, full-run/audit status and the course rubric. Review reproducibility and the report, source references, seven-member contributions and AI disclosure. Freeze a release candidate if all gates pass; otherwise record remaining work and use only the dated recovery slots. The official demo/submission dates remain November 21/22.
+1. Independently inspect source/cell/index identities, benchmark evidence mappings and all fifty chart question/caption decisions against original sources/images. Record label/caption authors and reviewer identity; reject self-approval. Preserve raw model captions and author corrections.
+2. Bind each decision to exact source/image/label/caption hashes and preserve fifteen development/thirty-five held-out image groups. Unknown/unprinted values remain unknown; cross-split alternate crops, changed hashes and ambiguous claims fail.
+3. Validate development-only behavior, supported corpus counts, full case/split/exclusion inventory and scoring/model/control compatibility. Check actual November 14 capacity, legal service access and remaining available machine time. One accepted filing cannot pass full R1; missing corpus or models remains mandatory unmet scope.
+4. Freeze accepted code/data/index/model/prompt/calculator/token/five-passage/random controls, route thresholds, checkpoint schema and full eligible case list. Predeclare seeded stratified fifty-output faithfulness sampling across A-G/question types before score inspection.
+5. Launch/resume complete primary Gemma A-G, RAGAS and separately labelled secondary Llama runs only when prerequisites pass. Retain real outputs, ranking/context/rules/timing, failures/timeouts/exclusions and denominators. Publish completed/running/failed counts and exact partial/blocked scope for Sudhansh.
 
-Completion evidence: Internal checkpoint states complete/partial/unmet requirements, exact revision, remaining machine hours and release risks. November 17 is a target, not permission to label incomplete work complete.
+Success/failure proof: approved hash-bound source/label/model identities allow reproducible execution; self-review, wrong source period, missing stage, swapped index row or inconsistent resume manifest blocks acceptance. Viva: what does a cryptographic hash establish, and why does it not certify a gold answer?
 
-Course connection: Hypothesis assessment and accountability. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+The independent approvals, freeze and real machine jobs are separate acceptance gates. A count of fifty candidates or a successful fixture run does not satisfy them.
 
-## 2026-11-18 Rushil
+Completion gate: Independent input decisions, frozen manifest, full eligible case/variant ledger, predeclared audit sample and actual resumable job/output records exist. Missing mandatory approvals, corpus, runnable stages or capacity cause explicit partial/blocked status, never substituted fourteen-case smoke completion.
 
-**Use the recovery slot for numerical and chart defects** | 8 planned hours | R4 R5 R7 R11
+Course concept: Independent label validity, controlled experiments and grounded vision.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+## 2026-11-16 Sudhansh
 
-Resolve reproducible critical defects from the checkpoint within this slot, or verify final provider, calculator and chart regressions if none remain. Preserve the frozen experiment when possible. Any output-affecting change gets a new version and affected A-G reruns, with held-out reuse disclosed; no new feature scope is added.
+Audit outputs compute metrics and finalize report and slides | 10 estimated hours | R7 R8 R12 R13
 
-Completion evidence: Critical fixes have reproductions and regression evidence, or a verified unchanged release trace exists. Updated outputs are versioned honestly.
+Purpose: Reconcile frozen completed/running/failed outputs and reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics with paired confidence intervals and failure/exclusion denominators. Independently audit the predeclared fifty-output sample only where labels were not self-authored; record exact included context, original-source judgments, disagreements and author exclusions for Shanay. Complete the written report, exactly six slides, contribution/AI-use/source records, methods integration and final backup demo from actual evidence. Continue immutable jobs without settings changes.
 
-Course connection: Reasoning and model failure analysis. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Dependency: 2026-11-15; completed eligible outputs from frozen run ledger.
 
-## 2026-11-19 Pavan
+### Ordered work and verification
 
-**Finish the independent audit and release review** | 8 planned hours | R7 R8 R10 R12
+1. Reconcile immutable completed/running/failed job outputs and versions; continue jobs without changing frozen settings. Missing results stay unknown, not zero or successful placeholders.
+2. Reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics from saved raw inputs and exact denominators. Use declared zero-gold policy, paired question resampling, fixed seed and10,000 bootstrap resamples; cluster shared documents/charts where feasible and explain limits.
+3. Independently audit the predeclared fifty generated outputs against exact included context and original sources where labels were not authored by Sudhansh. Record unsupported claims, wrong periods/units, arithmetic failures, abstentions, RAGAS disagreements, reviewer identity and precise exclusions for Shanay.
+4. Complete Introduction, Background/Related Work, Method, Results/Evaluation, Discussion/Limitations, Contributions, AI Usage and Connection to Course Concepts using Likhit's methods evidence and actual result tables/intervals. Finish exactly six slides in guideline order and real backup demo evidence.
+5. Hand Shanay final drafts, metrics/audit records, source and configuration inventories, complete versus unmet requirement ledger, remaining independent exclusions, exact package contents and restart instructions.
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Success/failure proof: an answer whose cited premises and measured scores reconcile may pass; a plausible matching number with wrong period or missing included operand fails support. Viva: why are fifty chart questions and fifty independently audited generated outputs different artifacts?
 
-Complete any remaining manual audit cases whose labels Likhit authored so the combined independent audit reaches 50 outputs. Review high-risk disagreements and sampled metrics, retrieval/context regressions and report/course claims. Check Rushil recovery changes on this later date and reconcile all result versions.
+Do not replace missing output samples with convenient successes or certify full evaluation because a runner finished some rows. If fewer than fifty eligible outputs or incomplete suites exist, record exact counts and release consequences.
 
-Completion evidence: Fifty independent audit outputs, disagreement analysis and final course/release review exist, with any unmet commitments explicitly recorded.
+Completion gate: Evidence-backed report and six-slide draft, metric inputs/results, independent audit decisions and exact unfinished/self-authored-label cases plus release inventory exist. Missing outputs or mandatory scope are explicit.
 
-Course connection: Independent reasoning and experimental review. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+Course concept: Independent faithfulness, uncertainty, hypothesis assessment and accountability.
 
-## 2026-11-20 Sudhansh
+## 2026-11-17 Shanay
 
-**Freeze the single final package** | 8 planned hours | R6 R8 R13
+Verify clean release finish independent exclusions and submit | 10 estimated hours | R2 R6 R7 R8 R12 R13
 
-Dependency: read the preceding dated handoff and validate the required real artifacts; mocks do not establish real completion.
+Purpose: Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Sudhansh while rejecting self-approval of Shanay-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.
 
-Finalize the unified report, exact six slides, results/audit files, contribution and AI-use sections, run instructions and backup demonstration. Verify source/code/configuration/archive hashes and submission access. Freeze the complete demo package and name any unmet requirement; do not assign another member same-day work.
+Dependency: 2026-11-16; full outputs and actual submission route/cutoff.
 
-Completion evidence: One frozen runnable archive, final report, six slides, complete evidence inventory and verified backup demo exist before assessment.
+### Ordered work and verification
 
-Course connection: Defending the course-linked application. Save one success case, one relevant failure case, exact revision/commands, actual time, unresolved requirements and a viva explanation. A different named reviewer checks the module on their later date.
+1. Restore exact release data/index in a clean prepared environment, verify source/schema/ordered-ID/vector/model/config hashes, configured CI, restart, real provider access and saved DVC/MLflow evidence.
+2. Independently finish audit cases excluded because Sudhansh authored labels; never approve a Shanay-authored label as independent. Record unresolved identity conflicts or insufficient completed outputs. Reconcile fifty independent decisions or state exact shortfall.
+3. Independently spot-check metric inputs, denominators and controls against the frozen ledger. Match full actual results, failure/timeout/exclusion counts, narrative/numerical/retrieval/RAGAS/latency measures and intervals to final report claims.
+4. Consolidate the report and exactly six slides, actual contributions/AI-use/source acknowledgements, real source-linked backup demo, limitations and complete/partial requirement ledger. Earlier owners supply drafts; Shanay handles final consolidation within this slot.
+5. Freeze one code/data/model/config/archive manifest and verified command set. Open all final files, demonstrate a supported real path and meaningful failure, obtain the actual authorized submission route/cutoff if still missing, submit by November 17 and retain acknowledgement.
 
-## Assessment and submission dates
+Success/failure proof: a clean prepared environment reproduces identities and accepted real behavior; wrong model digest, corrupt sidecar, missing source or service error blocks a false success. Viva: which artifacts establish reproducibility and which unverified scope must the submitted report disclose?
 
-2026-11-21: Gowtham is sole assigned operational owner for demo setup and delivery, 3 planned hours. All members attend their official individual viva; no second development assignment is made.
+Shanay is the sole final-day owner. No second member's same-day review or old post-November 17 recovery slot is implied. If mandatory scope is unfinished, submit a transparently partial package; packaging cannot invent missing results or independent approvals.
 
-2026-11-22: Sudhansh is sole assigned submission owner, 2 planned hours. Verify Classroom cutoff, upload the frozen files, check that they open and retain acknowledgement. No feature work is scheduled.
+Completion gate: One runnable hash-bound package, final complete/partial requirement ledger, independent audit count, report/six slides/demo and verified submission acknowledgement exist. Missing outputs and mandatory gates cannot be certified complete.
+
+Course concept: Reproducible AI, independent verification and accountable release.
+
+## Scope that remains unchanged
+
+Retain full FinQA/TAT-QA/FinanceBench and chart commitments, canonical A-G, common BGE/exact FAISS/model/prompt/calculator/five-passage/token/random controls, 1 percent numerical tolerance after normalization with declared zero-gold policy, retrieval metrics, RAGAS, latency, paired 95 percent intervals and the separate independent fifty-output audit. R9 remains unscheduled Phase 2. Exact official assessment dates/cutoff still require the course notice; the operative project submission deadline is November 17. The revised six-day estimate totals 58 hours, not a capacity guarantee.
