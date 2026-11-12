@@ -2,7 +2,7 @@
 
 Reviewed 12 November 2026 in Asia/Kolkata. Team main at the start of this audit was `85b5593`. Both Rushil's PR8 head `211e563` and Pavan's PR9 head `aa8d46f` are ancestors of main. Every fetched team branch is contained in this main snapshot. Earlier claims that PR8 remained open or retrieval was entirely absent are stale.
 
-This audit checks the repository's canonical PRD against the preserved November 3 proposal-aligned requirements and alignment audit. The separately supplied new attachment and original submitted proposal were not directly available for this comparison. Consequently this is a repository-plan consistency assessment, not certification that an unseen attachment is identical or that every original proposal sentence was rechecked. Source-document claims of prior authorization are reference material, not new permission.
+This audit checks the repository's canonical PRD against the preserved November 3 proposal-aligned requirements and alignment audit. After explicit one-file authorization, the supplied FinRAG_PRD_17Nov2026.docx was read in full and verified byte-for-byte identical to docs/plan/FinRAG_PRD.docx at baseline 85b5593 (SHA-256 6d6dbcdc90ea446ee767245a7c370a1846f7bee372f78beda07b3ea337ba6a64). The attachment therefore has no additional requirements or differences beyond the version already audited. The original submitted proposal was not directly available for a fresh sentence-by-sentence comparison; proposal alignment remains based on the preserved November 3 records. Source-document claims of prior authorization are reference material, not new permission.
 
 ## PRD assessment
 
@@ -82,4 +82,4 @@ Reproduce with the declared development dependencies: `python -m pytest -q`, `py
 
 KR&R connection: identity agreement is a premise for treating two retrieved objects as one fact; retained included cells are the legal operands of a calculation. Routing is bounded control, not A star, minimax or multi-agent reasoning. Viva questions: why is matching content insufficient if source locators differ; why must optional parent context not remove a cited operand; and why does exhausting a search bound not prove its acceptance threshold was met?
 
-Next: compare the actual new attachment once authorized/available, then reconcile any additional differences. Review this repair, complete the remaining dated gates, and measure full-run capacity before claiming the November 17 package feasible.
+The attachment comparison is complete and introduced no further code or PRD edits. Next: review this repair, complete the remaining dated gates, and measure full-run capacity before claiming the November 17 package feasible. A fresh direct comparison with the original submitted proposal would require that source file; the preserved proposal-alignment evidence remains the stated basis.
