@@ -25,12 +25,12 @@
     "Muppidi Gowtham Sai"
   ],
   "hours_per_member": {
-    "Sudhansh": 20,
+    "Sudhansh": 18,
     "Shanay": 21,
     "Rushil": 12,
     "Likhit": 32,
     "Ujjwal": 28,
-    "Pavan": 18,
+    "Pavan": 20,
     "Gowtham": 18
   },
   "total_hours": 149,
@@ -41,10 +41,10 @@
     "Ujjwal": 28,
     "Likhit": 30,
     "Shanay": 18,
-    "Pavan": 18,
+    "Pavan": 20,
     "Rushil": 10,
     "Gowtham": 18,
-    "Sudhansh": 18
+    "Sudhansh": 16
   },
   "historical_assignments_unchanged_through": "2026-11-11",
   "historical_assignments_note": "Original task objects preserved, including earlier superseded scope text as history only. First Sudhansh/Shanay tasks were authorized for early completion; actual acceptance comes from reports.",
@@ -52,7 +52,7 @@
     "history/schedule_before_2026-11-03.json",
     "history/schedule_unified_2026-11-03_before_2026-11-12.json"
   ],
-  "capacity_note": "Critical path: Pavan12 common controls/scaffold; Likhit13 corpus and A/B/C representations; Gowtham14 full UI/loaders/runner/real capacity; Ujjwal15 independent input approval/freeze and full job launch; Sudhansh16 metrics/report/six slides/independent audit; Shanay17 clean release and submission. The58h estimate does not guarantee full scope fits.",
+  "capacity_note": "Critical path: Sudhansh12 common controls/scaffold; Likhit13 corpus and A/B/C representations; Gowtham14 full UI/loaders/runner/real capacity; Ujjwal15 independent input approval/freeze and full job launch; Pavan16 metrics/report/six slides/independent audit; Shanay17 clean release and submission. The58h estimate does not guarantee full scope fits.",
   "days": [
     {
       "owner": "Sudhansh",
@@ -288,7 +288,7 @@
     },
     {
       "date": "2026-11-12",
-      "owner": "Pavan",
+      "owner": "Sudhansh",
       "hours": 8,
       "title": "Complete integration controls and experiment scaffold",
       "requirements": [
@@ -375,7 +375,7 @@
     },
     {
       "date": "2026-11-16",
-      "owner": "Sudhansh",
+      "owner": "Pavan",
       "hours": 10,
       "title": "Audit outputs compute metrics and finalize report and slides",
       "requirements": [
@@ -417,5 +417,6 @@
       "status": "planned",
       "phase": "release_and_submission"
     }
-  ]
+  ],
+  "assignment_revision": "November 12 user exchange: Sudhansh owns November 12; Pavan owns November 16. Historical assignments unchanged."
 }

@@ -18,7 +18,7 @@ Use current Python dependencies and official installed-version APIs. Preserve Be
 
 Available command forms to check in the prepared current environment include python -m ruff check ., python -m pytest -q and python app.py --check. The last is a setup diagnosis, not a complete answer demo. Existing parser/source/chart commands must be inspected before use. No verified complete benchmark-runner or approved-label-promotion command is presumed; its implementer must document and actually run the final command before calling it verified. Synthetic fixtures check software boundaries, not financial accuracy or real model throughput.
 
-## 2026-11-12 Pavan
+## 2026-11-12 Sudhansh
 
 Complete integration controls and experiment scaffold | 8 estimated hours | R3 R7 R10 R12 R5
 
@@ -109,7 +109,7 @@ Completion gate: Independent input decisions, frozen manifest, full eligible cas
 
 Course concept: Independent label validity, controlled experiments and grounded vision.
 
-## 2026-11-16 Sudhansh
+## 2026-11-16 Pavan
 
 Audit outputs compute metrics and finalize report and slides | 10 estimated hours | R7 R8 R12 R13
 
@@ -121,7 +121,7 @@ Dependency: 2026-11-15; completed eligible outputs from frozen run ledger.
 
 1. Reconcile immutable completed/running/failed job outputs and versions; continue jobs without changing frozen settings. Missing results stay unknown, not zero or successful placeholders.
 2. Reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics from saved raw inputs and exact denominators. Use declared zero-gold policy, paired question resampling, fixed seed and10,000 bootstrap resamples; cluster shared documents/charts where feasible and explain limits.
-3. Independently audit the predeclared fifty generated outputs against exact included context and original sources where labels were not authored by Sudhansh. Record unsupported claims, wrong periods/units, arithmetic failures, abstentions, RAGAS disagreements, reviewer identity and precise exclusions for Shanay.
+3. Independently audit the predeclared fifty generated outputs against exact included context and original sources where labels were not authored by Pavan. Record unsupported claims, wrong periods/units, arithmetic failures, abstentions, RAGAS disagreements, reviewer identity and precise exclusions for Shanay.
 4. Complete Introduction, Background/Related Work, Method, Results/Evaluation, Discussion/Limitations, Contributions, AI Usage and Connection to Course Concepts using Likhit's methods evidence and actual result tables/intervals. Finish exactly six slides in guideline order and real backup demo evidence.
 5. Hand Shanay final drafts, metrics/audit records, source and configuration inventories, complete versus unmet requirement ledger, remaining independent exclusions, exact package contents and restart instructions.
 

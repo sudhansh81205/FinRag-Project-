@@ -98,7 +98,7 @@ After currency/scale normalization, nonzero-gold numerical answers pass only at 
 
 For every row report answer measures, Recall at 5 and 10, MRR, RAGAS faithfulness, median latency and 95 percent bootstrap intervals. Retrieval at 10 uses the pre-context ranking; multi-operand cases also report complete-evidence success. Save source-identity mappings and deduplication policy. Pin evaluator/model/prompt/settings; automated faithfulness is an estimate, not financial truth.
 
-Predeclare a seeded stratified fifty-output sample across variants and question types before inspecting final scores. A reviewer cannot independently approve their own labels. Sudhansh audits non-self-authored cases November 16; Shanay handles remaining exclusions November 17. Record label authorship/reviewer, exact included context/original sources, unsupported claims, abstentions, disagreements and shortfalls.
+Predeclare a seeded stratified fifty-output sample across variants and question types before inspecting final scores. A reviewer cannot independently approve their own labels. Pavan audits non-self-authored cases November 16; Shanay handles remaining exclusions November 17. Record label authorship/reviewer, exact included context/original sources, unsupported claims, abstentions, disagreements and shortfalls.
 
 Use paired question resampling, fixed seed and 10,000 bootstrap resamples; cluster shared documents/charts where feasible and state sampling unit. Preserve failures, timeouts, exclusions, undefined-metric reasons and per-dataset denominators. Fourteen smoke cases and component tests replace none of these commitments.
 
@@ -110,19 +110,19 @@ TASK_REQUIREMENTS.md gives ordered steps and verification. Each block includes r
 
 | Date | Sole owner | Estimate | Deliverable |
 | --- | --- | --- | --- |
-| November 12 | Pavan | 8 hours | Complete integration controls and experiment scaffold. |
+| November 12 | Sudhansh | 8 hours | Complete integration controls and experiment scaffold. |
 | November 13 | Likhit | 10 hours | Expand supported corpus and build matched representations. |
 | November 14 | Gowtham | 10 hours | Connect application benchmark runner and measured capacity. |
 | November 15 | Ujjwal | 10 hours | Independently approve inputs freeze controls and launch full runs. |
-| November 16 | Sudhansh | 10 hours | Audit outputs compute metrics and finalize report and slides. |
+| November 16 | Pavan | 10 hours | Audit outputs compute metrics and finalize report and slides. |
 | November 17 | Shanay | 10 hours | Verify clean release finish independent exclusions and submit. |
 
 Six remaining dates cannot give all seven members distinct future days. Rushil's earlier submitted model/math/chart work stays historical; no off-day duty is invented for apparent equality. These estimates are not equal actual effort. Earlier October 30 through November 2 hours remain separately preserved.
 
 | Member | November 3 through 11 estimate | November 12 through 17 estimate | Combined estimate |
 | --- | --- | --- | --- |
-| Sudhansh Khandelwal | 8 hours | 10 hours | 18 hours |
-| Agrawal Pavan Shailesh | 10 hours | 8 hours | 18 hours |
+| Sudhansh Khandelwal | 8 hours | 8 hours | 16 hours |
+| Agrawal Pavan Shailesh | 10 hours | 10 hours | 20 hours |
 | B Rushil Mohan | 10 hours | 0 hours | 10 hours |
 | Sri Sai Likhit Boddada | 20 hours | 10 hours | 30 hours |
 | Ujjwal Chandak | 18 hours | 10 hours | 28 hours |
