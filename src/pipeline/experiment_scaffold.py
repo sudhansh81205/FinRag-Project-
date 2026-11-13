@@ -4,10 +4,11 @@ Provides immutable specifications, eligibility validation, complete context
 contracts and prerequisite checks for controlled A-G evaluation.
 """
 
-from dataclasses import dataclass, field
 import hashlib
 import json
-from typing import Any, Mapping
+from collections.abc import Mapping
+from dataclasses import dataclass, field
+from typing import Any
 
 
 CANONICAL_VARIANTS: tuple[str, ...] = ("A", "B", "C", "D", "E", "F", "G")
