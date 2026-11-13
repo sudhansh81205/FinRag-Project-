@@ -10,7 +10,6 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
-
 CANONICAL_VARIANTS: tuple[str, ...] = ("A", "B", "C", "D", "E", "F", "G")
 
 # Controlled experiment baseline parameters common to all variants A-G
