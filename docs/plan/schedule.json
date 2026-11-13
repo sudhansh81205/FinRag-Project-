@@ -25,8 +25,8 @@
     "Muppidi Gowtham Sai"
   ],
   "hours_per_member": {
-    "Sudhansh": 18,
-    "Shanay": 21,
+    "Sudhansh": 28,
+    "Shanay": 11,
     "Rushil": 12,
     "Likhit": 32,
     "Ujjwal": 28,
@@ -40,11 +40,11 @@
   "november3_to17_hours_per_member": {
     "Ujjwal": 28,
     "Likhit": 30,
-    "Shanay": 18,
+    "Shanay": 8,
     "Pavan": 20,
     "Rushil": 10,
     "Gowtham": 18,
-    "Sudhansh": 16
+    "Sudhansh": 26
   },
   "historical_assignments_unchanged_through": "2026-11-11",
   "historical_assignments_note": "Original task objects preserved, including earlier superseded scope text as history only. First Sudhansh/Shanay tasks were authorized for early completion; actual acceptance comes from reports.",
@@ -52,7 +52,7 @@
     "history/schedule_before_2026-11-03.json",
     "history/schedule_unified_2026-11-03_before_2026-11-12.json"
   ],
-  "capacity_note": "Critical path: Sudhansh12 common controls/scaffold; Likhit13 corpus and A/B/C representations; Gowtham14 full UI/loaders/runner/real capacity; Ujjwal15 independent input approval/freeze and full job launch; Pavan16 metrics/report/six slides/independent audit; Shanay17 clean release and submission. The58h estimate does not guarantee full scope fits.",
+  "capacity_note": "Critical path: Sudhansh12 common controls/scaffold; Likhit13 corpus and A/B/C representations; Gowtham14 full UI/loaders/runner/real capacity; Ujjwal15 independent input approval/freeze and full job launch; Pavan16 metrics/report/six slides/independent audit; Sudhansh17 clean release and submission. The58h estimate does not guarantee full scope fits.",
   "days": [
     {
       "owner": "Sudhansh",
@@ -396,7 +396,7 @@
     },
     {
       "date": "2026-11-17",
-      "owner": "Shanay",
+      "owner": "Sudhansh",
       "hours": 10,
       "title": "Verify clean release finish independent exclusions and submit",
       "requirements": [
@@ -407,7 +407,7 @@
         "R12",
         "R13"
       ],
-      "steps": "Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Sudhansh while rejecting self-approval of Shanay-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.",
+      "steps": "Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.",
       "done": "One runnable hash-bound package, final complete/partial requirement ledger, independent audit count, report/six slides/demo and verified submission acknowledgement exist. Missing outputs and mandatory gates cannot be certified complete.",
       "course_concept": "Reproducible AI, independent verification and accountable release",
       "dependency_dates": [
@@ -418,5 +418,5 @@
       "phase": "release_and_submission"
     }
   ],
-  "assignment_revision": "November 12 user exchange: Sudhansh owns November 12; Pavan owns November 16. Historical assignments unchanged."
+  "assignment_revision": "November 12 user exchange: Sudhansh owns November 12 and November 17 (reassigned from Shanay at user request); Pavan owns November 16. Historical assignments unchanged."
 }

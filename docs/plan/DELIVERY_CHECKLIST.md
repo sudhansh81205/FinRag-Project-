@@ -1,6 +1,6 @@
 # FinRAG delivery checklist
 
-Source: the November 12 revision of the proposal-aligned PRD and the latest user instruction. Submit by November 17, with Shanay the sole final-day owner. Earlier guideline dates are historical; the exact official cutoff still needs the current course notice. Do not mark any row complete from planning alone.
+Source: the November 12 revision of the proposal-aligned PRD and the latest user instruction. Submit by November 17, with Sudhansh the sole final-day owner (reassigned from Shanay at user request). Earlier guideline dates are historical; the exact official cutoff still needs the current course notice. Do not mark any row complete from planning alone.
 
 - [ ] R1: exact filing manifests, five Apple/five Microsoft filings, ten companies and benchmark source/exclusion inventories.
 - [ ] R2/R3: repeatable real parsing/index/reopen; BGE plus exact FAISS; stable IDs, table cells, units/periods and source locators.

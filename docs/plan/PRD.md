@@ -2,7 +2,7 @@
 
 CV ++ Team 6 | CS F407 Artificial Intelligence | Application track | Revised November 12 2026
 
-Build a financial question answering application that answers annual report questions from inspectable narrative, table and chart evidence, executes justified cited arithmetic, and exposes failures. Complete and submit the reproducible package by November 17, 2026 under the user's current instruction. Shanay owns the final day's release and submission. The revised calendar preserves proposal scope and professor requirements; a planning edit is not implementation or evaluation evidence.
+Build a financial question answering application that answers annual report questions from inspectable narrative, table and chart evidence, executes justified cited arithmetic, and exposes failures. Complete and submit the reproducible package by November 17, 2026 under the user's current instruction. Sudhansh owns the final day's release and submission, reassigned from Shanay at the user's request. The revised calendar preserves proposal scope and professor requirements; a planning edit is not implementation or evaluation evidence.
 
 ## Authority and working rules
 
@@ -54,11 +54,11 @@ Ownership is module accountability, not a second same-day assignment. A later re
 | R5 Calculation | Restricted cited multi-step tree, typed predicates, bounded depth/size, exact result/rule trace; no generated Python or uncited constants. | Rushil. Valid operations succeed; wrong issuer/scope/period/unit, excluded operand, zero denominator and forbidden operations refuse. |
 | R6 Interface | Gradio per-session filters/question/results, original sources/images, calculations, route/status/timings. | Gowtham. Two clients stay isolated; real accepted narrative/numerical/chart paths work; errors clear stale output. |
 | R7 Evaluation | Full versioned loaders, eligible case inventory, frozen A-G runner/scoring, capacity gate and independent fifty-output audit. | Sudhansh design/runs, Pavan review accountability; one owner per dated artifact. Retain complete ledgers and independent evidence. |
-| R8 Delivery | Written report, exactly six slides, contributions/AI-use/sources, real backup demo and single final archive. | Sudhansh report accountability; Shanay November 17 packaging/submission. Claims agree with saved evidence. |
+| R8 Delivery | Written report, exactly six slides, contributions/AI-use/sources, real backup demo and single final archive. | Sudhansh report accountability; Sudhansh November 17 packaging/submission. Claims agree with saved evidence. |
 | R10 Retrieval | Section orchestration, BM25/RRF60, hierarchy/cross-encoder, bounded routing, complete context and trace. | Pavan. Shared pre-top-k eligibility, enabled-stage success/failure evidence, zero queries for disabled streams. |
 | R11 Charts | Original image/locator/hash, model description/unknowns, independently checked chart questions/captions. | Rushil captions, Likhit extraction; Ujjwal November 15 independent approval. Fifty candidates are neither fifty approved labels nor fifty images. |
 | R12 Controls | Canonical A-G under common corpus/BGE/FAISS/model/prompt/calculator/random settings, five passages and one token budget. | Pavan. Frozen manifest and truthful included IDs; failed or missing stages cannot count as successful variants. |
-| R13 Reproduction | CI, immutable manifests, real DVC restore, persisted MLflow records, restart and clean-machine checks. | Shanay, Ujjwal environment/contracts. Source/code/model identities and failures survive restart; Dockerfile alone is not deployment. |
+| R13 Reproduction | CI, immutable manifests, real DVC restore, persisted MLflow records, restart and clean-machine checks. | Sudhansh release/reproduction; Ujjwal environment/contracts. Historical Shanay work stays credited. Source/code/model identities and failures survive restart; Dockerfile alone is not deployment. |
 
 R9 restatement comparison remains unscheduled Phase 2 in R9_PHASE2.md. A mismatch is not proof of restatement or fraud. No R9 work precedes this submission.
 
@@ -98,7 +98,7 @@ After currency/scale normalization, nonzero-gold numerical answers pass only at 
 
 For every row report answer measures, Recall at 5 and 10, MRR, RAGAS faithfulness, median latency and 95 percent bootstrap intervals. Retrieval at 10 uses the pre-context ranking; multi-operand cases also report complete-evidence success. Save source-identity mappings and deduplication policy. Pin evaluator/model/prompt/settings; automated faithfulness is an estimate, not financial truth.
 
-Predeclare a seeded stratified fifty-output sample across variants and question types before inspecting final scores. A reviewer cannot independently approve their own labels. Pavan audits non-self-authored cases November 16; Shanay handles remaining exclusions November 17. Record label authorship/reviewer, exact included context/original sources, unsupported claims, abstentions, disagreements and shortfalls.
+Predeclare a seeded stratified fifty-output sample across variants and question types before inspecting final scores. A reviewer cannot independently approve their own labels. Pavan audits non-self-authored cases November 16; Sudhansh handles remaining exclusions November 17. Record label authorship/reviewer, exact included context/original sources, unsupported claims, abstentions, disagreements and shortfalls. Before freeze, map the predeclared audit cases to Pavan on November 16 or Sudhansh on November 17 using actual authorship. Cases authored by both cannot be independently approved by either; record this conflict and any audit shortfall rather than inventing an off-day reviewer or replacing difficult outputs after seeing scores.
 
 Use paired question resampling, fixed seed and 10,000 bootstrap resamples; cluster shared documents/charts where feasible and state sampling unit. Preserve failures, timeouts, exclusions, undefined-metric reasons and per-dataset denominators. Fourteen smoke cases and component tests replace none of these commitments.
 
@@ -115,18 +115,18 @@ TASK_REQUIREMENTS.md gives ordered steps and verification. Each block includes r
 | November 14 | Gowtham | 10 hours | Connect application benchmark runner and measured capacity. |
 | November 15 | Ujjwal | 10 hours | Independently approve inputs freeze controls and launch full runs. |
 | November 16 | Pavan | 10 hours | Audit outputs compute metrics and finalize report and slides. |
-| November 17 | Shanay | 10 hours | Verify clean release finish independent exclusions and submit. |
+| November 17 | Sudhansh | 10 hours | Verify clean release finish independent exclusions and submit. |
 
-Six remaining dates cannot give all seven members distinct future days. Rushil's earlier submitted model/math/chart work stays historical; no off-day duty is invented for apparent equality. These estimates are not equal actual effort. Earlier October 30 through November 2 hours remain separately preserved.
+The reassignment transfers only Shanay's remaining November 17 work to Sudhansh; it adds no work to Likhit or Rushil and preserves all earlier assignments and actual contribution credit. Six remaining dates cannot give all seven members distinct future days. Rushil's earlier submitted model/math/chart work stays historical; no off-day duty is invented for apparent equality. These estimates are not equal actual effort. Earlier October 30 through November 2 hours remain separately preserved.
 
 | Member | November 3 through 11 estimate | November 12 through 17 estimate | Combined estimate |
 | --- | --- | --- | --- |
-| Sudhansh Khandelwal | 8 hours | 8 hours | 16 hours |
+| Sudhansh Khandelwal | 8 hours | 18 hours | 26 hours |
 | Agrawal Pavan Shailesh | 10 hours | 10 hours | 20 hours |
 | B Rushil Mohan | 10 hours | 0 hours | 10 hours |
 | Sri Sai Likhit Boddada | 20 hours | 10 hours | 30 hours |
 | Ujjwal Chandak | 18 hours | 10 hours | 28 hours |
-| Shanay Ghodasara | 8 hours | 10 hours | 18 hours |
+| Shanay Ghodasara | 8 hours | 0 hours | 8 hours |
 | Muppidi Gowtham Sai | 8 hours | 10 hours | 18 hours |
 | Total | 82 hours | 58 hours | 140 hours |
 
