@@ -1,0 +1,202 @@
+{
+  "0000320193-22-000108": {
+    "sha256": "890f50dccd4732b426c198c97a663331877e5c8d501abdd83d6ddd66cb961f87",
+    "tables": [
+      22,
+      24,
+      26
+    ]
+  },
+  "0000320193-23-000106": {
+    "sha256": "2848b4b87c316ea5f7ea66cc37a9c270b1d467fc5a7b93bdbb895c38dde984c0",
+    "tables": [
+      22,
+      24,
+      26
+    ]
+  },
+  "0000320193-24-000123": {
+    "sha256": "1e2f36be646ba9f0873ce76dfb5c24f15d14e1ed24f8bde680d266a3680b56a0",
+    "tables": [
+      22,
+      24,
+      26
+    ]
+  },
+  "0000320193-25-000079": {
+    "sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+    "tables": [
+      22,
+      24,
+      26
+    ]
+  },
+  "0001564590-21-039151": {
+    "sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+    "tables": [
+      138,
+      140,
+      141
+    ]
+  },
+  "0001564590-22-026876": {
+    "sha256": "fbeaffd4756f323cce09ac683ec48f2ae3e169bda611669395c3edf71e73c1c3",
+    "tables": [
+      149,
+      151,
+      152
+    ]
+  },
+  "0000950170-23-035122": {
+    "sha256": "89968d6a40cd92843bdbd364011688cad2b988d600ff8ac1277ef82b0bd649ba",
+    "tables": [
+      24,
+      26,
+      27
+    ]
+  },
+  "0000950170-24-087843": {
+    "sha256": "4009d01d6182489a9d8619ad5b7d8a5c17041840b5cab6656ddb4f3934ce5e64",
+    "tables": [
+      24,
+      26,
+      27
+    ]
+  },
+  "0000950170-25-100235": {
+    "sha256": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa",
+    "tables": [
+      23,
+      25,
+      26
+    ]
+  },
+  "0000796343-25-000004": {
+    "sha256": "11b977afb88537124ea8498b055c5ea3382962530acf8692d9634d34815f02bf",
+    "tables": [
+      31,
+      30,
+      34
+    ]
+  },
+  "0001045810-24-000029": {
+    "sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+    "tables": [
+      19,
+      21,
+      23
+    ]
+  },
+  "0001108524-24-000005": {
+    "sha256": "c9c8895e673d2d5de2e4b5918f16ff26ef8203ee9f4fc41d84d706cb84ed8118",
+    "tables": [
+      30,
+      29,
+      35
+    ]
+  },
+  "0000002488-25-000012": {
+    "sha256": "c824a828e933c75fb07be9338f139b9705ddd497d6e1f6bd27cf73a0743d443d",
+    "tables": [
+      12,
+      14,
+      16
+    ]
+  },
+  "0000050863-25-000009": {
+    "sha256": "1f6a99681021ffa97542795c4fcd284bc2640d94f83bd1655d7719d28eb19adb",
+    "tables": [
+      122,
+      128,
+      131
+    ],
+    "block_ranges": {
+      "Item 1A": [
+        579,
+        778
+      ],
+      "Item 7": [
+        282,
+        579
+      ],
+      "Item 8": [
+        867,
+        1509
+      ]
+    },
+    "block_anchors": [
+      [
+        282,
+        "Overview"
+      ],
+      [
+        579,
+        "Risk Factors"
+      ],
+      [
+        778,
+        "Sales and Marketing"
+      ],
+      [
+        867,
+        "Financial Statements and Supplemental Details"
+      ],
+      [
+        1509,
+        "We use terms throughout our document that are specific to Intel or that are abbreviations that may not be commonly known or used. Below is a list of these terms used in our document."
+      ]
+    ]
+  },
+  "0000858877-24-000017": {
+    "sha256": "b822d87f5c093e239043a6ed0d4298bb7e080d82a51b622666b436b7a99dc2da",
+    "tables": [
+      55,
+      54,
+      57
+    ]
+  },
+  "0000950170-24-075605": {
+    "sha256": "b663d1aa61f50e9d14d50fcd1167eff1e616916e84add9ed9309751c094262c6",
+    "tables": [
+      35,
+      34,
+      38
+    ]
+  },
+  "0000051143-25-000015": {
+    "sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+    "tables": [
+      86,
+      90,
+      92
+    ],
+    "exhibit": {
+      "filename": "ibm-20241231_d2.htm",
+      "sha256": "01865e5a018c8b7f036ccccceb93683c0d027286dec2e6505a9b612fabd978e8",
+      "anchors": [
+        [
+          9,
+          "OVERVIEW"
+        ],
+        [
+          540,
+          "Management Responsibility for Financial Information"
+        ],
+        [
+          1631,
+          ""
+        ]
+      ],
+      "ranges": {
+        "Item 7": [
+          9,
+          540
+        ],
+        "Item 8": [
+          539,
+          1632
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,354 @@
+[
+  {
+    "accession": "0000320193-22-000108",
+    "source": {
+      "accession": "0000320193-22-000108",
+      "ticker": "AAPL",
+      "period_end": "2022-09-24",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2022.pdf",
+      "path": "data/raw/corpus/0000320193-22-000108.pdf",
+      "status": "downloaded_identity_checked",
+      "canonical_parsed_records": 0,
+      "indexed_records": 0,
+      "chart_availability": "not_audited",
+      "parser_status": "unsupported_by_apple_html_profile",
+      "page_count": 80,
+      "identity_pages": [
+        1
+      ],
+      "identity_check": "issuer_form_period_text",
+      "byte_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93"
+    },
+    "status": "matched_html_and_pdf_extractors",
+    "checks": [
+      {
+        "canonical_id": "0000320193-22-000108:table_cell:9cad4a4f49fcd56a:7ec63d1e1d0e9b86",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2022",
+        "pdf_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93",
+        "raw_value": "394,328",
+        "source_spans": [
+          {
+            "text": "394,328",
+            "bbox": [
+              388.259,
+              603.44198,
+              420.78500000000014,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-22-000108:table_cell:d91ddd691894e05f:74727ec269168ac6",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2021",
+        "pdf_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93",
+        "raw_value": "365,817",
+        "source_spans": [
+          {
+            "text": "365,817",
+            "bbox": [
+              457.259,
+              603.44198,
+              489.78500000000014,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-22-000108:table_cell:61d47ba4284cd16a:a7b5d4ac0ba94c65",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2020",
+        "pdf_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93",
+        "raw_value": "274,515",
+        "source_spans": [
+          {
+            "text": "274,515",
+            "bbox": [
+              526.259,
+              603.44198,
+              558.7850000000001,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "accession": "0000320193-23-000106",
+    "source": {
+      "accession": "0000320193-23-000106",
+      "ticker": "AAPL",
+      "period_end": "2023-09-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2023.pdf",
+      "path": "data/raw/corpus/0000320193-23-000106.pdf",
+      "status": "downloaded_identity_checked",
+      "canonical_parsed_records": 0,
+      "indexed_records": 0,
+      "chart_availability": "not_audited",
+      "parser_status": "unsupported_by_apple_html_profile",
+      "page_count": 80,
+      "identity_pages": [
+        1
+      ],
+      "identity_check": "issuer_form_period_text",
+      "byte_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e"
+    },
+    "status": "matched_html_and_pdf_extractors",
+    "checks": [
+      {
+        "canonical_id": "0000320193-23-000106:table_cell:a38c9e54abbd0bc8:bd314137a3de5d61",
+        "page": 31,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2023",
+        "pdf_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e",
+        "raw_value": "383,285",
+        "source_spans": [
+          {
+            "text": "383,285",
+            "bbox": [
+              402.3843289959856,
+              610.6274301824997,
+              431.6637666739153,
+              617.5962770528204
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-23-000106:table_cell:3d539f3674282f68:e0c0f3cd0619f263",
+        "page": 31,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2022",
+        "pdf_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e",
+        "raw_value": "394,328",
+        "source_spans": [
+          {
+            "text": "394,328",
+            "bbox": [
+              481.7179137989194,
+              610.6274301824997,
+              510.99735147684913,
+              617.5962770528204
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-23-000106:table_cell:bdc43b0163bf276f:243191075a84143f",
+        "page": 31,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2021",
+        "pdf_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e",
+        "raw_value": "365,817",
+        "source_spans": [
+          {
+            "text": "365,817",
+            "bbox": [
+              561.0620488506634,
+              610.6274301824997,
+              590.3414865285931,
+              617.5962770528204
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "accession": "0000320193-24-000123",
+    "source": {
+      "accession": "0000320193-24-000123",
+      "ticker": "AAPL",
+      "period_end": "2024-09-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2024.pdf",
+      "path": "data/raw/corpus/0000320193-24-000123.pdf",
+      "status": "downloaded_identity_checked",
+      "canonical_parsed_records": 0,
+      "indexed_records": 0,
+      "chart_availability": "not_audited",
+      "parser_status": "unsupported_by_apple_html_profile",
+      "page_count": 121,
+      "identity_pages": [
+        1
+      ],
+      "identity_check": "issuer_form_period_text",
+      "byte_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88"
+    },
+    "status": "matched_html_and_pdf_extractors",
+    "checks": [
+      {
+        "canonical_id": "0000320193-24-000123:table_cell:cab2c63992ae8c10:6ddddc34b22f6dc8",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2024",
+        "pdf_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88",
+        "raw_value": "391,035",
+        "source_spans": [
+          {
+            "text": "391,035",
+            "bbox": [
+              402.3843289959856,
+              610.627472710501,
+              431.6637666739153,
+              617.5963195808217
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-24-000123:table_cell:21fa0de882af583b:bd314137a3de5d61",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2023",
+        "pdf_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88",
+        "raw_value": "383,285",
+        "source_spans": [
+          {
+            "text": "383,285",
+            "bbox": [
+              481.7179137989194,
+              610.627472710501,
+              510.99735147684913,
+              617.5963195808217
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-24-000123:table_cell:098c09312dee9e98:e0c0f3cd0619f263",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2022",
+        "pdf_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88",
+        "raw_value": "394,328",
+        "source_spans": [
+          {
+            "text": "394,328",
+            "bbox": [
+              561.0620488506634,
+              610.627472710501,
+              590.3414865285931,
+              617.5963195808217
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "accession": "0000320193-25-000079",
+    "source": {
+      "accession": "0000320193-25-000079",
+      "ticker": "AAPL",
+      "period_end": "2025-09-27",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "rendition_url": "https://s2.q4cdn.com/470004039/files/doc_financials/2025/ar/_10-K-2025-As-Filed.pdf",
+      "path": "data/raw/corpus/0000320193-25-000079.pdf",
+      "status": "downloaded_identity_checked",
+      "canonical_parsed_records": 0,
+      "indexed_records": 0,
+      "chart_availability": "not_audited",
+      "parser_status": "unsupported_by_apple_html_profile",
+      "page_count": 80,
+      "identity_pages": [
+        1
+      ],
+      "identity_check": "issuer_form_period_text",
+      "byte_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de"
+    },
+    "status": "matched_html_and_pdf_extractors",
+    "checks": [
+      {
+        "canonical_id": "0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2025",
+        "pdf_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de",
+        "raw_value": "416,161",
+        "source_spans": [
+          {
+            "text": "416,161",
+            "bbox": [
+              388.259,
+              603.44198,
+              420.78500000000014,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-25-000079:table_cell:90faf65ccb93d5c5:6ddddc34b22f6dc8",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2024",
+        "pdf_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de",
+        "raw_value": "391,035",
+        "source_spans": [
+          {
+            "text": "391,035",
+            "bbox": [
+              457.259,
+              603.44198,
+              489.78500000000014,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      },
+      {
+        "canonical_id": "0000320193-25-000079:table_cell:81a92b8b4ead2fd3:bd314137a3de5d61",
+        "page": 32,
+        "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+        "row_label": "Total net sales",
+        "column_header": "2023",
+        "pdf_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de",
+        "raw_value": "383,285",
+        "source_spans": [
+          {
+            "text": "383,285",
+            "bbox": [
+              526.259,
+              603.44198,
+              558.7850000000001,
+              612.44198
+            ],
+            "origin": "BOTTOMLEFT"
+          }
+        ]
+      }
+    ]
+  }
+]
