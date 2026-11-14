@@ -1,0 +1,672 @@
+{
+  "purpose": "independent_review_candidates",
+  "schema_sha256": "c5938127714139c482a8ab0668735c35e47856beed30f823ddf9b55528b87658",
+  "reload_order_verified": true,
+  "declared_filings": 18,
+  "filings": [
+    {
+      "accession": "0000320193-21-000105",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2021-09-25",
+      "filed_date": "2021-10-29",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "independent_acceptance": "canonical_apple_input_only",
+      "independently_accepted_canonical_records": 535,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+        "pdf": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107"
+      },
+      "package_sha256": "4c3ca5135ea0270a9b6b39737b22cb11f0a9ca9036e86321d1c213e9bf91dffb",
+      "omitted_cells": {},
+      "candidate_counts": {
+        "A": 211,
+        "B": 353,
+        "C": 535
+      },
+      "cells": 219,
+      "parent_tables": 3,
+      "generations": {
+        "A": "cb3674657351b2cf9aff45e9b9b10e830b5f0b733dabd1be10dd585c860a770a",
+        "B": "f220f5444ab50349f1be5ffaf73422b9cc3cd26006fdf00484dab150ce27acd9",
+        "C": "cf7a30e7a15c9af26e070ecf86498e45841482817fe659a994b8d81cc7050a1e"
+      }
+    },
+    {
+      "accession": "0000320193-22-000108",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2022-09-24",
+      "filed_date": "2022-10-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "890f50dccd4732b426c198c97a663331877e5c8d501abdd83d6ddd66cb961f87"
+      },
+      "package_sha256": "78b2dee7cc6403a5b5c12be48419950e87209beabd5767f263ab78c120c2de27",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 215,
+        "B": 533,
+        "C": 702
+      },
+      "cells": 210,
+      "parent_tables": 3,
+      "generations": {
+        "A": "4866f1b32f700e6c3761cea65ab7f4840c67993ce45195991798dd013f6c2bdf",
+        "B": "7a9930441c9f5dd80ac66c8b343db33ae7854712855d9db2b67c4a55f1e0d5c7",
+        "C": "d36ab58f163ec5f1c475688c81ffd9da30433f933d44e05b8c327ac55672fed7"
+      }
+    },
+    {
+      "accession": "0000320193-23-000106",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2023-09-30",
+      "filed_date": "2023-11-03",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "2848b4b87c316ea5f7ea66cc37a9c270b1d467fc5a7b93bdbb895c38dde984c0"
+      },
+      "package_sha256": "d51ebe6da81cb793231ee3d87b556bfe2481ad1e7c210fd94772725fcabe22c8",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 196,
+        "B": 504,
+        "C": 665
+      },
+      "cells": 201,
+      "parent_tables": 3,
+      "generations": {
+        "A": "37dfbd394482a26dbb06fa8b42d08e3981b9fd18c4945c0d7fbe7fafe745b3fb",
+        "B": "15248fc65918fae64e5ecde5b562854886def8c5b3e136a3c95c4460465002ce",
+        "C": "3ee30378f1f1ff87f6ac19d274795cf3d92ee6ac330526b68bd7ed52bec92b9c"
+      }
+    },
+    {
+      "accession": "0000320193-24-000123",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2024-09-28",
+      "filed_date": "2024-11-01",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "1e2f36be646ba9f0873ce76dfb5c24f15d14e1ed24f8bde680d266a3680b56a0"
+      },
+      "package_sha256": "8929116f8b2a70ab7f7a652ca5b83d63a07e8893eb370383928e391d028fe6c3",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 195,
+        "B": 504,
+        "C": 662
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "generations": {
+        "A": "7b2c9eef3a5f5168895f87447defaaf1e3ededa2bfc6cafbb4b1fa2f3530f932",
+        "B": "567e7758cc13b5d09034e9d72c707748979da29458fd2b7293f6b755289dad18",
+        "C": "90a404b9229eb488c685530c324493b8877c6be281275c01acc538094fde5c5d"
+      }
+    },
+    {
+      "accession": "0000320193-25-000079",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2025-09-27",
+      "filed_date": "2025-10-31",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f"
+      },
+      "package_sha256": "ab8e22da4c7e5e38440228c12b871b45a53881b45c633f4bc0525eae5c20611d",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 198,
+        "B": 510,
+        "C": 668
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "generations": {
+        "A": "d70c4cc195996793ebeb743105e279ed03352be73a115e577ef062d27d17a5f8",
+        "B": "73de827b900ed64ff37cfc5eb9c0016fb76ae268cb4c1ca89ca2dddb9526045f",
+        "C": "a19f1c16608f53008a83982429436711c31bb4258cb317945ee6ee2db7781146"
+      }
+    },
+    {
+      "accession": "0001564590-21-039151",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2021-06-30",
+      "filed_date": "2021-07-29",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55"
+      },
+      "package_sha256": "1844ffb33124cdfc82e02ad063885f69c47af49605f609b6ec8af8d7e3cd62bb",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 261,
+        "B": 611,
+        "C": 794
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "generations": {
+        "A": "6d59a448049851178464a5d4f8282a008808159ba771c6902fbc771cd13b3a78",
+        "B": "407e9bff0ccee3d1ea6a1b7b3567550c9360691b58a23a5620271f96c275c009",
+        "C": "b32722c15322c0091065ee21b6764f610fda4550973dbc5bb0fdc6cb4f10f8c5"
+      }
+    },
+    {
+      "accession": "0001564590-22-026876",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2022-06-30",
+      "filed_date": "2022-07-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "fbeaffd4756f323cce09ac683ec48f2ae3e169bda611669395c3edf71e73c1c3"
+      },
+      "package_sha256": "b87b97edfb3847d3fdbdbfd146f8efbd35098fa4bd1a0b14a7e84bf8fe2d5668",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 259,
+        "B": 600,
+        "C": 783
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "generations": {
+        "A": "130d90a33f5d4cc803dfd7604bca46115a65a5eb0d00c126189d616fd3bb1ac8",
+        "B": "e45b2d0653bbeee5c73a9657a0439f53f8a314ba92bdfee78cc1e38094920897",
+        "C": "a3366b06b7b5d2831ca1e876c2c67c28c944b3d527263005dec63eb2ab1e85c8"
+      }
+    },
+    {
+      "accession": "0000950170-23-035122",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2023-06-30",
+      "filed_date": "2023-07-27",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "89968d6a40cd92843bdbd364011688cad2b988d600ff8ac1277ef82b0bd649ba"
+      },
+      "package_sha256": "3b1b2332a51ca41606efe36c9e0b39d86cfbe3f652fff300a86077bbcb83acf7",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 281,
+        "B": 677,
+        "C": 860
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "generations": {
+        "A": "6869fa7251f954ea84c78e4993677293abefc2bc35ddf435631b717d12acd7a4",
+        "B": "afdc243ede713b3bcc552a404dc28f72906280a174614ff0dca8ba9640a39572",
+        "C": "bf51721a32c94ecc70057d57c166d52af5f18b506934e60e31525ecb24ed1c14"
+      }
+    },
+    {
+      "accession": "0000950170-24-087843",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2024-06-30",
+      "filed_date": "2024-07-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "4009d01d6182489a9d8619ad5b7d8a5c17041840b5cab6656ddb4f3934ce5e64"
+      },
+      "package_sha256": "5f57d88fb4470321cf363cd9e548c418f6c3dfa3255eb31ff41d50ed79bb7284",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 289,
+        "B": 712,
+        "C": 900
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "generations": {
+        "A": "f0a7e0635872f24f340cdbed7100e9a6c0b840d1881da524f0cdbc436ee4ba07",
+        "B": "41209d9868265b5ef923aa1d22862b59be2ccd5b4bbb097d65480a077a0eafe3",
+        "C": "cf05e6ee2dddadd4d07ef212eff5c4e52df0779bed3c642921e1d06aa61bc1dc"
+      }
+    },
+    {
+      "accession": "0000950170-25-100235",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2025-06-30",
+      "filed_date": "2025-07-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa"
+      },
+      "package_sha256": "6866c58e25181eef524491d192e2335d7b94088e125d43f00a3131009ef8afe0",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 269,
+        "B": 666,
+        "C": 854
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "generations": {
+        "A": "835d32280e13ed2fcdfe5cf6423d1ab1db4d1bdd1a1c0e4b670315337616e98e",
+        "B": "740f115322fa33daba231ab9377f9ecc6dddd94130f6b370fd6cc060e2b77467",
+        "C": "f04059ce1f8bc9e880750518c9bd36bb3fd284a3c464a1906b4044f32933129d"
+      }
+    },
+    {
+      "accession": "0000796343-25-000004",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "period_end": "2024-11-29",
+      "filed_date": "2025-01-13",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "11b977afb88537124ea8498b055c5ea3382962530acf8692d9634d34815f02bf"
+      },
+      "package_sha256": "6cf522a5197dcef6c76156a3c32234e3eee66e141631c15283d39ea3c90d8bed",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 321,
+        "B": 776,
+        "C": 980
+      },
+      "cells": 255,
+      "parent_tables": 3,
+      "generations": {
+        "A": "1d3b5cbba8d620804e6e3bbe52c4c96ed12b3a3fbddb20bfa76e05eaa9277c08",
+        "B": "f5e1f9078e1435cebc02f491b1bb57dabf8f148c1bb558b7eed597c42e1aba83",
+        "C": "feb08bd6d0533443c57b06b70fb6b2519b3e4d5bbd9db8569d8e962a3dc04af0"
+      }
+    },
+    {
+      "accession": "0001045810-24-000029",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "period_end": "2024-01-28",
+      "filed_date": "2024-02-21",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235"
+      },
+      "package_sha256": "8b5a6ea96ed15894768ebcec974bbb3b9a5608d44ea0294edf782060b1639ccb",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 221,
+        "B": 429,
+        "C": 607
+      },
+      "cells": 218,
+      "parent_tables": 3,
+      "generations": {
+        "A": "7b90fc629c427338add16903c84cb0e15439773831741af57c70fc3dc460140f",
+        "B": "9d89e0ab50a0a8c0d3de5a411932a45f7be7dfe9a91f393f633ef4fdbc328356",
+        "C": "c4c2630d6469f5a983d31068ed489bdf7dc3da53485fcf58abd77848d930a285"
+      }
+    },
+    {
+      "accession": "0001108524-24-000005",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "period_end": "2024-01-31",
+      "filed_date": "2024-03-06",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "c9c8895e673d2d5de2e4b5918f16ff26ef8203ee9f4fc41d84d706cb84ed8118"
+      },
+      "package_sha256": "f7899ff132058391f85fbaa65fbe1aa5d11a3ec2cb0414bd08a6a517276a48d6",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 367,
+        "B": 869,
+        "C": 1045
+      },
+      "cells": 221,
+      "parent_tables": 3,
+      "generations": {
+        "A": "60fc42190ef4715b52b92f2946a32c17ecfb0a2c8c727853a289c526c36b1dc2",
+        "B": "f4c94c2dc2d3db614073221e4b179a0c204cdeede8874650418d7f32b59a2a43",
+        "C": "7165ac8fa6a58be5847eac8db7bcd5a2d1efda72d4e2ecc8a0caf2eae7cc3180"
+      }
+    },
+    {
+      "accession": "0000002488-25-000012",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "period_end": "2024-12-28",
+      "filed_date": "2025-02-05",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "c824a828e933c75fb07be9338f139b9705ddd497d6e1f6bd27cf73a0743d443d"
+      },
+      "package_sha256": "477445aa9254868db511cf68fdba483b8c732f1c5a1884acb79d436af5ea7a78",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 338,
+        "B": 704,
+        "C": 898
+      },
+      "cells": 238,
+      "parent_tables": 3,
+      "generations": {
+        "A": "e446ba0dedcfeeea65d84615f65eb8317999eceff211505e0b38edc9e4f6ca2e",
+        "B": "642260efe73125cf5b819e37d193d97fbbd5ce317fff5291519055402c754ffe",
+        "C": "31933113b5ca374a86a5dd5fb4fffa07cd72fdeb9bd22a931eb158bfe3015026"
+      }
+    },
+    {
+      "accession": "0000050863-25-000009",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "period_end": "2024-12-28",
+      "filed_date": "2025-01-31",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "1f6a99681021ffa97542795c4fcd284bc2640d94f83bd1655d7719d28eb19adb"
+      },
+      "package_sha256": "a4cede51e069eb4d5bc4d8f29c3468759e205c5d851c8a256fb3f57a324f8774",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 412,
+        "B": 877,
+        "C": 1079
+      },
+      "cells": 245,
+      "parent_tables": 3,
+      "generations": {
+        "A": "01c364b8616040de37d72031ae2f497162188631348302a770d3f1eed67403a3",
+        "B": "3b756d7f66c3ae9721ac6dbc3b78aca2c067fb2e97d1da50285015105e3ac4c6",
+        "C": "38b8fbde4208d579282462dc9e09609419967c29d6aab683eba92dffe5983ed6"
+      }
+    },
+    {
+      "accession": "0000858877-24-000017",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "period_end": "2024-07-27",
+      "filed_date": "2024-09-05",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "b822d87f5c093e239043a6ed0d4298bb7e080d82a51b622666b436b7a99dc2da"
+      },
+      "package_sha256": "9d0fa5c630165b70e512bf13803cc5d59b07a65648a3d7be272fb3a457eae54b",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 398,
+        "B": 1034,
+        "C": 1245
+      },
+      "cells": 262,
+      "parent_tables": 3,
+      "generations": {
+        "A": "d47a4fce27618a70b24119ff80bad8c7875bddefb9dad5cdc5b9cc60fe43fe0b",
+        "B": "f98d633f350674aa9b9b3ff5d044e224b924e1faf8ebe7fc1831aaa42825af14",
+        "C": "da851e3bf3ead76ddc8ff9e98da085f22e4a261b270268c86097854b02c01832"
+      }
+    },
+    {
+      "accession": "0000950170-24-075605",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "period_end": "2024-05-31",
+      "filed_date": "2024-06-20",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "b663d1aa61f50e9d14d50fcd1167eff1e616916e84add9ed9309751c094262c6"
+      },
+      "package_sha256": "85f75c0f5eb89102db8c3bc1ba7f0b0a1ebe335a65b2c8cf94949d79684e76de",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 222,
+        "B": 398,
+        "C": 590
+      },
+      "cells": 236,
+      "parent_tables": 3,
+      "generations": {
+        "A": "eee036a7eb92993a9bf7e51d6ccff4d997b0cbd5aca60d8975143bb57b65b695",
+        "B": "3e18fd714e001deaf186cc32d6d8e56c74581980424d933ca377fdbd38410157",
+        "C": "d7d22a5614af6b2292eedaf62848529ea83c660f0c055e3f2ffeab352ef6676e"
+      }
+    },
+    {
+      "accession": "0000051143-25-000015",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "period_end": "2024-12-31",
+      "filed_date": "2025-02-25",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "independent_acceptance": "pending",
+      "independently_accepted_canonical_records": 0,
+      "parsed": true,
+      "indexed_for_review": true,
+      "html_present": true,
+      "source_sha256": {
+        "html": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+        "exhibit_html": "01865e5a018c8b7f036ccccceb93683c0d027286dec2e6505a9b612fabd978e8"
+      },
+      "package_sha256": "55b42037f447ee2523357a2aaad28f7ff82c8647a3f8fe7b2f19216b34b81aac",
+      "omitted_cells": {
+        "Income statement": {},
+        "Balance sheet": {},
+        "Cash flow statement": {}
+      },
+      "candidate_counts": {
+        "A": 560,
+        "B": 1320,
+        "C": 1544
+      },
+      "cells": 279,
+      "parent_tables": 3,
+      "generations": {
+        "A": "386704e2d7a47913dd080848f5100a497af2578935c67347f34a653fd96c3ba3",
+        "B": "d556431630fabde50748e3c6a6bd8bf74582936077fe274c927c5f2ba1454eab",
+        "C": "b156c1da9a4e749f04f0a19924e41baaa993ce87b6db13fd6e328c993ce81ace"
+      }
+    }
+  ],
+  "verified_source_filings": 18,
+  "parsed_filings": 18,
+  "candidate_indexed_filings": 18,
+  "candidate_indexed_companies": 10,
+  "independently_accepted_canonical_filings": 1,
+  "totals": {
+    "A": 5213,
+    "B": 12077,
+    "C": 15411
+  },
+  "table_cells": 4100,
+  "parent_tables": 54,
+  "baseline": "8a10e39e0d599a1678b6fdd0e9fce2fbecebfac4",
+  "execution_date": "2026-11-14",
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "Windows",
+    "omp_threads": 6,
+    "mkl_threads": 6,
+    "bge_batch_size": 24,
+    "packages": {
+      "numpy": "2.5.4",
+      "faiss-cpu": "1.13.2",
+      "torch": "2.15.0",
+      "sentence-transformers": "6.2.0",
+      "transformers": "5.22.2",
+      "beautifulsoup4": "4.15.0",
+      "lxml": "6.1.3",
+      "docling-parse": "7.24.2"
+    }
+  },
+  "bge_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+  "source_code_sha256": {
+    "src/ingestion/corpus.py": "ba320424035c3959de441f68f3a0d948b5f8f65e41b85f182bf2d254943eb401",
+    "src/indexing/representations.py": "b7ffe3b57afc0ea65b64e6d662c6b69bdca7140cdb8afb074df50cf19aaaab8f",
+    "scripts/build_corpus_candidates.py": "b9cc7921456a756d83caacb18419283a6631e32505c66d36cd49c2c9e66545d4",
+    "scripts/verify_corpus_pdf.py": "a668eec725c87a7559df8ac875c4c75c6858a5a61e97473491e3558ac498e378",
+    "data/corpus_html_profiles.json": "85358b76953389d278a0a67d1f96d7c7c2f5848fa7e7732112899383de0d31d9",
+    "data/application_filings.json": "3532d851289a600e2d373100d612cc15d0f6818eb3106a18ed5706f7662a5c08"
+  },
+  "verification": {
+    "local_pytest_passed": 350,
+    "local_ruff": "passed",
+    "apple_2021_source_restore_tracking": "passed",
+    "apple_2024_offline_rebuild_same_thread_generations_identical": true,
+    "microsoft_2022_filtered_retrieval_variants": [
+      "A",
+      "B",
+      "C"
+    ],
+    "unknown_ticker_empty": true,
+    "altered_generation_input_rejected": true,
+    "wrong_pdf_year_rejected": true
+  }
+}
