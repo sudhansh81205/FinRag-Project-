@@ -652,7 +652,7 @@
     "src/indexing/representations.py": "b7ffe3b57afc0ea65b64e6d662c6b69bdca7140cdb8afb074df50cf19aaaab8f",
     "scripts/build_corpus_candidates.py": "b9cc7921456a756d83caacb18419283a6631e32505c66d36cd49c2c9e66545d4",
     "scripts/verify_corpus_pdf.py": "a668eec725c87a7559df8ac875c4c75c6858a5a61e97473491e3558ac498e378",
-    "data/corpus_html_profiles.json": "a76f4eb95b82b66f4a0ad6026819e173336368fc1edc265a457a4da20341e717",
+    "data/corpus_html_profiles.json": "85358b76953389d278a0a67d1f96d7c7c2f5848fa7e7732112899383de0d31d9",
     "data/application_filings.json": "3532d851289a600e2d373100d612cc15d0f6818eb3106a18ed5706f7662a5c08"
   },
   "verification": {
