@@ -8,22 +8,24 @@ import hashlib
 import json
 from collections.abc import Mapping
 from dataclasses import dataclass, field
+from types import MappingProxyType
 from typing import Any
 
 CANONICAL_VARIANTS: tuple[str, ...] = ("A", "B", "C", "D", "E", "F", "G")
 
 # Controlled experiment baseline parameters common to all variants A-G
-FROZEN_CONTROLS = {
+_RAW_FROZEN_CONTROLS: dict[str, Any] = {
     "embedding_model": "BAAI/bge-base-en-v1.5",
     "embedding_dim": 768,
     "vector_index": "exact_faiss_flat_ip",
     "generator_model": "gemma3:4b",
-    "generator_digest": "sha256:751a0b6e9a781b0a5c43d99d10e0c90c74f76ca09fa496735e5a95b8719fb424",
+    "generator_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
     "max_passages": 5,
     "calculator": "restricted_decimal_trees",
     "numerical_relative_tolerance": 0.01,  # 1% relative tolerance
     "random_seed": 42,
 }
+FROZEN_CONTROLS: Mapping[str, Any] = MappingProxyType(_RAW_FROZEN_CONTROLS)
 
 
 @dataclass(frozen=True)
@@ -53,7 +55,7 @@ class VariantSpec:
         }
 
 
-VARIANT_SPECS: Mapping[str, VariantSpec] = {
+_RAW_VARIANT_SPECS: dict[str, VariantSpec] = {
     "A": VariantSpec(
         variant_id="A",
         name="Dense baseline",
@@ -138,6 +140,7 @@ VARIANT_SPECS: Mapping[str, VariantSpec] = {
         ),
     ),
 }
+VARIANT_SPECS: Mapping[str, VariantSpec] = MappingProxyType(_RAW_VARIANT_SPECS)
 
 
 def get_variant_spec(variant_id: str) -> VariantSpec:
@@ -168,24 +171,45 @@ def validate_experiment_manifest(spec: VariantSpec, available_gates: set[str] | 
 def verify_included_operands(calculation_plan: dict[str, Any], included_evidence_ids: list[str]) -> tuple[bool, str]:
     """Verify that every cited operand in a calculation plan is present in final included evidence.
 
+    Supports both canonical typed_calculator plans (issuer, scope, periods, expression)
+    and expression nodes (op, args, evidence_id), as well as legacy leaf schemas.
+    Rejects empty, malformed, or operand-free plans.
+
     Returns (is_valid, error_message).
     """
-    if not isinstance(calculation_plan, dict):
-        return False, "Calculation plan must be a dictionary."
+    if not isinstance(calculation_plan, dict) or not calculation_plan:
+        return False, "Calculation plan must be a non-empty dictionary."
+
     included_set = set(included_evidence_ids)
+
+    # If this is a full plan with an 'expression' field, evaluate the expression sub-tree
+    root = calculation_plan.get("expression", calculation_plan)
+    if not isinstance(root, dict) or not root:
+        return False, "Calculation plan contains an empty or malformed expression."
 
     def collect_leaf_ids(node: Any) -> list[str]:
         if not isinstance(node, dict):
             return []
+        # Canonical typed_calculator leaf: {"evidence_id": "fact_sales_2021"}
+        if "evidence_id" in node and isinstance(node["evidence_id"], str):
+            return [node["evidence_id"]]
+        # Legacy/synthetic leaf: {"type": "leaf", "value": "fact_sales_2021"}
         if node.get("type") == "leaf":
             val = node.get("value")
             return [str(val)] if val is not None else []
         ids = []
+        # Canonical typed_calculator operator: {"op": "...", "args": [...]}
+        for child in node.get("args", []):
+            ids.extend(collect_leaf_ids(child))
+        # Legacy/synthetic operator: {"type": "operator", "operands": [...]}
         for child in node.get("operands", []):
             ids.extend(collect_leaf_ids(child))
         return ids
 
-    operand_ids = collect_leaf_ids(calculation_plan)
+    operand_ids = collect_leaf_ids(root)
+    if not operand_ids:
+        return False, "Calculation plan contains no cited evidence operands."
+
     missing = [oid for oid in operand_ids if oid not in included_set]
     if missing:
         return False, f"Calculation operand(s) not in included context: {missing}"

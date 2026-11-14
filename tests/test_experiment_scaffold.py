@@ -35,6 +35,16 @@ def test_frozen_controls_guarantee_common_settings():
     assert FROZEN_CONTROLS["embedding_model"] == "BAAI/bge-base-en-v1.5"
     assert FROZEN_CONTROLS["embedding_dim"] == 768
     assert FROZEN_CONTROLS["numerical_relative_tolerance"] == 0.01
+    assert FROZEN_CONTROLS["generator_digest"] == "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+
+
+def test_frozen_controls_and_specs_are_deeply_immutable():
+    """F23: Verify that FROZEN_CONTROLS and VARIANT_SPECS cannot be mutated."""
+    with pytest.raises(TypeError):
+        FROZEN_CONTROLS["max_passages"] = 999  # type: ignore[index]
+
+    with pytest.raises(TypeError):
+        VARIANT_SPECS["A"] = None  # type: ignore[index]
 
 
 def test_manifest_validation_detects_missing_gates():
@@ -88,3 +98,38 @@ def test_verify_included_operands_success_and_refusal():
     valid, msg = verify_included_operands(plan, ["fact_sales_2021", "narrative_1"])
     assert valid is False
     assert "fact_cost_2021" in msg
+
+
+def test_verify_included_operands_canonical_plan_and_refusals():
+    """F24: Verify canonical typed_calculator schema support and refusal of empty/malformed plans."""
+    canonical_plan = {
+        "issuer": "AAPL",
+        "scope": "consolidated",
+        "periods": [{"kind": "duration", "start": "2020-09-27", "end": "2021-09-25"}],
+        "expression": {
+            "op": "subtract",
+            "args": [
+                {"evidence_id": "cell_sales_2021"},
+                {"evidence_id": "cell_cost_2021"},
+            ],
+        },
+    }
+    # Success when all cited operands are in included evidence
+    valid, msg = verify_included_operands(canonical_plan, ["cell_sales_2021", "cell_cost_2021", "narrative_3"])
+    assert valid is True
+    assert msg == ""
+
+    # Refusal when one cited operand is missing
+    valid, msg = verify_included_operands(canonical_plan, ["cell_sales_2021", "narrative_3"])
+    assert valid is False
+    assert "cell_cost_2021" in msg
+
+    # Empty plan must be refused
+    valid, msg = verify_included_operands({}, ["cell_sales_2021"])
+    assert valid is False
+    assert "non-empty" in msg
+
+    # Malformed / empty expression must be refused
+    valid, msg = verify_included_operands({"expression": {}}, ["cell_sales_2021"])
+    assert valid is False
+    assert "empty or malformed" in msg
