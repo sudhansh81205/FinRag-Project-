@@ -75,7 +75,15 @@ def validate_records(records, parents):
         parent_map[parent["evidence_id"]] = parent
     for record in records:
         m = record["metadata"]
-        checked(m["type"] in {"narrative_text", "table_cell"}, "Unsupported candidate type")
+        checked(
+            m["type"] in {"narrative_text", "table_cell", "financial_table"},
+            "Unsupported candidate type",
+        )
+        if m["type"] == "financial_table":
+            checked(
+                isinstance(m.get("source_evidence_ids"), list) and bool(m["source_evidence_ids"]),
+                "Flattened table requires source cell identities",
+            )
         if m["type"] == "table_cell":
             p = parent_map.get(m["parent_table_id"])
             checked(
