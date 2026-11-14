@@ -384,7 +384,7 @@
         "R12",
         "R13"
       ],
-      "steps": "Reconcile frozen completed/running/failed outputs and reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics with paired confidence intervals and failure/exclusion denominators. Independently audit the predeclared fifty-output sample only where labels were not self-authored; record exact included context, original-source judgments, disagreements and author exclusions for Shanay. Complete the written report, exactly six slides, contribution/AI-use/source records, methods integration and final backup demo from actual evidence. Continue immutable jobs without settings changes.",
+      "steps": "Reconcile frozen completed/running/failed outputs and reproduce normalized numerical/narrative/retrieval/RAGAS/latency metrics with paired confidence intervals and failure/exclusion denominators. Independently audit the predeclared fifty-output sample only where labels were not self-authored; record exact included context, original-source judgments, disagreements and author exclusions for Sudhansh. Complete the written report, exactly six slides, contribution/AI-use/source records, methods integration and final backup demo from actual evidence. Continue immutable jobs without settings changes.",
       "done": "Evidence-backed report and six-slide draft, metric inputs/results, independent audit decisions and exact unfinished/self-authored-label cases plus release inventory exist. Missing outputs or mandatory scope are explicit.",
       "course_concept": "Independent faithfulness, uncertainty, hypothesis assessment and accountability",
       "dependency_dates": [
@@ -407,7 +407,7 @@
         "R12",
         "R13"
       ],
-      "steps": "Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.",
+      "steps": "Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Pavan while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.",
       "done": "One runnable hash-bound package, final complete/partial requirement ledger, independent audit count, report/six slides/demo and verified submission acknowledgement exist. Missing outputs and mandatory gates cannot be certified complete.",
       "course_concept": "Reproducible AI, independent verification and accountable release",
       "dependency_dates": [
@@ -418,5 +418,5 @@
       "phase": "release_and_submission"
     }
   ],
-  "assignment_revision": "November 12 user exchange: Sudhansh owns November 12 and November 17 (reassigned from Shanay at user request); Pavan owns November 16. Historical assignments unchanged."
+  "assignment_revision": "November 12 user exchange: Sudhansh owns November 12 and November 17 (reassigned from Shanay at user request); Pavan owns November 16. Historical assignments unchanged. November 12 follow-up: transfer remaining November 17 Shanay work to Sudhansh; no added work for Likhit or Rushil. Preserve historical credit."
 }

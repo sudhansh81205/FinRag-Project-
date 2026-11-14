@@ -1,6 +1,6 @@
 # Proposal and feedback alignment audit
 
-Historical comparison from November 3, retained for context. Current dates, assignments and acceptance requirements are in the November 12 PRD and schedule. The operative submission deadline is November 17, with Shanay the final-day owner. PR states below describe the old comparison, not current remote state.
+Historical comparison from November 3, retained for context. Current dates, assignments and acceptance requirements are in the November 12 PRD and schedule. The operative submission deadline is November 17, with Sudhansh the final-day owner. PR states below describe the old comparison, not current remote state.
 
 ## Comparison decisions for the unified PRD
 

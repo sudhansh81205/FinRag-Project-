@@ -219,8 +219,8 @@ def reciprocal_rank_fusion(
             if eid in seen:
                 raise ValueError("Duplicate evidence identity in a ranking")
             seen.add(eid)
-            if eid in id_to_item and any(item.get(key) != id_to_item[eid].get(key) for key in ("content", "metadata")):
-                raise ValueError("Conflicting content or metadata for evidence identity")
+            if eid in id_to_item and any(item.get(key) != id_to_item[eid].get(key) for key in ("content", "metadata", "source")):
+                raise ValueError("Conflicting content, metadata or source for evidence identity")
             rrf_scores[eid] += 1.0 / (k + rank)
             component_ranks[eid][f"list_{list_index}_rank"] = rank
             component_scores[eid][f"list_{list_index}"] = {
@@ -256,13 +256,14 @@ def expand_parents(
     budget_chars: int,
     already_included: set[str],
 ) -> list[dict[str, Any]]:
-    """Inject a cell's parent table once, within the shared character budget.
+    """Append optional parent context without discarding primary candidates.
 
     For each ``table_cell`` candidate whose parent has not yet been included,
-    prepend the parent record if it fits in the remaining budget.  The budget
-    is accounted locally; ``already_included`` records emitted parent IDs.
+    append the parent record if it fits in the parent allowance. Primary evidence
+    keeps its rank and is never dropped by this expansion-only limit. The engine
+    alone applies the common final context budget and records excluded IDs.
 
-    Returns a new list that may contain parent records inserted before their
+    Returns a new list that may contain parent records appended after their
     child cells.  Candidates that have no parent in ``store_parents`` are
     passed through unchanged.
 
@@ -271,7 +272,8 @@ def expand_parents(
     """
     if type(budget_chars) is not int or budget_chars < 0:
         raise ValueError("Parent budget must be a nonnegative integer")
-    expanded: list[dict[str, Any]] = []
+    expanded: list[dict[str, Any]] = list(candidates)
+    candidate_ids = {_identity(item) for item in candidates}
     used_chars = [0]  # mutable surrogate for nonlocal
 
     def fits(item: dict[str, Any]) -> bool:
@@ -285,7 +287,7 @@ def expand_parents(
         kind = candidate.get("metadata", {}).get("type")
         if kind == "table_cell":
             parent_id = candidate.get("metadata", {}).get("parent_table_id")
-            if parent_id and parent_id not in already_included:
+            if parent_id and parent_id not in already_included and parent_id not in candidate_ids:
                 parent = store_parents.get(parent_id)
                 if parent is not None:
                     if parent.get("evidence_id", parent.get("id")) != parent_id:
@@ -295,8 +297,6 @@ def expand_parents(
                 if parent is not None and fits(parent):
                     already_included.add(parent_id)
                     expanded.append({**parent, "expansion": "parent_of_cell"})
-        if fits(candidate):
-            expanded.append(candidate)
     return expanded
 
 
@@ -614,10 +614,11 @@ class HybridRRFRetriever:
             })
             if self.variant != "F" or (enough and confident):
                 break
-        if self.variant == "F" and candidates and not confident:
+        if self.variant == "F" and candidates and (not confident or not enough):
             # Exhausting the bound below the declared score threshold is an
             # abstention, never a successful-looking fallback final variant.
-            result["routing"]["stop_reason"] = "score_threshold_not_met"
+            result["routing"]["stop_reason"] = (
+                "score_threshold_not_met" if not confident else "candidate_threshold_not_met")
             result["rejected_evidence_ids"] = [_identity(c) for c in candidates]
             candidates = []
         result["text_evidence"] = [c for c in candidates if c.get("metadata", {}).get("type") == "narrative_text"]

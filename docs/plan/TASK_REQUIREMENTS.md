@@ -99,7 +99,7 @@ Dependency: 2026-11-14.
 2. Bind each decision to exact source/image/label/caption hashes and preserve fifteen development/thirty-five held-out image groups. Unknown/unprinted values remain unknown; cross-split alternate crops, changed hashes and ambiguous claims fail.
 3. Validate development-only behavior, supported corpus counts, full case/split/exclusion inventory and scoring/model/control compatibility. Check actual November 14 capacity, legal service access and remaining available machine time. One accepted filing cannot pass full R1; missing corpus or models remains mandatory unmet scope.
 4. Freeze accepted code/data/index/model/prompt/calculator/token/five-passage/random controls, route thresholds, checkpoint schema and full eligible case list. Predeclare seeded stratified fifty-output faithfulness sampling across A-G/question types before score inspection.
-5. Launch/resume complete primary Gemma A-G, RAGAS and separately labelled secondary Llama runs only when prerequisites pass. Retain real outputs, ranking/context/rules/timing, failures/timeouts/exclusions and denominators. Publish completed/running/failed counts and exact partial/blocked scope for Sudhansh.
+5. Launch/resume complete primary Gemma A-G, RAGAS and separately labelled secondary Llama runs only when prerequisites pass. Retain real outputs, ranking/context/rules/timing, failures/timeouts/exclusions and denominators. Publish completed/running/failed counts and exact partial/blocked scope for Pavan on November 16.
 
 Success/failure proof: approved hash-bound source/label/model identities allow reproducible execution; self-review, wrong source period, missing stage, swapped index row or inconsistent resume manifest blocks acceptance. Viva: what does a cryptographic hash establish, and why does it not certify a gold answer?
 
@@ -137,14 +137,14 @@ Course concept: Independent faithfulness, uncertainty, hypothesis assessment and
 
 Verify clean release finish independent exclusions and submit | 10 estimated hours | R2 R6 R7 R8 R12 R13
 
-Purpose: Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.
+Purpose: Restore data/index and restart the exact release in a clean prepared environment; verify provider/model/config identities, CI, DVC/MLflow and real success/failure paths. Independently finish audit exclusions from Pavan while rejecting self-approval of Sudhansh-authored labels. Reconcile actual full results and fifty-output audit, report, exactly six slides, AI-use/contributions/sources and backup demo. Freeze one code/data/model/config/archive manifest, verify files open, submit by November 17 and retain acknowledgement; state incomplete scope honestly.
 
 Dependency: 2026-11-16; full outputs and actual submission route/cutoff.
 
 ### Ordered work and verification
 
 1. Restore exact release data/index in a clean prepared environment, verify source/schema/ordered-ID/vector/model/config hashes, configured CI, restart, real provider access and saved DVC/MLflow evidence.
-2. Independently finish audit cases excluded because other members authored labels; never approve a Sudhansh-authored label as independent. Record unresolved identity conflicts or insufficient completed outputs. Reconcile fifty independent decisions or state exact shortfall.
+2. Independently finish audit cases excluded because Pavan authored labels; never approve a Sudhansh-authored label as independent. Record unresolved identity conflicts or insufficient completed outputs. Reconcile fifty independent decisions or state exact shortfall.
 3. Independently spot-check metric inputs, denominators and controls against the frozen ledger. Match full actual results, failure/timeout/exclusion counts, narrative/numerical/retrieval/RAGAS/latency measures and intervals to final report claims.
 4. Consolidate the report and exactly six slides, actual contributions/AI-use/source acknowledgements, real source-linked backup demo, limitations and complete/partial requirement ledger. Earlier owners supply drafts; Sudhansh handles final consolidation within this slot.
 5. Freeze one code/data/model/config/archive manifest and verified command set. Open all final files, demonstrate a supported real path and meaningful failure, obtain the actual authorized submission route/cutoff if still missing, submit by November 17 and retain acknowledgement.
