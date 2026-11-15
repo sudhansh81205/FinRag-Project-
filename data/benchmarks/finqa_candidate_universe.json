@@ -1,0 +1,2652 @@
+[
+  {
+    "case_id": "FINQA-0001",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 301500 million USD in fiscal year 2021, compared to 251200 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "301500",
+            "251200"
+          ],
+          [
+            "Cost of sales",
+            "180900",
+            "150720"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.02%",
+      "gold_value_numeric": 20.02,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "301500",
+          "251200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0001:cell_sales_curr",
+        "FINQA-0001:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0002",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 303000 million USD in fiscal year 2022, compared to 252400 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "303000",
+            "252400"
+          ],
+          [
+            "Cost of sales",
+            "181800",
+            "151440"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.05%",
+      "gold_value_numeric": 20.05,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "303000",
+          "252400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0002:cell_sales_curr",
+        "FINQA-0002:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0003",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 304500 million USD in fiscal year 2023, compared to 253600 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "304500",
+            "253600"
+          ],
+          [
+            "Cost of sales",
+            "182700",
+            "152160"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.07%",
+      "gold_value_numeric": 20.07,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "304500",
+          "253600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0003:cell_sales_curr",
+        "FINQA-0003:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0004",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "ALPHABET_2020_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 306000 million USD in fiscal year 2020, compared to 254800 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "306000",
+            "254800"
+          ],
+          [
+            "Cost of sales",
+            "183600",
+            "152880"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.09%",
+      "gold_value_numeric": 20.09,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "306000",
+          "254800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0004:cell_sales_curr",
+        "FINQA-0004:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0005",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 307500 million USD in fiscal year 2021, compared to 256000 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "307500",
+            "256000"
+          ],
+          [
+            "Cost of sales",
+            "184500",
+            "153600"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.12%",
+      "gold_value_numeric": 20.12,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "307500",
+          "256000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0005:cell_sales_curr",
+        "FINQA-0005:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0006",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 309000 million USD in fiscal year 2022, compared to 257200 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "309000",
+            "257200"
+          ],
+          [
+            "Cost of sales",
+            "185400",
+            "154320"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.14%",
+      "gold_value_numeric": 20.14,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "309000",
+          "257200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0006:cell_sales_curr",
+        "FINQA-0006:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0007",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 310500 million USD in fiscal year 2023, compared to 258400 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "310500",
+            "258400"
+          ],
+          [
+            "Cost of sales",
+            "186300",
+            "155040"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.16%",
+      "gold_value_numeric": 20.16,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "310500",
+          "258400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0007:cell_sales_curr",
+        "FINQA-0007:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0008",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "AMAZON.COM,_2020_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 312000 million USD in fiscal year 2020, compared to 259600 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "312000",
+            "259600"
+          ],
+          [
+            "Cost of sales",
+            "187200",
+            "155760"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.18%",
+      "gold_value_numeric": 20.18,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "312000",
+          "259600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0008:cell_sales_curr",
+        "FINQA-0008:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0009",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 313500 million USD in fiscal year 2021, compared to 260800 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "313500",
+            "260800"
+          ],
+          [
+            "Cost of sales",
+            "188100",
+            "156480"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.21%",
+      "gold_value_numeric": 20.21,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "313500",
+          "260800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0009:cell_sales_curr",
+        "FINQA-0009:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0010",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 315000 million USD in fiscal year 2022, compared to 262000 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "315000",
+            "262000"
+          ],
+          [
+            "Cost of sales",
+            "189000",
+            "157200"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.23%",
+      "gold_value_numeric": 20.23,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "315000",
+          "262000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0010:cell_sales_curr",
+        "FINQA-0010:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0011",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "APPLE_2023_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 316500 million USD in fiscal year 2023, compared to 263200 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "316500",
+            "263200"
+          ],
+          [
+            "Cost of sales",
+            "189900",
+            "157920"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.25%",
+      "gold_value_numeric": 20.25,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "316500",
+          "263200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0011:cell_sales_curr",
+        "FINQA-0011:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0012",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2020",
+    "doc_name": "MICROSOFT_2020_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 318000 million USD in fiscal year 2020, compared to 264400 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "318000",
+            "264400"
+          ],
+          [
+            "Cost of sales",
+            "190800",
+            "158640"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.27%",
+      "gold_value_numeric": 20.27,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "318000",
+          "264400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0012:cell_sales_curr",
+        "FINQA-0012:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0013",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 319500 million USD in fiscal year 2021, compared to 265600 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "319500",
+            "265600"
+          ],
+          [
+            "Cost of sales",
+            "191700",
+            "159360"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.29%",
+      "gold_value_numeric": 20.29,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "319500",
+          "265600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0013:cell_sales_curr",
+        "FINQA-0013:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0014",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 321000 million USD in fiscal year 2022, compared to 266800 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "321000",
+            "266800"
+          ],
+          [
+            "Cost of sales",
+            "192600",
+            "160080"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.31%",
+      "gold_value_numeric": 20.31,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "321000",
+          "266800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0014:cell_sales_curr",
+        "FINQA-0014:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0015",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 322500 million USD in fiscal year 2023, compared to 268000 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "322500",
+            "268000"
+          ],
+          [
+            "Cost of sales",
+            "193500",
+            "160800"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.34%",
+      "gold_value_numeric": 20.34,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "322500",
+          "268000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0015:cell_sales_curr",
+        "FINQA-0015:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0016",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "APPLE_2020_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 324000 million USD in fiscal year 2020, compared to 269200 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "324000",
+            "269200"
+          ],
+          [
+            "Cost of sales",
+            "194400",
+            "161520"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.36%",
+      "gold_value_numeric": 20.36,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "324000",
+          "269200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0016:cell_sales_curr",
+        "FINQA-0016:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0017",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2021",
+    "doc_name": "MICROSOFT_2021_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 325500 million USD in fiscal year 2021, compared to 270400 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "325500",
+            "270400"
+          ],
+          [
+            "Cost of sales",
+            "195300",
+            "162240"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.38%",
+      "gold_value_numeric": 20.38,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "325500",
+          "270400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0017:cell_sales_curr",
+        "FINQA-0017:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0018",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "AMAZON.COM,_2022_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 327000 million USD in fiscal year 2022, compared to 271600 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "327000",
+            "271600"
+          ],
+          [
+            "Cost of sales",
+            "196200",
+            "162960"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.4%",
+      "gold_value_numeric": 20.4,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "327000",
+          "271600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0018:cell_sales_curr",
+        "FINQA-0018:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0019",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "ALPHABET_2023_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 328500 million USD in fiscal year 2023, compared to 272800 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "328500",
+            "272800"
+          ],
+          [
+            "Cost of sales",
+            "197100",
+            "163680"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.42%",
+      "gold_value_numeric": 20.42,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "328500",
+          "272800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0019:cell_sales_curr",
+        "FINQA-0019:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0020",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "META_2020_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 330000 million USD in fiscal year 2020, compared to 274000 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "330000",
+            "274000"
+          ],
+          [
+            "Cost of sales",
+            "198000",
+            "164400"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.44%",
+      "gold_value_numeric": 20.44,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "330000",
+          "274000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0020:cell_sales_curr",
+        "FINQA-0020:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0021",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 331500 million USD in fiscal year 2021, compared to 275200 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "331500",
+            "275200"
+          ],
+          [
+            "Cost of sales",
+            "198900",
+            "165120"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.46%",
+      "gold_value_numeric": 20.46,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "331500",
+          "275200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0021:cell_sales_curr",
+        "FINQA-0021:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0022",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 333000 million USD in fiscal year 2022, compared to 276400 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "333000",
+            "276400"
+          ],
+          [
+            "Cost of sales",
+            "199800",
+            "165840"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.48%",
+      "gold_value_numeric": 20.48,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "333000",
+          "276400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0022:cell_sales_curr",
+        "FINQA-0022:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0023",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 334500 million USD in fiscal year 2023, compared to 277600 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "334500",
+            "277600"
+          ],
+          [
+            "Cost of sales",
+            "200700",
+            "166560"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.5%",
+      "gold_value_numeric": 20.5,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "334500",
+          "277600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0023:cell_sales_curr",
+        "FINQA-0023:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0024",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "ALPHABET_2020_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 336000 million USD in fiscal year 2020, compared to 278800 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "336000",
+            "278800"
+          ],
+          [
+            "Cost of sales",
+            "201600",
+            "167280"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.52%",
+      "gold_value_numeric": 20.52,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "336000",
+          "278800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0024:cell_sales_curr",
+        "FINQA-0024:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0025",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 337500 million USD in fiscal year 2021, compared to 280000 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "337500",
+            "280000"
+          ],
+          [
+            "Cost of sales",
+            "202500",
+            "168000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.54%",
+      "gold_value_numeric": 20.54,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "337500",
+          "280000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0025:cell_sales_curr",
+        "FINQA-0025:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0026",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 339000 million USD in fiscal year 2022, compared to 281200 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "339000",
+            "281200"
+          ],
+          [
+            "Cost of sales",
+            "203400",
+            "168720"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.55%",
+      "gold_value_numeric": 20.55,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "339000",
+          "281200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0026:cell_sales_curr",
+        "FINQA-0026:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0027",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 340500 million USD in fiscal year 2023, compared to 282400 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "340500",
+            "282400"
+          ],
+          [
+            "Cost of sales",
+            "204300",
+            "169440"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.57%",
+      "gold_value_numeric": 20.57,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "340500",
+          "282400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0027:cell_sales_curr",
+        "FINQA-0027:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0028",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "AMAZON.COM,_2020_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 342000 million USD in fiscal year 2020, compared to 283600 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "342000",
+            "283600"
+          ],
+          [
+            "Cost of sales",
+            "205200",
+            "170160"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.59%",
+      "gold_value_numeric": 20.59,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "342000",
+          "283600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0028:cell_sales_curr",
+        "FINQA-0028:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0029",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 343500 million USD in fiscal year 2021, compared to 284800 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "343500",
+            "284800"
+          ],
+          [
+            "Cost of sales",
+            "206100",
+            "170880"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.61%",
+      "gold_value_numeric": 20.61,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "343500",
+          "284800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0029:cell_sales_curr",
+        "FINQA-0029:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0030",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 345000 million USD in fiscal year 2022, compared to 286000 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "345000",
+            "286000"
+          ],
+          [
+            "Cost of sales",
+            "207000",
+            "171600"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.63%",
+      "gold_value_numeric": 20.63,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "345000",
+          "286000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0030:cell_sales_curr",
+        "FINQA-0030:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0031",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "APPLE_2023_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 346500 million USD in fiscal year 2023, compared to 287200 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "346500",
+            "287200"
+          ],
+          [
+            "Cost of sales",
+            "207900",
+            "172320"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.65%",
+      "gold_value_numeric": 20.65,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "346500",
+          "287200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0031:cell_sales_curr",
+        "FINQA-0031:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0032",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2020",
+    "doc_name": "MICROSOFT_2020_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 348000 million USD in fiscal year 2020, compared to 288400 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "348000",
+            "288400"
+          ],
+          [
+            "Cost of sales",
+            "208800",
+            "173040"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.67%",
+      "gold_value_numeric": 20.67,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "348000",
+          "288400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0032:cell_sales_curr",
+        "FINQA-0032:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0033",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 349500 million USD in fiscal year 2021, compared to 289600 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "349500",
+            "289600"
+          ],
+          [
+            "Cost of sales",
+            "209700",
+            "173760"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.68%",
+      "gold_value_numeric": 20.68,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "349500",
+          "289600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0033:cell_sales_curr",
+        "FINQA-0033:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0034",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 351000 million USD in fiscal year 2022, compared to 290800 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "351000",
+            "290800"
+          ],
+          [
+            "Cost of sales",
+            "210600",
+            "174480"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.7%",
+      "gold_value_numeric": 20.7,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "351000",
+          "290800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0034:cell_sales_curr",
+        "FINQA-0034:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0035",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 352500 million USD in fiscal year 2023, compared to 292000 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "352500",
+            "292000"
+          ],
+          [
+            "Cost of sales",
+            "211500",
+            "175200"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.72%",
+      "gold_value_numeric": 20.72,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "352500",
+          "292000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0035:cell_sales_curr",
+        "FINQA-0035:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0036",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "APPLE_2020_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 354000 million USD in fiscal year 2020, compared to 293200 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "354000",
+            "293200"
+          ],
+          [
+            "Cost of sales",
+            "212400",
+            "175920"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.74%",
+      "gold_value_numeric": 20.74,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "354000",
+          "293200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0036:cell_sales_curr",
+        "FINQA-0036:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0037",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2021",
+    "doc_name": "MICROSOFT_2021_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 355500 million USD in fiscal year 2021, compared to 294400 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "355500",
+            "294400"
+          ],
+          [
+            "Cost of sales",
+            "213300",
+            "176640"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.75%",
+      "gold_value_numeric": 20.75,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "355500",
+          "294400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0037:cell_sales_curr",
+        "FINQA-0037:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0038",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "AMAZON.COM,_2022_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 357000 million USD in fiscal year 2022, compared to 295600 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "357000",
+            "295600"
+          ],
+          [
+            "Cost of sales",
+            "214200",
+            "177360"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.77%",
+      "gold_value_numeric": 20.77,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "357000",
+          "295600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0038:cell_sales_curr",
+        "FINQA-0038:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0039",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "ALPHABET_2023_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 358500 million USD in fiscal year 2023, compared to 296800 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "358500",
+            "296800"
+          ],
+          [
+            "Cost of sales",
+            "215100",
+            "178080"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.79%",
+      "gold_value_numeric": 20.79,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "358500",
+          "296800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0039:cell_sales_curr",
+        "FINQA-0039:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0040",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "META_2020_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 360000 million USD in fiscal year 2020, compared to 298000 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "360000",
+            "298000"
+          ],
+          [
+            "Cost of sales",
+            "216000",
+            "178800"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.81%",
+      "gold_value_numeric": 20.81,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "360000",
+          "298000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0040:cell_sales_curr",
+        "FINQA-0040:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0041",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 361500 million USD in fiscal year 2021, compared to 299200 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "361500",
+            "299200"
+          ],
+          [
+            "Cost of sales",
+            "216900",
+            "179520"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.82%",
+      "gold_value_numeric": 20.82,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "361500",
+          "299200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0041:cell_sales_curr",
+        "FINQA-0041:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0042",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 363000 million USD in fiscal year 2022, compared to 300400 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "363000",
+            "300400"
+          ],
+          [
+            "Cost of sales",
+            "217800",
+            "180240"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.84%",
+      "gold_value_numeric": 20.84,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "363000",
+          "300400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0042:cell_sales_curr",
+        "FINQA-0042:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0043",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 364500 million USD in fiscal year 2023, compared to 301600 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "364500",
+            "301600"
+          ],
+          [
+            "Cost of sales",
+            "218700",
+            "180960"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.86%",
+      "gold_value_numeric": 20.86,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "364500",
+          "301600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0043:cell_sales_curr",
+        "FINQA-0043:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0044",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "ALPHABET_2020_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 366000 million USD in fiscal year 2020, compared to 302800 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "366000",
+            "302800"
+          ],
+          [
+            "Cost of sales",
+            "219600",
+            "181680"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.87%",
+      "gold_value_numeric": 20.87,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "366000",
+          "302800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0044:cell_sales_curr",
+        "FINQA-0044:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0045",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 367500 million USD in fiscal year 2021, compared to 304000 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "367500",
+            "304000"
+          ],
+          [
+            "Cost of sales",
+            "220500",
+            "182400"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.89%",
+      "gold_value_numeric": 20.89,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "367500",
+          "304000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0045:cell_sales_curr",
+        "FINQA-0045:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0046",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "What is the percentage change in net sales for Apple Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Apple Inc. reached 369000 million USD in fiscal year 2022, compared to 305200 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "369000",
+            "305200"
+          ],
+          [
+            "Cost of sales",
+            "221400",
+            "183120"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.9%",
+      "gold_value_numeric": 20.9,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "369000",
+          "305200"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0046:cell_sales_curr",
+        "FINQA-0046:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0047",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "What is the percentage change in net sales for Microsoft Corporation from 2022 to 2023?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Microsoft Corporation reached 370500 million USD in fiscal year 2023, compared to 306400 million USD in 2022.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2023-09-30",
+        "columns": [
+          "Category",
+          "2023",
+          "2022"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "370500",
+            "306400"
+          ],
+          [
+            "Cost of sales",
+            "222300",
+            "183840"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.92%",
+      "gold_value_numeric": 20.92,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "370500",
+          "306400"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0047:cell_sales_curr",
+        "FINQA-0047:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0048",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2020",
+    "doc_name": "AMAZON.COM,_2020_10K",
+    "question": "What is the percentage change in net sales for Amazon.com, Inc. from 2019 to 2020?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Amazon.com, Inc. reached 372000 million USD in fiscal year 2020, compared to 307600 million USD in 2019.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2020-09-30",
+        "columns": [
+          "Category",
+          "2020",
+          "2019"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "372000",
+            "307600"
+          ],
+          [
+            "Cost of sales",
+            "223200",
+            "184560"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.94%",
+      "gold_value_numeric": 20.94,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "372000",
+          "307600"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0048:cell_sales_curr",
+        "FINQA-0048:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0049",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "What is the percentage change in net sales for Alphabet Inc. from 2020 to 2021?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Alphabet Inc. reached 373500 million USD in fiscal year 2021, compared to 308800 million USD in 2020.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2021-09-30",
+        "columns": [
+          "Category",
+          "2021",
+          "2020"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "373500",
+            "308800"
+          ],
+          [
+            "Cost of sales",
+            "224100",
+            "185280"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.95%",
+      "gold_value_numeric": 20.95,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "373500",
+          "308800"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0049:cell_sales_curr",
+        "FINQA-0049:cell_sales_prev"
+      ]
+    }
+  },
+  {
+    "case_id": "FINQA-0050",
+    "benchmark": "FinQA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "What is the percentage change in net sales for Meta Platforms, Inc. from 2021 to 2022?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Net sales for Meta Platforms, Inc. reached 375000 million USD in fiscal year 2022, compared to 310000 million USD in 2021.",
+      "The increase was primarily driven by growth across enterprise and consumer services."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Consolidated Statements of Earnings",
+        "scope": "Consolidated",
+        "period_end": "2022-09-30",
+        "columns": [
+          "Category",
+          "2022",
+          "2021"
+        ],
+        "rows": [
+          [
+            "Total net sales",
+            "375000",
+            "310000"
+          ],
+          [
+            "Cost of sales",
+            "225000",
+            "186000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "20.97%",
+      "gold_value_numeric": 20.97,
+      "gold_program": {
+        "op": "percent_change",
+        "operands": [
+          "375000",
+          "310000"
+        ]
+      },
+      "gold_evidence_ids": [
+        "FINQA-0050:cell_sales_curr",
+        "FINQA-0050:cell_sales_prev"
+      ]
+    }
+  }
+]

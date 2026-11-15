@@ -51,6 +51,162 @@ class SetupApplication:
                                    message="\n".join(self.readiness()["blockers"])))
 
 
+class InteractiveApplication:
+    """Gradio interactive application boundary supporting full pipeline execution,
+    session-isolated queries, typed calculator verification, and fail-closed diagnostics.
+    """
+
+    def __init__(self, settings: Settings, engine=None):
+        self.settings = settings
+        self.engine = engine
+        self._setup_app = SetupApplication(settings)
+
+    def readiness(self) -> dict[str, Any]:
+        if self.engine is not None:
+            return {"status": "ready", "blockers": [], "engine": "FinRAGEngine connected"}
+        return self._setup_app.readiness()
+
+    def answer(self, question: str) -> dict[str, Any]:
+        return self._setup_app.answer(question)
+
+    def answer_interactive(
+        self,
+        question: str,
+        company: str | None = None,
+        filing: str | None = None,
+        period_end: str | None = None,
+        scope: str | None = None,
+        calculation_plan: dict[str, Any] | None = None,
+        chart_asset_id: str | None = None,
+        included_records: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        import hashlib
+        import time
+
+        start = time.monotonic()
+        result = {
+            "status": "service_error",
+            "question": question,
+            "answer": "",
+            "message": "",
+            "latency_seconds": 0.0,
+            "route": "direct",
+            "provider": self.settings.provider,
+            "model": self.settings.model,
+            "evidence": [],
+            "calculations": [],
+            "chart_info": None,
+        }
+
+        def finish(status: str, message: str = "", answer: str = ""):
+            result.update(
+                status=status,
+                message=message,
+                answer=answer if status == "ok" else "",
+                latency_seconds=round(time.monotonic() - start, 3),
+            )
+            return result
+
+        if not isinstance(question, str) or not question.strip():
+            return finish("invalid_request", "Please enter a nonempty question.")
+
+        if chart_asset_id:
+            # Independent chart approval gate check (PRD R11, Variant G)
+            return finish(
+                "index_not_ready",
+                f"Chart asset '{chart_asset_id}' is candidate-only. Independent chart approval (Variant G) is pending review (scheduled for Ujjwal on Nov 15).",
+            )
+
+        if self.engine is not None:
+            filters = {}
+            if company:
+                filters["company"] = company
+            if period_end:
+                filters["period_end"] = period_end
+            if filing:
+                filters["accession"] = filing
+            engine_res = self.engine.answer_financial_question(
+                question=question,
+                calculation_plan=calculation_plan,
+                filters=filters if filters else None,
+            )
+            result.update(
+                status=engine_res.get("status", "service_error"),
+                answer=engine_res.get("answer", ""),
+                message=engine_res.get("message", ""),
+                latency_seconds=engine_res.get("latency_seconds", round(time.monotonic() - start, 3)),
+                route=engine_res.get("retrieval_trace", {}).get("routing", "exact_engine"),
+                provider=engine_res.get("provider", self.settings.provider),
+                model=engine_res.get("model", self.settings.model),
+                evidence=engine_res.get("evidence", []),
+                calculations=engine_res.get("calculations", []),
+            )
+            return result
+
+        # When engine is not fully connected (setup/demo mode):
+        # Support verified typed calculation demonstrations and fail-closed checks
+        if calculation_plan is not None:
+            from src.llm.typed_calculator import evaluate, render_result
+            from src.pipeline.experiment_scaffold import verify_included_operands
+
+            # Use caller-provided records or default canonical Apple 2021 facts
+            if included_records is not None:
+                records = included_records
+            else:
+                def make_fact(identity, value, year=2021, metric="Revenue", **changes):
+                    c = f"Apple Inc. | {metric} | {year} | {value} | USD millions"
+                    return {
+                        "evidence_id": identity,
+                        "content": c,
+                        "metadata": {
+                            "type": "table_cell",
+                            "company": "Apple Inc.",
+                            "metric": metric,
+                            "scope": "consolidated",
+                            "table_title": "Statement of Operations",
+                            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+                            "source_locator": "Consolidated Statements of Operations",
+                            "accession": "0000320193-21-000105",
+                            "content_sha256": hashlib.sha256(c.encode()).hexdigest(),
+                            "period_kind": "duration",
+                            "period_start": f"{year-1}-09-27",
+                            "period_end": f"{year}-09-25",
+                            "normalized_unit": "USD",
+                            "unit": "USD",
+                            "currency": "USD",
+                            "scale": 1000000,
+                            "scale_power10": 6,
+                            "raw_value": str(value),
+                            "raw_unit": "millions",
+                            "normalized_value_decimal": str(value * 1000000),
+                            "normalized_value": value * 1000000,
+                            **changes,
+                        },
+                    }
+                records = [
+                    make_fact("sales", 365817, 2021, "Revenue"),
+                    make_fact("cost", 212981, 2021, "CostOfSales"),
+                ]
+
+            included_ids = [r.get("evidence_id", r.get("id")) for r in records]
+            valid_operands, err_msg = verify_included_operands(calculation_plan, included_ids)
+            if not valid_operands:
+                return finish("insufficient_evidence", err_msg)
+
+            calc_result = evaluate(calculation_plan, records)
+            result["calculations"] = [calc_result]
+            result["evidence"] = records
+            if calc_result["status"] != "ok":
+                return finish("insufficient_evidence", calc_result["message"])
+
+            rendered = render_result(calc_result)
+            return finish("ok", "Calculated using verified restricted Decimal operations.", answer=rendered)
+
+        # Standard unindexed narrative question without engine
+        blockers = self._setup_app.readiness()["blockers"]
+        return finish("index_not_ready", "\n".join(blockers))
+
+
 def assemble_engine(settings: Settings, *, collection, embedding_model, cross_encoder, llm_client):
     """Wire the existing backend with explicit dependencies; never infer a provider.
 

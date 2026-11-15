@@ -17,7 +17,12 @@ from src.contracts import sha256  # noqa: E402
 from src.evidence_audit import encoded  # noqa: E402
 from src.indexing.bge import BGEEncoder, EmbeddingSpec  # noqa: E402
 from src.indexing.representations import matched_representations  # noqa: E402
-from src.indexing.store import ExactStore, publish_filing, read_generation, validate_records  # noqa: E402
+from src.indexing.store import (  # noqa: E402
+    ExactStore,
+    publish_filing,
+    read_generation,
+    validate_records,
+)
 from src.ingestion.corpus import parse_corpus_filing  # noqa: E402
 
 APPLE = "0000320193-21-000105"

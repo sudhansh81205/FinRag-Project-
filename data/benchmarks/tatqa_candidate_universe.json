@@ -1,0 +1,2488 @@
+[
+  {
+    "case_id": "TATQA-0001",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2022 for Apple Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0001:text_seg",
+        "TATQA-0001:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0002",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "What is the primary reporting currency used by Microsoft Corporation in the 2023 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0002:text_seg",
+        "TATQA-0002:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0003",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "Which business segments contributed to operating revenue in 2021?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0003:text_seg",
+        "TATQA-0003:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0004",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "How many reportable operating segments does Alphabet Inc. maintain in 2022?",
+    "question_type": "count",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0004:text_seg",
+        "TATQA-0004:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0005",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2023 for Meta Platforms, Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0005:text_seg",
+        "TATQA-0005:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0006",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "What is the primary reporting currency used by Apple Inc. in the 2021 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0006:text_seg",
+        "TATQA-0006:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0007",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "Which business segments contributed to operating revenue in 2022?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0007:text_seg",
+        "TATQA-0007:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0008",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "How many reportable operating segments does Amazon.com, Inc. maintain in 2023?",
+    "question_type": "count",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0008:text_seg",
+        "TATQA-0008:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0009",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2021 for Alphabet Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0009:text_seg",
+        "TATQA-0009:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0010",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "What is the primary reporting currency used by Meta Platforms, Inc. in the 2022 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0010:text_seg",
+        "TATQA-0010:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0011",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "APPLE_2023_10K",
+    "question": "Which business segments contributed to operating revenue in 2023?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0011:text_seg",
+        "TATQA-0011:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0012",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2021",
+    "doc_name": "MICROSOFT_2021_10K",
+    "question": "How many reportable operating segments does Microsoft Corporation maintain in 2021?",
+    "question_type": "count",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0012:text_seg",
+        "TATQA-0012:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0013",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "AMAZON.COM,_2022_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2022 for Amazon.com, Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0013:text_seg",
+        "TATQA-0013:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0014",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "ALPHABET_2023_10K",
+    "question": "What is the primary reporting currency used by Alphabet Inc. in the 2023 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0014:text_seg",
+        "TATQA-0014:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0015",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "Which business segments contributed to operating revenue in 2021?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0015:text_seg",
+        "TATQA-0015:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0016",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "How many reportable operating segments does Apple Inc. maintain in 2022?",
+    "question_type": "count",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0016:text_seg",
+        "TATQA-0016:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0017",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2023 for Microsoft Corporation?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0017:text_seg",
+        "TATQA-0017:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0018",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "What is the primary reporting currency used by Amazon.com, Inc. in the 2021 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0018:text_seg",
+        "TATQA-0018:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0019",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "Which business segments contributed to operating revenue in 2022?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0019:text_seg",
+        "TATQA-0019:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0020",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "How many reportable operating segments does Meta Platforms, Inc. maintain in 2023?",
+    "question_type": "count",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0020:text_seg",
+        "TATQA-0020:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0021",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2021 for Apple Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0021:text_seg",
+        "TATQA-0021:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0022",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "What is the primary reporting currency used by Microsoft Corporation in the 2022 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0022:text_seg",
+        "TATQA-0022:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0023",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "Which business segments contributed to operating revenue in 2023?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0023:text_seg",
+        "TATQA-0023:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0024",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "How many reportable operating segments does Alphabet Inc. maintain in 2021?",
+    "question_type": "count",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0024:text_seg",
+        "TATQA-0024:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0025",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2022 for Meta Platforms, Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0025:text_seg",
+        "TATQA-0025:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0026",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "APPLE_2023_10K",
+    "question": "What is the primary reporting currency used by Apple Inc. in the 2023 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0026:text_seg",
+        "TATQA-0026:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0027",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2021",
+    "doc_name": "MICROSOFT_2021_10K",
+    "question": "Which business segments contributed to operating revenue in 2021?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0027:text_seg",
+        "TATQA-0027:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0028",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "AMAZON.COM,_2022_10K",
+    "question": "How many reportable operating segments does Amazon.com, Inc. maintain in 2022?",
+    "question_type": "count",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0028:text_seg",
+        "TATQA-0028:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0029",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "ALPHABET_2023_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2023 for Alphabet Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0029:text_seg",
+        "TATQA-0029:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0030",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "What is the primary reporting currency used by Meta Platforms, Inc. in the 2021 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0030:text_seg",
+        "TATQA-0030:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0031",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "Which business segments contributed to operating revenue in 2022?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0031:text_seg",
+        "TATQA-0031:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0032",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "How many reportable operating segments does Microsoft Corporation maintain in 2023?",
+    "question_type": "count",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0032:text_seg",
+        "TATQA-0032:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0033",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2021 for Amazon.com, Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0033:text_seg",
+        "TATQA-0033:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0034",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "What is the primary reporting currency used by Alphabet Inc. in the 2022 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0034:text_seg",
+        "TATQA-0034:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0035",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "Which business segments contributed to operating revenue in 2023?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0035:text_seg",
+        "TATQA-0035:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0036",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "APPLE_2021_10K",
+    "question": "How many reportable operating segments does Apple Inc. maintain in 2021?",
+    "question_type": "count",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0036:text_seg",
+        "TATQA-0036:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0037",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2022",
+    "doc_name": "MICROSOFT_2022_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2022 for Microsoft Corporation?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0037:text_seg",
+        "TATQA-0037:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0038",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "AMAZON.COM,_2023_10K",
+    "question": "What is the primary reporting currency used by Amazon.com, Inc. in the 2023 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0038:text_seg",
+        "TATQA-0038:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0039",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "ALPHABET_2021_10K",
+    "question": "Which business segments contributed to operating revenue in 2021?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0039:text_seg",
+        "TATQA-0039:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0040",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "META_2022_10K",
+    "question": "How many reportable operating segments does Meta Platforms, Inc. maintain in 2022?",
+    "question_type": "count",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0040:text_seg",
+        "TATQA-0040:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0041",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "APPLE_2023_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2023 for Apple Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0041:text_seg",
+        "TATQA-0041:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0042",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2021",
+    "doc_name": "MICROSOFT_2021_10K",
+    "question": "What is the primary reporting currency used by Microsoft Corporation in the 2021 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0042:text_seg",
+        "TATQA-0042:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0043",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "AMAZON.COM,_2022_10K",
+    "question": "Which business segments contributed to operating revenue in 2022?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0043:text_seg",
+        "TATQA-0043:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0044",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "ALPHABET_2023_10K",
+    "question": "How many reportable operating segments does Alphabet Inc. maintain in 2023?",
+    "question_type": "count",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0044:text_seg",
+        "TATQA-0044:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0045",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "META_2021_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2021 for Meta Platforms, Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0045:text_seg",
+        "TATQA-0045:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0046",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Apple Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "APPLE_2022_10K",
+    "question": "What is the primary reporting currency used by Apple Inc. in the 2022 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Apple Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0046:text_seg",
+        "TATQA-0046:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0047",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Microsoft Corporation",
+    "fiscal_year": "2023",
+    "doc_name": "MICROSOFT_2023_10K",
+    "question": "Which business segments contributed to operating revenue in 2023?",
+    "question_type": "multi-span",
+    "context_text": [
+      "Microsoft Corporation operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": [
+        "Products",
+        "Services"
+      ],
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0047:text_seg",
+        "TATQA-0047:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0048",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": "2021",
+    "doc_name": "AMAZON.COM,_2021_10K",
+    "question": "How many reportable operating segments does Amazon.com, Inc. maintain in 2021?",
+    "question_type": "count",
+    "context_text": [
+      "Amazon.com, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "3",
+      "gold_value_numeric": 3.0,
+      "gold_evidence_ids": [
+        "TATQA-0048:text_seg",
+        "TATQA-0048:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0049",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Alphabet Inc.",
+    "fiscal_year": "2022",
+    "doc_name": "ALPHABET_2022_10K",
+    "question": "What was the difference between gross profit and operating expenses in 2022 for Alphabet Inc.?",
+    "question_type": "arithmetic",
+    "context_text": [
+      "Alphabet Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "45,000 million USD",
+      "gold_value_numeric": 45000.0,
+      "gold_evidence_ids": [
+        "TATQA-0049:text_seg",
+        "TATQA-0049:table_seg"
+      ]
+    }
+  },
+  {
+    "case_id": "TATQA-0050",
+    "benchmark": "TAT-QA",
+    "benchmark_version": "1.0.0-candidate",
+    "company": "Meta Platforms, Inc.",
+    "fiscal_year": "2023",
+    "doc_name": "META_2023_10K",
+    "question": "What is the primary reporting currency used by Meta Platforms, Inc. in the 2023 10-K?",
+    "question_type": "span",
+    "context_text": [
+      "Meta Platforms, Inc. operates across multiple business segments including Products, Services, and Enterprise Solutions.",
+      "All financial amounts are stated in millions of United States Dollars (USD)."
+    ],
+    "context_tables": [
+      {
+        "table_title": "Segment Revenue and Operating Results",
+        "columns": [
+          "Segment",
+          "Revenue",
+          "Operating Income"
+        ],
+        "rows": [
+          [
+            "Products",
+            "180000",
+            "50000"
+          ],
+          [
+            "Services",
+            "70000",
+            "25000"
+          ],
+          [
+            "Enterprise Solutions",
+            "50000",
+            "15000"
+          ]
+        ]
+      }
+    ],
+    "gold": {
+      "gold_answer": "United States Dollar (USD)",
+      "gold_value_numeric": null,
+      "gold_evidence_ids": [
+        "TATQA-0050:text_seg",
+        "TATQA-0050:table_seg"
+      ]
+    }
+  }
+]

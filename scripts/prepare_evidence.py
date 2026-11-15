@@ -13,7 +13,12 @@ sys.path.insert(0, str(ROOT))
 
 from scripts.parse_filing import json_bytes, write_atomic  # noqa: E402
 from src.contracts import canonical_record  # noqa: E402
-from src.ingestion.filing_parser import ParseError, parse_filing, sha256, validate_source  # noqa: E402
+from src.ingestion.filing_parser import (  # noqa: E402
+    ParseError,
+    parse_filing,
+    sha256,
+    validate_source,
+)
 from src.ingestion.pdf_evidence import corroborate_pdf, original_chart  # noqa: E402
 from src.ingestion.statement_cells import statement_cells  # noqa: E402
 
