@@ -1,34 +1,302 @@
-"""Canonical local launch: python app.py. No model/data downloads on startup."""
+"""Canonical local launch: python app.py.
+
+Supports interactive Gradio UI with:
+- Client session isolation (no shared global state between browser sessions).
+- Narrative, table cell, and chart evidence inspection.
+- Typed calculator rule execution traces and explicit refusal paths.
+- Offline readiness check via --check.
+"""
 
 import argparse
 import json
+import os
+import sys
+from pathlib import Path
 
-from src.application import SetupApplication
-from src.config import ConfigurationError, load_settings
+os.environ["GRADIO_ANALYTICS_ENABLED"] = "False"
+os.environ["HF_HUB_OFFLINE"] = "1"
+
+# Ensure repository root is on sys.path
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.application import InteractiveApplication  # noqa: E402
+from src.config import ConfigurationError, load_settings  # noqa: E402
 
 
 def create_demo(application):
     import gradio as gr
 
+    def init_session():
+        return {
+            "query_count": 0,
+            "last_query": "",
+            "last_status": "",
+            "session_filters": {},
+        }
+
     readiness = application.readiness()
+    is_ready = readiness.get("status") == "ready"
+
+    # Pre-populate sample company and filing choices from application_filings.json
+    filing_choices = [
+        ("Apple Inc. (AAPL) — 2021 10-K", "AAPL", "0000320193-21-000105", "2021-09-25"),
+        ("Apple Inc. (AAPL) — 2022 10-K", "AAPL", "0000320193-22-000108", "2022-09-24"),
+        ("Apple Inc. (AAPL) — 2023 10-K", "AAPL", "0000320193-23-000106", "2023-09-30"),
+        ("Microsoft Corp. (MSFT) — 2021 10-K", "MSFT", "0001564590-21-039151", "2021-06-30"),
+        ("Microsoft Corp. (MSFT) — 2022 10-K", "MSFT", "0001564590-22-026876", "2022-06-30"),
+    ]
+    company_options = [c[0] for c in filing_choices]
+
+    sample_calc_plan = json.dumps({
+        "issuer": "Apple Inc.",
+        "scope": "consolidated",
+        "periods": [
+            {"kind": "duration", "start": "2020-09-27", "end": "2021-09-25"}
+        ],
+        "expression": {
+            "op": "ratio_percent",
+            "args": [
+                {
+                    "op": "subtract",
+                    "args": [
+                        {"evidence_id": "sales"},
+                        {"evidence_id": "cost"}
+                    ]
+                },
+                {"evidence_id": "sales"}
+            ]
+        }
+    }, indent=2)
+
+    chart_assets = [
+        "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9 (Apple 2021)",
+        "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a (NVIDIA 2024)",
+        "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0 (AMD 2024)",
+        "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568 (Intel 2024)",
+    ]
+
     with gr.Blocks(title="FinRAG") as demo:
-        gr.Markdown("# FinRAG\nAsk questions about a company annual report and check the evidence.")
-        gr.Markdown("**Setup build — not ready to answer yet.**\n\n" +
-                    "\n".join(f"- {item}" for item in readiness["blockers"]))
-        query = gr.Textbox(label="Your question", placeholder="How did Apple's revenue change?", lines=2)
-        button = gr.Button("Check readiness", variant="primary")
-        status = gr.Textbox(label="Status", value=readiness["status"], interactive=False)
-        message = gr.Textbox(label="What is needed", lines=6, interactive=False)
-        answer = gr.Textbox(label="Answer", interactive=False)
-        with gr.Accordion("Source evidence", open=False):
-            evidence = gr.JSON(label="Evidence", value=[])
+        session_state = gr.State(init_session)
 
-        def respond(question):
-            result = application.answer(question)
-            return result["status"], result["message"], result["answer"], result["evidence"]
+        gr.Markdown(
+            "# FinRAG: Financial Question Answering System\n"
+            "Grounding annual report questions on verified narrative passages, typed statement cells, "
+            "and inspectable arithmetic trees. Client sessions are strictly isolated."
+        )
 
-        button.click(respond, inputs=query, outputs=[status, message, answer, evidence],
-                     api_name="check_readiness")
+        if not is_ready:
+            with gr.Accordion("System Readiness Warnings", open=False):
+                gr.Markdown(
+                    "**Notice**: Full end-to-end model and persistent index integration is currently unconfigured or gated.\n\n"
+                    + "\n".join(f"- {b}" for b in readiness.get("blockers", []))
+                )
+
+        with gr.Row():
+            with gr.Column(scale=4):
+                gr.Markdown("### 1. Document & Scope Selection")
+                selected_company = gr.Dropdown(
+                    label="Company & Filing",
+                    choices=company_options,
+                    value=company_options[0],
+                )
+                with gr.Row():
+                    filter_period = gr.Textbox(label="Period End", value="2021-09-25")
+                    filter_scope = gr.Textbox(label="Scope", value="consolidated")
+
+                gr.Markdown("### 2. Financial Question")
+                query_input = gr.Textbox(
+                    label="Question",
+                    placeholder="e.g. What was Apple's gross margin in fiscal year 2021?",
+                    lines=2,
+                    value="What was Apple's gross margin in fiscal year 2021?",
+                )
+
+                mode_selector = gr.Radio(
+                    label="Question Mode",
+                    choices=["Narrative / Table QA", "Typed Calculation Plan", "Chart Question"],
+                    value="Typed Calculation Plan",
+                )
+
+                with gr.Accordion("Calculation Plan (JSON)", open=True):
+                    calc_plan_input = gr.Code(
+                        label="Declarative Calculator Tree (operands resolve to included cell IDs)",
+                        language="json",
+                        value=sample_calc_plan,
+                    )
+
+                with gr.Accordion("Chart Evidence Selection", open=False):
+                    chart_selector = gr.Dropdown(
+                        label="Select SEC Filing Chart Asset",
+                        choices=["None"] + chart_assets,
+                        value="None",
+                    )
+
+                with gr.Row():
+                    submit_btn = gr.Button("Submit Query", variant="primary")
+                    clear_btn = gr.Button("Clear All", variant="secondary")
+
+            with gr.Column(scale=5):
+                gr.Markdown("### 3. Answer & Evidence")
+                answer_output = gr.Textbox(label="Primary Answer", lines=3, interactive=False)
+
+                with gr.Row():
+                    status_badge = gr.Textbox(label="Status", value="ready", interactive=False)
+                    latency_badge = gr.Textbox(label="Latency", value="0.000s", interactive=False)
+                    route_badge = gr.Textbox(label="Pipeline Route", value="unrouted", interactive=False)
+
+                diag_message = gr.Textbox(label="Diagnostics & Refusal Reason", lines=2, interactive=False)
+
+                with gr.Accordion("Source Citations & Evidence Table", open=True):
+                    evidence_table = gr.JSON(label="Included Evidence Context", value=[])
+
+                with gr.Accordion("Verified Calculator Rule Trace", open=True):
+                    calc_trace = gr.JSON(label="Evaluated Operation Tree & Rule Premises", value={})
+
+        def handle_query(
+            question, comp_choice, period, scope, mode, plan_str, chart_choice, session
+        ):
+            # Session isolation: mutate only session-local state
+            session["query_count"] += 1
+            session["last_query"] = question
+            session["session_filters"] = {
+                "company_choice": comp_choice,
+                "period": period,
+                "scope": scope,
+            }
+
+            # Immediate clearing of outputs on empty question
+            if not isinstance(question, str) or not question.strip():
+                return (
+                    "",
+                    "invalid_request",
+                    "0.000s",
+                    "rejected",
+                    "Please enter a nonempty question.",
+                    [],
+                    {},
+                    session,
+                )
+
+            # Determine company and accession
+            comp_name = "Apple Inc." if "AAPL" in comp_choice else "Microsoft Corporation"
+            filing_acc = "0000320193-21-000105" if "AAPL" in comp_choice else "0001564590-21-039151"
+
+            calc_plan = None
+            if mode == "Typed Calculation Plan" and plan_str.strip():
+                try:
+                    calc_plan = json.loads(plan_str)
+                except Exception as exc:
+                    return (
+                        "",
+                        "invalid_request",
+                        "0.000s",
+                        "rejected",
+                        f"Malformed JSON in calculation plan: {exc}",
+                        [],
+                        {},
+                        session,
+                    )
+
+            chart_id = None
+            if mode == "Chart Question" and chart_choice != "None":
+                chart_id = chart_choice.split()[0]
+
+            # Call application
+            if hasattr(application, "answer_interactive"):
+                res = application.answer_interactive(
+                    question=question,
+                    company=comp_name,
+                    filing=filing_acc,
+                    period_end=period,
+                    scope=scope,
+                    calculation_plan=calc_plan,
+                    chart_asset_id=chart_id,
+                )
+            else:
+                raw_ans = application.answer(question)
+                res = {
+                    "status": raw_ans.get("status", "unknown"),
+                    "answer": raw_ans.get("answer", ""),
+                    "message": raw_ans.get("message", ""),
+                    "latency_seconds": 0.001,
+                    "route": "setup_fallback",
+                    "evidence": raw_ans.get("evidence", []),
+                    "calculations": raw_ans.get("calculations", []),
+                }
+
+            status = res.get("status", "unknown")
+            ans = res.get("answer", "")
+            msg = res.get("message", "")
+            lat = f"{res.get('latency_seconds', 0.0):.3f}s"
+            route = res.get("route", "direct")
+            ev = res.get("evidence", [])
+            calcs = res.get("calculations", [{}])[0] if res.get("calculations") else {}
+
+            session["last_status"] = status
+
+            # On failure or refusal, ensure answer text is cleared
+            if status != "ok":
+                ans = ""
+
+            return ans, status, lat, route, msg, ev, calcs, session
+
+        def handle_clear(session):
+            session["last_query"] = ""
+            session["last_status"] = ""
+            return (
+                "",
+                "ready",
+                "0.000s",
+                "cleared",
+                "",
+                [],
+                {},
+                session,
+            )
+
+        submit_btn.click(
+            handle_query,
+            inputs=[
+                query_input,
+                selected_company,
+                filter_period,
+                filter_scope,
+                mode_selector,
+                calc_plan_input,
+                chart_selector,
+                session_state,
+            ],
+            outputs=[
+                answer_output,
+                status_badge,
+                latency_badge,
+                route_badge,
+                diag_message,
+                evidence_table,
+                calc_trace,
+                session_state,
+            ],
+            api_name="answer_interactive",
+        )
+
+        clear_btn.click(
+            handle_clear,
+            inputs=[session_state],
+            outputs=[
+                query_input,
+                status_badge,
+                latency_badge,
+                route_badge,
+                diag_message,
+                evidence_table,
+                calc_trace,
+                session_state,
+            ],
+            api_name="clear_session",
+        )
+
     return demo
 
 
@@ -40,13 +308,21 @@ def main():
         settings = load_settings()
     except ConfigurationError as exc:
         parser.exit(2, f"Configuration error: {exc}\n")
-    application = SetupApplication(settings)
+
+    application = InteractiveApplication(settings)
+
     if args.check:
         print(json.dumps(application.readiness(), indent=2))
         return
+
     demo = create_demo(application)
-    demo.launch(server_name=settings.host, server_port=settings.port, share=False,
-                inbrowser=False, show_error=False)
+    demo.launch(
+        server_name=settings.host,
+        server_port=settings.port,
+        share=False,
+        inbrowser=False,
+        show_error=False,
+    )
 
 
 if __name__ == "__main__":
