@@ -12,3 +12,9 @@
 *.jpeg binary
 *.pdf binary
 *.docx binary
+
+# Web and SQL release hashes use canonical LF bytes on every platform.
+web/** text eol=lf
+web/public/fonts/*.woff2 binary
+supabase/*.sql text eol=lf
+supabase/migrations/*.sql text eol=lf
