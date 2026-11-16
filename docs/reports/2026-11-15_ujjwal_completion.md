@@ -20,7 +20,7 @@ On November 15, 2026, Ujjwal Chandak completed the independent input approval, c
 
 2. **Independent Chart Dataset & Caption Approval (R11)**:
    - Independently audited all 50 candidate chart questions (15 dev + 35 held-out) across 6 original 10-K chart images in `data/charts/assets/` without self-approval (Author: Rushil Mohan / AI-assisted; Reviewer: Ujjwal Chandak).
-   - Reconciled the pinned `inventory_sha256` in `data/charts/chart-sources.json` against `data/application_filings.json` (`9c8f8800...`).
+   - Reconciled the canonical LF `inventory_sha256` in `data/charts/chart-sources.json` against `data/application_filings.json` (`3532d851...`).
    - Verified `scripts/verify_chart_set.py` (exit code 0) and promoted the set to `independently_reviewed_labels` (`evaluation_ready: true`) via `scripts/promote_chart_set.py`.
    - Satisfied the prerequisite gate `independent_chart_approval` for Variant G.
 
@@ -74,7 +74,7 @@ Audit artifact: [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_
   1. **Visual Fidelity**: Verified each of the 50 questions against original embedded/rendered chart graphics in `data/charts/assets/`.
   2. **Unknown Value Handling**: Confirmed that unprinted curve coordinates remain marked as unknown rather than interpolated or hallucinated.
   3. **Split Isolation**: Confirmed Apple 2021 (15 questions) appears strictly in development, while the remaining 5 issuers (35 questions) are strictly held-out.
-  4. **Inventory Hash Reconciliation**: Updated pinned `inventory_sha256` in `data/charts/chart-sources.json` to match `data/application_filings.json` (`9c8f8800...`).
+  4. **Inventory Hash Reconciliation**: Preserved canonical LF pinned `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform CRLF/LF resilience in `scripts/verify_chart_set.py`.
   5. **Promotion Result**: `scripts/promote_chart_set.py` executed successfully; generated [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) with `status: independently_reviewed_labels` and `evaluation_ready: true`.
 
 ---

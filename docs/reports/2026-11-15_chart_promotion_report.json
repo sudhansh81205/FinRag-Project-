@@ -20,7 +20,7 @@
     "apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
     "heldout-35-candidate-questions.json": "437e963dcba3ee1eb3f4d371556e213cbc6a3a7ca17ddfd70149919567315324"
   },
-  "source_manifest_sha256": "a814a1d08a5108c48b6b942a5014f9670a4caa324d9fac394142f1d24293dca7",
+  "source_manifest_sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
   "question_counts_by_source": {
     "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9": 15,
     "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a": 7,
@@ -32,10 +32,12 @@
   "asset_hashes_checked": 6,
   "heldout_answers_generated_or_scored": false,
   "scope": "Hash-bound recorded human label approvals only; no caption approval, model run or full A-G acceptance.",
-  "approval_sha256": "055411460294d2e9516995d51a82890d0dd05e4b146facc522996aee5306a1b3",
+  "approval_sha256": "245738fc1395287bfcebcb56504dd3c700c36abe8098a908e4b1d6c28c5832a0",
   "reviewer_identity": "Ujjwal Chandak",
   "label_authors": [
-    "Rushil Mohan"
+    "Rushil Mohan",
+    "ai-assisted",
+    "rmo29"
   ],
   "trusted_reviewers_at_load": [
     "Ujjwal Chandak"
