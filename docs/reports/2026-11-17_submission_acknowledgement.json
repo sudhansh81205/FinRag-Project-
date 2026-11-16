@@ -1,0 +1,58 @@
+{
+  "project": "FinRAG: Source-Grounded Financial QA over SEC 10-K Filings",
+  "course": "CS F407 Artificial Intelligence",
+  "institution": "BITS Pilani",
+  "team": "CV++ Team 6",
+  "track": "Application Track: Financial NLP (RAG)",
+  "submission_date": "2026-11-17",
+  "release_owner": "Sudhansh Khandelwal",
+  "release_designation": "TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE",
+  "git_branch": "main",
+  "git_base_commit": "5e8bba7",
+  "audit_reconciliation": {
+    "prior_audit": "docs/reports/2026-11-16_pavan_evidence_audit.json",
+    "reconciliation_file": "docs/reports/2026-11-17_independent_audit_reconciliation.json",
+    "predeclared_audit_shortfall": "50/50",
+    "live_outputs_completed": 0,
+    "self_approval_conflicts": 0,
+    "openable_candidate_gates": 0
+  },
+  "quality_assurance": {
+    "ruff_linter": "CLEAN_ZERO_ERRORS",
+    "pytest_suite": {
+      "total_tests": 459,
+      "passed": 459,
+      "failed": 0,
+      "skipped": 0
+    },
+    "app_diagnosis": "index_not_ready",
+    "chart_manifests_verified": 6
+  },
+  "key_deliverables": [
+    "docs/reports/2026-11-17_final_report.md",
+    "docs/reports/2026-11-17_slides.md",
+    "docs/reports/2026-11-17_final_slides.pptx",
+    "docs/reports/2026-11-17_backup_demo_walkthrough.md",
+    "docs/reports/2026-11-17_independent_audit_reconciliation.json",
+    "docs/reports/2026-11-17_sudhansh_completion.md",
+    "docs/reports/2026-11-17_release_manifest.json",
+    "docs/handoffs/2026-11-17_sudhansh.md"
+  ],
+  "team_planned_hours": {
+    "Sudhansh Khandelwal": 26,
+    "Agrawal Pavan Shailesh": 20,
+    "Sri Sai Likhit Boddada": 30,
+    "Ujjwal Chandak": 28,
+    "Muppidi Gowtham Sai": 18,
+    "B Rushil Mohan": 10,
+    "Shanay Ghodasara": 8,
+    "total": 140
+  },
+  "academic_honesty_statement": "All software pipelines, math verifiers, request binders, and test suites are genuine, fully reproducible, and verified. External benchmark runs and live GPU Gemma 3 generations were unexecuted due to hardware boundaries and are explicitly declared as shortfall. No mock or synthetic generation has been portrayed as an authentic live model run.",
+  "sign_off": {
+    "signed_by": "Sudhansh Khandelwal",
+    "role": "Release Lead & Architectural Owner",
+    "timestamp": "2026-11-17T23:59:00+05:30",
+    "status": "OFFICIALLY_SUBMITTED"
+  }
+}

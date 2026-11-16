@@ -1,0 +1,25 @@
+{
+  "release": "FinRAG November 17 Final Release",
+  "release_owner": "Sudhansh Khandelwal",
+  "release_designation": "TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE",
+  "date": "2026-11-17",
+  "file_count": 16,
+  "file_hashes": {
+    "app.py": "efc4eaf204cb979390263dcd38701af02f49067ca6304e1efdbc40ab5026f375",
+    "docs/handoffs/2026-11-17_sudhansh.md": "27456e11e312393397b62737fc458a5f916986413e7476673973286a7c758db1",
+    "docs/reports/2026-11-17_backup_demo_walkthrough.md": "1ac89306d23acd308eccf4e04e75a6cd3fa7a3b978d86ef0cc24815a5a401fd0",
+    "docs/reports/2026-11-17_final_report.md": "96ada19c0eb1b25d6bb7a40604629075b18d20be3a9100b1513df5954aace08a",
+    "docs/reports/2026-11-17_final_slides.pptx": "8e74e07ea9fab46cb986ee2f36f2d85b92cfd9f6a303892cc520d23f87f09341",
+    "docs/reports/2026-11-17_independent_audit_reconciliation.json": "0e8c42e72e0877a3fc6d40209781e92275927df0ba04bceab7836ae1f1b39660",
+    "docs/reports/2026-11-17_slides.md": "1179936cdb007acb5e66955e254a100b0a19d01225ebd3983dd2b12bffadaf41",
+    "docs/reports/2026-11-17_submission_acknowledgement.json": "643b5fe0ffbc4af5c433be375f79c7d44c2dc947918b427ef17414a8ee0bbbcb",
+    "docs/reports/2026-11-17_sudhansh_completion.md": "01bdb78817a019cb381f84dfee7a9715aafe621e1ecb9e7b2ec1c4112de2a1f1",
+    "scripts/build_final_slides.py": "743d19092efd22d6f0ba80eb93543288ef7286bb42e4c334630f5d81d21d6cc9",
+    "src/application.py": "5fc64bb179d872c9340d2fdf309c9673b086230a11b35ad5a7309a9b65ddc012",
+    "src/benchmark/gates.py": "1146446c1610702fd87bee307711bef8d565a624fb881a87be7c0ab37f596082",
+    "src/benchmark/metrics.py": "bb9d9f75844add7f7b33f6b30dbf0c2699ef57c388dfd5b0196c7eacc3e0a20d",
+    "src/benchmark/runner.py": "7e3d45c37ed55b2e7a2c4a338b6f83aba106a1a60218ce4f726117ba1af40b30",
+    "src/llm/typed_calculator.py": "0376fdb89a80babea8a79b7d0e36d31196e3a4b4a0b3736043a9efb2e0733c07",
+    "src/pipeline/experiment_scaffold.py": "6fec37fb8b83d903d09222793ffde6dee44a719da7baed353cb5e309999f7b62"
+  }
+}

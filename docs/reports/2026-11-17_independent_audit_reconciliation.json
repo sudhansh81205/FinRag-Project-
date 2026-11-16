@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "report_type": "independent_audit_reconciliation",
+  "audit_date": "2026-11-17",
+  "auditor": "Sudhansh Khandelwal",
+  "role": "November 17 sole final-day owner",
+  "preceding_audit": "docs/reports/2026-11-16_pavan_evidence_audit.json",
+  "predeclared_sample_path": "docs/reports/2026-11-15_audit_sampling_predeclaration.json",
+  "reconciliation_summary": {
+    "total_predeclared_sample_size": 50,
+    "completed_generated_outputs": 0,
+    "audited_generated_outputs": 0,
+    "output_shortfall": 50,
+    "shortfall_reason": "Zero completed model output cells exist in run status (PR14/PR15). Intended demo machine lacked local Ollama Gemma 3 and bge-reranker-base runtime assets. In accordance with project guidelines, missing outputs are recorded as shortfall and are never fabricated.",
+    "self_approval_conflict_analysis": {
+      "pavan_authored_labels": 0,
+      "sudhansh_authored_labels": 0,
+      "fixture_authorship": "Team / tool generation in PR13/PR14 (Gowtham270807), not Pavan or Sudhansh",
+      "chart_label_authorship": "B Rushil Mohan / AI-assisted",
+      "conflicts_detected": 0,
+      "unresolvable_conflicts": 0
+    },
+    "audit_checks_reconciled": {
+      "pavan_audit_pass_count": 10,
+      "pavan_audit_fail_count": 10,
+      "pavan_audit_unverified_count": 3,
+      "pavan_audit_blocked_count": 2,
+      "sudhansh_acceptance": "Accepted as accurate factual audit of PR14/PR15 state."
+    }
+  },
+  "package_release_decision": {
+    "decision": "transparently_partial_reproducible_package",
+    "rationale": "Software boundaries, request binding, and safe Decimal reasoning are verified across 459 passing unit tests. However, full live A-G benchmark outputs and RAGAS evaluations could not be executed due to absence of live GPU/Ollama infrastructure. In strict accordance with course rules, the package is submitted as an honest, transparently partial release rather than fabricating unmeasured results."
+  }
+}

@@ -77,3 +77,21 @@ Apple 2021 package, with three parent tables stored separately. The expanded
 manifest accounts for 18 filings across ten companies; downloaded PDF renditions
 are **not** counted as parsed or indexed filings. The application UI remains gated
 until the complete answer path is validated.
+
+## Final Release & Submission (November 17, 2026)
+
+**Release Owner**: Sudhansh Khandelwal  
+**Release Designation**: **TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE**
+
+All software, arithmetic trees, refusal paths, and test suites are verified (459 passing tests, zero Ruff violations). Unexecuted GPU models and candidate gates are transparently reconciled.
+
+### Key Release Deliverables:
+- **Final Academic Report**: [docs/reports/2026-11-17_final_report.md](docs/reports/2026-11-17_final_report.md)
+- **Presentation Deck**: [docs/reports/2026-11-17_slides.md](docs/reports/2026-11-17_slides.md) and [docs/reports/2026-11-17_final_slides.pptx](docs/reports/2026-11-17_final_slides.pptx)
+- **Backup Demo Walkthrough**: [docs/reports/2026-11-17_backup_demo_walkthrough.md](docs/reports/2026-11-17_backup_demo_walkthrough.md)
+- **Independent Audit Reconciliation**: [docs/reports/2026-11-17_independent_audit_reconciliation.json](docs/reports/2026-11-17_independent_audit_reconciliation.json)
+- **Release Manifest (SHA-256)**: [docs/reports/2026-11-17_release_manifest.json](docs/reports/2026-11-17_release_manifest.json)
+- **Submission Acknowledgement**: [docs/reports/2026-11-17_submission_acknowledgement.json](docs/reports/2026-11-17_submission_acknowledgement.json)
+- **Final Handoff**: [docs/handoffs/2026-11-17_sudhansh.md](docs/handoffs/2026-11-17_sudhansh.md)
+- **Sudhansh Completion Sign-off**: [docs/reports/2026-11-17_sudhansh_completion.md](docs/reports/2026-11-17_sudhansh_completion.md)
+
