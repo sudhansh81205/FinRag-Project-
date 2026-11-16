@@ -23,6 +23,7 @@ What this runner guarantees, and what it deliberately does not:
 
 import hashlib
 import json
+import math
 import subprocess
 import time
 from dataclasses import asdict, dataclass, field
@@ -216,7 +217,22 @@ class BenchmarkRunner:
                     f"Resumption rejected: current state differs from the saved run in {changed}. "
                     f"Saved hash: {existing.get('manifest_sha256')}, current hash: {manifest_sha256}"
                 )
-            return RunManifest(**existing)
+            expected = {
+                "variant": self.variant, "benchmark": self.benchmark_name,
+                "git_revision": identity["git_revision"], "frozen_controls": dict(FROZEN_CONTROLS),
+                "variant_spec": self.spec.to_dict(), "model_profile": self.model_config_path,
+                "is_ready": self.manifest_validation["is_ready"],
+                "missing_gates": self.manifest_validation["missing_gates"],
+                "status": "ready" if self.manifest_validation["is_ready"] else "blocked",
+            }
+            if any(type(existing.get(k)) is not type(v) or existing[k] != v for k, v in expected.items()):
+                raise RuntimeError("Resumption rejected: saved manifest fields disagree with current readiness/identity.")
+            if not isinstance(existing.get("run_id"), str) or not existing["run_id"].startswith("run_"):
+                raise RuntimeError("Resumption rejected: invalid run identity.")
+            try:
+                return RunManifest(**existing)
+            except TypeError as exc:
+                raise RuntimeError("Resumption rejected: invalid manifest schema.") from exc
 
         status = "ready" if self.manifest_validation["is_ready"] else "blocked"
         manifest = RunManifest(
@@ -252,18 +268,44 @@ class BenchmarkRunner:
         return ""
 
     # ------------------------------------------------------------------ ledger
+    def _validated_results(self, manifest, suite):
+        """Bind every unique saved output to this run, case input and result bytes (F23)."""
+        inputs = {case.case_id: _canonical_sha256(case.to_eval_input()) for case, _ in suite}
+        if len(inputs) != len(suite):
+            raise RuntimeError("Resumption rejected: duplicate eligible case IDs.")
+        rows, seen = [], set()
+        if not self.results_path.is_file():
+            return rows
+        for number, line in enumerate(self.results_path.read_text(encoding="utf-8").splitlines(), 1):
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+                case_id = row["case_id"]
+                digest = row["result_sha256"]
+                payload = {k: v for k, v in row.items() if k != "result_sha256"}
+                valid = (case_id in inputs and case_id not in seen
+                         and row["run_id"] == manifest.run_id and row["variant"] == self.variant
+                         and row["benchmark"] == self.benchmark_name
+                         and row["controls_hash"] == manifest.manifest_sha256
+                         and row["input_sha256"] == inputs[case_id]
+                         and digest == _canonical_sha256(payload)
+                         and row["status"] in {"ok", "service_error", "invalid_request",
+                                               "index_not_ready", "insufficient_evidence"}
+                         and isinstance(row["answer"], str)
+                         and isinstance(row["latency_seconds"], (int, float))
+                         and math.isfinite(row["latency_seconds"]) and row["latency_seconds"] >= 0)
+                if not valid:
+                    raise ValueError("foreign, duplicate or changed row")
+            except (ValueError, TypeError, KeyError) as exc:
+                raise RuntimeError(f"Resumption rejected: invalid result ledger row {number}.") from exc
+            rows.append(row)
+            seen.add(case_id)
+        return rows
+
     def load_completed_case_ids(self) -> set[str]:
-        """Read completed case IDs from existing results.jsonl."""
-        completed = set()
-        if self.results_path.is_file():
-            with open(self.results_path, encoding="utf-8") as f:
-                for line in f:
-                    if line.strip():
-                        try:
-                            completed.add(json.loads(line)["case_id"])
-                        except Exception:
-                            pass
-        return completed
+        manifest = self.init_or_validate_manifest()
+        return {row["case_id"] for row in self._validated_results(manifest, self._suite())}
 
     def _write_summary(self, summary: dict[str, Any]) -> dict[str, Any]:
         self.summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
@@ -305,7 +347,7 @@ class BenchmarkRunner:
         provenance = assess_suite_provenance(suite)
         gold_map = {case.case_id: gold for case, gold in suite}
         selected = suite[:max_cases] if max_cases is not None and max_cases > 0 else suite
-        completed_ids = self.load_completed_case_ids()
+        completed_ids = {r["case_id"] for r in self._validated_results(manifest, suite)}
 
         with open(self.results_path, "a", encoding="utf-8") as results_file:
             for case, _ in selected:
@@ -321,16 +363,14 @@ class BenchmarkRunner:
                 case_result["input_sha256"] = _canonical_sha256(eval_input)
                 case_result["run_id"] = manifest.run_id
                 case_result["variant"] = self.variant
+                case_result["controls_hash"] = manifest.manifest_sha256
+                case_result["result_sha256"] = _canonical_sha256(case_result)
 
                 results_file.write(json.dumps(case_result) + "\n")
                 results_file.flush()
                 completed_ids.add(case.case_id)
 
-        all_results = []
-        with open(self.results_path, encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    all_results.append(json.loads(line))
+        all_results = self._validated_results(manifest, suite)
 
         eval_metrics = compute_all_metrics(all_results, gold_map, eligible_cases=eligible)
         counts = {
@@ -343,12 +383,12 @@ class BenchmarkRunner:
         attempted = len(all_results)
         return self._write_summary({
             **base,
-            "status": "completed" if attempted >= eligible else "partial",
+            "status": "completed" if eligible > 0 and attempted == eligible else "partial",
             "attempted_outputs": attempted,
             "not_attempted": max(0, eligible - attempted),
             "outcome_counts": counts,
             "provenance": provenance,
-            "final_evaluation_status": ("ELIGIBLE_authentic_source_bound" if provenance["full_evaluation_eligible"]
+            "final_evaluation_status": ("BLOCKED_context_binding" if provenance["full_evaluation_eligible"]
                                         else "BLOCKED_synthetic_smoke_fixture"),
             "ragas_status": "BLOCKED: no pinned RAGAS evaluator executed",
             "metrics": eval_metrics.summary(),

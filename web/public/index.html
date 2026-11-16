@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff"><meta name="description" content="FinRAG — financial answers with inspectable source evidence, typed calculations and clear uncertainty.">
+  <title>FinRAG — Read between the numbers.</title>
+  <link rel="icon" href="/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/geist-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to research</a>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Workspace navigation">
+    <a class="brand" href="/" aria-label="FinRAG home"><img src="/mark.svg" alt="" width="28" height="28"><span>finrag<span class="brand-dot">.</span></span></a>
+    <p class="eyebrow sidebar-caption">YOUR RESEARCH, GROUNDED.</p>
+    <button class="new-button" id="new-research"><span>＋</span> New research <kbd>⌘ K</kbd></button>
+    <nav class="primary-nav">
+      <button class="nav-item active" data-view="research"><span class="nav-icon">⌁</span> Research <span class="nav-index">01</span></button>
+      <button class="nav-item" data-view="library"><span class="nav-icon">▤</span> Filing library <span class="nav-index" id="nav-count">—</span></button>
+      <button class="nav-item" data-view="saved"><span class="nav-icon">⌑</span> Saved questions <span class="nav-index">↗</span></button>
+    </nav>
+    <div class="sidebar-rule"></div>
+    <p class="eyebrow">THE APPROACH</p>
+    <button class="small-nav" data-view="method"><span>How FinRAG works</span><span>↗</span></button>
+    <button class="small-nav" data-view="system"><span>System status</span><span>↗</span></button>
+    <div class="sidebar-bottom">
+      <div class="source-seal"><span class="seal-icon">↳</span><p>Less guesswork.<br>More source work.</p></div>
+      <button class="account" id="account-button"><span class="avatar">↗</span><span><b id="account-label">Your workspace</b><small id="account-detail">Sign in to save questions</small></span><span class="account-arrow">↗</span></button>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb"><button id="mobile-menu" aria-label="Open menu" aria-expanded="false">☰</button><span class="muted">WORKSPACE</span><span class="slash">/</span><span id="view-label">RESEARCH</span></div><div class="top-actions"><button class="quiet-button" id="motion-toggle" aria-pressed="false">MOTION ON</button><button id="health-pill" class="status-pill" data-view="system"><i></i><span>Checking connection</span></button></div></header>
+    <main id="main" tabindex="-1">
+      <section class="view active" id="view-research" aria-label="Financial research">
+        <div class="research-layout">
+          <div class="research-main">
+            <div class="overline reveal"><span class="square"></span> FINANCIAL RESEARCH, WITH RECEIPTS <span class="line-fill"></span><span>[ 01 — 03 ]</span></div>
+            <div class="hero reveal"><h1>Read between<br>the <span class="serif-word">numbers.</span><span class="hero-star" aria-hidden="true">✳</span></h1><p>Ask a financial question. Follow the evidence.<br>Every answer should take you back to the source.</p></div>
+            <div class="composer reveal">
+              <div class="composer-top"><span class="eyebrow">YOUR QUESTION</span><span class="mono muted" id="char-count">0 / 2,000</span></div>
+              <label class="sr-only" for="question">Financial question</label><textarea id="question" maxlength="2000" placeholder="What drove Apple's revenue growth?" rows="3"></textarea>
+              <div class="question-mode" role="group" aria-label="Question type"><button class="mode active" data-mode="auto" aria-pressed="true">Auto</button><button class="mode" data-mode="narrative" aria-pressed="false">Narrative</button><button class="mode" data-mode="numerical" aria-pressed="false">Numerical</button><button class="mode" data-mode="chart" aria-pressed="false">Chart</button></div>
+              <div class="filters"><label>COMPANY<select id="company" aria-label="Company"><option>Loading…</option></select></label><label>FILING<select id="filing" aria-label="Filing"><option>Loading…</option></select></label><label>VALUE PERIOD<input type="date" id="period" aria-label="Requested value-period end"></label></div>
+              <div class="composer-footer"><span class="composer-note"><span class="lock-icon">⌑</span> Grounded in SEC filings</span><button id="ask" class="primary-button"><span>Investigate</span><span>↗</span></button></div>
+            </div>
+            <div class="prompt-section reveal"><div class="suggestion-heading"><span class="eyebrow">A GOOD PLACE TO START</span><span class="mono muted">TRY A QUESTION ↘</span></div><div class="suggestions"><button data-example="margin"><span class="example-tag">01 / NUMERICAL</span><span>What was Apple's gross margin in FY2021?</span><span class="example-arrow">↗</span></button><button data-example="risk"><span class="example-tag">02 / NARRATIVE</span><span>What supply-chain risks does Apple describe?</span><span class="example-arrow">↗</span></button><button data-example="chart"><span class="example-tag">03 / CHART</span><span>How did shareholder returns compare?</span><span class="example-arrow">↗</span></button></div></div>
+            <section id="answer-section" class="answer-section" hidden aria-live="polite" aria-atomic="false"><div class="answer-heading"><span class="eyebrow">RESEARCH OUTPUT</span><div class="result-tools"><button id="save-question" class="text-button">Save question ↗</button><button id="export-answer" class="text-button">Export JSON ↓</button><button id="copy-answer" class="text-button">Copy</button></div></div><div id="answer-body"></div></section>
+            <footer class="research-footer"><span>BUILT FOR CLARITY. DESIGNED FOR SCRUTINY.</span><span>FINRAG / EVIDENCE FIRST ↗</span></footer>
+          </div>
+          <aside class="inspector reveal" aria-label="Evidence inspector"><div class="inspector-label"><span>EVIDENCE DESK</span><span>↳</span></div><div id="evidence-desk"><div class="evidence-illustration" aria-hidden="true"><div class="paper back"></div><div class="paper front"><span>10–K</span><i></i><i></i><i></i><b>↗</b></div><div class="cross one">+</div><div class="cross two">+</div></div><h2>Trust comes<br>with a paper trail.</h2><p>The passages, table cells and calculations behind your answer will appear here.</p><div class="evidence-checklist"><div><span>01</span> Original filing <b>↗</b></div><div><span>02</span> Included evidence <b>↗</b></div><div><span>03</span> Checked calculations <b>↗</b></div></div><div class="desk-footnote"><span class="square"></span> NO SOURCE. NO CLAIM.</div></div></aside>
+        </div>
+      </section>
+      <section class="view secondary-view" id="view-library" hidden><div class="overline"><span class="square"></span> THE SOURCE MATERIAL</div><h1>Start at<br>the source.</h1><p class="view-intro">A filing inventory you can inspect. Listed documents are not automatically parsed, independently accepted or searchable.</p><div class="library-toolbar"><label class="sr-only" for="filing-search">Search filings</label><input id="filing-search" placeholder="Search company, year or accession…" type="search"><span class="mono" id="library-count"></span></div><div id="filing-grid" class="filing-grid"></div></section>
+      <section class="view secondary-view" id="view-saved" hidden><div class="overline"><span class="square"></span> YOUR RESEARCH TRAIL</div><h1>Good questions.<br>Worth keeping.</h1><p class="view-intro">Save questions privately to your Supabase account. Saved questions are personal notes, separate from evaluated answers and accepted evidence.</p><div id="saved-body" class="saved-body"></div></section>
+      <section class="view secondary-view" id="view-method" hidden><div class="overline"><span class="square"></span> THE THINKING BEHIND THE ANSWER</div><h1>Evidence first.<br>Always.</h1><p class="view-intro">Financial answers need the right facts, the right context and a way to check the working.</p><div class="method-grid"><article><span class="eyebrow">01 / FIND</span><h2>Read the right filing.</h2><p>The issuer and filing identity constrain retrieval. The requested value period is checked separately from the filing year.</p></article><article><span class="eyebrow">02 / CONNECT</span><h2>Keep the context intact.</h2><p>Section-aware passages and typed table cells preserve headers, units, periods and original source identities.</p></article><article><span class="eyebrow">03 / VERIFY</span><h2>Show the working.</h2><p>A restricted calculator uses cited operands and explicit comparability rules. Missing or conflicting premises cause a refusal.</p></article><article><span class="eyebrow">04 / INSPECT</span><h2>Follow every claim.</h2><p>Answers expose their actual included evidence and calculations. Chart descriptions require original images and independent approval.</p></article></div><div class="scope-note"><b>A component is not an experiment.</b><p>Full A–G evaluation, authentic benchmark imports, RAGAS, the separate Llama comparison and the independent fifty-output audit remain open. The 50 candidate chart questions are a different artifact.</p></div></section>
+      <section class="view secondary-view" id="view-system" hidden><div class="overline"><span class="square"></span> HONEST BY DESIGN</div><h1>Know what's<br>connected.</h1><p class="view-intro">A live interface doesn't mean a ready financial engine. Here's the current state of each part.</p><div id="system-body"></div><button class="outline-button" id="refresh-status">Check again ↻</button></section>
+    </main>
+  </div>
+</div>
+<dialog id="auth-dialog"><form id="auth-form"><div class="dialog-top"><span class="eyebrow">YOUR PRIVATE WORKSPACE</span><button type="button" id="close-auth" aria-label="Close sign-in">×</button></div><h2>Keep your<br>next question.</h2><p>Sign in with a one-time email link to save your questions privately.</p><label for="email">EMAIL ADDRESS</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required><button class="primary-button" id="auth-submit" type="submit"><span>Send sign-in link</span><span>↗</span></button><p id="auth-message" role="status"></p><button type="button" id="sign-out" class="text-button" hidden>Sign out of this browser</button></form></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>

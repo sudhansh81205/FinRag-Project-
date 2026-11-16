@@ -25,11 +25,11 @@
       "pavan_audit_fail_count": 10,
       "pavan_audit_unverified_count": 3,
       "pavan_audit_blocked_count": 2,
-      "sudhansh_acceptance": "Accepted as accurate factual audit of PR14/PR15 state."
+      "sudhansh_acceptance": "Submitted reconciliation claim only; no human independent certification granted by this repair."
     }
   },
   "package_release_decision": {
-    "decision": "transparently_partial_reproducible_package",
-    "rationale": "Software boundaries, request binding, and safe Decimal reasoning are verified across 459 passing unit tests. However, full live A-G benchmark outputs and RAGAS evaluations could not be executed due to absence of live GPU/Ollama infrastructure. In strict accordance with course rules, the package is submitted as an honest, transparently partial release rather than fabricating unmeasured results."
+    "decision": "prepared_partial_not_submitted",
+    "rationale": "Zero frozen live outputs and zero independent output audit decisions; full runtime and submission acceptance remain open."
   }
 }

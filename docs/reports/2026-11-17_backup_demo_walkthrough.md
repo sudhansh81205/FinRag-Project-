@@ -5,7 +5,7 @@
 **Repository**: [github.com/sudhansh81205/FinRag-Project-](https://github.com/sudhansh81205/FinRag-Project-)  
 **Author**: Sudhansh Khandelwal (Sole Final-Day Release Owner)  
 
-This document serves as the verifiable, inspectable backup demonstration for the FinRAG submission, establishing the exact execution flow, inspectable evidence records, authoritative calculation trees, and deterministic refusal paths.
+This document is a proposed walkthrough, not an executed backup demonstration. It describes for the FinRAG submission, establishing the exact execution flow, inspectable evidence records, authoritative calculation trees, and deterministic refusal paths.
 
 ---
 
@@ -60,26 +60,34 @@ python app.py --check
 2. **Authoritative Calculation Tree**:
    ```json
    {
-     "type": "operator",
-     "name": "multiply",
-     "operands": [
+     "issuer": "Apple Inc.",
+     "scope": "consolidated",
+     "periods": [
        {
-         "type": "operator",
-         "name": "divide",
-         "operands": [
-           {
-             "type": "operator",
-             "name": "subtract",
-             "operands": [
-               {"type": "leaf", "value": "sales_2021"},
-               {"type": "leaf", "value": "cost_2021"}
-             ]
-           },
-           {"type": "leaf", "value": "sales_2021"}
-         ]
-       },
-       {"type": "constant", "value": "100"}
-     ]
+         "kind": "duration",
+         "start": "2020-09-27",
+         "end": "2021-09-25"
+       }
+     ],
+     "expression": {
+       "op": "ratio_percent",
+       "args": [
+         {
+           "op": "subtract",
+           "args": [
+             {
+               "evidence_id": "sales"
+             },
+             {
+               "evidence_id": "cost"
+             }
+           ]
+         },
+         {
+           "evidence_id": "sales"
+         }
+       ]
+     }
    }
    ```
 3. **Deterministic Decimal Arithmetic**:
@@ -150,3 +158,6 @@ python app.py --check
 # 5. Verify the entire release package integrity
 python scripts/verify_release_package.py
 ```
+
+
+Evidence correction: sales/cost above are teaching fixture IDs. Use real included stable evidence IDs for an actual execution. Narrative/chart passages and locators in this procedure are illustrative unless verified against the accepted source package. No live source-linked backup recording is supplied by this document.

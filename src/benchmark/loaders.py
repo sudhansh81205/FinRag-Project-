@@ -107,6 +107,9 @@ class GoldReference:
     gold_evidence_ids: tuple[str, ...] = field(default_factory=tuple)
     gold_justification: str | None = None
     relative_tolerance: float = 0.01  # 1% relative tolerance per PRD R7/R12
+    currency: str | None = None
+    unit: str | None = None
+    period_end: str | None = None
     zero_tolerance: float = 0.001  # declared absolute tolerance, in the gold's display unit
 
 
@@ -169,6 +172,10 @@ def _parse_raw_record(rec: dict[str, Any]) -> tuple[BenchmarkCase, GoldReference
         gold_program=gold_data.get("gold_program"),
         gold_evidence_ids=tuple(gold_data.get("gold_evidence_ids", [])),
         gold_justification=gold_data.get("gold_justification"),
+        currency=gold_data.get("currency"), unit=gold_data.get("unit"),
+        period_end=gold_data.get("period_end"),
+        relative_tolerance=gold_data.get("relative_tolerance", 0.01),
+        zero_tolerance=gold_data.get("zero_tolerance", 0.001),
     )
     case.to_eval_input()  # fail at load time, not at prompt time
     return case, gold

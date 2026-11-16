@@ -58,7 +58,9 @@ def main():
 
     # Gate names given with --gate are declarations only; the runner still refuses to run without
     # a validated engine, and open gates come from actual artifacts + acceptance (F34).
-    detected_gates = detect_available_gates() | set(args.available_gates)
+    detected_gates = detect_available_gates()
+    if set(args.available_gates) - detected_gates:
+        parser.error("--gate cannot open an unaccepted prerequisite. Validate the bound artifacts and acceptance record first.")
     out_dir = Path(args.output_dir) if args.output_dir else ROOT / "output" / f"eval_{args.variant}_{args.benchmark.lower()}"
     runner = BenchmarkRunner(
         output_dir=out_dir,

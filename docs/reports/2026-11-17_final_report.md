@@ -4,7 +4,7 @@
 **Final Project Report | Submission Date: November 17, 2026**  
 **Repository**: [github.com/sudhansh81205/FinRag-Project-](https://github.com/sudhansh81205/FinRag-Project-)  
 **Sole Final-Day Release Owner**: Sudhansh Khandelwal  
-**Release Status**: **Transparently Partial Reproducible Package** (Submitted under strict adherence to course honesty controls)
+**Release Status**: **Transparently Partial Reproducible Package** (Prepared; actual course submission is unverified)
 
 ---
 
@@ -51,7 +51,7 @@ All variants share identical baseline controls: embedder `BAAI/bge-base-en-v1.5`
 
 ### 3.2 Knowledge Representation & Safe Inference (KR&R)
 - **Typed Evidence Records**: Financial facts are stored as strongly typed records binding `issuer`, `accession`, `form`, `metric`, `period`, `raw_value`, `unit`, `scale`, `normalized_value`, and `source_locator` (file, page, coordinates).
-- **Deterministic Request Binding**: Queries must specify the target company and requested value period. Evidence eligibility is evaluated strictly **pre-top-k** before retrieval.
+- **Deterministic Request Binding**: Queries must specify the target company and requested value period. Issuer/accession eligibility is applied before retrieval; numeric value-period premises are independently checked on used facts/programs before displaying success.
 - **Restricted Cited Calculator**: Arithmetic is executed by an authoritative Decimal tree (`src/llm/typed_calculator.py`). No arbitrary Python code execution or uncited constants are permitted. All operands must exist in the final `included_evidence_ids`.
 - **Refusal Guarantees**: Any violation of issuer identity, period comparability, non-zero denominator, or context budget immediately aborts execution and returns an honest refusal (`insufficient_evidence` or `invalid_request`).
 
@@ -88,7 +88,7 @@ In accordance with course guidelines, planning prose and test counts are not sub
 
 ## 6. Individual Contributions
 
-The project adhered to a strict single-owner-per-day calendar. The final November 17 release slot was assigned to Sudhansh Khandelwal at user request. Total planned effort: 140 hours across November 3–17.
+The schedule assigns one owner per day. Actual commit timestamps, attribution and verified effort must be reported separately; planned hours do not prove human effort. The final November 17 release slot was assigned to Sudhansh Khandelwal at user request. Total planned effort: 140 hours across November 3–17.
 
 | Member | Historical (Nov 3–11) | Planned (Nov 12–17) | Combined Hours | Key Responsibilities & Module Ownership |
 |---|:---:|:---:|:---:|---|
@@ -133,17 +133,17 @@ AI coding assistants (Claude Code, Antigravity) were utilized for code generatio
 |---|---|:---:|---|
 | **R1** | Corpus Coverage | Partial | Apple 2021 accepted; 18 filings inventoried in `data/application_filings.json` |
 | **R2** | Persistent Index | Partial | Exact FAISS `IndexFlatIP` implemented; verified by `scripts/verify_index.py` |
-| **R3** | Evidence Extraction | Verified | HTML/PDF parser with coordinate and cell extraction in `src/ingestion/` |
+| **R3** | Evidence Extraction | Partial | HTML/PDF parser with coordinate and cell extraction in `src/ingestion/` |
 | **R4** | Real Generation | Blocked | Gemma 3 4B pinned in configs; Ollama daemon unavailable on test machine |
 | **R5** | Safe Calculation | Verified | Authoritative Decimal tree in `src/llm/typed_calculator.py`; verified by tests |
 | **R6** | User Interface | Partial | Gradio application in `app.py` with request binding and diagnostic checks |
 | **R7** | Evaluation & Audit | Partial / Shortfall | Scaffold & metrics implemented; live runs blocked; 50-output audit shortfall is 50/50 |
-| **R8** | Delivery Package | Complete | Final report, 6 slides, backup demo walkthrough, release manifest, submission receipt |
+| **R8** | Delivery Package | Partial / Prepared | Final report, 6 slides, backup demo walkthrough, release manifest, submission receipt |
 | **R9** | Restatements | Out of Scope | Unscheduled Phase 2 per proposal agreement |
-| **R10** | Advanced Retrieval | Verified | BM25, RRF (\(k=60\)), parent expansion, and routing in `src/retrieval/bm25.py` |
-| **R11** | Grounded Charts | Partial | 50 candidate questions on 6 charts; independent approval ledger verified |
-| **R12** | Experimental Controls | Verified | Pinned controls and immutable A–G scaffold in `src/pipeline/experiment_scaffold.py` |
-| **R13** | Reproducibility | Complete | CI passing on GitHub Actions; release verified by `scripts/verify_release_package.py` |
+| **R10** | Advanced Retrieval | Partial | BM25, RRF (\(k=60\)), parent expansion, and routing in `src/retrieval/bm25.py` |
+| **R11** | Grounded Charts | Partial | 50 candidate questions on 6 charts; candidate approval ledger exists; independent acceptance not certified here |
+| **R12** | Experimental Controls | Partial / Blocked | Pinned controls and immutable A–G scaffold in `src/pipeline/experiment_scaffold.py` |
+| **R13** | Reproducibility | Partial | CI passing on GitHub Actions; release verified by `scripts/verify_release_package.py` |
 
 ---
 
@@ -159,4 +159,8 @@ AI coding assistants (Claude Code, Antigravity) were utilized for code generatio
    *Answer*: A bi-encoder embeds queries and passages independently into a shared vector space for fast approximate search. A cross-encoder performs full cross-attention over concatenated query-passage tokens, capturing nuanced interactions at higher computational cost.
 
 4. **Why is this release classified as transparently partial?**  
-   *Answer*: While the software architecture, safety boundaries, and unit tests (459 passing) are complete, live model weights and GPU hardware were unavailable to execute the final A–G benchmark runs. Reporting unmeasured results would violate academic integrity; an honest partial release fulfills course requirements.
+   *Answer*: While the software architecture, safety boundaries, and unit tests (459 passing) are complete, live model weights and GPU hardware were unavailable to execute the final A–G benchmark runs. Reporting unmeasured results would violate academic integrity; a partial package must still identify unmet course requirements; it is not evidence of full acceptance.
+
+
+## November17 evidence correction
+This is a prepared partial report. The historical six-slide binary has not been freshly visually certified; the written walkthrough is a procedure, not a recorded end-to-end demo. Current full A-G outputs, RAGAS, separate Llama comparison, full independent source/chart acceptance, fifty-output audit and final clean-runtime restore remain open. The receipt record is PREPARED_NOT_SUBMITTED. No GPU requirement is inferred: actual CPU/GPU model feasibility needs a measured pilot. Read docs/handoffs/2026-11-17_web-release-repairs.md for current code checks and limitations.

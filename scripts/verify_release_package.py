@@ -9,8 +9,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,8 +33,29 @@ CORE_SOURCE_FILES = [
     "src/pipeline/experiment_scaffold.py",
     "src/llm/typed_calculator.py",
     "src/benchmark/metrics.py",
+    "src/benchmark/loaders.py",
+    "scripts/run_benchmarks.py",
     "src/benchmark/runner.py",
     "src/benchmark/gates.py",
+    "scripts/verify_release_package.py",
+    "scripts/serve_web_api.py",
+    "src/web_api.py",
+    "web/public/index.html",
+    "web/public/app.js",
+    "web/public/style.css",
+    "web/public/mark.svg",
+    "web/public/fonts/geist-sans.woff2",
+    "web/public/fonts/geist-mono.woff2",
+    "web/api/index.mjs",
+    "web/lib/api.mjs",
+    "web/data/filings.json",
+    "web/package.json",
+    "web/vercel.json",
+    "supabase/schema.sql",
+    "supabase/migrations/20261116194117_finrag_private_saved_queries.sql",
+    "web/public/fonts/LICENSE-geist-sans.txt",
+    "web/public/fonts/LICENSE-geist-mono.txt",
+    "supabase/verify_rls.sql",
 ]
 
 
@@ -59,12 +81,28 @@ def generate_manifest() -> dict[str, str]:
 def verify_manifest(manifest_path: Path) -> tuple[bool, list[str]]:
     if not manifest_path.is_file():
         return False, [f"Manifest file missing: {manifest_path}"]
-    with manifest_path.open("r", encoding="utf-8") as f:
-        recorded = json.load(f)
+    try:
+        recorded = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False, ["Manifest must be readable JSON."]
+    if not isinstance(recorded, dict) or not isinstance(recorded.get("file_hashes"), dict):
+        return False, ["Manifest lacks a file_hashes object."]
+    expected_files = set(CRITICAL_RELEASE_FILES + CORE_SOURCE_FILES)
+    hashes = recorded["file_hashes"]
+    if set(hashes) != expected_files or type(recorded.get("file_count")) is not int or recorded["file_count"] != len(expected_files):
+        return False, ["Manifest inventory/count differs from the required release files."]
 
     mismatches: list[str] = []
-    for rel_path, expected_hash in recorded.get("file_hashes", {}).items():
+    for rel_path, expected_hash in hashes.items():
+        if (PurePosixPath(rel_path).is_absolute() or ".." in PurePosixPath(rel_path).parts
+                or "\\" in rel_path or ":" in rel_path
+                or not isinstance(expected_hash, str) or not re.fullmatch(r"[a-f0-9]{64}", expected_hash)):
+            mismatches.append(f"Invalid path/digest: {rel_path}")
+            continue
         p = ROOT / rel_path
+        if not p.resolve().is_relative_to(ROOT.resolve()):
+            mismatches.append(f"File escapes release root: {rel_path}")
+            continue
         if not p.is_file():
             mismatches.append(f"Missing file: {rel_path}")
             continue
@@ -104,16 +142,15 @@ def main() -> int:
             f.write("\n")
         print(f"Manifest written to {manifest_path} with {len(file_hashes)} entries.")
 
-    if manifest_path.is_file():
-        ok, mismatches = verify_manifest(manifest_path)
-        if not ok:
-            print("Manifest verification FAILED:")
-            for m in mismatches:
-                print(f"  - {m}")
-            return 1
-        print("Manifest verification: SUCCESS (all cryptographic digests match).")
+    ok, mismatches = verify_manifest(manifest_path)
+    if not ok:
+        print("Manifest verification FAILED:")
+        for m in mismatches:
+            print(f"  - {m}")
+        return 1
+    print("Manifest verification: SUCCESS (all required cryptographic digests match).")
 
-    print("Release package verification: ALL CHECKS PASSED.")
+    print("Package byte integrity passed; runtime readiness and submission are separate checks.")
     return 0
 
 
