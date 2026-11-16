@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "audit_type": "independent_corpus_and_index_audit",
+  "auditor_identity": "Ujjwal Chandak",
+  "auditor_github": "chandakujjwal6",
+  "audited_at": "2026-11-15T18:35:00+05:30",
+  "preceding_author": "Sri Sai Likhit Boddada (likhit-09B)",
+  "preceding_pr": "PR #12 (merged)",
+  "status": "independently_accepted",
+  "declared_filings_count": 18,
+  "total_passages_a": 5213,
+  "total_passages_b": 12077,
+  "total_passages_c": 15411,
+  "total_table_cells": 4100,
+  "total_parent_tables": 54,
+  "filing_audits": [
+    {
+      "accession": "0000320193-21-000105",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2021-09-25",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 211,
+        "B": 353,
+        "C": 535
+      },
+      "cells": 219,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AAPL (0000320193-21-000105) across matched A (211), B (353), C (535) passages. Cells: 219, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000320193-22-000108",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2022-09-24",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 215,
+        "B": 533,
+        "C": 702
+      },
+      "cells": 210,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AAPL (0000320193-22-000108) across matched A (215), B (533), C (702) passages. Cells: 210, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000320193-23-000106",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2023-09-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 196,
+        "B": 504,
+        "C": 665
+      },
+      "cells": 201,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AAPL (0000320193-23-000106) across matched A (196), B (504), C (665) passages. Cells: 201, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000320193-24-000123",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2024-09-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 195,
+        "B": 504,
+        "C": 662
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AAPL (0000320193-24-000123) across matched A (195), B (504), C (662) passages. Cells: 198, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000320193-25-000079",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2025-09-27",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 198,
+        "B": 510,
+        "C": 668
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AAPL (0000320193-25-000079) across matched A (198), B (510), C (668) passages. Cells: 198, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0001564590-21-039151",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2021-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 261,
+        "B": 611,
+        "C": 794
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified MSFT (0001564590-21-039151) across matched A (261), B (611), C (794) passages. Cells: 222, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0001564590-22-026876",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2022-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 259,
+        "B": 600,
+        "C": 783
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified MSFT (0001564590-22-026876) across matched A (259), B (600), C (783) passages. Cells: 222, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000950170-23-035122",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2023-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 281,
+        "B": 677,
+        "C": 860
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified MSFT (0000950170-23-035122) across matched A (281), B (677), C (860) passages. Cells: 222, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000950170-24-087843",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2024-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 289,
+        "B": 712,
+        "C": 900
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified MSFT (0000950170-24-087843) across matched A (289), B (712), C (900) passages. Cells: 227, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000950170-25-100235",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2025-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 269,
+        "B": 666,
+        "C": 854
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified MSFT (0000950170-25-100235) across matched A (269), B (666), C (854) passages. Cells: 227, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000796343-25-000004",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "period_end": "2024-11-29",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 321,
+        "B": 776,
+        "C": 980
+      },
+      "cells": 255,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified ADBE (0000796343-25-000004) across matched A (321), B (776), C (980) passages. Cells: 255, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0001045810-24-000029",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "period_end": "2024-01-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 221,
+        "B": 429,
+        "C": 607
+      },
+      "cells": 218,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified NVDA (0001045810-24-000029) across matched A (221), B (429), C (607) passages. Cells: 218, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0001108524-24-000005",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "period_end": "2024-01-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 367,
+        "B": 869,
+        "C": 1045
+      },
+      "cells": 221,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified CRM (0001108524-24-000005) across matched A (367), B (869), C (1045) passages. Cells: 221, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000002488-25-000012",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "period_end": "2024-12-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 338,
+        "B": 704,
+        "C": 898
+      },
+      "cells": 238,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified AMD (0000002488-25-000012) across matched A (338), B (704), C (898) passages. Cells: 238, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000050863-25-000009",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "period_end": "2024-12-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 412,
+        "B": 877,
+        "C": 1079
+      },
+      "cells": 245,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified INTC (0000050863-25-000009) across matched A (412), B (877), C (1079) passages. Cells: 245, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000858877-24-000017",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "period_end": "2024-07-27",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 398,
+        "B": 1034,
+        "C": 1245
+      },
+      "cells": 262,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified CSCO (0000858877-24-000017) across matched A (398), B (1034), C (1245) passages. Cells: 262, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000950170-24-075605",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "period_end": "2024-05-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 222,
+        "B": 398,
+        "C": 590
+      },
+      "cells": 236,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified ORCL (0000950170-24-075605) across matched A (222), B (398), C (590) passages. Cells: 236, Parent tables: 3. Source hashes match pinned profiles."
+    },
+    {
+      "accession": "0000051143-25-000015",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "period_end": "2024-12-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 560,
+        "B": 1320,
+        "C": 1544
+      },
+      "cells": 279,
+      "parent_tables": 3,
+      "source_sha256_match": true,
+      "independent_audit_decision": "accepted",
+      "auditor_notes": "Verified IBM (0000051143-25-000015) across matched A (560), B (1320), C (1544) passages. Cells: 279, Parent tables: 3. Source hashes match pinned profiles."
+    }
+  ],
+  "conclusion": "All 18 filings (5 Apple, 5 Microsoft, and 8 technology issuers) independently audited and accepted. Matched representations A, B, and C verified with stable source-equivalent identities and valid parent grids."
+}
