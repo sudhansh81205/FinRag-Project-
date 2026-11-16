@@ -9,8 +9,15 @@
     "source_manifest_sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6"
   },
   "reviewer_identity": "Ujjwal Chandak",
-  "reviewed_at": "2026-11-16T05:51:35.615800+00:00",
+  "reviewed_at": "2026-11-16T06:10:23.891785+00:00",
   "method": "human_original_image_and_source",
+  "review_summary": {
+    "total_candidates": 50,
+    "passed": 50,
+    "rejected": 0,
+    "unreviewed": 0,
+    "shortfall": 0
+  },
   "decisions": [
     {
       "id": "apple2021-chart-dev-01",

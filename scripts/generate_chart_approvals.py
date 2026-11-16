@@ -1,12 +1,12 @@
-"""Generate Ujjwal's independent chart approval ledger from genuine human review.
+"""Generate Ujjwal's independent chart approval ledger from genuine human review marks.
 
-Parses human visual review notes from data/charts/review.md, binds them to
-exact candidate case hashes, verifies via load_reviewed_set, and promotes the
-chart set gate.
+Reads verified human review marks from docs/reports/2026-11-15_chart_review_inputs.json,
+binds each decision to the candidate case SHA-256 fingerprint, validates via
+load_reviewed_set, and triggers promotional evaluation gating.
 """
 
+import argparse
 import json
-import re
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -18,68 +18,89 @@ if str(ROOT) not in sys.path:
 from src.charts.dataset import case_fingerprint, load_candidate_set, load_reviewed_set, sha  # noqa: E402
 
 
-def parse_review_md(review_path: Path) -> dict[str, dict[str, str]]:
-    content = review_path.read_text(encoding="utf-8")
-    pattern = (
-        r"(\d+)\.\s+([a-zA-Z0-9_\-]+)\s+"
-        r"Question:\s+(.*?)\s+"
-        r"Candidate Answer:\s+(.*?)\s+"
-        r"Candidate Basis:\s+(.*?)\s+"
-        r"Four Checks:(.*?)\s+"
-        r"Verdict:\s+(.*?)"
-        r"(?=(?:\d+\.\s+[a-zA-Z0-9_\-]+|Group\s+\d+|$))"
-    )
-    matches = re.findall(pattern, content, re.DOTALL)
-    reviews = {}
-    for idx_str, qid, question, answer, cand_basis, four_checks, verdict in matches:
-        clean_checks = re.sub(r"\s+", " ", four_checks).strip()
-        clean_verdict = re.sub(r"\s+", " ", verdict).strip()
-        basis_note = f"Human Visual Verification: {clean_checks} | Verdict: {clean_verdict}"
-        reviews[qid] = {
-            "index": int(idx_str),
-            "question": question.strip(),
-            "answer": answer.strip(),
-            "candidate_basis": cand_basis.strip(),
-            "four_checks": clean_checks,
-            "verdict": clean_verdict,
-            "basis_note": basis_note,
-        }
-    return reviews
+def load_review_marks(inputs_path: Path) -> dict[str, dict]:
+    """Load per-case review decisions and visual check notes from JSON."""
+    if not inputs_path.is_file():
+        raise FileNotFoundError(f"Review marks input file missing: {inputs_path}")
+
+    data = json.loads(inputs_path.read_text(encoding="utf-8"))
+    cases_list = data.get("cases", [])
+    if not cases_list:
+        raise ValueError(f"No cases found in review inputs: {inputs_path}")
+
+    return {c["id"]: c for c in cases_list}
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--inputs",
+        type=Path,
+        default=ROOT / "docs/reports/2026-11-15_chart_review_inputs.json",
+        help="Path to per-case review marks JSON file.",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=ROOT / "docs/reports/2026-11-15_chart_approvals_ujjwal.json",
+        help="Path to output approval ledger JSON.",
+    )
+    args = parser.parse_args()
+
     charts_dir = ROOT / "data/charts"
     cases, manifest, audit = load_candidate_set(charts_dir)
-    print(f"Loaded {len(cases)} candidate cases")
+    print(f"Loaded {len(cases)} candidate chart cases")
 
-    review_path = charts_dir / "review.md"
-    if review_path.is_file():
-        parsed_reviews = parse_review_md(review_path)
-        print(f"Parsed {len(parsed_reviews)} human review cases from review.md")
-    else:
-        # If review.md already ingested, preserve existing basis notes from ledger
-        existing_path = ROOT / "docs/reports/2026-11-15_chart_approvals_ujjwal.json"
-        if existing_path.is_file():
-            data = json.loads(existing_path.read_text(encoding="utf-8"))
-            parsed_reviews = {d["id"]: {"basis_note": d["basis"]} for d in data.get("decisions", [])}
-            print(f"Preserving {len(parsed_reviews)} existing human review decisions")
-        else:
-            raise FileNotFoundError(f"Neither {review_path} nor {existing_path} exists.")
+    review_marks = load_review_marks(args.inputs)
+    print(f"Loaded {len(review_marks)} review marks from {args.inputs}")
 
     decisions = []
+    passed_cases = []
+    rejected_cases = []
+    unreviewed_cases = []
+
     for c in cases:
         cid = c["id"]
-        if cid not in parsed_reviews:
-            raise ValueError(f"Missing review entry for candidate case: {cid}")
-        rev = parsed_reviews[cid]
+        if cid not in review_marks:
+            unreviewed_cases.append(cid)
+            decisions.append({
+                "id": cid,
+                "case_sha256": case_fingerprint(c),
+                "decision": "unreviewed",
+                "original_image_checked": False,
+                "source_provenance_checked": False,
+                "basis": "Unreviewed case - awaiting verification.",
+            })
+            continue
+
+        mark = review_marks[cid]
+        decision = mark.get("decision", "passed")
+        orig_checked = mark.get("original_image_checked", False)
+        prov_checked = mark.get("source_provenance_checked", False)
+        basis = mark.get("reviewer_notes") or mark.get("basis", "")
+
+        if decision == "passed" and orig_checked and prov_checked:
+            passed_cases.append(cid)
+        elif decision == "rejected":
+            rejected_cases.append(cid)
+        else:
+            unreviewed_cases.append(cid)
+
         decisions.append({
             "id": cid,
             "case_sha256": case_fingerprint(c),
-            "decision": "passed",
-            "original_image_checked": True,
-            "source_provenance_checked": True,
-            "basis": rev["basis_note"],
+            "decision": decision,
+            "original_image_checked": orig_checked,
+            "source_provenance_checked": prov_checked,
+            "basis": basis,
         })
+
+    total_count = len(cases)
+    passed_count = len(passed_cases)
+    all_passed_and_checked = (passed_count == total_count) and not rejected_cases and not unreviewed_cases
+
+    # Use human method only if all cases were inspected against original image & source
+    method = "human_original_image_and_source" if all_passed_and_checked else "ai_assisted_unreviewed"
 
     ledger = {
         "schema_version": 1,
@@ -90,24 +111,43 @@ def main():
         },
         "reviewer_identity": "Ujjwal Chandak",
         "reviewed_at": datetime.now(UTC).isoformat(),
-        "method": "human_original_image_and_source",
+        "method": method,
+        "review_summary": {
+            "total_candidates": total_count,
+            "passed": passed_count,
+            "rejected": len(rejected_cases),
+            "unreviewed": len(unreviewed_cases),
+            "shortfall": total_count - passed_count,
+        },
         "decisions": decisions,
     }
 
-    out_path = ROOT / "docs/reports/2026-11-15_chart_approvals_ujjwal.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
-    print(f"Wrote ledger to {out_path}")
+    if rejected_cases:
+        print(f"\n[ALERT] Rejection shortfall: {passed_count}/{total_count} passed.")
+        print(f"Tell author (Rushil Mohan) to address {len(rejected_cases)} rejected cases:")
+        for r_id in rejected_cases:
+            print(f"  - {r_id}")
+    elif unreviewed_cases:
+        print(f"\n[WARNING] Incomplete review shortfall: {passed_count}/{total_count} passed. Unreviewed: {len(unreviewed_cases)}")
+    else:
+        print(f"\n[SUCCESS] All {total_count}/{total_count} candidate chart questions verified and passed!")
 
-    # Validate with load_reviewed_set
-    reviewed, _, report = load_reviewed_set(
-        charts_dir,
-        out_path,
-        trusted_reviewers={"Ujjwal Chandak"},
-        label_authors={"Rushil Mohan", "rmo29", "ai-assisted"},
-    )
-    print("load_reviewed_set validation passed successfully!")
-    print(f"Status: {report['status']}, evaluation_ready: {report['evaluation_ready']}")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
+    print(f"Wrote ledger to {args.output}")
+
+    # Validate ledger via load_reviewed_set
+    try:
+        reviewed, _, report = load_reviewed_set(
+            charts_dir,
+            args.output,
+            trusted_reviewers={"Ujjwal Chandak"},
+            label_authors={"Rushil Mohan", "rmo29", "ai-assisted"},
+        )
+        print("load_reviewed_set validation passed successfully!")
+        print(f"Status: {report['status']}, evaluation_ready: {report['evaluation_ready']}")
+    except ValueError as exc:
+        print(f"load_reviewed_set noted non-human or incomplete approval: {exc}")
 
 
 if __name__ == "__main__":

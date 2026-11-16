@@ -32,10 +32,11 @@
   "asset_hashes_checked": 6,
   "heldout_answers_generated_or_scored": false,
   "scope": "Hash-bound recorded human label approvals only; no caption approval, model run or full A-G acceptance.",
-  "approval_sha256": "a4772f6d2363f6b6202d2f97ce70bd686cbe8709c4e98dfc5b050c3307be10bc",
+  "approval_sha256": "91b0af2068cb65bf33afd1a67848a2a06cbab4f621266c7004c2d53537942d87",
   "reviewer_identity": "Ujjwal Chandak",
   "label_authors": [
     "Rushil Mohan",
+    "ai-assisted",
     "rmo29"
   ],
   "trusted_reviewers_at_load": [
