@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "purpose": "frozen_experimental_controls_and_execution_manifest",
+  "frozen_by": "Ujjwal Chandak",
+  "frozen_at": "2026-11-16T04:25:58.918046+00:00",
+  "git_commit": "0bfa27e5cbb982042c04c40d284c7fb4bf5e530f",
+  "common_controls": {
+    "embedding_model": "BAAI/bge-base-en-v1.5",
+    "embedding_dim": 768,
+    "vector_index": "exact_faiss_flat_ip",
+    "generator_model": "gemma3:4b",
+    "generator_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "max_passages": 5,
+    "calculator": "restricted_decimal_trees",
+    "numerical_relative_tolerance": 0.01,
+    "random_seed": 42
+  },
+  "execution_parameters": {
+    "max_context_passages": 5,
+    "context_token_budget": 4000,
+    "numerical_relative_tolerance": 0.01,
+    "zero_absolute_tolerance": 0.001,
+    "random_seed": 42,
+    "calculator_mode": "restricted_decimal_trees_fail_closed",
+    "checkpoint_schema": "atomic_append_jsonl_with_run_manifest"
+  },
+  "model_profiles": {
+    "primary": {
+      "tag": "gemma3:4b",
+      "config_path": "configs/gemma3-4b.json",
+      "config_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+      "pinned_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+    },
+    "comparison": {
+      "tag": "llama3.2:3b",
+      "config_path": "configs/llama32-comparison.json",
+      "config_sha256": "f34798bb34674f729375a28daa2bf83609f01a7474d54716138088f5d25edcd9"
+    }
+  },
+  "benchmark_data": {
+    "FinanceBench_Open150": {
+      "path": "data/benchmarks/financebench_open150.json",
+      "sha256": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b",
+      "case_count": 150
+    },
+    "FinQA_Candidate": {
+      "path": "data/benchmarks/finqa_candidate_universe.json",
+      "sha256": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62",
+      "case_count": 50
+    },
+    "TAT-QA_Candidate": {
+      "path": "data/benchmarks/tatqa_candidate_universe.json",
+      "sha256": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70",
+      "case_count": 50
+    },
+    "Charts_Dev_Heldout": {
+      "path": "data/charts/chart-sources.json",
+      "sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
+      "case_count": 50
+    }
+  },
+  "variants": {
+    "A": {
+      "name": "Dense baseline",
+      "description": "Fixed overlapping narrative chunks and flattened Markdown tables, dense retrieval only",
+      "narrative_rep": "fixed_overlap",
+      "table_rep": "flattened_markdown",
+      "retrieval_mode": "dense_only",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "fixed_overlap_index_representation"
+      ],
+      "status": "gated"
+    },
+    "B": {
+      "name": "Section-aware chunks",
+      "description": "Section-aware narrative chunks with flattened Markdown tables, dense retrieval only",
+      "narrative_rep": "section_aware",
+      "table_rep": "flattened_markdown",
+      "retrieval_mode": "dense_only",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "section_aware_index_representation"
+      ],
+      "status": "gated"
+    },
+    "C": {
+      "name": "Self-describing cells",
+      "description": "Section-aware narratives, self-describing cells and parent table expansion, dense only",
+      "narrative_rep": "section_aware",
+      "table_rep": "self_describing_cells",
+      "retrieval_mode": "dense_only",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "canonical_cells_and_parents"
+      ],
+      "status": "gated"
+    },
+    "D": {
+      "name": "Hybrid dense/BM25 fusion",
+      "description": "Dense + BM25 retrieval fused with reciprocal rank fusion (RRF k=60)",
+      "narrative_rep": "section_aware",
+      "table_rep": "self_describing_cells",
+      "retrieval_mode": "hybrid_rrf60",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "canonical_cells_and_parents",
+        "bm25_index"
+      ],
+      "status": "gated"
+    },
+    "E": {
+      "name": "Hierarchical reranking",
+      "description": "Hierarchical candidate restriction and bge-reranker-base cross-encoder scoring",
+      "narrative_rep": "section_aware",
+      "table_rep": "self_describing_cells",
+      "retrieval_mode": "hybrid_rrf60_cross_encoder",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "canonical_cells_and_parents",
+        "bm25_index",
+        "bge_reranker_base"
+      ],
+      "status": "gated"
+    },
+    "F": {
+      "name": "Bounded routing & escalation",
+      "description": "Keyword + bounded routing with development-tuned escalation across text/table tiers",
+      "narrative_rep": "section_aware",
+      "table_rep": "self_describing_cells",
+      "retrieval_mode": "routed_escalation",
+      "chart_tier_enabled": false,
+      "prerequisite_gates": [
+        "canonical_cells_and_parents",
+        "bm25_index",
+        "bge_reranker_base",
+        "frozen_routing_thresholds"
+      ],
+      "status": "gated"
+    },
+    "G": {
+      "name": "Approved chart descriptions",
+      "description": "Independently approved source-linked chart descriptions added to candidate pool",
+      "narrative_rep": "section_aware",
+      "table_rep": "self_describing_cells",
+      "retrieval_mode": "routed_escalation",
+      "chart_tier_enabled": true,
+      "prerequisite_gates": [
+        "canonical_cells_and_parents",
+        "bm25_index",
+        "bge_reranker_base",
+        "frozen_routing_thresholds",
+        "independent_chart_approval"
+      ],
+      "status": "gated"
+    }
+  },
+  "capacity_gate_decision": {
+    "measured_machine": "12 cores Intel x86_64, 15.7 GB RAM",
+    "full_cpu_estimate_hours": 90.87,
+    "deadline_window_hours": 72.0,
+    "status": "core_suite_prioritized",
+    "approved_prioritized_cases": 300,
+    "approved_estimated_hours": 9.05
+  },
+  "prerequisite_gate_status": {
+    "canonical_cells_and_parents": "available_via_corpus_audit",
+    "fixed_overlap_index_representation": "available_via_corpus_audit",
+    "section_aware_index_representation": "available_via_corpus_audit",
+    "independent_chart_approval": "gated_ai_assisted_review_only",
+    "bge_reranker_base": "gated_unfitted",
+    "frozen_routing_thresholds": "gated_uncalibrated"
+  }
+}

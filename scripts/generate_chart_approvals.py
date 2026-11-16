@@ -25,18 +25,18 @@ def main():
         },
         "reviewer_identity": "Ujjwal Chandak",
         "reviewed_at": "2026-11-15T18:30:00+05:30",
-        "method": "human_original_image_and_source",
+        "method": "ai_assisted_unreviewed",
         "decisions": [
             {
                 "id": c["id"],
                 "case_sha256": case_fingerprint(c),
                 "decision": "passed",
-                "original_image_checked": True,
+                "original_image_checked": False,
                 "source_provenance_checked": True,
                 "basis": (
-                    f"Independently verified against original source image ({c['source_asset_id']}) "
+                    f"AI-assisted consistency check against source asset ({c['source_asset_id']}) "
                     f"and locator ({c.get('source_locator', '')}). Checked answer basis: "
-                    f"{c.get('answer_basis', '')} without self-approval."
+                    f"{c.get('answer_basis', '')}."
                 ),
             }
             for c in cases
@@ -49,14 +49,17 @@ def main():
     print(f"Wrote ledger to {out_path}")
 
     # Verify via load_reviewed_set
-    reviewed, _, report = load_reviewed_set(
-        charts_dir,
-        out_path,
-        trusted_reviewers={"Ujjwal Chandak"},
-        label_authors={"Rushil Mohan", "rmo29", "ai-assisted"},
-    )
-    print("load_reviewed_set passed!")
-    print(f"Reviewed status: {report['status']}, evaluation_ready: {report['evaluation_ready']}")
+    try:
+        reviewed, _, report = load_reviewed_set(
+            charts_dir,
+            out_path,
+            trusted_reviewers={"Ujjwal Chandak"},
+            label_authors={"Rushil Mohan", "rmo29", "ai-assisted"},
+        )
+        print("load_reviewed_set passed!")
+        print(f"Reviewed status: {report['status']}, evaluation_ready: {report['evaluation_ready']}")
+    except ValueError as exc:
+        print(f"load_reviewed_set noted non-human method (gate remains guarded): {exc}")
 
 
 if __name__ == "__main__":

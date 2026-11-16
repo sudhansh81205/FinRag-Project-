@@ -10,407 +10,407 @@
   },
   "reviewer_identity": "Ujjwal Chandak",
   "reviewed_at": "2026-11-15T18:30:00+05:30",
-  "method": "human_original_image_and_source",
+  "method": "ai_assisted_unreviewed",
   "decisions": [
     {
       "id": "apple2021-chart-dev-01",
       "case_sha256": "315b18f620c86f4767d1500d2ebbe35a1fd6eb37e4445ff4263b45ed495f04db",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Title: COMPARISON OF 5-YEAR CUMULATIVE TOTAL RETURN. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Title: COMPARISON OF 5-YEAR CUMULATIVE TOTAL RETURN.."
     },
     {
       "id": "apple2021-chart-dev-02",
       "case_sha256": "546fd291308b2b5460fe2f0fc4abc7bcf73a07a6793d91de3897f9d4411afa4a",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Chart subtitle and solid-line legend. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Chart subtitle and solid-line legend.."
     },
     {
       "id": "apple2021-chart-dev-03",
       "case_sha256": "c5775faf17f44529d9467272f73e3b9522ac353c7aa7cc477e2c37bdc83d6766",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Chart subtitle and legend. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Chart subtitle and legend.."
     },
     {
       "id": "apple2021-chart-dev-04",
       "case_sha256": "d874d81995c96a85a3cf1618a7b5f599e8d1fe0ed583db9407f3df0d8bf25d89",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Leftmost horizontal-axis label. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Leftmost horizontal-axis label.."
     },
     {
       "id": "apple2021-chart-dev-05",
       "case_sha256": "41140cd7ebc38c026b809b204421b86db14790dc4bd6a952e6847decadc79f38",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Rightmost horizontal-axis label. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Rightmost horizontal-axis label.."
     },
     {
       "id": "apple2021-chart-dev-06",
       "case_sha256": "7931bd2036cc3b1da66fbfebf98b05752ef177a0f5af06810dab9f7d0ca3ad77",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: All six horizontal-axis labels. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: All six horizontal-axis labels.."
     },
     {
       "id": "apple2021-chart-dev-07",
       "case_sha256": "4634a9a1d36e18fba82c167f1d5ffa659c2bd7fdf4458b9ce18fe16fbccf9a24",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Vertical-axis tick labels from $0 through $600. Currency code is not printed. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Vertical-axis tick labels from $0 through $600. Currency code is not printed.."
     },
     {
       "id": "apple2021-chart-dev-08",
       "case_sha256": "0ecc0013c6899500f74979900ce7162717773c2cac63b0519705a7fe7fd82bc5",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Bottom and top vertical-axis tick labels. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Bottom and top vertical-axis tick labels.."
     },
     {
       "id": "apple2021-chart-dev-09",
       "case_sha256": "3d73df0fbee3be401edf729b0e64a34607295e5ec5926046ec2854575400c8b0",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Ticks $0, $100, $200, $300, $400, $500, $600. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Ticks $0, $100, $200, $300, $400, $500, $600.."
     },
     {
       "id": "apple2021-chart-dev-10",
       "case_sha256": "2a42358435534a0353414fc424921178fdb02c89f4a9139fff0b389e6c17f4e8",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Apple plus three benchmark legend entries. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Apple plus three benchmark legend entries.."
     },
     {
       "id": "apple2021-chart-dev-11",
       "case_sha256": "ceb5a884f3b898cc6195d7030aebb7620371e533bd141e1d4e807a3c07a73308",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Apple Inc. legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Apple Inc. legend swatch.."
     },
     {
       "id": "apple2021-chart-dev-12",
       "case_sha256": "94d26cfc4b48c16bce046332cd1b043f581eaab1ef90eb267456a158827fb3bf",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: S&P 500 Index legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: S&P 500 Index legend swatch.."
     },
     {
       "id": "apple2021-chart-dev-13",
       "case_sha256": "e02598b850f30e815f15d3cf2e9e8cd588dfb03904d4bed5dff4f17bb3ac11b9",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: S&P Information Technology Index legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: S&P Information Technology Index legend swatch.."
     },
     {
       "id": "apple2021-chart-dev-14",
       "case_sha256": "bea17a09056f0c9bcd4d6a37ecba8ab38c7f55c76cc863749d3f45f2d7091921",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Dow Jones legend swatch; full name in subtitle. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Dow Jones legend swatch; full name in subtitle.."
     },
     {
       "id": "apple2021-chart-dev-15",
       "case_sha256": "19067a33491558b410d714e6f7fe315eee17cbcd5cb47742e1c3e68d2a659206",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Final solid-line endpoint is unlabelled; axis ticks alone do not establish an exact value. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9) and locator (PDF page 22; img[src='aapl-20210925_g2.jpg']). Checked answer basis: Final solid-line endpoint is unlabelled; axis ticks alone do not establish an exact value.."
     },
     {
       "id": "nvda-chart-heldout-01",
       "case_sha256": "3cec6fca749897a50e2b89a88384bc833504c4cfc1ebe8c34455c344b370d317",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Legend associates the green circle with NVIDIA Corporation. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Legend associates the green circle with NVIDIA Corporation.."
     },
     {
       "id": "nvda-chart-heldout-02",
       "case_sha256": "cc02bb4fb1d07c33c8c2733a10000baf7f15b9388e6e827fe6943ab5dcb86fdd",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Purple inverted-triangle swatch in the legend. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Purple inverted-triangle swatch in the legend.."
     },
     {
       "id": "nvda-chart-heldout-03",
       "case_sha256": "082eaffc2f93335fedf892e919c536fc63a9f2319e72beb4c9b8b2e46ea0a4a5",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Legend has green-circle, gray-square and purple-inverted-triangle entries. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Legend has green-circle, gray-square and purple-inverted-triangle entries.."
     },
     {
       "id": "nvda-chart-heldout-04",
       "case_sha256": "a50554508c491bdca278163e2bda9faeac834372c5c728fac588ef6bd31628de",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Rightmost three marker heights are distinctly ordered; marker-to-series mapping comes from the legend. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Rightmost three marker heights are distinctly ordered; marker-to-series mapping comes from the legend.."
     },
     {
       "id": "nvda-chart-heldout-05",
       "case_sha256": "6ff5ea2391bcdd1d50ac9addb00227d14a013350147cca0ad49289c157be11db",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Green circle at 01/29/23 is lower than the circle at 01/30/22. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Green circle at 01/29/23 is lower than the circle at 01/30/22.."
     },
     {
       "id": "nvda-chart-heldout-06",
       "case_sha256": "d4117158c4cd62617a3649bb70b7b98832520212060bc99098bd8875c49b676e",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Final green segment rises far more vertically than the purple or gray segments over the same horizontal interval. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Final green segment rises far more vertically than the purple or gray segments over the same horizontal interval.."
     },
     {
       "id": "nvda-chart-heldout-07",
       "case_sha256": "bbe3c3da05711432b1d7c09cfe4f7f482d91c22757bf0eeb62a6ec459bdc6d21",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Labeled vertical ticks are 0, 200, 400, ... 1,800. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a) and locator (PDF page 133; top-left point rectangle [47, 163, 565, 485]). Checked answer basis: Labeled vertical ticks are 0, 200, 400, ... 1,800.."
     },
     {
       "id": "amd-chart-heldout-01",
       "case_sha256": "f877a08964256b84c48224351ffe5a40c61dfab2a1c6e37896f3cd5b84109bd2",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Filled-circle legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Filled-circle legend swatch.."
     },
     {
       "id": "amd-chart-heldout-02",
       "case_sha256": "11a83bedcbf261a6e1999746d0ae960a6daeddbbb04759418efc9b6cc24246e0",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Triangle legend swatch names the semiconductor index. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Triangle legend swatch names the semiconductor index.."
     },
     {
       "id": "amd-chart-heldout-03",
       "case_sha256": "3edc4e81aa6f4fbaa3ab4128d95326ed6fa4e67d96d2a2e6eb8868434bd73952",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: The three 2024 markers are clearly separated vertically; legend supplies their names. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: The three 2024 markers are clearly separated vertically; legend supplies their names.."
     },
     {
       "id": "amd-chart-heldout-04",
       "case_sha256": "d305fccec39f7363b29fff874bb176f6425208fdded4bc89729d04034584ce44",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Final circle segment slopes down and final triangle segment slopes up. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Final circle segment slopes down and final triangle segment slopes up.."
     },
     {
       "id": "amd-chart-heldout-05",
       "case_sha256": "af1c4fa13b4ff864f299226ab4d38e16d79e5e2b37c51527b3a4c9239f8e4bd4",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Filled-square legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Filled-square legend swatch.."
     },
     {
       "id": "amd-chart-heldout-06",
       "case_sha256": "a6144420c316f6a3b3232ede4bc1f7ce0560d74f82dbc72f624fe4c0ad252949",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: All three segments slope downward from their 2021 markers to their 2022 markers. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: All three segments slope downward from their 2021 markers to their 2022 markers.."
     },
     {
       "id": "amd-chart-heldout-07",
       "case_sha256": "e9f20a4a43f59ecbf643adeed4fd62dbbbb3b7e4a25123e8c3a477d0d017c183",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Vertical text alongside the left axis. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0) and locator (PDF page 45; embedded image X223.jpg). Checked answer basis: Vertical text alongside the left axis.."
     },
     {
       "id": "intc-chart-heldout-01",
       "case_sha256": "6bad6696bbc51d2fc690dfcf1bbced83d82616fa2a807a8376b697e6e128b697",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Blue circle and line in the legend. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Blue circle and line in the legend.."
     },
     {
       "id": "intc-chart-heldout-02",
       "case_sha256": "8a98ede767faa17c47954af15d035e0c54a79c4db807fe8a5f8cb3a74c47d8c4",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Inverted-triangle legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Inverted-triangle legend swatch.."
     },
     {
       "id": "intc-chart-heldout-03",
       "case_sha256": "43b4273ce8e922de1d80e67dabb6878eb57ef83a07ac2b07bc3d38af9c6d5fb8",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Star legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Star legend swatch.."
     },
     {
       "id": "intc-chart-heldout-04",
       "case_sha256": "e61eaace2ef1a15020ed04bdd8d34d661f4d53e6f3dd2b34b019b8043bfc9b16",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Rightmost marker heights and legend identities; no exact point values are inferred. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Rightmost marker heights and legend identities; no exact point values are inferred.."
     },
     {
       "id": "intc-chart-heldout-05",
       "case_sha256": "b299f1f7ac335405f0c4b1e7586f93d0ae68f6273f1710145be37cb61b3177b2",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: The 2023 blue circle is above the 2022 blue circle. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: The 2023 blue circle is above the 2022 blue circle.."
     },
     {
       "id": "intc-chart-heldout-06",
       "case_sha256": "7f386637ece7e0e83eacde16960553354b71f025684ab8485705d092b1a4a559",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: The rightmost blue circle is lower than all four gray markers. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: The rightmost blue circle is lower than all four gray markers.."
     },
     {
       "id": "intc-chart-heldout-07",
       "case_sha256": "aa0378c2e119a4c7e422e9b6e6e2e3d74977bacf6c11f49ae020c645680da1e2",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Top label on the left vertical axis. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568) and locator (PDF page 52; embedded image X204.jpg). Checked answer basis: Top label on the left vertical axis.."
     },
     {
       "id": "csco-chart-heldout-01",
       "case_sha256": "ba2c5f27cfc59fb7f7cb1b2a11311f74b20a992e2d0eaa1b18352a9107862451",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Solid-line/open-square legend entry. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Solid-line/open-square legend entry.."
     },
     {
       "id": "csco-chart-heldout-02",
       "case_sha256": "53d38c8b678c8a2ef1621646523471f58c390253f541887a7747d55b2da06822",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Dashed-line/open-circle legend entry. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Dashed-line/open-circle legend entry.."
     },
     {
       "id": "csco-chart-heldout-03",
       "case_sha256": "1dba740b1550122c1d325956afb2613e03f7cf36d04c0fc9f120c20f87a8fe55",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Dotted-line/open-triangle legend entry. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Dotted-line/open-triangle legend entry.."
     },
     {
       "id": "csco-chart-heldout-04",
       "case_sha256": "9e6dcacb09dd515ab75ec8e07be8debf7f31d8dd2f82822028975f492776b665",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Rightmost open circle is above the triangle and square; legend identifies it. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: Rightmost open circle is above the triangle and square; legend identifies it.."
     },
     {
       "id": "csco-chart-heldout-05",
       "case_sha256": "2e6b877fcba75e7a38e7fd17fc9d7653bd66228cd75abab8575fb4753e83bb51",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: The final open square has no numeric annotation; the neighboring source table is excluded from this image. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: The final open square has no numeric annotation; the neighboring source table is excluded from this image.."
     },
     {
       "id": "csco-chart-heldout-06",
       "case_sha256": "73d4e76b80fed7c537eff37f14e17228712b5975fd4b129967eefde940cbf724",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: All three segments slope downward between those two labeled dates. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: All three segments slope downward between those two labeled dates.."
     },
     {
       "id": "csco-chart-heldout-07",
       "case_sha256": "964c18f145af7542af7ddca3c416eaba7cf121f4e991931ba3ebe4d698f19b1c",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: One square/solid, one triangle/dotted and one circle/dashed entry. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098) and locator (PDF page 50; top-left point rectangle [40, 175, 560, 455]). Checked answer basis: One square/solid, one triangle/dotted and one circle/dashed entry.."
     },
     {
       "id": "adbe-chart-heldout-01",
       "case_sha256": "58ff844945680c2cd33c6acd1402f3835ce3a45f08e565bed95ba5d8032549ef",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Filled-triangle legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Filled-triangle legend swatch.."
     },
     {
       "id": "adbe-chart-heldout-02",
       "case_sha256": "9e02e944bcbbe2e71d61f6a468df78c3264a40ce501b022be2e1b4f4aa59c55a",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Open-diamond legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Open-diamond legend swatch.."
     },
     {
       "id": "adbe-chart-heldout-03",
       "case_sha256": "628eb8be8274e9709be69de6253fb87580693ab89c90f6dd8ac8a695bf334cf6",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Open-square legend swatch. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Open-square legend swatch.."
     },
     {
       "id": "adbe-chart-heldout-04",
       "case_sha256": "20ca83858812fcff3df814c45eceac96bf3bdb69123007305def14cb925cf2fb",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Rightmost marker heights and the legend; no exact plotted amount is inferred. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Rightmost marker heights and the legend; no exact plotted amount is inferred.."
     },
     {
       "id": "adbe-chart-heldout-05",
       "case_sha256": "c31aeff8bea30a6d102c39d61016392700a66ddbc09f54d44a3c9a02201056b1",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Opposite slopes of the final segments. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Opposite slopes of the final segments.."
     },
     {
       "id": "adbe-chart-heldout-06",
       "case_sha256": "58c5e2008774f9c354bf4436cfdbb6cee8f07b362f633dcd5b3cd86de0445352",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Three printed labels on the left vertical axis. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Three printed labels on the left vertical axis.."
     },
     {
       "id": "adbe-chart-heldout-07",
       "case_sha256": "20bbf8997c3e2676bd4e0c55dd0b7cbd226a94f7a387a6e3ed88e3f24a71b8a1",
       "decision": "passed",
-      "original_image_checked": true,
+      "original_image_checked": false,
       "source_provenance_checked": true,
-      "basis": "Independently verified against original source image (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Leftmost and rightmost horizontal-axis year labels. without self-approval."
+      "basis": "AI-assisted consistency check against source asset (0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97) and locator (PDF page 101; top-left point rectangle [55, 265, 565, 565]). Checked answer basis: Leftmost and rightmost horizontal-axis year labels.."
     }
   ]
 }

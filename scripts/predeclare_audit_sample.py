@@ -136,11 +136,10 @@ def main():
         "reviewer_assignment_summary": {
             "primary_reviewer": "Agrawal Pavan Shailesh (Nov 16)",
             "conflict_escalation_reviewer": "Sudhansh Khandelwal (Nov 17)",
-            "conflict_count": 0,
-            "independent_review_guaranteed": True
+            "conflict_count": sum(c["authorship_conflict"] for c in sampled_audit_cases),
         },
         "audit_sampling_rule": (
-            "Stratified across variants A-G and representative question types. "
+            "Stratified across variants A-G and benchmark universes (FinanceBench, FinQA, TAT-QA, Charts). "
             "Predeclared before inspecting output scores or accuracy to eliminate selection bias."
         ),
         "cases": sampled_audit_cases,

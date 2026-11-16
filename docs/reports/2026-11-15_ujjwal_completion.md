@@ -1,7 +1,8 @@
-# FinRAG completion report: November 15 independent input approval, freeze, and execution launch
+# FinRAG delivery report: November 15 independent input overview, control freeze, and run launch status
 
 - **Owner**: Ujjwal Chandak (`chandakujjwal6`) (10 estimated hours)
-- **Date**: November 15, 2026
+- **Date**: November 15, 2026 (Updated November 16, 2026)
+- **Status**: AI-assisted overview, control freeze, and partial execution gate
 - **Requirements**: R1 Corpus, R2 Index, R3 Evidence, R7 Evaluation, R11 Charts, R12 Controls
 - **Upstream PRs Consumed**: PR #11 (Sudhansh Nov 12 integration), PR #12 (Likhit Nov 13 corpus), PR #13 (Gowtham Nov 14 UI & benchmark runner)
 - **Next Assignee**: Agrawal Pavan Shailesh (Nov 16: output audit, metrics, report and slides)
@@ -10,30 +11,33 @@
 
 ## 1. Executive Summary
 
-On November 15, 2026, Ujjwal Chandak completed the independent input approval, control freeze, and run launch gate for FinRAG. Acting as the team's independent auditor under strict anti-self-approval guidelines:
+For the November 15 milestone, Ujjwal Chandak performed the independent input overview, control freeze, and execution status audit for FinRAG. The milestones are accounted for as follows:
 
 1. **Independent SEC Corpus & Matched Index Audit (R1, R2, R3)**:
-   - Independently audited all 18 SEC 10-K filings across 10 technology issuers (5 Apple, 5 Microsoft, and 8 technology issuers: NVDA, AMD, INTC, CSCO, ADBE, CRM, ORCL, IBM).
+   - Audited all 18 SEC 10-K filings across 10 technology issuers (5 Apple, 5 Microsoft, and 8 technology issuers: NVDA, AMD, INTC, CSCO, ADBE, CRM, ORCL, IBM).
    - Verified that uncompressed byte streams match pinned profiles in `data/corpus_html_profiles.json`.
    - Reconciled passage counts: **5,213 passages in Variant A** (fixed-overlap), **12,077 passages in Variant B** (section-aware), **15,411 passages in Variant C** (including 4,100 self-describing cells and 54 parent tables).
-   - Formally accepted all 18 candidate filings in `docs/reports/2026-11-15_corpus_audit.json`.
+   - Accepted candidate filings in [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_audit.json).
 
-2. **Independent Chart Dataset & Caption Approval (R11)**:
-   - Independently audited all 50 candidate chart questions (15 dev + 35 held-out) across 6 original 10-K chart images in `data/charts/assets/` without self-approval (Author: Rushil Mohan / AI-assisted; Reviewer: Ujjwal Chandak).
-   - Reconciled the canonical LF `inventory_sha256` in `data/charts/chart-sources.json` against `data/application_filings.json` (`3532d851...`).
-   - Verified `scripts/verify_chart_set.py` (exit code 0) and promoted the set to `independently_reviewed_labels` (`evaluation_ready: true`) via `scripts/promote_chart_set.py`.
-   - Satisfied the prerequisite gate `independent_chart_approval` for Variant G.
+2. **Chart Dataset & Caption Overview (R11)**:
+   - Audited all 50 candidate chart questions (15 dev + 35 held-out) across 6 original 10-K chart images in `data/charts/assets/` via an AI-assisted consistency check (Author: Rushil Mohan / AI-assisted; Auditor: Ujjwal Chandak).
+   - Recorded the ledger with `method: "ai_assisted_unreviewed"` in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json).
+   - Generated the promotion gate report in [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) marking `status: "blocked"` and `evaluation_ready: false`, ensuring Variant G remains guarded until promotional criteria are met.
+   - Reconciled the canonical LF `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform verification resilience in `scripts/verify_chart_set.py`.
 
 3. **Predeclared Seeded Stratified 50-Output Faithfulness Sample (R7, R12)**:
-   - Drew and froze exactly 50 sample cases stratified across variants A–G (7 for A–F, 8 for G) and benchmarks (FinanceBench 18, FinQA 12, TAT-QA 12, Charts 8) using frozen seed `42`.
-   - Predeclared *before* score inspection in `docs/reports/2026-11-15_audit_sampling_predeclaration.json`.
-   - Assigned all 50 cases to Pavan for independent audit on Nov 16 with zero authorship conflicts.
+   - Drew and froze exactly 50 sample cases stratified across variants A–G (7 for A–F, 8 for G) and benchmark universes (FinanceBench 18, FinQA 12, TAT-QA 12, Charts 8) using frozen seed `42`.
+   - Predeclared before inspecting output scores in [`docs/reports/2026-11-15_audit_sampling_predeclaration.json`](2026-11-15_audit_sampling_predeclaration.json).
+   - Mapped all 50 cases to Pavan for independent audit on Nov 16.
 
-4. **Frozen Experimental Controls & Capacity Gate (R7, R12)**:
-   - Locked frozen controls: BGE-base-en-v1.5 (768-D normalized), exact FAISS `IndexFlatIP`, Gemma 3 4B (`sha256:68ceab...`), max 5 passages, 1% relative numerical error tolerance, random seed 42.
+4. **Frozen Experimental Controls & Manifest (R7, R12)**:
+   - Formally locked experimental controls into [`docs/reports/2026-11-15_frozen_manifest.json`](2026-11-15_frozen_manifest.json): BGE-base-en-v1.5 (768-D normalized), exact FAISS `IndexFlatIP`, Gemma 3 4B (`sha256:68ceab...`), max 5 passages, 4000 token context budget, 1% relative numerical error tolerance, random seed 42.
    - Evaluated machine throughput (12 cores, 15.73 GB RAM): full 3,015 unbatched CPU cases across 7 variants (21,105 evaluations = 90.87 hours) exceeds the 72-hour window before Nov 17.
    - Formally approved the prioritized core suite: FinanceBench open 150 + FinQA candidate + TAT-QA candidate + Charts dev/heldout ($\approx 9.05$ hours total).
    - Verified runner execution on Variant A using `scripts/run_benchmarks.py`.
+
+5. **Execution Launch Status**:
+   - Full evaluation runs across Variants A–G, RAGAS, and Llama 3.2 comparison are pending execution on allocated compute/models.
 
 ---
 
@@ -65,17 +69,16 @@ Audit artifact: [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_
 
 ---
 
-## 3. Independent Chart Dataset Approval Ledger (50 Questions / 6 Images)
+## 3. Chart Dataset Overview & Promotion Gate
 
 - **Audited Files**: `data/charts/question-set.json`, `data/charts/apple-2021-candidate-questions.json` (15 dev), `data/charts/heldout-35-candidate-questions.json` (35 held-out).
-- **Reviewer**: Ujjwal Chandak (`chandakujjwal6`).
+- **Auditor**: Ujjwal Chandak (`chandakujjwal6`).
 - **Original Author**: B Rushil Mohan (`rmo29` / AI-assisted).
 - **Audit Verification Results**:
-  1. **Visual Fidelity**: Verified each of the 50 questions against original embedded/rendered chart graphics in `data/charts/assets/`.
-  2. **Unknown Value Handling**: Confirmed that unprinted curve coordinates remain marked as unknown rather than interpolated or hallucinated.
-  3. **Split Isolation**: Confirmed Apple 2021 (15 questions) appears strictly in development, while the remaining 5 issuers (35 questions) are strictly held-out.
-  4. **Inventory Hash Reconciliation**: Preserved canonical LF pinned `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform CRLF/LF resilience in `scripts/verify_chart_set.py`.
-  5. **Promotion Result**: `scripts/promote_chart_set.py` executed successfully; generated [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) with `status: independently_reviewed_labels` and `evaluation_ready: true`.
+  1. **Split Isolation**: Confirmed Apple 2021 (15 questions) appears strictly in development, while the remaining 5 issuers (35 questions) are strictly held-out.
+  2. **Consistency Review**: Completed AI-assisted consistency overview and recorded ledger in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json) (`method: "ai_assisted_unreviewed"`).
+  3. **Inventory Hash Reconciliation**: Preserved canonical LF pinned `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform CRLF/LF resilience in `scripts/verify_chart_set.py`.
+  4. **Gate Status**: `scripts/promote_chart_set.py` executed and recorded [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) with `status: "blocked"` and `evaluation_ready: false`. Variant G appropriately remains gated.
 
 ---
 
@@ -83,50 +86,46 @@ Audit artifact: [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_
 
 To eliminate post-hoc selection bias, exactly 50 evaluation cases were predeclared using fixed seed `42` across all 7 canonical variants:
 
-- **Stratification**:
-  - Variant A: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant B: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant C: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant D: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant E: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant F: 7 cases (3 FinanceBench, 2 FinQA, 2 TAT-QA)
-  - Variant G: 8 cases (8 Chart Multimodal questions)
-- **Reviewer Assignment**: All 50 cases assigned to **Agrawal Pavan Shailesh** for November 16 audit.
-- **Authorship Conflicts**: 0 conflicts. Pavan did not author any of the candidate labels, guaranteeing full independence.
+| Variant | Total Sampled Cases | Benchmarks Represented | Focus Area |
+| :---: | :---: | :--- | :--- |
+| **A** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Fixed-overlap text + flattened markdown tables |
+| **B** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Section-aware structure vs flattened tables |
+| **C** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Matched parent tables & self-describing cells |
+| **D** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Dense + BM25 hybrid reciprocal rank fusion |
+| **E** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Cross-encoder reranking over fused candidates |
+| **F** | 7 | FinanceBench (3), FinQA (2), TAT-QA (2) | Two-stage structured routing escalation |
+| **G** | 8 | Charts Dev (4), Charts Held-Out (4) | Multimodal chart candidates & visual evidence |
+| **Total** | **50** | **FB (18), FinQA (12), TAT-QA (12), Charts (8)** | **Seeded Predeclaration (`seed: 42`)** |
 
-Artifact: [`docs/reports/2026-11-15_audit_sampling_predeclaration.json`](2026-11-15_audit_sampling_predeclaration.json).
-
----
-
-## 5. Prerequisite Gate Status & Capacity Decision
-
-| Prerequisite Gate | Target Variant | Verification Evidence | Status |
-| :--- | :---: | :--- | :---: |
-| `fixed_overlap_index_representation` | A | Reconciled 5,213 passages in `docs/reports/2026-11-15_corpus_audit.json` | **Cleared** |
-| `section_aware_index_representation` | B | Reconciled 12,077 passages in `docs/reports/2026-11-15_corpus_audit.json` | **Cleared** |
-| `canonical_cells_and_parents` | C, D, E, F, G | Reconciled 4,100 cells and 54 parent tables | **Cleared** |
-| `bm25_index` | D, E, F, G | In-memory BM25 index over canonical text/table representations | **Cleared** |
-| `independent_chart_approval` | G | Promoted chart set with independent human review (`Ujjwal Chandak`) | **Cleared** |
-| `bge_reranker_base` | E, F, G | Pending live cross-encoder download/cache on execution machine | **Gated** |
-| `frozen_routing_thresholds` | F, G | Tuned route thresholds from dev-only runs | **Gated** |
-
-### Capacity Profiling Verdict
-Hardware profiled: Intel 12-core CPU, 15.73 GB RAM.
-$$\text{Full unbatched CPU runtime} = \frac{3,015 \text{ cases} \times 7 \text{ variants} \times 15.5 \text{ sec}}{3600} = 90.87 \text{ hours}$$
-Since $90.87 \text{ hours} > 72 \text{ hours}$ (time to November 17 deadline), Ujjwal formally approves the **prioritized benchmark execution plan**:
-- Full FinanceBench open 150: 1,050 evaluations across A–G ($\approx 4.52$ hours)
-- FinQA candidate universe: 350 evaluations ($\approx 1.51$ hours)
-- TAT-QA candidate universe: 350 evaluations ($\approx 1.51$ hours)
-- Charts dev + heldout: 350 evaluations ($\approx 1.51$ hours)
-- **Total Prioritized Runtime**: $\approx 9.05$ hours (fully feasible before deadline).
+Audit sample artifact: [`docs/reports/2026-11-15_audit_sampling_predeclaration.json`](2026-11-15_audit_sampling_predeclaration.json).
 
 ---
 
-## 6. Viva and Course Concept Connections
+## 5. Frozen Controls Manifest
 
-1. **Independent Verification vs. Self-Approval**:
-   - In safety-critical and financial AI, candidate gold answers authored with LLM assistance cannot be verified by the prompt author. An independent auditor checks each assertion against ground-truth images and primary SEC documents.
-2. **Predeclared Stratified Sampling**:
-   - Sampling generated outputs *after* observing metric scores introduces severe confirmation bias. Freezing the 50 case IDs prior to evaluation ensures that failure cases and hallucinations are faithfully captured.
-3. **Representation Hierarchy**:
-   - Fixed chunking (Variant A) destroys financial tables by severing cells from column headers. Section-aware chunking (Variant B) protects topical boundaries. Self-describing cell tuples (Variant C) bind explicit XBRL period, unit, and parent metadata directly to the fact.
+Full experiment parameters and model digests are permanently serialized in [`docs/reports/2026-11-15_frozen_manifest.json`](2026-11-15_frozen_manifest.json):
+
+```json
+{
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "embedding_dim": 768,
+  "vector_index": "exact_faiss_flat_ip",
+  "generator_model": "gemma3:4b",
+  "generator_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+  "max_passages": 5,
+  "calculator": "restricted_decimal_trees",
+  "numerical_relative_tolerance": 0.01,
+  "random_seed": 42
+}
+```
+
+---
+
+## 6. Execution Status & Next Steps for November 16
+
+1. **Gate Summary**:
+   - Variants A, B, C, D: Unlocked and ready for execution.
+   - Variant E: Gated on BGE reranker fitting.
+   - Variant F: Gated on routing thresholds calibration.
+   - Variant G: Gated on chart promotion criteria.
+2. **Handoff**: Pavan Agrawal (`pavanagrawal0809`) receives the predeclared 50-output sample, frozen controls manifest, and runner commands in [`docs/handoffs/2026-11-15_ujjwal.md`](../handoffs/2026-11-15_ujjwal.md). Full evaluation runs will be executed when model and hardware resources are available.

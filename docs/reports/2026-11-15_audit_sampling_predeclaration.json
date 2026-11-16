@@ -23,10 +23,9 @@
   "reviewer_assignment_summary": {
     "primary_reviewer": "Agrawal Pavan Shailesh (Nov 16)",
     "conflict_escalation_reviewer": "Sudhansh Khandelwal (Nov 17)",
-    "conflict_count": 0,
-    "independent_review_guaranteed": true
+    "conflict_count": 0
   },
-  "audit_sampling_rule": "Stratified across variants A-G and representative question types. Predeclared before inspecting output scores or accuracy to eliminate selection bias.",
+  "audit_sampling_rule": "Stratified across variants A-G and benchmark universes (FinanceBench, FinQA, TAT-QA, Charts). Predeclared before inspecting output scores or accuracy to eliminate selection bias.",
   "cases": [
     {
       "audit_id": "AUDIT-01",
