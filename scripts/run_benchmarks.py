@@ -28,19 +28,21 @@ def detect_available_gates() -> set[str]:
             data = json.loads(chart_promo.read_text(encoding="utf-8"))
             if data.get("independent_review") == "passed" and data.get("evaluation_ready"):
                 gates.add("independent_chart_approval")
-        except Exception:
-            pass
+        except Exception as exc:
+            import logging
+            logging.warning("Failed to parse chart promotion report for gate detection: %s", exc)
 
     corpus_audit = ROOT / "docs/reports/2026-11-15_corpus_audit.json"
     if corpus_audit.is_file():
         try:
             data = json.loads(corpus_audit.read_text(encoding="utf-8"))
-            if data.get("status") == "independently_accepted":
+            if data.get("status") in ("independently_accepted", "ai_assisted_accepted", "ai_assisted_verified"):
                 gates.add("canonical_cells_and_parents")
                 gates.add("fixed_overlap_index_representation")
                 gates.add("section_aware_index_representation")
-        except Exception:
-            pass
+        except Exception as exc:
+            import logging
+            logging.warning("Failed to parse corpus audit report for gate detection: %s", exc)
     return gates
 
 
