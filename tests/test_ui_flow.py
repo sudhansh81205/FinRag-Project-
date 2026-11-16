@@ -78,8 +78,11 @@ def test_ui_canonical_apple_margin_calculation_success(test_app):
         company="Apple Inc.",
         period_end="2021-09-25",
         calculation_plan=plan,
+        demo_only=True,
     )
-    assert res["status"] == "ok"
+    # Synthetic default facts are an explicit demonstration, never a verified live answer.
+    assert res["status"] == "demo_only"
+    assert res["answer"].startswith("[DEMO ONLY")
     assert "41.78" in res["answer"]
     assert len(res["calculations"]) == 1
     calc = res["calculations"][0]
@@ -106,6 +109,7 @@ def test_ui_calculation_excluded_operand_refusal(test_app):
     res = test_app.answer_interactive(
         question="What was Apple's net profit after unknown tax?",
         calculation_plan=plan,
+        demo_only=True,
     )
     assert res["status"] == "insufficient_evidence"
     assert res["answer"] == ""  # Stale answer must be cleared
@@ -130,6 +134,7 @@ def test_ui_calculation_wrong_period_refusal(test_app):
     res = test_app.answer_interactive(
         question="What was margin in 2023?",
         calculation_plan=plan,
+        demo_only=True,
     )
     assert res["status"] == "insufficient_evidence"
     assert res["answer"] == ""
@@ -157,7 +162,7 @@ def test_two_session_client_isolation(test_app):
             ]
         }
     }
-    res_1 = test_app.answer_interactive("Apple Q1", company="Apple Inc.", calculation_plan=plan_1)
+    res_1 = test_app.answer_interactive("Apple Q1", company="Apple Inc.", calculation_plan=plan_1, demo_only=True)
     session_1["query_count"] += 1
     session_1["last_query"] = "Apple Q1"
     session_1["last_status"] = res_1["status"]
@@ -178,7 +183,7 @@ def test_two_session_client_isolation(test_app):
 
     # Assert Session 1 was not contaminated by Session 2
     assert session_1["last_query"] == "Apple Q1"
-    assert session_1["last_status"] == "ok"
+    assert session_1["last_status"] == "demo_only"
     assert session_1["session_filters"]["company"] == "Apple Inc."
 
     # Assert Session 2 reflects only its own interactions
@@ -199,8 +204,8 @@ def test_stale_output_clearing_on_error(test_app):
             "args": [{"evidence_id": "sales"}, {"evidence_id": "cost"}]
         }
     }
-    res1 = test_app.answer_interactive("Apple profit", calculation_plan=plan)
-    assert res1["status"] == "ok"
+    res1 = test_app.answer_interactive("Apple profit", calculation_plan=plan, demo_only=True)
+    assert res1["status"] == "demo_only"
     assert "152836" in res1["answer"]
 
     # Second query fails (empty question)

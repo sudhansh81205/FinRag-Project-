@@ -76,13 +76,15 @@ def test_resumable_checkpointing(tmp_path):
 
     # Mock engine that successfully answers
     mock_engine = Mock()
+    mock_engine.retriever.variant = "C"
     mock_engine.answer_financial_question.side_effect = lambda question, **kw: {
         "status": "ok",
         "answer": "100,000 million USD",
         "message": "",
         "latency_seconds": 0.05,
         "included_evidence_ids": ["EVID-1", "EVID-2"],
-        "retrieval_trace": {"routing": "test_routing", "ranked_evidence_ids": ["EVID-1", "EVID-2"]},
+        "retrieval_trace": {"variant": "C", "stages": [{"stage": "dense"}], "routing": "test_routing",
+                            "ranked_evidence_ids": ["EVID-1", "EVID-2"]},
         "evidence": [{"content": "100,000 million USD"}],
         "calculations": [],
     }
@@ -96,7 +98,12 @@ def test_resumable_checkpointing(tmp_path):
         engine=mock_engine,
     )
     summary1 = runner1.run(max_cases=3)
-    assert summary1["status"] == "completed"
+    # 3 of 150 eligible cases is a partial run, never "completed" (F28).
+    assert summary1["status"] == "partial"
+    assert summary1["eligible_cases"] == 150
+    assert summary1["attempted_outputs"] == 3
+    assert summary1["not_attempted"] == 147
+    assert summary1["final_evaluation_status"] == "BLOCKED_synthetic_smoke_fixture"
 
     lines = (out_dir / "results.jsonl").read_text().strip().splitlines()
     assert len(lines) == 3
@@ -113,7 +120,8 @@ def test_resumable_checkpointing(tmp_path):
         engine=mock_engine,
     )
     summary2 = runner2.run(max_cases=5)
-    assert summary2["status"] == "completed"
+    assert summary2["status"] == "partial"
+    assert summary2["attempted_outputs"] == 5
 
     lines2 = (out_dir / "results.jsonl").read_text().strip().splitlines()
     assert len(lines2) == 5
@@ -172,5 +180,6 @@ def test_compute_paired_intervals():
     scores_a = [0.8, 0.85, 0.9, 0.75, 0.88]
     scores_b = [0.7, 0.72, 0.8, 0.65, 0.78]
     low, high = compute_paired_intervals(scores_a, scores_b, n_bootstrap=500)
+    assert compute_paired_intervals(scores_a, scores_b, n_bootstrap=500) == (low, high)  # fixed seed
     assert low > 0  # A is consistently better than B
     assert high >= low
