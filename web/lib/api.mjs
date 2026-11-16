@@ -5,10 +5,11 @@ const statuses = new Set(['ok', 'invalid_request', 'index_not_ready', 'insuffici
 const empty = (status, message) => ({ status, message, answer: '', evidence: [], calculations: [], included_evidence_ids: [] });
 const json = (body, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 const tokenOf = request => /^Bearer [A-Za-z0-9_.-]{20,4096}$/.test(request.headers.get('Authorization') || '') ? request.headers.get('Authorization') : null;
-function endpoint(raw) {
+function endpoint(raw, allowLoopback = false) {
   if (!raw) return null;
   const url = new URL(raw);
-  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash) throw new Error('Invalid configured endpoint');
+  const local = allowLoopback && url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
+  if ((!local && url.protocol !== 'https:') || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw new Error('Invalid configured endpoint');
   return url.origin;
 }
 export function validateQuery(body) {
@@ -31,8 +32,8 @@ async function readBody(request) {
   if (text.length > 12000) throw new Error('Request too large');
   return JSON.parse(text);
 }
-async function upstream(fetchImpl, url, options = {}) {
-  return fetchImpl(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(22000) });
+async function upstream(fetchImpl, url, options = {}, timeout = 22000) {
+  return fetchImpl(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(timeout) });
 }
 function requestMatches(result, body) {
   const r = result.request;
@@ -47,17 +48,19 @@ export async function handle(request, { env = process.env, fetchImpl = fetch } =
     const publicKey = env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY;
     const dbReady = Boolean(supabase && publicKey);
     const authReady = dbReady && env.SUPABASE_AUTH_READY === "true";
-    const backend = endpoint(env.FINRAG_BACKEND_URL);
+    const backend = endpoint(env.FINRAG_BACKEND_URL, env.NODE_ENV !== 'production' && env.FINRAG_ALLOW_LOOPBACK_HTTP === 'true');
+    const answerTimeout = Number(env.FINRAG_BACKEND_TIMEOUT_MS || 240000);
+    if (!Number.isInteger(answerTimeout) || answerTimeout < 1000 || answerTimeout > 240000) throw new Error('Invalid answer timeout');
     if (route === 'health' && request.method === 'GET') {
       let runtime = { status: 'index_not_ready', message: 'The financial engine is not connected. You can explore the filing inventory.' };
       if (backend) {
         try {
-          const response = await upstream(fetchImpl, `${backend}/health`, { headers: { Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN || ''}` } });
+          const response = await upstream(fetchImpl, `${backend}/health`, { headers: { Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN || ''}` } }, 5000);
           const body = await response.json();
           runtime = response.ok && ['ready', 'index_not_ready'].includes(body.status) ? body : { status: 'service_error', message: 'The financial engine could not be reached.' };
         } catch { runtime = { status: 'service_error', message: 'The financial engine could not be reached.' }; }
       }
-      return json({ runtime, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1 } });
+      return json({ runtime, answer_timeout_ms: answerTimeout + 10000, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1 } });
     }
     if (route === 'answer' && request.method === 'POST') {
       let body;
@@ -65,7 +68,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch } =
       const problem = validateQuery(body);
       if (problem) return json(empty('invalid_request', problem), 400);
       if (!backend || !env.FINRAG_BACKEND_TOKEN) return json(empty('index_not_ready', 'The source index and model service are not connected yet. No financial answer was generated.'), 503);
-      const response = await upstream(fetchImpl, `${backend}/answer`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN}` }, body: JSON.stringify(body) });
+      const response = await upstream(fetchImpl, `${backend}/answer`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN}` }, body: JSON.stringify(body) }, answerTimeout);
       const result = await response.json();
       if (!statuses.has(result.status)) return json(empty('service_error', 'The engine returned an unsupported response.'), 502);
       if (result.status !== 'ok') return json(empty(result.status, typeof result.message === 'string' ? result.message.slice(0, 1000) : 'The question could not be answered.'), result.status === 'service_error' ? 502 : 200);

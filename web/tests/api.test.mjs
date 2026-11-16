@@ -50,3 +50,20 @@ test('database connectivity does not enable unverified email sign-in', async () 
   const enabled = await handle(req('auth/start', { email: 'owner@example.invalid' }), { env: { ...db, SUPABASE_AUTH_READY: 'true' }, fetchImpl: async () => { calls++;return Response.json({}); } });
   assert.equal(enabled.status, 200);assert.equal(calls, 1);
 });
+
+test('local demo permits only explicitly opted-in development loopback HTTP', async () => {
+ const local = { ...env, FINRAG_BACKEND_URL: 'http://127.0.0.1:8000', FINRAG_ALLOW_LOOPBACK_HTTP: 'true', NODE_ENV: 'development' };
+ const success = await handle(req('answer', valid), { env: local, fetchImpl: async () => Response.json(answer) });
+ assert.equal(success.status, 200);
+ for (const bad of [{NODE_ENV:'production'}, {FINRAG_ALLOW_LOOPBACK_HTTP:'false'}, {FINRAG_BACKEND_URL:'http://192.168.1.2:8000'}, {FINRAG_BACKEND_URL:'http://localhost.evil'}]) {
+  let calls=0;const response=await handle(req('answer',valid),{env:{...local,...bad},fetchImpl:()=>{calls++;}});
+  assert.equal(response.status,502);assert.equal(calls,0);
+ }
+});
+test('local model gets a bounded answer deadline, separate from health', async () => {
+ const health=await (await handle(req('health'),{env:{}})).json();assert.equal(health.answer_timeout_ms,250000);
+ const shorter=await (await handle(req('health'),{env:{FINRAG_BACKEND_TIMEOUT_MS:'45000'}})).json();assert.equal(shorter.answer_timeout_ms,55000);
+ for(const limit of ['0','240001','NaN','1.5']) {
+  const r=await handle(req('health'),{env:{FINRAG_BACKEND_TIMEOUT_MS:limit}});assert.equal(r.status,502);
+ }
+});

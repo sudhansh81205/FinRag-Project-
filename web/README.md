@@ -38,3 +38,6 @@ The committed SQL is not a claim that a database was created or those checks pas
 Provisioned project: `inygweteeaaozryxvmeh` (ap-south-1, free). Migration `20261116194117_finrag_private_saved_queries` is applied; transaction-based owner/cross-owner/anonymous checks passed and both advisors returned no findings.
 
 Email activation is a separate release gate: set the Supabase Auth Site URL and redirect allowlist to the exact Vercel origin, configure permitted test recipients or SMTP and verify a complete sign-in. Then set `SUPABASE_AUTH_READY=true` in Vercel and redeploy. The default UI explicitly disables sign-in until this is verified. Database connection alone does not certify email delivery.
+
+## Rushil runtime handoff
+Read `../docs/handoffs/RUSHIL_START_HERE.md`. Local Node22 dev loads `web/.env`. An HTTP loopback backend is permitted only with `FINRAG_ALLOW_LOOPBACK_HTTP=true` outside production. Production still requires HTTPS. Answers have a bounded240-second gateway budget with250-second browser and300-second Vercel function limits; health probes use5seconds. Measure total planner+generation time before the live demo.

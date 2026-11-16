@@ -39,6 +39,7 @@ CORE_SOURCE_FILES = [
     "src/benchmark/gates.py",
     "scripts/verify_release_package.py",
     "scripts/serve_web_api.py",
+    "scripts/preflight_handoff.py",
     "src/web_api.py",
     "web/public/index.html",
     "web/public/app.js",

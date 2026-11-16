@@ -3,7 +3,7 @@
   "release_owner": "Sudhansh Khandelwal",
   "release_designation": "TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE",
   "date": "2026-11-17",
-  "file_count": 37,
+  "file_count": 38,
   "file_hashes": {
     "app.py": "efc4eaf204cb979390263dcd38701af02f49067ca6304e1efdbc40ab5026f375",
     "docs/handoffs/2026-11-17_sudhansh.md": "d9dd3253a46ee41412c13d6d7de55511810ee0d514ff46c119ae91bc4c4ae0b5",
@@ -15,9 +15,10 @@
     "docs/reports/2026-11-17_submission_acknowledgement.json": "90cf65d8ba9bb922027dc999b28811330bf2fd6337b212084e24e3a64453b2ca",
     "docs/reports/2026-11-17_sudhansh_completion.md": "d9dd3253a46ee41412c13d6d7de55511810ee0d514ff46c119ae91bc4c4ae0b5",
     "scripts/build_final_slides.py": "743d19092efd22d6f0ba80eb93543288ef7286bb42e4c334630f5d81d21d6cc9",
+    "scripts/preflight_handoff.py": "c047c47d4788f293a858145b64fa4a325bcee29af7880c68a4c3d47077117213",
     "scripts/run_benchmarks.py": "f4be3ad3e27910207343e450434d176845ceac41554535793742fda872c62a51",
     "scripts/serve_web_api.py": "eb1ca23f8a478c61d99250caf6c278d48af74bf197289973bc944ebd02fc38dd",
-    "scripts/verify_release_package.py": "2d24612a75cf520a634dbebb36673733e8967149e40d75cde42888647cd2ac76",
+    "scripts/verify_release_package.py": "33182b20b0913757f8b98bd72ae9c072e984da3229aa2ad3465c6853bbae0d68",
     "src/application.py": "57b7ddf8c68013cf66193ba4bee909d80b4c4103f8247513aa6e4160c6383d87",
     "src/benchmark/gates.py": "1146446c1610702fd87bee307711bef8d565a624fb881a87be7c0ab37f596082",
     "src/benchmark/loaders.py": "e234ebbfb6290efb8235218ce2c6bc5132d1a69274d1300c41805b7e0b8bfd25",
@@ -31,9 +32,9 @@
     "supabase/verify_rls.sql": "1a4159212a8ee82aa227effc26d3f24da3770379f32ae203f33e89ee0f008d27",
     "web/api/index.mjs": "767afd931acd71055e54f084ff42f14e9f2d96dcc672af7ea8365159024b7b07",
     "web/data/filings.json": "3532d851289a600e2d373100d612cc15d0f6818eb3106a18ed5706f7662a5c08",
-    "web/lib/api.mjs": "bf1367e3b8ab5d40e018181cccfb9b80dd84d6724db7043c1b563bcba04f5867",
-    "web/package.json": "ab9c0e8fb9d7f144c87260e9a7345147078db5d2f5942c3392e9b3dc1d523166",
-    "web/public/app.js": "2aa1a56b3addd9da06f3daf5255726d25c3b744b5da4467fe90a9dbf064aa2ba",
+    "web/lib/api.mjs": "b7c1d692dfe3f9f2d8ef3107442cb95e2af30086910c84ae4b6e89a08806af33",
+    "web/package.json": "2259f6199c9ce76c8479f5e13ef82ea55a46ca5b8f984d38d08778043369520a",
+    "web/public/app.js": "911b01a38cb3f6b221dd8ed17ddf94f40e39e6533579a1bce7cd9954dff0460e",
     "web/public/fonts/LICENSE-geist-mono.txt": "cc815ed4fc045f0e991abb10395b7932bd028c6a067deb13316d6002105074e6",
     "web/public/fonts/LICENSE-geist-sans.txt": "934b987e215a2bc463d7b1a99456c1d83e9505f5ef6d8b0dd439181fb2414b1b",
     "web/public/fonts/geist-mono.woff2": "3f98383b122fe015a48536cd4a1cda855a201718923ffe74931a01597107b9b5",
@@ -41,6 +42,6 @@
     "web/public/index.html": "2b28cda6141155b9fe0096414fa425702bbf811210550a4a766a79d8212836fc",
     "web/public/mark.svg": "213d157d582d6c44547c1e696cf872666dbde6e987c534bd0e822b6f817a59d0",
     "web/public/style.css": "14842ccd6d9c26a3d9109826ee42c74b924fb1f2bd22d8cf9122ae4c031b66a4",
-    "web/vercel.json": "0b9fdcb42a9e809fff1c794a9550b9b8feaf8b939b9424a4ec7431e7ca0f9b0d"
+    "web/vercel.json": "c712f7bc1cca070e363eadf0f1e46a4fdc188458da5491e7b1d996468036bc85"
   }
 }

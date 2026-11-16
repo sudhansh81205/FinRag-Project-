@@ -1,5 +1,7 @@
 # FinRAG
 
+Start the runtime/completion handoff with [Rushil’s guide](docs/handoffs/RUSHIL_START_HERE.md) and [the GPT/Codex prompt](docs/handoffs/RUSHIL_CODEX_PROMPT.md).
+
 ## Web research workspace
 
 The black-and-white web interface lives in [web/](web/README.md) and can be hosted on Vercel Hobby.
