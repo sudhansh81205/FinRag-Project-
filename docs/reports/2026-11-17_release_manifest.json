@@ -18,7 +18,7 @@
     "scripts/run_benchmarks.py": "f4be3ad3e27910207343e450434d176845ceac41554535793742fda872c62a51",
     "scripts/serve_web_api.py": "eb1ca23f8a478c61d99250caf6c278d48af74bf197289973bc944ebd02fc38dd",
     "scripts/verify_release_package.py": "2d24612a75cf520a634dbebb36673733e8967149e40d75cde42888647cd2ac76",
-    "src/application.py": "530ab13c25dcd66a86cb9b8cd79694a6f34fe9ed604bd58057ce644b442ddcc0",
+    "src/application.py": "57b7ddf8c68013cf66193ba4bee909d80b4c4103f8247513aa6e4160c6383d87",
     "src/benchmark/gates.py": "1146446c1610702fd87bee307711bef8d565a624fb881a87be7c0ab37f596082",
     "src/benchmark/loaders.py": "e234ebbfb6290efb8235218ce2c6bc5132d1a69274d1300c41805b7e0b8bfd25",
     "src/benchmark/metrics.py": "831ba1c3cfc5886ce476e02879e6e91974c41b52d77c6d33d3a4b14de972fd2c",

@@ -48,10 +48,18 @@ Read the PR's live checks and deployment result for current evidence after this 
 
 ## Connected deployment evidence
 
-Vercel Hobby project `finrag-research`, deployment `dpl_BywZVV6Hpd9paVP2Hwta2RW8HEUq` reached READY. Stable URL: https://finrag-research.vercel.app (Vercel protection retained). HTTP checks observed HTML200, health200, all18filing inventory200, no-engine answer503, invalid query400 and unauthenticated saved queries401.
+Vercel Hobby project `finrag-research`, deployment `dpl_F3kKkHS6gcGdgnTPqWBUkCNo9ydJ` reached READY. Stable URL: https://finrag-research.vercel.app (Vercel protection retained). HTTP checks observed HTML200, health200, all18filing inventory200, no-engine answer503, invalid query400 and unauthenticated saved queries401.
 
 Supabase free project `inygweteeaaozryxvmeh` in ap-south-1 is ACTIVE_HEALTHY. Migration `20261116194117_finrag_private_saved_queries` is applied. SQL fixtures rolled back after verifying own read/write, cross-owner insert/read/delete refusal and anonymous denial. Security/performance advisors returned no findings. Only the URL and publishable key are configured in Vercel; no service role key is used.
 
 Email sign-in is explicitly gated off until the exact production Auth redirect allowlist and delivery are verified (`SUPABASE_AUTH_READY=true` only afterward). No email was sent and no fake user sign-in is claimed. The available database connector cannot edit Auth redirect configuration. Browser QA was blocked by a CUA runtime path-initialization error before any deployed-page interaction, so responsive layout, keyboard flows, console and live sign-in remain unverified.
 
 Automatic approval review rejected weakening Vercel SSO protection to make production public. The existing protection remains; a temporary share link can provide review access. Public access needs explicit user approval. No paid tier, custom domain, billable database branch or model call was enabled.
+
+## Check results for PR16
+
+- Node gateway suite:10passed; frontend syntax and full Ruff passed.
+- Release manifest:37requiredfiles, canonical LF on Windows/Linux; GitHub web-contracts job passed.
+- CI first full run identified two regressions (legacy supplied-plan adapter and an invalid new fixture selector). Both were corrected; the related58tests passed on the corrected version. The full corrected CI run is the authoritative final status.
+- Hosted final gateway returned health200 with database configured/auth_setup_required, no-engine answer503, malformed query400, anonymous saved401, expired user401 and unverified email activation503 without sending email. Direct anonymous Supabase REST access returned401/permission denied.
+- SQL owner isolation checks passed with rollback; security/performance advisors reported no findings. These are real database checks, separate from browser/email sign-in.

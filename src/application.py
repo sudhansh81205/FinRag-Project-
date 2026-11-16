@@ -386,9 +386,12 @@ class InteractiveApplication:
         if status != "ok":
             return finish(status, engine_res.get("message", ""))
         calculations = engine_res.get("calculations", [])
-        if not isinstance(calculations, list) or any(not isinstance(c, dict) or not c.get("program") for c in calculations):
-            return finish("insufficient_evidence", "Every calculation must supply a typed program.")
-        programs = [c["program"] for c in calculations]
+        if calculation_plan is not None:
+            programs = [calculation_plan]
+        else:
+            if not isinstance(calculations, list) or any(not isinstance(c, dict) or not c.get("program") for c in calculations):
+                return finish("insufficient_evidence", "Every calculation must supply a typed program.")
+            programs = [c["program"] for c in calculations]
         if programs:
             from src.llm.typed_calculator import evaluate, render_result
 

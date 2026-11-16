@@ -44,10 +44,10 @@ def test_web_numerical_planner_uses_only_source_derived_period_boundaries():
 def test_recomputed_program_result_replaces_untrusted_calculation_fields():
     from unittest.mock import Mock
 
-    from src.application import InteractiveApplication, make_demo_records, resolve_request
-    from tests.test_nov16_request_binding import PLAN
+    from src.application import InteractiveApplication, make_demo_records
+    from tests.test_nov16_request_binding import PLAN, request_for
 
-    request, _ = resolve_request("0000320193-21-000105", "2021-09-25", "consolidated")
+    request = request_for("AAPL", 2021)
     engine = Mock()
     engine.answer_financial_question.return_value = {
         "status": "ok", "answer": "forged", "evidence": make_demo_records(),
