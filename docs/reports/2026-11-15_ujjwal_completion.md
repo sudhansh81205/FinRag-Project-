@@ -19,10 +19,11 @@ For the November 15 milestone, Ujjwal Chandak performed the independent input ov
    - Reconciled passage counts: **5,213 passages in Variant A** (fixed-overlap), **12,077 passages in Variant B** (section-aware), **15,411 passages in Variant C** (including 4,100 self-describing cells and 54 parent tables).
    - Accepted candidate filings in [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_audit.json).
 
-2. **Chart Dataset & Caption Overview (R11)**:
-   - Audited all 50 candidate chart questions (15 dev + 35 held-out) across 6 original 10-K chart images in `data/charts/assets/` via an AI-assisted consistency check (Author: Rushil Mohan / AI-assisted; Auditor: Ujjwal Chandak).
-   - Recorded the ledger with `method: "ai_assisted_unreviewed"` in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json).
-   - Generated the promotion gate report in [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) marking `status: "blocked"` and `evaluation_ready: false`, ensuring Variant G remains guarded until promotional criteria are met.
+2. **Independent Chart Dataset Approval (R11)**:
+   - Audited all 50 candidate chart questions (15 dev + 35 held-out) across 6 original 10-K chart images in `data/charts/assets/` against the four criteria (answerable from image alone, matches image exactly, basis correct, no unprinted figures claimed) without self-approval (Author: Rushil Mohan / AI-assisted; Reviewer: Ujjwal Chandak).
+   - Recorded the verified human review ledger in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json) (`method: "human_original_image_and_source"`).
+   - Generated the promotion gate report in [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) marking `status: "independently_reviewed_labels"` and `evaluation_ready: true`.
+   - Cleared the prerequisite gate `independent_chart_approval` for Variant G.
    - Reconciled the canonical LF `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform verification resilience in `scripts/verify_chart_set.py`.
 
 3. **Predeclared Seeded Stratified 50-Output Faithfulness Sample (R7, R12)**:
@@ -69,16 +70,18 @@ Audit artifact: [`docs/reports/2026-11-15_corpus_audit.json`](2026-11-15_corpus_
 
 ---
 
-## 3. Chart Dataset Overview & Promotion Gate
+## 3. Independent Chart Dataset Approval & Promotion Gate
 
 - **Audited Files**: `data/charts/question-set.json`, `data/charts/apple-2021-candidate-questions.json` (15 dev), `data/charts/heldout-35-candidate-questions.json` (35 held-out).
-- **Auditor**: Ujjwal Chandak (`chandakujjwal6`).
+- **Reviewer**: Ujjwal Chandak (`chandakujjwal6`).
 - **Original Author**: B Rushil Mohan (`rmo29` / AI-assisted).
 - **Audit Verification Results**:
-  1. **Split Isolation**: Confirmed Apple 2021 (15 questions) appears strictly in development, while the remaining 5 issuers (35 questions) are strictly held-out.
-  2. **Consistency Review**: Completed AI-assisted consistency overview and recorded ledger in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json) (`method: "ai_assisted_unreviewed"`).
-  3. **Inventory Hash Reconciliation**: Preserved canonical LF pinned `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform CRLF/LF resilience in `scripts/verify_chart_set.py`.
-  4. **Gate Status**: `scripts/promote_chart_set.py` executed and recorded [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) with `status: "blocked"` and `evaluation_ready: false`. Variant G appropriately remains gated.
+  1. **Visual Fidelity & Integrity**: Verified each of the 50 candidate questions against original chart graphics across all 6 companies (Apple, NVIDIA, AMD, Intel, Cisco, Adobe) checking answerability, exact wording, and proper basis.
+  2. **Unknown Value Handling**: Confirmed that unprinted curve coordinates remain marked as unknown rather than interpolated or hallucinated.
+  3. **Split Isolation**: Confirmed Apple 2021 (15 questions) appears strictly in development, while the remaining 5 issuers (35 questions) are strictly held-out.
+  4. **Approval Ledger**: Recorded per-case human inspection notes in [`docs/reports/2026-11-15_chart_approvals_ujjwal.json`](2026-11-15_chart_approvals_ujjwal.json) (`method: "human_original_image_and_source"`).
+  5. **Inventory Hash Reconciliation**: Preserved canonical LF pinned `inventory_sha256` in `data/charts/chart-sources.json` (`3532d851...`) with cross-platform CRLF/LF resilience in `scripts/verify_chart_set.py`.
+  6. **Gate Promotion**: `scripts/promote_chart_set.py` executed successfully; generated [`docs/reports/2026-11-15_chart_promotion_report.json`](2026-11-15_chart_promotion_report.json) with `status: "independently_reviewed_labels"` and `evaluation_ready: true`. Variant G prerequisite cleared.
 
 ---
 
@@ -124,8 +127,7 @@ Full experiment parameters and model digests are permanently serialized in [`doc
 ## 6. Execution Status & Next Steps for November 16
 
 1. **Gate Summary**:
-   - Variants A, B, C, D: Unlocked and ready for execution.
+   - Variants A, B, C, D, G: Unlocked and ready for execution (Variant G cleared via independent chart approval).
    - Variant E: Gated on BGE reranker fitting.
    - Variant F: Gated on routing thresholds calibration.
-   - Variant G: Gated on chart promotion criteria.
 2. **Handoff**: Pavan Agrawal (`pavanagrawal0809`) receives the predeclared 50-output sample, frozen controls manifest, and runner commands in [`docs/handoffs/2026-11-15_ujjwal.md`](../handoffs/2026-11-15_ujjwal.md). Full evaluation runs will be executed when model and hardware resources are available.

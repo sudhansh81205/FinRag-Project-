@@ -1,6 +1,98 @@
 {
-  "status": "blocked",
-  "evaluation_ready": false,
-  "reason": "Approval requires recorded original-image and source review.",
+  "status": "independently_reviewed_labels",
+  "counts": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "distinct_original_images": 6,
+  "target": {
+    "dev": 15,
+    "heldout": 35
+  },
+  "shortfall": {
+    "dev": 0,
+    "heldout": 0
+  },
+  "independent_review": "passed",
+  "evaluation_ready": true,
+  "total": 50,
+  "question_files_sha256": {
+    "apple-2021-candidate-questions.json": "48734f19b7e0817cb429e662832fdb8e97e34f543da41460c66e97d20d81a9c3",
+    "heldout-35-candidate-questions.json": "437e963dcba3ee1eb3f4d371556e213cbc6a3a7ca17ddfd70149919567315324"
+  },
+  "source_manifest_sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
+  "question_counts_by_source": {
+    "0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9": 15,
+    "0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a": 7,
+    "0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0": 7,
+    "0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568": 7,
+    "0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098": 7,
+    "0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97": 7
+  },
+  "asset_hashes_checked": 6,
+  "heldout_answers_generated_or_scored": false,
+  "scope": "Hash-bound recorded human label approvals only; no caption approval, model run or full A-G acceptance.",
+  "approval_sha256": "a4772f6d2363f6b6202d2f97ce70bd686cbe8709c4e98dfc5b050c3307be10bc",
+  "reviewer_identity": "Ujjwal Chandak",
+  "label_authors": [
+    "Rushil Mohan",
+    "rmo29"
+  ],
+  "trusted_reviewers_at_load": [
+    "Ujjwal Chandak"
+  ],
+  "chart_descriptions_approved": false,
+  "case_ids": [
+    "apple2021-chart-dev-01",
+    "apple2021-chart-dev-02",
+    "apple2021-chart-dev-03",
+    "apple2021-chart-dev-04",
+    "apple2021-chart-dev-05",
+    "apple2021-chart-dev-06",
+    "apple2021-chart-dev-07",
+    "apple2021-chart-dev-08",
+    "apple2021-chart-dev-09",
+    "apple2021-chart-dev-10",
+    "apple2021-chart-dev-11",
+    "apple2021-chart-dev-12",
+    "apple2021-chart-dev-13",
+    "apple2021-chart-dev-14",
+    "apple2021-chart-dev-15",
+    "nvda-chart-heldout-01",
+    "nvda-chart-heldout-02",
+    "nvda-chart-heldout-03",
+    "nvda-chart-heldout-04",
+    "nvda-chart-heldout-05",
+    "nvda-chart-heldout-06",
+    "nvda-chart-heldout-07",
+    "amd-chart-heldout-01",
+    "amd-chart-heldout-02",
+    "amd-chart-heldout-03",
+    "amd-chart-heldout-04",
+    "amd-chart-heldout-05",
+    "amd-chart-heldout-06",
+    "amd-chart-heldout-07",
+    "intc-chart-heldout-01",
+    "intc-chart-heldout-02",
+    "intc-chart-heldout-03",
+    "intc-chart-heldout-04",
+    "intc-chart-heldout-05",
+    "intc-chart-heldout-06",
+    "intc-chart-heldout-07",
+    "csco-chart-heldout-01",
+    "csco-chart-heldout-02",
+    "csco-chart-heldout-03",
+    "csco-chart-heldout-04",
+    "csco-chart-heldout-05",
+    "csco-chart-heldout-06",
+    "csco-chart-heldout-07",
+    "adbe-chart-heldout-01",
+    "adbe-chart-heldout-02",
+    "adbe-chart-heldout-03",
+    "adbe-chart-heldout-04",
+    "adbe-chart-heldout-05",
+    "adbe-chart-heldout-06",
+    "adbe-chart-heldout-07"
+  ],
   "candidate_files_modified": false
 }

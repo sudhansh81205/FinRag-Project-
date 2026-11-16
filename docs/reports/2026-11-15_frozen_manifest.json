@@ -2,8 +2,8 @@
   "schema_version": 1,
   "purpose": "frozen_experimental_controls_and_execution_manifest",
   "frozen_by": "Ujjwal Chandak",
-  "frozen_at": "2026-11-16T04:25:58.918046+00:00",
-  "git_commit": "0bfa27e5cbb982042c04c40d284c7fb4bf5e530f",
+  "frozen_at": "2026-11-16T05:54:38.885435+00:00",
+  "git_commit": "7176571c2384e1ae7be911f4b588848d66566c94",
   "common_controls": {
     "embedding_model": "BAAI/bge-base-en-v1.5",
     "embedding_dim": 768,
@@ -167,7 +167,7 @@
     "canonical_cells_and_parents": "available_via_corpus_audit",
     "fixed_overlap_index_representation": "available_via_corpus_audit",
     "section_aware_index_representation": "available_via_corpus_audit",
-    "independent_chart_approval": "gated_ai_assisted_review_only",
+    "independent_chart_approval": "available_via_independent_review",
     "bge_reranker_base": "gated_unfitted",
     "frozen_routing_thresholds": "gated_uncalibrated"
   }

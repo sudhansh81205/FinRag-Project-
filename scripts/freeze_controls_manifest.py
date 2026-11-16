@@ -76,6 +76,15 @@ def main():
             "status": "ready" if not spec.prerequisite_gates else "gated",
         }
 
+    chart_promo_path = ROOT / "docs/reports/2026-11-15_chart_promotion_report.json"
+    chart_gate_cleared = False
+    if chart_promo_path.is_file():
+        try:
+            cp_data = json.loads(chart_promo_path.read_text(encoding="utf-8"))
+            chart_gate_cleared = cp_data.get("independent_review") == "passed" and cp_data.get("evaluation_ready")
+        except Exception:
+            pass
+
     manifest = {
         "schema_version": 1,
         "purpose": "frozen_experimental_controls_and_execution_manifest",
@@ -119,7 +128,7 @@ def main():
             "canonical_cells_and_parents": "available_via_corpus_audit",
             "fixed_overlap_index_representation": "available_via_corpus_audit",
             "section_aware_index_representation": "available_via_corpus_audit",
-            "independent_chart_approval": "gated_ai_assisted_review_only",
+            "independent_chart_approval": "available_via_independent_review" if chart_gate_cleared else "gated",
             "bge_reranker_base": "gated_unfitted",
             "frozen_routing_thresholds": "gated_uncalibrated",
         },
