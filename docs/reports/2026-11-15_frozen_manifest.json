@@ -2,8 +2,8 @@
   "schema_version": 1,
   "purpose": "frozen_experimental_controls_and_execution_manifest",
   "frozen_by": "Ujjwal Chandak",
-  "frozen_at": "2026-11-16T05:54:38.885435+00:00",
-  "git_commit": "7176571c2384e1ae7be911f4b588848d66566c94",
+  "frozen_at": "2026-11-16T06:11:45.557599+00:00",
+  "git_commit": "6814de5d3e788f5ef0423d79b218b77697f5b756",
   "common_controls": {
     "embedding_model": "BAAI/bge-base-en-v1.5",
     "embedding_dim": 768,
@@ -22,41 +22,55 @@
     "zero_absolute_tolerance": 0.001,
     "random_seed": 42,
     "calculator_mode": "restricted_decimal_trees_fail_closed",
-    "checkpoint_schema": "atomic_append_jsonl_with_run_manifest"
+    "checkpoint_schema": "atomic_append_jsonl_with_run_manifest",
+    "prompt_template_sha256": "a7aa23998ea521b74e747bb8f1ed9aa886ab3ef4a03577fbe679391a880caabe",
+    "route_thresholds": "unfrozen"
   },
   "model_profiles": {
     "primary": {
       "tag": "gemma3:4b",
       "config_path": "configs/gemma3-4b.json",
       "config_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
-      "pinned_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+      "pinned_digest": "sha256:68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "prompt_template_sha256": "a7aa23998ea521b74e747bb8f1ed9aa886ab3ef4a03577fbe679391a880caabe"
     },
     "comparison": {
       "tag": "llama3.2:3b",
       "config_path": "configs/llama32-comparison.json",
-      "config_sha256": "f34798bb34674f729375a28daa2bf83609f01a7474d54716138088f5d25edcd9"
+      "config_sha256": "f34798bb34674f729375a28daa2bf83609f01a7474d54716138088f5d25edcd9",
+      "prompt_template_sha256": "a7aa23998ea521b74e747bb8f1ed9aa886ab3ef4a03577fbe679391a880caabe"
     }
   },
   "benchmark_data": {
     "FinanceBench_Open150": {
       "path": "data/benchmarks/financebench_open150.json",
       "sha256": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b",
-      "case_count": 150
+      "case_count": 150,
+      "case_ids_sha256": "17a11a945b317680a91b85aaf8f0276786be187365ff06f1dacee71e643f4f00",
+      "is_subset": false
     },
     "FinQA_Candidate": {
       "path": "data/benchmarks/finqa_candidate_universe.json",
       "sha256": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62",
-      "case_count": 50
+      "case_count": 50,
+      "case_ids_sha256": "13be7884aa1345317f952ec31530a964a3a3b7dcc06dd1fe74eeb25c78b801e5",
+      "is_subset": true
     },
     "TAT-QA_Candidate": {
       "path": "data/benchmarks/tatqa_candidate_universe.json",
       "sha256": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70",
-      "case_count": 50
+      "case_count": 50,
+      "case_ids_sha256": "98bec1aba4280633e2ed25d0db516f91eb3277fdb71f3c0e67377027ece8e15c",
+      "is_subset": true
     },
     "Charts_Dev_Heldout": {
       "path": "data/charts/chart-sources.json",
       "sha256": "67e222b9d02a725fb3dc0eb624bbe0c9bbe392d21c29ea226d425ac7623103f6",
-      "case_count": 50
+      "case_count": 50,
+      "case_ids_sha256": "78b997a2f5568f60d41941cee079beaf2cd5c2d942f0bf44ad4d887423f1d85f",
+      "is_subset": false,
+      "dev_case_count": 15,
+      "heldout_case_count": 35
     }
   },
   "variants": {
@@ -169,6 +183,6 @@
     "section_aware_index_representation": "available_via_corpus_audit",
     "independent_chart_approval": "available_via_independent_review",
     "bge_reranker_base": "gated_unfitted",
-    "frozen_routing_thresholds": "gated_uncalibrated"
+    "frozen_routing_thresholds": "unfrozen_uncalibrated"
   }
 }
