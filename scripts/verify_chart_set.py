@@ -14,7 +14,9 @@ from src.charts.dataset import load_candidate_set, sha  # noqa: E402
 def verify(directory, source_dir=None):
     _, manifest, report = load_candidate_set(directory)
     inventory_path = ROOT / "data/application_filings.json"
-    if sha(inventory_path.read_bytes()) != manifest["inventory_sha256"]:
+    raw_bytes = inventory_path.read_bytes()
+    expected = manifest["inventory_sha256"]
+    if sha(raw_bytes) != expected and sha(raw_bytes.replace(b"\r\n", b"\n")) != expected:
         raise ValueError("Pinned application filing inventory changed.")
     inventory = {r["accession"]: r for r in json.loads(inventory_path.read_text())}
     checked = []

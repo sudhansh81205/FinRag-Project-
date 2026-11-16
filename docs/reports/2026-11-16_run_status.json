@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "report_type": "benchmark_and_evaluation_run_status",
+  "generated_at": "2026-11-16T11:42:00+05:30",
+  "owner": "Ujjwal Chandak (chandakujjwal6)",
+  "machine_context": "Local development machine lacks GPU/CPU compute capacity for multi-hour local LLM inference",
+  "summary": {
+    "total_matrix_cells": 28,
+    "completed": 0,
+    "not_started": 16,
+    "blocked": 12,
+    "ragas_evaluation_status": "not_started",
+    "llama_comparison_status": "not_started"
+  },
+  "variants": {
+    "A": {
+      "name": "Dense baseline (fixed-overlap)",
+      "gate_status": "unlocked",
+      "runs": {
+        "FinanceBench": {
+          "status": "not_started",
+          "cases": 150,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "FinQA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "TAT-QA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "Charts": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        }
+      }
+    },
+    "B": {
+      "name": "Section-aware chunks",
+      "gate_status": "unlocked",
+      "runs": {
+        "FinanceBench": {
+          "status": "not_started",
+          "cases": 150,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "FinQA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "TAT-QA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "Charts": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        }
+      }
+    },
+    "C": {
+      "name": "Self-describing cells",
+      "gate_status": "unlocked",
+      "runs": {
+        "FinanceBench": {
+          "status": "not_started",
+          "cases": 150,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "FinQA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "TAT-QA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "Charts": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        }
+      }
+    },
+    "D": {
+      "name": "Hybrid dense/BM25 fusion",
+      "gate_status": "unlocked",
+      "runs": {
+        "FinanceBench": {
+          "status": "not_started",
+          "cases": 150,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "FinQA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "TAT-QA": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        },
+        "Charts": {
+          "status": "not_started",
+          "cases": 50,
+          "reason": "No compute on owner's machine; runner and prerequisite gates ready."
+        }
+      }
+    },
+    "E": {
+      "name": "Hierarchical reranking",
+      "gate_status": "blocked",
+      "missing_gates": [
+        "bge_reranker_base"
+      ],
+      "runs": {
+        "FinanceBench": {
+          "status": "blocked",
+          "cases": 150,
+          "reason": "bge-reranker-base cross-encoder is unfitted."
+        },
+        "FinQA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge-reranker-base cross-encoder is unfitted."
+        },
+        "TAT-QA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge-reranker-base cross-encoder is unfitted."
+        },
+        "Charts": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge-reranker-base cross-encoder is unfitted."
+        }
+      }
+    },
+    "F": {
+      "name": "Bounded routing & escalation",
+      "gate_status": "blocked",
+      "missing_gates": [
+        "bge_reranker_base",
+        "frozen_routing_thresholds"
+      ],
+      "runs": {
+        "FinanceBench": {
+          "status": "blocked",
+          "cases": 150,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated."
+        },
+        "FinQA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated."
+        },
+        "TAT-QA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated."
+        },
+        "Charts": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated."
+        }
+      }
+    },
+    "G": {
+      "name": "Approved chart descriptions",
+      "gate_status": "blocked",
+      "cleared_gates": [
+        "independent_chart_approval"
+      ],
+      "missing_gates": [
+        "bge_reranker_base",
+        "frozen_routing_thresholds"
+      ],
+      "runs": {
+        "FinanceBench": {
+          "status": "blocked",
+          "cases": 150,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated (chart review gate cleared)."
+        },
+        "FinQA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated (chart review gate cleared)."
+        },
+        "TAT-QA": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated (chart review gate cleared)."
+        },
+        "Charts": {
+          "status": "blocked",
+          "cases": 50,
+          "reason": "bge_reranker_base unfitted and route thresholds uncalibrated (chart review gate cleared)."
+        }
+      }
+    }
+  },
+  "comparative_evaluations": {
+    "llama_3_2_3b_runs": {
+      "status": "not_started",
+      "reason": "Llama 3.2 3B comparison inference runs require Ollama on dedicated GPU compute."
+    },
+    "ragas_automated_faithfulness": {
+      "status": "not_started",
+      "reason": "RAGAS faithfulness metrics require completed evaluation outputs (results.jsonl)."
+    }
+  }
+}

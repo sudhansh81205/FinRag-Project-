@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "audit_type": "independent_corpus_and_index_audit",
+  "auditor_identity": "Ujjwal Chandak",
+  "auditor_github": "chandakujjwal6",
+  "audited_at": "2026-11-16T06:08:13.628919+00:00",
+  "preceding_author": "Sri Sai Likhit Boddada (likhit-09B)",
+  "preceding_pr": "PR #12 (merged)",
+  "status": "ai_assisted_accepted",
+  "declared_filings_count": 18,
+  "total_passages_a": 5213,
+  "total_passages_b": 12077,
+  "total_passages_c": 15411,
+  "total_table_cells": 4100,
+  "total_parent_tables": 54,
+  "filing_audits": [
+    {
+      "accession": "0000320193-21-000105",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2021-09-25",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 211,
+        "B": 353,
+        "C": 535
+      },
+      "cells": 219,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+      "profile_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2048184 source bytes for AAPL (0000320193-21-000105) -> SHA-256 8d9e6dbb6acd... matches pinned profile. Matched counts: A=211, B=353, C=535. Cells: 219, Parent tables: 3."
+    },
+    {
+      "accession": "0000320193-22-000108",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2022-09-24",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 215,
+        "B": 533,
+        "C": 702
+      },
+      "cells": 210,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "890f50dccd4732b426c198c97a663331877e5c8d501abdd83d6ddd66cb961f87",
+      "profile_sha256": "890f50dccd4732b426c198c97a663331877e5c8d501abdd83d6ddd66cb961f87",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2049962 source bytes for AAPL (0000320193-22-000108) -> SHA-256 890f50dccd47... matches pinned profile. Matched counts: A=215, B=533, C=702. Cells: 210, Parent tables: 3."
+    },
+    {
+      "accession": "0000320193-23-000106",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2023-09-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 196,
+        "B": 504,
+        "C": 665
+      },
+      "cells": 201,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "2848b4b87c316ea5f7ea66cc37a9c270b1d467fc5a7b93bdbb895c38dde984c0",
+      "profile_sha256": "2848b4b87c316ea5f7ea66cc37a9c270b1d467fc5a7b93bdbb895c38dde984c0",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 1559029 source bytes for AAPL (0000320193-23-000106) -> SHA-256 2848b4b87c31... matches pinned profile. Matched counts: A=196, B=504, C=665. Cells: 201, Parent tables: 3."
+    },
+    {
+      "accession": "0000320193-24-000123",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2024-09-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 195,
+        "B": 504,
+        "C": 662
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "1e2f36be646ba9f0873ce76dfb5c24f15d14e1ed24f8bde680d266a3680b56a0",
+      "profile_sha256": "1e2f36be646ba9f0873ce76dfb5c24f15d14e1ed24f8bde680d266a3680b56a0",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 1503885 source bytes for AAPL (0000320193-24-000123) -> SHA-256 1e2f36be646b... matches pinned profile. Matched counts: A=195, B=504, C=662. Cells: 198, Parent tables: 3."
+    },
+    {
+      "accession": "0000320193-25-000079",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "period_end": "2025-09-27",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 198,
+        "B": 510,
+        "C": 668
+      },
+      "cells": 198,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+      "profile_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 1520313 source bytes for AAPL (0000320193-25-000079) -> SHA-256 8ffc8c02b2c1... matches pinned profile. Matched counts: A=198, B=510, C=668. Cells: 198, Parent tables: 3."
+    },
+    {
+      "accession": "0001564590-21-039151",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2021-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 261,
+        "B": 611,
+        "C": 794
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+      "profile_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 6332668 source bytes for MSFT (0001564590-21-039151) -> SHA-256 1a23c265edac... matches pinned profile. Matched counts: A=261, B=611, C=794. Cells: 222, Parent tables: 3."
+    },
+    {
+      "accession": "0001564590-22-026876",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2022-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 259,
+        "B": 600,
+        "C": 783
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "fbeaffd4756f323cce09ac683ec48f2ae3e169bda611669395c3edf71e73c1c3",
+      "profile_sha256": "fbeaffd4756f323cce09ac683ec48f2ae3e169bda611669395c3edf71e73c1c3",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 6215960 source bytes for MSFT (0001564590-22-026876) -> SHA-256 fbeaffd4756f... matches pinned profile. Matched counts: A=259, B=600, C=783. Cells: 222, Parent tables: 3."
+    },
+    {
+      "accession": "0000950170-23-035122",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2023-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 281,
+        "B": 677,
+        "C": 860
+      },
+      "cells": 222,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "89968d6a40cd92843bdbd364011688cad2b988d600ff8ac1277ef82b0bd649ba",
+      "profile_sha256": "89968d6a40cd92843bdbd364011688cad2b988d600ff8ac1277ef82b0bd649ba",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 9963696 source bytes for MSFT (0000950170-23-035122) -> SHA-256 89968d6a40cd... matches pinned profile. Matched counts: A=281, B=677, C=860. Cells: 222, Parent tables: 3."
+    },
+    {
+      "accession": "0000950170-24-087843",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2024-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 289,
+        "B": 712,
+        "C": 900
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "4009d01d6182489a9d8619ad5b7d8a5c17041840b5cab6656ddb4f3934ce5e64",
+      "profile_sha256": "4009d01d6182489a9d8619ad5b7d8a5c17041840b5cab6656ddb4f3934ce5e64",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 6861016 source bytes for MSFT (0000950170-24-087843) -> SHA-256 4009d01d6182... matches pinned profile. Matched counts: A=289, B=712, C=900. Cells: 227, Parent tables: 3."
+    },
+    {
+      "accession": "0000950170-25-100235",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "period_end": "2025-06-30",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 269,
+        "B": 666,
+        "C": 854
+      },
+      "cells": 227,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa",
+      "profile_sha256": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 8158172 source bytes for MSFT (0000950170-25-100235) -> SHA-256 b66750c0acce... matches pinned profile. Matched counts: A=269, B=666, C=854. Cells: 227, Parent tables: 3."
+    },
+    {
+      "accession": "0000796343-25-000004",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "period_end": "2024-11-29",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 321,
+        "B": 776,
+        "C": 980
+      },
+      "cells": 255,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "11b977afb88537124ea8498b055c5ea3382962530acf8692d9634d34815f02bf",
+      "profile_sha256": "11b977afb88537124ea8498b055c5ea3382962530acf8692d9634d34815f02bf",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2405132 source bytes for ADBE (0000796343-25-000004) -> SHA-256 11b977afb885... matches pinned profile. Matched counts: A=321, B=776, C=980. Cells: 255, Parent tables: 3."
+    },
+    {
+      "accession": "0001045810-24-000029",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "period_end": "2024-01-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 221,
+        "B": 429,
+        "C": 607
+      },
+      "cells": 218,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+      "profile_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2085671 source bytes for NVDA (0001045810-24-000029) -> SHA-256 848799566c7f... matches pinned profile. Matched counts: A=221, B=429, C=607. Cells: 218, Parent tables: 3."
+    },
+    {
+      "accession": "0001108524-24-000005",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "period_end": "2024-01-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 367,
+        "B": 869,
+        "C": 1045
+      },
+      "cells": 221,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "c9c8895e673d2d5de2e4b5918f16ff26ef8203ee9f4fc41d84d706cb84ed8118",
+      "profile_sha256": "c9c8895e673d2d5de2e4b5918f16ff26ef8203ee9f4fc41d84d706cb84ed8118",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2407223 source bytes for CRM (0001108524-24-000005) -> SHA-256 c9c8895e673d... matches pinned profile. Matched counts: A=367, B=869, C=1045. Cells: 221, Parent tables: 3."
+    },
+    {
+      "accession": "0000002488-25-000012",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "period_end": "2024-12-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 338,
+        "B": 704,
+        "C": 898
+      },
+      "cells": 238,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "c824a828e933c75fb07be9338f139b9705ddd497d6e1f6bd27cf73a0743d443d",
+      "profile_sha256": "c824a828e933c75fb07be9338f139b9705ddd497d6e1f6bd27cf73a0743d443d",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 2091279 source bytes for AMD (0000002488-25-000012) -> SHA-256 c824a828e933... matches pinned profile. Matched counts: A=338, B=704, C=898. Cells: 238, Parent tables: 3."
+    },
+    {
+      "accession": "0000050863-25-000009",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "period_end": "2024-12-28",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 412,
+        "B": 877,
+        "C": 1079
+      },
+      "cells": 245,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "1f6a99681021ffa97542795c4fcd284bc2640d94f83bd1655d7719d28eb19adb",
+      "profile_sha256": "1f6a99681021ffa97542795c4fcd284bc2640d94f83bd1655d7719d28eb19adb",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 3334324 source bytes for INTC (0000050863-25-000009) -> SHA-256 1f6a99681021... matches pinned profile. Matched counts: A=412, B=877, C=1079. Cells: 245, Parent tables: 3."
+    },
+    {
+      "accession": "0000858877-24-000017",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "period_end": "2024-07-27",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 398,
+        "B": 1034,
+        "C": 1245
+      },
+      "cells": 262,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "b822d87f5c093e239043a6ed0d4298bb7e080d82a51b622666b436b7a99dc2da",
+      "profile_sha256": "b822d87f5c093e239043a6ed0d4298bb7e080d82a51b622666b436b7a99dc2da",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 3549688 source bytes for CSCO (0000858877-24-000017) -> SHA-256 b822d87f5c09... matches pinned profile. Matched counts: A=398, B=1034, C=1245. Cells: 262, Parent tables: 3."
+    },
+    {
+      "accession": "0000950170-24-075605",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "period_end": "2024-05-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 222,
+        "B": 398,
+        "C": 590
+      },
+      "cells": 236,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "b663d1aa61f50e9d14d50fcd1167eff1e616916e84add9ed9309751c094262c6",
+      "profile_sha256": "b663d1aa61f50e9d14d50fcd1167eff1e616916e84add9ed9309751c094262c6",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 5321445 source bytes for ORCL (0000950170-24-075605) -> SHA-256 b663d1aa61f5... matches pinned profile. Matched counts: A=222, B=398, C=590. Cells: 236, Parent tables: 3."
+    },
+    {
+      "accession": "0000051143-25-000015",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "period_end": "2024-12-31",
+      "parsed": true,
+      "indexed_for_review": true,
+      "candidate_counts": {
+        "A": 560,
+        "B": 1320,
+        "C": 1544
+      },
+      "cells": 279,
+      "parent_tables": 3,
+      "rehashed_source_sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+      "profile_sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+      "source_sha256_match": true,
+      "independent_audit_decision": "ai_assisted_accepted",
+      "auditor_notes": "Re-hashed 1171109 source bytes for IBM (0000051143-25-000015) -> SHA-256 0b07fa783e66... matches pinned profile. Matched counts: A=560, B=1320, C=1544. Cells: 279, Parent tables: 3."
+    }
+  ],
+  "conclusion": "All 18 filings (5 Apple, 5 Microsoft, and 8 technology issuers) independently re-hashed from disk and verified against pinned SHA-256 profiles under AI-assisted inspection. Matched representations A, B, and C verified with stable source-equivalent identities and valid parent grids."
+}
