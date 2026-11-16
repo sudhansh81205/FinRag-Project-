@@ -168,48 +168,81 @@ def validate_experiment_manifest(spec: VariantSpec, available_gates: set[str] | 
     }
 
 
+_ALLOWED_OPS = frozenset({"add", "subtract", "multiply", "divide", "ratio_percent", "change", "percent_change"})
+_MAX_NODES, _MAX_DEPTH = 31, 7
+
+
+def _collect_validated_leaf_ids(root: Any) -> tuple[list[str] | None, str]:
+    """Strictly validate an expression tree and return its cited leaf IDs (F24).
+
+    Mirrors the authoritative typed evaluator's schema bounds: cited leaves are exactly
+    {"evidence_id": str}; operators are exactly {"op", "args"} with an allowlisted op and
+    two children (legacy {"type","value"} / {"type","name","operands"} nodes are accepted
+    only with the same strictness). Unknown, malformed, oversized or too-deep nodes make the
+    whole plan invalid rather than being silently ignored.
+    """
+    ids: list[str] = []
+    nodes = 0
+
+    def visit(node: Any, depth: int) -> str:
+        nonlocal nodes
+        nodes += 1
+        if nodes > _MAX_NODES or depth > _MAX_DEPTH:
+            return f"Expression exceeds {_MAX_NODES} nodes or depth {_MAX_DEPTH}."
+        if not isinstance(node, dict):
+            return "Expression node must be an object."
+        keys = set(node)
+        if keys == {"evidence_id"}:
+            if not isinstance(node["evidence_id"], str) or not node["evidence_id"].strip():
+                return "Evidence leaf must cite a nonempty string id."
+            ids.append(node["evidence_id"])
+            return ""
+        if keys == {"type", "value"} and node["type"] == "leaf":
+            if not isinstance(node["value"], str) or not node["value"].strip():
+                return "Legacy leaf must cite a nonempty string id."
+            ids.append(node["value"])
+            return ""
+        canonical = keys == {"op", "args"} and node["op"] in _ALLOWED_OPS
+        legacy = (keys == {"type", "name", "operands"} and node["type"] == "operator"
+                  and node["name"] in _ALLOWED_OPS)
+        if not (canonical or legacy):
+            return "Unknown or malformed expression node."
+        children = node["args"] if canonical else node["operands"]
+        if not isinstance(children, list) or len(children) != 2:
+            return "Operators require exactly two operands."
+        for child in children:
+            problem = visit(child, depth + 1)
+            if problem:
+                return problem
+        return ""
+
+    problem = visit(root, 0)
+    return (None, problem) if problem else (ids, "")
+
+
 def verify_included_operands(calculation_plan: dict[str, Any], included_evidence_ids: list[str]) -> tuple[bool, str]:
     """Verify that every cited operand in a calculation plan is present in final included evidence.
 
-    Supports both canonical typed_calculator plans (issuer, scope, periods, expression)
-    and expression nodes (op, args, evidence_id), as well as legacy leaf schemas.
-    Rejects empty, malformed, or operand-free plans.
+    Supports canonical typed_calculator plans (issuer, scope, periods, expression) and bare
+    expression nodes, plus the legacy leaf schema. Rejects empty, malformed, unknown-node,
+    oversized or operand-free plans (F24).
 
     Returns (is_valid, error_message).
     """
     if not isinstance(calculation_plan, dict) or not calculation_plan:
         return False, "Calculation plan must be a non-empty dictionary."
 
-    included_set = set(included_evidence_ids)
-
-    # If this is a full plan with an 'expression' field, evaluate the expression sub-tree
     root = calculation_plan.get("expression", calculation_plan)
     if not isinstance(root, dict) or not root:
         return False, "Calculation plan contains an empty or malformed expression."
 
-    def collect_leaf_ids(node: Any) -> list[str]:
-        if not isinstance(node, dict):
-            return []
-        # Canonical typed_calculator leaf: {"evidence_id": "fact_sales_2021"}
-        if "evidence_id" in node and isinstance(node["evidence_id"], str):
-            return [node["evidence_id"]]
-        # Legacy/synthetic leaf: {"type": "leaf", "value": "fact_sales_2021"}
-        if node.get("type") == "leaf":
-            val = node.get("value")
-            return [str(val)] if val is not None else []
-        ids = []
-        # Canonical typed_calculator operator: {"op": "...", "args": [...]}
-        for child in node.get("args", []):
-            ids.extend(collect_leaf_ids(child))
-        # Legacy/synthetic operator: {"type": "operator", "operands": [...]}
-        for child in node.get("operands", []):
-            ids.extend(collect_leaf_ids(child))
-        return ids
-
-    operand_ids = collect_leaf_ids(root)
+    operand_ids, problem = _collect_validated_leaf_ids(root)
+    if operand_ids is None:
+        return False, f"Calculation plan contains an empty or malformed expression: {problem}"
     if not operand_ids:
         return False, "Calculation plan contains no cited evidence operands."
 
+    included_set = set(included_evidence_ids)
     missing = [oid for oid in operand_ids if oid not in included_set]
     if missing:
         return False, f"Calculation operand(s) not in included context: {missing}"

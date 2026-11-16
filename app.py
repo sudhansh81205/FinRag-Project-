@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.application import InteractiveApplication  # noqa: E402
+from src.application import InteractiveApplication, load_filing_options, resolve_request  # noqa: E402
 from src.config import ConfigurationError, load_settings  # noqa: E402
 
 
@@ -39,15 +39,11 @@ def create_demo(application):
     readiness = application.readiness()
     is_ready = readiness.get("status") == "ready"
 
-    # Pre-populate sample company and filing choices from application_filings.json
-    filing_choices = [
-        ("Apple Inc. (AAPL) — 2021 10-K", "AAPL", "0000320193-21-000105", "2021-09-25"),
-        ("Apple Inc. (AAPL) — 2022 10-K", "AAPL", "0000320193-22-000108", "2022-09-24"),
-        ("Apple Inc. (AAPL) — 2023 10-K", "AAPL", "0000320193-23-000106", "2023-09-30"),
-        ("Microsoft Corp. (MSFT) — 2021 10-K", "MSFT", "0001564590-21-039151", "2021-06-30"),
-        ("Microsoft Corp. (MSFT) — 2022 10-K", "MSFT", "0001564590-22-026876", "2022-06-30"),
-    ]
-    company_options = [c[0] for c in filing_choices]
+    # Every selectable option is bound to its exact registry tuple (issuer, accession, fiscal
+    # year end); nothing is inferred from a ticker substring (F32).
+    filing_options = load_filing_options()
+    company_options = [o.label for o in filing_options]
+    filing_period_by_label = {o.label: o.filing_period_end for o in filing_options}
 
     sample_calc_plan = json.dumps({
         "issuer": "Apple Inc.",
@@ -102,7 +98,7 @@ def create_demo(application):
                     value=company_options[0],
                 )
                 with gr.Row():
-                    filter_period = gr.Textbox(label="Period End", value="2021-09-25")
+                    filter_period = gr.Textbox(label="Value Period End (ISO date)", value=filing_options[0].filing_period_end)
                     filter_scope = gr.Textbox(label="Scope", value="consolidated")
 
                 gr.Markdown("### 2. Financial Question")
@@ -133,6 +129,11 @@ def create_demo(application):
                         value="None",
                     )
 
+                demo_only = gr.Checkbox(
+                    label="Demo only: use synthetic Apple FY2021 facts (never a verified live answer)",
+                    value=False,
+                )
+
                 with gr.Row():
                     submit_btn = gr.Button("Submit Query", variant="primary")
                     clear_btn = gr.Button("Clear All", variant="secondary")
@@ -155,7 +156,7 @@ def create_demo(application):
                     calc_trace = gr.JSON(label="Evaluated Operation Tree & Rule Premises", value={})
 
         def handle_query(
-            question, comp_choice, period, scope, mode, plan_str, chart_choice, session
+            question, comp_choice, period, scope, mode, plan_str, chart_choice, demo, session
         ):
             # Session isolation: mutate only session-local state
             session["query_count"] += 1
@@ -179,9 +180,11 @@ def create_demo(application):
                     session,
                 )
 
-            # Determine company and accession
-            comp_name = "Apple Inc." if "AAPL" in comp_choice else "Microsoft Corporation"
-            filing_acc = "0000320193-21-000105" if "AAPL" in comp_choice else "0001564590-21-039151"
+            # Resolve the selected filing to its exact registry tuple and validate the value period
+            # and scope; unsupported selections refuse instead of defaulting to another filing.
+            request, request_error = resolve_request(comp_choice, period, scope)
+            if request is None:
+                return ("", "invalid_request", "0.000s", "rejected", request_error, [], {}, session)
 
             calc_plan = None
             if mode == "Typed Calculation Plan" and plan_str.strip():
@@ -207,12 +210,10 @@ def create_demo(application):
             if hasattr(application, "answer_interactive"):
                 res = application.answer_interactive(
                     question=question,
-                    company=comp_name,
-                    filing=filing_acc,
-                    period_end=period,
-                    scope=scope,
+                    request=request,
                     calculation_plan=calc_plan,
                     chart_asset_id=chart_id,
+                    demo_only=bool(demo),
                 )
             else:
                 raw_ans = application.answer(question)
@@ -237,7 +238,7 @@ def create_demo(application):
             session["last_status"] = status
 
             # On failure or refusal, ensure answer text is cleared
-            if status != "ok":
+            if status not in {"ok", "demo_only"}:
                 ans = ""
 
             return ans, status, lat, route, msg, ev, calcs, session
@@ -266,6 +267,7 @@ def create_demo(application):
                 mode_selector,
                 calc_plan_input,
                 chart_selector,
+                demo_only,
                 session_state,
             ],
             outputs=[
@@ -279,6 +281,13 @@ def create_demo(application):
                 session_state,
             ],
             api_name="answer_interactive",
+        )
+
+        selected_company.change(
+            lambda choice: filing_period_by_label.get(choice, ""),
+            inputs=[selected_company],
+            outputs=[filter_period],
+            api_name="select_filing",
         )
 
         clear_btn.click(

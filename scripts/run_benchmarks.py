@@ -15,35 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.benchmark.capacity import measure_machine_capacity  # noqa: E402
+from src.benchmark.capacity import load_observed_timings, measure_machine_capacity  # noqa: E402
+from src.benchmark.gates import detect_available_gates, evaluate_gates  # noqa: E402
 from src.benchmark.runner import BenchmarkRunner  # noqa: E402
-
-
-def detect_available_gates() -> set[str]:
-    """Auto-detect prerequisite gates verified by independent audit reports."""
-    gates = set()
-    chart_promo = ROOT / "docs/reports/2026-11-15_chart_promotion_report.json"
-    if chart_promo.is_file():
-        try:
-            data = json.loads(chart_promo.read_text(encoding="utf-8"))
-            if data.get("independent_review") == "passed" and data.get("evaluation_ready"):
-                gates.add("independent_chart_approval")
-        except Exception as exc:
-            import logging
-            logging.warning("Failed to parse chart promotion report for gate detection: %s", exc)
-
-    corpus_audit = ROOT / "docs/reports/2026-11-15_corpus_audit.json"
-    if corpus_audit.is_file():
-        try:
-            data = json.loads(corpus_audit.read_text(encoding="utf-8"))
-            if data.get("status") in ("independently_accepted", "ai_assisted_accepted", "ai_assisted_verified"):
-                gates.add("canonical_cells_and_parents")
-                gates.add("fixed_overlap_index_representation")
-                gates.add("section_aware_index_representation")
-        except Exception as exc:
-            import logging
-            logging.warning("Failed to parse corpus audit report for gate detection: %s", exc)
-    return gates
 
 
 def main():
@@ -62,14 +36,28 @@ def main():
     parser.add_argument("--gate", action="append", dest="available_gates", default=[],
                         help="Declare an available verified prerequisite gate (repeatable)")
     parser.add_argument("--profile-capacity", action="store_true",
-                        help="Profile machine hardware and print capacity timeline vs Nov 17.")
+                        help="Profile hardware; timings stay unknown unless --observed-timings is given.")
+    parser.add_argument("--observed-timings", default=None,
+                        help="JSON pilot record: cold/warm_generation_sec, retrieval_sec, evaluator_sec, "
+                             "pilot_case_ids, measured_at, model_identity.")
+    parser.add_argument("--retry-overhead", type=float, default=None,
+                        help="Declared retry/failure overhead fraction (e.g. 0.1); omitted -> lower bound.")
+    parser.add_argument("--gate-report", action="store_true",
+                        help="Print per-gate open/closed status derived from actual artifacts and exit.")
     args = parser.parse_args()
 
     if args.profile_capacity:
-        capacity_report = measure_machine_capacity()
-        print(json.dumps(capacity_report, indent=2))
+        observed = load_observed_timings(args.observed_timings) if args.observed_timings else None
+        print(json.dumps(measure_machine_capacity(observed_timings=observed,
+                                                  retry_overhead_fraction=args.retry_overhead), indent=2))
         return
 
+    if args.gate_report:
+        print(json.dumps(evaluate_gates(), indent=2))
+        return
+
+    # Gate names given with --gate are declarations only; the runner still refuses to run without
+    # a validated engine, and open gates come from actual artifacts + acceptance (F34).
     detected_gates = detect_available_gates() | set(args.available_gates)
     out_dir = Path(args.output_dir) if args.output_dir else ROOT / "output" / f"eval_{args.variant}_{args.benchmark.lower()}"
     runner = BenchmarkRunner(

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "purpose": "november_16_manual_check_ledger",
+  "generated_at": "2026-11-16T15:38:08+05:30",
+  "commands_run": [
+    "python -m pytest -q  -> 459 passed, 3 warnings (378 pre-existing + 81 new)",
+    "python -m ruff check .  -> All checks passed",
+    "python app.py --check  -> index_not_ready (no source/index/provider)",
+    "python scripts/verify_chart_set.py  -> filing inventory verified; local PDF hashes not requested",
+    "python scripts/audit_pr14_artifacts.py --write docs/reports/2026-11-16_pavan_evidence_audit.json",
+    "python scripts/run_benchmarks.py --profile-capacity | --gate-report | --variant C --benchmark FinQA",
+    "python scripts/build_slides_draft.py"
+  ],
+  "not_run": [
+    "real Gradio two-client session",
+    "BGE/FAISS/Ollama/Gemma/cross-encoder inference",
+    "RAGAS",
+    "18-source restore",
+    "original-image judgement",
+    "50-output audit"
+  ],
+  "checks": [
+    {
+      "check_id": "M16-A1",
+      "area": "authentic inputs (F26)",
+      "status": "BLOCKED",
+      "reason": "No authentic FinanceBench/FinQA/TAT-QA records exist in the repository or were supplied; the three fixture files are generated (FinanceBench: 150 records, 1 unique context; FinQA: 20 unique questions in 50; TAT-QA: 41 unique questions, 1 table). Quarantined as smoke by loader provenance classification; full evaluation BLOCKED. A 300-case subset is not full proposal scope.",
+      "positive_expected_observed": "Records with complete official provenance classify authentic_source_bound (test) / none of the committed records do",
+      "failure_expected_observed": "Partial provenance classifies synthetic (test passes)",
+      "hashes": {
+        "data/benchmarks/financebench_open150.json": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b",
+        "data/benchmarks/finqa_candidate_universe.json": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62",
+        "data/benchmarks/tatqa_candidate_universe.json": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70"
+      },
+      "evidence": [
+        "docs/reports/2026-11-16_pavan_evidence_audit.json",
+        "tests/test_nov16_scoring_and_inputs.py"
+      ],
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-A2",
+      "area": "PR14 chart question/caption decisions",
+      "status": "UNVERIFIED",
+      "reason": "Ledger binds the unchanged 50 cases (15 dev / 35 heldout, no shared image group) and the reviewer is not a label author, but 50/50 passed at one timestamp, authenticity of the human review cannot be certified from a file, captions and G execution are not covered, and the promotion report's approval hash does not equal the ledger now on disk. Independent approval NOT granted here.",
+      "author_reviewer_conflict_decision": "label authors Rushil Mohan / ai-assisted / rmo29; reviewer claimed Ujjwal Chandak; no conflict by name, identity unverified",
+      "evidence": [
+        "docs/reports/2026-11-16_pavan_evidence_audit.json"
+      ],
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-A3",
+      "area": "PR14 source/index/IBM mappings",
+      "status": "BLOCKED",
+      "reason": "Source renditions are not present in this checkout (data/raw untracked) so bytes cannot be re-hashed; vector/row/parent mappings are copied from earlier ledgers; no separate IBM exhibit check is recorded; 'ai_assisted_accepted' is not independent acceptance.",
+      "evidence": [
+        "docs/reports/2026-11-16_pavan_evidence_audit.json"
+      ],
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-A4-F34",
+      "area": "gates need actual artifacts (F34)",
+      "status": "PASS",
+      "reason": "Repaired gate evaluator opens a gate only with an acceptance record + re-hashed bound artifacts; PR14's status-only inputs open zero gates; tamper/removal/revocation close them. No acceptance record exists, so zero gates are open and A-G remain blocked (truthful).",
+      "positive_expected_observed": "bound artifact + acceptance -> gate open (test)",
+      "failure_expected_observed": "missing/tampered/revoked -> closed (tests)",
+      "hashes": {
+        "src/application.py": "aeaaa869cb012eaf35c3900e0a8f43ab3e0e9d9e05045ee4123dfb9073a08505",
+        "src/benchmark/capacity.py": "49ac64ba69dbaf61d684e04d2fb104bb8e7ed7200b815f26931a2ef6b0e06184",
+        "src/benchmark/gates.py": "1146446c1610702fd87bee307711bef8d565a624fb881a87be7c0ab37f596082",
+        "src/benchmark/loaders.py": "6459107ed95d76af318507a877a0d9807137e67142092473debb37d261d07598",
+        "src/benchmark/metrics.py": "bb9d9f75844add7f7b33f6b30dbf0c2699ef57c388dfd5b0196c7eacc3e0a20d",
+        "src/benchmark/runner.py": "7e3d45c37ed55b2e7a2c4a338b6f83aba106a1a60218ce4f726117ba1af40b30",
+        "src/pipeline/experiment_scaffold.py": "7d98bd496c2a18d13ca50007dd2f9e1bbeaf939dcf352b6ef6c6b22fcbe961eb",
+        "app.py": "8c420f63f2850b20a8ca07aa770ee4c3a1ea9fdc955f9490e57b23de35f9a46c",
+        "scripts/run_benchmarks.py": "7a4f30a2f3c22f8fe7636a92669f4bac6228d909776f8997b3573d1e00b75be1",
+        "scripts/audit_pr14_artifacts.py": "a6d49231687f50e44a7b2d325d23d26b596cd344e2fa614729bfaabcdc433625"
+      },
+      "tests": {
+        "tests/test_nov16_request_binding.py": "0442f7361b13796432c8608c7c18d56f50b20d67324c693d1500b1cfc5847d24",
+        "tests/test_nov16_scoring_and_inputs.py": "a8a479054dadea006a9de43614253ca49c8c1f213f9ecd3961fb7054ba2096c2",
+        "tests/test_nov16_runner_capacity_gates.py": "da51d943e04b9976341414ba4dfc012b60c2044b1dd00657c93007c4a6199f6a"
+      },
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-B1",
+      "area": "request truth code path (F27/F32/F24)",
+      "status": "PASS (code level)",
+      "reason": "Wrong issuer, filing, value period, scope, empty evidence, excluded operand, malformed operand tree and default facts all refuse; Apple 2023 forwards the 2023 accession; demo path is status demo_only. Verified with injected records/fake engine only.",
+      "limitation": "No real narrative/numerical/chart flow, no two-browser session test, no screenshots/video: no engine/index/provider exists (python app.py --check -> index_not_ready).",
+      "tests": {
+        "tests/test_nov16_request_binding.py": "0442f7361b13796432c8608c7c18d56f50b20d67324c693d1500b1cfc5847d24",
+        "tests/test_nov16_scoring_and_inputs.py": "a8a479054dadea006a9de43614253ca49c8c1f213f9ecd3961fb7054ba2096c2",
+        "tests/test_nov16_runner_capacity_gates.py": "da51d943e04b9976341414ba4dfc012b60c2044b1dd00657c93007c4a6199f6a"
+      },
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-B1-live",
+      "area": "real question-to-source flow, two sessions, screenshots",
+      "status": "BLOCKED",
+      "reason": "No accepted index, no engine and no Ollama/Gemma on this machine (ollama_running=false, no models).",
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-B2",
+      "area": "actual variant adapters / BGE / cross-encoder / budget",
+      "status": "BLOCKED",
+      "reason": "Runner now verifies the injected engine's variant and requires a recorded cross_encoder_rerank stage for E/F/G, but no real adapter, model or tokenizer exists to run; benchmark context is not consumed by the engine (context_binding UNBOUND). Provider config is not inferred from filenames.",
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-C1-F23",
+      "area": "resume integrity",
+      "status": "PASS (software boundary)",
+      "reason": "Identical reopen succeeds; changed code, git revision, gates (revocation), case set, prompt, model-config CONTENT and edited saved controls (with or without rehash) are refused; no-engine leaves no ledger; max_cases is partial with full eligible denominator. Index catalog hash is bound only when Settings are supplied; real index validation is BLOCKED (no index).",
+      "tests": {
+        "tests/test_nov16_request_binding.py": "0442f7361b13796432c8608c7c18d56f50b20d67324c693d1500b1cfc5847d24",
+        "tests/test_nov16_scoring_and_inputs.py": "a8a479054dadea006a9de43614253ca49c8c1f213f9ecd3961fb7054ba2096c2",
+        "tests/test_nov16_runner_capacity_gates.py": "da51d943e04b9976341414ba4dfc012b60c2044b1dd00657c93007c4a6199f6a"
+      },
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-C2-F29F30",
+      "area": "scoring and faithfulness",
+      "status": "PASS (scoring) / BLOCKED (RAGAS)",
+      "reason": "100M = 0.1B passes, 100B fails, 100 vs 100 passes, 102 vs 100 fails, multi-span needs all spans, contradiction and unsupported number score 0 on the diagnostic. The lexical heuristic is renamed lexical_overlap_diagnostic; ragas_faithfulness is BLOCKED because no pinned evaluator was run.",
+      "limitation": "Period binding of numeric answers and percent-vs-percentage-point conventions are not scored.",
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-C3-F31",
+      "area": "capacity",
+      "status": "BLOCKED (timings unknown)",
+      "reason": "Observed machine: Windows, AMD64 Family 25 Model 116, 16 logical cores, 15.29 GB RAM (2.5 GB available), Ollama not running, no models. Cold/warm/retrieval/evaluator timings are unknown; capacity and feasibility report null/unknown; remaining time is computed from the wall clock to the unconfirmed 2026-11-17T23:59+05:30 deadline.",
+      "formula": "Hours = (cases*variants*(retrieval+warm+evaluator)*(1+retry)+variants*cold)/3600",
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-C4",
+      "area": "predeclared 50 generated outputs audit",
+      "status": "BLOCKED",
+      "reason": "Zero completed outputs (28 cells: 0 completed, 16 not started, 12 blocked). Shortfall 50 of 50. No audit decision, metric, Recall@5/10, MRR, RAGAS, latency or paired interval was produced or invented. Sample label authors are hard-coded 'Official' for generated fixtures.",
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    },
+    {
+      "check_id": "M16-D1",
+      "area": "report, six slides, backup demo, records",
+      "status": "PARTIAL",
+      "reason": "Honest partial report draft and exactly six slides exist. No real backup demo/video exists (no engine); contribution hours are estimates and AI-use is disclosed generally. Not release-ready.",
+      "hashes": {
+        "docs/reports/2026-11-16_slides_draft.pptx": "8e74e07ea9fab46cb986ee2f36f2d85b92cfd9f6a303892cc520d23f87f09341",
+        "docs/reports/2026-11-16_report_draft.md": "8f9978c76c31d8b96b7d12de56f9f213f781a0a9e49b9efab3423c41d8821fa2"
+      },
+      "sole_scheduled_owner_date": "Pavan, 2026-11-16",
+      "recorded_at": "2026-11-16T15:38:08+05:30",
+      "base_revision": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+      "working_tree": "uncommitted changes on branch maintenance/nov16-evidence-audit-repairs"
+    }
+  ]
+}

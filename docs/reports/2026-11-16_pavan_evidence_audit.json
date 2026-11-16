@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "report_type": "pr14_evidence_audit",
+  "auditor_role": "Pavan November 16 sole owner (automated re-derivation; no human approval implied)",
+  "generated_at": "2026-11-16T10:05:45.027981+00:00",
+  "repository": {
+    "head": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+    "branch": "maintenance/nov16-evidence-audit-repairs",
+    "pr14_head_in_history": true
+  },
+  "counts": {
+    "FAIL": 10,
+    "PASS": 10,
+    "INFO": 4,
+    "UNVERIFIED": 3,
+    "BLOCKED": 2
+  },
+  "checks": [
+    {
+      "check_id": "F26-FinanceBench-provenance",
+      "requirement": "R7/R12 F26",
+      "status": "FAIL",
+      "observed": {
+        "records": 150,
+        "authentic_source_bound_records": 0,
+        "unique_questions": 150,
+        "unique_contexts": 15,
+        "unique_gold_answers": 3,
+        "classification": "synthetic_smoke_fixture",
+        "full_evaluation_eligible": false
+      },
+      "expected": "every record declares official id/version/split/license/source sha256",
+      "note": "Generated smoke fixture: quarantine as smoke; full evaluation BLOCKED."
+    },
+    {
+      "check_id": "F26-FinanceBench-frozen-hash",
+      "requirement": "R12",
+      "status": "PASS",
+      "observed": {
+        "frozen": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b",
+        "actual_lf_normalized": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b",
+        "actual_raw": "ff93a916d1488d3feb959bd807c611c482296748f733cc041a7f0e2a1785d17b"
+      },
+      "expected": "frozen manifest hash equals current file",
+      "note": "Hash agreement shows unchanged bytes, not authenticity."
+    },
+    {
+      "check_id": "F26-FinanceBench-subset-claim",
+      "requirement": "R7",
+      "status": "FAIL",
+      "observed": {
+        "manifest_is_subset": false,
+        "records": 150,
+        "classification": "synthetic_smoke_fixture"
+      },
+      "expected": "official full/subset claim must follow actual provenance",
+      "note": "The frozen manifest labels the FinanceBench fixture is_subset=false although no record is source-bound."
+    },
+    {
+      "check_id": "F26-FinQA-provenance",
+      "requirement": "R7/R12 F26",
+      "status": "FAIL",
+      "observed": {
+        "records": 50,
+        "authentic_source_bound_records": 0,
+        "unique_questions": 20,
+        "unique_contexts": 50,
+        "unique_gold_answers": 50,
+        "classification": "synthetic_smoke_fixture",
+        "full_evaluation_eligible": false
+      },
+      "expected": "every record declares official id/version/split/license/source sha256",
+      "note": "Generated smoke fixture: quarantine as smoke; full evaluation BLOCKED."
+    },
+    {
+      "check_id": "F26-FinQA-frozen-hash",
+      "requirement": "R12",
+      "status": "PASS",
+      "observed": {
+        "frozen": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62",
+        "actual_lf_normalized": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62",
+        "actual_raw": "9ead02c3a26cb1eb281e8d362afd1ff26213697319f53d4ca3d5e3dc4e1dfc62"
+      },
+      "expected": "frozen manifest hash equals current file",
+      "note": "Hash agreement shows unchanged bytes, not authenticity."
+    },
+    {
+      "check_id": "F26-FinQA-subset-claim",
+      "requirement": "R7",
+      "status": "INFO",
+      "observed": {
+        "manifest_is_subset": true,
+        "records": 50,
+        "classification": "synthetic_smoke_fixture"
+      },
+      "expected": "official full/subset claim must follow actual provenance",
+      "note": "Labelled subset; still synthetic."
+    },
+    {
+      "check_id": "F26-TAT-QA-provenance",
+      "requirement": "R7/R12 F26",
+      "status": "FAIL",
+      "observed": {
+        "records": 50,
+        "authentic_source_bound_records": 0,
+        "unique_questions": 41,
+        "unique_contexts": 5,
+        "unique_gold_answers": 4,
+        "classification": "synthetic_smoke_fixture",
+        "full_evaluation_eligible": false
+      },
+      "expected": "every record declares official id/version/split/license/source sha256",
+      "note": "Generated smoke fixture: quarantine as smoke; full evaluation BLOCKED."
+    },
+    {
+      "check_id": "F26-TAT-QA-frozen-hash",
+      "requirement": "R12",
+      "status": "PASS",
+      "observed": {
+        "frozen": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70",
+        "actual_lf_normalized": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70",
+        "actual_raw": "bb1f79dc1ba3772aad3a5444ae2285772faf54cba91fb90073113c5d9410fb70"
+      },
+      "expected": "frozen manifest hash equals current file",
+      "note": "Hash agreement shows unchanged bytes, not authenticity."
+    },
+    {
+      "check_id": "F26-TAT-QA-subset-claim",
+      "requirement": "R7",
+      "status": "INFO",
+      "observed": {
+        "manifest_is_subset": true,
+        "records": 50,
+        "classification": "synthetic_smoke_fixture"
+      },
+      "expected": "official full/subset claim must follow actual provenance",
+      "note": "Labelled subset; still synthetic."
+    },
+    {
+      "check_id": "R11-split-counts",
+      "requirement": "R11",
+      "status": "PASS",
+      "observed": {
+        "dev": 15,
+        "heldout": 35
+      },
+      "expected": {
+        "dev": 15,
+        "heldout": 35
+      },
+      "note": ""
+    },
+    {
+      "check_id": "R11-no-cross-split-image-group",
+      "requirement": "R11",
+      "status": "PASS",
+      "observed": {
+        "splits": {
+          "dev": 1,
+          "heldout": 5
+        },
+        "shared_groups": []
+      },
+      "expected": "no image group in two splits",
+      "note": ""
+    },
+    {
+      "check_id": "R11-unknowns-retained",
+      "requirement": "R11",
+      "status": "INFO",
+      "observed": {
+        "cases_mentioning_unknown": 2
+      },
+      "expected": "unprinted/ambiguous values stay unknown",
+      "note": "Not independently judged here."
+    },
+    {
+      "check_id": "R11-ledger-structural-binding",
+      "requirement": "R11",
+      "status": "PASS",
+      "observed": {
+        "error": "",
+        "decisions": 50
+      },
+      "expected": "ledger binds the unchanged 50-case set with a non-author reviewer",
+      "note": "Structural only: this does not establish that a human viewed the images."
+    },
+    {
+      "check_id": "R11-promotion-report-matches-ledger",
+      "requirement": "R11",
+      "status": "FAIL",
+      "observed": {
+        "report_approval_sha256": "91b0af2068cb65bf33afd1a67848a2a06cbab4f621266c7004c2d53537942d87",
+        "ledger_sha256_raw": "53d5600709660af43fdd4e07f2aa491cd607133198f55c121d9bdce8930a0d0d",
+        "ledger_sha256_lf": "53d5600709660af43fdd4e07f2aa491cd607133198f55c121d9bdce8930a0d0d"
+      },
+      "expected": "promotion report hash equals the current ledger bytes",
+      "note": "A stale or mismatched hash means the report does not describe the ledger now on disk."
+    },
+    {
+      "check_id": "R11-human-review-authenticity",
+      "requirement": "R11",
+      "status": "UNVERIFIED",
+      "observed": {
+        "reviewer_identity": "Ujjwal Chandak",
+        "reviewed_at": "2026-11-16T06:10:23.891785+00:00",
+        "decisions": 50,
+        "passed": 50,
+        "rejected": 0,
+        "distinct_review_timestamps": 1,
+        "distinct_basis_texts": 49,
+        "label_authors": [
+          "Rushil Mohan",
+          "ai-assisted",
+          "rmo29"
+        ]
+      },
+      "expected": "real reviewer identity/time/basis, a plausible rejection rate, per-case timing",
+      "note": "50/50 passed, 0 rejected, one timestamp. Authenticity cannot be certified from the file; captions and G execution are not covered; reviewer must confirm in person."
+    },
+    {
+      "check_id": "R1-registry-identity",
+      "requirement": "R1",
+      "status": "PASS",
+      "observed": {
+        "filings": 18,
+        "mismatches": []
+      },
+      "expected": "audit tuples equal data/application_filings.json",
+      "note": ""
+    },
+    {
+      "check_id": "R1-source-bytes-reverified-here",
+      "requirement": "R1",
+      "status": "BLOCKED",
+      "observed": {
+        "rendition_present_and_matching": 1,
+        "rendition_missing_locally": 17,
+        "rendition_hash_mismatch": 0
+      },
+      "expected": "re-hash every source rendition from this checkout",
+      "note": "data/raw/ is untracked; missing sources cannot be re-verified here."
+    },
+    {
+      "check_id": "R1-rehash-vs-profile",
+      "requirement": "R1",
+      "status": "INFO",
+      "observed": {
+        "entries_where_rehash_equals_profile_sha": 18,
+        "of": 18
+      },
+      "expected": "independent rehash of source bytes",
+      "note": "The audit's rehashed value equals the stored profile hash for these entries; vectors, rows, parent mappings and counts are copied from earlier ledgers and not reopened."
+    },
+    {
+      "check_id": "R1-IBM-exhibit-identity",
+      "requirement": "R1",
+      "status": "UNVERIFIED",
+      "observed": {
+        "entry_present": true,
+        "has_exhibit_field": false
+      },
+      "expected": "explicit IBM exhibit identity check",
+      "note": "No separate exhibit identity check is recorded in the ledger."
+    },
+    {
+      "check_id": "R1-acceptance-status",
+      "requirement": "R1/R2",
+      "status": "UNVERIFIED",
+      "observed": {
+        "status": "ai_assisted_accepted",
+        "accepted_filings_claimed": 18
+      },
+      "expected": "independent human acceptance of 18 filings",
+      "note": "Status 'ai_assisted_accepted' is not independent human acceptance; one accepted Apple filing remains the verified scope."
+    },
+    {
+      "check_id": "F34-gates-from-actual-artifacts",
+      "requirement": "R12/R13",
+      "status": "PASS",
+      "observed": {
+        "open_gates": [],
+        "closed": [
+          "bge_reranker_base",
+          "bm25_index",
+          "canonical_cells_and_parents",
+          "fixed_overlap_index_representation",
+          "frozen_routing_thresholds",
+          "independent_chart_approval",
+          "section_aware_index_representation"
+        ]
+      },
+      "expected": "gates open only with bound artifacts + acceptance record",
+      "note": "No acceptance record at C:\\Users\\PAVAN\\FinRag-Project-\\docs\\reports\\2026-11-16_gate_acceptance.json."
+    },
+    {
+      "check_id": "F34-run-status-gate-claims",
+      "requirement": "R12",
+      "status": "FAIL",
+      "observed": {
+        "claimed_gate_status": [
+          "blocked",
+          "unlocked"
+        ],
+        "actual_open_gates": [],
+        "completed_cells": 0,
+        "blocked_cells": 12,
+        "not_started_cells": 16
+      },
+      "expected": "A-D 'unlocked'/'ready' claims must match actual adapters/resources and D's bm25_index requirement",
+      "note": "Variants A-D are marked unlocked while no gate can be opened from actual artifacts."
+    },
+    {
+      "check_id": "F34-routing-thresholds-frozen",
+      "requirement": "R10/R12",
+      "status": "FAIL",
+      "observed": {
+        "route_thresholds": "unfrozen"
+      },
+      "expected": "frozen thresholds before F/G",
+      "note": ""
+    },
+    {
+      "check_id": "F34-capacity-estimates",
+      "requirement": "R13",
+      "status": "FAIL",
+      "observed": {
+        "capacity_gate_decision": {
+          "measured_machine": "12 cores Intel x86_64, 15.7 GB RAM",
+          "full_cpu_estimate_hours": 90.87,
+          "deadline_window_hours": 72.0,
+          "status": "core_suite_prioritized",
+          "approved_prioritized_cases": 300,
+          "approved_estimated_hours": 9.05
+        }
+      },
+      "expected": "measured cold/warm/evaluator timings with pilot IDs",
+      "note": "Frozen snapshot repeats the unmeasured 72h/9.05h assumptions; capacity is unknown, not decided."
+    },
+    {
+      "check_id": "F34-freeze-revision",
+      "requirement": "R12",
+      "status": "FAIL",
+      "observed": {
+        "frozen_git_commit": "6814de5d3e788f5ef0423d79b218b77697f5b756",
+        "current_head": "cec33f2303b08fe7680e1dcac80cf4a6084c0abf",
+        "prompt_sha_matches_current": true
+      },
+      "expected": "freeze names the exact code revision that will run",
+      "note": "A snapshot with unfrozen routing and copied capacity estimates is not a valid final freeze."
+    },
+    {
+      "check_id": "R7-sample-size-and-strata",
+      "requirement": "R7",
+      "status": "PASS",
+      "observed": {
+        "total": 50,
+        "strata": {
+          "A": 7,
+          "B": 7,
+          "C": 7,
+          "D": 7,
+          "E": 7,
+          "F": 7,
+          "G": 8
+        }
+      },
+      "expected": "50 predeclared pairs",
+      "note": ""
+    },
+    {
+      "check_id": "R7-sample-case-resolution",
+      "requirement": "R7",
+      "status": "PASS",
+      "observed": {
+        "resolved_to_fixtures": 42,
+        "question_text_mismatch": [],
+        "unresolved": []
+      },
+      "expected": "sample pairs resolve to inventoried cases",
+      "note": ""
+    },
+    {
+      "check_id": "R7-label-author-provenance",
+      "requirement": "R7",
+      "status": "FAIL",
+      "observed": {
+        "label_authors_recorded": [
+          "B Rushil Mohan (Rushil) / AI-assisted",
+          "FinQA Official",
+          "FinanceBench Official",
+          "TAT-QA Official"
+        ],
+        "authorship_conflict_all_false": true
+      },
+      "expected": "authorship validated against real provenance",
+      "note": "'FinanceBench/FinQA/TAT-QA Official' is hard-coded for generated fixtures (committed by Gowtham270807 in PR13); conflict=False is asserted, not derived. Actual authorship of fixtures is the generating team member/tool."
+    },
+    {
+      "check_id": "R7-generated-outputs-available",
+      "requirement": "R7",
+      "status": "BLOCKED",
+      "observed": {
+        "completed_output_cells": 0,
+        "audit_pairs_with_output": 0,
+        "required": 50
+      },
+      "expected": "independent audit of 50 generated outputs",
+      "note": "Zero completed outputs exist (PR14 run status). No audit decision, metric or interval can be produced; shortfall is 50 of 50."
+    }
+  ],
+  "policy": "PASS only for mechanically re-derived facts; human identity/approval, captions, outputs and metrics are UNVERIFIED or BLOCKED and are never synthesized."
+}
