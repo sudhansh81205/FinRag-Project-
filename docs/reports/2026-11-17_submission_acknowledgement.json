@@ -7,8 +7,8 @@
   "submission_date": null,
   "release_owner": "Sudhansh Khandelwal",
   "release_designation": "TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE",
-  "git_branch": "main",
-  "git_base_commit": "5e8bba7",
+  "git_branch": "maintenance/nov17-completion",
+  "git_base_commit": "131efa257ca99e3f1264a64ef4f9b17b20c979f8",
   "audit_reconciliation": {
     "prior_audit": "docs/reports/2026-11-16_pavan_evidence_audit.json",
     "reconciliation_file": "docs/reports/2026-11-17_independent_audit_reconciliation.json",
@@ -25,14 +25,14 @@
       "failed": 0,
       "skipped": 0
     },
-    "app_diagnosis": "index_not_ready",
+    "app_diagnosis": "local_source_checked_engine_ready_final_experiments_not_ready",
     "chart_manifests_verified": 6,
-    "scope": "Historical CI proof only; fresh repair checks are recorded in the November17 implementation handoff."
+    "scope": "See current runtime-verification.json. Older459-test fields are historical and superseded by the implementation record."
   },
   "key_deliverables": [
     "docs/reports/2026-11-17_final_report.md",
     "docs/reports/2026-11-17_slides.md",
-    "docs/reports/2026-11-17_final_slides.pptx",
+    "docs/reports/2026-11-17_verified_slides.pptx",
     "docs/reports/2026-11-17_backup_demo_walkthrough.md",
     "docs/reports/2026-11-17_independent_audit_reconciliation.json",
     "docs/reports/2026-11-17_sudhansh_completion.md",

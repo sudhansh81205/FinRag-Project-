@@ -39,9 +39,16 @@ def unit_vectors(values, count):
 
 
 class BGEEncoder:
-    def __init__(self, *, cache_folder=None, local_files_only=True, batch_size=16):
+    def __init__(self, *, cache_folder=None, local_files_only=True, batch_size=16, cpu_threads=1):
+        import torch
         from sentence_transformers import SentenceTransformer
 
+        if type(cpu_threads) is not int or not 1 <= cpu_threads <= 32:
+            raise ValueError("BGE CPU thread count must be between 1 and 32")
+        # Native concurrent-thread execution crashed on the intended 8-GiB Mac.
+        # The reproduced real builds use one CPU thread consistently; this is a
+        # process-local runtime setting, not a model/index substitution.
+        torch.set_num_threads(cpu_threads)
         self.spec = EmbeddingSpec()
         self.batch_size = batch_size
         self.model = SentenceTransformer(

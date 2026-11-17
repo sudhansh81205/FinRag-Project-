@@ -187,3 +187,8 @@ Viva: typed issuer/period/unit/source predicates license restricted Decimal arit
 - Rechecked the deployed interface in a real browser: inventory/search/filing transfer, missing-engine refusal, email-disabled dialog and mobile layout. The new preview also verified query controls lock during an answer and restore afterward; filing changes clear the previous result. See PR16's latest checks for exact evidence.
 
 These address R2/R4/R6/R12/R13, common A-G runtime/reproducibility and UI integrity. Success: same pinned model/source-bound output; failure: changed digest, missing assets, wrong request, unavailable service or production HTTP refuse. They do not implement the missing full research runner or independently approve labels.
+
+
+## Superseding runtime evidence
+
+Read [November17 runtime implementation](../../docs/handoffs/2026-11-17_runtime-completion.md). Pinned Gemma, BGE/exact FAISS,18candidate filing indexes and official150/1147/1663benchmark imports are now verified locally. Full combined517tests and13Node checks passed. The user confirmed no human independent review exists. Full A–G/evaluator/hosting/submission acceptance remains incomplete. This update does not establish completed human effort.

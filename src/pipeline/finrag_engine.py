@@ -5,9 +5,10 @@ from typing import Any
 
 from ..llm.calculation_planner import propose_calculation
 from ..llm.client import UnifiedLLMClient
+from ..llm.financial_semantics import known_source_program, validate_named_formula
 from ..llm.prompts import build_baseline_prompt, build_finrag_prompt
 from ..llm.typed_calculator import evaluate, render_result
-from ..retrieval.eligibility import validated_filters
+from ..retrieval.eligibility import intersect_filters, validated_filters
 from ..retrieval.reranker import SimpleFinancialReranker
 from ..retrieval.retriever import DualHybridRetriever
 
@@ -68,6 +69,20 @@ class FinRAGEngine:
         try:
             if filters is not None:
                 filters = validated_filters(filters)
+            premises = calculation_request if calculation_request is not None else calculation_plan
+            if isinstance(premises, dict) and isinstance(premises.get("periods"), list):
+                periods = premises["periods"]
+                if (periods and all(isinstance(p, dict) and isinstance(p.get("end"), str)
+                                    and p.get("kind") in {"instant", "duration"} for p in periods)
+                        and isinstance(premises.get("scope"), str)):
+                    # Numeric premises narrow BOTH streams before top-k. Other
+                    # years, segments and instant/duration facts must not displace
+                    # the requested operands or be used as convenient defaults.
+                    filters = intersect_filters(filters, {
+                        "period_end": sorted({p["end"] for p in periods}),
+                        "period_kind": sorted({p["kind"] for p in periods}),
+                        "scope": premises["scope"],
+                    })
         except ValueError:
             return finish("invalid_request", "Use supported company, filing, period and source filters.")
         if isinstance(self.retriever, DualHybridRetriever) and self.retriever.vector_collection is None:
@@ -173,7 +188,11 @@ class FinRAGEngine:
             prompt = (build_baseline_prompt(question, text) if _baseline
                       else build_finrag_prompt(question, text, tables, chart_evidence=rendered["chart"]))
             if calculation_plan is not None or calculation_request is not None:
-                calculation = (evaluate(calculation_plan, included) if calculation_plan is not None
+                program = calculation_plan if calculation_plan is not None else known_source_program(question, calculation_request, included)
+                problem = validate_named_formula(question, program, included) if program is not None else ""
+                if problem:
+                    return finish("insufficient_evidence", problem)
+                calculation = (evaluate(program, included) if program is not None
                                else propose_calculation(question, calculation_request, included, self.llm_client))
                 result["calculations"] = [calculation]
                 if calculation["status"] != "ok":

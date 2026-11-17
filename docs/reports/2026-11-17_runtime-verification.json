@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "scope": "Local development/runtime recovery, not final research acceptance",
+  "base_commit": "131efa257ca99e3f1264a64ef4f9b17b20c979f8",
+  "verification": {
+    "python_full": {
+      "passed": 517,
+      "warnings": 3,
+      "seconds": 436.18
+    },
+    "python_final_affected": {
+      "passed": 17
+    },
+    "node": {
+      "passed": 13
+    },
+    "ruff": "passed",
+    "candidate_filings_parsed_indexed_reopened": 18,
+    "companies": 10,
+    "canonical_faiss_records": 535,
+    "chart_candidates": 50,
+    "original_charts": 6,
+    "independent_review": "pending_user_confirms_none_completed",
+    "final_run_cells_completed": 0,
+    "final_run_cells_required": 28,
+    "independently_audited_final_outputs": 0,
+    "required_output_audit": 50,
+    "launcher_affected": {
+      "passed": 3
+    },
+    "whole_suite_scope": "517 combined tests before final margin-change guard and launcher. Then17affected semantic/web/token checks and3launcher checks passed; no blanket claim of a new full suite."
+  },
+  "benchmark_inputs": {
+    "FinanceBench": 150,
+    "FinQA": 1147,
+    "TAT-QA": 1663,
+    "FinanceBench_full_documents": 84,
+    "FinanceBench_pages": 12013,
+    "unreadable_pages": 65,
+    "annotated_page_shortfalls": 0,
+    "source_equivalent_engine_adapter": "pending"
+  },
+  "live": {
+    "provider_generation": "passed",
+    "missing_model_refusal": "passed",
+    "browser_margin_percent": 41.78,
+    "narrative_api": "passed_179.9_seconds",
+    "narrative_browser": "failed_gateway_then_provider_deadline",
+    "chart_unaccepted_refusal": "passed",
+    "mobile_width": 390,
+    "mobile_document_width": 375,
+    "captured_console_errors_warnings": 0,
+    "hosted_engine": "not_connected",
+    "restart": "passed: four detached services healthy after launcher exit; fresh browser source-bound41.78percent answer observed",
+    "screenshot_capture": "failed browser screenshot timeout; no saved screenshot claimed"
+  },
+  "presentation": {
+    "path": "docs/reports/2026-11-17_verified_slides.pptx",
+    "slides": 6,
+    "all_rendered_slides_visually_inspected": true,
+    "native_powerpoint_execution": false,
+    "sha256": "24f60e998e75fc7a944d998852b66aecda4645c63fd1e10d8c472b6532123303"
+  },
+  "submission": "PREPARED_NOT_SUBMITTED",
+  "remaining": [
+    "independent source/chart/caption acceptance",
+    "source-equivalent benchmark engine/factory and A/B/E/F/G integration",
+    "development capacity pilot and final freeze",
+    "full A-G/RAGAS/Llama execution and paired intervals",
+    "independent fifty-output review",
+    "authenticated hosted backend and verified two-user/email sign-in",
+    "actual course upload receipt"
+  ],
+  "evidence_sha256": {
+    "docs/reports/2026-11-17-runtime/api-narrative.json": "81ce67c0ae9a11a67b7f581d8c0888e0607ea9c99b14a09534a00395c6e1dd57",
+    "docs/reports/2026-11-17-runtime/browser-margin-corrected.json": "2e15fdb9ea151f360ced8775dbf3a7d000264cc3360911a615582ae313b26f10",
+    "docs/reports/2026-11-17-runtime/canonical_audit.json": "c263a4534cade2ade15299d6f236ae53e861a0a0ab5da590a05d03eb7eb3dfb4",
+    "docs/reports/2026-11-17-runtime/corpus-coverage.json": "b1a4442344be9efefa0ce89b7739cc0b2c4bd91bf315b970ece1b0330cf7b6c4",
+    "docs/reports/2026-11-17-runtime/corpus-reproduction.json": "64af448319ec2aad1531d2e298ac6deebb37fd4f3a1c29b94be66523b0628313",
+    "docs/reports/2026-11-17-runtime/financebench-binding.json": "b830582235d09715a22b10cf0dea3920744bb8cdceab0a37d5d0f657306ce34d",
+    "docs/reports/2026-11-17-runtime/financebench-context-manifest.json": "ce152ff61cbd872dc3cc2e98379c6d791eac0a5f3c83e9fce1f83a351c635e30",
+    "docs/reports/2026-11-17-runtime/focused-tests.txt": "560b52fba8c9351e1a8f870f90e825e410d62f6e5ef44befae85d2d051ec3011",
+    "docs/reports/2026-11-17-runtime/live-generation.json": "a825d5518bcb5e1f95417776d40ac35e98e9efe71cb31c1f07d8f2d71986ef06",
+    "docs/reports/2026-11-17-runtime/official-import-manifest.json": "f9de56fd4fa0610f3ae64835be808b3483397b4c3d015a6008bf254f4e80cd3d",
+    "docs/reports/2026-11-17-runtime/pytest.txt": "2c321c067a545b6db8f635f073910b68546d745b6fd3b34202644d886d1dff1a",
+    "docs/reports/2026-11-17-runtime/ruff.txt": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "docs/reports/2026-11-17-runtime/launcher-tests.txt": "fbd78fec782001f93d58ec55c49ed2f14ea9bf835f6197896c81813538559ce5"
+  }
+}

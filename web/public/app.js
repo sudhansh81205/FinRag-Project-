@@ -18,7 +18,7 @@ function view(name) {
   if (name === 'saved') renderSaved();
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
-function setMode(mode) { clearResult();state.mode = mode;$$('.mode').forEach(node => { const active = node.dataset.mode === mode;node.classList.toggle('active', active);node.setAttribute('aria-pressed', String(active)); }); }
+function setMode(mode) { state.mode = mode;$$('.mode').forEach(node => { const active = node.dataset.mode === mode;node.classList.toggle('active', active);node.setAttribute('aria-pressed', String(active)); }); }
 function updateCount() { $('#char-count').textContent = `${$('#question').value.length.toLocaleString()} / 2,000`; }
 function updateFilings() {
   const selected = state.filings.filter(f => f.ticker === $('#company').value);
@@ -26,11 +26,11 @@ function updateFilings() {
   updatePeriod();
 }
 function updatePeriod() { const filing = state.filings.find(f => f.accession === $('#filing').value);if (filing) { $('#period').value = filing.period_end;$('#period').max = filing.period_end; } }
-function query() { return { question: $('#question').value.trim(), ticker: $('#company').value, accession: $('#filing').value, value_period_end: $('#period').value, scope: 'consolidated', mode: state.mode }; }
+function query() { return { question: $('#question').value.trim(), ticker: $('#company').value, accession: $('#filing').value, value_period_end: $('#period').value, period_kind: $('#period-kind').value, scope: 'consolidated', mode: state.mode }; }
 function loadQuery(value) {
-  if (state.busy) return;
-  clearResult();
-  $('#company').value = value.ticker;updateFilings();$('#filing').value = value.accession;updatePeriod();$('#period').value = value.value_period_end;$('#question').value = value.question;setMode(value.mode || 'auto');updateCount();view('research');$('#question').focus();
+  if (state.busy) { toast('Wait for the current research request to finish.');return; }
+  invalidateResult();
+  $('#company').value = value.ticker;updateFilings();$('#filing').value = value.accession;updatePeriod();$('#period').value = value.value_period_end;$('#period-kind').value = value.period_kind || 'duration';$('#question').value = value.question;setMode(value.mode || 'auto');updateCount();view('research');$('#question').focus();
 }
 function safeSource(raw) { try { const url = new URL(raw);return url.protocol === 'https:' && ['www.sec.gov', 'www.annualreports.com', 'annualreports.com'].includes(url.hostname) ? url.href : null; } catch { return null; } }
 function sourceLink(raw, label = 'Open original filing ↗') { const url = safeSource(raw);if (!url) return element('span', 'Source link unavailable', 'mono muted');const link = element('a', label);link.href = url;link.target = '_blank';link.rel = 'noopener noreferrer';return link; }
@@ -61,17 +61,22 @@ function renderAnswer(result) {
   $('#copy-answer').hidden = result.status !== 'ok';$('#export-answer').hidden = !result;$('#save-question').hidden = false;
   if (result.status === 'ok') renderEvidence(result);
 }
-function clearResult() { if (state.busy) return;state.result = null;state.lastQuery = null;$('#answer-section').hidden = true;clearEvidence(); }
-function setQueryDisabled(disabled) { $$('#question, #company, #filing, #period, .mode, [data-example], .filing-actions button').forEach(n => { n.disabled = disabled; }); }
 function clearEvidence() { const desk = $('#evidence-desk');desk.replaceChildren(element('h2', 'A clean evidence desk.'), element('p', 'Included source passages and checked calculations will appear after a successful, grounded answer.')); }
+function invalidateResult() {
+  state.result = null;state.lastQuery = null;$('#answer-section').hidden = true;
+  $('#copy-answer').hidden = true;$('#export-answer').hidden = true;$('#save-question').hidden = true;clearEvidence();
+}
+function lockRequest(locked) {
+  $$('#question, #company, #filing, #period, #period-kind, .mode, [data-example], .filing-actions button').forEach(control => { control.disabled = locked; });
+}
 async function investigate() {
   if (state.busy) return;
   if ($('#question').value.trim().length < 3) { $('#question').focus();toast('Enter a financial question first.');return; }
-  state.busy = true;setQueryDisabled(true);state.result = null;state.lastQuery = query();$('#ask').disabled = true;$('#ask').firstElementChild.textContent = 'Investigating';clearEvidence();$('#answer-section').hidden = false;$('#copy-answer').hidden = true;$('#export-answer').hidden = true;$('#save-question').hidden = true;
+  state.busy = true;state.result = null;state.lastQuery = query();lockRequest(true);$('#ask').disabled = true;$('#ask').firstElementChild.textContent = 'Investigating';clearEvidence();$('#answer-section').hidden = false;$('#copy-answer').hidden = true;$('#export-answer').hidden = true;$('#save-question').hidden = true;
   const loading = element('div', undefined, 'answer-card');loading.append(element('span', 'CHECKING SOURCE AVAILABILITY', 'result-state'), element('h2', 'Following the paper trail…'), element('div', undefined, 'progress-line'));$('#answer-body').replaceChildren(loading);
   try { state.result = await api('answer', { method: 'POST', body: JSON.stringify(state.lastQuery) });if (!state.result.status) throw new Error(); }
   catch { state.result = { status: 'service_error', answer: '', evidence: [], calculations: [], message: 'The service could not be reached. Please try again.' }; }
-  finally { state.busy = false;setQueryDisabled(false);$('#ask').disabled = false;$('#ask').firstElementChild.textContent = 'Investigate';renderAnswer(state.result); }
+  finally { state.busy = false;lockRequest(false);$('#ask').disabled = false;$('#ask').firstElementChild.textContent = 'Investigate';renderAnswer(state.result); }
 }
 function systemRow(title, message, status) { const row = element('article', undefined, 'system-row');const text = element('div');text.append(element('h2', title), element('p', message));row.append(text, element('span', status));return row; }
 function renderSystem() {
@@ -100,8 +105,9 @@ async function renderSaved() {
   } catch { body.replaceChildren(element('p', 'Your saved questions could not be reached.')); }
 }
 $$('[data-view]').forEach(button => button.addEventListener('click', () => view(button.dataset.view)));
-$$('.mode').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
-$('#company').addEventListener('change', () => { clearResult();updateFilings(); });$('#filing').addEventListener('change', () => { clearResult();updatePeriod(); });$('#period').addEventListener('change', clearResult);$('#filing-search').addEventListener('input', renderLibrary);$('#question').addEventListener('input', () => { clearResult();updateCount(); });$('#ask').addEventListener('click', investigate);
+$$('.mode').forEach(button => button.addEventListener('click', () => { invalidateResult();setMode(button.dataset.mode); }));
+$('#company').addEventListener('change', () => { invalidateResult();updateFilings(); });$('#filing').addEventListener('change', () => { invalidateResult();updatePeriod(); });$('#period').addEventListener('change', invalidateResult);$('#filing-search').addEventListener('input', renderLibrary);$('#question').addEventListener('input', () => { invalidateResult();updateCount(); });$('#ask').addEventListener('click', investigate);
+$('#period-kind').addEventListener('change', invalidateResult);
 $('#new-research').addEventListener('click', () => { if (state.busy) return;view('research');$('#question').value = '';updateCount();$('#answer-section').hidden = true;state.result = null;clearEvidence();$('#question').focus(); });
 document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') { event.preventDefault();investigate(); }if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault();view('research');$('#question').focus(); } });
 const examples = { margin: ['What was Apple’s gross margin percentage in fiscal year 2021?', 'numerical'], risk: ['What supply-chain risks does Apple describe in its fiscal 2021 annual report?', 'narrative'], chart: ['How did Apple’s shareholder returns compare with the S&P 500 in the 2021 report?', 'chart'] };

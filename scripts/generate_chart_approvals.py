@@ -1,4 +1,4 @@
-"""Generate Ujjwal's independent chart approval ledger from genuine human review marks.
+"""Bind explicitly supplied human review marks without inventing a reviewer or pass.
 
 Reads verified human review marks from docs/reports/2026-11-15_chart_review_inputs.json,
 binds each decision to the candidate case SHA-256 fingerprint, validates via
@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from src.charts.dataset import case_fingerprint, load_candidate_set, load_reviewed_set, sha  # noqa: E402
 
 
-def load_review_marks(inputs_path: Path) -> dict[str, dict]:
+def load_review_marks(inputs_path: Path) -> tuple[dict, dict[str, dict]]:
     """Load per-case review decisions and visual check notes from JSON."""
     if not inputs_path.is_file():
         raise FileNotFoundError(f"Review marks input file missing: {inputs_path}")
@@ -28,7 +28,20 @@ def load_review_marks(inputs_path: Path) -> dict[str, dict]:
     if not cases_list:
         raise ValueError(f"No cases found in review inputs: {inputs_path}")
 
-    return {c["id"]: c for c in cases_list}
+    reviewer = data.get("reviewer_identity")
+    if (not isinstance(reviewer, str) or not reviewer.strip()
+            or data.get("method") != "human_original_image_and_source"):
+        raise ValueError("Explicit human reviewer identity and method are required; flags alone are not human review")
+    try:
+        reviewed_at = datetime.fromisoformat(data["reviewed_at"])
+        if reviewed_at.tzinfo is None or reviewed_at > datetime.now(UTC):
+            raise ValueError
+    except (KeyError, TypeError, ValueError) as exc:
+        raise ValueError("A genuine, timezone-aware, non-future review timestamp is required") from exc
+    marks = {c["id"]: c for c in cases_list}
+    if len(marks) != len(cases_list):
+        raise ValueError("Duplicate human review decisions")
+    return data, marks
 
 
 def main():
@@ -36,22 +49,28 @@ def main():
     parser.add_argument(
         "--inputs",
         type=Path,
-        default=ROOT / "docs/reports/2026-11-15_chart_review_inputs.json",
+        required=True,
         help="Path to per-case review marks JSON file.",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "docs/reports/2026-11-15_chart_approvals_ujjwal.json",
+        required=True,
         help="Path to output approval ledger JSON.",
     )
+    parser.add_argument("--trusted-reviewer", action="append", required=True,
+                        help="Explicit authorized reviewer identity; never inferred from this program")
+    parser.add_argument("--label-author", action="append", default=["Rushil Mohan", "rmo29", "ai-assisted"])
     args = parser.parse_args()
 
     charts_dir = ROOT / "data/charts"
     cases, manifest, audit = load_candidate_set(charts_dir)
     print(f"Loaded {len(cases)} candidate chart cases")
 
-    review_marks = load_review_marks(args.inputs)
+    review_document, review_marks = load_review_marks(args.inputs)
+    reviewer = review_document["reviewer_identity"]
+    if reviewer not in args.trusted_reviewer or reviewer in args.label_author:
+        raise ValueError("Reviewer is untrusted or a label author")
     print(f"Loaded {len(review_marks)} review marks from {args.inputs}")
 
     decisions = []
@@ -74,9 +93,11 @@ def main():
             continue
 
         mark = review_marks[cid]
-        decision = mark.get("decision", "passed")
-        orig_checked = mark.get("original_image_checked", False)
-        prov_checked = mark.get("source_provenance_checked", False)
+        if mark.get("case_sha256") != case_fingerprint(c):
+            raise ValueError(f"Human mark is missing/stale for the exact candidate bytes: {cid}")
+        decision = mark.get("decision", "unreviewed")
+        orig_checked = mark.get("original_image_checked") is True
+        prov_checked = mark.get("source_provenance_checked") is True
         basis = mark.get("reviewer_notes") or mark.get("basis", "")
 
         if decision == "passed" and orig_checked and prov_checked:
@@ -99,7 +120,7 @@ def main():
     passed_count = len(passed_cases)
     all_passed_and_checked = (passed_count == total_count) and not rejected_cases and not unreviewed_cases
 
-    # Use human method only if all cases were inspected against original image & source
+    # Human method comes from explicit review evidence, never inferred from booleans.
     method = "human_original_image_and_source" if all_passed_and_checked else "ai_assisted_unreviewed"
 
     ledger = {
@@ -109,8 +130,8 @@ def main():
             "question_files_sha256": audit["question_files_sha256"],
             "source_manifest_sha256": audit["source_manifest_sha256"],
         },
-        "reviewer_identity": "Ujjwal Chandak",
-        "reviewed_at": datetime.now(UTC).isoformat(),
+        "reviewer_identity": reviewer,
+        "reviewed_at": review_document["reviewed_at"],
         "method": method,
         "review_summary": {
             "total_candidates": total_count,
@@ -133,7 +154,10 @@ def main():
         print(f"\n[SUCCESS] All {total_count}/{total_count} candidate chart questions verified and passed!")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
+    encoded = json.dumps(ledger, indent=2) + "\n"
+    if args.output.exists() and args.output.read_text(encoding="utf-8") != encoded:
+        raise FileExistsError("Existing review evidence differs; preserve it and choose a new output path")
+    args.output.write_text(encoded, encoding="utf-8")
     print(f"Wrote ledger to {args.output}")
 
     # Validate ledger via load_reviewed_set
@@ -141,11 +165,12 @@ def main():
         reviewed, _, report = load_reviewed_set(
             charts_dir,
             args.output,
-            trusted_reviewers={"Ujjwal Chandak"},
-            label_authors={"Rushil Mohan", "rmo29", "ai-assisted"},
+            trusted_reviewers=set(args.trusted_reviewer),
+            label_authors=set(args.label_author),
         )
         print("load_reviewed_set validation passed successfully!")
         print(f"Status: {report['status']}, evaluation_ready: {report['evaluation_ready']}")
+        print("Question-ledger structure passed; actual human authenticity and separate caption acceptance require their own evidence.")
     except ValueError as exc:
         print(f"load_reviewed_set noted non-human or incomplete approval: {exc}")
 

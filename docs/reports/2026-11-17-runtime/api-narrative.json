@@ -1,0 +1,251 @@
+{
+  "request": {
+    "question": "What supply-chain risks does Apple describe in its fiscal 2021 annual report?",
+    "ticker": "AAPL",
+    "accession": "0000320193-21-000105",
+    "value_period_end": "2021-09-25",
+    "period_kind": "duration",
+    "scope": "consolidated",
+    "mode": "narrative"
+  },
+  "response": {
+    "status": "ok",
+    "question": "What supply-chain risks does Apple describe in its fiscal 2021 annual report?",
+    "answer": "### Direct Answer:\nApple describes risks related to information technology system failures, network disruptions, natural disasters, cybersecurity incidents, and vendor business continuity planning within its fiscal 2021 annual report.\n\n### Financial Evidence:\nThe Company and its global supply chain are exposed to information technology system failures or network disruptions caused by natural disasters, accidents, power disruptions, telecommunications failures, acts of terrorism or war, computer viruses, physical or electronic break-ins, ransomware or other cybersecurity incidents, or other events or disruptions [Evidence ID: 0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3]. System redundancy and other continuity measures may be ineffective or inadequate, and the Company\u2019s or its vendors\u2019 business continuity and disaster recovery planning may not be sufficient for all eventualities [Evidence ID: 0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3]. Such failures or disruptions can adversely impact the Company\u2019s business by, among other things, preventing access to the Company\u2019s online services, interfering with customer transactions or impeding the manufacturing and shipping of the Company\u2019s products [Evidence ID: 0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3].\n\n### Sources Cited:\n[Evidence ID: 0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3]",
+    "message": "",
+    "latency_seconds": 179.323,
+    "route": {
+      "narrative": true,
+      "table": false,
+      "chart": false,
+      "chart_blocked_reason": "No independently approved chart adapter",
+      "attempts": [
+        {
+          "tier": 1,
+          "narrative_limit": 5,
+          "table_limit": 0,
+          "ranked_ids": [
+            "0000320193-21-000105:item8:narrative_text:4f308ef58f6e:b8c64f782a18fdd3",
+            "0000320193-21-000105:item8:narrative_text:00ac5ca89736:3f81cc35c8c7c872",
+            "0000320193-21-000105:item1a:narrative_text:f63cabfb91d5:d46cf430dae3c268",
+            "0000320193-21-000105:item7:narrative_text:bc82f886bc93:f429adeacadc4870",
+            "0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3",
+            "0000320193-21-000105:item7:narrative_text:a3267de3c720:3c15359345c6760e",
+            "0000320193-21-000105:item8:narrative_text:f614018ac964:13544f814eaf6fcd",
+            "0000320193-21-000105:item8:narrative_text:38577e98d501:1d64377fe37e5c46",
+            "0000320193-21-000105:item8:narrative_text:fe1514fe6f0d:460b1787cee8d56d"
+          ],
+          "stop_reason": "thresholds_satisfied"
+        }
+      ]
+    },
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "evidence": [
+      {
+        "content": "We also have audited, in accordance with the standards of the Public Company Accounting Oversight Board (United States) (the \u201cPCAOB\u201d), Apple Inc.\u2019s internal control over financial reporting as of September 25, 2021, based on criteria established in Internal Control \u2013 Integrated Framework issued by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework) and our report dated October 28, 2021 expressed an unqualified opinion thereon.",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 8",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(564)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "b8c64f782a18fdd38068d4395ff4f473cdc6f960e802e881f19eb12a00f39d07",
+          "type": "narrative_text",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-v1",
+          "char_start": 0,
+          "char_end": 464
+        },
+        "evidence_id": "0000320193-21-000105:item8:narrative_text:4f308ef58f6e:b8c64f782a18fdd3",
+        "score": 0.623249888420105,
+        "score_type": "cosine",
+        "dense_rank": 1,
+        "eligible_count": 316,
+        "rrf_score": 0.032018442622950824,
+        "rrf_component_ranks": {
+          "list_0_rank": 1,
+          "list_1_rank": 4
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.623249888420105,
+            "score_type": "cosine"
+          },
+          "list_1": {
+            "score": 9.875545169386095,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "content": "Apple Inc.\u2019s management is responsible for maintaining effective internal control over financial reporting, and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management\u2019s Annual Report on Internal Control over Financial Reporting. Our responsibility is to express an opinion on Apple Inc.\u2019s internal control over financial reporting based on our audit. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to Apple Inc. in accordance with the U.S. federal securities laws and the applicable rules and regulations of the U.S. Securities and Exchange Commission and the PCAOB.",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 8",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(588)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "3f81cc35c8c7c8721944244d4f57b61cd15be0486a892b82e5b195cbe1646bbb",
+          "type": "narrative_text",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-v1",
+          "char_start": 0,
+          "char_end": 695
+        },
+        "evidence_id": "0000320193-21-000105:item8:narrative_text:00ac5ca89736:3f81cc35c8c7c872",
+        "bm25_score": 12.890532739428457,
+        "bm25_rank": 1,
+        "eligible_count": 316,
+        "rrf_score": 0.01639344262295082,
+        "rrf_component_ranks": {
+          "list_1_rank": 1
+        },
+        "rrf_component_scores": {
+          "list_1": {
+            "score": 12.890532739428457,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "content": "The Company is exposed to the risk of write-downs on the value of its inventory and other assets, in addition to purchase commitment cancellation risk.",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 1A",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(189)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "d46cf430dae3c268e5a073814cb2dedb39763be5507abbde3280c42493d6520d",
+          "type": "narrative_text",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-v1",
+          "char_start": 0,
+          "char_end": 151
+        },
+        "evidence_id": "0000320193-21-000105:item1a:narrative_text:f63cabfb91d5:d46cf430dae3c268",
+        "score": 0.6066650152206421,
+        "score_type": "cosine",
+        "dense_rank": 2,
+        "eligible_count": 316,
+        "rrf_score": 0.016129032258064516,
+        "rrf_component_ranks": {
+          "list_0_rank": 2
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.6066650152206421,
+            "score_type": "cosine"
+          }
+        }
+      },
+      {
+        "content": "The following discussion should be read in conjunction with the consolidated financial statements and accompanying notes included in Part II, Item 8 of this Form 10-K. This section of this Form 10-K generally discusses 2021 and 2020 items and year-to-year comparisons between 2021 and 2020. Discussions of 2019 items and year-to-year comparisons between 2020 and 2019 are not included in this Form 10-K, and can be found in \u201cManagement\u2019s Discussion and Analysis of Financial Condition and Results of Operations\u201d in Part II, Item 7 of the Company\u2019s Annual Report on Form 10-K for the fiscal year ended September 26, 2020.",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 7",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(322)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "f429adeacadc4870c517794e98cd798a7861b08ba1fe147a00e359b311716b08",
+          "type": "narrative_text",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-v1",
+          "char_start": 0,
+          "char_end": 620
+        },
+        "evidence_id": "0000320193-21-000105:item7:narrative_text:bc82f886bc93:f429adeacadc4870",
+        "bm25_score": 11.850772305346926,
+        "bm25_rank": 2,
+        "eligible_count": 316,
+        "rrf_score": 0.016129032258064516,
+        "rrf_component_ranks": {
+          "list_1_rank": 2
+        },
+        "rrf_component_scores": {
+          "list_1": {
+            "score": 11.850772305346926,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "content": "The Company and its global supply chain are exposed to information technology system failures or network disruptions caused by natural disasters, accidents, power disruptions, telecommunications failures, acts of terrorism or war, computer viruses, physical or electronic break-ins, ransomware or other cybersecurity incidents, or other events or disruptions. System redundancy and other continuity measures may be ineffective or inadequate, and the Company\u2019s or its vendors\u2019 business continuity and disaster recovery planning may not be sufficient for all eventualities. Such failures or disruptions can adversely impact the Company\u2019s business by, among other things, preventing access to the Company\u2019s online services, interfering with customer transactions or impeding the manufacturing and shipping of the Company\u2019s products. These events could materially adversely affect the Company\u2019s business, reputation, results of operations and financial condition.",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 1A",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(215)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "e3b3248da913aeb3ce0ec963b11fce3d4182b29c4954b3083462dea8c1a0fee7",
+          "type": "narrative_text",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-v1",
+          "char_start": 0,
+          "char_end": 959
+        },
+        "evidence_id": "0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3",
+        "score": 0.6049235463142395,
+        "score_type": "cosine",
+        "dense_rank": 3,
+        "eligible_count": 316,
+        "rrf_score": 0.015873015873015872,
+        "rrf_component_ranks": {
+          "list_0_rank": 3
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.6049235463142395,
+            "score_type": "cosine"
+          }
+        }
+      }
+    ],
+    "calculations": [],
+    "chart_info": null,
+    "request": {
+      "ticker": "AAPL",
+      "company": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "filing_period_end": "2021-09-25",
+      "value_period_end": "2021-09-25",
+      "scope": "consolidated",
+      "period_kind": "duration"
+    },
+    "evidence_origin": "engine_retrieved",
+    "included_evidence_ids": [
+      "0000320193-21-000105:item8:narrative_text:4f308ef58f6e:b8c64f782a18fdd3",
+      "0000320193-21-000105:item8:narrative_text:00ac5ca89736:3f81cc35c8c7c872",
+      "0000320193-21-000105:item1a:narrative_text:f63cabfb91d5:d46cf430dae3c268",
+      "0000320193-21-000105:item7:narrative_text:bc82f886bc93:f429adeacadc4870",
+      "0000320193-21-000105:item1a:narrative_text:756f86b3288a:e3b3248da913aeb3"
+    ]
+  },
+  "http_status": 200,
+  "observed_seconds": 179.89886629098328
+}

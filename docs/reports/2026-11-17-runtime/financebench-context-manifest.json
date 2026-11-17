@@ -1,0 +1,11 @@
+{
+  "source_manifest_sha256": "4851f11e1d914eed8b6381e1a60d845624f7503aa0751f0cf48a0c9d86d38e00",
+  "corpus_sha256": "3835be4be33b9abf6d4f655b54a91ca574f3d1669a6e3dd79483362112a9bd1a",
+  "document_count": 84,
+  "page_count": 12013,
+  "unreadable_pages": 65,
+  "failures": [],
+  "gold_selected_pages_used": false,
+  "context_universe": "all84documents_named_in_the_150_open_questions",
+  "final_experiment_ready": false
+}
