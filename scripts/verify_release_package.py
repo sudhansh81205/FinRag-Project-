@@ -30,6 +30,7 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "docs/reports/2026-11-18-checks/hosted-limited-verification.json",
     "docs/reports/2026-11-18-checks/limited-pytest.txt",
     "docs/reports/2026-11-18-checks/limited-node.txt",
     "src/workspace_corpus.py",
