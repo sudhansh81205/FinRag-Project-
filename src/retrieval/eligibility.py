@@ -9,7 +9,7 @@ from copy import deepcopy
 
 FILTER_KEYS = frozenset({
     "ticker", "accession", "section", "period_end", "period_start",
-    "fiscal_year", "scope", "normalized_unit",
+    "fiscal_year", "scope", "normalized_unit", "period_kind",
 })
 
 

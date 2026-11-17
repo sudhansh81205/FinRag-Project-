@@ -5,12 +5,44 @@ evidence/calculation inspector, JSON export, clear failure states and optional p
 The DoTA design reference informed hairlines, spacing and restrained motion. No analytics or external asset requests.
 
 ## Local
+For the prepared real-model workspace, run from the repository root:
+```bash
+.venv/bin/python scripts/run_local_workspace.py --status
+# If stopped, start the existing verified assets (no download):
+.venv/bin/python scripts/run_local_workspace.py
+```
+Open http://127.0.0.1:4180/. Defaults point to this checkout's existing sibling Ollama/GGUF assets,
+canonical source audit and BGE cache. Other machines must supply actual installed asset paths;
+use `--help`. The launcher refuses occupied ports and changed assets. Reuse a healthy running
+workspace; do not kill unrelated listeners. A partial startup needs inspection of `output/nov17/*.log`.
+
+The frontend alone can run without those assets:
 Node22+; no npm dependencies or installation:
 ```
 cd web
 npm run dev
 npm test
 ```
+That frontend-only command opens http://127.0.0.1:4173/ and cannot answer financial questions
+until its authenticated Python backend is configured.
+
+## Long answers
+The Python service advertises `jobs_supported`. The browser submits `/api/jobs` and polls
+`/api/jobs/poll`, each using a short HTTP call. The prepared backend persists private SQLite
+job status, runs one job at a time and accepts at most two pending jobs. A random 256-bit
+job reference acts as a bearer capability; do not share it. Completed results must match the
+exact original question, filing, period type and included evidence. Job access expires after
+15 minutes; startup marks interrupted work failed and never silently repeats generation.
+Transient polling transport failures are retried with bounded backoff, at most five consecutive attempts. Submission is never retried automatically, and completed model failures are final.
+The model's own pinned timeout still applies. This queue is single-process: run one Python
+service against a job store. Vercel is the stateless gateway; SQLite stays on the backend machine.
+
+Cloudflare Quick Tunnels may bridge this authenticated API for an explicitly approved temporary
+demonstration. They are not permanent hosting: laptop sleep or a stopped tunnel disconnects the
+site, and a new tunnel needs the Vercel backend URL updated. Keep raw Ollama private.
+
+## Current hosted demonstration
+Open https://finrag-workspace.vercel.app/ in the signed-in Brave session. Vercel Authentication protects all deployments. Numerical and narrative answers were verified through the real hosted flow; chart acceptance and saved-query authentication remain pending. The app deployment is bound to commit43ba054 and uses the separately approved temporary laptop HTTPS API. This is a file/API deployment; a Git push alone does not redeploy it. See `../docs/reports/2026-11-18_deployment-receipt.json`.
 
 ## Vercel Hobby
 Deploy this `web` directory as the project root. `vercel.json` serves `public` and the standard Node Function API.

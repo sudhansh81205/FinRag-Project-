@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "purpose": "frozen_experimental_controls_and_execution_manifest",
-  "frozen_by": "Ujjwal Chandak",
-  "frozen_at": "2026-11-16T06:11:45.557599+00:00",
+  "purpose": "superseded_unverified_experimental_controls_draft",
+  "frozen_by": null,
+  "frozen_at": null,
   "git_commit": "6814de5d3e788f5ef0423d79b218b77697f5b756",
   "common_controls": {
     "embedding_model": "BAAI/bge-base-en-v1.5",
@@ -17,7 +17,7 @@
   },
   "execution_parameters": {
     "max_context_passages": 5,
-    "context_token_budget": 4000,
+    "context_token_budget": null,
     "numerical_relative_tolerance": 0.01,
     "zero_absolute_tolerance": 0.001,
     "random_seed": 42,
@@ -170,19 +170,21 @@
     }
   },
   "capacity_gate_decision": {
-    "measured_machine": "12 cores Intel x86_64, 15.7 GB RAM",
-    "full_cpu_estimate_hours": 90.87,
-    "deadline_window_hours": 72.0,
-    "status": "core_suite_prioritized",
-    "approved_prioritized_cases": 300,
-    "approved_estimated_hours": 9.05
+    "status": "unmeasured_unapproved",
+    "measured_machine": null,
+    "estimated_hours": null,
+    "approved_by": null
   },
   "prerequisite_gate_status": {
-    "canonical_cells_and_parents": "available_via_corpus_audit",
-    "fixed_overlap_index_representation": "available_via_corpus_audit",
-    "section_aware_index_representation": "available_via_corpus_audit",
-    "independent_chart_approval": "available_via_independent_review",
-    "bge_reranker_base": "gated_unfitted",
-    "frozen_routing_thresholds": "unfrozen_uncalibrated"
-  }
+    "canonical_cells_and_parents": "unverified_historical_claim_not_an_acceptance_record",
+    "fixed_overlap_index_representation": "unverified_historical_claim_not_an_acceptance_record",
+    "section_aware_index_representation": "unverified_historical_claim_not_an_acceptance_record",
+    "independent_chart_approval": "unverified_historical_claim_not_an_acceptance_record",
+    "bge_reranker_base": "unverified_historical_claim_not_an_acceptance_record",
+    "frozen_routing_thresholds": "unverified_historical_claim_not_an_acceptance_record"
+  },
+  "artifact_status": "superseded_unverified_draft",
+  "superseded_by": "docs/handoffs/2026-11-17_deployment-review.md",
+  "correction": "The generating script inserted a reviewer name and hardcoded capacity without independent evidence. These fields are withdrawn; this artifact does not establish a freeze or approval.",
+  "final_experiment_ready": false
 }

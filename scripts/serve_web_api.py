@@ -10,23 +10,50 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.config import load_settings  # noqa: E402
-from src.web_api import WebApplication, build_prepared_engine  # noqa: E402
+from src.web_api import WebApplication, build_prepared_engine, build_source_checked_engine  # noqa: E402
+from src.web_jobs import AnswerJobs  # noqa: E402
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
-    parser.add_argument("--enable-engine", action="store_true")
+    runtime = parser.add_mutually_exclusive_group()
+    runtime.add_argument("--enable-engine", action="store_true")
+    runtime.add_argument("--source-audit", type=Path,
+                         help="Bounded checked Apple development runtime; never final experiment acceptance")
     parser.add_argument("--variant", choices=["C", "D"], default="D")
     parser.add_argument("--tokenizer-dir")
+    parser.add_argument("--tokenizer-url", help="Existing local llama.cpp tokenizer service")
+    parser.add_argument("--gguf", type=Path, help="Existing generator GGUF file used by that service")
+    parser.add_argument("--gguf-sha256", help="Expected SHA-256 of the installed generator GGUF")
+    parser.add_argument("--model-cache", type=Path)
+    parser.add_argument("--job-store", type=Path, default=ROOT / "output/web-jobs.sqlite3",
+                        help="Private single-process job state; unfinished jobs fail on restart")
     args = parser.parse_args()
     token = os.environ.get("FINRAG_API_TOKEN", "")
     if len(token) < 32:
         parser.error("Set FINRAG_API_TOKEN to a private value of at least 32 characters.")
     settings = load_settings()
-    engine = build_prepared_engine(settings, variant=args.variant, tokenizer_dir=args.tokenizer_dir) if args.enable_engine else None
+    counter, tokenizer_id = None, None
+    if args.tokenizer_url:
+        if not args.gguf or not args.gguf_sha256:
+            parser.error("--tokenizer-url requires --gguf and --gguf-sha256")
+        from src.llm.token_budget import GGUFTokenCounter
+        counter = GGUFTokenCounter(args.tokenizer_url, args.gguf, args.gguf_sha256, server_root=ROOT)
+        tokenizer_id = counter.identity
+    if args.source_audit:
+        if counter is None:
+            parser.error("The bounded source runtime requires the identified installed GGUF tokenizer")
+        engine = build_source_checked_engine(settings, args.source_audit, token_counter=counter,
+                                              tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+    elif args.enable_engine:
+        engine = build_prepared_engine(settings, variant=args.variant, tokenizer_dir=args.tokenizer_dir,
+                                        token_counter=counter, tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+    else:
+        engine = None
     app = WebApplication(settings, engine)
+    jobs = AnswerJobs(args.job_store, app.answer)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -50,27 +77,36 @@ def main():
         def do_GET(self):
             if not self.authorized():
                 return
-            self.respond(app.health() if self.path == "/health" else {"status": "not_found"}, 200 if self.path == "/health" else 404)
+            self.respond({**app.health(), "jobs_supported": True} if self.path == "/health" else {"status": "not_found"}, 200 if self.path == "/health" else 404)
 
         def do_POST(self):
             if not self.authorized():
                 return
-            if self.path != "/answer":
+            if self.path not in {"/answer", "/jobs", "/jobs/poll"}:
                 self.respond({"status": "not_found"}, 404)
                 return
             try:
                 size = int(self.headers.get("Content-Length", "0"))
                 if not 0 < size <= 12000:
                     raise ValueError("size")
-                result = app.answer(json.loads(self.rfile.read(size)))
+                payload = json.loads(self.rfile.read(size))
+                if self.path == "/jobs":
+                    result = jobs.submit(payload)
+                elif self.path == "/jobs/poll":
+                    result = jobs.poll(payload.get("job_id") if isinstance(payload, dict) else None)
+                else:
+                    result = app.answer(payload)
             except (ValueError, TypeError):
                 result = {"status": "invalid_request", "answer": "", "message": "Invalid JSON request."}
             except Exception:
                 result = {"status": "service_error", "answer": "", "message": "Financial execution failed; no fallback used."}
-            self.respond(result, 400 if result["status"] == "invalid_request" else 200)
+            self.respond(result, 400 if result["status"] == "invalid_request" else 429 if result["status"] == "busy" else 200)
 
     print(f"FinRAG authenticated API on {args.host}:{args.port}; engine enabled: {engine is not None}")
-    ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
+    try:
+        ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
+    finally:
+        jobs.close()
 
 
 if __name__ == "__main__":

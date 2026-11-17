@@ -8,6 +8,8 @@
 
 ---
 
+Review update: the current implementation,530Python/17Node checks, queued real narrative/numerical demonstration and hosting blockers are documented in [the deployment review](2026-11-17_code-review.md). Historical observations below retain their original scope; no final evaluation or submission is inferred.
+
 ## 1. Introduction
 
 Financial decision-making demands high-precision information extraction from corporate disclosures. SEC Form 10-K annual reports contain intricate narrative disclosures (Item 1A Risk Factors, Item 7 Management’s Discussion and Analysis), multi-year comparative financial statements and footnotes (Item 8), and graphical performance charts. Standard Retrieval-Augmented Generation (RAG) models often suffer from three critical failure modes when applied to financial reports:
@@ -59,30 +61,35 @@ All variants share identical baseline controls: embedder `BAAI/bge-base-en-v1.5`
 
 ## 4. Results and Evaluation
 
-### 4.1 Software Verification (459 Passing Tests)
-The full software implementation was rigorously validated using automated unit and integration tests:
-- **Test Suite Status**: 459 passed, 0 failed, 0 regressions.
-- **Code Quality**: Ruff linter passes with zero warnings (`All checks passed!`).
-- **Verified Boundaries**:
-  - Request-bound retrieval: Apple FY2021 facts refuse to answer Microsoft FY2022 queries.
-  - Calculation safety: Valid Apple FY2021 margin (`(365,817 - 212,981) / 365,817 * 100 = 41.78%`) computes correctly; missing operands or zero denominators cleanly refuse.
-  - Unit normalization: `100M == 0.1B` passes with relative error \(\le 0.01\); incompatible scales fail.
-  - Diagnostic setup: `python app.py --check` reports honest `index_not_ready` without unhandled crashes.
+### 4.1 Software and real local runtime
 
-### 4.2 Truthful Experimental Status (Honest Reporting)
-In accordance with course guidelines, planning prose and test counts are not substituted for experimental benchmark outputs:
-- **A–G Benchmark Runs**: **Not Executed**. The test environment lacked a running Ollama daemon, Gemma 3 4B model weights, and GPU hardware. The benchmark runner matrix records 28 cells: 0 completed, 16 not started, 12 blocked (`docs/reports/2026-11-16_run_status.json`).
-- **Benchmark Corpus Provenance**: The 150/50/50 test files in `data/benchmarks/` were audited and classified as `synthetic_smoke_fixture` by Pavan's November 16 audit. Authentic, source-bound benchmark datasets were not imported.
-- **50-Output Independent Audit**: Because zero live LLM outputs were generated, the independent 50-output audit is recorded as a **shortfall of 50/50**. In accordance with academic integrity rules, outputs were not synthesized or fabricated.
+The previous 459-test figure is historical. PR16 at87fd821 passed491 Python and10 Node checks. The combined local suite passed517 Python tests and13Node checks;17affected regressions passed after the final margin-change guard. Ruff passed. Software tests are separate from research accuracy.
 
----
+A fresh pinned Gemma3:4b call succeeded through Ollama. Pinned BGE-base-en-v1.5 generated real768-D embeddings and exact FAISS persisted/reopened535Apple records. All18filings across10companies have parsed candidate packages and matched A/B/C indexes with reload/order checks. Automated source/package reproduction passed18/18. The canonical Apple audit passed source/cell/sidecar checks, DVC restore and MLflow readback. Wider independent acceptance remains pending.
 
-## 5. Discussion and Limitations
+The local browser returned Apple FY2021 gross margin **41.78%**, using GrossProfit152,836million divided by Revenue365,817million. Live testing first exposed a financially wrong formula that nonetheless passed arithmetic checks. Source-driven gross-margin construction and a separate semantic validator now reject it at planning, engine and application boundaries. Instant versus duration periods are explicit and eligibility narrows both streams before top-k. These known-formula checks do not establish correct interpretation of every arbitrary financial metric.
 
-1. **Request Binding vs. Arithmetic Correctness**: An answer can be mathematically correct yet financially invalid if attributed to the wrong entity or period. FinRAG enforces this constraint deterministically.
-2. **Synthetic vs. Official Benchmarks**: Passing smoke tests does not imply accuracy on official SEC benchmarking suites. Full benchmark evaluation remains gated on importing authentic datasets.
-3. **Hardware & Model Availability**: Running local 4B/12B generative models alongside cross-encoders requires measured GPU memory and execution time. Without local model infrastructure, execution feasibility cannot be claimed.
-4. **Transparent Partial Release**: Rather than presenting simulated metrics as real findings, the package discloses all unverified gates and unmet prerequisites openly.
+A real narrative response succeeded through the Python API. A separate browser narrative attempt exceeded the old180-second gateway deadline. The latest PR16 configurable240-second backend/250-second browser deadline is integrated; development traces are retained, including failures. These timings are individual observations, not a final latency distribution. The hosted deployment has not been connected to this local engine.
+
+### 4.2 Authentic benchmark inputs restored
+
+Pinned publisher bytes were imported without replacing the synthetic smoke fixtures: **FinanceBench150**, **FinQA1,147**, **TAT-QA1,663** cases. FinQA/TAT-QA inputs contain raw contexts, with gold programs/mappings and supplied retriever outputs excluded from inference inputs. TAT-QA does not provide verified issuer/accession identity, so none is invented.
+
+All84required FinanceBench full PDFs were restored and checked against publisher Git blob hashes. Extraction produced12,013pages, including65unreadable pages explicitly recorded. All150questions bind to every readable page in their source document. Annotator-selected support pages remain gold-only; no annotated support page is missing/unreadable in this extraction. Source-equivalent final engine adapters and independent dataset acceptance remain pending.
+
+### 4.3 Final evaluation and review remain incomplete
+
+The frozen A–G matrix still records **0/28completed run cells**. The development model calls above are outside that matrix. Full named-suite metrics, Recall@5/10, MRR, actual RAGAS, paired95%intervals and the separate Llama comparison are unavailable. No final accuracy is claimed.
+
+The user explicitly confirmed that **nobody has completed the independent review**. A packet covers50candidatechartquestions and6captions, with hashes and an unreviewed template. It does not grant label approval. The separate predeclared50-generated-output audit remains **0/50**, a shortfall of50. Historical ledger files are unverified submitted claims, not new evidence of human certification.
+
+## 5. Discussion and limitations
+
+1. Correct arithmetic does not establish the correct financial formula. Current semantic coverage explicitly supports gross margin, while other interpretations need validation.
+2. Restored datasets and candidate indexes do not complete matched A–G execution. A/B source adapters and real E/F/G stage integration remain unfinished. Current CLI does not yet supply a source-equivalent benchmark engine.
+3. The8GiB Apple M3 machine supports the bounded local demo but has slow generation and experienced native CPU thread crashes before the single-thread default repair. A representative development capacity pilot is required before a final freeze. No GPU requirement or full-run completion estimate is inferred from one query.
+4. Full cloud backend connectivity, verified email sign-in/two-real-user isolation and an observed course submission receipt remain open. Vercel connector access returned403 awaiting an owner grant; deployment protection remains enabled.
+5. Human independent acceptance cannot be replaced by automated flags or assistant-authored signatures. The package remains a **verified partial release**.
 
 ---
 
@@ -105,9 +112,9 @@ The schedule assigns one owner per day. Actual commit timestamps, attribution an
 
 ## 7. AI Usage Disclosure
 
-AI coding assistants (Claude Code, Antigravity) were utilized for code generation, unit test authoring, lint repairs, and report drafting. All generated artifacts were reviewed and verified through deterministic software checks. In strict accordance with course integrity rules:
+AI coding assistants (Claude Code, Antigravity and Codex) were utilized for code generation, unit test authoring, lint repairs, and report drafting. Automated code and artifact checks are recorded separately from human review and individual understanding. No claim of independent human review is made. In strict accordance with course integrity rules:
 - No human approval signatures, reviewer identities, or experimental metrics were fabricated.
-- Where live models were unavailable, outputs are reported honestly as missing or blocked.
+- Development model calls are saved separately from unexecuted final experiments; missing results remain missing.
 
 ---
 
@@ -131,14 +138,14 @@ AI coding assistants (Claude Code, Antigravity) were utilized for code generatio
 
 | Requirement | Area | Status | Evidence / Artifact |
 |---|---|:---:|---|
-| **R1** | Corpus Coverage | Partial | Apple 2021 accepted; 18 filings inventoried in `data/application_filings.json` |
+| **R1** | Corpus Coverage | Partial | Apple2021 bounded acceptance;18parsed/indexed candidatefilings, wider independent acceptance pending |
 | **R2** | Persistent Index | Partial | Exact FAISS `IndexFlatIP` implemented; verified by `scripts/verify_index.py` |
 | **R3** | Evidence Extraction | Partial | HTML/PDF parser with coordinate and cell extraction in `src/ingestion/` |
-| **R4** | Real Generation | Blocked | Gemma 3 4B pinned in configs; Ollama daemon unavailable on test machine |
+| **R4** | Real Generation | Local verified / final partial | Actual pinned Ollama Gemma3:4b generation and source-bound development answers |
 | **R5** | Safe Calculation | Verified | Authoritative Decimal tree in `src/llm/typed_calculator.py`; verified by tests |
-| **R6** | User Interface | Partial | Gradio application in `app.py` with request binding and diagnostic checks |
+| **R6** | User Interface | Partial | Gradio plus local web/API workspace; live numeric result verified; cloud/auth incomplete |
 | **R7** | Evaluation & Audit | Partial / Shortfall | Scaffold & metrics implemented; live runs blocked; 50-output audit shortfall is 50/50 |
-| **R8** | Delivery Package | Partial / Prepared | Final report, 6 slides, backup demo walkthrough, release manifest, submission receipt |
+| **R8** | Delivery Package | Partial / Prepared | Updated report, exactly6slides, backup walkthrough and release hashes; actual submission receipt absent |
 | **R9** | Restatements | Out of Scope | Unscheduled Phase 2 per proposal agreement |
 | **R10** | Advanced Retrieval | Partial | BM25, RRF (\(k=60\)), parent expansion, and routing in `src/retrieval/bm25.py` |
 | **R11** | Grounded Charts | Partial | 50 candidate questions on 6 charts; candidate approval ledger exists; independent acceptance not certified here |
@@ -156,11 +163,16 @@ AI coding assistants (Claude Code, Antigravity) were utilized for code generatio
    *Answer*: A grounded financial system cannot rely on uninspected facts or hallucinated constants. If an operand is dropped to fit the token budget, the conclusion is ungrounded and must be refused.
 
 3. **What distinguishes a bi-encoder from a cross-encoder?**  
-   *Answer*: A bi-encoder embeds queries and passages independently into a shared vector space for fast approximate search. A cross-encoder performs full cross-attention over concatenated query-passage tokens, capturing nuanced interactions at higher computational cost.
+   *Answer*: A bi-encoder embeds queries and passages independently into a shared vector space for fast vector search; this project uses exact FAISS search. A cross-encoder performs full cross-attention over concatenated query-passage tokens, capturing nuanced interactions at higher computational cost.
 
 4. **Why is this release classified as transparently partial?**  
-   *Answer*: While the software architecture, safety boundaries, and unit tests (459 passing) are complete, live model weights and GPU hardware were unavailable to execute the final A–G benchmark runs. Reporting unmeasured results would violate academic integrity; a partial package must still identify unmet course requirements; it is not evidence of full acceptance.
+   *Answer*: Real local generation, exact indexes and official dataset imports are verified. Source-equivalent final adapters, E/F/G integration, independent acceptance and the full A–G runs remain incomplete. Reporting unmeasured results would violate academic integrity; a partial package must still identify unmet course requirements; it is not evidence of full acceptance.
 
 
-## November17 evidence correction
-This is a prepared partial report. The historical six-slide binary has not been freshly visually certified; the written walkthrough is a procedure, not a recorded end-to-end demo. Current full A-G outputs, RAGAS, separate Llama comparison, full independent source/chart acceptance, fifty-output audit and final clean-runtime restore remain open. The receipt record is PREPARED_NOT_SUBMITTED. No GPU requirement is inferred: actual CPU/GPU model feasibility needs a measured pilot. Read docs/handoffs/2026-11-17_web-release-repairs.md for current code checks and limitations.
+## November17 implementation evidence
+See `docs/handoffs/2026-11-17_runtime-completion.md` and `docs/reports/2026-11-17_runtime-verification.json` for current checks, exact hashes and reproducible commands. The refreshed six-slide binary has been rendered and visually inspected as recorded there. The backup walkthrough remains a written procedure, not a recorded video. The acknowledgement remains PREPARED_NOT_SUBMITTED. Historical files remain in Git history.
+
+
+## Primary bibliography checked17November2026
+
+[RAG, Lewis et al.](https://arxiv.org/abs/2005.11401), [FinanceBench, Islam et al.](https://arxiv.org/abs/2311.11944), [FinQA, Chen et al.](https://aclanthology.org/2021.emnlp-main.300/), [TAT-QA, Zhu et al.](https://aclanthology.org/2021.acl-long.254/), [C-Pack/BGE, Xiao et al.](https://arxiv.org/abs/2309.07597), [RAGAS, Es et al.](https://arxiv.org/abs/2309.15217). The paper citations describe prior work, not completed local RAGAS or cross-encoder evaluation.

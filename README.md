@@ -1,5 +1,11 @@
 # FinRAG
 
+## Current reviewed runtime
+
+See [run and deployment handoff](docs/handoffs/2026-11-17_deployment-review.md) for the prepared site command and [code review](docs/reports/2026-11-17_code-review.md) for fixes, verification and remaining gates. The live Apple demonstration works; final benchmark readiness remains false.
+
+Current verified runtime/data progress, checks and remaining acceptance: [November17 implementation](docs/handoffs/2026-11-17_runtime-completion.md). Use the [refreshed six-slide deck](docs/reports/2026-11-17_verified_slides.pptx). The project remains partial.
+
 Start the runtime/completion handoff with [Rushil’s guide](docs/handoffs/RUSHIL_START_HERE.md) and [the GPT/Codex prompt](docs/handoffs/RUSHIL_CODEX_PROMPT.md).
 
 ## Web research workspace

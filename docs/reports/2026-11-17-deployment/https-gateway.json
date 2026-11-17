@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-11-17T18:20:40.850Z",
+  "scope": "local execution of production gateway handler over approved HTTPS tunnel; not a Vercel deployment",
+  "transport": "authenticated HTTPS",
+  "transient_poll_failures": 0,
+  "http": 200,
+  "status": "ok",
+  "elapsed_seconds": 13.814,
+  "request": {
+    "question": "What was Apple’s gross margin percentage in fiscal year 2021?",
+    "ticker": "AAPL",
+    "accession": "0000320193-21-000105",
+    "value_period_end": "2021-09-25",
+    "period_kind": "duration",
+    "scope": "consolidated",
+    "mode": "numerical"
+  },
+  "answer": "Verified result: 41.78%. Exact result: 41.77935962516777514440280249 percent.\nProgram (normalized source values): ratio_percent(152836000000, 365817000000).\nratio_percent(x, y) = x / y × 100.\nSources: [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3]",
+  "evidence_count": 5,
+  "included_evidence_ids": [
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+    "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+    "0000320193-21-000105:item8:financial_table:7b2551636d7d:b3434e1b9d7330e1:r13:c3",
+    "0000320193-21-000105:item8:financial_table:7b2551636d7d:b3434e1b9d7330e1:r16:c3",
+    "0000320193-21-000105:item8:financial_table:7b2551636d7d:b3434e1b9d7330e1:r33:c3"
+  ],
+  "final_experiment_ready": false
+}

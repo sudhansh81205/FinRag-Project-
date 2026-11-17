@@ -18,6 +18,41 @@ def test_invalid_web_requests_refuse_before_runtime():
         assert app.answer(value)["status"] == "invalid_request"
 
 
+def test_narrative_mode_excludes_unrequested_comparative_numeric_cells():
+    class Engine:
+        def answer_financial_question(self, **kwargs):
+            assert kwargs["top_k_text"] == 5 and kwargs["top_k_tables"] == 0
+            assert "calculation_request" not in kwargs
+            return {"status": "insufficient_evidence", "message": "No matching narrative"}
+
+    app = WebApplication(load_settings(environ={}), Engine())
+    payload = {"question": "What are the risks?", "ticker": "AAPL", "accession": "0000320193-21-000105",
+               "value_period_end": "2021-09-25", "scope": "consolidated", "mode": "narrative"}
+    assert app.answer(payload)["message"] == "No matching narrative"
+    assert app.answer({**payload, "period_kind": "invented"})["status"] == "invalid_request"
+
+
+def test_review_marks_require_real_identity_timestamp_and_method(tmp_path):
+    import json
+
+    import pytest
+
+    from scripts.generate_chart_approvals import load_review_marks
+
+    path = tmp_path / "review.json"
+    path.write_text(json.dumps({"cases": [{"id": "c1", "decision": "passed"}]}))
+    with pytest.raises(ValueError, match="identity"):
+        load_review_marks(path)
+    valid = {"cases": [{"id": "c1", "decision": "unreviewed"}], "reviewer_identity": "Independent Person",
+             "method": "human_original_image_and_source", "reviewed_at": "2026-11-16T10:00:00+05:30"}
+    path.write_text(json.dumps(valid))
+    document, marks = load_review_marks(path)
+    assert document == valid and marks["c1"]["decision"] == "unreviewed"
+    path.write_text(json.dumps({**valid, "reviewed_at": "2999-01-01T00:00:00Z"}))
+    with pytest.raises(ValueError, match="timestamp"):
+        load_review_marks(path)
+
+
 def test_web_numerical_planner_uses_only_source_derived_period_boundaries():
     from src.application import make_demo_records
     from src.llm.typed_calculator import evaluate
@@ -58,3 +93,32 @@ def test_recomputed_program_result_replaces_untrusted_calculation_fields():
     engine.answer_financial_question.return_value["calculations"] = [{"result": "999"}]
     failed = InteractiveApplication(load_settings(environ={}), engine).answer_interactive("What was the margin?", request=request)
     assert failed["status"] == "insufficient_evidence" and failed["answer"] == ""
+
+
+def test_sync_and_job_entry_points_never_run_the_model_concurrently():
+    import threading
+
+    entered, release = threading.Event(), threading.Event()
+
+    class Engine:
+        def answer_financial_question(self, **kwargs):
+            entered.set()
+            assert release.wait(5)
+            return {"status": "insufficient_evidence", "message": "No matching narrative"}
+
+    app = WebApplication(load_settings(environ={}), Engine())
+    payload = {"question": "What are the risks?", "ticker": "AAPL", "accession": "0000320193-21-000105",
+               "value_period_end": "2021-09-25", "scope": "consolidated", "mode": "narrative"}
+    results = []
+    worker = threading.Thread(target=lambda: results.append(app.answer(payload)))
+    worker.start()
+    try:
+        assert entered.wait(3)
+        busy = app.answer(payload)
+        assert busy["status"] == "service_error" and busy["answer"] == ""
+        assert busy["evidence"] == []
+    finally:
+        release.set()
+        worker.join(5)
+    assert not worker.is_alive() and results[0]["status"] == "insufficient_evidence"
+    assert app.answer(payload)["status"] == "insufficient_evidence"

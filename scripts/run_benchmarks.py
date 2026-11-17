@@ -31,6 +31,8 @@ def main():
                         help="Directory to store run manifests and results.jsonl")
     parser.add_argument("--max-cases", type=int, default=None,
                         help="Optional limit on number of cases (e.g. for smoke/pilot runs)")
+    parser.add_argument("--data-path", type=Path,
+                        help="Explicit normalized dataset, e.g. output/benchmarks/official/finqa_candidate_universe.json; fixtures remain separate")
     parser.add_argument("--model-config", default="configs/gemma3-4b.json",
                         help="Model configuration JSON profile.")
     parser.add_argument("--gate", action="append", dest="available_gates", default=[],
@@ -44,12 +46,23 @@ def main():
                         help="Declared retry/failure overhead fraction (e.g. 0.1); omitted -> lower bound.")
     parser.add_argument("--gate-report", action="store_true",
                         help="Print per-gate open/closed status derived from actual artifacts and exit.")
+    parser.add_argument("--enable-engine", action="store_true",
+                        help="Explicitly load an accepted prepared C/D runtime; does not bind benchmark contexts")
+    parser.add_argument("--tokenizer-dir", type=Path, help="Existing local generator tokenizer")
+    parser.add_argument("--model-cache", type=Path, help="Existing pinned BGE cache")
+    parser.add_argument("--benchmark-dir", type=Path,
+                        help="Inventory this actual suite directory for capacity (not historical fixture counts)")
     args = parser.parse_args()
 
     if args.profile_capacity:
         observed = load_observed_timings(args.observed_timings) if args.observed_timings else None
+        inventory = None
+        if args.benchmark_dir:
+            from src.benchmark.inventory import build_inventory
+            inventory = build_inventory(args.benchmark_dir, ROOT / "data/charts")
         print(json.dumps(measure_machine_capacity(observed_timings=observed,
-                                                  retry_overhead_fraction=args.retry_overhead), indent=2))
+                                                  retry_overhead_fraction=args.retry_overhead,
+                                                  case_inventory=inventory), indent=2))
         return
 
     if args.gate_report:
@@ -61,6 +74,17 @@ def main():
     detected_gates = detect_available_gates()
     if set(args.available_gates) - detected_gates:
         parser.error("--gate cannot open an unaccepted prerequisite. Validate the bound artifacts and acceptance record first.")
+    engine, settings = None, None
+    if args.enable_engine:
+        from src.benchmark.runtime import build_benchmark_engine
+        from src.config import load_settings
+        try:
+            settings = load_settings()
+            engine = build_benchmark_engine(settings, variant=args.variant,
+                                            tokenizer_dir=args.tokenizer_dir, model_cache=args.model_cache)
+        except (ValueError, OSError) as exc:
+            # Runtime errors are sanitized: model-cache/provider paths may be private.
+            parser.error(f"Prepared runtime unavailable ({type(exc).__name__}); check accepted assets, C/D variant and tokenizer.")
     out_dir = Path(args.output_dir) if args.output_dir else ROOT / "output" / f"eval_{args.variant}_{args.benchmark.lower()}"
     runner = BenchmarkRunner(
         output_dir=out_dir,
@@ -68,6 +92,9 @@ def main():
         benchmark=args.benchmark,
         model_config_path=args.model_config,
         available_gates=detected_gates,
+        data_path=args.data_path,
+        engine=engine,
+        settings=settings,
     )
 
     print(f"Starting or resuming run for Variant {args.variant} on {args.benchmark} (available gates: {sorted(detected_gates)})...")

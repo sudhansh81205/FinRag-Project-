@@ -28,6 +28,7 @@ FILTERS = {
     "type",
     "period_end",
     "period_start",
+    "period_kind",
     "fiscal_year",
     "scope",
     "normalized_unit",

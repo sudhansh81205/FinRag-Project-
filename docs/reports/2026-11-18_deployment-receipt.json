@@ -1,0 +1,52 @@
+{
+  "observed_at": "2026-11-18T00:05:37.741749+05:30",
+  "status": "ready_bounded_demo",
+  "production_url": "https://finrag-workspace.vercel.app/",
+  "deployment_id": "dpl_AMF3Aavw6tit36aY6B8uSE5sv6ik",
+  "project_name": "finrag-workspace",
+  "deployed_app_commit": "43ba054ad832d8615f855b71fd7dcf0725d7f2f3",
+  "publication_pr": "https://github.com/sudhansh81205/FinRag-Project-/pull/18",
+  "ci": {
+    "run": "https://github.com/sudhansh81205/FinRag-Project-/actions/runs/44147510311",
+    "head": "43ba054ad832d8615f855b71fd7dcf0725d7f2f3",
+    "conclusion": "success"
+  },
+  "deployment_protection": {
+    "vercel_authentication": "all_deployments",
+    "anonymous_probe": "redirected to Vercel login; no application data returned"
+  },
+  "runtime": {
+    "node": "22.x",
+    "provider": "existing pinned local Ollama/Gemma3:4b",
+    "backend": "approved temporary authenticated HTTPS API",
+    "model_endpoints": "loopback only",
+    "credential_handling": "existing token stored as server-only sensitive production variable; not in Git/browser",
+    "permanent_hosting": false,
+    "laptop_awake_required": true
+  },
+  "browser_checks": {
+    "numeric": "41.78% with checked source-bound calculation and five evidence objects",
+    "narrative": "cited supply-chain risk answer with five evidence objects",
+    "chart": "index_not_ready; old numeric output cleared; no unsupported answer",
+    "saved_queries": "disabled; recorded Supabase project absent from both accessible organizations",
+    "two_real_user_email_auth": "not_verified"
+  },
+  "screenshots": {
+    "finrag-vercel-live-margin.png": {
+      "sha256": "bf656f1e46af9116d60725264f312dc0530c8b5a86c9c5476748738a9838aafc",
+      "stored_in": "local session outputs; contains no credentials"
+    },
+    "finrag-vercel-live-narrative.png": {
+      "sha256": "b68fce1935669ee7e5f7fb202be7635e64777e7a43f3384e8673b463ed38eb70",
+      "stored_in": "local session outputs; contains no credentials"
+    },
+    "finrag-vercel-chart-refusal.png": {
+      "sha256": "a3fc82e832d86567334a93f0988331ece2a2a726a3b84b6c87041b554f0e74c4",
+      "stored_in": "local session outputs; contains no credentials"
+    }
+  },
+  "billing_setup_performed": false,
+  "final_experiment_ready": false,
+  "submission_verified": false,
+  "temporal_note": "Hosted checks continued on18November IST. This does not establish completion before the17November requested deadline."
+}

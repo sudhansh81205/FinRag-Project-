@@ -184,6 +184,7 @@ def measure_machine_capacity(
     observed_timings: dict[str, Any] | None = None,
     retry_overhead_fraction: float | None = None,
     now: datetime | None = None,
+    case_inventory: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Profile the machine and derive capacity strictly from real observations."""
     total_ram, avail_ram = get_ram_info()
@@ -196,6 +197,12 @@ def measure_machine_capacity(
 
     timings, problems = validate_observations(observed_timings)
     suites = {**LOCAL_SMOKE_SUITES}
+    if case_inventory is not None:
+        suites = {name: item["total_cases"] for name, item in case_inventory["benchmarks"].items()}
+        if not suites or any(type(n) is not int or n < 1 for n in suites.values()):
+            raise ValueError("Capacity requires nonempty actual case counts")
+        if sum(suites.values()) != case_inventory.get("total_selected_cases"):
+            raise ValueError("Capacity case inventory total is inconsistent")
     capacity = compute_capacity(suites, timings, hours_remaining, N_VARIANTS, retry_overhead_fraction)
 
     profile = MachineCapacityProfile(
@@ -230,7 +237,8 @@ def measure_machine_capacity(
         "observation_problems": problems,
         "pilot": {k: (observed_timings or {}).get(k) for k in ("pilot_case_ids", "measured_at", "model_identity")},
         "suite_inventory": {"local_smoke_fixtures": LOCAL_SMOKE_SUITES,
-                            "declared_full_suites_not_inventoried": DECLARED_UNVERIFIED_FULL_SUITES},
+                            "declared_full_suites_not_inventoried": DECLARED_UNVERIFIED_FULL_SUITES,
+                            "selected_actual_counts": suites if case_inventory is not None else None},
         "capacity": capacity,
         "note": ("Only the calculator latency is a local measurement. Retrieval, generation and evaluator timings "
                  "require a recorded pilot on the intended hardware with observed model identities; unavailable "

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "financebench": {
+      "filename": "financebench.jsonl",
+      "repository": "patronus-ai/financebench",
+      "revision": "cc39aeb4afdf33909ee1412188bf89035950c2eb",
+      "path": "data/financebench_open_source.jsonl",
+      "sha256": "a5a2aa673e573e55675fc3c0f9aa38c1cf59d2abc91edb077534f71f10a71877",
+      "license": "Publisher open sample; repository license unspecified; retain locally with attribution",
+      "split": "open_source_150",
+      "expected_cases": 150
+    },
+    "financebench_documents": {
+      "filename": "financebench_documents.jsonl",
+      "repository": "patronus-ai/financebench",
+      "revision": "cc39aeb4afdf33909ee1412188bf89035950c2eb",
+      "path": "data/financebench_document_information.jsonl",
+      "sha256": "1c69127783879de8cdadb159d2181f39bc3123b8e0ebf74031c3969d69189575"
+    },
+    "finqa": {
+      "filename": "finqa.json",
+      "repository": "czyssrs/FinQA",
+      "revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+      "path": "dataset/test.json",
+      "sha256": "831dbfb2e785dbc227f895ce3f24046433467aec67b09db2bd6ac7692a8a30dc",
+      "license": "MIT",
+      "split": "public_test",
+      "expected_cases": 1147
+    },
+    "tatqa": {
+      "filename": "tatqa.json",
+      "repository": "NExTplusplus/TAT-QA",
+      "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+      "path": "dataset_raw/tatqa_dataset_test_gold.json",
+      "sha256": "c4d08418359c1d76468dec420ee748a37f48c06b63cb8ec2766f19d5d314b597",
+      "license": "MIT",
+      "split": "test_gold_released_2024",
+      "expected_cases": 1663
+    }
+  },
+  "counts": {
+    "financebench_open150.json": 150,
+    "finqa_candidate_universe.json": 1147,
+    "tatqa_candidate_universe.json": 1663,
+    "finqa_context_corpus.json": 8720,
+    "tatqa_context_corpus.json": 1553,
+    "financebench_required_documents.json": 84
+  },
+  "files_sha256": {
+    "financebench_open150.json": "75b9a31b1c3f1e3d2fc3723b119c21bd8fb192d092ac249da84bdf6703bb8c34",
+    "finqa_candidate_universe.json": "9e3a90800ee344a4778f96dd711e760c3ed062e32f8630a323ed2fa66ba9960f",
+    "tatqa_candidate_universe.json": "0c3c4767143438b722027d7f1baaea3949d21f336501a1d23624b746db8746e4",
+    "finqa_context_corpus.json": "77219fa3467d7b8ca7696377fbf81451d05cfd81690da7d077fb006df1ad7eff",
+    "tatqa_context_corpus.json": "1810fa50827359d5648d27266fdbdb49f644997956e20133470872d26b05bcfa",
+    "financebench_required_documents.json": "911922c2e3935ed97b992bfaa5bcaecabf7210122b71680c02ec3c00400c6255"
+  },
+  "subsets": false,
+  "gold_separation": "Only question plus raw contexts enter evaluation inputs; official retrieved/model_input/facts/mappings stay out",
+  "retrieval_granularity": "whole table and individual paragraph; gold row mappings coarsened explicitly",
+  "candidate_universe": "all contexts in each complete public test split, pooled before any question selection",
+  "financebench_context_status": "84 full source documents still required; annotated evidence pages are never retrieval inputs",
+  "tatqa_source_limit": "opaque context IDs; original issuer/accession not supplied, no invented application-filing binding",
+  "independent_acceptance": "pending",
+  "final_experiment_ready": false
+}

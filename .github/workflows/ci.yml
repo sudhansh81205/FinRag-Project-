@@ -2,9 +2,9 @@ name: FinRAG CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "maintenance/nov17-completion" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "maintenance/verified-finrag-web" ]
 
 jobs:
   web-contracts:
