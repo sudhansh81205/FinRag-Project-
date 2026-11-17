@@ -103,6 +103,8 @@ def validate_request_binding(request: RequestConstraints, plan: dict[str, Any] |
     if not records:
         return "No accepted evidence was included; refusing rather than answering from defaults."
     if plan is not None:
+        if not isinstance(plan, dict):
+            return "A typed calculation program must be an object."
         if plan.get("issuer") != request.company:
             return f"Plan issuer {plan.get('issuer')!r} does not match requested company {request.company!r}."
         if str(plan.get("scope", "")).strip().lower() != request.scope:
@@ -111,6 +113,8 @@ def validate_request_binding(request: RequestConstraints, plan: dict[str, Any] |
         if not ends or max(ends) != request.value_period_end:
             return f"Plan periods {ends} do not end at the requested value period {request.value_period_end}."
     for record in records:
+        if not isinstance(record, dict) or not isinstance(record.get("metadata"), dict):
+            return "Included evidence must contain typed source metadata."
         meta = record.get("metadata", {}) if isinstance(record, dict) else {}
         ident = record.get("evidence_id", record.get("id")) if isinstance(record, dict) else None
         if meta.get("accession") != request.accession:
@@ -121,6 +125,12 @@ def validate_request_binding(request: RequestConstraints, plan: dict[str, Any] |
             return f"Evidence {ident!r} is for another issuer."
         if meta.get("type") == "table_cell" and str(meta.get("scope", "")).strip().lower() != request.scope:
             return f"Evidence {ident!r} scope {meta.get('scope')!r} differs from requested scope."
+    if plan is None:
+        cells = [r for r in records if r.get("metadata", {}).get("type") == "table_cell"]
+        if cells and any(r["metadata"].get("period_end") != request.value_period_end for r in cells):
+            return "Included numeric evidence does not match the requested value period; a validated comparison program is required."
+        if not cells and request.value_period_end != request.filing_period_end:
+            return "Narrative evidence is filing-wide; comparative-period support needs typed facts."
     return ""
 
 
@@ -223,6 +233,7 @@ class InteractiveApplication:
         *,
         request: RequestConstraints | None = None,
         demo_only: bool = False,
+        calculation_request=None,
     ) -> dict[str, Any]:
         """Answer one request, binding every result to validated request constraints.
 
@@ -288,7 +299,7 @@ class InteractiveApplication:
             result["request"] = asdict(constraints)
 
         if self.engine is not None:
-            return self._answer_with_engine(result, finish, question, constraints, calculation_plan, start)
+            return self._answer_with_engine(result, finish, question, constraints, calculation_plan, start, calculation_request)
 
         # No engine: only caller-supplied included records or the explicit demo path may calculate.
         if calculation_plan is not None:
@@ -349,17 +360,21 @@ class InteractiveApplication:
                 return resolved
         return None
 
-    def _answer_with_engine(self, result, finish, question, constraints, calculation_plan, start):
+    def _answer_with_engine(self, result, finish, question, constraints, calculation_plan, start, calculation_request=None):
         import time
 
         try:
+            extra = {"calculation_request": calculation_request} if calculation_request is not None else {}
             engine_res = self.engine.answer_financial_question(
                 question=question,
                 calculation_plan=calculation_plan,
                 filters=constraints.engine_filters(),
+                **extra,
             )
         except Exception as exc:  # provider/index failure must not leave a stale or partial answer
             return finish("service_error", f"Answer engine failed: {type(exc).__name__}.")
+        if not isinstance(engine_res, dict):
+            return finish("service_error", "Answer engine returned a malformed response.")
         status = engine_res.get("status", "service_error")
         evidence = engine_res.get("evidence", [])
         result.update(
@@ -370,7 +385,30 @@ class InteractiveApplication:
         )
         if status != "ok":
             return finish(status, engine_res.get("message", ""))
-        problem = validate_request_binding(constraints, calculation_plan, evidence)
+        calculations = engine_res.get("calculations", [])
+        if calculation_plan is not None:
+            programs = [calculation_plan]
+        else:
+            if not isinstance(calculations, list) or any(not isinstance(c, dict) or not c.get("program") for c in calculations):
+                return finish("insufficient_evidence", "Every calculation must supply a typed program.")
+            programs = [c["program"] for c in calculations]
+        if programs:
+            from src.llm.typed_calculator import evaluate, render_result
+
+            checked = []
+            for program in programs:
+                problem = validate_request_binding(constraints, program, evidence)
+                if problem:
+                    return finish("insufficient_evidence", problem)
+                verified = evaluate(program, evidence)
+                if verified["status"] != "ok":
+                    return finish("insufficient_evidence", verified["message"])
+                checked.append(verified)
+            engine_res["calculations"] = checked
+            engine_res["answer"] = "\n\n".join(render_result(c) for c in checked)
+            problem = ""
+        else:
+            problem = validate_request_binding(constraints, calculation_plan, evidence)
         if problem:
             return finish("insufficient_evidence", f"Engine evidence does not satisfy the request: {problem}")
         result.update(evidence=evidence, calculations=engine_res.get("calculations", []))

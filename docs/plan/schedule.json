@@ -414,8 +414,9 @@
         "2026-11-16",
         "full outputs and actual submission route/cutoff"
       ],
-      "status": "completed",
-      "phase": "release_and_submission"
+      "status": "in_progress",
+      "phase": "release_and_submission",
+      "acceptance_note": "Release preparation exists; actual data/model restore, full experiment/audit and official submission remain unverified."
     }
   ],
   "assignment_revision": "November 12 user exchange: Sudhansh owns November 12 and November 17 (reassigned from Shanay at user request); Pavan owns November 16. Historical assignments unchanged. November 12 follow-up: transfer remaining November 17 Shanay work to Sudhansh; no added work for Likhit or Rushil. Preserve historical credit."

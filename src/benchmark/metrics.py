@@ -47,6 +47,8 @@ class ParsedQuantity:
     scale_power10: int | None    # explicit scale word, else None (not stated)
     is_percent: bool
     has_currency: bool
+    currency: str | None = None
+    unit: str | None = None
 
     @property
     def normalized(self) -> Decimal:
@@ -62,6 +64,14 @@ def parse_quantity(text: Any) -> ParsedQuantity | None:
     """
     if not isinstance(text, str):
         return None
+    currencies = set(re.findall(r"\b(?:USD|EUR|JPY|GBP|INR|CAD|AUD|CHF|CNY)\b", text.upper()))
+    for symbol, code in (("$", "USD"), ("€", "EUR"), ("£", "GBP"), ("₹", "INR"), ("¥", "JPY")):
+        if symbol in text:
+            currencies.add(code)
+    currency = next(iter(currencies)) if len(currencies) == 1 else ("AMBIGUOUS" if currencies else None)
+    unit = ("percentage_points" if re.search(r"percentage[ -]points?|\bpp\b", text, re.I)
+            else "percent" if re.search(r"%|\bpercent(?:age)?\b", text, re.I)
+            else "shares" if re.search(r"\bshares\b", text, re.I) else None)
     candidates: list[ParsedQuantity] = []
     for m in _NUMBER_RE.finditer(text):
         try:
@@ -74,8 +84,9 @@ def parse_quantity(text: Any) -> ParsedQuantity | None:
         candidates.append(ParsedQuantity(
             value=value,
             scale_power10=_SCALE_POWER10[scale.lower()] if scale else None,
-            is_percent=bool(m.group("pct")),
+            is_percent=bool(m.group("pct")) or unit == "percent",
             has_currency=bool(m.group("cur")),
+            currency=currency, unit=unit,
         ))
     if not candidates:
         return None
@@ -140,8 +151,28 @@ def score_numerical(
         return NumericalScore(False, "gold_not_numeric")
     g_scale = (gq.scale_power10 or 0) if gq else 0
     g_percent = bool(gq and gq.is_percent)
+    expected_currency = gold.currency or (gq.currency if gq else None)
+    expected_unit = gold.unit or (gq.unit if gq else None)
+    if pq.currency == "AMBIGUOUS" or (expected_currency and pq.currency not in (None, expected_currency)):
+        return NumericalScore(False, "incompatible_currency")
+    if expected_currency and pq.unit == "shares":
+        return NumericalScore(False, "incompatible_unit")
+    if expected_unit and pq.unit and pq.unit != expected_unit:
+        return NumericalScore(False, "incompatible_unit")
+    if expected_unit in {"percent", "percentage_points"} and (pq.has_currency or pq.currency):
+        return NumericalScore(False, "incompatible_currency")
+    if gold.period_end and isinstance(predicted, str):
+        declared = re.findall(r"\b\d{4}-\d{2}-\d{2}\b", predicted)
+        years = re.findall(r"(?:\bFY\s*|\bfiscal\s+(?:year\s+)?|\bin\s+)((?:19|20)\d{2})\b", predicted, re.I)
+        if ((declared and any(p != gold.period_end for p in declared))
+                or (years and any(y != gold.period_end[:4] for y in years))):
+            return NumericalScore(False, "incompatible_period")
+    if not all(v.is_finite() for v in (pq.value, g_value)):
+        return NumericalScore(False, "nonfinite_quantity")
+    if not (0 <= gold.relative_tolerance <= 0.01 and gold.zero_tolerance >= 0):
+        return NumericalScore(False, "invalid_tolerance")
 
-    if g_percent and (pq.scale_power10 is not None or pq.has_currency):
+    if g_percent and (pq.scale_power10 is not None or pq.has_currency or pq.currency):
         return NumericalScore(False, "wrong_unit_percent_expected")
     if not g_percent and pq.is_percent:
         return NumericalScore(False, "wrong_unit_percent_unexpected")

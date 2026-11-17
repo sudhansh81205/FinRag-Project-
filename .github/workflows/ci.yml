@@ -7,6 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
+  web-contracts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - name: Check frontend and HTTP gateway contracts (no paid services)
+      working-directory: web
+      run: npm run check
+    - name: Verify complete prepared package bytes (not submission proof)
+      run: python scripts/verify_release_package.py
   test-and-lint:
     runs-on: ubuntu-latest
     steps:

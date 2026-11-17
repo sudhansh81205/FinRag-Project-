@@ -1,0 +1,14 @@
+{
+  "name": "finrag-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env dev.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check public/app.js && node --test tests/*.test.mjs"
+  }
+}

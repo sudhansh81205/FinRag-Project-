@@ -1,5 +1,16 @@
 # FinRAG
 
+Start the runtime/completion handoff with [Rushil’s guide](docs/handoffs/RUSHIL_START_HERE.md) and [the GPT/Codex prompt](docs/handoffs/RUSHIL_CODEX_PROMPT.md).
+
+## Web research workspace
+
+The black-and-white web interface lives in [web/](web/README.md) and can be hosted on Vercel Hobby.
+It includes the SEC filing inventory, request filters, evidence/calculation inspection, JSON export,
+clear runtime failures and Supabase-backed private saved questions when configured.
+It does not substitute a demo answer for an unavailable financial engine. See
+[the current implementation handoff](docs/handoffs/2026-11-17_web-release-repairs.md) for verified repairs
+and mandatory experiment/runtime checks that remain blocked.
+
 FinRAG is a prototype for answering questions about SEC 10-K annual reports using retrieved narrative and table evidence. The unified completion plan adds grounded chart evidence, checked calculations, clear failure states and the matched A-G experiment with named benchmarks and independent audits.
 
 ## Team plan
@@ -94,4 +105,3 @@ All software, arithmetic trees, refusal paths, and test suites are verified (459
 - **Submission Acknowledgement**: [docs/reports/2026-11-17_submission_acknowledgement.json](docs/reports/2026-11-17_submission_acknowledgement.json)
 - **Final Handoff**: [docs/handoffs/2026-11-17_sudhansh.md](docs/handoffs/2026-11-17_sudhansh.md)
 - **Sudhansh Completion Sign-off**: [docs/reports/2026-11-17_sudhansh_completion.md](docs/reports/2026-11-17_sudhansh_completion.md)
-
