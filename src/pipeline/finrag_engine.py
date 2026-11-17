@@ -5,10 +5,17 @@ from typing import Any
 
 from ..llm.calculation_planner import propose_calculation
 from ..llm.client import UnifiedLLMClient
-from ..llm.financial_semantics import known_source_program, validate_named_formula
+from ..llm.financial_semantics import (
+    is_gross_margin,
+    is_margin_comparison,
+    known_source_program,
+    role,
+    total_revenue_fact,
+    validate_named_formula,
+)
 from ..llm.prompts import build_baseline_prompt, build_finrag_prompt
 from ..llm.typed_calculator import evaluate, render_result
-from ..retrieval.eligibility import intersect_filters, validated_filters
+from ..retrieval.eligibility import eligible, intersect_filters, validated_filters
 from ..retrieval.reranker import SimpleFinancialReranker
 from ..retrieval.retriever import DualHybridRetriever
 
@@ -40,7 +47,7 @@ class FinRAGEngine:
         self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
         rerank_top_n: int = 5, *, _baseline: bool = False, calculation_plan=None, calculation_request=None,
         filters=None,
-        chart_only=False, chart_asset_id=None,
+        chart_only=False, chart_asset_id=None, expand_named_metric=False,
     ) -> dict[str, Any]:
         start = time.monotonic()
         result = {
@@ -92,13 +99,29 @@ class FinRAGEngine:
         if isinstance(self.retriever, DualHybridRetriever) and self.retriever.vector_collection is None:
             return finish("index_not_ready", "No validated search index is connected.")
         try:
-            retrieval_args = {"query": question, "top_k_text": top_k_text,
+            # Interactive metric expansion is explicit; frozen benchmark defaults are unchanged.
+            search_query = question
+            if (expand_named_metric and calculation_request is not None
+                    and is_gross_margin(question) and not is_margin_comparison(question)):
+                search_query = "gross profit total net sales revenue cost of sales"
+            result["retrieval_query"] = search_query
+            retrieval_args = {"query": search_query, "top_k_text": top_k_text,
                               "top_k_tables": top_k_tables}
             if filters is not None:
                 retrieval_args["filters"] = filters
             if chart_only or chart_asset_id is not None:
                 retrieval_args.update(chart_only=chart_only, chart_asset_id=chart_asset_id)
-            retrieval = self.retriever.retrieve(**retrieval_args)
+            source_operands = None
+            if search_query != question and hasattr(self, "web_source_records"):
+                # Exact typed lookup over verified index records, with the same filing/period ceiling.
+                source_operands = [r for r in self.web_source_records if eligible(r, filters or {})
+                                   and (role(r) in {"gross_profit", "cost"} or total_revenue_fact(r))]
+                if known_source_program(question, calculation_request, source_operands) is None:
+                    return finish("insufficient_evidence", "Matching total revenue and gross-profit/cost cells are missing or ambiguous for this filing and period.")
+                source_operands.sort(key=lambda r: ({"gross_profit": 0, "revenue": 1, "cost": 2}[role(r)], r.get("evidence_id", "")))
+            retrieval = ({"all_evidence": source_operands, "ranking_applied": True,
+                          "stages": ["interactive_typed_metric_lookup"], "eligibility_filters": filters}
+                         if source_operands is not None else self.retriever.retrieve(**retrieval_args))
             if not isinstance(retrieval, dict):
                 return finish("service_error", "Source retrieval returned an invalid response.")
             # Preserve immutable stage/route identities, without backend exception text.

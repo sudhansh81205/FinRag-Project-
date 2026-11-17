@@ -66,3 +66,70 @@ def test_margin_change_cannot_be_answered_with_a_single_period_level():
     for question in ('What was the change in gross margin?', 'How did gross margin compare versus last year?'):
         assert known_source_program(question, request, records) is None
         assert validate_named_formula(question, level, records)
+
+
+def test_interactive_margin_expansion_preserves_question_and_source_checks():
+    from src.pipeline.finrag_engine import FinRAGEngine
+
+    records, request = facts_and_request()
+    queries = []
+
+    class Retriever:
+        def retrieve(self, **kwargs):
+            queries.append(kwargs)
+            return {"all_evidence": records, "ranking_applied": True}
+
+    class Client:
+        provider, model = "ollama", "test-fixture"
+
+        def generate(self, prompt):
+            assert "what was Apple's gross margin in fy2021" in prompt
+            return {"success": True, "status": "ok", "provider": self.provider,
+                    "model": self.model, "text": "fixture explanation"}
+
+    engine = FinRAGEngine(retriever=Retriever(), llm_client=Client())
+    question = "what was Apple's gross margin in fy2021"
+    result = engine.answer_financial_question(question, calculation_request=request,
+                                              expand_named_metric=True)
+    assert result["status"] == "ok"
+    assert result["question"] == question
+    assert round(float(result["calculations"][0]["result"]), 2) == 41.78
+    assert queries[-1]["query"] == "gross profit total net sales revenue cost of sales"
+    engine.answer_financial_question(question, calculation_request=request)
+    assert queries[-1]["query"] == question  # matched experiment defaults unchanged
+
+
+def test_interactive_typed_lookup_uses_only_selected_filing_operands():
+    import copy
+
+    from src.pipeline.finrag_engine import FinRAGEngine
+
+    records, request = facts_and_request()
+    records[0]['metadata']['row_headers'] = ['Total net sales']
+    for record in records:
+        record['metadata']['accession'] = 'selected-filing'
+    foreign = copy.deepcopy(records[0])
+    foreign['evidence_id'] = 'foreign-sales'
+    foreign['metadata']['accession'] = 'other-filing'
+
+    class Retriever:
+        def retrieve(self, **kwargs):
+            raise AssertionError('Named typed lookup must not depend on a lexical shortlist')
+
+    class Client:
+        provider, model = 'ollama', 'fixture'
+        def generate(self, prompt):
+            return {'success': True, 'status': 'ok', 'provider': self.provider,
+                    'model': self.model, 'text': 'fixture'}
+
+    engine = FinRAGEngine(retriever=Retriever(), llm_client=Client())
+    engine.web_source_records = records + [foreign]
+    result = engine.answer_financial_question("what was Apple's gross margin in fy2021",
+        calculation_request=request, filters={'accession': 'selected-filing'}, expand_named_metric=True)
+    assert result['status'] == 'ok'
+    assert 'foreign-sales' not in result['included_evidence_ids']
+    assert round(float(result['calculations'][0]['result']), 2) == 41.78
+    engine.web_source_records = records[1:]
+    result = engine.answer_financial_question('gross margin?', calculation_request=request,
+        filters={'accession': 'selected-filing'}, expand_named_metric=True)
+    assert result['status'] == 'insufficient_evidence' and not result['answer']

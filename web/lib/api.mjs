@@ -52,7 +52,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
   const url = new URL(request.url);
   const route = (url.searchParams.get('route') || url.pathname.replace(/^\/api\/?/, '')).replace(/^\/+|\/+$/g, '');
   try {
-    if (route === 'filings' && request.method === 'GET') return json({ filings, status: 'inventory_only', independently_accepted_filings: 1, note: 'Inventory does not imply accepted or indexed corpus coverage.' });
+    if (route === 'filings' && request.method === 'GET') return json({ filings, status: 'limited_workspace', independently_accepted_filings: 1, note: 'Two selected development filings; runtime health reports connected evidence. Independent final-study acceptance is separate.' });
     const supabase = endpoint(env.SUPABASE_URL);
     const publicKey = env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY;
     const dbReady = Boolean(supabase && publicKey);
@@ -69,7 +69,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
           runtime = response.ok && ['ready', 'index_not_ready'].includes(body.status) ? body : { status: 'service_error', message: 'The financial engine could not be reached.' };
         } catch { runtime = { status: 'service_error', message: 'The financial engine could not be reached.' }; }
       }
-      return json({ runtime, answer_timeout_ms: answerTimeout + 10000, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1 } });
+      return json({ runtime, answer_timeout_ms: answerTimeout + 10000, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1, connected: (runtime.supported_filings || []).length } });
     }
     if (route === 'answer' && request.method === 'POST') {
       let body;

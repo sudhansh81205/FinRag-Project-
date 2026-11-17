@@ -119,3 +119,5 @@ All software, arithmetic trees, refusal paths, and test suites are verified (459
 - **Submission Acknowledgement**: [docs/reports/2026-11-17_submission_acknowledgement.json](docs/reports/2026-11-17_submission_acknowledgement.json)
 - **Final Handoff**: [docs/handoffs/2026-11-17_sudhansh.md](docs/handoffs/2026-11-17_sudhansh.md)
 - **Sudhansh Completion Sign-off**: [docs/reports/2026-11-17_sudhansh_completion.md](docs/reports/2026-11-17_sudhansh_completion.md)
+
+Current two-filing demonstration update: see [limited workspace and gross-margin repair](docs/reports/2026-11-18_limited-workspace.md). Apple FY2021 and Microsoft FY2021 are connected for source-checked development research; final-study independent acceptance remains separate.

@@ -62,7 +62,7 @@ def test_web_numerical_planner_uses_only_source_derived_period_boundaries():
     class Engine:
         web_source_records = make_demo_records()
 
-        def answer_financial_question(self, question, calculation_plan, filters, calculation_request):
+        def answer_financial_question(self, question, calculation_plan, filters, calculation_request, **options):
             assert calculation_request == {k: PLAN[k] for k in ("issuer", "scope", "periods")}
             calculation = evaluate(PLAN, self.web_source_records)
             return {"status": "ok", "answer": "untrusted prose", "evidence": self.web_source_records,

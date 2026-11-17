@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--port", type=int, default=8000)
     runtime = parser.add_mutually_exclusive_group()
     runtime.add_argument("--enable-engine", action="store_true")
+    runtime.add_argument("--workspace-corpus", type=Path, help="Source-checked two-filing development workspace")
     runtime.add_argument("--source-audit", type=Path,
                          help="Bounded checked Apple development runtime; never final experiment acceptance")
     parser.add_argument("--variant", choices=list("ABCDEFG"), default="D")
@@ -45,7 +46,13 @@ def main():
         from src.llm.token_budget import GGUFTokenCounter
         counter = GGUFTokenCounter(args.tokenizer_url, args.gguf, args.gguf_sha256, server_root=ROOT)
         tokenizer_id = counter.identity
-    if args.source_audit:
+    if args.workspace_corpus:
+        if counter is None or args.variant != "D":
+            parser.error("Workspace corpus requires D and the identified generator tokenizer")
+        from src.workspace_corpus import build_workspace_engine
+        engine = build_workspace_engine(settings, args.workspace_corpus, token_counter=counter,
+                                        tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+    elif args.source_audit:
         if args.variant != "D":
             parser.error("The bounded source-audit development runtime is D; use accepted --enable-engine for other variants.")
         if counter is None:

@@ -1,0 +1,1099 @@
+[
+  {
+    "status": "ok",
+    "question": "what was Apple's gross margin in fy2021",
+    "answer": "Verified result: 41.78%. Exact result: 41.77935962516777514440280249 percent.\nProgram (normalized source values): ratio_percent(152836000000, 365817000000).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3]",
+    "message": "",
+    "latency_seconds": 14.522,
+    "route": "exact_engine",
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "evidence": [
+      {
+        "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+        "content": "Apple Inc. | Consolidated Statements of Operations | Gross margin | September 25, 2021 | 152,836 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:GrossProfit | 152836000000 USD",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 8",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(2)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "e3ae8c0da4ee545aaabf99b83abaedddb29e476faee64fba38eaaaac6025a64c",
+          "type": "table_cell",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-cells-v2",
+          "table_title": "Consolidated Statements of Operations",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+          "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+          "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+          "period_kind": "duration",
+          "period_start": "2020-09-27",
+          "period_end": "2021-09-25",
+          "metric": "us-gaap:GrossProfit",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 152836000000,
+          "xbrl_sign": null,
+          "context_ref": "i55e5364a9af5491886caee077afe8d44_D20200927-20210925",
+          "unit_ref": "usd",
+          "dimensions": {},
+          "normalized_value_decimal": "152836000000",
+          "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_headers": [
+            "Gross margin"
+          ],
+          "column_headers": [
+            "September 25, 2021"
+          ],
+          "row_index": 12,
+          "column_index": 3,
+          "row_label": "Gross margin",
+          "row_group": "",
+          "column_header": "September 25, 2021",
+          "raw_value": "152,836",
+          "footnote_links": []
+        }
+      },
+      {
+        "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+        "content": "Apple Inc. | Consolidated Statements of Operations | Total net sales | September 25, 2021 | 365,817 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 365817000000 USD",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 8",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "63041a21d122a691cbeb15575a30231488cd1e04dadc0b9866433b35e0965510",
+          "type": "table_cell",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-cells-v2",
+          "table_title": "Consolidated Statements of Operations",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+          "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+          "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+          "period_kind": "duration",
+          "period_start": "2020-09-27",
+          "period_end": "2021-09-25",
+          "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 365817000000,
+          "xbrl_sign": null,
+          "context_ref": "i55e5364a9af5491886caee077afe8d44_D20200927-20210925",
+          "unit_ref": "usd",
+          "dimensions": {},
+          "normalized_value_decimal": "365817000000",
+          "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_headers": [
+            "Total net sales"
+          ],
+          "column_headers": [
+            "September 25, 2021"
+          ],
+          "row_index": 6,
+          "column_index": 3,
+          "row_label": "Total net sales",
+          "row_group": "",
+          "column_header": "September 25, 2021",
+          "raw_value": "365,817",
+          "footnote_links": []
+        }
+      },
+      {
+        "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r11:c3",
+        "content": "Apple Inc. | Consolidated Statements of Operations | Total cost of sales | September 25, 2021 | 212,981 | (In millions, except number of shares which are reflected in thousands and per share amounts) | us-gaap:CostOfGoodsAndServicesSold | 212981000000 USD",
+        "metadata": {
+          "accession": "0000320193-21-000105",
+          "filing_id": "0000320193-21-000105",
+          "ticker": "AAPL",
+          "company": "Apple Inc.",
+          "fiscal_year": 2021,
+          "section": "Item 8",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(2)",
+          "source_file": "source.html",
+          "source_sha256": "8d9e6dbb6acd1f24dbc4345f74240b255ceaaf5beadb5874b143c7f67032e9d2",
+          "content_sha256": "2bff80b8964d17bc21001efff2f54158cf66ab87c83568a46d3b1eda40be13ec",
+          "type": "table_cell",
+          "record_schema_version": 1,
+          "parser_version": "apple-2021-html-cells-v2",
+          "table_title": "Consolidated Statements of Operations",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"September 25, 2021\", \"September 26, 2020\", \"September 28, 2019\"]",
+          "units_json": "{\"declared_text\": \"(In millions, except number of shares which are reflected in thousands and per share amounts)\", \"unit\": \"USD\", \"scale_power10\": 6}",
+          "parent_table_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147",
+          "period_kind": "duration",
+          "period_start": "2020-09-27",
+          "period_end": "2021-09-25",
+          "metric": "us-gaap:CostOfGoodsAndServicesSold",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 212981000000,
+          "xbrl_sign": null,
+          "context_ref": "i55e5364a9af5491886caee077afe8d44_D20200927-20210925",
+          "unit_ref": "usd",
+          "dimensions": {},
+          "normalized_value_decimal": "212981000000",
+          "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_headers": [
+            "Total cost of sales"
+          ],
+          "column_headers": [
+            "September 25, 2021"
+          ],
+          "row_index": 11,
+          "column_index": 3,
+          "row_label": "Total cost of sales",
+          "row_group": "",
+          "column_header": "September 25, 2021",
+          "raw_value": "212,981",
+          "footnote_links": []
+        }
+      }
+    ],
+    "calculations": [
+      {
+        "status": "ok",
+        "result": "41.77935962516777514440280249",
+        "unit": "percent",
+        "currency": null,
+        "expression": "ratio_percent([0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3])",
+        "program": {
+          "issuer": "Apple Inc.",
+          "scope": "consolidated",
+          "periods": [
+            {
+              "kind": "duration",
+              "start": "2020-09-27",
+              "end": "2021-09-25"
+            }
+          ],
+          "expression": {
+            "op": "ratio_percent",
+            "args": [
+              {
+                "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3"
+              },
+              {
+                "evidence_id": "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+              }
+            ]
+          }
+        },
+        "operand_ids": [
+          "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+          "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+        ],
+        "operands": {
+          "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3": {
+            "company": "Apple Inc.",
+            "metric": "us-gaap:GrossProfit",
+            "scope": "consolidated",
+            "table_title": "Consolidated Statements of Operations",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(2)",
+            "accession": "0000320193-21-000105",
+            "raw_value": "152,836",
+            "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+            "normalized_unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value_decimal": "152836000000",
+            "period_kind": "duration",
+            "period_start": "2020-09-27",
+            "period_end": "2021-09-25"
+          },
+          "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3": {
+            "company": "Apple Inc.",
+            "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "scope": "consolidated",
+            "table_title": "Consolidated Statements of Operations",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(458) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2)",
+            "accession": "0000320193-21-000105",
+            "raw_value": "365,817",
+            "raw_unit": "(In millions, except number of shares which are reflected in thousands and per share amounts)",
+            "normalized_unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value_decimal": "365817000000",
+            "period_kind": "duration",
+            "period_start": "2020-09-27",
+            "period_end": "2021-09-25"
+          }
+        },
+        "rule_trace": [
+          {
+            "rule_id": "cited_value_fact",
+            "premises": [
+              "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3"
+            ],
+            "outcome": "pass"
+          },
+          {
+            "rule_id": "cited_value_fact",
+            "premises": [
+              "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+            ],
+            "outcome": "pass"
+          },
+          {
+            "rule_id": "ratio_percent",
+            "premises": [
+              "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+              "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+            ],
+            "outcome": "pass",
+            "normalized_inputs": [
+              "152836000000",
+              "365817000000"
+            ],
+            "result": "41.77935962516777514440280249",
+            "unit": "percent",
+            "note": null
+          }
+        ],
+        "decimal_precision": 28
+      }
+    ],
+    "chart_info": null,
+    "request": {
+      "ticker": "AAPL",
+      "company": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "filing_period_end": "2021-09-25",
+      "value_period_end": "2021-09-25",
+      "scope": "consolidated",
+      "period_kind": "duration"
+    },
+    "evidence_origin": "engine_retrieved",
+    "included_evidence_ids": [
+      "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+      "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+      "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r11:c3"
+    ]
+  },
+  {
+    "status": "ok",
+    "question": "what was Microsoft's gross margin in fy2021",
+    "answer": "Verified result: 68.93%. Exact result: 68.92580077102470134691352149 percent.\nProgram (normalized source values): ratio_percent(115856000000, 168088000000).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22], [0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857]",
+    "message": "",
+    "latency_seconds": 11.92,
+    "route": "exact_engine",
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "evidence": [
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:GrossProfit",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 115856000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "115856000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Gross margin",
+          "row_headers": [
+            "Cost of revenue:",
+            "Gross margin"
+          ],
+          "row_group": "Cost of revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 21,
+          "column_index": 3,
+          "raw_value": "115,856",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "077cdf4da552de22b78e355f35248cc5c3de7338f691b038abcda1d85b573c55",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(22) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Cost of revenue: | Gross margin | 2021-06-30 | 115,856 | (In millions, except per share amounts) | us-gaap:GrossProfit | 115856000000 USD"
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 168088000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "168088000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Total revenue",
+          "row_headers": [
+            "Revenue:",
+            "Total revenue"
+          ],
+          "row_group": "Revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 10,
+          "column_index": 3,
+          "raw_value": "168,088",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "78563db3df95b85767f520750244c6343847832afba8e3858b6d39d413f008df",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Revenue: | Total revenue | 2021-06-30 | 168,088 | (In millions, except per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 168088000000 USD"
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:0c739aefd6000c3b:dbc91b1023990d44",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:CostOfGoodsAndServicesSold",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 52232000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "52232000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Total cost of revenue",
+          "row_headers": [
+            "Cost of revenue:",
+            "Total cost of revenue"
+          ],
+          "row_group": "Cost of revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 18,
+          "column_index": 3,
+          "raw_value": "52,232",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "dbc91b1023990d443e31c462b7f28665c8da1f4362a3b84e3ff0874830c794d2",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(19) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Cost of revenue: | Total cost of revenue | 2021-06-30 | 52,232 | (In millions, except per share amounts) | us-gaap:CostOfGoodsAndServicesSold | 52232000000 USD"
+      }
+    ],
+    "calculations": [
+      {
+        "status": "ok",
+        "result": "68.92580077102470134691352149",
+        "unit": "percent",
+        "currency": null,
+        "expression": "ratio_percent([0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22], [0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857])",
+        "program": {
+          "issuer": "Microsoft Corporation",
+          "scope": "consolidated",
+          "periods": [
+            {
+              "kind": "duration",
+              "start": "2020-07-01",
+              "end": "2021-06-30"
+            }
+          ],
+          "expression": {
+            "op": "ratio_percent",
+            "args": [
+              {
+                "evidence_id": "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22"
+              },
+              {
+                "evidence_id": "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+              }
+            ]
+          }
+        },
+        "operand_ids": [
+          "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22",
+          "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+        ],
+        "operands": {
+          "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22": {
+            "company": "Microsoft Corporation",
+            "metric": "us-gaap:GrossProfit",
+            "scope": "consolidated",
+            "table_title": "Income statement",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(22) > td:nth-of-type(4)",
+            "accession": "0001564590-21-039151",
+            "raw_value": "115,856",
+            "raw_unit": "(In millions, except per share amounts)",
+            "normalized_unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value_decimal": "115856000000",
+            "period_kind": "duration",
+            "period_start": "2020-07-01",
+            "period_end": "2021-06-30"
+          },
+          "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857": {
+            "company": "Microsoft Corporation",
+            "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "scope": "consolidated",
+            "table_title": "Income statement",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(4)",
+            "accession": "0001564590-21-039151",
+            "raw_value": "168,088",
+            "raw_unit": "(In millions, except per share amounts)",
+            "normalized_unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value_decimal": "168088000000",
+            "period_kind": "duration",
+            "period_start": "2020-07-01",
+            "period_end": "2021-06-30"
+          }
+        },
+        "rule_trace": [
+          {
+            "rule_id": "cited_value_fact",
+            "premises": [
+              "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22"
+            ],
+            "outcome": "pass"
+          },
+          {
+            "rule_id": "cited_value_fact",
+            "premises": [
+              "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+            ],
+            "outcome": "pass"
+          },
+          {
+            "rule_id": "ratio_percent",
+            "premises": [
+              "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22",
+              "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+            ],
+            "outcome": "pass",
+            "normalized_inputs": [
+              "115856000000",
+              "168088000000"
+            ],
+            "result": "68.92580077102470134691352149",
+            "unit": "percent",
+            "note": null
+          }
+        ],
+        "decimal_precision": 28
+      }
+    ],
+    "chart_info": null,
+    "request": {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "filing_period_end": "2021-06-30",
+      "value_period_end": "2021-06-30",
+      "scope": "consolidated",
+      "period_kind": "duration"
+    },
+    "evidence_origin": "engine_retrieved",
+    "included_evidence_ids": [
+      "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22",
+      "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+      "0001564590-21-039151:table_cell:0c739aefd6000c3b:dbc91b1023990d44"
+    ]
+  },
+  {
+    "status": "ok",
+    "question": "How much revenue did Microsoft report in FY2021?",
+    "answer": "Verified result: 168088000000 USD. Exact result: 168088000000 USD.\nProgram (normalized source values): 168088000000.\n\nSources: [0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857]",
+    "message": "",
+    "latency_seconds": 18.863,
+    "route": {
+      "narrative": false,
+      "table": true,
+      "chart": false,
+      "chart_blocked_reason": "No independently approved chart adapter",
+      "attempts": [
+        {
+          "tier": 1,
+          "narrative_limit": 0,
+          "table_limit": 5,
+          "ranked_ids": [
+            "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+            "0001564590-21-039151:table_cell:0c739aefd6000c3b:dbc91b1023990d44",
+            "0001564590-21-039151:table_cell:569bee8b5c9ac875:6f2bacadd9207bb8",
+            "0001564590-21-039151:table_cell:ae3afc2daac5717e:2fb967b8e7b01cd0",
+            "0001564590-21-039151:table_cell:6932525023f52baa:d6ffdbd8e24e26de",
+            "0001564590-21-039151:table_cell:aa95e828e5d787b9:a39a096d62950c6e",
+            "0001564590-21-039151:table_cell:1fae4edb142e2678:5883aa40e4311073",
+            "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+            "0001564590-21-039151:financial_table:0110050066ae9e11:717e096866823fde"
+          ],
+          "stop_reason": "thresholds_satisfied"
+        }
+      ]
+    },
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "evidence": [
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 168088000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "168088000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Total revenue",
+          "row_headers": [
+            "Revenue:",
+            "Total revenue"
+          ],
+          "row_group": "Revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 10,
+          "column_index": 3,
+          "raw_value": "168,088",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "78563db3df95b85767f520750244c6343847832afba8e3858b6d39d413f008df",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Revenue: | Total revenue | 2021-06-30 | 168,088 | (In millions, except per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 168088000000 USD",
+        "score": 0.7544382214546204,
+        "score_type": "cosine",
+        "dense_rank": 1,
+        "eligible_count": 46,
+        "rrf_score": 0.03278688524590164,
+        "rrf_component_ranks": {
+          "list_0_rank": 1,
+          "list_1_rank": 1
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.7544382214546204,
+            "score_type": "cosine"
+          },
+          "list_1": {
+            "score": 5.040670112291271,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:0c739aefd6000c3b:dbc91b1023990d44",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:CostOfGoodsAndServicesSold",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 52232000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "52232000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Total cost of revenue",
+          "row_headers": [
+            "Cost of revenue:",
+            "Total cost of revenue"
+          ],
+          "row_group": "Cost of revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 18,
+          "column_index": 3,
+          "raw_value": "52,232",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "dbc91b1023990d443e31c462b7f28665c8da1f4362a3b84e3ff0874830c794d2",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(19) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Cost of revenue: | Total cost of revenue | 2021-06-30 | 52,232 | (In millions, except per share amounts) | us-gaap:CostOfGoodsAndServicesSold | 52232000000 USD",
+        "score": 0.7163875102996826,
+        "score_type": "cosine",
+        "dense_rank": 4,
+        "eligible_count": 46,
+        "rrf_score": 0.031754032258064516,
+        "rrf_component_ranks": {
+          "list_0_rank": 4,
+          "list_1_rank": 2
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.7163875102996826,
+            "score_type": "cosine"
+          },
+          "list_1": {
+            "score": 4.776492444576856,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:569bee8b5c9ac875:6f2bacadd9207bb8",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:NetIncomeLoss",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 61271000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "61271000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Net income",
+          "row_headers": [
+            "Cost of revenue:",
+            "Net income"
+          ],
+          "row_group": "Cost of revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 35,
+          "column_index": 3,
+          "raw_value": "$ 61,271",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "6f2bacadd9207bb856cf8119ab3caf223c1e23c988f36829933510e13c955108",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(36) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Cost of revenue: | Net income | 2021-06-30 | $ 61,271 | (In millions, except per share amounts) | us-gaap:NetIncomeLoss | 61271000000 USD",
+        "score": 0.7157935500144958,
+        "score_type": "cosine",
+        "dense_rank": 5,
+        "eligible_count": 46,
+        "rrf_score": 0.03076923076923077,
+        "rrf_component_ranks": {
+          "list_0_rank": 5,
+          "list_1_rank": 5
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.7157935500144958,
+            "score_type": "cosine"
+          },
+          "list_1": {
+            "score": 3.8679108960388726,
+            "score_type": "bm25"
+          }
+        }
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:ae3afc2daac5717e:2fb967b8e7b01cd0",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:ResearchAndDevelopmentExpense",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 20716000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Income statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "20716000000",
+          "raw_unit": "(In millions, except per share amounts)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Research and development",
+          "row_headers": [
+            "Cost of revenue:",
+            "Research and development"
+          ],
+          "row_group": "Cost of revenue:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 22,
+          "column_index": 3,
+          "raw_value": "20,716",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "2fb967b8e7b01cd07587b0011ff12bff6f448a3631627e3fd2eed37fcc5d8673",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(23) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:6930186ef8129463:77a1e2046403ddab",
+          "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+        },
+        "content": "Microsoft Corporation | Income statement | Cost of revenue: | Research and development | 2021-06-30 | 20,716 | (In millions, except per share amounts) | us-gaap:ResearchAndDevelopmentExpense | 20716000000 USD",
+        "score": 0.7297236919403076,
+        "score_type": "cosine",
+        "dense_rank": 2,
+        "eligible_count": 46,
+        "rrf_score": 0.016129032258064516,
+        "rrf_component_ranks": {
+          "list_0_rank": 2
+        },
+        "rrf_component_scores": {
+          "list_0": {
+            "score": 0.7297236919403076,
+            "score_type": "cosine"
+          }
+        }
+      },
+      {
+        "evidence_id": "0001564590-21-039151:table_cell:6932525023f52baa:d6ffdbd8e24e26de",
+        "metadata": {
+          "accession": "0001564590-21-039151",
+          "ticker": "MSFT",
+          "cik": "0000789019",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+          "filing_id": "0001564590-21-039151",
+          "company": "Microsoft Corporation",
+          "fiscal_year": 2021,
+          "filing_period_end": "2021-06-30",
+          "source_sha256": "1a23c265edace817235a80aef2395d03e03a05e2cef747926b6a6a851983eb55",
+          "source_file": "0001564590-21-039151.html",
+          "record_schema_version": 1,
+          "parser_version": "sec-ixbrl-corpus-v1",
+          "section": "Item 8",
+          "period_kind": "duration",
+          "period_start": "2020-07-01",
+          "period_end": "2021-06-30",
+          "metric": "us-gaap:IncreaseDecreaseInContractWithCustomerLiability",
+          "unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value": 4633000000,
+          "xbrl_sign": null,
+          "context_ref": "C_0000789019_20200701_20210630",
+          "unit_ref": "U_iso4217USD",
+          "dimensions": {},
+          "table_title": "Cash flow statement",
+          "column_header": "2021-06-30",
+          "periods_json": "[2021, 2020, 2019]",
+          "headers_json": "[\"2021-06-30\", \"2020-06-30\", \"2019-06-30\"]",
+          "normalized_value_decimal": "4633000000",
+          "raw_unit": "(In millions)",
+          "normalized_unit": "USD",
+          "scale": 1000000,
+          "scope": "consolidated",
+          "row_label": "Unearned revenue",
+          "row_headers": [
+            "Changes in operating assets and liabilities:",
+            "Unearned revenue"
+          ],
+          "row_group": "Changes in operating assets and liabilities:",
+          "column_headers": [
+            "2021-06-30"
+          ],
+          "row_index": 18,
+          "column_index": 3,
+          "raw_value": "4,633",
+          "footnote_links": [],
+          "type": "table_cell",
+          "content_sha256": "d6ffdbd8e24e26de92223be65709e905e3a6095890e0172f765dc0627d930224",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(143) > table:nth-of-type(1) > tr:nth-of-type(19) > td:nth-of-type(4)",
+          "source_anchor": null,
+          "parent_table_id": "0001564590-21-039151:financial_table:0110050066ae9e11:717e096866823fde",
+          "units_json": "{\"declared_text\": \"(In millions)\"}"
+        },
+        "content": "Microsoft Corporation | Cash flow statement | Changes in operating assets and liabilities: | Unearned revenue | 2021-06-30 | 4,633 | (In millions) | us-gaap:IncreaseDecreaseInContractWithCustomerLiability | 4633000000 USD",
+        "bm25_score": 3.8679631942174586,
+        "bm25_rank": 3,
+        "eligible_count": 46,
+        "rrf_score": 0.015873015873015872,
+        "rrf_component_ranks": {
+          "list_1_rank": 3
+        },
+        "rrf_component_scores": {
+          "list_1": {
+            "score": 3.8679631942174586,
+            "score_type": "bm25"
+          }
+        }
+      }
+    ],
+    "calculations": [
+      {
+        "status": "ok",
+        "result": "168088000000",
+        "unit": "USD",
+        "currency": "USD",
+        "expression": "[0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857]",
+        "program": {
+          "issuer": "Microsoft Corporation",
+          "scope": "consolidated",
+          "periods": [
+            {
+              "kind": "duration",
+              "start": "2020-07-01",
+              "end": "2021-06-30"
+            }
+          ],
+          "expression": {
+            "evidence_id": "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+          }
+        },
+        "operand_ids": [
+          "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+        ],
+        "operands": {
+          "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857": {
+            "company": "Microsoft Corporation",
+            "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "scope": "consolidated",
+            "table_title": "Income statement",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(140) > table:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(4)",
+            "accession": "0001564590-21-039151",
+            "raw_value": "168,088",
+            "raw_unit": "(In millions, except per share amounts)",
+            "normalized_unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value_decimal": "168088000000",
+            "period_kind": "duration",
+            "period_start": "2020-07-01",
+            "period_end": "2021-06-30"
+          }
+        },
+        "rule_trace": [
+          {
+            "rule_id": "cited_value_fact",
+            "premises": [
+              "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+            ],
+            "outcome": "pass"
+          }
+        ],
+        "decimal_precision": 28
+      }
+    ],
+    "chart_info": null,
+    "request": {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "filing_period_end": "2021-06-30",
+      "value_period_end": "2021-06-30",
+      "scope": "consolidated",
+      "period_kind": "duration"
+    },
+    "evidence_origin": "engine_retrieved",
+    "included_evidence_ids": [
+      "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+      "0001564590-21-039151:table_cell:0c739aefd6000c3b:dbc91b1023990d44",
+      "0001564590-21-039151:table_cell:569bee8b5c9ac875:6f2bacadd9207bb8",
+      "0001564590-21-039151:table_cell:ae3afc2daac5717e:2fb967b8e7b01cd0",
+      "0001564590-21-039151:table_cell:6932525023f52baa:d6ffdbd8e24e26de"
+    ]
+  }
+]
