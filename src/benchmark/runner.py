@@ -186,6 +186,8 @@ class BenchmarkRunner:
             "model_config_sha256": _file_sha256(_resolve(self.model_config_path)),
             "index_catalog_sha256": _file_sha256(index_catalog) if index_catalog else "unbound",
             "approved_gates": sorted(self.available_gates),
+            "acceptance_record_sha256": _file_sha256(
+                (self.settings.root if self.settings else ROOT) / "docs/reports/2026-11-16_gate_acceptance.json"),
         }
 
     def init_or_validate_manifest(self) -> RunManifest:

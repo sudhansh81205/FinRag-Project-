@@ -9,12 +9,19 @@ For the prepared real-model workspace, run from the repository root:
 ```bash
 .venv/bin/python scripts/run_local_workspace.py --status
 # If stopped, start the existing verified assets (no download):
-.venv/bin/python scripts/run_local_workspace.py
+.venv/bin/python scripts/run_local_workspace.py --gradio-port 7860
 ```
 Open http://127.0.0.1:4180/. Defaults point to this checkout's existing sibling Ollama/GGUF assets,
 canonical source audit and BGE cache. Other machines must supply actual installed asset paths;
 use `--help`. The launcher refuses occupied ports and changed assets. Reuse a healthy running
 workspace; do not kill unrelated listeners. A partial startup needs inspection of `output/nov17/*.log`.
+
+The optional shared-engine Gradio UI opens http://127.0.0.1:7860/. It uses the same engine/lock,
+keeps session state separate and clears prior output on edits. See the current
+[manual handoff](../docs/handoffs/2026-11-18_manual-workspace.md) and
+[requirement ledger](../completion_status.md). The redesigned web workspace has three primary
+navigation items, an evidence inspector, original chart review, exact JSON export and explicit
+unavailable-feature reasons. It does not substitute browser-only storage for private user accounts.
 
 The frontend alone can run without those assets:
 Node22+; no npm dependencies or installation:

@@ -22,12 +22,15 @@ def main():
     runtime.add_argument("--enable-engine", action="store_true")
     runtime.add_argument("--source-audit", type=Path,
                          help="Bounded checked Apple development runtime; never final experiment acceptance")
-    parser.add_argument("--variant", choices=["C", "D"], default="D")
+    parser.add_argument("--variant", choices=list("ABCDEFG"), default="D")
+    parser.add_argument("--representation", choices=["A", "B"])
+    parser.add_argument("--reranker-dir", type=Path)
     parser.add_argument("--tokenizer-dir")
     parser.add_argument("--tokenizer-url", help="Existing local llama.cpp tokenizer service")
     parser.add_argument("--gguf", type=Path, help="Existing generator GGUF file used by that service")
     parser.add_argument("--gguf-sha256", help="Expected SHA-256 of the installed generator GGUF")
     parser.add_argument("--model-cache", type=Path)
+    parser.add_argument("--gradio-port", type=int, help="Also serve the required Gradio UI on loopback using this same engine")
     parser.add_argument("--job-store", type=Path, default=ROOT / "output/web-jobs.sqlite3",
                         help="Private single-process job state; unfinished jobs fail on restart")
     args = parser.parse_args()
@@ -43,17 +46,29 @@ def main():
         counter = GGUFTokenCounter(args.tokenizer_url, args.gguf, args.gguf_sha256, server_root=ROOT)
         tokenizer_id = counter.identity
     if args.source_audit:
+        if args.variant != "D":
+            parser.error("The bounded source-audit development runtime is D; use accepted --enable-engine for other variants.")
         if counter is None:
             parser.error("The bounded source runtime requires the identified installed GGUF tokenizer")
         engine = build_source_checked_engine(settings, args.source_audit, token_counter=counter,
                                               tokenizer_id=tokenizer_id, model_cache=args.model_cache)
     elif args.enable_engine:
         engine = build_prepared_engine(settings, variant=args.variant, tokenizer_dir=args.tokenizer_dir,
-                                        token_counter=counter, tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+                                        token_counter=counter, tokenizer_id=tokenizer_id, model_cache=args.model_cache,
+                                        representation=args.representation, reranker_dir=args.reranker_dir)
     else:
         engine = None
     app = WebApplication(settings, engine)
     jobs = AnswerJobs(args.job_store, app.answer)
+    gradio_demo = None
+    if args.gradio_port is not None:
+        if not 1024 <= args.gradio_port <= 65535 or args.gradio_port in {args.port, 11434, 11435}:
+            parser.error("Choose a separate Gradio port between 1024 and 65535")
+        from app import create_demo
+        from src.web_api import GradioApplication
+        gradio_demo = create_demo(GradioApplication(app))
+        gradio_demo.launch(server_name="127.0.0.1", server_port=args.gradio_port, share=False,
+                           inbrowser=False, show_error=False, prevent_thread_lock=True)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -107,6 +122,8 @@ def main():
         ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
     finally:
         jobs.close()
+        if gradio_demo is not None:
+            gradio_demo.close()
 
 
 if __name__ == "__main__":

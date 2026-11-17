@@ -47,9 +47,14 @@ def main():
     parser.add_argument("--gate-report", action="store_true",
                         help="Print per-gate open/closed status derived from actual artifacts and exit.")
     parser.add_argument("--enable-engine", action="store_true",
-                        help="Explicitly load an accepted prepared C/D runtime; does not bind benchmark contexts")
+                        help="Explicitly load an accepted prepared runtime; source-equivalent benchmark binding remains separate")
     parser.add_argument("--tokenizer-dir", type=Path, help="Existing local generator tokenizer")
+    parser.add_argument("--tokenizer-url", help="Existing loopback tokenizer for the exact generator GGUF")
+    parser.add_argument("--gguf", type=Path)
+    parser.add_argument("--gguf-sha256")
     parser.add_argument("--model-cache", type=Path, help="Existing pinned BGE cache")
+    parser.add_argument("--representation", choices=["A", "B"], help="Explicit A/B identity for the selected exact index")
+    parser.add_argument("--reranker-dir", type=Path, help="Verified pinned cross-encoder assets for E/F/G")
     parser.add_argument("--benchmark-dir", type=Path,
                         help="Inventory this actual suite directory for capacity (not historical fixture counts)")
     args = parser.parse_args()
@@ -80,11 +85,20 @@ def main():
         from src.config import load_settings
         try:
             settings = load_settings()
+            counter, tokenizer_id = None, None
+            if args.tokenizer_url:
+                if not args.gguf or not args.gguf_sha256 or args.tokenizer_dir:
+                    raise ValueError("Choose one identified generator tokenizer")
+                from src.llm.token_budget import GGUFTokenCounter
+                counter = GGUFTokenCounter(args.tokenizer_url, args.gguf, args.gguf_sha256, server_root=ROOT)
+                tokenizer_id = counter.identity
             engine = build_benchmark_engine(settings, variant=args.variant,
-                                            tokenizer_dir=args.tokenizer_dir, model_cache=args.model_cache)
+                                            tokenizer_dir=args.tokenizer_dir, model_cache=args.model_cache,
+                                            representation=args.representation, reranker_dir=args.reranker_dir,
+                                            token_counter=counter, tokenizer_id=tokenizer_id)
         except (ValueError, OSError) as exc:
             # Runtime errors are sanitized: model-cache/provider paths may be private.
-            parser.error(f"Prepared runtime unavailable ({type(exc).__name__}); check accepted assets, C/D variant and tokenizer.")
+            parser.error(f"Prepared runtime unavailable ({type(exc).__name__}); check accepted assets, variant, representation and tokenizer.")
     out_dir = Path(args.output_dir) if args.output_dir else ROOT / "output" / f"eval_{args.variant}_{args.benchmark.lower()}"
     runner = BenchmarkRunner(
         output_dir=out_dir,

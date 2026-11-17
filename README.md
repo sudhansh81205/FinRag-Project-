@@ -2,7 +2,15 @@
 
 ## Current reviewed runtime
 
-See [run and deployment handoff](docs/handoffs/2026-11-17_deployment-review.md) for the prepared site command and [code review](docs/reports/2026-11-17_code-review.md) for fixes, verification and remaining gates. The live Apple demonstration works; final benchmark readiness remains false.
+See the [18 November manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md), [current code review](docs/reports/2026-11-18_code-review.md) and [requirement ledger](completion_status.md). The reviewed web/Gradio narrative and numerical paths use the actual prepared Gemma/BGE/FAISS engine. Chart answering, final benchmark acceptance and private saving remain incomplete. Current repairs are submitted through PR18 for owner merge.
+
+```bash
+.venv/bin/python scripts/run_local_workspace.py --status
+# If stopped and the corresponding ports are free:
+.venv/bin/python scripts/run_local_workspace.py --gradio-port 7860
+```
+
+Prepared web: http://127.0.0.1:4180/. Shared-engine Gradio: http://127.0.0.1:7860/. The protected hosted workspace is https://finrag-workspace.vercel.app/ and requires the approved temporary laptop API/tunnel to remain running. Basic research does not need Supabase sign-in.
 
 Current verified runtime/data progress, checks and remaining acceptance: [November17 implementation](docs/handoffs/2026-11-17_runtime-completion.md). Use the [refreshed six-slide deck](docs/reports/2026-11-17_verified_slides.pptx). The project remains partial.
 
@@ -37,7 +45,7 @@ The current plan uses **seven members and exactly one assigned worker per day**.
 
 Use **`main`** for the shared project. The UI, modular backend, PRD and review kit are combined here. The original UI/container are preserved under `prototypes/`, and the notebook remains an ingestion reference.
 
-Start with the [setup guide](docs/SETUP.md). The single entry point is `python app.py`. This setup milestone launches without a key or model download and clearly reports `index_not_ready`. Real answering, validated ingestion, citations and calculations remain scheduled work.
+Start with the [prepared manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md). Standalone `python app.py` preserves the historical unconfigured setup path; use the prepared launcher with `--gradio-port 7860` for the verified shared engine. The [older setup guide](docs/SETUP.md) remains useful for environment context.
 
 The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. Those reports describe the historical checkpoint; the current PRD controls subsequent scope and dates.
 

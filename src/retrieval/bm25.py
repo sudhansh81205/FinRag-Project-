@@ -490,7 +490,8 @@ class HybridRRFRetriever:
             result["stages"].append({
                 "stage": "cross_encoder_rerank", "variant": "E",
                 "model": self.reranker_model_id or "unverified injected predictor",
-                "model_identity_verified": False, "top_n": top_n,
+                "model_identity_verified": bool(getattr(self.reranker, "identity_verified", False)
+                                                and getattr(self.reranker, "model_id", None) == self.reranker_model_id), "top_n": top_n,
                 "input_count": len(candidates), "output_count": len(ordered),
             })
             return ordered

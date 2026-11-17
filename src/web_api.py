@@ -22,10 +22,16 @@ class WebApplication:
 
     def health(self):
         ready = self.app.engine is not None
+        records = getattr(self.app.engine, "web_source_records", [])
+        filings = sorted({r.get("metadata", {}).get("accession") for r in records
+                          if r.get("metadata", {}).get("accession")})
         return {"status": "ready" if ready else "index_not_ready",
                 "message": ("Accepted engine resources connected; answers still require matching evidence."
                             if ready else "No prepared BGE/FAISS/model engine is connected."),
-                "final_experiment_ready": False}
+                "final_experiment_ready": False,
+                "supported_filings": filings,
+                "modes": {"narrative": ready, "numerical": ready,
+                          "chart": bool(getattr(self.app.engine, "enable_chart_descriptions", False))}}
 
     def answer(self, payload):
         if not self._answer_lock.acquire(blocking=False):
@@ -52,8 +58,13 @@ class WebApplication:
         mode = payload.get("mode", "auto")
         if mode not in {"auto", "narrative", "numerical", "chart"}:
             return failure("invalid_request", "Unsupported question type.")
-        if mode == "chart":
+        if mode == "chart" and not getattr(self.app.engine, "enable_chart_descriptions", False):
             return failure("index_not_ready", "Independent chart/caption acceptance and G execution are not ready.")
+        source_records = getattr(self.app.engine, "web_source_records", None)
+        if source_records is not None and not any(
+            r.get("metadata", {}).get("accession") == request.accession for r in source_records
+        ):
+            return failure("index_not_ready", "This filing is inventoried, but its accepted evidence is not connected. Choose an available filing.")
         period_kind = payload.get("period_kind")
         if period_kind is not None and period_kind not in {"instant", "duration"}:
             return failure("invalid_request", "Choose a fiscal-year total or year-end balance.")
@@ -75,7 +86,9 @@ class WebApplication:
             kind, start, end = periods.pop()
             planning_request = {"issuer": request.company, "scope": request.scope,
                                 "periods": [{"kind": kind, "start": start, "end": end}]}
-        options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" else None
+        options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" or mode == "auto" and not numerical else None
+        if mode == "chart":
+            options = {"top_k_text": 1, "top_k_tables": 0, "chart_only": True}
         result = self.app.answer_interactive(payload["question"], request=request,
                                              calculation_request=planning_request, retrieval_options=options)
         if numerical and result.get("status") == "ok":
@@ -93,21 +106,79 @@ class WebApplication:
         return result
 
 
+class GradioApplication:
+    """R6: reuse the same engine and lock across Gradio and HTTP sessions."""
+
+    def __init__(self, web):
+        self.web = web
+
+    def readiness(self):
+        health = self.web.health()
+        return {**health, "blockers": [] if health["status"] == "ready" else [health["message"]]}
+
+    def answer_interactive(self, question, *, request=None, calculation_plan=None,
+                           chart_asset_id=None, demo_only=False):
+        if request is None:
+            return {"status": "invalid_request", "answer": "", "message": "Choose a valid filing and period.",
+                    "evidence": [], "calculations": []}
+        if calculation_plan is None and not chart_asset_id and not demo_only:
+            return self.web.answer({"question": question, "ticker": request.ticker,
+                                    "accession": request.accession, "value_period_end": request.value_period_end,
+                                    "scope": request.scope, "mode": "auto"})
+        if not self.web._answer_lock.acquire(blocking=False):
+            return {"status": "service_error", "answer": "", "message": "The model is busy. Try again shortly.",
+                    "evidence": [], "calculations": []}
+        try:
+            # Explicit synthetic mode remains visibly demo_only and never licenses live evidence.
+            application = InteractiveApplication(self.web.settings) if demo_only else self.web.app
+            return application.answer_interactive(question, request=request, calculation_plan=calculation_plan,
+                                                  chart_asset_id=chart_asset_id, demo_only=demo_only)
+        finally:
+            self.web._answer_lock.release()
+
+
 def build_prepared_engine(settings, *, variant="D", tokenizer_dir=None, context_tokens=3000,
-                          token_counter=None, tokenizer_id=None, model_cache=None):
+                          token_counter=None, tokenizer_id=None, model_cache=None,
+                          representation=None, reranker_dir=None):
     """Reopen existing local assets only, without installing or downloading any model."""
     from src.application import assemble_exact_engine
     from src.benchmark.gates import detect_available_gates
+    from src.pipeline.experiment_scaffold import get_variant_spec, validate_experiment_manifest
+    from src.runtime_support import model_cache as resolve_model_cache
+
+    gate = validate_experiment_manifest(get_variant_spec(variant), detect_available_gates(
+        settings.root, settings.root / "docs/reports/2026-11-16_gate_acceptance.json"))
+    if not gate["is_ready"]:
+        raise ValueError("Independent artifact acceptance gates are closed.")
+    if variant in {"A", "B"} and representation != variant:
+        raise ValueError("A/B representation-specific resources are unavailable; select the matching index explicitly.")
+    if variant in {"E", "F", "G"} and reranker_dir is None:
+        raise ValueError("Pinned cross-encoder assets are unavailable; specify their verified local directory.")
     from src.indexing.bge import BGEEncoder
     from src.indexing.store import ExactStore
     from src.llm.client import UnifiedLLMClient
-    from src.pipeline.experiment_scaffold import get_variant_spec, validate_experiment_manifest
 
-    gate = validate_experiment_manifest(get_variant_spec(variant), detect_available_gates())
-    if not gate["is_ready"]:
-        raise ValueError("Independent artifact acceptance gates are closed.")
-    if variant not in {"C", "D"}:
-        raise ValueError("This web adapter supports prepared C/D; E-G need real identified stage adapters.")
+    reranker, routing, captions = None, None, None
+    acceptance_path = settings.root / "docs/reports/2026-11-16_gate_acceptance.json"
+    acceptance = json.loads(acceptance_path.read_text()) if variant in {"F", "G"} else None
+    if reranker_dir is not None:
+        if variant not in {"E", "F", "G"}:
+            raise ValueError("Cross-encoding belongs to E/F/G only")
+        from src.retrieval.cross_encoder import PinnedCrossEncoder
+        reranker = PinnedCrossEncoder(reranker_dir)
+    if acceptance is not None:
+        from src.retrieval.bm25 import RoutingPolicy
+        thresholds = acceptance["gates"]["frozen_routing_thresholds"].get("thresholds")
+        if not isinstance(thresholds, dict):
+            raise ValueError("Accepted development routing thresholds are unavailable")
+        routing = RoutingPolicy(**thresholds)
+    if variant == "G":
+        from src.charts.approval import load_reviewed_captions
+        chart = acceptance["gates"]["independent_chart_approval"]
+        captions = load_reviewed_captions(settings.root / chart["captions_path"],
+            settings.root / chart["caption_approvals_path"], settings.root / "data/charts",
+            trusted_reviewers=chart["trusted_reviewers"], caption_authors=chart["caption_authors"])
+
     if token_counter is None:
         if not tokenizer_dir or not Path(tokenizer_dir).is_dir():
             raise ValueError("An existing local generator tokenizer is required.")
@@ -117,7 +188,7 @@ def build_prepared_engine(settings, *, variant="D", tokenizer_dir=None, context_
             return len(tokenizer.encode(text, add_special_tokens=True))
         tokenizer_id = str(Path(tokenizer_dir).resolve())
     from src.llm.token_budget import BudgetedClient
-    encoder = BGEEncoder(local_files_only=True, cache_folder=str(model_cache or settings.root / "output/models"))
+    encoder = BGEEncoder(local_files_only=True, cache_folder=str(resolve_model_cache(settings.root, model_cache)))
     store = ExactStore(settings.index_dir)
     client = BudgetedClient(UnifiedLLMClient.from_settings(settings), token_counter,
                             input_tokens=context_tokens, context_tokens=settings.ollama_num_ctx,
@@ -125,7 +196,9 @@ def build_prepared_engine(settings, *, variant="D", tokenizer_dir=None, context_
     engine = assemble_exact_engine(
         settings, store=store, encoder=encoder, llm_client=client,
         variant=variant, token_counter=token_counter,
-        context_token_budget=context_tokens, tokenizer_id=tokenizer_id)
+        context_token_budget=context_tokens, tokenizer_id=tokenizer_id,
+        cross_encoder=reranker, reranker_model_id=reranker.model_id if reranker else None,
+        routing_policy=routing, approved_charts=captions)
     engine.web_source_records = store.records
     return engine
 
@@ -143,12 +216,13 @@ def build_source_checked_engine(settings, audit_path, *, token_counter, tokenize
     from src.indexing.store import ExactStore
     from src.llm.client import UnifiedLLMClient
     from src.llm.token_budget import BudgetedClient
+    from src.runtime_support import model_cache as resolve_model_cache
 
     records, parents, _ = accepted_input(settings.root / "data/processed/nov04", Path(audit_path))
     store = ExactStore(settings.index_dir)
     if store.records != records or store.parents != {p["evidence_id"]: p for p in parents}:
         raise ValueError("Bounded source runtime requires exactly the checked Apple records/parents")
-    encoder = BGEEncoder(local_files_only=True, cache_folder=str(model_cache or settings.root / "output/models"))
+    encoder = BGEEncoder(local_files_only=True, cache_folder=str(resolve_model_cache(settings.root, model_cache)))
     client = BudgetedClient(UnifiedLLMClient.from_settings(settings), token_counter,
                             context_tokens=settings.ollama_num_ctx, output_tokens=settings.ollama_num_predict)
     engine = assemble_exact_engine(settings, store=store, encoder=encoder, llm_client=client,

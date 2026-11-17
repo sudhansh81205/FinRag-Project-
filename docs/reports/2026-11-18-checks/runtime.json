@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-17T20:08:52.623923+00:00",
+  "revision": "d6a9a60095717b11126a48c8d0825fb4339261d3",
+  "dirty": true,
+  "platform": "Darwin",
+  "python": "3.14.2",
+  "total_memory_bytes": 8589934592,
+  "profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "checks": {
+    "packages": {
+      "requests": true,
+      "numpy": true,
+      "faiss": true,
+      "torch": true,
+      "transformers": true,
+      "sentence_transformers": true,
+      "pytest": true
+    },
+    "ollama": {
+      "status": "passed",
+      "mismatches": [],
+      "installed": {
+        "model": "gemma3:4b",
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "family": "gemma3",
+        "parameter_size": "3.9B",
+        "quantization_level": "Q4_K_M",
+        "capabilities": [
+          "completion",
+          "vision"
+        ],
+        "model_context_length": 131072
+      },
+      "generation_executed": true,
+      "generation_status": "ok"
+    },
+    "exact_index": {
+      "status": "passed",
+      "records": 535,
+      "catalog_sha256": "e875fb25a77f62fa47071f25adca2d98dd2c57038eab90b1685251b605b6388c"
+    },
+    "embedding": {
+      "status": "passed",
+      "cache": "/Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/output/models-http",
+      "model": {
+        "embedding_model": "BAAI/bge-base-en-v1.5",
+        "embedding_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+        "dimension": 768,
+        "normalization": "l2",
+        "preprocessing": {
+          "query_instruction": "Represent this sentence for searching relevant passages: ",
+          "document_instruction": "",
+          "max_seq_length": 512,
+          "truncation_policy": "reject_over_limit_including_special_tokens"
+        }
+      }
+    },
+    "tokenizer": {
+      "status": "passed",
+      "identity": "llama.cpp:gguf-sha256:f06e91e18fc74295d0c781bf91622508c75655e2c18ed869d52447ffe1e667e1",
+      "source": "actual hash-pinned GGUF; loopback service identity rechecked"
+    },
+    "acceptance_gates": {
+      "fixed_overlap_index_representation": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "section_aware_index_representation": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "canonical_cells_and_parents": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "bm25_index": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "bge_reranker_base": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "frozen_routing_thresholds": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "independent_chart_approval": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at /Users/rushilmohan/Documents/Codex/2026-11-02/go-th/work/finrag-nov17-completion/docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      }
+    }
+  },
+  "runtime_prerequisites_ready": true,
+  "full_project_complete": false,
+  "scope": "Machine inventory only. Full A-G/context binding, independent reviews, results and release proof are separate.",
+  "next": "Read docs/handoffs/RUSHIL_START_HERE.md; never edit acceptance marks to bypass a blocker."
+}

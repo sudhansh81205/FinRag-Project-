@@ -38,7 +38,7 @@ async function upstream(fetchImpl, url, options = {}, timeout = 22000) {
 }
 function requestMatches(result, body) {
   const r = result.request;
-  return r && r.ticker === body.ticker && r.accession === body.accession && r.value_period_end === body.value_period_end && r.scope === body.scope && (body.period_kind === undefined || r.period_kind === body.period_kind);
+  return r && (result.question ?? r.question) === body.question && r.ticker === body.ticker && r.accession === body.accession && r.value_period_end === body.value_period_end && r.scope === body.scope && (body.period_kind === undefined || r.period_kind === body.period_kind);
 }
 function checkedAnswer(result, body, responseOk = true) {
   if (!result || !statuses.has(result.status)) return json(empty('service_error', 'The engine returned an unsupported response.'), 502);

@@ -18,7 +18,8 @@ artifact it describes?
 
 import hashlib
 import json
-from pathlib import Path
+import re
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -60,7 +61,15 @@ def _check_artifacts(gate_record: Any, root: Path) -> list[str]:
     if not isinstance(artifacts, dict) or not artifacts:
         return ["Gate lists no bound artifacts."]
     for rel, expected in artifacts.items():
+        if (not isinstance(rel, str) or not rel or "\\" in rel or ":" in rel
+                or PurePosixPath(rel).is_absolute() or ".." in PurePosixPath(rel).parts
+                or not isinstance(expected, str) or not re.fullmatch(r"[a-f0-9]{64}", expected)):
+            problems.append("Invalid artifact path or SHA-256.")
+            continue
         target = (root / rel)
+        if not target.resolve().is_relative_to(root.resolve()):
+            problems.append(f"Artifact escapes project root: {rel}")
+            continue
         actual = _sha256_file(target)
         if actual is None:
             problems.append(f"Artifact missing: {rel}")
@@ -77,9 +86,16 @@ def _validate_chart_gate(gate_record: dict[str, Any], root: Path) -> list[str]:
     approvals = gate_record.get("approvals_path")
     if not (isinstance(reviewers, list) and isinstance(authors, list) and isinstance(approvals, str)):
         return ["Chart gate needs trusted_reviewers, label_authors and approvals_path."]
+    paths = [approvals, gate_record.get("captions_path"), gate_record.get("caption_approvals_path")]
+    if any(not isinstance(path, str) or path not in gate_record.get("artifacts", {}) for path in paths):
+        return ["Chart gate must hash-bind question approvals, caption candidates and separate caption decisions."]
     try:
         load_reviewed_set(root / "data" / "charts", root / approvals,
                           trusted_reviewers=reviewers, label_authors=authors)
+        from src.charts.approval import load_reviewed_captions
+        load_reviewed_captions(root / paths[1], root / paths[2], root / "data/charts",
+                               trusted_reviewers=reviewers,
+                               caption_authors=gate_record.get("caption_authors", []))
     except Exception as exc:
         return [f"Chart ledger validation failed: {exc}"]
     return []
@@ -104,8 +120,14 @@ def evaluate_gates(root: Path | str = ROOT, acceptance_path: Path | str | None =
                     reasons.extend(_validate_chart_gate(gate_record, root))
                 if gate == "frozen_routing_thresholds" and not reasons:
                     thresholds = (gate_record.get("thresholds") or "unfrozen")
-                    if thresholds == "unfrozen":
-                        reasons.append("Routing thresholds are not frozen.")
+                    try:
+                        from src.retrieval.bm25 import RoutingPolicy
+                        if not isinstance(thresholds, dict) or set(thresholds) != {
+                            "min_candidates", "max_tiers", "min_cross_encoder_score"}:
+                            raise ValueError("Missing explicit thresholds")
+                        RoutingPolicy(**thresholds)
+                    except (TypeError, ValueError):
+                        reasons.append("Routing thresholds are not frozen as a valid explicit policy.")
         report[gate] = {"open": not reasons, "reasons": reasons}
     return report
 
