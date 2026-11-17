@@ -30,6 +30,13 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "src/llm/request_intent.py",
+    "tests/test_request_intent.py",
+    "docs/reports/2026-11-18_functional-repair.md",
+    "docs/reports/2026-11-18-functional-checks/live-core.json",
+    "docs/reports/2026-11-18-functional-checks/saved-isolation.json",
+    "docs/reports/2026-11-18-functional-checks/pytest.txt",
+    "docs/reports/2026-11-18-functional-checks/node.txt",
     "docs/reports/2026-11-18-checks/hosted-limited-verification.json",
     "docs/reports/2026-11-18-checks/limited-pytest.txt",
     "docs/reports/2026-11-18-checks/limited-node.txt",

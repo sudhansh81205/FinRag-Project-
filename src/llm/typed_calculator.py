@@ -135,18 +135,18 @@ def evaluate(plan, included_records):
                                 (m["metric"],), (identity,), f"[{identity}]")
             require(set(node) == {"op", "args"} and isinstance(node["args"], list)
                     and len(node["args"]) == 2 and node["op"] in {
-                        "add", "subtract", "multiply", "divide", "ratio_percent", "change", "percent_change"},
+                        "add", "subtract", "multiply", "divide", "ratio_percent", "change", "percent_change", "percentage_point_change"},
                     "allowed_operation", "Only allowlisted binary operation trees are accepted.")
             left, right = (visit(child, depth + 1) for child in node["args"])
             op = node["op"]
             require((left.issuer, left.scope) == (right.issuer, right.scope),
                     "comparable_identity", "Issuer or scope differs.")
-            cross_period = op in {"change", "percent_change"}
+            cross_period = op in {"change", "percent_change", "percentage_point_change"}
             require(left.unit == right.unit and left.currency == right.currency
                     or op == "multiply" and "ratio" in (left.unit, right.unit),
                     "comparable_units", "Operands have incompatible units/currency.")
             if cross_period:
-                require(left.metrics == right.metrics and left.unit != "percent",
+                require(left.metrics == right.metrics and (left.unit != "percent" or op == "percentage_point_change"),
                         "comparable_metric", "Annual comparison requires matching metric meaning.")
                 require(left.period[0] == right.period[0]
                         and date.fromisoformat(left.period[2]).year == date.fromisoformat(right.period[2]).year + 1
@@ -158,10 +158,13 @@ def evaluate(plan, included_records):
                             "annual_duration", "Quarterly or unequal duration comparison is unsupported.")
             else:
                 require(left.period == right.period, "same_period", "Operation requires the same period.")
-            require(left.unit != "percent" and right.unit != "percent", "percent_terminal", "Percentage outputs are terminal.")
+            require(left.unit != "percent" and right.unit != "percent" or op == "percentage_point_change" and left.unit == right.unit == "percent", "percent_terminal", "Percentage outputs are terminal.")
             unit, currency = left.unit, left.currency
             note = None
-            if op in {"add", "subtract", "change"}:
+            if op == "percentage_point_change":
+                value = left.value - right.value
+                unit, currency = "percentage points", None
+            elif op in {"add", "subtract", "change"}:
                 value = left.value + right.value if op == "add" else left.value - right.value
             elif op == "multiply":
                 require("ratio" in (left.unit, right.unit), "dimensionless_product", "Multiplication requires a dimensionless ratio.")
@@ -209,7 +212,7 @@ def render_result(calculation):
     """Make the validated calculator, rather than generated prose, authoritative."""
     require(calculation.get("status") == "ok", "validated_result", "Only successful calculations can be rendered.")
     value, unit = calculation["result"], calculation["unit"]
-    display = f"{Decimal(value):.2f}%" if unit == "percent" else f"{value} {unit}"
+    display = f"{Decimal(value):.2f}%" if unit == "percent" else f"{Decimal(value):.2f} percentage points" if unit == "percentage points" else f"{value} {unit}"
     expression = calculation["expression"]
     for identity, operand in calculation["operands"].items():
         expression = expression.replace(f"[{identity}]", operand["normalized_value_decimal"])

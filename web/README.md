@@ -84,3 +84,7 @@ Read `../docs/handoffs/RUSHIL_START_HERE.md`. Local Node22 dev loads `web/.env`.
 ## Current 18 November workspace deployment
 
 The redesigned implementation `aa52b98` is READY at https://finrag-workspace.vercel.app/ with existing Vercel Authentication. A real hosted gross-margin answer and focused source citation were verified. See the [current deployment receipt](../docs/reports/2026-11-18_workspace-deployment.json). The owner merged earlier PR18; current changes are in [PR19](https://github.com/sudhansh81205/FinRag-Project-/pull/19) for owner merge. Four current reports are in `../docs/reports/2026-11-18-completion-pack/`. The laptop API and temporary tunnel must stay running; full-study and Supabase gates remain open.
+
+## Private account flow
+
+Existing Supabase email/password auth is enabled by `SUPABASE_PASSWORD_AUTH_READY=true`, alongside `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. Password sign-in, signup with required email confirmation and original confirmation-link verification use server routes; the browser stores only a session access token. Refresh tokens are discarded. Account creation/confirmation emails occur only when a visitor explicitly submits that flow. Keep legacy `SUPABASE_AUTH_READY` off unless magic-link redirect/delivery was separately verified. Actual approved synthetic-account sign-in and save/read/delete isolation tests do not certify new-user email delivery. The `.env` file is private/ignored and is loaded explicitly by the Node launcher.

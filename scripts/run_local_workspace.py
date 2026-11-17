@@ -110,7 +110,7 @@ def start(args):
         wait_ready(process, "http://127.0.0.1:8000/health", token=token)
         env = dict(os.environ, FINRAG_BACKEND_URL="http://127.0.0.1:8000", FINRAG_BACKEND_TOKEN=token,
                    FINRAG_WEB_PORT=str(args.web_port), FINRAG_BACKEND_TIMEOUT_MS="240000")
-        process = launch("web", [args.node, "dev.mjs"], env, ROOT / "web")
+        process = launch("web", [args.node, "--env-file-if-exists=.env", "dev.mjs"], env, ROOT / "web")
         wait_ready(process, f"http://127.0.0.1:{args.web_port}/api/health")
         # This process manifest contains no secret and does not license killing a reused PID.
         (state / "local-processes.json").write_text(json.dumps({"pids": [p.pid for p in children],

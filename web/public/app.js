@@ -250,12 +250,12 @@ async function refreshHealth() {
 }
 function showAuth() {
   $('#auth-message').textContent = state.health?.saved_queries.sign_in_configured ? '' : state.health?.saved_queries.configured ? 'Email sign-in is pending redirect and delivery verification. Research remains available without an account.' : 'Private saving is not connected. You can still ask questions and inspect filing evidence without signing in.';
-  $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#sign-out').hidden = !state.token;$('#auth-dialog').showModal();
+  $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#auth-signup').disabled = $('#auth-submit').disabled;$('#auth-verify').disabled = $('#auth-submit').disabled;$('#sign-out').hidden = !state.token;$('#auth-dialog').showModal();
 }
 async function renderSaved() {
   const revision = ++savedRevision;const token = state.token;
   const body = $('#saved-body');body.replaceChildren();
-  if (!state.token || !state.health?.saved_queries.configured) { const box = element('div', undefined, 'saved-empty');box.append(element('h2', state.health?.saved_queries.sign_in_configured ? 'Your questions, in one place.' : 'Private saving is unavailable.'), element('p', state.health?.saved_queries.sign_in_configured ? 'Sign in with an email link to see and save your private questions.' : 'Sign-in setup needs to be completed and verified. You can continue research and export answers without an account.'));const button = element('button', state.health?.saved_queries.sign_in_configured ? 'Sign in to your workspace' : 'Sign-in unavailable', 'outline-button');button.disabled = !state.health?.saved_queries.sign_in_configured;button.addEventListener('click', showAuth);const back = element('button', 'Back to research', 'text-button');back.addEventListener('click', () => view('research'));box.append(button, back);body.append(box);return; }
+  if (!state.token || !state.health?.saved_queries.configured) { const box = element('div', undefined, 'saved-empty');box.append(element('h2', state.health?.saved_queries.sign_in_configured ? 'Your questions, in one place.' : 'Private saving is unavailable.'), element('p', state.health?.saved_queries.sign_in_configured ? 'Sign in with your account to see and save your private questions.' : 'Sign-in setup needs to be completed and verified. You can continue research and export answers without an account.'));const button = element('button', state.health?.saved_queries.sign_in_configured ? 'Sign in to your workspace' : 'Sign-in unavailable', 'outline-button');button.disabled = !state.health?.saved_queries.sign_in_configured;button.addEventListener('click', showAuth);const back = element('button', 'Back to research', 'text-button');back.addEventListener('click', () => view('research'));box.append(button, back);body.append(box);return; }
   body.append(element('p', 'Loading your saved questions…'));
   try {
     const result = await api('saved');if (revision !== savedRevision || token !== state.token) return;body.replaceChildren();
@@ -280,7 +280,23 @@ $('#copy-answer').addEventListener('click', async () => { try { await navigator.
 $('#export-answer').addEventListener('click', () => { if (!state.result) return;const blob = new Blob([JSON.stringify({ query: state.lastQuery, result: state.result }, null, 2)], { type: 'application/json' });const url = URL.createObjectURL(blob);const link = element('a');link.href = url;link.download = 'finrag-research.json';link.click();setTimeout(() => URL.revokeObjectURL(url), 1000); });
 $('#save-question').addEventListener('click', async () => { if (!state.token) { showAuth();return; }try { const result = await api('saved', { method: 'POST', body: JSON.stringify(state.lastQuery || query()) });toast(result.status === 'ok' ? 'Question saved privately.' : result.message || 'Could not save the question.'); } catch { toast('Could not reach saved questions.'); } });
 $('#account-button').addEventListener('click', showAuth);$('#close-auth').addEventListener('click', () => $('#auth-dialog').close());$('#refresh-status').addEventListener('click', refreshHealth);
-$('#auth-form').addEventListener('submit', async event => { event.preventDefault();$('#auth-submit').disabled = true;try { const result = await api('auth/start', { method: 'POST', body: JSON.stringify({ email: $('#email').value.trim() }) });$('#auth-message').textContent = result.message; } catch { $('#auth-message').textContent = 'Sign-in could not be reached.'; }finally { $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured; } });
+async function accountAction(route) {
+  $('#auth-submit').disabled = true;$('#auth-signup').disabled = true;$('#auth-verify').disabled = true;
+  try {
+    const body = route === 'verify' ? {confirmation_url:$('#confirmation-link').value.trim()} : {email:$('#email').value.trim(),password:$('#password').value};
+    const result = await api(`auth/${route}`, {method:'POST',body:JSON.stringify(body)});
+    $('#auth-message').textContent = result.message || '';
+    if (result.status === 'ok' && result.access_token) {
+      state.token = result.access_token;sessionStorage.setItem('finrag_token',state.token);$('#password').value = '';$('#confirmation-link').value = '';
+      $('#account-label').textContent = 'Signed-in workspace';$('#account-detail').textContent = 'Private saved questions';$('#auth-dialog').close();
+      if (state.result) $('#save-question').disabled = false;renderSaved();toast('Signed in. Your saved questions are private.');
+    }
+  } catch { $('#auth-message').textContent = 'The account service could not be reached. Try again.'; }
+  finally { $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#auth-signup').disabled = $('#auth-submit').disabled;$('#auth-verify').disabled = $('#auth-submit').disabled; }
+}
+$('#auth-form').addEventListener('submit', event => {event.preventDefault();accountAction('password');});
+$('#auth-signup').addEventListener('click', () => {if ($('#auth-form').reportValidity()) accountAction('signup');});
+$('#auth-verify').addEventListener('click', () => accountAction('verify'));
 $('#sign-out').addEventListener('click', () => { state.token = null;sessionStorage.removeItem('finrag_token');$('#account-label').textContent = 'Your workspace';$('#account-detail').textContent = 'Sign in to save questions';$('#auth-dialog').close();renderSaved();toast('Signed out of this browser.'); });
 $('#mobile-menu').addEventListener('click', openMenu);$('#close-menu').addEventListener('click', () => closeMenu(true));$('#menu-backdrop').addEventListener('click', () => closeMenu(true));
 document.addEventListener('keydown', event => {

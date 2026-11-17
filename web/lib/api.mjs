@@ -56,7 +56,9 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
     const supabase = endpoint(env.SUPABASE_URL);
     const publicKey = env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY;
     const dbReady = Boolean(supabase && publicKey);
-    const authReady = dbReady && env.SUPABASE_AUTH_READY === "true";
+    const magicLinkReady = dbReady && env.SUPABASE_AUTH_READY === "true";
+    const passwordReady = dbReady && env.SUPABASE_PASSWORD_AUTH_READY === "true";
+    const authReady = magicLinkReady || passwordReady;
     const backend = endpoint(env.FINRAG_BACKEND_URL, env.NODE_ENV !== 'production' && (allowLocalBackend || env.FINRAG_ALLOW_LOOPBACK_HTTP === 'true'));
     const answerTimeout = Number(env.FINRAG_BACKEND_TIMEOUT_MS || 240000);
     if (!Number.isInteger(answerTimeout) || answerTimeout < 1000 || answerTimeout > 240000) throw new Error('Invalid answer timeout');
@@ -69,7 +71,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
           runtime = response.ok && ['ready', 'index_not_ready'].includes(body.status) ? body : { status: 'service_error', message: 'The financial engine could not be reached.' };
         } catch { runtime = { status: 'service_error', message: 'The financial engine could not be reached.' }; }
       }
-      return json({ runtime, answer_timeout_ms: answerTimeout + 10000, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1, connected: (runtime.supported_filings || []).length } });
+      return json({ runtime, answer_timeout_ms: answerTimeout + 10000, saved_queries: { configured: dbReady, provider: 'Supabase', sign_in_configured: authReady, sign_in_method: passwordReady ? 'password' : 'email_link', status: authReady ? 'sign_in_required' : dbReady ? 'auth_setup_required' : 'not_configured' }, build: 'finrag-web-v1', corpus: { inventory: filings.length, companies: new Set(filings.map(f => f.ticker)).size, accepted: 1, connected: (runtime.supported_filings || []).length } });
     }
     if (route === 'answer' && request.method === 'POST') {
       let body;
@@ -107,8 +109,30 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       if (route === 'jobs/poll' && result.status === 'not_found') return json(empty('service_error', 'This answer job expired or is unavailable. Submit the question again.'), 404);
       return json(empty('service_error', 'The engine returned an invalid job response.'), 502);
     }
-    if (route === 'auth/start' && request.method === 'POST') {
-      if (!authReady) return json({ status: 'not_configured', message: 'Email sign-in setup is pending. The database is connected; its redirect URL and email delivery must be verified first.' }, 503);
+    if (['auth/password', 'auth/signup', 'auth/verify'].includes(route) && request.method === 'POST') {
+      if (!passwordReady) return json({ status: 'not_configured', message: 'Private account sign-in is not configured.' }, 503);
+      const origin = request.headers.get('origin');
+      if (origin && origin !== url.origin) return json({ status: 'invalid_request', message: 'Sign in from this workspace.' }, 403);
+      const body = await readBody(request);
+      let endpointPath, payload;
+      if (route === 'auth/verify') {
+        let link;try { link = new URL(body.confirmation_url); } catch { return json({status:'invalid_request',message:'Paste the confirmation link from your email.'},400); }
+        const hash = link.searchParams.get('token') || link.searchParams.get('token_hash');const type = link.searchParams.get('type');
+        if (link.origin !== supabase || link.pathname !== '/auth/v1/verify' || !/^[A-Za-z0-9_-]{20,256}$/.test(hash || '') || !['signup','email','magiclink'].includes(type)) return json({status:'invalid_request',message:'Use the original FinRAG confirmation link from your email.'},400);
+        endpointPath = '/auth/v1/verify';payload = {token_hash:hash,type};
+      } else {
+        if (typeof body.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email) || body.email.length > 254 || typeof body.password !== 'string' || body.password.length < 12 || body.password.length > 256) return json({status:'invalid_request',message:'Enter a valid email address and a password of 12 to 256 characters.'},400);
+        endpointPath = route === 'auth/signup' ? '/auth/v1/signup' : '/auth/v1/token?grant_type=password';payload = {email:body.email,password:body.password};
+      }
+      const response = await upstream(fetchImpl, supabase + endpointPath, {method:'POST',headers:{apikey:publicKey,'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const session = await response.json();
+      if (!response.ok) return json({status:'service_error',message: response.status === 429 ? 'Too many sign-in attempts. Wait before trying again.' : session.error_code === 'email_not_confirmed' ? 'Confirm your email first. You can paste the confirmation link below.' : 'Sign-in could not be completed. Check your email, password or confirmation link.'},response.status === 429 ? 429 : 400);
+      if (typeof session.access_token === 'string' && /^[A-Za-z0-9_.-]{20,4096}$/.test(session.access_token)) return json({status:'ok',access_token:session.access_token,expires_in:session.expires_in});
+      if (route === 'auth/signup') return json({status:'confirmation_required',message:'Check your email to confirm your account, then sign in. If the link opens another page, paste the original confirmation link below.'});
+      return json({status:'service_error',message:'Sign-in did not return a valid session.'},502);
+    }
+    if (route === 'auth/start'  && request.method === 'POST') {
+      if (!magicLinkReady) return json({ status: 'not_configured', message: 'Email sign-in setup is pending. The database is connected; its redirect URL and email delivery must be verified first.' }, 503);
       const body = await readBody(request);
       if (typeof body.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email) || body.email.length > 254) return json({ status: 'invalid_request', message: 'Enter a valid email address.' }, 400);
       const origin = request.headers.get('origin');

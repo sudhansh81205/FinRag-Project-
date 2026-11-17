@@ -46,17 +46,26 @@ def role(record):
 
 def validate_named_formula(question, program, records):
     """Return a refusal reason for a recognized metric whose formula is wrong."""
-    if is_revenue_lookup(question):
+    metric = named_metric(question)
+    if metric:
         expression = program.get("expression") if isinstance(program, dict) else None
         by_id = {record.get("evidence_id", record.get("id")): record for record in records}
-        if (not isinstance(expression, dict) or set(expression) != {"evidence_id"}
-                or not total_revenue_fact(by_id.get(expression.get("evidence_id"), {}))):
-            return "Total revenue requires an included revenue cell whose original row identifies the total; component sales are not interchangeable."
+        def valid_leaf(node):
+            return isinstance(node, dict) and set(node) == {"evidence_id"} and metric_fact(question, by_id.get(node.get("evidence_id"), {}))
+        if is_margin_comparison(question):
+            expected = "percent_change" if re.search(r"\b(growth|percent|percentage)\b", question, re.I) else "change"
+            if not isinstance(expression, dict) or expression.get("op") != expected or len(expression.get("args", [])) != 2 or not all(valid_leaf(n) for n in expression["args"]):
+                return "Metric comparison requires matching source values and the requested change operation."
+        elif not valid_leaf(expression):
+            return "Requested total metric requires an included original source cell; component or different metrics cannot substitute."
         return ""
     if not is_gross_margin(question):
         return ""
     if is_margin_comparison(question):
-        return "Gross-margin changes require independently bound comparison periods and a supported comparison formula."
+        expression = program.get("expression") if isinstance(program, dict) else None
+        if not isinstance(expression, dict) or expression.get("op") != "percentage_point_change" or len(expression.get("args", [])) != 2:
+            return "Gross-margin changes require two source-bound margins and a percentage-point change formula."
+        return next((problem for node in expression["args"] if (problem := validate_named_formula("gross margin", {"expression": node}, records))), "")
     by_id = {r.get("evidence_id", r.get("id")): r for r in records}
 
     def leaf_role(node):
@@ -89,7 +98,37 @@ def known_source_program(question, request, records):
     program; the caller must refuse or validate its untrusted proposal separately.
     """
     revenue_lookup = is_revenue_lookup(question)
-    if (not revenue_lookup and (not is_gross_margin(question) or is_margin_comparison(question))) or not isinstance(request, dict):
+    if not isinstance(request, dict):
+        return None
+    if named_metric(question):
+        leaves = []
+        for period in sorted(request.get("periods", []), key=lambda p: p.get("end", "")):
+            values = [r for r in records if metric_fact(question, r)
+                      and r.get("metadata", {}).get("company") == request.get("issuer")
+                      and r["metadata"].get("scope") == request.get("scope")
+                      and {"kind": r["metadata"].get("period_kind"), "start": r["metadata"].get("period_start"), "end": r["metadata"].get("period_end")} == period]
+            if len(values) > 1 and named_metric(question) != REVENUE:
+                identities = {(r["metadata"].get("metric"), r["metadata"].get("normalized_unit"), r["metadata"].get("normalized_value_decimal")) for r in values}
+                if len(identities) == 1 and all(all(key is not None for key in identity) for identity in identities):
+                    values = [min(values, key=lambda r: r.get("evidence_id", ""))]
+            if len(values) != 1:
+                return None
+            leaves.append({"evidence_id": values[0].get("evidence_id", values[0].get("id"))})
+        if is_margin_comparison(question):
+            if len(leaves) != 2:
+                return None
+            op = "percent_change" if re.search(r"\b(growth|percent|percentage)\b", question, re.I) else "change"
+            return {**request, "expression": {"op": op, "args": [leaves[1], leaves[0]]}}
+        return {**request, "expression": leaves[0]} if len(leaves) == 1 else None
+    if is_gross_margin(question) and is_margin_comparison(question):
+        periods = sorted(request.get("periods", []), key=lambda p: p.get("end", ""))
+        if len(periods) != 2:
+            return None
+        levels = [known_source_program("gross margin", {**request, "periods": [p]}, records) for p in periods]
+        if any(level is None for level in levels):
+            return None
+        return {**request, "expression": {"op": "percentage_point_change", "args": [levels[1]["expression"], levels[0]["expression"]]}}
+    if not revenue_lookup and not is_gross_margin(question):
         return None
     periods = request.get("periods", [])
     facts = {"revenue": [], "cost": [], "gross_profit": []}
@@ -114,3 +153,33 @@ def known_source_program(question, request, records):
     else:
         return None
     return {**request, "expression": {"op": "ratio_percent", "args": [numerator, revenue]}}
+
+
+def named_metric(question):
+    patterns = [
+        (r'\b(?:revenues?|net sales)\b', REVENUE),
+        (r'\bnet income\b', frozenset({'NetIncomeLoss'})),
+        (r'\boperating income\b', frozenset({'OperatingIncomeLoss'})),
+        (r'\btotal assets\b', frozenset({'Assets'})),
+        (r'\btotal liabilities\b', frozenset({'Liabilities'})),
+        (r"\b(?:stockholders|shareholders).*equity\b", frozenset({'StockholdersEquity'})),
+    ]
+    if is_gross_margin(question):
+        return None
+    for pattern, metrics in patterns:
+        if re.search(pattern, question, re.I):
+            return metrics
+    return None
+
+
+def metric_fact(question, record):
+    metrics = named_metric(question)
+    m = record.get('metadata', {})
+    if not metrics or m.get('type') != 'table_cell' or m.get('metric', '').split(':')[-1] not in metrics:
+        return False
+    return total_revenue_fact(record) if metrics == REVENUE else True
+
+
+def interactive_source_fact(question, record):
+    return ((role(record) in {'gross_profit', 'cost'} or total_revenue_fact(record))
+            if is_gross_margin(question) else metric_fact(question, record))

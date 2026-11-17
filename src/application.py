@@ -300,6 +300,10 @@ class InteractiveApplication:
                 "to bind evidence and calculations; select a supported filing.",
             )
         if constraints is not None:
+            if calculation_plan is None:
+                conflict = self._question_conflict(question, constraints, calculation_request)
+                if conflict:
+                    return finish("invalid_request", conflict)
             result["request"] = asdict(constraints)
 
         if self.engine is not None:
@@ -330,6 +334,10 @@ class InteractiveApplication:
                 if problem:
                     return finish("insufficient_evidence", problem)
 
+            if constraints is not None:
+                conflict = self._question_conflict(question, constraints, calculation_plan)
+                if conflict:
+                    return finish("invalid_request", conflict)
             included_ids = [r.get("evidence_id", r.get("id")) for r in records]
             valid_operands, err_msg = verify_included_operands(calculation_plan, included_ids)
             if not valid_operands:
@@ -354,6 +362,17 @@ class InteractiveApplication:
         # Standard unindexed narrative question without engine
         blockers = self._setup_app.readiness()["blockers"]
         return finish("index_not_ready", "\n".join(blockers))
+
+    def _question_conflict(self, question, constraints, declared=None):
+        from src.llm.request_intent import company_conflict, named_years
+        conflict = company_conflict(question, constraints, load_filing_options(self.settings.root / "data/application_filings.json"))
+        if conflict:
+            return conflict
+        years = named_years(question)
+        allowed = {int(p["end"][:4]) for p in declared.get("periods", [])} if isinstance(declared, dict) else {int(constraints.value_period_end[:4])}
+        if years and (set(years) != allowed or max(years) != int(constraints.value_period_end[:4])):
+            return "The company/year in the question must match the selected filing and requested value periods."
+        return ""
 
     @staticmethod
     def _constraints_from_loose_args(company, filing, period_end, scope) -> RequestConstraints | None:
@@ -431,6 +450,9 @@ class InteractiveApplication:
             problem = validate_request_binding(constraints, calculation_plan, evidence)
         if problem:
             return finish("insufficient_evidence", f"Engine evidence does not satisfy the request: {problem}")
+        conflict = self._question_conflict(question, constraints, calculation_request or calculation_plan)
+        if conflict:
+            return finish("invalid_request", conflict)
         result.update(evidence=evidence, calculations=engine_res.get("calculations", []))
         finish("ok", engine_res.get("message", ""), answer=engine_res.get("answer", ""))
         result["latency_seconds"] = engine_res.get("latency_seconds", round(time.monotonic() - start, 3))

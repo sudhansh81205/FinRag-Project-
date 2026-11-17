@@ -137,3 +137,18 @@ test('only polling transport failures are retryable; completed model failures an
  const unauthorized = await (await handle(req('jobs/poll', { ...valid, job_id }), { env, fetchImpl: async () => Response.json({ status: 'unauthorized' }, { status: 401 }) })).json();
  assert.equal(unauthorized.retryable, undefined);
 });
+
+test('password sign-in returns only a session access token; refresh tokens and identities stay private', async () => {
+ const db={SUPABASE_URL:'https://db.example',SUPABASE_PUBLISHABLE_KEY:'pub',SUPABASE_PASSWORD_AUTH_READY:'true'};
+ let sent;
+ const response=await handle(req('auth/password',{email:'fixture@example.invalid',password:'long-fixture-password'}),{env:db,fetchImpl:async(url,options)=>{sent={url,body:JSON.parse(options.body)};return Response.json({access_token:'a'.repeat(40),refresh_token:'private-refresh',user:{id:'private-id'},expires_in:3600});}});
+ const result=await response.json();assert.equal(result.status,'ok');assert.equal(result.access_token.length,40);assert.equal(result.refresh_token,undefined);assert.equal(result.user,undefined);assert.match(sent.url,/grant_type=password/);
+ const rejected=await handle(req('auth/password',{email:'x',password:'short'}),{env:db,fetchImpl:()=>{throw Error('must not call');}});assert.equal(rejected.status,400);
+});
+
+test('new accounts require actual email confirmation; confirmation links are origin scoped',async()=>{
+ const db={SUPABASE_URL:'https://db.example',SUPABASE_PUBLISHABLE_KEY:'pub',SUPABASE_PASSWORD_AUTH_READY:'true'};
+ const signup=await handle(req('auth/signup',{email:'fixture@example.invalid',password:'long-fixture-password'}),{env:db,fetchImpl:async()=>Response.json({user:{id:'fixture'}})});assert.equal((await signup.json()).status,'confirmation_required');
+ const foreign=await handle(req('auth/verify',{confirmation_url:'https://foreign.example/auth/v1/verify?token='+'a'.repeat(64)+'&type=signup'}),{env:db,fetchImpl:()=>{throw Error('must not call')}});assert.equal(foreign.status,400);
+ const verified=await handle(req('auth/verify',{confirmation_url:'https://db.example/auth/v1/verify?token='+'a'.repeat(64)+'&type=signup'}),{env:db,fetchImpl:async()=>Response.json({access_token:'a'.repeat(40),refresh_token:'secret'})});const body=await verified.json();assert.equal(body.status,'ok');assert.equal(body.refresh_token,undefined);
+});

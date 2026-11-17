@@ -1,0 +1,15 @@
+# Functional workspace repair - 18 November 2026
+
+The two-filing app now reconciles named companies and years with selected source constraints before inference. Wrong-company/year questions return an empty invalid-request result. Quarterly requests, live prices and predictions are explicitly outside these annual reports. The shared application boundary also validates direct/Gradio requests; explicit plans retain their existing source-bound refusal priority.
+
+Source-backed single-period gross margin, total revenue, net income, operating income and supported balance metrics use actual canonical values. Repeated identical income facts are cited once; conflicting values still refuse. Adjacent fiscal-year revenue growth and gross-margin changes bind both source periods. Gross-margin change uses percentage points, with restricted Decimal arithmetic and matching metric/period checks. Original benchmark retrieval defaults are unchanged; this is the interactive source-lookup policy. No financial results or reviewer approvals are hardcoded.
+
+Supabase access is restored to the existing FinRAG project. Password sign-in, account creation with email confirmation, original confirmation-link verification and private Saved Questions are implemented using the publishable key only. Session access tokens are kept in sessionStorage; refresh tokens and provider user objects are not exposed. The local Node launcher now loads the private ignored .env, and the local request origin uses its actual port.
+
+Two temporary synthetic accounts were explicitly approved by the user. Actual Supabase password sign-in and app-gateway save/read/delete passed; cross-owner read/delete and anonymous access were denied. Only those fixtures and their test rows are used. New-user email delivery is not claimed from a synthetic confirmed-account test. The signup flow surfaces provider confirmation/rate-limit errors rather than simulating success.
+
+Actual core runtime checks: the original FY2024/Apple and FY2021/Microsoft mismatches against AppleFY2021 now refuse before inference; Apple gross-margin change FY2020-to-FY2021 is3.55percentage points, revenue growth33.26%, net income94680000000USD. Separate real account and full regression evidence accompanies this change.
+
+Original-image chart answering remains gated on real independent caption/question approval; source-image inspection works. This implementation does not invent human review or claim completed final A-G/RAGAS/Llama experiments. Existing laptop-backed hosting is retained; no paid or replacement hosting was created. Those constraints are not removed by changing a status label.
+
+Final local validation:566Python tests passed(3FAISS/SWIG deprecation warnings,76.52seconds),19Node tests passed, Ruff and syntax passed. Company/year tests include out-of-inventory Tesla/Google and the original mismatch failures. Live private-save tests used exactly the two approved synthetic accounts; their final production verification and cleanup receipt will follow.

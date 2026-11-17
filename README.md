@@ -121,3 +121,5 @@ All software, arithmetic trees, refusal paths, and test suites are verified (459
 - **Sudhansh Completion Sign-off**: [docs/reports/2026-11-17_sudhansh_completion.md](docs/reports/2026-11-17_sudhansh_completion.md)
 
 Current two-filing demonstration update: see [limited workspace and gross-margin repair](docs/reports/2026-11-18_limited-workspace.md). Apple FY2021 and Microsoft FY2021 are connected for source-checked development research; final-study independent acceptance remains separate.
+
+Current functional repair: company/year conflicts refuse before inference; adjacent-year revenue growth and gross-margin percentage-point changes use source-bound operands. Supported named income/balance facts use exact canonical cells. Optional private accounts use Supabase email/password and email confirmation; Saved Questions remain per-user under RLS. See `docs/reports/2026-11-18_functional-repair.md` for actual verification and deployment evidence.

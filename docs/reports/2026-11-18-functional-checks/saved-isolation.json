@@ -1,0 +1,10 @@
+{
+  "real_supabase_password_signin_accounts": 2,
+  "account_type": "explicitly approved temporary synthetic fixtures; no human review or email delivery claimed",
+  "owner_save_read_delete": true,
+  "cross_owner_read_hidden": true,
+  "cross_owner_delete_prevented": true,
+  "anonymous_denied": true,
+  "refresh_tokens_not_exposed_by_app": true,
+  "test_rows_removed": true
+}

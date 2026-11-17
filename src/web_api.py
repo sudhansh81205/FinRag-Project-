@@ -55,6 +55,12 @@ class WebApplication:
                                            payload.get("scope"), options=self.options)
         if problem or request.ticker != payload.get("ticker"):
             return failure("invalid_request", problem or "Company and filing disagree.")
+        from src.llm.request_intent import company_conflict, named_years, requested_periods
+        conflict = company_conflict(payload["question"], request, self.options)
+        if conflict:
+            return failure("invalid_request", conflict)
+        if re.search(r"\b(?:q[1-4]|quarter(?:ly)?|today|current stock price|live stock price|forecast|predict)\b", payload["question"], re.I):
+            return failure("invalid_request", "Use annual filing questions. Quarterly figures, live prices and predictions are not supported by these reports.")
         mode = payload.get("mode", "auto")
         if mode not in {"auto", "narrative", "numerical", "chart"}:
             return failure("invalid_request", "Unsupported question type.")
@@ -69,23 +75,17 @@ class WebApplication:
         if period_kind is not None and period_kind not in {"instant", "duration"}:
             return failure("invalid_request", "Choose a fiscal-year total or year-end balance.")
         numerical = mode == "numerical" or mode == "auto" and re.search(
-            r"\b(margin|growth|percent|ratio|how much|how many|revenue|cost|earnings|income|cash flow)\b",
+            r"\b(margin|growth|percent|ratio|how much|how many|revenue|cost|earnings|income|cash flow|assets|liabilities|equity)\b",
             payload["question"], re.I)
         planning_request = None
         if numerical and self.app.engine is not None:
-            # Only source-derived period boundaries can enter the planner's premises.
-            periods = set()
-            for record in getattr(self.app.engine, "web_source_records", []):
-                m = record.get("metadata", {})
-                if (m.get("accession") == request.accession and m.get("type") == "table_cell"
-                        and m.get("scope") == request.scope and m.get("period_end") == request.value_period_end
-                        and (period_kind is None or m.get("period_kind") == period_kind)):
-                    periods.add((m.get("period_kind"), m.get("period_start"), m.get("period_end")))
-            if len(periods) != 1:
-                return failure("insufficient_evidence", "The selected value period has missing or ambiguous typed source boundaries.")
-            kind, start, end = periods.pop()
-            planning_request = {"issuer": request.company, "scope": request.scope,
-                                "periods": [{"kind": kind, "start": start, "end": end}]}
+            periods, problem = requested_periods(payload["question"], request,
+                getattr(self.app.engine, "web_source_records", []), period_kind or "duration")
+            if problem:
+                return failure("invalid_request" if problem.startswith(("The question asks", "Name both", "The selected value-period")) else "insufficient_evidence", problem)
+            planning_request = {"issuer": request.company, "scope": request.scope, "periods": periods}
+        elif named_years(payload["question"]) and named_years(payload["question"]) != [int(request.value_period_end[:4])]:
+            return failure("invalid_request", "The year in your question differs from the selected filing period. Select matching evidence first.")
         options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" or mode == "auto" and not numerical else None
         if numerical:
             options = {"top_k_text": 0, "top_k_tables": 5, "expand_named_metric": True}
