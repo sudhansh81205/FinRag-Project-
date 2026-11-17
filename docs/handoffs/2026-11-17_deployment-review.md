@@ -25,7 +25,7 @@ Answers now use authenticated jobs/polling when the backend supports it. Do not 
 
 ## Hosted route
 
-Vercel team grant is complete; old finrag-research is unavailable in this authorized team. The new protected finrag-workspace project awaits the separately requested approval because automatic review rejected creating the replacement resource without it. No production URL for the new code is claimed.
+Production is live at https://finrag-workspace.vercel.app/ with Vercel Authentication protecting all deployments. Open it in the existing signed-in Brave session. The user explicitly approved the replacement project after the initial automatic-review rejection. Deployment dpl_AMF3Aavw6tit36aY6B8uSE5sv6ik serves reviewed app commit43ba054ad832d8615f855b71fd7dcf0725d7f2f3, using Node22 and server-only sensitive backend credentials. This is an API/file deployment; Git pushes do not automatically redeploy it.
 
 The user approved a temporary HTTPS tunnel to the authenticated Python API. Its changing URL and process record are in local ignored `output/nov17/tunnel.json`; keep the matching token private. The raw model endpoints stay on loopback. The laptop/model/API/tunnel must stay alive. A recreated tunnel requires a server-only Vercel backend URL update and redeployment. Do not put credentials in frontend files or Git.
 
@@ -45,3 +45,7 @@ The first inventories3010selectedcases, not accepted cases. The second creates a
 ## Verification
 
 530Python tests passed,17Node tests passed, Ruff and diff checks passed. See `../reports/2026-11-17-deployment/`. Real browser narrative and numerical success were observed separately from those injected regressions. Authenticated HTTPS health passed200 and unauthenticated401. Final frozen experiments0/28, independent generated-output audit0/50 and course receipt unverified.
+
+## Publication and actual observation date
+
+[PR18](https://github.com/sudhansh81205/FinRag-Project-/pull/18) targets main. [CI run44147510311](https://github.com/sudhansh81205/FinRag-Project-/actions/runs/44147510311) passed for43ba054. Main integration still requires maintainer access. Deployment was built before midnight17November IST; hosted numerical/chart verification continued on18November IST and is not credited as a completed17November course submission. See the dated deployment receipt for final browser results.

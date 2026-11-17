@@ -30,6 +30,7 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "docs/reports/2026-11-18_deployment-receipt.json",
     "docs/reports/2026-11-17-deployment/https-gateway.json",
     "docs/reports/2026-11-17-deployment/https-gateway-initial-failure.json",
     "README.md",

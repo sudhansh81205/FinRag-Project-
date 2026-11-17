@@ -41,6 +41,9 @@ Cloudflare Quick Tunnels may bridge this authenticated API for an explicitly app
 demonstration. They are not permanent hosting: laptop sleep or a stopped tunnel disconnects the
 site, and a new tunnel needs the Vercel backend URL updated. Keep raw Ollama private.
 
+## Current hosted demonstration
+Open https://finrag-workspace.vercel.app/ in the signed-in Brave session. Vercel Authentication protects all deployments. Numerical and narrative answers were verified through the real hosted flow; chart acceptance and saved-query authentication remain pending. The app deployment is bound to commit43ba054 and uses the separately approved temporary laptop HTTPS API. This is a file/API deployment; a Git push alone does not redeploy it. See `../docs/reports/2026-11-18_deployment-receipt.json`.
+
 ## Vercel Hobby
 Deploy this `web` directory as the project root. `vercel.json` serves `public` and the standard Node Function API.
 Use default Hobby compute, no build-machine overrides, no paid model/Gateway calls.
