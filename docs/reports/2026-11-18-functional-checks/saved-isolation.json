@@ -6,5 +6,10 @@
   "cross_owner_delete_prevented": true,
   "anonymous_denied": true,
   "refresh_tokens_not_exposed_by_app": true,
-  "test_rows_removed": true
+  "test_rows_removed": true,
+  "temporary_accounts_removed": 2,
+  "temporary_identities_remaining": 0,
+  "test_saved_rows_remaining": 0,
+  "old_user_sessions_rejected": true,
+  "local_fixture_credentials_removed": true
 }

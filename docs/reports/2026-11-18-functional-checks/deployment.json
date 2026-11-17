@@ -1,0 +1,30 @@
+{
+  "source_commit": "fcec13b6babb79362c1a3e8b9e3aba39549dcdc5",
+  "deployment": {
+    "id": "dpl_bEnxYBMPUnCDJasDaHj3SjVHicKD",
+    "url": "https://finrag-workspace-kkk3c3xfl-rushils-projects-3399960f.vercel.app",
+    "productionUrl": "https://finrag-workspace.vercel.app",
+    "inspectorUrl": "https://vercel.com/rushils-projects-3399960f/finrag-workspace/bEnxYBMPUnCDJasDaHj3SjVHicKD",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_bEnxYBMPUnCDJasDaHj3SjVHicKD",
+    "buildMachine": {
+      "cores": 2,
+      "memory": 8192,
+      "machine": "basic",
+      "selectionType": "fixed",
+      "selectionSource": "plan-default"
+    },
+    "deploymentProtection": [
+      "vercel_authentication"
+    ]
+  },
+  "node": "22.x",
+  "protection": "Vercel Authentication retained for all deployments",
+  "supabase": "Existing FinRAG project; publishable key only; real password sessions and owner isolation verified with two approved synthetic accounts",
+  "cleanup": "Both approved fixture accounts, identities and rows removed; old sessions rejected; local temporary credentials removed",
+  "billing_or_new_project": false,
+  "verification": "Real protected production API. Browser controls unavailable; fresh visual QA not claimed.",
+  "new_user_email_delivery": "Not claimed from synthetic confirmed-account tests; signup requires actual email confirmation",
+  "full_study_accepted": false
+}

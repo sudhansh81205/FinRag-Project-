@@ -30,6 +30,8 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "docs/reports/2026-11-18-functional-checks/production.json",
+    "docs/reports/2026-11-18-functional-checks/deployment.json",
     "src/llm/request_intent.py",
     "tests/test_request_intent.py",
     "docs/reports/2026-11-18_functional-repair.md",

@@ -2,7 +2,7 @@
 
 Observed 18 November 2026, Asia/Kolkata. **The bounded application is ready for manual research checks. The full research project remains partial.** This is authorized implementation work, separate from scheduled read-only reviews. No new member workday, human hours, independent approval or course submission is inferred.
 
-The current code is on `maintenance/nov17-deployment-review`, targeting the team repository through PR19. The user chose to keep the changes in a PR for the owner to merge. The owner merged the earlier PR18 at d6a9a60; team main is now `485f3cbb55c968546a70f431a9a15ceafbd2efea`; publication and deployment revisions are recorded separately in the deployment handoff.
+The current code is on `maintenance/nov17-deployment-review`, targeting the team repository through PR21. The user chose to keep the changes in a PR for the owner to merge. The owner merged PR20; team main is now `92620594aad3e64e4c1f26b5c05b64b205c1b54d`; publication and deployment revisions are recorded separately in the deployment handoff.
 
 | Requirement | Current status and real evidence | Remaining completion proof |
 | --- | --- | --- |
@@ -10,8 +10,8 @@ The current code is on `maintenance/nov17-deployment-review`, targeting the team
 | R2 index | PARTIAL: actual pinned BGE768/normalized exact FAISS535-record index reopens and query inference pass. A/B representation adapters now reject cell-index substitution. | Accepted wider matched indexes and source-equivalent official benchmark indexes. |
 | R3 evidence | PARTIAL: source/cell/header/period/unit identities preserved; actual cited Apple answers pass. | Wider original-source interpretation and benchmark cell/period/unit mappings. |
 | R4 generation | PARTIAL overall; PASS for the bounded runtime: actual pinned Gemma3:4b, same-GGUF tokenizer, generation and BGE probes pass. The real pinned BAAI cross-encoder also scores accepted source cells. | Separate Llama comparison and representative full-study/evaluator capacity. |
-| R5 calculation | PARTIAL: source-bound gross margin and direct total revenue; typed operation/refusal tests pass. Total revenue cannot substitute component sales. | Broader named financial semantics and complete benchmark operation coverage. |
-| R6 interface | PARTIAL overall; web narrative/numerical research and shared-engine Gradio are live. Two Gradio clients, invalid request, clearing and real stopped-service behavior checked. | Accepted chart answering and two real authenticated Supabase users; these are separate from two Gradio sessions. |
+| R5 calculation | PARTIAL: source-bound gross margin, total revenue, income/balance lookups, adjacent-year revenue growth and margin percentage-point change; company/year intent and typed operation/refusal tests pass. Total revenue cannot substitute component sales. | Broader named financial semantics and complete benchmark operation coverage. |
+| R6 interface | PARTIAL overall; web narrative/numerical research and shared-engine Gradio are live. Two Gradio clients, invalid request, clearing and real stopped-service behavior checked. Supabase password sign-in and private save/read/delete isolation passed on production with two user-approved synthetic accounts, both cleaned up. | Accepted original-chart answering and actual end-user email-confirmation delivery; synthetic account tests are separate from independent human review. |
 | R7 evaluation | BLOCKED/PARTIAL: authentic 150/1147/1663 official splits imported; real engine factory and conditional A-G resources wired. | Official contexts remain UNBOUND; chart-suite execution, final RAGAS/Llama study, metrics and audit are not complete. Final A-G matrix0/28. |
 | R8 delivery | PARTIAL: reviewed implementation, current handoff/check logs and refreshed completion reports. | Results-based final report/exactly six slides, final agreed archive, actual submission route/cutoff and acknowledgement. |
 | R9 restatements | UNSCHEDULED PHASE2. | Excluded from the current completion gate. |
@@ -24,20 +24,20 @@ The current code is on `maintenance/nov17-deployment-review`, targeting the team
 
 Run `.venv/bin/python scripts/run_local_workspace.py --status` from this repository. The web UI is http://127.0.0.1:4180/ and shared-engine Gradio is http://127.0.0.1:7860/. The protected Vercel project is https://finrag-workspace.vercel.app/. The laptop/API/tunnel must remain running for hosted answers. Raw Ollama/tokenizer/Gradio stay on loopback.
 
-Use Apple FY2021, value-period end2021-09-25 and fiscal-year total. Gross margin returns41.78%. Total revenue returns365817000000USD from the original Total net sales cell. The supply-chain question returns source-grounded narrative evidence. Inspect citations/calculations and export the actual response. Other inventory-only filings and chart answering remain visibly unavailable.
+Use Apple FY2021, value-period end2021-09-25 and fiscal-year total, or Microsoft FY2021/end2021-06-30. The app lists only those two source-checked filings. Gross margin returns41.78%. Total revenue returns365817000000USD from the original Total net sales cell. The supply-chain question returns source-grounded narrative evidence. Inspect citations/calculations and export the actual response. Apple FY2020-to-FY2021 revenue growth returns33.26% and gross-margin change returns3.55percentage points. Password sign-in/private saving are configured. Other inventory entries are excluded from the limited UI; original-chart answering remains gated.
 
 ## Independent and external gates
 
 - Input chart questions/captions: no actual independent reviewer approvals. Candidate labels are not accepted gold.
 - Separate generated-output audit:0/50. It cannot be replaced by reviewing the chart questions.
 - Final frozen A-G suite cells:0/28. Imported datasets and native model probes are not final experiment results.
-- Correct FinRAG Supabase project access is unavailable in the signed-in account's accessible organizations. Sign-in/saving remain disabled; no new database or billing was created.
+- Existing FinRAG Supabase access is restored; real password sessions and per-user saving/isolation passed. Signup requires email confirmation; synthetic confirmed-account tests do not certify new-user email delivery. No new database or billing was created.
 - The temporary authenticated HTTPS backend requires this machine awake. Permanent unattended hosting remains open.
-- PR19 needs owner review/merge. No main push/merge or course upload is claimed.
+- PR21 needs owner review/merge. No main push/merge or course upload is claimed.
 
 ## Next dependency order
 
-1. Owner reviews/merges PR19; verify exact-head CI and the protected deployment receipt.
+1. Owner reviews/merges PR21; verify exact-head CI and the protected deployment receipt.
 2. Eligible people inspect the existing unchanged source/question/caption review packet and provide real hash-bound decisions. Preserve authorship and no self-approval.
 3. Bind official candidate universes to real source-equivalent indexes, retain unknown typed periods/units, and finish the chart-suite/RAGAS/separate-Llama execution paths.
 4. Measure representative development and evaluator throughput, accept/freeze complete controls, run/resume all promised cases/variants, and independently audit the separately predeclared50outputs.
