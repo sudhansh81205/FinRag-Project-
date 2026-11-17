@@ -30,6 +30,7 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    ".github/workflows/ci.yml",
     "scripts/run_local_workspace.py",
     "tests/test_local_workspace.py",
     "docs/reports/2026-11-17-runtime/launcher-tests.txt",
