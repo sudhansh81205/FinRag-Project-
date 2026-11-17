@@ -2,7 +2,7 @@
 
 ## Current reviewed runtime
 
-See the [18 November manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md), [current code review](docs/reports/2026-11-18_code-review.md) and [requirement ledger](completion_status.md). The reviewed web/Gradio narrative and numerical paths use the actual prepared Gemma/BGE/FAISS engine. Chart answering, final benchmark acceptance and private saving remain incomplete. Current repairs are submitted through PR18 for owner merge.
+See the [18 November manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md), [current code review](docs/reports/2026-11-18_code-review.md) and [requirement ledger](completion_status.md). The reviewed web/Gradio narrative and numerical paths use the actual prepared Gemma/BGE/FAISS engine. Chart answering, final benchmark acceptance and private saving remain incomplete. Current repairs are submitted through PR19 for owner merge.
 
 ```bash
 .venv/bin/python scripts/run_local_workspace.py --status

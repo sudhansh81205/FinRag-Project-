@@ -49,7 +49,7 @@ demonstration. They are not permanent hosting: laptop sleep or a stopped tunnel 
 site, and a new tunnel needs the Vercel backend URL updated. Keep raw Ollama private.
 
 ## Current hosted demonstration
-Open https://finrag-workspace.vercel.app/ in the signed-in Brave session. Vercel Authentication protects all deployments. Numerical and narrative answers were verified through the real hosted flow; chart acceptance and saved-query authentication remain pending. The app deployment is bound to commit43ba054 and uses the separately approved temporary laptop HTTPS API. This is a file/API deployment; a Git push alone does not redeploy it. See `../docs/reports/2026-11-18_deployment-receipt.json`.
+Open https://finrag-workspace.vercel.app/ in the signed-in Brave session. Vercel Authentication protects all deployments. Numerical and narrative answers were verified through the real hosted flow; chart acceptance and saved-query authentication remain pending. The initial deployment was bound to commit43ba054; the current aa52b98 receipt is linked below and uses the separately approved temporary laptop HTTPS API. This is a file/API deployment; a Git push alone does not redeploy it. See `../docs/reports/2026-11-18_deployment-receipt.json`.
 
 ## Vercel Hobby
 Deploy this `web` directory as the project root. `vercel.json` serves `public` and the standard Node Function API.
@@ -80,3 +80,7 @@ Email activation is a separate release gate: set the Supabase Auth Site URL and 
 
 ## Rushil runtime handoff
 Read `../docs/handoffs/RUSHIL_START_HERE.md`. Local Node22 dev loads `web/.env`. An HTTP loopback backend is permitted only with `FINRAG_ALLOW_LOOPBACK_HTTP=true` outside production. Production still requires HTTPS. Answers have a bounded240-second gateway budget with250-second browser and300-second Vercel function limits; health probes use5seconds. Measure total planner+generation time before the live demo.
+
+## Current 18 November workspace deployment
+
+The redesigned implementation `aa52b98` is READY at https://finrag-workspace.vercel.app/ with existing Vercel Authentication. A real hosted gross-margin answer and focused source citation were verified. See the [current deployment receipt](../docs/reports/2026-11-18_workspace-deployment.json). The owner merged earlier PR18; current changes are in [PR19](https://github.com/sudhansh81205/FinRag-Project-/pull/19) for owner merge. Four current reports are in `../docs/reports/2026-11-18-completion-pack/`. The laptop API and temporary tunnel must stay running; full-study and Supabase gates remain open.

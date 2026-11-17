@@ -6,6 +6,8 @@ Observation date18November2026 IST. Scope: authorized continuation, supplied com
 
 Team main was refreshed at `c6ebf57f99b8998677a0aad3302eba079968180e`. This work continues PR18's `d6a9a60` base in a clean-start maintenance checkout. The incoming patch targeted main and did not apply wholesale to the newer queue/API code. Compatible portability/check/gate fixes were applied after a selective check; API/cache changes were adapted manually. Newer real runtime, queued generation and request controls were preserved. The user chose an owner-merged PR instead of direct main publication.
 
+PR18 was subsequently merged by the owner at d6a9a60; team main is now485f3cb. The current implementation aa52b98 and report follow-up are published in [PR19](https://github.com/sudhansh81205/FinRag-Project-/pull/19) for owner review/merge. The deployed implementation remains aa52b98.
+
 ## Fixed findings
 
 | Finding | Resulting behavior | Requirements and actual concept | Verification |

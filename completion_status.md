@@ -2,7 +2,7 @@
 
 Observed 18 November 2026, Asia/Kolkata. **The bounded application is ready for manual research checks. The full research project remains partial.** This is authorized implementation work, separate from scheduled read-only reviews. No new member workday, human hours, independent approval or course submission is inferred.
 
-The current code is on `maintenance/nov17-deployment-review`, targeting the team repository through PR18. The user chose to keep the changes in a PR for the owner to merge. Team main was verified at `c6ebf57f99b8998677a0aad3302eba079968180e`; publication and deployment revisions are recorded separately in the deployment handoff.
+The current code is on `maintenance/nov17-deployment-review`, targeting the team repository through PR19. The user chose to keep the changes in a PR for the owner to merge. The owner merged the earlier PR18 at d6a9a60; team main is now `485f3cbb55c968546a70f431a9a15ceafbd2efea`; publication and deployment revisions are recorded separately in the deployment handoff.
 
 | Requirement | Current status and real evidence | Remaining completion proof |
 | --- | --- | --- |
@@ -33,11 +33,11 @@ Use Apple FY2021, value-period end2021-09-25 and fiscal-year total. Gross margin
 - Final frozen A-G suite cells:0/28. Imported datasets and native model probes are not final experiment results.
 - Correct FinRAG Supabase project access is unavailable in the signed-in account's accessible organizations. Sign-in/saving remain disabled; no new database or billing was created.
 - The temporary authenticated HTTPS backend requires this machine awake. Permanent unattended hosting remains open.
-- PR18 needs owner review/merge. No main push/merge or course upload is claimed.
+- PR19 needs owner review/merge. No main push/merge or course upload is claimed.
 
 ## Next dependency order
 
-1. Owner reviews/merges PR18; verify exact-head CI and the protected deployment receipt.
+1. Owner reviews/merges PR19; verify exact-head CI and the protected deployment receipt.
 2. Eligible people inspect the existing unchanged source/question/caption review packet and provide real hash-bound decisions. Preserve authorship and no self-approval.
 3. Bind official candidate universes to real source-equivalent indexes, retain unknown typed periods/units, and finish the chart-suite/RAGAS/separate-Llama execution paths.
 4. Measure representative development and evaluator throughput, accept/freeze complete controls, run/resume all promised cases/variants, and independently audit the separately predeclared50outputs.
