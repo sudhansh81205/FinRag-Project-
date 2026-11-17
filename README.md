@@ -1,125 +1,50 @@
 # FinRAG
 
-## Current reviewed runtime
+A financial research workspace over source-checked SEC annual reports, with cited narrative answers, restricted Decimal calculations and private Supabase Saved Questions.
 
-See the [18 November manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md), [current code review](docs/reports/2026-11-18_code-review.md) and [requirement ledger](completion_status.md). The reviewed web/Gradio narrative and numerical paths use the actual prepared Gemma/BGE/FAISS engine. Chart answering, final benchmark acceptance and private saving remain incomplete. Current repairs are submitted through PR19 for owner merge.
+Start with [START_HERE.txt](START_HERE.txt), the current plain-text startup and professor demonstration manual. The canonical scope is [the current PRD](docs/plan/PRD.md). [ATTRIBUTION.md](ATTRIBUTION.md) records contributions and the single current disclosure.
 
-```bash
+## Current application
+
+- Eighteen processed/indexed filings across ten companies: Apple and Microsoft FY2021-FY2025; Adobe, NVIDIA, Salesforce, AMD, Intel, Cisco, Oracle and IBM FY2024.
+- The source-checked runtime exposes every indexed filing. Both web and Gradio derive selections from the registry. Each question stays bound to the selected company, exact accession and value period.
+- Research, Filings and Saved Questions; original source/citation inspector, checked calculations and JSON export. Selection edits clear prior answers.
+- Email/password sign-in and private per-user save/read/delete. Records live in Supabase and survive page refresh; session expiry requires signing in again. No service-role key is used.
+- Hosted workspace: https://finrag-workspace.vercel.app/ (Vercel Authentication). The approved temporary HTTPS backend still depends on Rushil's laptop remaining awake.
+
+## Start on the prepared laptop
+
+```sh
 .venv/bin/python scripts/run_local_workspace.py --status
-# If stopped and the corresponding ports are free:
+# Only if stopped and required ports are free:
 .venv/bin/python scripts/run_local_workspace.py --gradio-port 7860
 ```
 
-Prepared web: http://127.0.0.1:4180/. Shared-engine Gradio: http://127.0.0.1:7860/. The protected hosted workspace is https://finrag-workspace.vercel.app/ and requires the approved temporary laptop API/tunnel to remain running. Basic research does not need Supabase sign-in.
+Open http://127.0.0.1:4180/ or the shared-engine Gradio workspace at http://127.0.0.1:7860/. No npm install is needed. The launcher checks installed model bytes and uses existing pinned BGE/FAISS/Gemma assets; it never silently downloads or substitutes models. See the manual for another machine, environment configuration and rebuilding parsed/indexed packages.
 
-Current verified runtime/data progress, checks and remaining acceptance: [November17 implementation](docs/handoffs/2026-11-17_runtime-completion.md). Use the [refreshed six-slide deck](docs/reports/2026-11-17_verified_slides.pptx). The project remains partial.
+## Demonstration files
 
-Start the runtime/completion handoff with [Rushil’s guide](docs/handoffs/RUSHIL_START_HERE.md) and [the GPT/Codex prompt](docs/handoffs/RUSHIL_CODEX_PROMPT.md).
+- [Question spreadsheet](outputs/finrag-final-20261118/FinRAG_Sample_Questions.xlsx):108 source-derived questions, per-filing coverage, exact expected results/source IDs and three explicitly manual cross-filing exercises.
+- [Demonstration PDF](outputs/finrag-final-20261118/FinRAG_Demonstration_Questions.pdf):20 printable pages, including a page for every filing.
+- [Machine-readable question bank](outputs/finrag-final-20261118/sample-questions.json).
+- [Current verification and blockers](docs/reports/2026-11-18_final-completion.md).
 
-## Web research workspace
+## Verify
 
-The black-and-white web interface lives in [web/](web/README.md) and can be hosted on Vercel Hobby.
-It includes the SEC filing inventory, request filters, evidence/calculation inspection, JSON export,
-clear runtime failures and Supabase-backed private saved questions when configured.
-It does not substitute a demo answer for an unavailable financial engine. See
-[the current implementation handoff](docs/handoffs/2026-11-17_web-release-repairs.md) for verified repairs
-and mandatory experiment/runtime checks that remain blocked.
+```sh
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check .
+node --check web/public/app.js
+node --test web/tests/*.test.mjs
+.venv/bin/python scripts/check_project_readiness.py --publish-web
+.venv/bin/python scripts/verify_chart_set.py
+.venv/bin/python scripts/verify_release_package.py
+```
 
-FinRAG is a prototype for answering questions about SEC 10-K annual reports using retrieved narrative and table evidence. The unified completion plan adds grounded chart evidence, checked calculations, clear failure states and the matched A-G experiment with named benchmarks and independent audits.
+`scripts/check_experiment_acceptance.py` checks all28 required suite/variant prerequisites against the official imported files; exit2 means acceptance remains blocked, not a successful experiment. See its report and the manual before attempting full runs.
 
-## Team plan
+## Research acceptance and supported questions
 
-The current plan uses **seven members and exactly one assigned worker per day**. The submission deadline is **November 17, 2026**, under the latest user instruction. **Sudhansh owns November 17** for final verification, release and submission (reassigned from Shanay at user request). Earlier calendars are preserved as history.
+Application processing/count coverage meets the five-Apple/five-Microsoft/ten-company scope. Independent wider source acceptance remains separate. Source-backed annual numerical and narrative questions are available; not every metric, question or comparison has sufficient evidence. Oracle's aggregate gross-margin operands are not supplied by the current typed package, so that question refuses. Within-filing adjacent-year comparisons are supported where both typed periods exist. Automatic aggregation across separate filings/companies is not supported; compare separate cited answers explicitly.
 
-- [Read the PRD](docs/plan/PRD.md)
-- [Download the editable PRD](docs/plan/FinRAG_PRD.docx)
-- [See the dated assignments and completion checks](docs/plan/schedule.json)
-- [Use the daily implementation master prompt](docs/review/MASTER_PROMPT.md)
-- [Understand the nightly review process](docs/review/README.md)
-- [Read the November 5 repair review and remaining gates](docs/reports/2026-11-05_gap-repair-review.md)
-- [Learn the repaired code and next-owner handoff](docs/handoffs/2026-11-05_gap-repair-learning.md)
-- [Review the combined November 12 repairs](docs/reports/2026-11-12_integration-review.md)
-- [Use the current code handoff](docs/handoffs/2026-11-12_integrated-repairs.md)
-
-## Run the shared project
-
-Use **`main`** for the shared project. The UI, modular backend, PRD and review kit are combined here. The original UI/container are preserved under `prototypes/`, and the notebook remains an ingestion reference.
-
-Start with the [prepared manual workspace handoff](docs/handoffs/2026-11-18_manual-workspace.md). Standalone `python app.py` preserves the historical unconfigured setup path; use the prepared launcher with `--gradio-port 7860` for the verified shared engine. The [older setup guide](docs/SETUP.md) remains useful for environment context.
-
-The first two assignments were completed together at the user's request on October 30. Read the [handoff](docs/handoffs/2026-10-30_days-01-02.md) and [completion report](docs/reports/2026-10-30_days-01-02_completion.md) before starting later work. Those reports describe the historical checkpoint; the current PRD controls subsequent scope and dates.
-
-The current proposal plan requires BGE with exact FAISS search, BM25/RRF, table and chart evidence, reranking, routing and controlled A-G evaluation. These are implementation requirements, not completion claims. The existing MiniLM/Chroma prototype remains a historical baseline and recovery aid.
-
-## Daily workflow
-
-The scheduled owner reads the revised PRD, their dated task and the latest available nightly review, then fills in the master prompt. Work includes verification and a written handoff for the next scheduled owner. Code and check results must support completion claims; commit messages alone are not proof.
-
-The nightly review is configured separately in the desktop app for 11:59 PM Asia/Kolkata. This repository provides its instructions and report template; cloning the repository does not start that automation. Generated reports and personal delivery settings stay local unless deliberately shared after review.
-
-### Rushil Day 3 generation work
-
-Real Gemini generation and explicit failure handling are verified with a checked
-source fixture. The full UI remains gated on the later filing/index work. See
-[Day 3 handoff](docs/handoffs/2026-11-02_day-03_rushil.md) and
-[completion evidence](docs/reports/2026-11-02_day-03_completion.md).
-
-The [publication recheck](docs/reports/2026-11-02_day-03_recheck.md) covers the
-final failure-boundary corrections, 59 tests and fresh live/UI evidence.
-
-## November 2 filing parser
-
-The supported Apple 2021 filing now has a repeatable offline parsing entry point:
-`python scripts/parse_filing.py`. See [parsing instructions](docs/PARSING.md) for
-dependencies, source snapshot provenance, output records and the indexing handoff.
-This prepares data; it does not make the application/index ready.
-
-The parser handoff records the November 2 scope. Its single-filing output remains
-a starting artifact; later indexing, corpus expansion and evaluation must follow
-the current unified plan rather than the older handoff's scheduling assumptions.
-
-## Current unified plan
-
-The single current [PRD](docs/plan/PRD.md) and its [editable Word copy](docs/plan/FinRAG_PRD.docx) consolidate the submitted proposal, professor feedback, course requirements and sequential implementation advice. The [dated tasks](docs/plan/TASK_REQUIREMENTS.md), [schedule](docs/plan/schedule.json), [course mapping](docs/plan/COURSE_ALIGNMENT.md) and [review guide](docs/review/README.md) use that same revision. Older plans in history are reference only.
-
-Exactly one member is assigned per date through November 17. Sudhansh handles November 12 integration, Likhit November 13 corpus and representations, Gowtham November 14 interface and runner, Ujjwal November 15 independent approvals and runs, Pavan November 16 results and reporting, and Sudhansh November 17 release and submission. The old later recovery dates are superseded. Features and hours are requirements and estimates, not completion claims. The current integration report distinguishes code fixes, accepted inputs and unverified runtime/evaluation gates.
-
-## Canonical data acceptance
-
-Build Likhit's merged source package with `python scripts/prepare_evidence.py`,
-then run `python scripts/verify_canonical_data.py` for Shanay's independent
-source/identity checks, real DVC restore and local tracking readback.
-See the [validation handoff](docs/handoffs/2026-11-05_shanay.md) and
-[review](docs/reports/2026-11-05_shanay-review.md). This validates the bounded
-Apple input package. The next gate now has a real pinned BGE/exact FAISS build:
-see [indexing and restart instructions](docs/INDEXING.md), the
-[November 6 handoff](docs/handoffs/2026-11-06_likhit.md), and the
-[proposal review and coverage limits](docs/reports/2026-11-07_index-review.md).
-Final models, cumulative retrieval stages and A-G evaluation remain separate gates.
-
-The current dense index contains 316 narratives and 219 cells from the accepted
-Apple 2021 package, with three parent tables stored separately. The expanded
-manifest accounts for 18 filings across ten companies; downloaded PDF renditions
-are **not** counted as parsed or indexed filings. The application UI remains gated
-until the complete answer path is validated.
-
-## Final Release & Submission (November 17, 2026)
-
-**Release Owner**: Sudhansh Khandelwal  
-**Release Designation**: **TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE**
-
-All software, arithmetic trees, refusal paths, and test suites are verified (459 passing tests, zero Ruff violations). Unexecuted GPU models and candidate gates are transparently reconciled.
-
-### Key Release Deliverables:
-- **Final Academic Report**: [docs/reports/2026-11-17_final_report.md](docs/reports/2026-11-17_final_report.md)
-- **Presentation Deck**: [docs/reports/2026-11-17_slides.md](docs/reports/2026-11-17_slides.md) and [docs/reports/2026-11-17_final_slides.pptx](docs/reports/2026-11-17_final_slides.pptx)
-- **Backup Demo Walkthrough**: [docs/reports/2026-11-17_backup_demo_walkthrough.md](docs/reports/2026-11-17_backup_demo_walkthrough.md)
-- **Independent Audit Reconciliation**: [docs/reports/2026-11-17_independent_audit_reconciliation.json](docs/reports/2026-11-17_independent_audit_reconciliation.json)
-- **Release Manifest (SHA-256)**: [docs/reports/2026-11-17_release_manifest.json](docs/reports/2026-11-17_release_manifest.json)
-- **Submission Acknowledgement**: [docs/reports/2026-11-17_submission_acknowledgement.json](docs/reports/2026-11-17_submission_acknowledgement.json)
-- **Final Handoff**: [docs/handoffs/2026-11-17_sudhansh.md](docs/handoffs/2026-11-17_sudhansh.md)
-- **Sudhansh Completion Sign-off**: [docs/reports/2026-11-17_sudhansh_completion.md](docs/reports/2026-11-17_sudhansh_completion.md)
-
-Current two-filing demonstration update: see [limited workspace and gross-margin repair](docs/reports/2026-11-18_limited-workspace.md). Apple FY2021 and Microsoft FY2021 are connected for source-checked development research; final-study independent acceptance remains separate.
-
-Current functional repair: company/year conflicts refuse before inference; adjacent-year revenue growth and gross-margin percentage-point changes use source-bound operands. Supported named income/balance facts use exact canonical cells. Optional private accounts use Supabase email/password and email confirmation; Saved Questions remain per-user under RLS. See `docs/reports/2026-11-18_functional-repair.md` for actual verification and deployment evidence.
+Original-chart answers remain gated on genuine independent question/caption review. Final A-G benchmark execution, source-equivalent official-context binding, RAGAS, separate Llama comparison and the independent fifty-output audit are incomplete. Tests and live application probes do not constitute these experiments. New-user confirmation-email delivery and permanent unattended hosting require separate verification/setup. Historical reports are dated snapshots; use the current report/manual for present status.

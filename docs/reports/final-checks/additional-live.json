@@ -1,0 +1,1260 @@
+[
+  {
+    "query": {
+      "question": "How much revenue did IBM report in FY2024?",
+      "ticker": "IBM",
+      "accession": "0000051143-25-000015",
+      "value_period_end": "2024-12-31",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "auto"
+    },
+    "result": {
+      "status": "ok",
+      "question": "How much revenue did IBM report in FY2024?",
+      "answer": "Verified result: 62753000000 USD. Exact result: 62753000000 USD.\nProgram (normalized source values): 62753000000.\n\nSources: [0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829]",
+      "message": "",
+      "latency_seconds": 14.62,
+      "route": "exact_engine",
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [
+        {
+          "evidence_id": "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829",
+          "metadata": {
+            "accession": "0000051143-25-000015",
+            "ticker": "IBM",
+            "cik": "0000051143",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+            "filing_id": "0000051143-25-000015",
+            "company": "International Business Machines Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-12-31",
+            "source_sha256": "01865e5a018c8b7f036ccccceb93683c0d027286dec2e6505a9b612fabd978e8",
+            "source_file": "ibm-20241231_d2.htm",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "context_source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+            "context_source_sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+            "section": "Item 8",
+            "period_kind": "duration",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "metric": "us-gaap:Revenues",
+            "unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value": 62753000000,
+            "xbrl_sign": null,
+            "context_ref": "c-1",
+            "unit_ref": "usd",
+            "dimensions": {},
+            "table_title": "Income statement",
+            "column_header": "2024-12-31",
+            "periods_json": "[2024, 2023, 2022]",
+            "headers_json": "[\"2024-12-31\", \"2023-12-31\", \"2022-12-31\"]",
+            "normalized_value_decimal": "62753000000",
+            "raw_unit": "($ in millions except per share amounts)",
+            "normalized_unit": "USD",
+            "scale": 1000000,
+            "scope": "consolidated",
+            "row_label": "Total revenue C",
+            "row_headers": [
+              "Revenue",
+              "Total revenue C"
+            ],
+            "row_group": "Revenue",
+            "column_headers": [
+              "2024-12-31"
+            ],
+            "row_index": 7,
+            "column_index": 12,
+            "raw_value": "62,753",
+            "footnote_links": [],
+            "type": "table_cell",
+            "content_sha256": "9e533988cbc88829ae7536c6b9621828ce8e7e41d130f71d16b899b5937dda93",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5)",
+            "source_anchor": null,
+            "parent_table_id": "0000051143-25-000015:financial_table:e5c46af70a6a3e63:82a116ffca566c98",
+            "units_json": "{\"declared_text\": \"($ in millions except per share amounts)\"}"
+          },
+          "content": "International Business Machines Corporation | Income statement | Revenue | Total revenue C | 2024-12-31 | 62,753 | ($ in millions except per share amounts) | us-gaap:Revenues | 62753000000 USD"
+        }
+      ],
+      "calculations": [
+        {
+          "status": "ok",
+          "result": "62753000000",
+          "unit": "USD",
+          "currency": "USD",
+          "expression": "[0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829]",
+          "program": {
+            "issuer": "International Business Machines Corporation",
+            "scope": "consolidated",
+            "periods": [
+              {
+                "kind": "duration",
+                "start": "2024-01-01",
+                "end": "2024-12-31"
+              }
+            ],
+            "expression": {
+              "evidence_id": "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+            }
+          },
+          "operand_ids": [
+            "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+          ],
+          "operands": {
+            "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829": {
+              "company": "International Business Machines Corporation",
+              "metric": "us-gaap:Revenues",
+              "scope": "consolidated",
+              "table_title": "Income statement",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5)",
+              "accession": "0000051143-25-000015",
+              "raw_value": "62,753",
+              "raw_unit": "($ in millions except per share amounts)",
+              "normalized_unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value_decimal": "62753000000",
+              "period_kind": "duration",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31"
+            }
+          },
+          "rule_trace": [
+            {
+              "rule_id": "cited_value_fact",
+              "premises": [
+                "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+              ],
+              "outcome": "pass"
+            }
+          ],
+          "decimal_precision": 28
+        }
+      ],
+      "chart_info": null,
+      "request": {
+        "ticker": "IBM",
+        "company": "International Business Machines Corporation",
+        "accession": "0000051143-25-000015",
+        "filing_period_end": "2024-12-31",
+        "value_period_end": "2024-12-31",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": [
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+      ]
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 14.74
+  },
+  {
+    "query": {
+      "question": "What was IBM's gross margin in FY2024?",
+      "ticker": "IBM",
+      "accession": "0000051143-25-000015",
+      "value_period_end": "2024-12-31",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "auto"
+    },
+    "result": {
+      "status": "ok",
+      "question": "What was IBM's gross margin in FY2024?",
+      "answer": "Verified result: 56.65%. Exact result: 56.65227160454480263891766131 percent.\nProgram (normalized source values): ratio_percent(35551000000, 62753000000).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8], [0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829]",
+      "message": "",
+      "latency_seconds": 11.34,
+      "route": "exact_engine",
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [
+        {
+          "evidence_id": "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8",
+          "metadata": {
+            "accession": "0000051143-25-000015",
+            "ticker": "IBM",
+            "cik": "0000051143",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+            "filing_id": "0000051143-25-000015",
+            "company": "International Business Machines Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-12-31",
+            "source_sha256": "01865e5a018c8b7f036ccccceb93683c0d027286dec2e6505a9b612fabd978e8",
+            "source_file": "ibm-20241231_d2.htm",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "context_source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+            "context_source_sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+            "section": "Item 8",
+            "period_kind": "duration",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "metric": "us-gaap:GrossProfit",
+            "unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value": 35551000000,
+            "xbrl_sign": null,
+            "context_ref": "c-1",
+            "unit_ref": "usd",
+            "dimensions": {},
+            "table_title": "Income statement",
+            "column_header": "2024-12-31",
+            "periods_json": "[2024, 2023, 2022]",
+            "headers_json": "[\"2024-12-31\", \"2023-12-31\", \"2022-12-31\"]",
+            "normalized_value_decimal": "35551000000",
+            "raw_unit": "($ in millions except per share amounts)",
+            "normalized_unit": "USD",
+            "scale": 1000000,
+            "scope": "consolidated",
+            "row_label": "Gross profit",
+            "row_headers": [
+              "Cost",
+              "Gross profit"
+            ],
+            "row_group": "Cost",
+            "column_headers": [
+              "2024-12-31"
+            ],
+            "row_index": 13,
+            "column_index": 12,
+            "raw_value": "35,551",
+            "footnote_links": [],
+            "type": "table_cell",
+            "content_sha256": "1448c5224dce05d8157b417c8e9d8e133a1c6fc0ecb7e2d65daa4cf65bb6856a",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(5)",
+            "source_anchor": null,
+            "parent_table_id": "0000051143-25-000015:financial_table:e5c46af70a6a3e63:82a116ffca566c98",
+            "units_json": "{\"declared_text\": \"($ in millions except per share amounts)\"}"
+          },
+          "content": "International Business Machines Corporation | Income statement | Cost | Gross profit | 2024-12-31 | 35,551 | ($ in millions except per share amounts) | us-gaap:GrossProfit | 35551000000 USD"
+        },
+        {
+          "evidence_id": "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829",
+          "metadata": {
+            "accession": "0000051143-25-000015",
+            "ticker": "IBM",
+            "cik": "0000051143",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+            "filing_id": "0000051143-25-000015",
+            "company": "International Business Machines Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-12-31",
+            "source_sha256": "01865e5a018c8b7f036ccccceb93683c0d027286dec2e6505a9b612fabd978e8",
+            "source_file": "ibm-20241231_d2.htm",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "context_source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+            "context_source_sha256": "0b07fa783e66129229e4a38f407aff46a6407191033adf8e4df2d097999c5ccf",
+            "section": "Item 8",
+            "period_kind": "duration",
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "metric": "us-gaap:Revenues",
+            "unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value": 62753000000,
+            "xbrl_sign": null,
+            "context_ref": "c-1",
+            "unit_ref": "usd",
+            "dimensions": {},
+            "table_title": "Income statement",
+            "column_header": "2024-12-31",
+            "periods_json": "[2024, 2023, 2022]",
+            "headers_json": "[\"2024-12-31\", \"2023-12-31\", \"2022-12-31\"]",
+            "normalized_value_decimal": "62753000000",
+            "raw_unit": "($ in millions except per share amounts)",
+            "normalized_unit": "USD",
+            "scale": 1000000,
+            "scope": "consolidated",
+            "row_label": "Total revenue C",
+            "row_headers": [
+              "Revenue",
+              "Total revenue C"
+            ],
+            "row_group": "Revenue",
+            "column_headers": [
+              "2024-12-31"
+            ],
+            "row_index": 7,
+            "column_index": 12,
+            "raw_value": "62,753",
+            "footnote_links": [],
+            "type": "table_cell",
+            "content_sha256": "9e533988cbc88829ae7536c6b9621828ce8e7e41d130f71d16b899b5937dda93",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5)",
+            "source_anchor": null,
+            "parent_table_id": "0000051143-25-000015:financial_table:e5c46af70a6a3e63:82a116ffca566c98",
+            "units_json": "{\"declared_text\": \"($ in millions except per share amounts)\"}"
+          },
+          "content": "International Business Machines Corporation | Income statement | Revenue | Total revenue C | 2024-12-31 | 62,753 | ($ in millions except per share amounts) | us-gaap:Revenues | 62753000000 USD"
+        }
+      ],
+      "calculations": [
+        {
+          "status": "ok",
+          "result": "56.65227160454480263891766131",
+          "unit": "percent",
+          "currency": null,
+          "expression": "ratio_percent([0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8], [0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829])",
+          "program": {
+            "issuer": "International Business Machines Corporation",
+            "scope": "consolidated",
+            "periods": [
+              {
+                "kind": "duration",
+                "start": "2024-01-01",
+                "end": "2024-12-31"
+              }
+            ],
+            "expression": {
+              "op": "ratio_percent",
+              "args": [
+                {
+                  "evidence_id": "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8"
+                },
+                {
+                  "evidence_id": "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+                }
+              ]
+            }
+          },
+          "operand_ids": [
+            "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8",
+            "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+          ],
+          "operands": {
+            "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8": {
+              "company": "International Business Machines Corporation",
+              "metric": "us-gaap:GrossProfit",
+              "scope": "consolidated",
+              "table_title": "Income statement",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(5)",
+              "accession": "0000051143-25-000015",
+              "raw_value": "35,551",
+              "raw_unit": "($ in millions except per share amounts)",
+              "normalized_unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value_decimal": "35551000000",
+              "period_kind": "duration",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31"
+            },
+            "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829": {
+              "company": "International Business Machines Corporation",
+              "metric": "us-gaap:Revenues",
+              "scope": "consolidated",
+              "table_title": "Income statement",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231_d2.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(622) > table:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5)",
+              "accession": "0000051143-25-000015",
+              "raw_value": "62,753",
+              "raw_unit": "($ in millions except per share amounts)",
+              "normalized_unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value_decimal": "62753000000",
+              "period_kind": "duration",
+              "period_start": "2024-01-01",
+              "period_end": "2024-12-31"
+            }
+          },
+          "rule_trace": [
+            {
+              "rule_id": "cited_value_fact",
+              "premises": [
+                "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8"
+              ],
+              "outcome": "pass"
+            },
+            {
+              "rule_id": "cited_value_fact",
+              "premises": [
+                "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+              ],
+              "outcome": "pass"
+            },
+            {
+              "rule_id": "ratio_percent",
+              "premises": [
+                "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8",
+                "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+              ],
+              "outcome": "pass",
+              "normalized_inputs": [
+                "35551000000",
+                "62753000000"
+              ],
+              "result": "56.65227160454480263891766131",
+              "unit": "percent",
+              "note": null
+            }
+          ],
+          "decimal_precision": 28
+        }
+      ],
+      "chart_info": null,
+      "request": {
+        "ticker": "IBM",
+        "company": "International Business Machines Corporation",
+        "accession": "0000051143-25-000015",
+        "filing_period_end": "2024-12-31",
+        "value_period_end": "2024-12-31",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": [
+        "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8",
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+      ]
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 11.52
+  },
+  {
+    "query": {
+      "question": "What risks does NVIDIA describe in its FY2024 annual report?",
+      "ticker": "NVDA",
+      "accession": "0001045810-24-000029",
+      "value_period_end": "2024-01-28",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "narrative"
+    },
+    "result": {
+      "status": "ok",
+      "question": "What risks does NVIDIA describe in its FY2024 annual report?",
+      "answer": "### Direct Answer:\nNVIDIA describes several risks in its FY2024 annual report, including the potential for adverse consequences from security incidents, government enforcement actions, litigation, reputational harm, and disruptions to its systems and operations.\n\n### Financial Evidence:\nThe narrative text states: \u201cIf we or a third party we rely on experience a security incident, which has occurred in the past, or are perceived to have experienced a security incident, we may experience adverse consequences, including government enforcement actions, additional reporting requirements and/or oversight, restrictions on processing data, litigation, indemnification obligations, reputational harm, diversion of funds, diversion of management attention, financial loss, loss of data, material disruptions in our systems and operations, supply chain, and ability to produce, sell and distribute our goods and services, and other similar harms.\u201d\n\n### Sources Cited:\n[Evidence ID: 0001045810-24-000029:narrative_text:000029:90dc561f111a1a5e:section:800:1799:4bed1e31bf16febc]",
+      "message": "",
+      "latency_seconds": 17.999,
+      "route": {
+        "narrative": true,
+        "table": false,
+        "chart": false,
+        "chart_blocked_reason": "No independently approved chart adapter",
+        "attempts": [
+          {
+            "tier": 1,
+            "narrative_limit": 5,
+            "table_limit": 0,
+            "ranked_ids": [
+              "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:800:1799:4bed1e31bf16febc",
+              "0001045810-24-000029:narrative_text:727ce47b071f51c9:8cca6ed9eb0ad5fb",
+              "0001045810-24-000029:narrative_text:7f4442ef905647b5:b0f9ae1d01551c22",
+              "0001045810-24-000029:narrative_text:e18c5841eb358180:b6828bc84e2cd10a",
+              "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:0:1000:a8463c8cea3e2d55",
+              "0001045810-24-000029:narrative_text:6c31e2d8eacb97e4:acd5948e1ad4f78a",
+              "0001045810-24-000029:narrative_text:ccfb8c4c2b4e4487:201e77893260838e",
+              "0001045810-24-000029:narrative_text:dd6c2aa360a0817c:8c818e1e37974c06",
+              "0001045810-24-000029:narrative_text:2929565119d846d8:6e70fc8a190c5901",
+              "0001045810-24-000029:narrative_text:f22a7e41e7a31179:aa43e6dbbbad4e03:section:1602:2600:b166dbc146d23296"
+            ],
+            "stop_reason": "thresholds_satisfied"
+          }
+        ]
+      },
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [
+        {
+          "evidence_id": "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:800:1799:4bed1e31bf16febc",
+          "content": "of loss or misuse of this source code, damage both us and our partners, and expose NVIDIA to potential litigation and liability. If we or a third party we rely on experience a security incident, which has occurred in the past, or are perceived to have experienced a security incident, we may experience adverse consequences, including government enforcement actions, additional reporting requirements and/or oversight, restrictions on processing data, litigation, indemnification obligations, reputational harm, diversion of funds, diversion of management attention, financial loss, loss of data, material disruptions in our systems and operations, supply chain, and ability to produce, sell and distribute our goods and services, and other similar harms. Inability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation. Applicable data privacy and security obligations may require",
+          "metadata": {
+            "accession": "0001045810-24-000029",
+            "ticker": "NVDA",
+            "cik": "0001045810",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+            "filing_id": "0001045810-24-000029",
+            "company": "NVIDIA Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-01-28",
+            "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+            "source_file": "0001045810-24-000029.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 1A",
+            "char_start": 800,
+            "char_end": 1799,
+            "type": "narrative_text",
+            "content_sha256": "4bed1e31bf16febca370f5c05a92ba006c121402a4e73d5a777596c6ba6ee8df",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(347)",
+            "source_anchor": null,
+            "source_evidence_ids": [
+              "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e"
+            ]
+          },
+          "score": 0.6750003695487976,
+          "score_type": "cosine",
+          "dense_rank": 1,
+          "eligible_count": 389,
+          "rrf_score": 0.01639344262295082,
+          "rrf_component_ranks": {
+            "list_0_rank": 1
+          },
+          "rrf_component_scores": {
+            "list_0": {
+              "score": 0.6750003695487976,
+              "score_type": "cosine"
+            }
+          }
+        },
+        {
+          "evidence_id": "0001045810-24-000029:narrative_text:727ce47b071f51c9:8cca6ed9eb0ad5fb",
+          "metadata": {
+            "accession": "0001045810-24-000029",
+            "ticker": "NVDA",
+            "cik": "0001045810",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+            "filing_id": "0001045810-24-000029",
+            "company": "NVIDIA Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-01-28",
+            "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+            "source_file": "0001045810-24-000029.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 8",
+            "char_start": 0,
+            "char_end": 154,
+            "type": "narrative_text",
+            "content_sha256": "8cca6ed9eb0ad5fb2e8241e0e551e674aff1a0ad94938b8077ac6daa9b14d639",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(684)",
+            "source_anchor": null
+          },
+          "content": "The information required by this Item is set forth in our Consolidated Financial Statements and Notes thereto included in this Annual Report on Form 10-K.",
+          "bm25_score": 11.785925126680997,
+          "bm25_rank": 1,
+          "eligible_count": 389,
+          "rrf_score": 0.01639344262295082,
+          "rrf_component_ranks": {
+            "list_1_rank": 1
+          },
+          "rrf_component_scores": {
+            "list_1": {
+              "score": 11.785925126680997,
+              "score_type": "bm25"
+            }
+          }
+        },
+        {
+          "evidence_id": "0001045810-24-000029:narrative_text:7f4442ef905647b5:b0f9ae1d01551c22",
+          "metadata": {
+            "accession": "0001045810-24-000029",
+            "ticker": "NVDA",
+            "cik": "0001045810",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+            "filing_id": "0001045810-24-000029",
+            "company": "NVIDIA Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-01-28",
+            "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+            "source_file": "0001045810-24-000029.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 1A",
+            "char_start": 0,
+            "char_end": 468,
+            "type": "narrative_text",
+            "content_sha256": "b0f9ae1d01551c22d94c5198497a99d0d64694376268230ecde3d39d6a79a61d",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(214)",
+            "source_anchor": null
+          },
+          "content": "The following risk factors should be considered in addition to the other information in this Annual Report on Form 10-K. The following risks could harm our business, financial condition, results of operations or reputation, which could cause our stock price to decline. Additional risks, trends and uncertainties not presently known to us or that we currently believe are immaterial may also harm our business, financial condition, results of operations or reputation.",
+          "bm25_score": 11.562766175367603,
+          "bm25_rank": 2,
+          "eligible_count": 389,
+          "rrf_score": 0.016129032258064516,
+          "rrf_component_ranks": {
+            "list_1_rank": 2
+          },
+          "rrf_component_scores": {
+            "list_1": {
+              "score": 11.562766175367603,
+              "score_type": "bm25"
+            }
+          }
+        },
+        {
+          "evidence_id": "0001045810-24-000029:narrative_text:e18c5841eb358180:b6828bc84e2cd10a",
+          "metadata": {
+            "accession": "0001045810-24-000029",
+            "ticker": "NVDA",
+            "cik": "0001045810",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+            "filing_id": "0001045810-24-000029",
+            "company": "NVIDIA Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-01-28",
+            "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+            "source_file": "0001045810-24-000029.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 7",
+            "char_start": 0,
+            "char_end": 554,
+            "type": "narrative_text",
+            "content_sha256": "b6828bc84e2cd10a5f4f56b673ca840d14ac31190979769b1d5ed9a04d8dc92f",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(586)",
+            "source_anchor": null
+          },
+          "content": "A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2023 compared to fiscal year 2022 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 29, 2023, filed with the SEC on February 24, 2023, which is available free of charge on the SEC\u2019s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.",
+          "score": 0.6329635381698608,
+          "score_type": "cosine",
+          "dense_rank": 2,
+          "eligible_count": 389,
+          "rrf_score": 0.016129032258064516,
+          "rrf_component_ranks": {
+            "list_0_rank": 2
+          },
+          "rrf_component_scores": {
+            "list_0": {
+              "score": 0.6329635381698608,
+              "score_type": "cosine"
+            }
+          }
+        },
+        {
+          "evidence_id": "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:0:1000:a8463c8cea3e2d55",
+          "content": "We hold confidential, sensitive, personal and proprietary information, including information from partners and customers. Breaches of our security measures, along with reported or perceived vulnerabilities or unapproved dissemination of proprietary information or sensitive or confidential data about us or third parties, could expose us and the parties affected to a risk of loss, or misuse of this information, potentially resulting in litigation and subsequent liability, regulatory inquiries or actions, damage to our brand and reputation or other harm, including financial, to our business. For example, we hold proprietary game source code from third-party partners in our GFN service. Breaches of our GFN security measures, which have happened in the past, could expose our partners to a risk of loss or misuse of this source code, damage both us and our partners, and expose NVIDIA to potential litigation and liability. If we or a third party we rely on experience a security incident, which",
+          "metadata": {
+            "accession": "0001045810-24-000029",
+            "ticker": "NVDA",
+            "cik": "0001045810",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+            "filing_id": "0001045810-24-000029",
+            "company": "NVIDIA Corporation",
+            "fiscal_year": 2024,
+            "filing_period_end": "2024-01-28",
+            "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+            "source_file": "0001045810-24-000029.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 1A",
+            "char_start": 0,
+            "char_end": 1000,
+            "type": "narrative_text",
+            "content_sha256": "a8463c8cea3e2d55ba69602fe2d1ac628c2d74384479c6dd31b7b10220dd7331",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(347)",
+            "source_anchor": null,
+            "source_evidence_ids": [
+              "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e"
+            ]
+          },
+          "score": 0.6269059777259827,
+          "score_type": "cosine",
+          "dense_rank": 3,
+          "eligible_count": 389,
+          "rrf_score": 0.015873015873015872,
+          "rrf_component_ranks": {
+            "list_0_rank": 3
+          },
+          "rrf_component_scores": {
+            "list_0": {
+              "score": 0.6269059777259827,
+              "score_type": "cosine"
+            }
+          }
+        }
+      ],
+      "calculations": [],
+      "chart_info": null,
+      "request": {
+        "ticker": "NVDA",
+        "company": "NVIDIA Corporation",
+        "accession": "0001045810-24-000029",
+        "filing_period_end": "2024-01-28",
+        "value_period_end": "2024-01-28",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": [
+        "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:800:1799:4bed1e31bf16febc",
+        "0001045810-24-000029:narrative_text:727ce47b071f51c9:8cca6ed9eb0ad5fb",
+        "0001045810-24-000029:narrative_text:7f4442ef905647b5:b0f9ae1d01551c22",
+        "0001045810-24-000029:narrative_text:e18c5841eb358180:b6828bc84e2cd10a",
+        "0001045810-24-000029:narrative_text:25792cc7642f2d6b:90dc561f111a1a5e:section:0:1000:a8463c8cea3e2d55"
+      ]
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 18.28
+  },
+  {
+    "query": {
+      "question": "What risks does Apple describe in its FY2025 annual report?",
+      "ticker": "AAPL",
+      "accession": "0000320193-25-000079",
+      "value_period_end": "2025-09-27",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "narrative"
+    },
+    "result": {
+      "status": "ok",
+      "question": "What risks does Apple describe in its FY2025 annual report?",
+      "answer": "### Direct Answer:\nThe provided evidence does not describe any risks Apple identifies in its FY2025 annual report.\n\n### Financial Evidence:\nThere is no tabular or narrative evidence detailing risks.\n\n### Sources Cited:\n[Evidence ID: 0000320193-25-000079:narrative_text:aea615efddb739b8:005d0e92b82158dd]\n[Evidence ID: 0000320193-25-000079:narrative_text:c7df247727e19fb7:6ceb1eda00ef49a1]\n[Evidence ID: 0000320193-25-000079:narrative_text:07e20b6bec677f24:8b8023647db10188]\n[Evidence ID: 0000320193-25-000079:narrative_text:60f02351be6aa59e:13d1e9fb28c35428]",
+      "message": "",
+      "latency_seconds": 17.512,
+      "route": {
+        "narrative": true,
+        "table": false,
+        "chart": false,
+        "chart_blocked_reason": "No independently approved chart adapter",
+        "attempts": [
+          {
+            "tier": 1,
+            "narrative_limit": 5,
+            "table_limit": 0,
+            "ranked_ids": [
+              "0000320193-25-000079:narrative_text:aea615efddb739b8:005d0e92b82158dd",
+              "0000320193-25-000079:narrative_text:c7df247727e19fb7:6ceb1eda00ef49a1",
+              "0000320193-25-000079:narrative_text:07e20b6bec677f24:8b8023647db10188",
+              "0000320193-25-000079:narrative_text:60f02351be6aa59e:13d1e9fb28c35428",
+              "0000320193-25-000079:narrative_text:533d8faf71e12e67:552f1884180a9496",
+              "0000320193-25-000079:narrative_text:a9cba663b2c80049:d7088e4700fd6fc9",
+              "0000320193-25-000079:narrative_text:fde6a5b1906b8510:6a46151fffea1e49",
+              "0000320193-25-000079:narrative_text:fec524a27d527107:5f766b8ec4b99819",
+              "0000320193-25-000079:narrative_text:7b883c580507eec3:e8b1373d8ae24413:section:0:993:201b8d29a0105fab",
+              "0000320193-25-000079:narrative_text:fb167d294c29f5a0:3317bd573d61284b"
+            ],
+            "stop_reason": "thresholds_satisfied"
+          }
+        ]
+      },
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [
+        {
+          "evidence_id": "0000320193-25-000079:narrative_text:aea615efddb739b8:005d0e92b82158dd",
+          "metadata": {
+            "accession": "0000320193-25-000079",
+            "ticker": "AAPL",
+            "cik": "0000320193",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+            "filing_id": "0000320193-25-000079",
+            "company": "Apple Inc.",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-09-27",
+            "source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+            "source_file": "0000320193-25-000079.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 7",
+            "char_start": 0,
+            "char_end": 373,
+            "type": "narrative_text",
+            "content_sha256": "005d0e92b82158ddfadb98ad6819bbd2a863b48c13257e47958139cc3521d9c3",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(452)",
+            "source_anchor": null
+          },
+          "content": "In addition to its contractual cash requirements, the Company has an authorized share repurchase program. The program does not obligate the Company to acquire a minimum amount of shares. As of September 27, 2025, the Company\u2019s quarterly cash dividend was $0.26 per share. The Company intends to increase its dividend on an annual basis, subject to declaration by the Board.",
+          "bm25_score": 11.901628679764995,
+          "bm25_rank": 1,
+          "eligible_count": 470,
+          "rrf_score": 0.01639344262295082,
+          "rrf_component_ranks": {
+            "list_1_rank": 1
+          },
+          "rrf_component_scores": {
+            "list_1": {
+              "score": 11.901628679764995,
+              "score_type": "bm25"
+            }
+          }
+        },
+        {
+          "evidence_id": "0000320193-25-000079:narrative_text:c7df247727e19fb7:6ceb1eda00ef49a1",
+          "metadata": {
+            "accession": "0000320193-25-000079",
+            "ticker": "AAPL",
+            "cik": "0000320193",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+            "filing_id": "0000320193-25-000079",
+            "company": "Apple Inc.",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-09-27",
+            "source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+            "source_file": "0000320193-25-000079.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 7",
+            "char_start": 0,
+            "char_end": 32,
+            "type": "narrative_text",
+            "content_sha256": "6ceb1eda00ef49a19af7b179d45b47be8554f9a0acb7c4fe2ae7023c12ccabae",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(449) > div:nth-of-type(1) > div:nth-of-type(1)",
+            "source_anchor": null
+          },
+          "content": "Apple Inc. | 2025 Form 10-K | 25",
+          "score": 0.6420657634735107,
+          "score_type": "cosine",
+          "dense_rank": 1,
+          "eligible_count": 470,
+          "rrf_score": 0.01639344262295082,
+          "rrf_component_ranks": {
+            "list_0_rank": 1
+          },
+          "rrf_component_scores": {
+            "list_0": {
+              "score": 0.6420657634735107,
+              "score_type": "cosine"
+            }
+          }
+        },
+        {
+          "evidence_id": "0000320193-25-000079:narrative_text:07e20b6bec677f24:8b8023647db10188",
+          "metadata": {
+            "accession": "0000320193-25-000079",
+            "ticker": "AAPL",
+            "cik": "0000320193",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+            "filing_id": "0000320193-25-000079",
+            "company": "Apple Inc.",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-09-27",
+            "source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+            "source_file": "0000320193-25-000079.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 8",
+            "char_start": 0,
+            "char_end": 692,
+            "type": "narrative_text",
+            "content_sha256": "8b8023647db10188783a7e6c7d58601e69ba18e478ada2cfc9f1f2a2b7586676",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(623)",
+            "source_anchor": null
+          },
+          "content": "The Company\u2019s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management\u2019s Annual Report on Internal Control over Financial Reporting. Our responsibility is to express an opinion on the Company\u2019s internal control over financial reporting based on our audit. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to the Company in accordance with the U.S. federal securities laws and the applicable rules and regulations of the Securities and Exchange Commission and the PCAOB.",
+          "bm25_score": 8.028099493803369,
+          "bm25_rank": 2,
+          "eligible_count": 470,
+          "rrf_score": 0.016129032258064516,
+          "rrf_component_ranks": {
+            "list_1_rank": 2
+          },
+          "rrf_component_scores": {
+            "list_1": {
+              "score": 8.028099493803369,
+              "score_type": "bm25"
+            }
+          }
+        },
+        {
+          "evidence_id": "0000320193-25-000079:narrative_text:60f02351be6aa59e:13d1e9fb28c35428",
+          "metadata": {
+            "accession": "0000320193-25-000079",
+            "ticker": "AAPL",
+            "cik": "0000320193",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+            "filing_id": "0000320193-25-000079",
+            "company": "Apple Inc.",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-09-27",
+            "source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+            "source_file": "0000320193-25-000079.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 7",
+            "char_start": 0,
+            "char_end": 32,
+            "type": "narrative_text",
+            "content_sha256": "13d1e9fb28c35428a349d9bbe26428ab70c817ba5c341ccbd67ffb74c836b8bd",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(467) > div:nth-of-type(1) > div:nth-of-type(1)",
+            "source_anchor": null
+          },
+          "content": "Apple Inc. | 2025 Form 10-K | 26",
+          "score": 0.6180937886238098,
+          "score_type": "cosine",
+          "dense_rank": 2,
+          "eligible_count": 470,
+          "rrf_score": 0.016129032258064516,
+          "rrf_component_ranks": {
+            "list_0_rank": 2
+          },
+          "rrf_component_scores": {
+            "list_0": {
+              "score": 0.6180937886238098,
+              "score_type": "cosine"
+            }
+          }
+        },
+        {
+          "evidence_id": "0000320193-25-000079:narrative_text:533d8faf71e12e67:552f1884180a9496",
+          "metadata": {
+            "accession": "0000320193-25-000079",
+            "ticker": "AAPL",
+            "cik": "0000320193",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+            "filing_id": "0000320193-25-000079",
+            "company": "Apple Inc.",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-09-27",
+            "source_sha256": "8ffc8c02b2c115353a5f0317889c3bb583d1b1f8a110955a6130f60658bf1f4f",
+            "source_file": "0000320193-25-000079.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 7",
+            "char_start": 0,
+            "char_end": 65,
+            "type": "narrative_text",
+            "content_sha256": "552f1884180a9496131cda945b77a61b0143eb5cfc96f46db29b962bec34b9ca",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(346)",
+            "source_anchor": null
+          },
+          "content": "\u2022 Apple Watch Series 11, Apple Watch SE 3 and Apple Watch Ultra 3",
+          "bm25_score": 7.72027765888154,
+          "bm25_rank": 3,
+          "eligible_count": 470,
+          "rrf_score": 0.015873015873015872,
+          "rrf_component_ranks": {
+            "list_1_rank": 3
+          },
+          "rrf_component_scores": {
+            "list_1": {
+              "score": 7.72027765888154,
+              "score_type": "bm25"
+            }
+          }
+        }
+      ],
+      "calculations": [],
+      "chart_info": null,
+      "request": {
+        "ticker": "AAPL",
+        "company": "Apple Inc.",
+        "accession": "0000320193-25-000079",
+        "filing_period_end": "2025-09-27",
+        "value_period_end": "2025-09-27",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": [
+        "0000320193-25-000079:narrative_text:aea615efddb739b8:005d0e92b82158dd",
+        "0000320193-25-000079:narrative_text:c7df247727e19fb7:6ceb1eda00ef49a1",
+        "0000320193-25-000079:narrative_text:07e20b6bec677f24:8b8023647db10188",
+        "0000320193-25-000079:narrative_text:60f02351be6aa59e:13d1e9fb28c35428",
+        "0000320193-25-000079:narrative_text:533d8faf71e12e67:552f1884180a9496"
+      ]
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 17.73
+  },
+  {
+    "query": {
+      "question": "What was Microsoft's gross margin in FY2025?",
+      "ticker": "MSFT",
+      "accession": "0000950170-25-100235",
+      "value_period_end": "2025-06-30",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "auto"
+    },
+    "result": {
+      "status": "ok",
+      "question": "What was Microsoft's gross margin in FY2025?",
+      "answer": "Verified result: 68.82%. Exact result: 68.82374238616518294501000980 percent.\nProgram (normalized source values): ratio_percent(193893000000, 281724000000).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d], [0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90]",
+      "message": "",
+      "latency_seconds": 12.677,
+      "route": "exact_engine",
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [
+        {
+          "evidence_id": "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d",
+          "metadata": {
+            "accession": "0000950170-25-100235",
+            "ticker": "MSFT",
+            "cik": "0000789019",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+            "filing_id": "0000950170-25-100235",
+            "company": "Microsoft Corporation",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-06-30",
+            "source_sha256": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa",
+            "source_file": "0000950170-25-100235.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 8",
+            "period_kind": "duration",
+            "period_start": "2024-07-01",
+            "period_end": "2025-06-30",
+            "metric": "us-gaap:GrossProfit",
+            "unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value": 193893000000,
+            "xbrl_sign": null,
+            "context_ref": "C_7102029d-8d6c-44c5-b166-04cf41443b1e",
+            "unit_ref": "U_USD",
+            "dimensions": {},
+            "table_title": "Income statement",
+            "column_header": "2025-06-30",
+            "periods_json": "[2025, 2024, 2023]",
+            "headers_json": "[\"2025-06-30\", \"2024-06-30\", \"2023-06-30\"]",
+            "normalized_value_decimal": "193893000000",
+            "raw_unit": "(In millions, except per share amounts)",
+            "normalized_unit": "USD",
+            "scale": 1000000,
+            "scope": "consolidated",
+            "row_label": "Gross margin",
+            "row_headers": [
+              "Cost of revenue:",
+              "Gross margin"
+            ],
+            "row_group": "Cost of revenue:",
+            "column_headers": [
+              "2025-06-30"
+            ],
+            "row_index": 22,
+            "column_index": 3,
+            "raw_value": "193,893",
+            "footnote_links": [],
+            "type": "table_cell",
+            "content_sha256": "ba5b9c0d2f46ad2d4be0c8958926a701073648ef86457deaaaedbc9fa2259503",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(150) > table:nth-of-type(1) > tr:nth-of-type(23) > td:nth-of-type(4)",
+            "source_anchor": null,
+            "parent_table_id": "0000950170-25-100235:financial_table:201947bfc56460b3:f59d4125a7896da5",
+            "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+          },
+          "content": "Microsoft Corporation | Income statement | Cost of revenue: | Gross margin | 2025-06-30 | 193,893 | (In millions, except per share amounts) | us-gaap:GrossProfit | 193893000000 USD"
+        },
+        {
+          "evidence_id": "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90",
+          "metadata": {
+            "accession": "0000950170-25-100235",
+            "ticker": "MSFT",
+            "cik": "0000789019",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+            "filing_id": "0000950170-25-100235",
+            "company": "Microsoft Corporation",
+            "fiscal_year": 2025,
+            "filing_period_end": "2025-06-30",
+            "source_sha256": "b66750c0acce8c51f5ef23da4aca07f4482f5f29268b0307b303c0daf76582fa",
+            "source_file": "0000950170-25-100235.html",
+            "record_schema_version": 1,
+            "parser_version": "sec-ixbrl-corpus-v1",
+            "section": "Item 8",
+            "period_kind": "duration",
+            "period_start": "2024-07-01",
+            "period_end": "2025-06-30",
+            "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "unit": "USD",
+            "currency": "USD",
+            "scale_power10": 6,
+            "normalized_value": 281724000000,
+            "xbrl_sign": null,
+            "context_ref": "C_7102029d-8d6c-44c5-b166-04cf41443b1e",
+            "unit_ref": "U_USD",
+            "dimensions": {},
+            "table_title": "Income statement",
+            "column_header": "2025-06-30",
+            "periods_json": "[2025, 2024, 2023]",
+            "headers_json": "[\"2025-06-30\", \"2024-06-30\", \"2023-06-30\"]",
+            "normalized_value_decimal": "281724000000",
+            "raw_unit": "(In millions, except per share amounts)",
+            "normalized_unit": "USD",
+            "scale": 1000000,
+            "scope": "consolidated",
+            "row_label": "Total revenue",
+            "row_headers": [
+              "Revenue:",
+              "Total revenue"
+            ],
+            "row_group": "Revenue:",
+            "column_headers": [
+              "2025-06-30"
+            ],
+            "row_index": 11,
+            "column_index": 3,
+            "raw_value": "281,724",
+            "footnote_links": [],
+            "type": "table_cell",
+            "content_sha256": "091b2a3815af7e904df0f616401147577e73d6397e0b9bd59b2ff7c42168707a",
+            "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(150) > table:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(4)",
+            "source_anchor": null,
+            "parent_table_id": "0000950170-25-100235:financial_table:201947bfc56460b3:f59d4125a7896da5",
+            "units_json": "{\"declared_text\": \"(In millions, except per share amounts)\"}"
+          },
+          "content": "Microsoft Corporation | Income statement | Revenue: | Total revenue | 2025-06-30 | 281,724 | (In millions, except per share amounts) | us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax | 281724000000 USD"
+        }
+      ],
+      "calculations": [
+        {
+          "status": "ok",
+          "result": "68.82374238616518294501000980",
+          "unit": "percent",
+          "currency": null,
+          "expression": "ratio_percent([0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d], [0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90])",
+          "program": {
+            "issuer": "Microsoft Corporation",
+            "scope": "consolidated",
+            "periods": [
+              {
+                "kind": "duration",
+                "start": "2024-07-01",
+                "end": "2025-06-30"
+              }
+            ],
+            "expression": {
+              "op": "ratio_percent",
+              "args": [
+                {
+                  "evidence_id": "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d"
+                },
+                {
+                  "evidence_id": "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+                }
+              ]
+            }
+          },
+          "operand_ids": [
+            "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d",
+            "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+          ],
+          "operands": {
+            "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d": {
+              "company": "Microsoft Corporation",
+              "metric": "us-gaap:GrossProfit",
+              "scope": "consolidated",
+              "table_title": "Income statement",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(150) > table:nth-of-type(1) > tr:nth-of-type(23) > td:nth-of-type(4)",
+              "accession": "0000950170-25-100235",
+              "raw_value": "193,893",
+              "raw_unit": "(In millions, except per share amounts)",
+              "normalized_unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value_decimal": "193893000000",
+              "period_kind": "duration",
+              "period_start": "2024-07-01",
+              "period_end": "2025-06-30"
+            },
+            "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90": {
+              "company": "Microsoft Corporation",
+              "metric": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "scope": "consolidated",
+              "table_title": "Income statement",
+              "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+              "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(150) > table:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(4)",
+              "accession": "0000950170-25-100235",
+              "raw_value": "281,724",
+              "raw_unit": "(In millions, except per share amounts)",
+              "normalized_unit": "USD",
+              "currency": "USD",
+              "scale_power10": 6,
+              "normalized_value_decimal": "281724000000",
+              "period_kind": "duration",
+              "period_start": "2024-07-01",
+              "period_end": "2025-06-30"
+            }
+          },
+          "rule_trace": [
+            {
+              "rule_id": "cited_value_fact",
+              "premises": [
+                "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d"
+              ],
+              "outcome": "pass"
+            },
+            {
+              "rule_id": "cited_value_fact",
+              "premises": [
+                "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+              ],
+              "outcome": "pass"
+            },
+            {
+              "rule_id": "ratio_percent",
+              "premises": [
+                "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d",
+                "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+              ],
+              "outcome": "pass",
+              "normalized_inputs": [
+                "193893000000",
+                "281724000000"
+              ],
+              "result": "68.82374238616518294501000980",
+              "unit": "percent",
+              "note": null
+            }
+          ],
+          "decimal_precision": 28
+        }
+      ],
+      "chart_info": null,
+      "request": {
+        "ticker": "MSFT",
+        "company": "Microsoft Corporation",
+        "accession": "0000950170-25-100235",
+        "filing_period_end": "2025-06-30",
+        "value_period_end": "2025-06-30",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": [
+        "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d",
+        "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+      ]
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 12.85
+  },
+  {
+    "query": {
+      "question": "What was Oracle's gross margin in FY2024?",
+      "ticker": "ORCL",
+      "accession": "0000950170-24-075605",
+      "value_period_end": "2024-05-31",
+      "scope": "consolidated",
+      "period_kind": "duration",
+      "mode": "auto"
+    },
+    "result": {
+      "status": "insufficient_evidence",
+      "question": "What was Oracle's gross margin in FY2024?",
+      "answer": "",
+      "message": "Matching typed values are missing or ambiguous for the requested metric, filing and period.",
+      "latency_seconds": 0.022,
+      "route": "exact_engine",
+      "provider": "ollama",
+      "model": "gemma3:4b",
+      "evidence": [],
+      "calculations": [],
+      "chart_info": null,
+      "request": {
+        "ticker": "ORCL",
+        "company": "Oracle Corporation",
+        "accession": "0000950170-24-075605",
+        "filing_period_end": "2024-05-31",
+        "value_period_end": "2024-05-31",
+        "scope": "consolidated",
+        "period_kind": "duration"
+      },
+      "evidence_origin": "engine_retrieved",
+      "included_evidence_ids": []
+    },
+    "isolated": true,
+    "passed": true,
+    "elapsed_seconds": 0.11
+  }
+]

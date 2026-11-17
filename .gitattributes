@@ -27,3 +27,5 @@ supabase/migrations/*.sql text eol=lf
 *.docx -text
 *.pptx -text
 *.zip -text
+*.xlsx -text
+*.txt text eol=lf

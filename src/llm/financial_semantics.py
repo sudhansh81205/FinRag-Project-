@@ -24,8 +24,12 @@ def is_revenue_lookup(question):
 
 def total_revenue_fact(record):
     headers = record.get("metadata", {}).get("row_headers", [])
+    label = headers[-1].strip() if isinstance(headers, list) and headers else ""
+    # Printed statement footnote markers remain in the original row text. They do
+    # not turn a consolidated total into a product/service component (IBM 2024).
+    label = re.sub(r"\s+(?:[A-Z]|\([A-Za-z0-9]{1,2}\))$", "", label)
     return (role(record) == "revenue" and isinstance(headers, list) and bool(headers)
-            and re.sub(r"\s+", " ", headers[-1].strip().lower()).strip(":") in TOTAL_REVENUE_LABELS)
+            and re.sub(r"\s+", " ", label.lower()).strip(":") in TOTAL_REVENUE_LABELS)
 
 
 def is_gross_margin(question):

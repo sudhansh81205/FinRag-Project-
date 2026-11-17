@@ -1,0 +1,316 @@
+FINRAG - STARTUP AND PROFESSOR DEMONSTRATION MANUAL
+Prepared 18 November 2026. Read the current README, canonical docs/plan/PRD.md
+and docs/reports/2026-11-18_final-completion.md together with this manual.
+
+1. WHAT IS AVAILABLE
+
+The app supports source-checked annual filing research for:
+  Apple (AAPL): FY2021, FY2022, FY2023, FY2024, FY2025.
+  Microsoft (MSFT): FY2021, FY2022, FY2023, FY2024, FY2025.
+  Adobe (ADBE): FY2024, ending 2024-11-29.
+  NVIDIA (NVDA): FY2024, ending 2024-01-28.
+  Salesforce (CRM): FY2024, ending 2024-01-31.
+  AMD: FY2024, ending 2024-12-28.
+  Intel (INTC): FY2024, ending 2024-12-28.
+  Cisco (CSCO): FY2024, ending 2024-07-27.
+  Oracle (ORCL): FY2024, ending 2024-05-31.
+  IBM: FY2024, ending 2024-12-31, including its incorporated financial exhibit.
+
+There are 18 filings, 10 companies and 15,411 canonical C records. Matched
+A/B representations have 5,213/12,077 records. Processing/count coverage meets
+the PRD's five Apple/five Microsoft/ten-company requirement. Wider independent
+source acceptance is separate and not implied by byte/schema/index checks.
+
+One research request selects one exact filing. Adjacent years printed in that
+filing may be compared when both typed source periods exist. Automatic joins
+across separate filings/companies are not supported. Use separate cited answers.
+The app cannot promise any possible filing question: absent facts, unknown units,
+unavailable periods and ambiguous operands must refuse. Live prices, predictions,
+quarterly values and investment advice are outside this annual-report scope.
+
+2. SOFTWARE AND PRIVATE CONFIGURATION
+
+Required: Git, Python3.12+ (prepared environment:3.14.2), Node22, project Python dependencies, local Ollama,
+llama.cpp llama-server (the exact-model tokenizer), model storage and enough RAM/
+disk. The prepared laptop already has its .venv and verified installed assets.
+Other team members must install/restore these explicitly; startup does not download.
+
+From the repository root on macOS/Linux:
+  python3.12 -m venv .venv
+  .venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt
+On Windows use py -3.12 and .venv\Scripts\python.exe. Native launcher defaults
+are for Rushil's prepared Mac; Windows executable/model paths must be supplied.
+No npm install is required for web/. Optional artifact regeneration uses a
+separate document runtime; it is not required to run or demonstrate the app.
+
+The root .env configures the Python model. Never overwrite an existing private file.
+  FINRAG_PROVIDER=ollama
+  FINRAG_MODEL=gemma3:4b
+  FINRAG_MODEL_DIGEST=<the exact digest from configs/gemma3-4b.json>
+  OLLAMA_BASE_URL=http://127.0.0.1:11434
+Other root paths/settings are documented in .env.example and configs/config.yaml.
+Gemini is an explicit optional provider, not the final matched runtime or fallback.
+
+web/.env configures the gateway (server-only settings):
+  FINRAG_BACKEND_URL=http://127.0.0.1:8000 (local only; production uses HTTPS)
+  FINRAG_BACKEND_TOKEN=<must match the Python FINRAG_API_TOKEN>
+  FINRAG_ALLOW_LOOPBACK_HTTP=true (development only)
+  FINRAG_BACKEND_TIMEOUT_MS=240000
+  SUPABASE_URL=<existing authorized project URL>
+  SUPABASE_PUBLISHABLE_KEY=<existing publishable key, never service_role>
+  SUPABASE_PASSWORD_AUTH_READY=true
+  SUPABASE_AUTH_READY=false (legacy magic-link readiness is separate)
+Node loads this ignored file explicitly. Do not paste values into chat, screenshots,
+Git, reports, a professor's shared deck or the demonstration JSON export.
+
+The launcher securely creates/reuses output/nov17/local-service.json with owner-only
+permissions. This holds the local API credential. Keep it private. Vercel needs the
+same backend credential and approved HTTPS backend origin as server environment
+settings. Do not expose raw Ollama or tokenizer services publicly.
+
+3. START ON RUSHIL'S PREPARED LAPTOP
+
+Open Terminal, cd into the FinRAG repository, then:
+  .venv/bin/python scripts/run_local_workspace.py --status
+
+If it reports ready, reuse those running services. Do not start duplicate servers.
+If stopped and ports are free:
+  .venv/bin/python scripts/run_local_workspace.py --gradio-port 7860
+
+This launches the existing local Ollama model service, exact-GGUF tokenizer,
+authenticated Python financial API, shared-engine Gradio and Node frontend.
+It checks actual installed model bytes and refuses occupied ports. Logs are in
+output/nov17/. Do not kill a port owner until its command/cwd are verified.
+
+Addresses:
+  Web:       http://127.0.0.1:4180/
+  Gradio:    http://127.0.0.1:7860/
+  API:       http://127.0.0.1:8000/health (requires private bearer token)
+  Ollama:    http://127.0.0.1:11434/ (loopback only)
+  Tokenizer: http://127.0.0.1:11435/ (loopback only)
+
+To run just the frontend, cd web and run npm run dev (port4173).
+This does not start the financial backend. Return to the repo root for the full
+launcher. Gradio alone via app.py is also a setup route, not the prepared engine.
+
+Rushil's existing model assets are sibling directories ../ollama/ and
+../ollama-models/; BGE is cached in output/models-http/. On another machine use:
+  .venv/bin/python scripts/run_local_workspace.py --help
+Supply actual --ollama, --llama-server, --models, --gguf, --model-cache and
+--source-audit paths. Do not copy machine-specific absolute paths unchanged.
+
+For explicitly installing a fresh Ollama model, obtain gemma3:4b using Ollama,
+then compare /api/show and its installed digest with configs/gemma3-4b.json.
+The pinned GGUF SHA256 is in scripts/run_local_workspace.py. A similarly named
+different model is not accepted. Locate and provide the actual downloaded GGUF;
+the tokenizer service must load exactly that file. The launcher refuses a mismatch.
+Separate Llama evaluation uses configs/llama32-comparison.json and remains unrun.
+
+4. DATABASE AND SAVED QUESTIONS
+
+The existing FinRAG Supabase project is already provisioned and its private
+saved_queries schema/policies are applied. The cloud database needs no local
+Postgres start command. Keep its URL/publishable key in web/.env and Vercel.
+On a genuinely new authorized project, inspect tables first, apply
+supabase/schema.sql once, run supabase/verify_rls.sql and security advisors.
+Do not rerun CREATE TABLE blindly on the existing project. Owner-only select,
+insert and delete are required; anonymous access is forbidden.
+
+In the app choose Your workspace, enter email and password, then Sign in.
+For a new account choose Create account and confirm the actual email. Passwords
+must meet the form's12-character minimum. Configure the exact hosted origin in
+Supabase Auth Site URL/redirects. Default email restrictions may require the owner
+to configure SMTP or permitted recipients. No automated test establishes actual
+new-user email delivery. Do not disable confirmation to make a demo appear ready.
+The original confirmation-link field accepts only this project's allowlisted link.
+
+Ask a question, choose Save question, then open Saved Questions. Refresh in the
+same tab and reopen Saved Questions: the server retrieves the same Supabase row.
+Choose it to restore its question, selected filing and period. Delete it, refresh,
+and verify it stays deleted. Use More questions/Previous questions for pages.
+Saved questions are private input records, not approved model answers or gold.
+
+Only an access token is held in sessionStorage. Page refresh retains it in the
+same tab; signing out, closing the tab or expiry may require signing in again.
+This does not delete saved rows. The API checks the current user on every request;
+expired sessions clear the signed-in label. No refresh token/service-role key is
+stored in browser storage. Two approved synthetic accounts previously passed actual
+local/production sign-in and owner-isolation tests and were then deleted.
+
+5. FILING PREPARATION AND SELECTION
+
+The data/application_filings.json registry lists exact issuer/accession/form/period
+and original source URLs. Pinned source snapshots are in data/source/corpus/;
+data/corpus_html_profiles.json declares supported layouts and hashes.
+Generated canonical packages and matched indexes live in output/nov17/corpus/.
+They are ignored build assets, not uploaded user files. There is no general PDF
+upload feature: an unprocessed arbitrary filing cannot be advertised as supported.
+
+Check processing before the demo:
+  .venv/bin/python scripts/check_project_readiness.py --publish-web
+Expect18checked/18connected-source-packages,10companies, AAPL5/MSFT5, and the
+matched index counts listed above. The script validates original source/exhibit
+hashes, registry/package/schema identities and reopened native index records.
+It updates web/data/filings.json and project-status.json from actual checked assets.
+Changing those files requires restarting Node or redeploying the frontend.
+
+For a clean restore, obtain the verified generated package/cache/model backup from
+the project owner, preserving paths/hashes. To rebuild packages explicitly:
+  .venv/bin/python scripts/prepare_evidence.py --output data/processed/nov04
+  .venv/bin/python scripts/verify_canonical_data.py --package data/processed/nov04 \
+    --output output/nov17/canonical_audit.json --artifacts-dir output/restore-check
+  .venv/bin/python scripts/build_corpus_candidates.py --build \
+    --package data/processed/nov04 --audit output/nov17/canonical_audit.json \
+    --output output/nov17/corpus --model-cache output/models-http
+These require installed parser/index dependencies and pinned BGE assets; the source
+archives are already committed. Use a new output directory for changed inputs;
+immutable generations must not be overwritten to bypass source validation.
+Original PDF extraction additionally needs the declared exact rendition files.
+
+To add a NEW filing, a member must obtain the public original source, verify the
+exact issuer/accession/year, add its registry/profile and supported layout, parse
+typed cells/narratives with tests, build/reopen its indexes, and run source checks.
+An inventory entry by itself stays unavailable. Do not invent units/periods or
+replace an accepted package with a different rendition under the same identity.
+
+In the website choose Research > company > filing. Period end defaults to that
+filing's fiscal year. For annual totals leave Fiscal-year total selected; choose
+Year-end balance only for supported instant balance-sheet values. Changing any
+selection/question clears the old answer. Filings distinguishes available research,
+processed-but-disconnected and processing-required entries. Connection and coverage
+separates current connectivity from independent source/experiment acceptance.
+
+6. PROFESSOR DEMONSTRATION (APPROXIMATELY10MINUTES)
+
+A. Open https://finrag-workspace.vercel.app/ in the authorized Vercel account.
+   Alternatively use the local web URL. Keep the laptop awake. Show Connection
+   and coverage:18filings/10companies, model connected, private saving configured.
+B. Select Apple FY2021, period2021-09-25, Fiscal-year total, Auto.
+   Ask: What was Apple's gross margin in FY2021?
+   Expect approximately41.78%, original cited sales/cost values and checked formula.
+   Open the original source, evidence panels, period, units and rule checks.
+C. Ask: What was Apple's revenue growth from FY2020 to FY2021?
+   Expect33.26%. Ask gross-margin change over those years:3.55percentage points.
+   Explain that a percent change differs from a percentage-point change.
+D. Switch to Apple FY2025 (2025-09-27). Show the previous answer disappears.
+   Ask: How much revenue did Apple report in FY2025?
+   Expect416161000000USD (USD416.161billion), cited from that exact filing.
+E. Switch to Microsoft FY2025 (2025-06-30). Ask gross margin: approximately68.82%.
+   Ask revenue:281724000000USD. Check citations use the Microsoft2025accession.
+F. Select NVIDIA FY2024 (2024-01-28), Narrative. Ask what risks NVIDIA describes.
+   Read its original cited risk passages; wording is not a memorized expected string.
+G. Select IBM FY2024 (2024-12-31). Ask revenue:62753000000USD. Its financial
+   exhibit and printed total-row footnote are preserved; components cannot substitute.
+H. Demonstrate failure: keep Apple selected and ask Microsoft revenue, or ask a
+   future year/current stock price. Expect explicit invalid/unsupported result,
+   empty current answer and no prior result presented as current.
+I. Sign in, save a question, refresh, reopen it, delete it, refresh again. Use a
+   separately signed-in genuine teammate account to manually verify privacy.
+J. Export an actual answer JSON. It includes source/calculation evidence and must
+   not include backend credentials or user passwords. Open the original chart
+   images in How it works; explain original-chart answering is gated on review.
+
+More questions: outputs/finrag-final-20261118/FinRAG_Sample_Questions.xlsx and
+FinRAG_Demonstration_Questions.pdf. Six prompts per filing cover straight narrative,
+numerical answers, within-filing comparison and citation tests. Exact expected
+values and IDs are source-derived; only the recorded live probes are live results.
+Oracle gross-margin total is an intentional missing-operand refusal; its revenue
+and net-income questions have supported original values.
+
+7. HOSTED CONNECTION AND DEPLOYMENT
+
+The frontend is on the existing protected Vercel project finrag-workspace.
+The Python/model engine runs on Rushil's laptop through the approved authenticated
+temporary HTTPS tunnel. Laptop sleep, network loss or tunnel shutdown breaks hosted
+answers. Do not expose raw model/tokenizer ports. Check local status first.
+
+If a temporary tunnel is restarted, its URL changes. Start cloudflared only for
+the authenticated API origin (http://127.0.0.1:8000), then update the existing Vercel
+FINRAG_BACKEND_URL privately and redeploy reviewed web files to the same authorized
+project/team. Keep Vercel Authentication enabled; never create a replacement project
+or enable billing as a troubleshooting step. Another team member needs actual
+project access. A Git push/PR merge alone does not redeploy the current file upload.
+
+8. EXPERIMENT ACCEPTANCE: EXACT BLOCKERS AND COMMANDS
+
+Run:
+  .venv/bin/python scripts/check_experiment_acceptance.py
+Exit2 currently means BLOCKED. It checks21actual official suite/variant readiness
+paths plus7chart prerequisites, not28executed model experiments. Final matrix is
+0/28 and the independent generated-output audit is0/50. Do not turn these into
+completed results by editing labels or reusing smoke fixtures.
+
+Official imports exist: FinanceBench150, FinQA1147, TAT-QA1663. Full-document
+FinanceBench contexts/PDFs exist locally. The runner still reports UNBOUND because
+it retrieves its own index instead of a validated source-equivalent benchmark
+universe. Source-equivalent canonical adapters/periods/units and chart-suite final
+execution remain technical work, followed by RAGAS and separate Llama execution.
+Those are not solved by running unit tests or accepting an input JSON file.
+
+Independent requirements:
+  - Eligible humans inspect broader original narrative/table sources and the
+    fifty chart questions/six captions. A label author cannot independently
+    approve their own label. The user confirmed no genuine review was done.
+  - Use docs/review/final-input-review/index.html and its blank review marks.
+    Record substantive actual pass/reject/uncertain judgments, author/reviewer
+    identity and source/case/caption hashes. Older approval-shaped claims do not
+    replace a genuine review or missing separate caption approval.
+  - The reviewer supplies real hash-bound gate acceptance at the location used
+    by src/benchmark/gates.py. Never generate a signature or set accepted_by
+    to somebody who did not perform the review.
+  - Freeze accepted corpus/model/prompt/tokenizer/five-passage/random controls,
+    development routing thresholds and measured capacity; bind official source
+    universes and predeclare the separate stratified fifty-output sample.
+  - After actual complete immutable A-G/RAGAS/Llama outputs exist, independent
+    reviewers audit the fifty predeclared outputs against original context.
+
+Commands to inspect before the accepted final execution:
+  .venv/bin/python scripts/run_benchmarks.py --gate-report
+  .venv/bin/python scripts/generate_case_inventory.py --help
+  .venv/bin/python scripts/freeze_controls_manifest.py --help
+  .venv/bin/python scripts/run_benchmarks.py --help
+Do not pass --gate to manufacture acceptance. Do not change controls on resume.
+Full results, confidence intervals, exact six-slide results deck, course submission
+and genuine acknowledgement can only be finalized from actual completed evidence.
+
+9. COMMON ERRORS
+
+"ModuleNotFoundError: requests/faiss/...": use the project's .venv executable;
+system Python is not the installed project environment.
+"Port occupied": inspect the owning process/working directory; reuse a healthy
+FinRAG service. Do not kill an unrelated listener or launch duplicate model servers.
+"Model digest/GGUF mismatch": restore the pinned assets; a new model is a changed
+configuration, not permission to bypass identity checks.
+"Source/package changed": restore exact hashed bytes or rebuild into a new reviewed
+generation. Do not edit hashes to silence the failure.
+Only Apple appears: refresh the deployed frontend, inspect /api/filings and
+/api/health, run check_project_readiness.py, and restart/redeploy the reviewed
+gateway. There should be18registry entries; runtime connectivity is separate.
+"Service unavailable": check local model/tokenizer/API status first, then tunnel
+and Vercel backend URL/token. A hosted UI alone is not an answering backend.
+"Sign-in expired": sign in again; saved Supabase rows remain intact.
+No confirmation email: project owner checks Auth logs, permitted recipients,
+Site URL/redirects and SMTP. Do not assume email delivery from synthetic tests.
+"Insufficient evidence": inspect selected filing, fiscal year, period type and
+original source values; change the question or process the missing original facts.
+Some tables require horizontal scrolling within the evidence panel.
+Chart unavailable/experiment not accepted: complete the real review/dependencies
+above; do not open the gate by changing status flags.
+
+10. FINAL VERIFICATION, OWNER ACTIONS AND RESTART
+
+Run Python tests, Ruff, Node tests/syntax, source/index coverage, chart integrity
+and the release manifest check from README. Native live API checks and automated
+fixtures are different evidence. Fresh visual browser QA and actual email delivery
+still require a functioning authorized browser/real end user; capture was unavailable
+in this session. A shared/static screenshot cannot establish current behaviour.
+
+The final pull request is titled Final commit. Do not merge until the repository
+owner reviews/authorizes it. The current account cannot administer collaborators;
+an owner must inspect Settings > Collaborators and teams and remove any actual
+unwanted bot grant. Git contributor author history is separate; see ATTRIBUTION.md.
+No shared history was rewritten or member contributions reassigned.
+
+For interruption recovery: read docs/FINAL_CHECKPOINT.md, inspect git status,
+reuse the healthy services and continue the exact pending step. No automatic
+resumption or scheduler was configured. Keep private tokens outside checkpoints.

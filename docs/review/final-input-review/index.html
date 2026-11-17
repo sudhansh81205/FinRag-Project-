@@ -1,0 +1,145 @@
+<!doctype html><html lang='en'><meta charset='utf-8'><title>FinRAG independent review packet</title><style>body{font:17px/1.6 system-ui;max-width:1100px;margin:40px auto;padding:0 20px;color:#171717}section{border-top:2px solid;margin-top:45px;padding-top:20px}img{max-width:100%;max-height:650px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #bbb;padding:12px;text-align:left;vertical-align:top}pre{white-space:pre-wrap;background:#f4f4f4;padding:18px}small{color:#555}</style><h1>Independent input review — pending</h1><p>50 questions (15 development / 35 heldout), six original images and six captions. Inspect each original image and PDF locator. Record pass, reject or uncertainty in <a href='review-marks-template.json'>the blank decision file</a>. Do not infer point values from curve positions. A label author cannot independently approve their own work.</p><p>This packet neither authenticates a human reviewer nor completes the separate 50-generated-output audit. Final experiment gates remain closed until real acceptance and the required runtime/data bindings exist.</p><section><h2>AAPL</h2><p>0000320193-21-000105:chart:ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9</p><a href='https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf'>Original PDF, page 22</a><p><img src='../../../data/charts/assets/ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9.jpg' alt='Original AAPL chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: &quot;Comparison of 5-Year Cumulative Total Return&quot;,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: &quot;Date&quot;,
+  &quot;y_axis&quot;: null,
+  &quot;units&quot;: &quot;$ (dollar symbol; ISO currency code not printed)&quot;,
+  &quot;periods&quot;: [
+    &quot;9/23/16&quot;,
+    &quot;9/30/17&quot;,
+    &quot;9/29/18&quot;,
+    &quot;9/28/19&quot;,
+    &quot;9/26/20&quot;,
+    &quot;9/25/21&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;Apple Inc.&quot;,
+    &quot;S&amp;P 500 Index&quot;,
+    &quot;S&amp;P Information Technology Index&quot;,
+    &quot;Dow Jones U.S. Technology Supersector Index&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact point values are not printed; curve positions must not be treated as exact values.&quot;,
+    &quot;An ISO currency code and explicit y-axis title are not printed.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>apple2021-chart-dev-01<br>dev</td><td>What cumulative-return horizon is named in the chart title?</td><td>5-year cumulative total return<br><small>Title: COMPARISON OF 5-YEAR CUMULATIVE TOTAL RETURN.</small></td></tr><tr><td>apple2021-chart-dev-02<br>dev</td><td>Which company is compared with the market indices?</td><td>Apple Inc.<br><small>Chart subtitle and solid-line legend.</small></td></tr><tr><td>apple2021-chart-dev-03<br>dev</td><td>Which three benchmark indices are listed?</td><td>S&amp;P 500 Index; S&amp;P Information Technology Index; Dow Jones U.S. Technology Supersector Index.<br><small>Chart subtitle and legend.</small></td></tr><tr><td>apple2021-chart-dev-04<br>dev</td><td>What is the earliest displayed date on the horizontal axis?</td><td>9/23/16<br><small>Leftmost horizontal-axis label.</small></td></tr><tr><td>apple2021-chart-dev-05<br>dev</td><td>What is the latest displayed date on the horizontal axis?</td><td>9/25/21<br><small>Rightmost horizontal-axis label.</small></td></tr><tr><td>apple2021-chart-dev-06<br>dev</td><td>List the displayed dates in chronological order.</td><td>9/23/16; 9/30/17; 9/29/18; 9/28/19; 9/26/20; 9/25/21.<br><small>All six horizontal-axis labels.</small></td></tr><tr><td>apple2021-chart-dev-07<br>dev</td><td>What currency symbol is displayed on the vertical-axis tick labels?</td><td>$ (dollar sign).<br><small>Vertical-axis tick labels from $0 through $600. Currency code is not printed.</small></td></tr><tr><td>apple2021-chart-dev-08<br>dev</td><td>What are the minimum and maximum labeled vertical-axis ticks?</td><td>$0 and $600.<br><small>Bottom and top vertical-axis tick labels.</small></td></tr><tr><td>apple2021-chart-dev-09<br>dev</td><td>What is the interval between consecutive labeled vertical-axis ticks?</td><td>$100.<br><small>Ticks $0, $100, $200, $300, $400, $500, $600.</small></td></tr><tr><td>apple2021-chart-dev-10<br>dev</td><td>How many distinct series appear in the legend?</td><td>Four.<br><small>Apple plus three benchmark legend entries.</small></td></tr><tr><td>apple2021-chart-dev-11<br>dev</td><td>Which line style represents Apple Inc.?</td><td>Solid line.<br><small>Apple Inc. legend swatch.</small></td></tr><tr><td>apple2021-chart-dev-12<br>dev</td><td>Which line style represents the S&amp;P 500 Index?</td><td>Long dashed line.<br><small>S&amp;P 500 Index legend swatch.</small></td></tr><tr><td>apple2021-chart-dev-13<br>dev</td><td>Which line style represents the S&amp;P Information Technology Index?</td><td>Short dashed line.<br><small>S&amp;P Information Technology Index legend swatch.</small></td></tr><tr><td>apple2021-chart-dev-14<br>dev</td><td>Which line style represents the Dow Jones U.S. Technology Supersector Index?</td><td>Dotted line.<br><small>Dow Jones legend swatch; full name in subtitle.</small></td></tr><tr><td>apple2021-chart-dev-15<br>dev</td><td>Can the exact final Apple return value be read from a printed point label?</td><td>Unknown: no exact numeric point label is printed; do not estimate from the curve.<br><small>Final solid-line endpoint is unlabelled; axis ticks alone do not establish an exact value.</small></td></tr></tbody></table></section><section><h2>NVDA</h2><p>0001045810-24-000029:chart:41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a</p><a href='https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf'>Original PDF, page 133</a><p><img src='../../../data/charts/assets/41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a.png' alt='Original NVDA chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: &quot;Comparison of 5 Year Cumulative Total Return&quot;,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: null,
+  &quot;y_axis&quot;: null,
+  &quot;units&quot;: null,
+  &quot;periods&quot;: [
+    &quot;01/27/19&quot;,
+    &quot;01/26/20&quot;,
+    &quot;01/31/21&quot;,
+    &quot;01/30/22&quot;,
+    &quot;01/29/23&quot;,
+    &quot;01/28/24&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;NVIDIA Corporation&quot;,
+    &quot;S&amp;P 500&quot;,
+    &quot;Nasdaq 100&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact numeric point labels are not printed.&quot;,
+    &quot;Vertical tick labels have no currency/percent symbol or explicit unit; do not infer a unit.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>nvda-chart-heldout-01<br>heldout</td><td>Which company is represented by green circular markers?</td><td>NVIDIA Corporation.<br><small>Legend associates the green circle with NVIDIA Corporation.</small></td></tr><tr><td>nvda-chart-heldout-02<br>heldout</td><td>Which benchmark is represented by purple downward-pointing triangles?</td><td>Nasdaq 100.<br><small>Purple inverted-triangle swatch in the legend.</small></td></tr><tr><td>nvda-chart-heldout-03<br>heldout</td><td>How many separate plotted series are identified in the legend?</td><td>3.<br><small>Legend has green-circle, gray-square and purple-inverted-triangle entries.</small></td></tr><tr><td>nvda-chart-heldout-04<br>heldout</td><td>At the rightmost date, rank the green-circle, purple-triangle and gray-square series from highest to lowest.</td><td>NVIDIA Corporation (green circles), Nasdaq 100 (purple inverted triangles), S&amp;P 500 (gray squares).<br><small>Rightmost three marker heights are distinctly ordered; marker-to-series mapping comes from the legend.</small></td></tr><tr><td>nvda-chart-heldout-05<br>heldout</td><td>Does the green-circle line rise or fall between 01/30/22 and 01/29/23?</td><td>It falls.<br><small>Green circle at 01/29/23 is lower than the circle at 01/30/22.</small></td></tr><tr><td>nvda-chart-heldout-06<br>heldout</td><td>From 01/29/23 to 01/28/24, which marked series has the steepest visible upward segment?</td><td>NVIDIA Corporation, the green-circle series.<br><small>Final green segment rises far more vertically than the purple or gray segments over the same horizontal interval.</small></td></tr><tr><td>nvda-chart-heldout-07<br>heldout</td><td>What is the spacing between consecutive labeled vertical-axis ticks?</td><td>200; no currency or percent symbol is printed on those ticks.<br><small>Labeled vertical ticks are 0, 200, 400, ... 1,800.</small></td></tr></tbody></table></section><section><h2>AMD</h2><p>0000002488-25-000012:chart:a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0</p><a href='https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf'>Original PDF, page 45</a><p><img src='../../../data/charts/assets/a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0.jpg' alt='Original AMD chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: &quot;Comparison of Cumulative Five Year Total Return&quot;,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: null,
+  &quot;y_axis&quot;: &quot;Index Value&quot;,
+  &quot;units&quot;: &quot;Index Value&quot;,
+  &quot;periods&quot;: [
+    &quot;2019&quot;,
+    &quot;2020&quot;,
+    &quot;2021&quot;,
+    &quot;2022&quot;,
+    &quot;2023&quot;,
+    &quot;2024&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;Advanced Micro Devices, Inc.&quot;,
+    &quot;S&amp;P 500 Index&quot;,
+    &quot;S&amp;P 500 Semiconductors Index&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact numeric point labels are not printed.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>amd-chart-heldout-01<br>heldout</td><td>Which company is represented by filled circular markers?</td><td>Advanced Micro Devices, Inc.<br><small>Filled-circle legend swatch.</small></td></tr><tr><td>amd-chart-heldout-02<br>heldout</td><td>Which benchmark uses filled upward-pointing triangle markers?</td><td>S&amp;P 500 Semiconductors Index.<br><small>Triangle legend swatch names the semiconductor index.</small></td></tr><tr><td>amd-chart-heldout-03<br>heldout</td><td>At 2024, rank the triangle-, circle- and square-marked series from highest to lowest.</td><td>S&amp;P 500 Semiconductors Index (triangles), Advanced Micro Devices, Inc. (circles), S&amp;P 500 Index (squares).<br><small>The three 2024 markers are clearly separated vertically; legend supplies their names.</small></td></tr><tr><td>amd-chart-heldout-04<br>heldout</td><td>Between 2023 and 2024, what opposite directions do the circle-marked and triangle-marked lines take?</td><td>The AMD circle-marked line falls, while the semiconductor-index triangle-marked line rises.<br><small>Final circle segment slopes down and final triangle segment slopes up.</small></td></tr><tr><td>amd-chart-heldout-05<br>heldout</td><td>Which benchmark is represented by filled square markers?</td><td>S&amp;P 500 Index.<br><small>Filled-square legend swatch.</small></td></tr><tr><td>amd-chart-heldout-06<br>heldout</td><td>Which adjacent-year interval shows all three plotted lines decreasing?</td><td>2021 to 2022.<br><small>All three segments slope downward from their 2021 markers to their 2022 markers.</small></td></tr><tr><td>amd-chart-heldout-07<br>heldout</td><td>What words are printed as the vertical-axis label?</td><td>Index Value.<br><small>Vertical text alongside the left axis.</small></td></tr></tbody></table></section><section><h2>INTC</h2><p>0000050863-25-000009:chart:3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568</p><a href='https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf'>Original PDF, page 52</a><p><img src='../../../data/charts/assets/3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568.jpg' alt='Original INTC chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: null,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: null,
+  &quot;y_axis&quot;: null,
+  &quot;units&quot;: &quot;$ (dollar symbol; ISO currency code not printed)&quot;,
+  &quot;periods&quot;: [
+    &quot;2019&quot;,
+    &quot;2020&quot;,
+    &quot;2021&quot;,
+    &quot;2022&quot;,
+    &quot;2023&quot;,
+    &quot;2024&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;Intel Corporation&quot;,
+    &quot;S&amp;P 100 Index&quot;,
+    &quot;S&amp;P 500 Index&quot;,
+    &quot;S&amp;P 500 IT Index&quot;,
+    &quot;SOX Index&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact numeric point labels are not printed.&quot;,
+    &quot;This original embedded graph image contains no separate title or axis titles; the full source page supplies its heading.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>intc-chart-heldout-01<br>heldout</td><td>Which company is represented by the blue line with circular markers?</td><td>Intel Corporation.<br><small>Blue circle and line in the legend.</small></td></tr><tr><td>intc-chart-heldout-02<br>heldout</td><td>Which benchmark uses gray downward-pointing triangle markers?</td><td>S&amp;P 500 IT Index.<br><small>Inverted-triangle legend swatch.</small></td></tr><tr><td>intc-chart-heldout-03<br>heldout</td><td>Which benchmark uses gray star-shaped markers?</td><td>S&amp;P 500 Index.<br><small>Star legend swatch.</small></td></tr><tr><td>intc-chart-heldout-04<br>heldout</td><td>At 2024, rank all five marked series from highest to lowest.</td><td>S&amp;P 500 IT Index (inverted triangles), SOX Index (upright triangles), S&amp;P 100 Index (diamonds), S&amp;P 500 Index (stars), Intel Corporation (blue circles).<br><small>Rightmost marker heights and legend identities; no exact point values are inferred.</small></td></tr><tr><td>intc-chart-heldout-05<br>heldout</td><td>Does the blue-circle line rise or fall between 2022 and 2023?</td><td>It rises.<br><small>The 2023 blue circle is above the 2022 blue circle.</small></td></tr><tr><td>intc-chart-heldout-06<br>heldout</td><td>At the rightmost year, is the blue-circle line above or below every gray benchmark line?</td><td>Below all four gray benchmark lines.<br><small>The rightmost blue circle is lower than all four gray markers.</small></td></tr><tr><td>intc-chart-heldout-07<br>heldout</td><td>What is the highest labeled vertical-axis tick?</td><td>$350.<br><small>Top label on the left vertical axis.</small></td></tr></tbody></table></section><section><h2>CSCO</h2><p>0000858877-24-000017:chart:00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098</p><a href='https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf'>Original PDF, page 50</a><p><img src='../../../data/charts/assets/00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098.png' alt='Original CSCO chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: &quot;Comparison of 5-Year Cumulative Total Return Among Cisco Systems, Inc., the S&amp;P 500 Index, and the S&amp;P Information Technology Index&quot;,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: null,
+  &quot;y_axis&quot;: null,
+  &quot;units&quot;: &quot;$ (dollar symbol; ISO currency code not printed)&quot;,
+  &quot;periods&quot;: [
+    &quot;July 2019&quot;,
+    &quot;July 2020&quot;,
+    &quot;July 2021&quot;,
+    &quot;July 2022&quot;,
+    &quot;July 2023&quot;,
+    &quot;July 2024&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;Cisco Systems, Inc.&quot;,
+    &quot;S&amp;P 500&quot;,
+    &quot;S&amp;P 500 Information Technology&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact numeric point labels are not printed; the endpoint must not be estimated as an exact amount.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>csco-chart-heldout-01<br>heldout</td><td>Which company uses a solid line with open square markers?</td><td>Cisco Systems, Inc.<br><small>Solid-line/open-square legend entry.</small></td></tr><tr><td>csco-chart-heldout-02<br>heldout</td><td>Which benchmark uses a dashed line with open circular markers?</td><td>S&amp;P 500 Information Technology.<br><small>Dashed-line/open-circle legend entry.</small></td></tr><tr><td>csco-chart-heldout-03<br>heldout</td><td>Which benchmark uses a dotted line with open triangle markers?</td><td>S&amp;P 500.<br><small>Dotted-line/open-triangle legend entry.</small></td></tr><tr><td>csco-chart-heldout-04<br>heldout</td><td>At July 2024, which line-and-marker combination is highest, and which series does it represent?</td><td>The dashed line with open circles, representing S&amp;P 500 Information Technology.<br><small>Rightmost open circle is above the triangle and square; legend identifies it.</small></td></tr><tr><td>csco-chart-heldout-05<br>heldout</td><td>Can the exact July 2024 Cisco value be read from a printed numeric point label in this chart image?</td><td>Unknown: no exact numeric point label is printed; do not estimate the value from the curve.<br><small>The final open square has no numeric annotation; the neighboring source table is excluded from this image.</small></td></tr><tr><td>csco-chart-heldout-06<br>heldout</td><td>Between July 2021 and July 2022, do all three plotted lines rise or all three fall?</td><td>All three fall.<br><small>All three segments slope downward between those two labeled dates.</small></td></tr><tr><td>csco-chart-heldout-07<br>heldout</td><td>How many different line-and-marker entries appear in the legend?</td><td>3.<br><small>One square/solid, one triangle/dotted and one circle/dashed entry.</small></td></tr></tbody></table></section><section><h2>ADBE</h2><p>0000796343-25-000004:chart:18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97</p><a href='https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf'>Original PDF, page 101</a><p><img src='../../../data/charts/assets/18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97.png' alt='Original ADBE chart'></p><h3>Generated, author-corrected caption — independent review pending</h3><pre>{
+  &quot;title&quot;: &quot;Comparison of Five-Year Cumulative Total Return&quot;,
+  &quot;chart_type&quot;: &quot;line chart&quot;,
+  &quot;x_axis&quot;: null,
+  &quot;y_axis&quot;: null,
+  &quot;units&quot;: &quot;$ (dollar symbol; ISO currency code not printed)&quot;,
+  &quot;periods&quot;: [
+    &quot;2019&quot;,
+    &quot;2020&quot;,
+    &quot;2021&quot;,
+    &quot;2022&quot;,
+    &quot;2023&quot;,
+    &quot;2024&quot;
+  ],
+  &quot;series&quot;: [
+    &quot;Adobe Inc.&quot;,
+    &quot;S&amp;P 500 Index&quot;,
+    &quot;S&amp;P 500 Software &amp; Services&quot;
+  ],
+  &quot;unknowns&quot;: [
+    &quot;Exact numeric point labels are not printed.&quot;
+  ],
+  &quot;readable_values&quot;: []
+}</pre><table><thead><tr><th>ID / split</th><th>Question</th><th>Candidate answer and basis</th></tr></thead><tbody><tr><td>adbe-chart-heldout-01<br>heldout</td><td>Which company is represented by filled upward-pointing triangles?</td><td>Adobe Inc.<br><small>Filled-triangle legend swatch.</small></td></tr><tr><td>adbe-chart-heldout-02<br>heldout</td><td>Which benchmark uses open diamond markers?</td><td>S&amp;P 500 Index.<br><small>Open-diamond legend swatch.</small></td></tr><tr><td>adbe-chart-heldout-03<br>heldout</td><td>Which benchmark uses open square markers?</td><td>S&amp;P 500 Software &amp; Services.<br><small>Open-square legend swatch.</small></td></tr><tr><td>adbe-chart-heldout-04<br>heldout</td><td>At 2024, rank the open-square, open-diamond and filled-triangle series from highest to lowest.</td><td>S&amp;P 500 Software &amp; Services (open squares), S&amp;P 500 Index (open diamonds), Adobe Inc. (filled triangles).<br><small>Rightmost marker heights and the legend; no exact plotted amount is inferred.</small></td></tr><tr><td>adbe-chart-heldout-05<br>heldout</td><td>Between 2023 and 2024, does the filled-triangle line move in the same direction as the two open-marker lines?</td><td>No. Adobe&#x27;s filled-triangle line falls, while the open-square and open-diamond benchmark lines rise.<br><small>Opposite slopes of the final segments.</small></td></tr><tr><td>adbe-chart-heldout-06<br>heldout</td><td>Which three dollar-denominated vertical-axis tick labels are printed?</td><td>$100, $200 and $300.<br><small>Three printed labels on the left vertical axis.</small></td></tr><tr><td>adbe-chart-heldout-07<br>heldout</td><td>What are the first and last year labels printed on the horizontal axis?</td><td>2019 and 2024.<br><small>Leftmost and rightmost horizontal-axis year labels.</small></td></tr></tbody></table></section></html>

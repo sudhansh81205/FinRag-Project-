@@ -43,6 +43,20 @@ def test_total_revenue_cannot_use_a_product_sales_component():
     assert known_source_program(question, request, [component]) is None
 
 
+def test_printed_total_revenue_footnote_marker_preserves_total_semantics():
+    import copy
+
+    from src.application import make_demo_records
+    from src.llm.financial_semantics import total_revenue_fact
+
+    row = copy.deepcopy(make_demo_records()[0])
+    row["metadata"]["row_headers"] = ["Revenue", "Total revenue C"]
+    assert total_revenue_fact(row)
+    for label in ("Sales", "Revenue component", "Products", "Total revenue Cloud"):
+        row["metadata"]["row_headers"] = ["Revenue", label]
+        assert not total_revenue_fact(row)
+
+
 def test_inventory_filing_refuses_without_calling_model():
     class Engine:
         web_source_records = [{"metadata": {"accession": "0000320193-21-000105"}}]

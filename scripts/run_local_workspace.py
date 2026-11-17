@@ -134,7 +134,7 @@ def main():
     }
     for name, default in defaults.items():
         parser.add_argument("--" + name, default=str(default), help="Existing asset path; override for another machine")
-    parser.add_argument("--workspace-corpus", default=str(ROOT / "output/nov17/corpus"), help="Prepared two-filing demonstration corpus")
+    parser.add_argument("--workspace-corpus", default=str(ROOT / "output/nov17/corpus"), help="Prepared source-checked application corpus")
     parser.add_argument("--status", action="store_true", help="Check the local workspace without starting services")
     parser.add_argument("--node", default="node")
     parser.add_argument("--web-port", type=int, default=4180)

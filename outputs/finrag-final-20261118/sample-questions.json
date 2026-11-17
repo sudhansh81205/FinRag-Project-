@@ -1,0 +1,2331 @@
+{
+  "scope": "108 source-derived demonstration questions across all 18 available filings; separate cross-filing exercises are explicitly manual",
+  "filings": [
+    {
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "cik": "0000320193",
+      "accession": "0000320193-21-000105",
+      "form": "10-K",
+      "period_end": "2021-09-25",
+      "filed_date": "2021-10-29",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/0000320193-21-000105-index.htm",
+      "source_status": "pinned_html_and_pdf_renditions",
+      "html_manifest": "data/filing_manifest.json",
+      "rendition_url": "https://dd7pmep5szm19.cloudfront.net/2390/0000320193-21-000105.pdf",
+      "rendition_path": "data/source/aapl-2021-rendition.pdf",
+      "rendition_sha256": "a38e191ec6a225e45c2e6ed9e8e2022cb8aaf0fca4c6611b58945ec70fca7107",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "cik": "0000320193",
+      "accession": "0000320193-22-000108",
+      "form": "10-K",
+      "period_end": "2022-09-24",
+      "filed_date": "2022-10-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2022.pdf",
+      "rendition_path": "data/raw/corpus/0000320193-22-000108.pdf",
+      "rendition_sha256": "40f4a5169ac49f1c3011b8287afe28364138cd4f3e4db36c8d75c9da0f6b2a93",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "cik": "0000320193",
+      "accession": "0000320193-23-000106",
+      "form": "10-K",
+      "period_end": "2023-09-30",
+      "filed_date": "2023-11-03",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/0000320193-23-000106-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2023.pdf",
+      "rendition_path": "data/raw/corpus/0000320193-23-000106.pdf",
+      "rendition_sha256": "068176ab665682096a79859d73b805c7b2fda05331e503f26d893b582353464e",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "cik": "0000320193",
+      "accession": "0000320193-24-000123",
+      "form": "10-K",
+      "period_end": "2024-09-28",
+      "filed_date": "2024-11-01",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/0000320193-24-000123-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AAPL_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000320193-24-000123.pdf",
+      "rendition_sha256": "ec74758cd767465362c641cf2fd5d8fedd477aed2bf7f62117e67610435dcb88",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "cik": "0000320193",
+      "accession": "0000320193-25-000079",
+      "form": "10-K",
+      "period_end": "2025-09-27",
+      "filed_date": "2025-10-31",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://s2.q4cdn.com/470004039/files/doc_financials/2025/ar/_10-K-2025-As-Filed.pdf",
+      "rendition_path": "data/raw/corpus/0000320193-25-000079.pdf",
+      "rendition_sha256": "3eb270b22acb7d8d8e9c32a43dc221dec3345f8e4bca02755fdbc1ee16c823de",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "cik": "0000789019",
+      "accession": "0001564590-21-039151",
+      "form": "10-K",
+      "period_end": "2021-06-30",
+      "filed_date": "2021-07-29",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/0001564590-21-039151-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2021.pdf",
+      "rendition_path": "data/raw/corpus/0001564590-21-039151.pdf",
+      "rendition_sha256": "71b4d3a9c8aa98d2b0a0b1165e979fc8ac3084925b2e778fc143b50badad1461",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "cik": "0000789019",
+      "accession": "0001564590-22-026876",
+      "form": "10-K",
+      "period_end": "2022-06-30",
+      "filed_date": "2022-07-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/0001564590-22-026876-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2022.pdf",
+      "rendition_path": "data/raw/corpus/0001564590-22-026876.pdf"
+    },
+    {
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "cik": "0000789019",
+      "accession": "0000950170-23-035122",
+      "form": "10-K",
+      "period_end": "2023-06-30",
+      "filed_date": "2023-07-27",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/0000950170-23-035122-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2023.pdf",
+      "rendition_path": "data/raw/corpus/0000950170-23-035122.pdf",
+      "rendition_sha256": "3c318819680126f6817c2fbb3b8ffa7c01eae31dcfea7e174406e4fa70a5cf29",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "cik": "0000789019",
+      "accession": "0000950170-24-087843",
+      "form": "10-K",
+      "period_end": "2024-06-30",
+      "filed_date": "2024-07-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/0000950170-24-087843-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/m/NASDAQ_MSFT_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000950170-24-087843.pdf",
+      "rendition_sha256": "96de32a720641251b44c3e27e25ce2aa7ab035a15182b6260ef0ef06aa041dc0",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "cik": "0000789019",
+      "accession": "0000950170-25-100235",
+      "form": "10-K",
+      "period_end": "2025-06-30",
+      "filed_date": "2025-07-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/0000950170-25-100235-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReports/PDF/NASDAQ_MSFT_2025.pdf",
+      "rendition_path": "data/raw/corpus/0000950170-25-100235.pdf",
+      "rendition_sha256": "e88c300dcc58dcc93a88fa4afc6bd7b2e63a2095c7a6479d49d57692e1d19a6d",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "cik": "0000796343",
+      "accession": "0000796343-25-000004",
+      "form": "10-K",
+      "period_end": "2024-11-29",
+      "filed_date": "2025-01-13",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/0000796343-25-000004-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_ADBE_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000796343-25-000004.pdf",
+      "rendition_sha256": "34c21fe998326b3ecfe08a26b74b695a0b23a37990c9e407cd916367cf049cbe",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "cik": "0001045810",
+      "accession": "0001045810-24-000029",
+      "form": "10-K",
+      "period_end": "2024-01-28",
+      "filed_date": "2024-02-21",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/0001045810-24-000029-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/n/NASDAQ_NVDA_2024.pdf",
+      "rendition_path": "data/raw/corpus/0001045810-24-000029.pdf",
+      "rendition_sha256": "b0de35ded9da9463d5c33dce77cf9b2158b88cf666f144646d0cc64af23c5960",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "cik": "0001108524",
+      "accession": "0001108524-24-000005",
+      "form": "10-K",
+      "period_end": "2024-01-31",
+      "filed_date": "2024-03-06",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/0001108524-24-000005-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://s205.q4cdn.com/626266368/files/doc_financials/2024/ar/salesforce-fy24-annual-report.pdf",
+      "rendition_path": "data/raw/corpus/0001108524-24-000005.pdf",
+      "rendition_sha256": "1c991a3f88288e877b5841a8bf9c919c59009d82c1f89ecf09af806a2d1aa24e",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "cik": "0000002488",
+      "accession": "0000002488-25-000012",
+      "form": "10-K",
+      "period_end": "2024-12-28",
+      "filed_date": "2025-02-05",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/0000002488-25-000012-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/a/NASDAQ_AMD_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000002488-25-000012.pdf",
+      "rendition_sha256": "079208174889130f5d6696d1199869b3e8f49d7a879473d040c069ffc9620491",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "cik": "0000050863",
+      "accession": "0000050863-25-000009",
+      "form": "10-K",
+      "period_end": "2024-12-28",
+      "filed_date": "2025-01-31",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/0000050863-25-000009-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/NASDAQ_INTC_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000050863-25-000009.pdf",
+      "rendition_sha256": "a4d3952ee70acb8f51debc09adc0c5cde57446cfac061ed57398fbac72de8023",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "cik": "0000858877",
+      "accession": "0000858877-24-000017",
+      "form": "10-K",
+      "period_end": "2024-07-27",
+      "filed_date": "2024-09-05",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/0000858877-24-000017-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSCO_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000858877-24-000017.pdf",
+      "rendition_sha256": "96914478fef2b8a25fdec5f0090e39db783bc9d4353c99398e3b9a4817fb9e89",
+      "rendition_note": "Identity-checked PDF rendition; not proof of parsed or indexed coverage."
+    },
+    {
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "cik": "0001341439",
+      "accession": "0000950170-24-075605",
+      "form": "10-K",
+      "period_end": "2024-05-31",
+      "filed_date": "2024-06-20",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/0000950170-24-075605-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/o/NYSE_ORCL_2024.pdf",
+      "rendition_path": "data/raw/corpus/0000950170-24-075605.pdf"
+    },
+    {
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "cik": "0000051143",
+      "accession": "0000051143-25-000015",
+      "form": "10-K",
+      "period_end": "2024-12-31",
+      "filed_date": "2025-02-25",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "filing_detail": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/0000051143-25-000015-index.htm",
+      "source_status": "filing_identity_verified_only",
+      "rendition_url": "https://www.ibm.com/downloads/documents/us-en/1227a45bcbb087c5",
+      "rendition_path": "data/raw/corpus/0000051143-25-000015.pdf",
+      "rendition_sha256": "54d613dfcc23cf7dd195b84625013e46b159b54a9a1cd6d3efc046c7181a0d17",
+      "rendition_note": "10-K incorporates financial sections by reference; this PDF alone is not full financial-statement coverage."
+    }
+  ],
+  "questions": [
+    {
+      "id": "AAPL-2021-001",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Numerical",
+      "question": "How much revenue did Apple Inc. report in FY2021?",
+      "expected": "365817000000 USD",
+      "source_ids": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2021-002",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s net income in FY2021?",
+      "expected": "94680000000 USD",
+      "source_ids": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r23:c3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2021-003",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s gross margin in FY2021?",
+      "expected": "41.77935962516777514440280249 percent",
+      "source_ids": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3",
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2021-004",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Comparison",
+      "question": "What was Apple Inc.'s revenue growth from FY2020 to FY2021?",
+      "expected": "33.25938473307469537183760450 percent",
+      "source_ids": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3",
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2021-005",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Straightforward",
+      "question": "What risks does Apple Inc. describe in its FY2021 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000320193-21-000105:item1a:narrative_text:d7f14bd844f1:4c6b378bacd56470",
+        "0000320193-21-000105:item1a:narrative_text:8f0bf9e911aa:46089ee119a9e0c4"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2021-006",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-21-000105",
+      "period_end": "2021-09-25",
+      "type": "Citation check",
+      "question": "How much revenue did Apple Inc. report in FY2021? Cite the original statement row, period and units.",
+      "expected": "365817000000 USD",
+      "source_ids": [
+        "0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-007",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Numerical",
+      "question": "How much revenue did Apple Inc. report in FY2022?",
+      "expected": "394328000000 USD",
+      "source_ids": [
+        "0000320193-22-000108:table_cell:9cad4a4f49fcd56a:7ec63d1e1d0e9b86"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-008",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s net income in FY2022?",
+      "expected": "99803000000 USD",
+      "source_ids": [
+        "0000320193-22-000108:table_cell:cd17ed374625800f:efe54070f66b4d36"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-009",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s gross margin in FY2022?",
+      "expected": "43.30963056136008601976019963 percent",
+      "source_ids": [
+        "0000320193-22-000108:table_cell:e6ab74a44498156a:2a4d550c90d8db39",
+        "0000320193-22-000108:table_cell:9cad4a4f49fcd56a:7ec63d1e1d0e9b86"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-010",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Comparison",
+      "question": "What was Apple Inc.'s revenue growth from FY2021 to FY2022?",
+      "expected": "7.793787604184605964184277931 percent",
+      "source_ids": [
+        "0000320193-22-000108:table_cell:9cad4a4f49fcd56a:7ec63d1e1d0e9b86",
+        "0000320193-22-000108:table_cell:d91ddd691894e05f:74727ec269168ac6"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-011",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Straightforward",
+      "question": "What risks does Apple Inc. describe in its FY2022 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000320193-22-000108:narrative_text:ed645a0e7623a1a4:57f9074072a165d3",
+        "0000320193-22-000108:narrative_text:679d5902c393360a:46089ee119a9e0c4"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2022-012",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-22-000108",
+      "period_end": "2022-09-24",
+      "type": "Citation check",
+      "question": "How much revenue did Apple Inc. report in FY2022? Cite the original statement row, period and units.",
+      "expected": "394328000000 USD",
+      "source_ids": [
+        "0000320193-22-000108:table_cell:9cad4a4f49fcd56a:7ec63d1e1d0e9b86"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-013",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Numerical",
+      "question": "How much revenue did Apple Inc. report in FY2023?",
+      "expected": "383285000000 USD",
+      "source_ids": [
+        "0000320193-23-000106:table_cell:a38c9e54abbd0bc8:bd314137a3de5d61"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-014",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s net income in FY2023?",
+      "expected": "96995000000 USD",
+      "source_ids": [
+        "0000320193-23-000106:table_cell:5de2c55b7ec3e72c:b4c3f8038411301f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-015",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s gross margin in FY2023?",
+      "expected": "44.13112957720756095333759474 percent",
+      "source_ids": [
+        "0000320193-23-000106:table_cell:4a61e7aeb89682f2:72059dcfe4cd9fe7",
+        "0000320193-23-000106:table_cell:a38c9e54abbd0bc8:bd314137a3de5d61"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-016",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Comparison",
+      "question": "What was Apple Inc.'s revenue growth from FY2022 to FY2023?",
+      "expected": "-2.800460530319936702440607819 percent",
+      "source_ids": [
+        "0000320193-23-000106:table_cell:a38c9e54abbd0bc8:bd314137a3de5d61",
+        "0000320193-23-000106:table_cell:3d539f3674282f68:e0c0f3cd0619f263"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-017",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Straightforward",
+      "question": "What risks does Apple Inc. describe in its FY2023 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000320193-23-000106:narrative_text:7d616fdc3a5a343f:57f9074072a165d3",
+        "0000320193-23-000106:narrative_text:57e12ce120a65529:46089ee119a9e0c4"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2023-018",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-23-000106",
+      "period_end": "2023-09-30",
+      "type": "Citation check",
+      "question": "How much revenue did Apple Inc. report in FY2023? Cite the original statement row, period and units.",
+      "expected": "383285000000 USD",
+      "source_ids": [
+        "0000320193-23-000106:table_cell:a38c9e54abbd0bc8:bd314137a3de5d61"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-019",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Numerical",
+      "question": "How much revenue did Apple Inc. report in FY2024?",
+      "expected": "391035000000 USD",
+      "source_ids": [
+        "0000320193-24-000123:table_cell:cab2c63992ae8c10:6ddddc34b22f6dc8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-020",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s net income in FY2024?",
+      "expected": "93736000000 USD",
+      "source_ids": [
+        "0000320193-24-000123:table_cell:43ca51cddab53e78:35889214afc21a0b"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-021",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s gross margin in FY2024?",
+      "expected": "46.20634981523393046658227524 percent",
+      "source_ids": [
+        "0000320193-24-000123:table_cell:a09fc40d04d96797:eee0956b6da2d956",
+        "0000320193-24-000123:table_cell:cab2c63992ae8c10:6ddddc34b22f6dc8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-022",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Comparison",
+      "question": "What was Apple Inc.'s revenue growth from FY2023 to FY2024?",
+      "expected": "2.021994077514121345734897009 percent",
+      "source_ids": [
+        "0000320193-24-000123:table_cell:cab2c63992ae8c10:6ddddc34b22f6dc8",
+        "0000320193-24-000123:table_cell:21fa0de882af583b:bd314137a3de5d61"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-023",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Straightforward",
+      "question": "What risks does Apple Inc. describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000320193-24-000123:narrative_text:e6b49e20c3ef45f1:57f9074072a165d3",
+        "0000320193-24-000123:narrative_text:37a1db649dfc97b9:46089ee119a9e0c4"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2024-024",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-24-000123",
+      "period_end": "2024-09-28",
+      "type": "Citation check",
+      "question": "How much revenue did Apple Inc. report in FY2024? Cite the original statement row, period and units.",
+      "expected": "391035000000 USD",
+      "source_ids": [
+        "0000320193-24-000123:table_cell:cab2c63992ae8c10:6ddddc34b22f6dc8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-025",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Numerical",
+      "question": "How much revenue did Apple Inc. report in FY2025?",
+      "expected": "416161000000 USD",
+      "source_ids": [
+        "0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-026",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s net income in FY2025?",
+      "expected": "112010000000 USD",
+      "source_ids": [
+        "0000320193-25-000079:table_cell:0f47807081eaaad9:2389fe6532985c41"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-027",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Numerical",
+      "question": "What was Apple Inc.'s gross margin in FY2025?",
+      "expected": "46.90516410716044992202536999 percent",
+      "source_ids": [
+        "0000320193-25-000079:table_cell:2e1b52080fd80ac1:ab28e371e046f8cd",
+        "0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-028",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Comparison",
+      "question": "What was Apple Inc.'s revenue growth from FY2024 to FY2025?",
+      "expected": "6.425511782832738757400232716 percent",
+      "source_ids": [
+        "0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787",
+        "0000320193-25-000079:table_cell:90faf65ccb93d5c5:6ddddc34b22f6dc8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-029",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Straightforward",
+      "question": "What risks does Apple Inc. describe in its FY2025 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000320193-25-000079:narrative_text:458bc834f6eedcc7:76adaed3a3c98035",
+        "0000320193-25-000079:narrative_text:97dff6ee34827110:3f74e74f157b542b"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AAPL-2025-030",
+      "ticker": "AAPL",
+      "issuer": "Apple Inc.",
+      "accession": "0000320193-25-000079",
+      "period_end": "2025-09-27",
+      "type": "Citation check",
+      "question": "How much revenue did Apple Inc. report in FY2025? Cite the original statement row, period and units.",
+      "expected": "416161000000 USD",
+      "source_ids": [
+        "0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-031",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Numerical",
+      "question": "How much revenue did Microsoft Corporation report in FY2021?",
+      "expected": "168088000000 USD",
+      "source_ids": [
+        "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-032",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's net income in FY2021?",
+      "expected": "61271000000 USD",
+      "source_ids": [
+        "0001564590-21-039151:table_cell:569bee8b5c9ac875:6f2bacadd9207bb8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-033",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's gross margin in FY2021?",
+      "expected": "68.92580077102470134691352149 percent",
+      "source_ids": [
+        "0001564590-21-039151:table_cell:dd2e417e9ed6f5cf:077cdf4da552de22",
+        "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-034",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Comparison",
+      "question": "What was Microsoft Corporation's revenue growth from FY2020 to FY2021?",
+      "expected": "17.53172744117749886375555012 percent",
+      "source_ids": [
+        "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857",
+        "0001564590-21-039151:table_cell:40924c2bf15fa466:6f423c3c31c86b48"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-035",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Straightforward",
+      "question": "What risks does Microsoft Corporation describe in its FY2021 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0001564590-21-039151:narrative_text:ecec5d80f1ae75fb:7543c760f02fa0b4",
+        "0001564590-21-039151:narrative_text:2fcc3dab1788632b:f8e3ab7a757fe388"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2021-036",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-21-039151",
+      "period_end": "2021-06-30",
+      "type": "Citation check",
+      "question": "How much revenue did Microsoft Corporation report in FY2021? Cite the original statement row, period and units.",
+      "expected": "168088000000 USD",
+      "source_ids": [
+        "0001564590-21-039151:table_cell:26e0d08b4c968e20:78563db3df95b857"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-037",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Numerical",
+      "question": "How much revenue did Microsoft Corporation report in FY2022?",
+      "expected": "198270000000 USD",
+      "source_ids": [
+        "0001564590-22-026876:table_cell:21d9e3af418c05a2:6ad75b5f803b68a0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-038",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's net income in FY2022?",
+      "expected": "72738000000 USD",
+      "source_ids": [
+        "0001564590-22-026876:table_cell:8db9f175cf9446f7:e215825e8e8392c8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-039",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's gross margin in FY2022?",
+      "expected": "68.40167448428910072123871488 percent",
+      "source_ids": [
+        "0001564590-22-026876:table_cell:d06914b527dff8da:8aefa139c6a56a59",
+        "0001564590-22-026876:table_cell:21d9e3af418c05a2:6ad75b5f803b68a0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-040",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Comparison",
+      "question": "What was Microsoft Corporation's revenue growth from FY2021 to FY2022?",
+      "expected": "17.95607062967017276664604255 percent",
+      "source_ids": [
+        "0001564590-22-026876:table_cell:21d9e3af418c05a2:6ad75b5f803b68a0",
+        "0001564590-22-026876:table_cell:a90179f75aca35db:78563db3df95b857"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-041",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Straightforward",
+      "question": "What risks does Microsoft Corporation describe in its FY2022 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0001564590-22-026876:narrative_text:ea1ebb25d4e01b74:7543c760f02fa0b4",
+        "0001564590-22-026876:narrative_text:68e546ecae087c92:f8e3ab7a757fe388"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2022-042",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0001564590-22-026876",
+      "period_end": "2022-06-30",
+      "type": "Citation check",
+      "question": "How much revenue did Microsoft Corporation report in FY2022? Cite the original statement row, period and units.",
+      "expected": "198270000000 USD",
+      "source_ids": [
+        "0001564590-22-026876:table_cell:21d9e3af418c05a2:6ad75b5f803b68a0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-043",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Numerical",
+      "question": "How much revenue did Microsoft Corporation report in FY2023?",
+      "expected": "211915000000 USD",
+      "source_ids": [
+        "0000950170-23-035122:table_cell:1066f1a49eacfb0a:62ddb222e799e311"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-044",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's net income in FY2023?",
+      "expected": "72361000000 USD",
+      "source_ids": [
+        "0000950170-23-035122:table_cell:d774ede70d4cc91c:55cd346df4b38daf"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-045",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's gross margin in FY2023?",
+      "expected": "68.92008588349102234386428521 percent",
+      "source_ids": [
+        "0000950170-23-035122:table_cell:d5a0da82a3711bf8:2ffaa6d7bb2c39fb",
+        "0000950170-23-035122:table_cell:1066f1a49eacfb0a:62ddb222e799e311"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-046",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Comparison",
+      "question": "What was Microsoft Corporation's revenue growth from FY2022 to FY2023?",
+      "expected": "6.882029555656428103091743582 percent",
+      "source_ids": [
+        "0000950170-23-035122:table_cell:1066f1a49eacfb0a:62ddb222e799e311",
+        "0000950170-23-035122:table_cell:0579f0ea8c066603:6ad75b5f803b68a0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-047",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Straightforward",
+      "question": "What risks does Microsoft Corporation describe in its FY2023 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000950170-23-035122:narrative_text:bd024e3bce13899f:7543c760f02fa0b4",
+        "0000950170-23-035122:narrative_text:c46f85473ab4e78d:f8e3ab7a757fe388"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2023-048",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-23-035122",
+      "period_end": "2023-06-30",
+      "type": "Citation check",
+      "question": "How much revenue did Microsoft Corporation report in FY2023? Cite the original statement row, period and units.",
+      "expected": "211915000000 USD",
+      "source_ids": [
+        "0000950170-23-035122:table_cell:1066f1a49eacfb0a:62ddb222e799e311"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-049",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Numerical",
+      "question": "How much revenue did Microsoft Corporation report in FY2024?",
+      "expected": "245122000000 USD",
+      "source_ids": [
+        "0000950170-24-087843:table_cell:7ca3c00797ca84e9:df18e1625e53348f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-050",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's net income in FY2024?",
+      "expected": "88136000000 USD",
+      "source_ids": [
+        "0000950170-24-087843:table_cell:32819ad006d32a09:a05cf15bbbc5c36a"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-051",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's gross margin in FY2024?",
+      "expected": "69.76444382797137751813382724 percent",
+      "source_ids": [
+        "0000950170-24-087843:table_cell:32eb142e94a477e6:1ed4accc33a0ba7c",
+        "0000950170-24-087843:table_cell:7ca3c00797ca84e9:df18e1625e53348f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-052",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Comparison",
+      "question": "What was Microsoft Corporation's revenue growth from FY2023 to FY2024?",
+      "expected": "15.66996201307127857867541231 percent",
+      "source_ids": [
+        "0000950170-24-087843:table_cell:7ca3c00797ca84e9:df18e1625e53348f",
+        "0000950170-24-087843:table_cell:b80c9b358421439e:62ddb222e799e311"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-053",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Straightforward",
+      "question": "What risks does Microsoft Corporation describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000950170-24-087843:narrative_text:9bdeab5c195b322d:15a79e2dff7644df",
+        "0000950170-24-087843:narrative_text:91e295835f54ec84:f8e3ab7a757fe388"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2024-054",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-24-087843",
+      "period_end": "2024-06-30",
+      "type": "Citation check",
+      "question": "How much revenue did Microsoft Corporation report in FY2024? Cite the original statement row, period and units.",
+      "expected": "245122000000 USD",
+      "source_ids": [
+        "0000950170-24-087843:table_cell:7ca3c00797ca84e9:df18e1625e53348f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-055",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Numerical",
+      "question": "How much revenue did Microsoft Corporation report in FY2025?",
+      "expected": "281724000000 USD",
+      "source_ids": [
+        "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-056",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's net income in FY2025?",
+      "expected": "101832000000 USD",
+      "source_ids": [
+        "0000950170-25-100235:table_cell:37d5c87abc5b62c8:b676212d8b180eaf"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-057",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Numerical",
+      "question": "What was Microsoft Corporation's gross margin in FY2025?",
+      "expected": "68.82374238616518294501000980 percent",
+      "source_ids": [
+        "0000950170-25-100235:table_cell:cc9e93c8d0a61708:ba5b9c0d2f46ad2d",
+        "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-058",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Comparison",
+      "question": "What was Microsoft Corporation's revenue growth from FY2024 to FY2025?",
+      "expected": "14.93215623240671991906071262 percent",
+      "source_ids": [
+        "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90",
+        "0000950170-25-100235:table_cell:8dd129672254124b:df18e1625e53348f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-059",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Straightforward",
+      "question": "What risks does Microsoft Corporation describe in its FY2025 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000950170-25-100235:narrative_text:a3e7fa488ff3df08:15a79e2dff7644df",
+        "0000950170-25-100235:narrative_text:8c163365e8ff41cb:f8e3ab7a757fe388"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "MSFT-2025-060",
+      "ticker": "MSFT",
+      "issuer": "Microsoft Corporation",
+      "accession": "0000950170-25-100235",
+      "period_end": "2025-06-30",
+      "type": "Citation check",
+      "question": "How much revenue did Microsoft Corporation report in FY2025? Cite the original statement row, period and units.",
+      "expected": "281724000000 USD",
+      "source_ids": [
+        "0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-061",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Numerical",
+      "question": "How much revenue did Adobe Inc. report in FY2024?",
+      "expected": "21505000000 USD",
+      "source_ids": [
+        "0000796343-25-000004:table_cell:8519cbac1fd23e6c:57c2e3dee3577b74"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-062",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Numerical",
+      "question": "What was Adobe Inc.'s net income in FY2024?",
+      "expected": "5560000000 USD",
+      "source_ids": [
+        "0000796343-25-000004:table_cell:1daea6937dba0262:47d804492de4f217"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-063",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Numerical",
+      "question": "What was Adobe Inc.'s gross margin in FY2024?",
+      "expected": "89.03510811439200186003255057 percent",
+      "source_ids": [
+        "0000796343-25-000004:table_cell:0c48afb653e67b93:35866db2a46f16b7",
+        "0000796343-25-000004:table_cell:8519cbac1fd23e6c:57c2e3dee3577b74"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-064",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Comparison",
+      "question": "What was Adobe Inc.'s revenue growth from FY2023 to FY2024?",
+      "expected": "10.79911381317945283116080169 percent",
+      "source_ids": [
+        "0000796343-25-000004:table_cell:8519cbac1fd23e6c:57c2e3dee3577b74",
+        "0000796343-25-000004:table_cell:f3eafa5c065f6873:bc39a06a02e6a9c3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-065",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Straightforward",
+      "question": "What risks does Adobe Inc. describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000796343-25-000004:narrative_text:b1cb16429a3ed340:1ffab2d90fbe081a",
+        "0000796343-25-000004:narrative_text:7983d18b13d1e572:5f77c91c306e3def"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ADBE-2024-066",
+      "ticker": "ADBE",
+      "issuer": "Adobe Inc.",
+      "accession": "0000796343-25-000004",
+      "period_end": "2024-11-29",
+      "type": "Citation check",
+      "question": "How much revenue did Adobe Inc. report in FY2024? Cite the original statement row, period and units.",
+      "expected": "21505000000 USD",
+      "source_ids": [
+        "0000796343-25-000004:table_cell:8519cbac1fd23e6c:57c2e3dee3577b74"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/796343/000079634325000004/adbe-20241129.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-067",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Numerical",
+      "question": "How much revenue did NVIDIA Corporation report in FY2024?",
+      "expected": "60922000000 USD",
+      "source_ids": [
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-068",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Numerical",
+      "question": "What was NVIDIA Corporation's net income in FY2024?",
+      "expected": "29760000000 USD",
+      "source_ids": [
+        "0001045810-24-000029:table_cell:494bf8f0e2e68b36:c4bb6561731bc33a"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-069",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Numerical",
+      "question": "What was NVIDIA Corporation's gross margin in FY2024?",
+      "expected": "72.71757329043695216834641016 percent",
+      "source_ids": [
+        "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4",
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-070",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Comparison",
+      "question": "What was NVIDIA Corporation's revenue growth from FY2023 to FY2024?",
+      "expected": "125.8545265811522206569288945 percent",
+      "source_ids": [
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0",
+        "0001045810-24-000029:table_cell:ed748b3e2ae3eabc:25dda2530594470f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-071",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Straightforward",
+      "question": "What risks does NVIDIA Corporation describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0001045810-24-000029:narrative_text:7f4442ef905647b5:b0f9ae1d01551c22",
+        "0001045810-24-000029:narrative_text:73895970d12a94a7:1a8ec00824708bec"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "NVDA-2024-072",
+      "ticker": "NVDA",
+      "issuer": "NVIDIA Corporation",
+      "accession": "0001045810-24-000029",
+      "period_end": "2024-01-28",
+      "type": "Citation check",
+      "question": "How much revenue did NVIDIA Corporation report in FY2024? Cite the original statement row, period and units.",
+      "expected": "60922000000 USD",
+      "source_ids": [
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-073",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Numerical",
+      "question": "How much revenue did Salesforce, Inc. report in FY2024?",
+      "expected": "34857000000 USD",
+      "source_ids": [
+        "0001108524-24-000005:table_cell:322d345de393a15d:2f67728918a625b6"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-074",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Numerical",
+      "question": "What was Salesforce, Inc.'s net income in FY2024?",
+      "expected": "4136000000 USD",
+      "source_ids": [
+        "0001108524-24-000005:table_cell:617bdf5a9044f3d4:6d85cce83105c2e8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-075",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Numerical",
+      "question": "What was Salesforce, Inc.'s gross margin in FY2024?",
+      "expected": "75.49703072553576039246062484 percent",
+      "source_ids": [
+        "0001108524-24-000005:table_cell:32abb8fcdb4714d2:3b840b3518678b62",
+        "0001108524-24-000005:table_cell:322d345de393a15d:2f67728918a625b6"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-076",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Comparison",
+      "question": "What was Salesforce, Inc.'s revenue growth from FY2023 to FY2024?",
+      "expected": "11.17951007910181168665475887 percent",
+      "source_ids": [
+        "0001108524-24-000005:table_cell:322d345de393a15d:2f67728918a625b6",
+        "0001108524-24-000005:table_cell:a5c6d6d6b2c84c9c:910a0d6655ce1fc3"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-077",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Straightforward",
+      "question": "What risks does Salesforce, Inc. describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0001108524-24-000005:narrative_text:fff3c071470ae384:b60a2ed4be391c8a",
+        "0001108524-24-000005:narrative_text:1e862cbb140daebd:f784c385e96c0d16"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CRM-2024-078",
+      "ticker": "CRM",
+      "issuer": "Salesforce, Inc.",
+      "accession": "0001108524-24-000005",
+      "period_end": "2024-01-31",
+      "type": "Citation check",
+      "question": "How much revenue did Salesforce, Inc. report in FY2024? Cite the original statement row, period and units.",
+      "expected": "34857000000 USD",
+      "source_ids": [
+        "0001108524-24-000005:table_cell:322d345de393a15d:2f67728918a625b6"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-079",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "How much revenue did Advanced Micro Devices, Inc. report in FY2024?",
+      "expected": "25785000000 USD",
+      "source_ids": [
+        "0000002488-25-000012:table_cell:6dadea082d08acfe:049470157b5e0f21"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-080",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "What was Advanced Micro Devices, Inc.'s net income in FY2024?",
+      "expected": "1641000000 USD",
+      "source_ids": [
+        "0000002488-25-000012:table_cell:7fa158fd0002fb55:24661b7468c203b0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-081",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "What was Advanced Micro Devices, Inc.'s gross margin in FY2024?",
+      "expected": "49.35039751793678495249175877 percent",
+      "source_ids": [
+        "0000002488-25-000012:table_cell:8b0ec9a28bdd0faf:df95d26b36adece2",
+        "0000002488-25-000012:table_cell:6dadea082d08acfe:049470157b5e0f21"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-082",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Comparison",
+      "question": "What was Advanced Micro Devices, Inc.'s revenue growth from FY2023 to FY2024?",
+      "expected": "13.69047619047619047619047619 percent",
+      "source_ids": [
+        "0000002488-25-000012:table_cell:6dadea082d08acfe:049470157b5e0f21",
+        "0000002488-25-000012:table_cell:926935f9bd926c5a:ff81ed2b35eabe8f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-083",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Straightforward",
+      "question": "What risks does Advanced Micro Devices, Inc. describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000002488-25-000012:narrative_text:6d77046bc1843fab:c8d5222668496c19",
+        "0000002488-25-000012:narrative_text:fa1c337dab5e2ffc:1a8ec00824708bec"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "AMD-2024-084",
+      "ticker": "AMD",
+      "issuer": "Advanced Micro Devices, Inc.",
+      "accession": "0000002488-25-000012",
+      "period_end": "2024-12-28",
+      "type": "Citation check",
+      "question": "How much revenue did Advanced Micro Devices, Inc. report in FY2024? Cite the original statement row, period and units.",
+      "expected": "25785000000 USD",
+      "source_ids": [
+        "0000002488-25-000012:table_cell:6dadea082d08acfe:049470157b5e0f21"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-085",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "How much revenue did Intel Corporation report in FY2024?",
+      "expected": "53101000000 USD",
+      "source_ids": [
+        "0000050863-25-000009:table_cell:1477ce461d7fb3e0:a41918c497b384ce"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-086",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "What was Intel Corporation's net income in FY2024?",
+      "expected": "-18756000000 USD",
+      "source_ids": [
+        "0000050863-25-000009:table_cell:0dee233a6910c575:8161be81601d1e50"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-087",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Numerical",
+      "question": "What was Intel Corporation's gross margin in FY2024?",
+      "expected": "32.66416828308318110770041995 percent",
+      "source_ids": [
+        "0000050863-25-000009:table_cell:bc5bbcd3b3dd59c9:6fbf650e56d27b97",
+        "0000050863-25-000009:table_cell:1477ce461d7fb3e0:a41918c497b384ce"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-088",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Comparison",
+      "question": "What was Intel Corporation's revenue growth from FY2023 to FY2024?",
+      "expected": "-2.078262152393597403555358855 percent",
+      "source_ids": [
+        "0000050863-25-000009:table_cell:1477ce461d7fb3e0:a41918c497b384ce",
+        "0000050863-25-000009:table_cell:cf9ee2b15092a639:26bca0cbea44e822"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-089",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Straightforward",
+      "question": "What risks does Intel Corporation describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000050863-25-000009:narrative_text:fd4ef9e77d08394c:2710cd597846d39a:section:0:997:40a0e2bf33d2e6d3",
+        "0000050863-25-000009:narrative_text:fd4ef9e77d08394c:2710cd597846d39a:section:800:1386:050981ef87717922"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "INTC-2024-090",
+      "ticker": "INTC",
+      "issuer": "Intel Corporation",
+      "accession": "0000050863-25-000009",
+      "period_end": "2024-12-28",
+      "type": "Citation check",
+      "question": "How much revenue did Intel Corporation report in FY2024? Cite the original statement row, period and units.",
+      "expected": "53101000000 USD",
+      "source_ids": [
+        "0000050863-25-000009:table_cell:1477ce461d7fb3e0:a41918c497b384ce"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-091",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Numerical",
+      "question": "How much revenue did Cisco Systems, Inc. report in FY2024?",
+      "expected": "53803000000 USD",
+      "source_ids": [
+        "0000858877-24-000017:table_cell:43ce9919623f67cf:010bc12c26bb0cf8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-092",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Numerical",
+      "question": "What was Cisco Systems, Inc.'s net income in FY2024?",
+      "expected": "10320000000 USD",
+      "source_ids": [
+        "0000858877-24-000017:table_cell:3040c676e516f6b9:550535fbbad9141f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-093",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Numerical",
+      "question": "What was Cisco Systems, Inc.'s gross margin in FY2024?",
+      "expected": "64.73244986339051725740200361 percent",
+      "source_ids": [
+        "0000858877-24-000017:table_cell:91c413b94995b21b:613ebf16ac2bd139",
+        "0000858877-24-000017:table_cell:43ce9919623f67cf:010bc12c26bb0cf8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-094",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Comparison",
+      "question": "What was Cisco Systems, Inc.'s revenue growth from FY2023 to FY2024?",
+      "expected": "-5.605459840696164777711498649 percent",
+      "source_ids": [
+        "0000858877-24-000017:table_cell:43ce9919623f67cf:010bc12c26bb0cf8",
+        "0000858877-24-000017:table_cell:a802c5dbf2628f91:b9a9da2f2f00eeac"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-095",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Straightforward",
+      "question": "What risks does Cisco Systems, Inc. describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000858877-24-000017:narrative_text:508e2a36f93f717a:0aa2ff54ab9daf8e",
+        "0000858877-24-000017:narrative_text:5731cbf2d4f5018e:30ecee20859b8344"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "CSCO-2024-096",
+      "ticker": "CSCO",
+      "issuer": "Cisco Systems, Inc.",
+      "accession": "0000858877-24-000017",
+      "period_end": "2024-07-27",
+      "type": "Citation check",
+      "question": "How much revenue did Cisco Systems, Inc. report in FY2024? Cite the original statement row, period and units.",
+      "expected": "53803000000 USD",
+      "source_ids": [
+        "0000858877-24-000017:table_cell:43ce9919623f67cf:010bc12c26bb0cf8"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887724000017/csco-20240727.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-097",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Numerical",
+      "question": "How much revenue did Oracle Corporation report in FY2024?",
+      "expected": "52961000000 USD",
+      "source_ids": [
+        "0000950170-24-075605:table_cell:204a2e68c598b90f:f64267cf7a336643"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-098",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Numerical",
+      "question": "What was Oracle Corporation's net income in FY2024?",
+      "expected": "10467000000 USD",
+      "source_ids": [
+        "0000950170-24-075605:table_cell:17fee96c9b888519:d78ebbb2cc023e1c"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-099",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Numerical",
+      "question": "What was Oracle Corporation's gross margin in FY2024?",
+      "expected": "Honest insufficient-evidence refusal: No unambiguous original typed source program",
+      "source_ids": [],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Refusal expected; do not invent a result",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-100",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Comparison",
+      "question": "What was Oracle Corporation's revenue growth from FY2023 to FY2024?",
+      "expected": "6.019537974936941986627697482 percent",
+      "source_ids": [
+        "0000950170-24-075605:table_cell:204a2e68c598b90f:f64267cf7a336643",
+        "0000950170-24-075605:table_cell:5796054de3ae00b1:5e57bbc5051fda82"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-101",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Straightforward",
+      "question": "What risks does Oracle Corporation describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000950170-24-075605:narrative_text:a729370be5e77cf0:f99974f2c3b8faa4",
+        "0000950170-24-075605:narrative_text:a5951063fc35785e:fa28076c8c9149e6"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "ORCL-2024-102",
+      "ticker": "ORCL",
+      "issuer": "Oracle Corporation",
+      "accession": "0000950170-24-075605",
+      "period_end": "2024-05-31",
+      "type": "Citation check",
+      "question": "How much revenue did Oracle Corporation report in FY2024? Cite the original statement row, period and units.",
+      "expected": "52961000000 USD",
+      "source_ids": [
+        "0000950170-24-075605:table_cell:204a2e68c598b90f:f64267cf7a336643"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/orcl-20240531.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-103",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Numerical",
+      "question": "How much revenue did International Business Machines Corporation report in FY2024?",
+      "expected": "62753000000 USD",
+      "source_ids": [
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-104",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Numerical",
+      "question": "What was International Business Machines Corporation's net income in FY2024?",
+      "expected": "6023000000 USD",
+      "source_ids": [
+        "0000051143-25-000015:table_cell:3425d8a8ef289cf3:7fe2ca6333ed9a5f"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-105",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Numerical",
+      "question": "What was International Business Machines Corporation's gross margin in FY2024?",
+      "expected": "56.65227160454480263891766131 percent",
+      "source_ids": [
+        "0000051143-25-000015:table_cell:da2f813199577903:1448c5224dce05d8",
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-106",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Comparison",
+      "question": "What was International Business Machines Corporation's revenue growth from FY2023 to FY2024?",
+      "expected": "1.443582282573553184610410605 percent",
+      "source_ids": [
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829",
+        "0000051143-25-000015:table_cell:a8cadc73f5d0f97d:fbeae087096eb6b9"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-107",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Straightforward",
+      "question": "What risks does International Business Machines Corporation describe in its FY2024 annual report?",
+      "expected": "Explain risks supported by the included Item 1A passages; inspect every cited passage. No fixed model wording.",
+      "source_ids": [
+        "0000051143-25-000015:narrative_text:85a001637f2230af:d493e46e0fc2f7eb",
+        "0000051143-25-000015:narrative_text:d5d9152a0f261e4b:a151de5c72778fd0"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Narrative source present; manually inspect generated answer",
+      "cross_filing": false,
+      "mode": "narrative",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    },
+    {
+      "id": "IBM-2024-108",
+      "ticker": "IBM",
+      "issuer": "International Business Machines Corporation",
+      "accession": "0000051143-25-000015",
+      "period_end": "2024-12-31",
+      "type": "Citation check",
+      "question": "How much revenue did International Business Machines Corporation report in FY2024? Cite the original statement row, period and units.",
+      "expected": "62753000000 USD",
+      "source_ids": [
+        "0000051143-25-000015:table_cell:7fbc3fc60e948a23:9e533988cbc88829"
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114325000015/ibm-20241231.htm",
+      "support": "Source-derived checked result; demo answer must match and cite operands",
+      "cross_filing": false,
+      "mode": "numerical",
+      "basis": "Actual source package and deterministic calculator; not independently approved benchmark gold"
+    }
+  ],
+  "cross_filing": [
+    {
+      "ticker": "AAPL",
+      "question": "Compare Apple Inc. total revenue in FY2021 and FY2025.",
+      "filings": [
+        "0000320193-21-000105",
+        "0000320193-25-000079"
+      ],
+      "source_urls": [
+        "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+        "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
+      ],
+      "expected": "Cross-filing question: ask the revenue question separately with each filing selected, then compare the two cited outputs. A single automatic cross-filing answer is not supported.",
+      "cross_filing": true
+    },
+    {
+      "ticker": "MSFT",
+      "question": "Compare Microsoft Corporation total revenue in FY2021 and FY2025.",
+      "filings": [
+        "0001564590-21-039151",
+        "0000950170-25-100235"
+      ],
+      "source_urls": [
+        "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+        "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+      ],
+      "expected": "Cross-filing question: ask the revenue question separately with each filing selected, then compare the two cited outputs. A single automatic cross-filing answer is not supported.",
+      "cross_filing": true
+    },
+    {
+      "ticker": "AAPL / MSFT",
+      "question": "Compare Apple and Microsoft FY2025 revenue and gross margin.",
+      "filings": [
+        "0000320193-25-000079",
+        "0000950170-25-100235"
+      ],
+      "source_urls": [
+        "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+        "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+      ],
+      "expected": "Two company selections and separate cited answers are required; automatic multi-company aggregation refuses.",
+      "cross_filing": true
+    }
+  ]
+}

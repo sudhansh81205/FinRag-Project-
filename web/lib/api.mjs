@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 
 export const filings = JSON.parse(readFileSync(new URL('../data/filings.json', import.meta.url), 'utf8'));
+const projectStatus = JSON.parse(readFileSync(new URL('../data/project-status.json', import.meta.url), 'utf8'));
 const statuses = new Set(['ok', 'invalid_request', 'index_not_ready', 'insufficient_evidence', 'service_error']);
 const empty = (status, message) => ({ status, message, answer: '', evidence: [], calculations: [], included_evidence_ids: [] });
 const json = (body, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -52,7 +53,8 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
   const url = new URL(request.url);
   const route = (url.searchParams.get('route') || url.pathname.replace(/^\/api\/?/, '')).replace(/^\/+|\/+$/g, '');
   try {
-    if (route === 'filings' && request.method === 'GET') return json({ filings, status: 'limited_workspace', independently_accepted_filings: 1, note: 'Two selected development filings; runtime health reports connected evidence. Independent final-study acceptance is separate.' });
+    if (route === 'filings' && request.method === 'GET') return json({ filings, status: 'application_inventory', independently_accepted_filings: projectStatus.coverage.independently_accepted, note: 'Per-filing processing is shown separately from runtime connectivity and independent study acceptance.' });
+    if (route === 'project-status' && request.method === 'GET') return json(projectStatus);
     const supabase = endpoint(env.SUPABASE_URL);
     const publicKey = env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY;
     const dbReady = Boolean(supabase && publicKey);
@@ -140,7 +142,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       const response = await upstream(fetchImpl, `${supabase}/auth/v1/otp?redirect_to=${encodeURIComponent(url.origin + '/')}`, { method: 'POST', headers: { apikey: publicKey, 'Content-Type': 'application/json' }, body: JSON.stringify({ email: body.email, create_user: true, gotrue_meta_security: {} }) });
       return json({ status: response.ok ? 'ok' : 'service_error', message: response.ok ? 'Check your inbox for a sign-in link.' : 'Sign-in could not be started. Try again later.' }, response.ok ? 200 : 502);
     }
-    if (route === 'saved' && ['GET', 'POST', 'DELETE'].includes(request.method)) {
+    if ((route === 'saved' && ['GET', 'POST', 'DELETE'].includes(request.method)) || (route === 'auth/session' && request.method === 'GET')) {
       if (!dbReady) return json({ status: 'not_configured', message: 'Supabase saved queries are not configured.' }, 503);
       const authorization = tokenOf(request);
       if (!authorization) return json({ status: 'unauthorized', message: 'Sign in to access your saved queries.' }, 401);
@@ -148,7 +150,10 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       if (!auth.ok) return json({ status: 'unauthorized', message: 'Your sign-in expired. Sign in again.' }, 401);
       const user = await auth.json();
       if (!user.id) return json({ status: 'unauthorized' }, 401);
-      let suffix = '?select=id,question,request,created_at&order=created_at.desc&limit=30';
+      if (route === 'auth/session') return json({ status: 'ok' });
+      const offset = url.searchParams.get('offset') || '0';
+      if (request.method === 'GET' && !/^(0|[1-9]\d{0,5})$/.test(offset)) return json({ status: 'invalid_request', message: 'Invalid saved-question page.' }, 400);
+      let suffix = `?select=id,question,request,created_at&order=created_at.desc,id.desc&limit=31&offset=${offset}`;
       const options = { method: request.method, headers: { apikey: publicKey, Authorization: authorization, 'Content-Type': 'application/json', Prefer: 'return=representation' } };
       if (request.method === 'POST') {
         const body = await readBody(request); const problem = validateQuery(body);
@@ -165,7 +170,8 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       const response = await upstream(fetchImpl, `${supabase}/rest/v1/saved_queries${suffix}`, options);
       if (!response.ok) return json({ status: 'service_error', message: 'Saved queries could not be loaded. Check the database migration and access policies.' }, 502);
       const data = await response.json();
-      return json({ status: 'ok', data });
+      if (!Array.isArray(data)) return json({ status: 'service_error', message: 'Saved questions returned an invalid response.' }, 502);
+      return json({ status: 'ok', data: request.method === 'GET' ? data.slice(0, 30) : data, ...(request.method === 'GET' ? { has_more: data.length > 30, offset: Number(offset) } : {}) });
     }
     return json({ status: 'not_found', message: 'Endpoint not found.' }, 404);
   } catch { return json(empty('service_error', 'The service is unavailable. No fallback answer was used.'), 502); }

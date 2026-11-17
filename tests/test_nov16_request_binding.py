@@ -49,7 +49,8 @@ def request_for(ticker, year, value_period=None):
 # ---- F32: every option forwards its exact registry tuple ------------------------------------
 def test_every_filing_option_forwards_its_exact_accession():
     options = load_filing_options()
-    assert len(options) == 5
+    assert len(options) == 18
+    assert len({o.ticker for o in options}) == 10
     for o in options:
         req, err = resolve_request(o.label, o.filing_period_end, "consolidated")
         assert err == "" and req.accession == o.accession and req.filing_period_end == o.filing_period_end

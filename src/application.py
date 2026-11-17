@@ -18,11 +18,6 @@ from src.config import Settings
 ROOT = Path(__file__).resolve().parents[1]
 FILINGS_PATH = ROOT / "data" / "application_filings.json"
 
-# Filings the interface offers (exact accessions); issuer/period come from the filing registry.
-UI_FILING_ACCESSIONS: tuple[str, ...] = (
-    "0000320193-21-000105", "0000320193-22-000108", "0000320193-23-000106",
-    "0001564590-21-039151", "0001564590-22-026876",
-)
 SUPPORTED_SCOPES = frozenset({"consolidated"})
 
 
@@ -40,7 +35,7 @@ def load_filing_options(path: Path | str = FILINGS_PATH) -> tuple[FilingOption, 
     """Selectable filings, each bound to its exact registry tuple (never inferred from a ticker)."""
     registry = {r["accession"]: r for r in json.loads(Path(path).read_text(encoding="utf-8"))}
     options = []
-    for accession in UI_FILING_ACCESSIONS:
+    for accession in registry:
         r = registry[accession]
         options.append(FilingOption(
             label=f"{r['issuer']} ({r['ticker']}) — {r['period_end'][:4]} {r['form']}",

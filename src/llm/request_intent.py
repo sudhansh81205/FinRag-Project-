@@ -27,7 +27,7 @@ def company_conflict(question, selected, options):
     selected_names = {normalize(selected.company), normalize(selected.ticker), normalize(re.sub(r'\s+(?:inc\.?|corporation|corp\.?)$', '', selected.company, flags=re.I))}
     generic = {'the', 'total', 'annual', 'consolidated', 'reported'}
     if any(normalize(name) not in selected_names and name.lower() not in generic for name in candidates):
-        return 'The company named in your question does not match the selection. Choose Apple or Microsoft and use matching filing evidence.'
+        return 'The company named in your question does not match the selection. Choose a supported company and use matching filing evidence.'
     if mentions - {selected.ticker}:
         return f'The question names a different company. Select the matching company and filing before asking; current selection is {selected.company}.'
     return ''
