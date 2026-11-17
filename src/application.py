@@ -279,12 +279,15 @@ class InteractiveApplication:
         if not isinstance(question, str) or not question.strip():
             return finish("invalid_request", "Please enter a nonempty question.")
 
-        if chart_asset_id:
+        if chart_asset_id and not getattr(self.engine, "enable_chart_descriptions", False):
             # Independent chart approval gate check (PRD R11, Variant G)
             return finish(
                 "index_not_ready",
                 f"Chart asset '{chart_asset_id}' is candidate-only. Independent chart approval (Variant G) is pending review (scheduled for Ujjwal on Nov 15).",
             )
+        if chart_asset_id:
+            retrieval_options = {"top_k_text": 1, "top_k_tables": 0,
+                                 "chart_only": True, "chart_asset_id": chart_asset_id}
 
         constraints = request
         if constraints is None and filing and company and period_end and scope:
@@ -367,9 +370,14 @@ class InteractiveApplication:
         try:
             extra = {"calculation_request": calculation_request} if calculation_request is not None else {}
             if retrieval_options is not None:
-                if (not isinstance(retrieval_options, dict) or set(retrieval_options) != {"top_k_text", "top_k_tables"}
-                        or any(type(v) is not int or not 0 <= v <= 10 for v in retrieval_options.values())
-                        or sum(retrieval_options.values()) < 1):
+                if (not isinstance(retrieval_options, dict)
+                        or not {"top_k_text", "top_k_tables"} <= set(retrieval_options)
+                        or set(retrieval_options) - {"top_k_text", "top_k_tables", "chart_only", "chart_asset_id"}
+                        or any(type(retrieval_options[key]) is not int or not 0 <= retrieval_options[key] <= 10
+                               for key in ("top_k_text", "top_k_tables"))
+                        or sum(retrieval_options[key] for key in ("top_k_text", "top_k_tables")) < 1
+                        or type(retrieval_options.get("chart_only", False)) is not bool
+                        or ("chart_asset_id" in retrieval_options and not isinstance(retrieval_options["chart_asset_id"], str))):
                     return finish("invalid_request", "Use bounded explicit narrative/table retrieval limits.")
                 extra.update(retrieval_options)
             engine_res = self.engine.answer_financial_question(
@@ -464,6 +472,7 @@ def assemble_exact_engine(
     settings: Settings, *, store, encoder, llm_client, variant="D", cross_encoder=None,
     filters=None, token_counter=None, context_token_budget=None, tokenizer_id=None,
     reranker_model_id=None, routing_policy=None,
+    approved_charts=None,
 ):
     """Connect the persistent BGE/FAISS contract without the legacy Chroma API.
 
@@ -482,14 +491,26 @@ def assemble_exact_engine(
         raise ValueError("The financial engine requires an explicit real provider.")
     if encoder.spec.manifest_fields() != store.spec.manifest_fields():
         raise ValueError("Query encoder and persistent index identities differ.")
-    retriever = HybridRRFRetriever(
-        DenseRetriever(store, encoder, filters=filters),
-        BM25Retriever(store.records, filters=filters),
-        variant=variant, reranker=cross_encoder, reranker_model_id=reranker_model_id,
-        routing_policy=routing_policy,
-    )
+    dense = DenseRetriever(store, encoder, filters=filters,
+                           table_kind="financial_table" if variant in {"A", "B"} else "table_cell")
+    if variant in {"A", "B"}:
+        from src.retrieval.variants import RepresentationRetriever
+        if cross_encoder is not None or approved_charts is not None:
+            raise ValueError("A/B use dense retrieval only, without cross-encoding or charts")
+        retriever = RepresentationRetriever(dense, variant)
+    else:
+        retriever = HybridRRFRetriever(
+            dense, BM25Retriever(store.records, filters=filters),
+            variant="F" if variant == "G" else variant,
+            reranker=cross_encoder, reranker_model_id=reranker_model_id, routing_policy=routing_policy)
+        if variant == "G":
+            from src.retrieval.variants import ApprovedChartPool, ChartTierRetriever
+            retriever = ChartTierRetriever(retriever, ApprovedChartPool(approved_charts, encoder))
+        elif approved_charts is not None:
+            raise ValueError("Approved chart evidence belongs only to G")
     return FinRAGEngine(
         retriever=retriever, llm_client=llm_client,
         token_counter=token_counter, context_token_budget=context_token_budget,
         tokenizer_id=tokenizer_id,
+        enable_chart_descriptions=variant == "G",
     )

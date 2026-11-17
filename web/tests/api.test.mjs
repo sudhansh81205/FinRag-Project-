@@ -22,7 +22,7 @@ test('correct request-bound engine response is preserved', async () => {
   assert.equal((await response.json()).answer, '41.78%');assert.equal(called.url, 'https://engine.example/answer');assert.equal(called.options.headers.Authorization, 'Bearer private-test-token');
 });
 test('wrong period and excluded citations are refused at gateway', async () => {
-  for (const changed of [{ request: { ...valid, value_period_end: '2020-09-26' } }, { included_evidence_ids: ['FOREIGN'] }, { evidence: [] }]) {
+  for (const changed of [{ question: 'A different question' }, { request: { ...valid, value_period_end: '2020-09-26' } }, { included_evidence_ids: ['FOREIGN'] }, { evidence: [] }]) {
     const result = await (await handle(req('answer', valid), { env, fetchImpl: async () => Response.json({ ...answer, ...changed }) })).json();assert.equal(result.status, 'service_error');assert.equal(result.answer, '');
   }
 });

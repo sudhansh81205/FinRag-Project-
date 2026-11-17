@@ -5,7 +5,7 @@ import { handle } from './lib/api.mjs';
 const root = resolve('public');
 const port = Number(process.env.FINRAG_WEB_PORT || 4173);
 if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid local web port');
-const types = { css: 'text/css', js: 'text/javascript', html: 'text/html', json: 'application/json', woff2: 'font/woff2', svg: 'image/svg+xml' };
+const types = { css: 'text/css', js: 'text/javascript', html: 'text/html', json: 'application/json', woff2: 'font/woff2', svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif' };
 const server = createServer(async (req, res) => {
   try {
     const url = new URL(req.url, 'http://127.0.0.1:4173');

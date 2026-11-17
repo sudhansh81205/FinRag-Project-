@@ -1,0 +1,26 @@
+{
+  "observed_at_utc": "2026-11-17T21:12:44.984685+00:00",
+  "source_commit": "aa52b9858bfcb07b56da1c01975944bc95352f0f",
+  "deployment_id": "dpl_EoxPnmU8MyQ4R3zMYwUasS6P1LFc",
+  "production_url": "https://finrag-workspace.vercel.app/",
+  "immutable_url": "https://finrag-workspace-11zgnd1ov-rushils-projects-3399960f.vercel.app",
+  "state": "READY",
+  "project": "finrag-workspace",
+  "node_version": "22.x",
+  "protection": "Vercel Authentication retained on all deployments",
+  "publication_pr": "https://github.com/sudhansh81205/FinRag-Project-/pull/19",
+  "previous_pr18": "owner merged d6a9a60; current main485f3cb",
+  "browser_verification": {
+    "new_interface_loaded": true,
+    "real_gross_margin": "41.78%",
+    "filing": "Apple FY2021",
+    "value_period_end": "2021-09-25",
+    "included_evidence_count": 5,
+    "citation_focus_retained": true,
+    "source_original_link_visible": true,
+    "screenshot": "outputs/FinRAG-18Nov2026/deployed-workspace.jpg"
+  },
+  "backend": "Previously approved temporary authenticated HTTPS to laptop Python API; laptop and tunnel must stay running. Raw model/tokenizer/Gradio remain loopback.",
+  "billing_or_new_database_created": false,
+  "full_project_complete": false
+}

@@ -29,6 +29,7 @@ def test_narrative_mode_excludes_unrequested_comparative_numeric_cells():
     payload = {"question": "What are the risks?", "ticker": "AAPL", "accession": "0000320193-21-000105",
                "value_period_end": "2021-09-25", "scope": "consolidated", "mode": "narrative"}
     assert app.answer(payload)["message"] == "No matching narrative"
+    assert app.answer({**payload, "mode": "auto"})["message"] == "No matching narrative"
     assert app.answer({**payload, "period_kind": "invented"})["status"] == "invalid_request"
 
 

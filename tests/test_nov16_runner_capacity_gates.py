@@ -84,8 +84,9 @@ def test_changed_case_set_prompt_and_model_config_are_refused(tmp_path, monkeypa
     make_runner(tmp_path).init_or_validate_manifest()
     with pytest.raises(RuntimeError, match="eligible_case_ids_sha256"):
         make_runner(tmp_path, data_path=tiny_data(tmp_path, n=4)).init_or_validate_manifest()
+    actual_file_hash = runner_mod._file_sha256
     monkeypatch.setattr(runner_mod, "_file_sha256",
-                        lambda p: "e" * 64 if p.name in {"prompts.py", "gemma3-4b.json"} else runner_mod.hashlib.sha256(p.read_bytes()).hexdigest())
+                        lambda p: "e" * 64 if p.name in {"prompts.py", "gemma3-4b.json"} else actual_file_hash(p))
     with pytest.raises(RuntimeError, match=r"model_config_sha256|prompt_template_sha256"):
         make_runner(tmp_path).init_or_validate_manifest()
 

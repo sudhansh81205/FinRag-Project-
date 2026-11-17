@@ -7,7 +7,6 @@ is saved and causes a nonzero exit; scope shortfalls remain explicit in the repo
 import argparse
 import hashlib
 import json
-import os
 import platform
 import subprocess
 import sys
@@ -24,6 +23,7 @@ from src.charts.dataset import load_candidate_set  # noqa: E402
 from src.llm.client import UnifiedLLMClient  # noqa: E402
 from src.llm.typed_calculator import evaluate  # noqa: E402
 from src.pipeline.finrag_engine import FinRAGEngine  # noqa: E402
+from src.runtime_support import total_memory_bytes  # noqa: E402
 
 
 def sha(path):
@@ -138,8 +138,7 @@ def run(args):
     _, _, question_audit = load_candidate_set(ROOT / "data/charts")
     write(args.output / "chart-question-audit.json", question_audit)
     import requests
-    memory_bytes = (int(subprocess.check_output(["sysctl", "-n", "hw.memsize"], text=True))
-                    if platform.system() == "Darwin" else os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE"))
+    memory_bytes = total_memory_bytes()
     runtime_version = requests.get(client.ollama_url + "/api/version", timeout=15).json()
     loaded = requests.get(client.ollama_url + "/api/ps", timeout=15).json()
     loaded_models = [{k: m.get(k) for k in ("name", "digest", "size", "size_vram", "context_length")}
@@ -168,7 +167,7 @@ def run(args):
         "source_files_sha256": {str(p.relative_to(ROOT)): sha(p) for p in source_files},
         "evidence_sha256": sha(package_path), "profile_sha256": sha(args.profile),
         "scope": "Real source-selected calculator/generation/vision smoke; no BGE search, A-G evaluation, heldout scores or independent label approval.",
-        "model_profile": profile, "hardware": {"machine": platform.machine(), "memory_gib": memory_bytes / 1024 ** 3,
+        "model_profile": profile, "hardware": {"machine": platform.machine(), "memory_gib": memory_bytes / 1024 ** 3 if memory_bytes else None,
             "python": platform.python_version(), "ollama_version": runtime_version,
             "loaded_model_sizes_api_snapshot_not_peak_host_memory": loaded_models},
         "checks": checks, "passed": all(checks.values()), "chart_scope": question_audit,

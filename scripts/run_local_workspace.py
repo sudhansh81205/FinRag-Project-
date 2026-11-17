@@ -78,7 +78,7 @@ def start(args):
     paths = [Path(getattr(args, key)).expanduser().resolve() for key in
              ("ollama", "llama_server", "models", "gguf", "source_audit", "model_cache")]
     validate_assets(*paths)
-    ensure_ports_free((11434, 11435, 8000, args.web_port))
+    ensure_ports_free((11434, 11435, 8000, args.web_port, *([args.gradio_port] if args.gradio_port else [])))
     state = ROOT / "output/nov17"
     state.mkdir(parents=True, exist_ok=True)
     token = private_token(state / "local-service.json")
@@ -105,7 +105,8 @@ def start(args):
         env = dict(os.environ, FINRAG_API_TOKEN=token, TOKENIZERS_PARALLELISM="false", OMP_NUM_THREADS="1")
         process = launch("api", [sys.executable, "scripts/serve_web_api.py", "--source-audit", str(audit),
                          "--model-cache", str(cache), "--tokenizer-url", "http://127.0.0.1:11435",
-                         "--gguf", str(gguf), "--gguf-sha256", GGUF_SHA256], env)
+                         "--gguf", str(gguf), "--gguf-sha256", GGUF_SHA256,
+                         *(["--gradio-port", str(args.gradio_port)] if args.gradio_port else [])], env)
         wait_ready(process, "http://127.0.0.1:8000/health", token=token)
         env = dict(os.environ, FINRAG_BACKEND_URL="http://127.0.0.1:8000", FINRAG_BACKEND_TOKEN=token,
                    FINRAG_WEB_PORT=str(args.web_port), FINRAG_BACKEND_TIMEOUT_MS="240000")
@@ -136,9 +137,13 @@ def main():
     parser.add_argument("--status", action="store_true", help="Check the local workspace without starting services")
     parser.add_argument("--node", default="node")
     parser.add_argument("--web-port", type=int, default=4180)
+    parser.add_argument("--gradio-port", type=int, help="Optional required Gradio workspace, e.g.7860; loopback only")
     args = parser.parse_args()
     if not 1024 <= args.web_port <= 65535 or args.web_port in {8000, 11434, 11435}:
         parser.error("Choose a separate local web port between1024and65535")
+    if args.gradio_port and (not 1024 <= args.gradio_port <= 65535
+                            or args.gradio_port in {args.web_port, 8000, 11434, 11435}):
+        parser.error("Choose a separate Gradio port between 1024 and 65535")
     if args.status:
         try:
             response = requests.get(f"http://127.0.0.1:{args.web_port}/api/health", timeout=8)

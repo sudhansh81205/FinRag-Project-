@@ -40,6 +40,7 @@ class FinRAGEngine:
         self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
         rerank_top_n: int = 5, *, _baseline: bool = False, calculation_plan=None, calculation_request=None,
         filters=None,
+        chart_only=False, chart_asset_id=None,
     ) -> dict[str, Any]:
         start = time.monotonic()
         result = {
@@ -60,6 +61,9 @@ class FinRAGEngine:
 
         if calculation_plan is not None and calculation_request is not None:
             return finish("invalid_request", "Supply a calculation plan or a constrained planning request, not both.")
+        if (type(chart_only) is not bool or chart_only and not self.enable_chart_descriptions
+                or chart_asset_id is not None and not isinstance(chart_asset_id, str)):
+            return finish("index_not_ready", "Approved chart execution is unavailable for this engine.")
         if not isinstance(question, str) or not question.strip():
             return finish("invalid_request", "Please enter a nonempty question.")
         if (type(top_k_text) is not int or type(top_k_tables) is not int
@@ -92,6 +96,8 @@ class FinRAGEngine:
                               "top_k_tables": top_k_tables}
             if filters is not None:
                 retrieval_args["filters"] = filters
+            if chart_only or chart_asset_id is not None:
+                retrieval_args.update(chart_only=chart_only, chart_asset_id=chart_asset_id)
             retrieval = self.retriever.retrieve(**retrieval_args)
             if not isinstance(retrieval, dict):
                 return finish("service_error", "Source retrieval returned an invalid response.")

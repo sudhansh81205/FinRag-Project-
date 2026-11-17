@@ -48,8 +48,11 @@ def snapshot_identity(root):
         return {"revision": None, "dirty": None}
 
 
-def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=False, generate_smoke=False):
+def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=False, generate_smoke=False,
+              probe_embedding=False, model_cache_dir=None, tokenizer_url=None, gguf=None, gguf_sha256=None):
     from src.benchmark.gates import evaluate_gates
+    from src.config import load_settings
+    from src.runtime_support import model_cache, total_memory_bytes
 
     root = Path(root)
     profile_path = Path(profile_path) if profile_path else root / "configs/gemma3-4b.json"
@@ -57,7 +60,7 @@ def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=
     checks = {}
     checks["packages"] = {
         name: importlib.util.find_spec(name) is not None
-        for name in ("requests", "numpy", "faiss", "transformers", "sentence_transformers", "pytest")
+        for name in ("requests", "numpy", "faiss", "torch", "transformers", "sentence_transformers", "pytest")
     }
     checks["ollama"] = {"status": "not_probed", "generation_executed": False}
     if probe_ollama or generate_smoke:
@@ -78,17 +81,42 @@ def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=
             checks["ollama"] = {"status": "blocked", "reason": type(exc).__name__,
                                  "generation_executed": False}
     checks["exact_index"] = {"status": "missing"}
-    catalog = root / "data/index/bge-faiss/catalog.json"
-    if catalog.is_file():
-        try:
+    catalog = None
+    try:
+        settings = load_settings(root=root)
+        catalog = settings.index_dir / "catalog.json"
+        if catalog.is_file():
             from src.indexing.store import ExactStore
             store = ExactStore(catalog.parent)
             checks["exact_index"] = {"status": "passed", "records": len(store.records),
                                       "catalog_sha256": hashlib.sha256(catalog.read_bytes()).hexdigest()}
+    except Exception as exc:
+        checks["exact_index"] = {"status": "blocked", "reason": type(exc).__name__}
+    checks["embedding"] = {"status": "not_probed", "cache": str(model_cache(root, model_cache_dir))}
+    if probe_embedding:
+        try:
+            from src.indexing.bge import BGEEncoder
+            encoder = BGEEncoder(cache_folder=str(model_cache(root, model_cache_dir)), local_files_only=True)
+            vectors = encoder.encode(["Financial evidence."], query=True)
+            if vectors.shape != (1, 768):
+                raise ValueError("Invalid query dimensions")
+            checks["embedding"].update(status="passed", model=encoder.spec.manifest_fields())
         except Exception as exc:
-            checks["exact_index"] = {"status": "blocked", "reason": type(exc).__name__}
+            checks["embedding"].update(status="blocked", reason=type(exc).__name__)
     checks["tokenizer"] = {"status": "missing"}
-    if tokenizer_dir:
+    if tokenizer_url:
+        try:
+            from src.llm.token_budget import GGUFTokenCounter
+            if not gguf or not gguf_sha256 or tokenizer_dir:
+                raise ValueError("Provide one matching GGUF tokenizer service or directory")
+            counter = GGUFTokenCounter(tokenizer_url, gguf, gguf_sha256, server_root=root)
+            if counter("Financial evidence.") < 1:
+                raise ValueError("Empty tokenizer result")
+            checks["tokenizer"] = {"status": "passed", "identity": counter.identity,
+                                   "source": "actual hash-pinned GGUF; loopback service identity rechecked"}
+        except Exception as exc:
+            checks["tokenizer"] = {"status": "blocked", "reason": type(exc).__name__}
+    elif tokenizer_dir:
         try:
             from transformers import AutoTokenizer
             directory = Path(tokenizer_dir)
@@ -105,9 +133,11 @@ def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=
     runtime_ready = (checks["ollama"]["status"] == "passed"
                      and checks["ollama"].get("generation_status") == "ok"
                      and checks["exact_index"]["status"] == "passed"
+                     and checks["embedding"]["status"] == "passed"
                      and checks["tokenizer"]["status"] == "passed")
     return {"schema_version": 1, "observed_at_utc": datetime.now(UTC).isoformat(),
             **snapshot_identity(root), "platform": platform.system(), "python": platform.python_version(),
+            "total_memory_bytes": total_memory_bytes(),
             "profile_sha256": hashlib.sha256(profile_path.read_bytes()).hexdigest(),
             "checks": checks, "runtime_prerequisites_ready": runtime_ready,
             "full_project_complete": False,
@@ -119,12 +149,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--profile", type=Path)
     parser.add_argument("--tokenizer-dir", type=Path)
+    parser.add_argument("--tokenizer-url", help="Existing loopback tokenizer loaded with the pinned generator GGUF")
+    parser.add_argument("--gguf", type=Path)
+    parser.add_argument("--gguf-sha256")
     parser.add_argument("--probe-ollama", action="store_true", help="Read the local installed model identity; no generation")
     parser.add_argument("--generate-smoke", action="store_true", help="Explicitly run one real nonfinancial local generation")
+    parser.add_argument("--probe-embedding", action="store_true", help="Load pinned local BGE and encode one query; no downloads")
+    parser.add_argument("--model-cache", type=Path, help="Existing local BGE cache")
     parser.add_argument("--output", type=Path, default=ROOT / "output/runtime-preflight.json")
     args = parser.parse_args()
     report = inventory(profile_path=args.profile, tokenizer_dir=args.tokenizer_dir,
-                       probe_ollama=args.probe_ollama, generate_smoke=args.generate_smoke)
+                       probe_ollama=args.probe_ollama, generate_smoke=args.generate_smoke,
+                       probe_embedding=args.probe_embedding, model_cache_dir=args.model_cache,
+                       tokenizer_url=args.tokenizer_url, gguf=args.gguf, gguf_sha256=args.gguf_sha256)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"report": str(args.output), "runtime_prerequisites_ready": report["runtime_prerequisites_ready"],

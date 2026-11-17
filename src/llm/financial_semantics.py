@@ -11,6 +11,21 @@ import re
 REVENUE = frozenset({"Revenue", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerExcludingAssessedTax"})
 COST = frozenset({"CostOfSales", "CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold"})
 GROSS_PROFIT = frozenset({"GrossProfit"})
+TOTAL_REVENUE_LABELS = frozenset({"total net sales", "total revenue", "total revenues", "net sales",
+                                 "revenue", "revenues", "net revenue", "net revenues"})
+
+
+def is_revenue_lookup(question):
+    return (isinstance(question, str)
+            and bool(re.search(r"\b(revenues?|net sales)\b", question, re.I))
+            and bool(re.search(r"\b(how much|what (?:was|were)|reported?|report)\b", question, re.I))
+            and not re.search(r"\b(growth|change|increase|decrease|percent|percentage|ratio|margin|share|compare|versus|vs)\b", question, re.I))
+
+
+def total_revenue_fact(record):
+    headers = record.get("metadata", {}).get("row_headers", [])
+    return (role(record) == "revenue" and isinstance(headers, list) and bool(headers)
+            and re.sub(r"\s+", " ", headers[-1].strip().lower()).strip(":") in TOTAL_REVENUE_LABELS)
 
 
 def is_gross_margin(question):
@@ -31,6 +46,13 @@ def role(record):
 
 def validate_named_formula(question, program, records):
     """Return a refusal reason for a recognized metric whose formula is wrong."""
+    if is_revenue_lookup(question):
+        expression = program.get("expression") if isinstance(program, dict) else None
+        by_id = {record.get("evidence_id", record.get("id")): record for record in records}
+        if (not isinstance(expression, dict) or set(expression) != {"evidence_id"}
+                or not total_revenue_fact(by_id.get(expression.get("evidence_id"), {}))):
+            return "Total revenue requires an included revenue cell whose original row identifies the total; component sales are not interchangeable."
+        return ""
     if not is_gross_margin(question):
         return ""
     if is_margin_comparison(question):
@@ -66,13 +88,16 @@ def known_source_program(question, request, records):
     unique revenue/cost pair is admissible. Ambiguous or absent facts produce no
     program; the caller must refuse or validate its untrusted proposal separately.
     """
-    if not is_gross_margin(question) or is_margin_comparison(question) or not isinstance(request, dict):
+    revenue_lookup = is_revenue_lookup(question)
+    if (not revenue_lookup and (not is_gross_margin(question) or is_margin_comparison(question))) or not isinstance(request, dict):
         return None
     periods = request.get("periods", [])
     facts = {"revenue": [], "cost": [], "gross_profit": []}
     for r in records:
         m = r.get("metadata", {})
         kind = role(r)
+        if revenue_lookup and not total_revenue_fact(r):
+            continue
         period = {"kind": m.get("period_kind"), "start": m.get("period_start"), "end": m.get("period_end")}
         if (kind and m.get("company") == request.get("issuer") and m.get("scope") == request.get("scope")
                 and period in periods):
@@ -80,6 +105,8 @@ def known_source_program(question, request, records):
     if len(facts["revenue"]) != 1:
         return None
     revenue = facts["revenue"][0]
+    if revenue_lookup:
+        return {**request, "expression": revenue}
     if len(facts["gross_profit"]) == 1:
         numerator = facts["gross_profit"][0]
     elif len(facts["cost"]) == 1 and not facts["gross_profit"]:

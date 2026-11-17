@@ -112,10 +112,10 @@ def create_demo(application):
                 mode_selector = gr.Radio(
                     label="Question Mode",
                     choices=["Narrative / Table QA", "Typed Calculation Plan", "Chart Question"],
-                    value="Typed Calculation Plan",
+                    value="Narrative / Table QA",
                 )
 
-                with gr.Accordion("Calculation Plan (JSON)", open=True):
+                with gr.Accordion("Calculation Plan (JSON)", open=False):
                     calc_plan_input = gr.Code(
                         label="Declarative Calculator Tree (operands resolve to included cell IDs)",
                         language="json",
@@ -187,7 +187,7 @@ def create_demo(application):
                 return ("", "invalid_request", "0.000s", "rejected", request_error, [], {}, session)
 
             calc_plan = None
-            if mode == "Typed Calculation Plan" and plan_str.strip():
+            if mode == "Typed Calculation Plan":
                 try:
                     calc_plan = json.loads(plan_str)
                 except Exception as exc:
@@ -203,7 +203,9 @@ def create_demo(application):
                     )
 
             chart_id = None
-            if mode == "Chart Question" and chart_choice != "None":
+            if mode == "Chart Question":
+                if not chart_choice or chart_choice == "None":
+                    return ("", "invalid_request", "0.000s", "rejected", "Select an original chart asset.", [], {}, session)
                 chart_id = chart_choice.split()[0]
 
             # Call application
@@ -247,6 +249,7 @@ def create_demo(application):
             session["last_query"] = ""
             session["last_status"] = ""
             return (
+                "",
                 "",
                 "ready",
                 "0.000s",
@@ -295,6 +298,7 @@ def create_demo(application):
             inputs=[session_state],
             outputs=[
                 query_input,
+                answer_output,
                 status_badge,
                 latency_badge,
                 route_badge,
@@ -305,6 +309,17 @@ def create_demo(application):
             ],
             api_name="clear_session",
         )
+
+        def invalidate_output(session):
+            session["last_status"] = "cleared"
+            return "", "ready", "0.000s", "cleared", "", [], {}, session
+
+        for control in (query_input, selected_company, filter_period, filter_scope,
+                        mode_selector, calc_plan_input, chart_selector, demo_only):
+            control.input(invalidate_output, inputs=[session_state],
+                          outputs=[answer_output, status_badge, latency_badge, route_badge,
+                                   diag_message, evidence_table, calc_trace, session_state],
+                          queue=False, show_progress="hidden")
 
     return demo
 

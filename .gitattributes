@@ -18,3 +18,12 @@ web/** text eol=lf
 web/public/fonts/*.woff2 binary
 supabase/*.sql text eol=lf
 supabase/migrations/*.sql text eol=lf
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.gif -text
+*.woff2 -text
+*.pdf -text
+*.docx -text
+*.pptx -text
+*.zip -text

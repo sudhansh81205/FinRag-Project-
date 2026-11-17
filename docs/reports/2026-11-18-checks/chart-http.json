@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "original_image_responses": [
+    {
+      "ticker": "AAPL",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "image_sha256": "ad0ded84e0a5b9dbf96385d1debb0cf711f6f1bec501dda9c067091526dd83a9"
+    },
+    {
+      "ticker": "NVDA",
+      "status": 200,
+      "content_type": "image/png",
+      "image_sha256": "41716e31eeb23fe0a516c2fb510c56ea5fa400fddf25a8c8310f8acd921f9e5a"
+    },
+    {
+      "ticker": "AMD",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "image_sha256": "a64c086a9af2be3b7aa2a0a69177acc2dd73b64fadedda64c6cc86cc4ca729e0"
+    },
+    {
+      "ticker": "INTC",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "image_sha256": "3642d2aa1cafa2bf25997038d695b2444169d4737f3d14a8a539b281259a7568"
+    },
+    {
+      "ticker": "CSCO",
+      "status": 200,
+      "content_type": "image/png",
+      "image_sha256": "00a0413e774c92f87057747c8cfa9aa0fbaf8da5d952666fa9e84b94a3980098"
+    },
+    {
+      "ticker": "ADBE",
+      "status": 200,
+      "content_type": "image/png",
+      "image_sha256": "18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97"
+    }
+  ],
+  "independent_approval": false
+}
