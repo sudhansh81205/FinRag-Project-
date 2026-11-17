@@ -30,6 +30,27 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "docs/reports/2026-11-17-deployment/https-gateway.json",
+    "docs/reports/2026-11-17-deployment/https-gateway-initial-failure.json",
+    "README.md",
+    "web/README.md",
+    "docs/reports/2026-11-15_frozen_manifest.json",
+    "docs/reports/2026-11-17_code-review.md",
+    "docs/handoffs/2026-11-17_deployment-review.md",
+    "docs/reports/2026-11-17-deployment/pytest.txt",
+    "docs/reports/2026-11-17-deployment/node.txt",
+    "docs/reports/2026-11-17-deployment/ruff.txt",
+    "src/web_jobs.py",
+    "src/benchmark/inventory.py",
+    "src/benchmark/runtime.py",
+    "src/benchmark/capacity.py",
+    "scripts/freeze_controls_manifest.py",
+    "scripts/generate_case_inventory.py",
+    "tests/test_web_jobs.py",
+    "tests/test_live_inventory.py",
+    "tests/test_benchmark_runtime.py",
+    "tests/test_nov16_runner_capacity_gates.py",
+
     ".github/workflows/ci.yml",
     "scripts/run_local_workspace.py",
     "tests/test_local_workspace.py",

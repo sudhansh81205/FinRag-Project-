@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-11-17T18:17:39.245Z",
+  "scope": "local execution of production gateway handler over approved HTTPS tunnel; not a Vercel deployment",
+  "transport": "authenticated HTTPS",
+  "http": 502,
+  "status": "service_error",
+  "elapsed_seconds": 66.312,
+  "request": {
+    "question": "What was Apple’s gross margin percentage in fiscal year 2021?",
+    "ticker": "AAPL",
+    "accession": "0000320193-21-000105",
+    "value_period_end": "2021-09-25",
+    "period_kind": "duration",
+    "scope": "consolidated",
+    "mode": "numerical"
+  },
+  "answer": "",
+  "evidence_count": 0,
+  "included_evidence_ids": [],
+  "final_experiment_ready": false
+}

@@ -8,6 +8,8 @@
 
 ---
 
+Review update: the current implementation,530Python/17Node checks, queued real narrative/numerical demonstration and hosting blockers are documented in [the deployment review](2026-11-17_code-review.md). Historical observations below retain their original scope; no final evaluation or submission is inferred.
+
 ## 1. Introduction
 
 Financial decision-making demands high-precision information extraction from corporate disclosures. SEC Form 10-K annual reports contain intricate narrative disclosures (Item 1A Risk Factors, Item 7 Management’s Discussion and Analysis), multi-year comparative financial statements and footnotes (Item 8), and graphical performance charts. Standard Retrieval-Augmented Generation (RAG) models often suffer from three critical failure modes when applied to financial reports:

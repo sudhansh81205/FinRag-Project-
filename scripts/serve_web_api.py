@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.config import load_settings  # noqa: E402
 from src.web_api import WebApplication, build_prepared_engine, build_source_checked_engine  # noqa: E402
+from src.web_jobs import AnswerJobs  # noqa: E402
 
 
 def main():
@@ -27,6 +28,8 @@ def main():
     parser.add_argument("--gguf", type=Path, help="Existing generator GGUF file used by that service")
     parser.add_argument("--gguf-sha256", help="Expected SHA-256 of the installed generator GGUF")
     parser.add_argument("--model-cache", type=Path)
+    parser.add_argument("--job-store", type=Path, default=ROOT / "output/web-jobs.sqlite3",
+                        help="Private single-process job state; unfinished jobs fail on restart")
     args = parser.parse_args()
     token = os.environ.get("FINRAG_API_TOKEN", "")
     if len(token) < 32:
@@ -50,6 +53,7 @@ def main():
     else:
         engine = None
     app = WebApplication(settings, engine)
+    jobs = AnswerJobs(args.job_store, app.answer)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -73,27 +77,36 @@ def main():
         def do_GET(self):
             if not self.authorized():
                 return
-            self.respond(app.health() if self.path == "/health" else {"status": "not_found"}, 200 if self.path == "/health" else 404)
+            self.respond({**app.health(), "jobs_supported": True} if self.path == "/health" else {"status": "not_found"}, 200 if self.path == "/health" else 404)
 
         def do_POST(self):
             if not self.authorized():
                 return
-            if self.path != "/answer":
+            if self.path not in {"/answer", "/jobs", "/jobs/poll"}:
                 self.respond({"status": "not_found"}, 404)
                 return
             try:
                 size = int(self.headers.get("Content-Length", "0"))
                 if not 0 < size <= 12000:
                     raise ValueError("size")
-                result = app.answer(json.loads(self.rfile.read(size)))
+                payload = json.loads(self.rfile.read(size))
+                if self.path == "/jobs":
+                    result = jobs.submit(payload)
+                elif self.path == "/jobs/poll":
+                    result = jobs.poll(payload.get("job_id") if isinstance(payload, dict) else None)
+                else:
+                    result = app.answer(payload)
             except (ValueError, TypeError):
                 result = {"status": "invalid_request", "answer": "", "message": "Invalid JSON request."}
             except Exception:
                 result = {"status": "service_error", "answer": "", "message": "Financial execution failed; no fallback used."}
-            self.respond(result, 400 if result["status"] == "invalid_request" else 200)
+            self.respond(result, 400 if result["status"] == "invalid_request" else 429 if result["status"] == "busy" else 200)
 
     print(f"FinRAG authenticated API on {args.host}:{args.port}; engine enabled: {engine is not None}")
-    ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
+    try:
+        ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
+    finally:
+        jobs.close()
 
 
 if __name__ == "__main__":

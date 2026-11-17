@@ -40,6 +40,14 @@ function requestMatches(result, body) {
   const r = result.request;
   return r && r.ticker === body.ticker && r.accession === body.accession && r.value_period_end === body.value_period_end && r.scope === body.scope && (body.period_kind === undefined || r.period_kind === body.period_kind);
 }
+function checkedAnswer(result, body, responseOk = true) {
+  if (!result || !statuses.has(result.status)) return json(empty('service_error', 'The engine returned an unsupported response.'), 502);
+  if (result.status !== 'ok') return json(empty(result.status, typeof result.message === 'string' ? result.message.slice(0, 1000) : 'The question could not be answered.'), result.status === 'service_error' ? 502 : 200);
+  if (!responseOk || !requestMatches(result, body) || typeof result.answer !== 'string' || !result.answer.trim() || !Array.isArray(result.evidence) || !result.evidence.length || !Array.isArray(result.included_evidence_ids)) return json(empty('service_error', 'The answer lacked request-bound source evidence.'), 502);
+  const ids = result.evidence.map(r => r?.evidence_id || r?.id);
+  if (ids.some(id => typeof id !== 'string') || new Set(ids).size !== ids.length || ids.length !== result.included_evidence_ids.length || ids.some(id => !result.included_evidence_ids.includes(id))) return json(empty('service_error', 'The cited evidence did not match the included context.'), 502);
+  return json(result);
+}
 export async function handle(request, { env = process.env, fetchImpl = fetch, allowLocalBackend = false } = {}) {
   const url = new URL(request.url);
   const route = (url.searchParams.get('route') || url.pathname.replace(/^\/api\/?/, '')).replace(/^\/+|\/+$/g, '');
@@ -71,12 +79,33 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       if (!backend || !env.FINRAG_BACKEND_TOKEN) return json(empty('index_not_ready', 'The source index and model service are not connected yet. No financial answer was generated.'), 503);
       const response = await upstream(fetchImpl, `${backend}/answer`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN}` }, body: JSON.stringify(body) }, answerTimeout);
       const result = await response.json();
-      if (!statuses.has(result.status)) return json(empty('service_error', 'The engine returned an unsupported response.'), 502);
-      if (result.status !== 'ok') return json(empty(result.status, typeof result.message === 'string' ? result.message.slice(0, 1000) : 'The question could not be answered.'), result.status === 'service_error' ? 502 : 200);
-      if (!response.ok || !requestMatches(result, body) || typeof result.answer !== 'string' || !result.answer.trim() || !Array.isArray(result.evidence) || !result.evidence.length || !Array.isArray(result.included_evidence_ids)) return json(empty('service_error', 'The answer lacked request-bound source evidence.'), 502);
-      const ids = result.evidence.map(r => r.evidence_id || r.id);
-      if (ids.some(id => typeof id !== 'string') || new Set(ids).size !== ids.length || ids.length !== result.included_evidence_ids.length || ids.some(id => !result.included_evidence_ids.includes(id))) return json(empty('service_error', 'The cited evidence did not match the included context.'), 502);
-      return json(result);
+      return checkedAnswer(result, body, response.ok);
+    }
+    if (['jobs', 'jobs/poll'].includes(route) && request.method === 'POST') {
+      let body;
+      try { body = await readBody(request); } catch { return json(empty('invalid_request', 'Send a valid JSON request under the size limit.'), 400); }
+      const problem = validateQuery(body);
+      if (problem) return json(empty('invalid_request', problem), 400);
+      if (route === 'jobs/poll' && !/^[A-Za-z0-9_-]{43}$/.test(body.job_id || '')) return json(empty('invalid_request', 'Invalid job reference.'), 400);
+      if (!backend || !env.FINRAG_BACKEND_TOKEN) return json(empty('index_not_ready', 'The model service is not connected.'), 503);
+      let response, result;
+      try {
+        response = await upstream(fetchImpl, `${backend}/${route}`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.FINRAG_BACKEND_TOKEN}` }, body: JSON.stringify(route === 'jobs' ? body : { job_id: body.job_id }) }, 10000);
+        result = await response.json();
+      } catch {
+        return json({ ...empty('service_error', 'The answer job connection was interrupted.'), ...(route === 'jobs/poll' ? { retryable: true } : {}) }, 502);
+      }
+      if (response.status === 429 && result.status === 'busy') return json(empty('service_error', 'The model queue is full. Try again shortly.'), 429);
+      if (!response.ok) return json({ ...empty('service_error', 'The answer job could not be reached.'), ...(route === 'jobs/poll' && response.status >= 500 ? { retryable: true } : {}) }, 502);
+      if (route === 'jobs' && result.status === 'queued' && /^[A-Za-z0-9_-]{43}$/.test(result.job_id || '')) return json({ status: 'queued', job_id: result.job_id, expires_in_seconds: 900 }, 202);
+      if (route === 'jobs/poll' && ['queued', 'running'].includes(result.status)) return json({ status: result.status }, 202);
+      if (route === 'jobs/poll' && result.status === 'completed') {
+        const fields = ['question', 'ticker', 'accession', 'value_period_end', 'period_kind', 'scope', 'mode'];
+        if (result.result?.status === 'ok' && (!result.request || fields.some(key => (result.request[key] ?? (key === 'mode' ? 'auto' : undefined)) !== (body[key] ?? (key === 'mode' ? 'auto' : undefined))))) return json(empty('service_error', 'The job belongs to a different question.'), 502);
+        return checkedAnswer(result.result, body);
+      }
+      if (route === 'jobs/poll' && result.status === 'not_found') return json(empty('service_error', 'This answer job expired or is unavailable. Submit the question again.'), 404);
+      return json(empty('service_error', 'The engine returned an invalid job response.'), 502);
     }
     if (route === 'auth/start' && request.method === 'POST') {
       if (!authReady) return json({ status: 'not_configured', message: 'Email sign-in setup is pending. The database is connected; its redirect URL and email delivery must be verified first.' }, 503);
@@ -100,8 +129,8 @@ export async function handle(request, { env = process.env, fetchImpl = fetch, al
       if (request.method === 'POST') {
         const body = await readBody(request); const problem = validateQuery(body);
         if (problem) return json({ status: 'invalid_request', message: problem }, 400);
-        const { ticker, accession, value_period_end, scope, mode = 'auto' } = body;
-        options.body = JSON.stringify({ user_id: user.id, question: body.question.trim(), request: { ticker, accession, value_period_end, scope, mode } });
+        const { ticker, accession, value_period_end, period_kind, scope, mode = 'auto' } = body;
+        options.body = JSON.stringify({ user_id: user.id, question: body.question.trim(), request: { ticker, accession, value_period_end, ...(period_kind ? { period_kind } : {}), scope, mode } });
         suffix = '';
       }
       if (request.method === 'DELETE') {

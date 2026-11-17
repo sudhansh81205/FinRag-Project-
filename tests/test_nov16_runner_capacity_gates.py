@@ -275,3 +275,18 @@ def test_unfrozen_routing_thresholds_never_open_the_gate(tmp_path):
 def test_repository_has_no_open_gates_without_a_real_acceptance_record():
     assert detect_available_gates() == set()
     assert set(evaluate_gates()) == set(ALL_GATES)
+
+
+def test_capacity_uses_the_selected_actual_inventory_and_rejects_inconsistent_totals(monkeypatch):
+    monkeypatch.setattr("src.benchmark.capacity.check_ollama", lambda url: (False, []))
+    inventory = {"benchmarks": {"FinanceBench": {"total_cases": 150}, "FinQA": {"total_cases": 1147},
+                              "TAT-QA": {"total_cases": 1663}, "Charts": {"total_cases": 50}},
+                 "total_selected_cases": 3010}
+    report = measure_machine_capacity(case_inventory=inventory, now=NOW)
+    counts = report["suite_inventory"]["selected_actual_counts"]
+    assert sum(counts.values()) == 3010 and counts["TAT-QA"] == 1663
+    assert report["capacity"]["suite_estimates"]["FinQA"]["cases"] == 1147
+    assert report["capacity"]["feasibility"] == "unknown"
+    inventory["total_selected_cases"] += 1
+    with pytest.raises(ValueError, match="inconsistent"):
+        measure_machine_capacity(case_inventory=inventory, now=NOW)

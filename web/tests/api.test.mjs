@@ -68,6 +68,50 @@ test('local model gets a bounded answer deadline, separate from health', async (
  }
 });
 
+test('saved instant questions retain the selected period type', async () => {
+  let inserted;
+  const db = { SUPABASE_URL: 'https://db.example', SUPABASE_PUBLISHABLE_KEY: 'public-test' };
+  const response = await handle(req('saved', { ...valid, period_kind: 'instant' }, 'POST', { Authorization: `Bearer ${'a'.repeat(30)}` }), { env: db, fetchImpl: async (url, options) => {
+    if (url.endsWith('/auth/v1/user')) return Response.json({ id: 'owner' });
+    inserted = JSON.parse(options.body);return Response.json([inserted]);
+  } });
+  assert.equal(response.status, 200);assert.equal(inserted.request.period_kind, 'instant');
+});
+
+test('job transport keeps provider credentials server-side and binds completed results to the exact question', async () => {
+  const id = 'a'.repeat(43);
+  let posted;
+  const queued = await handle(req('jobs', valid), { env, fetchImpl: async (url, options) => {
+    assert.equal(url, 'https://engine.example/jobs');posted = options;
+    return Response.json({ status: 'queued', job_id: id });
+  } });
+  assert.equal(queued.status, 202);assert.equal((await queued.json()).job_id, id);
+  assert.equal(posted.headers.Authorization, 'Bearer private-test-token');
+  for (const status of ['queued', 'running']) {
+    const pending = await handle(req('jobs/poll', { ...valid, job_id: id }), { env, fetchImpl: async () => Response.json({ status }) });
+    assert.equal(pending.status, 202);
+  }
+  for (const request of [valid, { ...valid, question: 'A different question' }]) {
+    const completed = await handle(req('jobs/poll', { ...valid, job_id: id }), { env, fetchImpl: async () => Response.json({ status: 'completed', request, result: answer }) });
+    assert.equal(completed.status, request === valid ? 200 : 502);
+    if (request !== valid) assert.equal((await completed.json()).answer, '');
+  }
+  for (const changed of [{ included_evidence_ids: ['foreign'] }, { request: { ...valid, ticker: 'MSFT' } }]) {
+    const refused = await handle(req('jobs/poll', { ...valid, job_id: id }), { env, fetchImpl: async () => Response.json({ status: 'completed', request: valid, result: { ...answer, ...changed } }) });
+    assert.equal(refused.status, 502);assert.equal((await refused.json()).answer, '');
+  }
+});
+
+test('full queues, expired jobs and malformed capabilities fail with no answer', async () => {
+  for (const [upstreamStatus, status, expected] of [[429, 'busy', 429], [200, 'not_found', 404]]) {
+    const response = await handle(req('jobs/poll', { ...valid, job_id: 'a'.repeat(43) }), { env, fetchImpl: async () => Response.json({ status }, { status: upstreamStatus }) });
+    assert.equal(response.status, expected);assert.equal((await response.json()).answer, '');
+  }
+  let calls = 0;
+  const invalid = await handle(req('jobs/poll', { ...valid, job_id: 'short' }), { env, fetchImpl: () => calls++ });
+  assert.equal(invalid.status, 400);assert.equal(calls, 0);
+});
+
 test('loopback HTTP backend is explicit local development only; production remains HTTPS', async () => {
   let calls = 0;
   const localEnv = { FINRAG_BACKEND_URL: 'http://127.0.0.1:8000', FINRAG_BACKEND_TOKEN: 'private-test' };
@@ -79,4 +123,17 @@ test('loopback HTTP backend is explicit local development only; production remai
   const remoteEnv = { ...localEnv, FINRAG_BACKEND_URL: 'http://remote.example' };
   assert.equal((await handle(req('answer', valid), { env: remoteEnv, fetchImpl, allowLocalBackend: true })).status, 502);
   assert.equal(calls, 1);
+});
+
+test('only polling transport failures are retryable; completed model failures and submission are final', async () => {
+ const job_id = 'a'.repeat(43);
+ const interrupted = async () => { throw new Error('secret provider detail'); };
+ const poll = await (await handle(req('jobs/poll', { ...valid, job_id }), { env, fetchImpl: interrupted })).json();
+ assert.equal(poll.retryable, true); assert.equal(poll.answer, ''); assert.ok(!JSON.stringify(poll).includes('secret'));
+ const submit = await (await handle(req('jobs', valid), { env, fetchImpl: interrupted })).json();
+ assert.equal(submit.retryable, undefined);
+ const failure = await (await handle(req('jobs/poll', { ...valid, job_id }), { env, fetchImpl: async () => Response.json({ status: 'completed', result: { status: 'service_error', message: 'Model failed.' } }) })).json();
+ assert.equal(failure.retryable, undefined); assert.equal(failure.answer, '');
+ const unauthorized = await (await handle(req('jobs/poll', { ...valid, job_id }), { env, fetchImpl: async () => Response.json({ status: 'unauthorized' }, { status: 401 }) })).json();
+ assert.equal(unauthorized.retryable, undefined);
 });

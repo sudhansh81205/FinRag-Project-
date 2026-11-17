@@ -93,3 +93,32 @@ def test_recomputed_program_result_replaces_untrusted_calculation_fields():
     engine.answer_financial_question.return_value["calculations"] = [{"result": "999"}]
     failed = InteractiveApplication(load_settings(environ={}), engine).answer_interactive("What was the margin?", request=request)
     assert failed["status"] == "insufficient_evidence" and failed["answer"] == ""
+
+
+def test_sync_and_job_entry_points_never_run_the_model_concurrently():
+    import threading
+
+    entered, release = threading.Event(), threading.Event()
+
+    class Engine:
+        def answer_financial_question(self, **kwargs):
+            entered.set()
+            assert release.wait(5)
+            return {"status": "insufficient_evidence", "message": "No matching narrative"}
+
+    app = WebApplication(load_settings(environ={}), Engine())
+    payload = {"question": "What are the risks?", "ticker": "AAPL", "accession": "0000320193-21-000105",
+               "value_period_end": "2021-09-25", "scope": "consolidated", "mode": "narrative"}
+    results = []
+    worker = threading.Thread(target=lambda: results.append(app.answer(payload)))
+    worker.start()
+    try:
+        assert entered.wait(3)
+        busy = app.answer(payload)
+        assert busy["status"] == "service_error" and busy["answer"] == ""
+        assert busy["evidence"] == []
+    finally:
+        release.set()
+        worker.join(5)
+    assert not worker.is_alive() and results[0]["status"] == "insufficient_evidence"
+    assert app.answer(payload)["status"] == "insufficient_evidence"

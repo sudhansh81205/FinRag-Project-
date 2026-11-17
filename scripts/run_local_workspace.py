@@ -124,13 +124,33 @@ def start(args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for name in ("ollama", "llama-server", "models", "gguf", "source-audit", "model-cache"):
-        parser.add_argument("--" + name, required=True)
+    defaults = {
+        "ollama": ROOT.parent / "ollama/ollama", "llama-server": ROOT.parent / "ollama/llama-server",
+        "models": ROOT.parent / "ollama-models",
+        "gguf": ROOT.parent / "ollama-models" / "blobs" / ("sha256-" + GGUF_SHA256),
+        "source-audit": ROOT / "output/nov17/canonical_audit.json",
+        "model-cache": ROOT / "output/models-http",
+    }
+    for name, default in defaults.items():
+        parser.add_argument("--" + name, default=str(default), help="Existing asset path; override for another machine")
+    parser.add_argument("--status", action="store_true", help="Check the local workspace without starting services")
     parser.add_argument("--node", default="node")
     parser.add_argument("--web-port", type=int, default=4180)
     args = parser.parse_args()
     if not 1024 <= args.web_port <= 65535 or args.web_port in {8000, 11434, 11435}:
         parser.error("Choose a separate local web port between1024and65535")
+    if args.status:
+        try:
+            response = requests.get(f"http://127.0.0.1:{args.web_port}/api/health", timeout=8)
+            response.raise_for_status()
+            health = response.json()
+            if not isinstance(health.get("runtime"), dict):
+                raise ValueError("Invalid workspace health")
+            print(f"Local workspace: http://127.0.0.1:{args.web_port}/")
+            print(json.dumps(health, indent=2))
+        except (requests.RequestException, ValueError):
+            parser.exit(2, "The local workspace is unavailable. Start it using this script without --status.\n")
+        return
     start(args)
 
 

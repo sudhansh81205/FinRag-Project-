@@ -5,6 +5,7 @@ Gemma machine. Common A-G source identity and KR typed request/period rules rema
 """
 import json
 import re
+import threading
 from pathlib import Path
 
 from src.application import FilingOption, InteractiveApplication, resolve_request
@@ -12,6 +13,7 @@ from src.application import FilingOption, InteractiveApplication, resolve_reques
 
 class WebApplication:
     def __init__(self, settings, engine=None):
+        self._answer_lock = threading.Lock()
         self.app = InteractiveApplication(settings, engine)
         self.settings = settings
         registry = json.loads((settings.root / "data/application_filings.json").read_text(encoding="utf-8"))
@@ -26,6 +28,15 @@ class WebApplication:
                 "final_experiment_ready": False}
 
     def answer(self, payload):
+        if not self._answer_lock.acquire(blocking=False):
+            return {"status": "service_error", "message": "The model is busy. Try again shortly.",
+                    "answer": "", "evidence": [], "calculations": [], "included_evidence_ids": []}
+        try:
+            return self._answer(payload)
+        finally:
+            self._answer_lock.release()
+
+    def _answer(self, payload):
         def failure(status, message):
             return {"status": status, "message": message, "answer": "", "evidence": [],
                     "calculations": [], "included_evidence_ids": []}

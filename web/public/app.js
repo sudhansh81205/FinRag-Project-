@@ -3,6 +3,7 @@ const $$ = selector => [...document.querySelectorAll(selector)];
 const state = { filings: [], health: null, mode: 'auto', result: null, busy: false, token: null, lastQuery: null };
 const element = (tag, text, cls) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (cls) node.className = cls; return node; };
 let toastTimer;
+let savedRevision = 0;
 function toast(text) { $('#toast').textContent = text; $('#toast').hidden = false;clearTimeout(toastTimer);toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 4000); }
 async function api(route, options = {}) {
   const response = await fetch(`/api/${route}`, { ...options, headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(state.token ? { Authorization: `Bearer ${state.token}` } : {}), ...options.headers }, signal: options.signal || AbortSignal.timeout(route === 'answer' ? state.health?.answer_timeout_ms || 250000 : 28000) });
@@ -69,12 +70,31 @@ function invalidateResult() {
 function lockRequest(locked) {
   $$('#question, #company, #filing, #period, #period-kind, .mode, [data-example], .filing-actions button').forEach(control => { control.disabled = locked; });
 }
+async function answerQuery(value) {
+  if (!state.health?.runtime.jobs_supported) return api('answer', { method: 'POST', body: JSON.stringify(value) });
+  const job = await api('jobs', { method: 'POST', body: JSON.stringify(value) });
+  if (job.status !== 'queued') return job;
+  const deadline = Date.now() + 900000;
+  let failures = 0;
+  while (Date.now() < deadline) {
+    await new Promise(resolve => setTimeout(resolve, Math.min(8000, 1500 * (failures + 1))));
+    let result;
+    try { result = await api('jobs/poll', { method: 'POST', body: JSON.stringify({ ...value, job_id: job.job_id }) }); }
+    catch { result = { status: 'service_error', retryable: true, answer: '', evidence: [], calculations: [], message: 'The answer job connection was interrupted.' }; }
+    if (result.retryable === true && ++failures < 5) continue;
+    failures = 0;
+    if (!['queued', 'running'].includes(result.status)) return result;
+    const label = $('#answer-body .result-state');
+    if (label) label.textContent = result.status === 'queued' ? 'WAITING FOR THE MODEL' : 'CHECKING THE FILING EVIDENCE';
+  }
+  return { status: 'service_error', answer: '', evidence: [], calculations: [], message: 'The answer job expired. Submit the question again.' };
+}
 async function investigate() {
   if (state.busy) return;
   if ($('#question').value.trim().length < 3) { $('#question').focus();toast('Enter a financial question first.');return; }
   state.busy = true;state.result = null;state.lastQuery = query();lockRequest(true);$('#ask').disabled = true;$('#ask').firstElementChild.textContent = 'Investigating';clearEvidence();$('#answer-section').hidden = false;$('#copy-answer').hidden = true;$('#export-answer').hidden = true;$('#save-question').hidden = true;
   const loading = element('div', undefined, 'answer-card');loading.append(element('span', 'CHECKING SOURCE AVAILABILITY', 'result-state'), element('h2', 'Following the paper trail…'), element('div', undefined, 'progress-line'));$('#answer-body').replaceChildren(loading);
-  try { state.result = await api('answer', { method: 'POST', body: JSON.stringify(state.lastQuery) });if (!state.result.status) throw new Error(); }
+  try { state.result = await answerQuery(state.lastQuery);if (!state.result.status) throw new Error(); }
   catch { state.result = { status: 'service_error', answer: '', evidence: [], calculations: [], message: 'The service could not be reached. Please try again.' }; }
   finally { state.busy = false;lockRequest(false);$('#ask').disabled = false;$('#ask').firstElementChild.textContent = 'Investigate';renderAnswer(state.result); }
 }
@@ -94,21 +114,22 @@ function showAuth() {
   $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#sign-out').hidden = !state.token;$('#auth-dialog').showModal();
 }
 async function renderSaved() {
+  const revision = ++savedRevision;const token = state.token;
   const body = $('#saved-body');body.replaceChildren();
   if (!state.token || !state.health?.saved_queries.configured) { const box = element('div', undefined, 'saved-empty');box.append(element('h2', state.health?.saved_queries.configured ? 'Your questions, in one place.' : 'A place for your next insight.'), element('p', state.health?.saved_queries.configured ? 'Sign in with an email link to see and save your private questions.' : 'Cloud saving is not connected yet. This workspace will show that clearly until your Supabase database is ready.'));const button = element('button', 'Sign in to your workspace ↗', 'outline-button');button.addEventListener('click', showAuth);box.append(button);body.append(box);return; }
   body.append(element('p', 'Loading your saved questions…'));
   try {
-    const result = await api('saved');body.replaceChildren();
+    const result = await api('saved');if (revision !== savedRevision || token !== state.token) return;body.replaceChildren();
     if (result.status !== 'ok') { body.append(element('p', result.message || 'Saved questions could not be loaded.'));return; }
     if (!result.data.length) { body.append(element('p', 'No saved questions yet. Start a new research question and choose Save question.'));return; }
     result.data.forEach(item => { const row = element('article', undefined, 'saved-row');const open = element('button', item.question);open.append(element('small', `${item.request.ticker} · ${item.request.value_period_end} · ${new Date(item.created_at).toLocaleDateString()}`));open.addEventListener('click', () => loadQuery({ question: item.question, ...item.request }));const remove = element('button', 'Delete', 'text-button');remove.addEventListener('click', async () => { const r = await api(`saved?id=${encodeURIComponent(item.id)}`, { method: 'DELETE' });if (r.status === 'ok') renderSaved();else toast(r.message || 'Could not delete the question.'); });row.append(open, remove);body.append(row); });
-  } catch { body.replaceChildren(element('p', 'Your saved questions could not be reached.')); }
+  } catch { if (revision === savedRevision && token === state.token) body.replaceChildren(element('p', 'Your saved questions could not be reached.')); }
 }
 $$('[data-view]').forEach(button => button.addEventListener('click', () => view(button.dataset.view)));
 $$('.mode').forEach(button => button.addEventListener('click', () => { invalidateResult();setMode(button.dataset.mode); }));
 $('#company').addEventListener('change', () => { invalidateResult();updateFilings(); });$('#filing').addEventListener('change', () => { invalidateResult();updatePeriod(); });$('#period').addEventListener('change', invalidateResult);$('#filing-search').addEventListener('input', renderLibrary);$('#question').addEventListener('input', () => { invalidateResult();updateCount(); });$('#ask').addEventListener('click', investigate);
 $('#period-kind').addEventListener('change', invalidateResult);
-$('#new-research').addEventListener('click', () => { if (state.busy) return;view('research');$('#question').value = '';updateCount();$('#answer-section').hidden = true;state.result = null;clearEvidence();$('#question').focus(); });
+$('#new-research').addEventListener('click', () => { if (state.busy) return;invalidateResult();view('research');$('#question').value = '';updateCount();$('#question').focus(); });
 document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') { event.preventDefault();investigate(); }if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault();view('research');$('#question').focus(); } });
 const examples = { margin: ['What was Apple’s gross margin percentage in fiscal year 2021?', 'numerical'], risk: ['What supply-chain risks does Apple describe in its fiscal 2021 annual report?', 'narrative'], chart: ['How did Apple’s shareholder returns compare with the S&P 500 in the 2021 report?', 'chart'] };
 $$('[data-example]').forEach(button => button.addEventListener('click', () => { const [question, mode] = examples[button.dataset.example];loadQuery({ question, mode, ticker: 'AAPL', accession: '0000320193-21-000105', value_period_end: '2021-09-25' }); }));
