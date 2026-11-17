@@ -103,7 +103,7 @@ def start(args):
                          "--n-gpu-layers", "0", "--parallel", "1"], dict(os.environ))
         wait_ready(process, "http://127.0.0.1:11435/props")
         env = dict(os.environ, FINRAG_API_TOKEN=token, TOKENIZERS_PARALLELISM="false", OMP_NUM_THREADS="1")
-        process = launch("api", [sys.executable, "scripts/serve_web_api.py", "--source-audit", str(audit),
+        process = launch("api", [sys.executable, "scripts/serve_web_api.py", *(["--workspace-corpus", args.workspace_corpus] if args.workspace_corpus else ["--source-audit", str(audit)]),
                          "--model-cache", str(cache), "--tokenizer-url", "http://127.0.0.1:11435",
                          "--gguf", str(gguf), "--gguf-sha256", GGUF_SHA256,
                          *(["--gradio-port", str(args.gradio_port)] if args.gradio_port else [])], env)
@@ -134,6 +134,7 @@ def main():
     }
     for name, default in defaults.items():
         parser.add_argument("--" + name, default=str(default), help="Existing asset path; override for another machine")
+    parser.add_argument("--workspace-corpus", default=str(ROOT / "output/nov17/corpus"), help="Prepared two-filing demonstration corpus")
     parser.add_argument("--status", action="store_true", help="Check the local workspace without starting services")
     parser.add_argument("--node", default="node")
     parser.add_argument("--web-port", type=int, default=4180)

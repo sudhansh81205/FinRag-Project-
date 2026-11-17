@@ -60,7 +60,11 @@ function updateFilings() {
   $('#filing').replaceChildren(...selected.map(f => { const option = element('option', `FY${f.period_end.slice(0, 4)} · ${f.form}`);option.value = f.accession;return option; }));
   updatePeriod();
 }
-function updatePeriod() { const filing = state.filings.find(f => f.accession === $('#filing').value);if (filing) { $('#period').value = filing.period_end;$('#period').max = filing.period_end; }updateAvailability(); }
+function updatePeriod() { const filing = state.filings.find(f => f.accession === $('#filing').value);if (filing) { $('#period').value = filing.period_end;$('#period').max = filing.period_end;
+  const name = filing.issuer.replace(/ Inc\.| Corporation/g, '');const year = filing.period_end.slice(0, 4);
+  const labels = { margin: `What was ${name}’s gross margin in FY${year}?`, risk: `What risks does ${name} describe?`, revenue: `How much revenue did ${name} report in FY${year}?` };
+  $$('[data-example]').forEach(button => { button.lastElementChild.textContent = labels[button.dataset.example]; });
+}updateAvailability(); }
 function query() { return { question: $('#question').value.trim(), ticker: $('#company').value, accession: $('#filing').value, value_period_end: $('#period').value, period_kind: $('#period-kind').value, scope: 'consolidated', mode: state.mode }; }
 function loadQuery(value) {
   if (state.busy) { toast('Wait for the current research request to finish.');return; }
@@ -155,7 +159,7 @@ function renderEvidence(result) {
 }
 function renderAnswer(result) {
   const body = $('#answer-body');body.replaceChildren();const card = element('div', undefined, 'answer-card result-enter');
-  const messages = { ok: ['✓ Answer grounded in sources', 'Answer'], index_not_ready: ['○ Setup required', 'This source is not ready.'], insufficient_evidence: ['○ Insufficient evidence', 'The filing does not support an answer.'], invalid_request: ['! Check your question', 'Review the selected filing and period.'], service_error: ['! Service unavailable', 'The research service could not finish.'] };
+  const messages = { ok: ['✓ Answer grounded in sources', 'Answer'], index_not_ready: ['○ Setup required', 'This source is not ready.'], insufficient_evidence: ['○ Insufficient evidence', 'A verified answer could not be constructed.'], invalid_request: ['! Check your question', 'Review the selected filing and period.'], service_error: ['! Service unavailable', 'The research service could not finish.'] };
   const labels = messages[result.status] || messages.service_error;
   card.append(element('span', labels[0], 'result-state'));
   if (state.lastQuery) { const filing = state.filings.find(f => f.accession === state.lastQuery.accession);card.append(element('div', `${filing?.issuer || state.lastQuery.ticker} · FY${filing?.period_end?.slice(0, 4) || ''} · Value period ${state.lastQuery.value_period_end}`, 'answer-context')); }
@@ -236,7 +240,7 @@ function systemRow(title, message, status) { const row = element('article', unde
 function renderSystem() {
   const health = state.health;const body = $('#system-body');body.replaceChildren();
   if (!health) { body.append(systemRow('Connection check', 'The status endpoint could not be reached.', 'UNAVAILABLE'));return; }
-  body.append(systemRow('Financial engine', health.runtime.message || 'The configured backend reports readiness. Individual answer evidence is validated separately.', health.runtime.status === 'ready' ? 'CONNECTED' : 'SETUP REQUIRED'), systemRow('Saved questions', health.saved_queries.configured ? 'Private row-level access is configured. Email sign-in requires separate redirect and delivery verification.' : 'Connect a Supabase project and apply the saved-query schema to enable this feature.', health.saved_queries.configured ? 'SUPABASE CONFIGURED' : 'NOT CONFIGURED'), systemRow('Filing coverage', `${health.corpus.inventory} inventory entries across ${health.corpus.companies} companies. One bounded canonical filing is previously accepted; wider acceptance and full indexed coverage remain open.`, 'PARTIAL'), systemRow('Experiment acceptance', 'Full A–G benchmark runs, the independent fifty-output audit and RAGAS results remain pending. Candidate chart integrity is separate from independent label approval.', 'NOT COMPLETE'));
+  body.append(systemRow('Financial engine', health.runtime.message || 'The configured backend reports readiness. Individual answer evidence is validated separately.', health.runtime.status === 'ready' ? 'CONNECTED' : 'SETUP REQUIRED'), systemRow('Saved questions', health.saved_queries.configured ? 'Private row-level access is configured. Email sign-in requires separate redirect and delivery verification.' : 'Connect a Supabase project and apply the saved-query schema to enable this feature.', health.saved_queries.configured ? 'SUPABASE CONFIGURED' : 'NOT CONFIGURED'), systemRow('Filing coverage', `${health.corpus.inventory} inventory entries across ${health.corpus.companies} companies. ${(health.runtime.supported_filings || []).length} connected for source-checked research. Independent final-study acceptance remains separate.`, 'PARTIAL'), systemRow('Experiment acceptance', 'Full A–G benchmark runs, the independent fifty-output audit and RAGAS results remain pending. Candidate chart integrity is separate from independent label approval.', 'NOT COMPLETE'));
 }
 async function refreshHealth() {
   try { state.health = await api('health');if (!state.health.runtime) throw new Error();const ready = state.health.runtime.status === 'ready';$('#health-pill').classList.toggle('ready', ready);$('#health-pill span').textContent = ready ? 'Engine connected' : 'Engine setup required'; }
@@ -266,8 +270,12 @@ $('#company').addEventListener('change', () => { invalidateResult();updateFiling
 $('#period-kind').addEventListener('change', invalidateResult);
 $('#new-research').addEventListener('click', () => { if (state.busy) return;invalidateResult();view('research');$('#question').value = '';updateCount();$('#question').focus(); });
 document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') { event.preventDefault();investigate(); }if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault();view('research');$('#question').focus(); } });
-const examples = { margin: ['What was Apple’s gross margin percentage in fiscal year 2021?', 'numerical'], risk: ['What supply-chain risks does Apple describe in its fiscal 2021 annual report?', 'narrative'], revenue: ['How much revenue did Apple report in fiscal year 2021?', 'numerical'] };
-$$('[data-example]').forEach(button => button.addEventListener('click', () => { const [question, mode] = examples[button.dataset.example];loadQuery({ question, mode, ticker: 'AAPL', accession: '0000320193-21-000105', value_period_end: '2021-09-25' }); }));
+$$('[data-example]').forEach(button => button.addEventListener('click', () => {
+  const f = state.filings.find(f => f.accession === $('#filing').value);if (!f) return;
+  const name = f.issuer.replace(/ Inc\.| Corporation/g, '');const year = f.period_end.slice(0, 4);
+  const examples = { margin: [`What was ${name}'s gross margin in FY${year}?`, 'numerical'], risk: [`What risks does ${name} describe in its FY${year} annual report?`, 'narrative'], revenue: [`How much revenue did ${name} report in FY${year}?`, 'numerical'] };
+  const [question, mode] = examples[button.dataset.example];loadQuery({ question, mode, ticker: f.ticker, accession: f.accession, value_period_end: f.period_end });
+}));
 $('#copy-answer').addEventListener('click', async () => { try { await navigator.clipboard.writeText(state.result?.answer || '');toast('Answer copied.'); } catch { toast('Clipboard access is unavailable.'); } });
 $('#export-answer').addEventListener('click', () => { if (!state.result) return;const blob = new Blob([JSON.stringify({ query: state.lastQuery, result: state.result }, null, 2)], { type: 'application/json' });const url = URL.createObjectURL(blob);const link = element('a');link.href = url;link.download = 'finrag-research.json';link.click();setTimeout(() => URL.revokeObjectURL(url), 1000); });
 $('#save-question').addEventListener('click', async () => { if (!state.token) { showAuth();return; }try { const result = await api('saved', { method: 'POST', body: JSON.stringify(state.lastQuery || query()) });toast(result.status === 'ok' ? 'Question saved privately.' : result.message || 'Could not save the question.'); } catch { toast('Could not reach saved questions.'); } });

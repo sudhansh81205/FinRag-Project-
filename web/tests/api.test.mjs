@@ -12,7 +12,7 @@ test('missing engine never produces a financial answer or model call', async () 
   assert.equal(result.status, 503);assert.equal(body.status, 'index_not_ready');assert.equal(body.answer, '');assert.equal(calls, 0);
 });
 test('inventory and status are actual separate acceptance levels', async () => {
-  const body = await (await handle(req('filings'), { env: {} })).json();assert.equal(body.filings.length, 18);assert.equal(body.status, 'inventory_only');
+  const body = await (await handle(req('filings'), { env: {} })).json();assert.equal(body.filings.length, 2);assert.equal(body.status, 'limited_workspace');
   const health = await (await handle(req('health'), { env: {} })).json();assert.equal(health.saved_queries.configured, false);assert.equal(health.runtime.status, 'index_not_ready');
 });
 const env = { FINRAG_BACKEND_URL: 'https://engine.example', FINRAG_BACKEND_TOKEN: 'private-test-token' };

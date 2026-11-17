@@ -26,7 +26,7 @@ class WebApplication:
         filings = sorted({r.get("metadata", {}).get("accession") for r in records
                           if r.get("metadata", {}).get("accession")})
         return {"status": "ready" if ready else "index_not_ready",
-                "message": ("Accepted engine resources connected; answers still require matching evidence."
+                "message": ("Source-checked engine connected; each answer still requires matching evidence."
                             if ready else "No prepared BGE/FAISS/model engine is connected."),
                 "final_experiment_ready": False,
                 "supported_filings": filings,
@@ -87,6 +87,8 @@ class WebApplication:
             planning_request = {"issuer": request.company, "scope": request.scope,
                                 "periods": [{"kind": kind, "start": start, "end": end}]}
         options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" or mode == "auto" and not numerical else None
+        if numerical:
+            options = {"top_k_text": 0, "top_k_tables": 5, "expand_named_metric": True}
         if mode == "chart":
             options = {"top_k_text": 1, "top_k_tables": 0, "chart_only": True}
         result = self.app.answer_interactive(payload["question"], request=request,
