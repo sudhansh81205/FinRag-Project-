@@ -234,6 +234,7 @@ class InteractiveApplication:
         request: RequestConstraints | None = None,
         demo_only: bool = False,
         calculation_request=None,
+        retrieval_options=None,
     ) -> dict[str, Any]:
         """Answer one request, binding every result to validated request constraints.
 
@@ -299,7 +300,7 @@ class InteractiveApplication:
             result["request"] = asdict(constraints)
 
         if self.engine is not None:
-            return self._answer_with_engine(result, finish, question, constraints, calculation_plan, start, calculation_request)
+            return self._answer_with_engine(result, finish, question, constraints, calculation_plan, start, calculation_request, retrieval_options)
 
         # No engine: only caller-supplied included records or the explicit demo path may calculate.
         if calculation_plan is not None:
@@ -360,11 +361,17 @@ class InteractiveApplication:
                 return resolved
         return None
 
-    def _answer_with_engine(self, result, finish, question, constraints, calculation_plan, start, calculation_request=None):
+    def _answer_with_engine(self, result, finish, question, constraints, calculation_plan, start, calculation_request=None, retrieval_options=None):
         import time
 
         try:
             extra = {"calculation_request": calculation_request} if calculation_request is not None else {}
+            if retrieval_options is not None:
+                if (not isinstance(retrieval_options, dict) or set(retrieval_options) != {"top_k_text", "top_k_tables"}
+                        or any(type(v) is not int or not 0 <= v <= 10 for v in retrieval_options.values())
+                        or sum(retrieval_options.values()) < 1):
+                    return finish("invalid_request", "Use bounded explicit narrative/table retrieval limits.")
+                extra.update(retrieval_options)
             engine_res = self.engine.answer_financial_question(
                 question=question,
                 calculation_plan=calculation_plan,
@@ -397,6 +404,10 @@ class InteractiveApplication:
 
             checked = []
             for program in programs:
+                from src.llm.financial_semantics import validate_named_formula
+                semantic_problem = validate_named_formula(question, program, evidence)
+                if semantic_problem:
+                    return finish("insufficient_evidence", semantic_problem)
                 problem = validate_request_binding(constraints, program, evidence)
                 if problem:
                     return finish("insufficient_evidence", problem)

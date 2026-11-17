@@ -1,0 +1,10 @@
+{
+  "cases": 150,
+  "source_dataset_sha256": "75b9a31b1c3f1e3d2fc3723b119c21bd8fb192d092ac249da84bdf6703bb8c34",
+  "full_page_corpus_sha256": "3835be4be33b9abf6d4f655b54a91ca574f3d1669a6e3dd79483362112a9bd1a",
+  "bound_dataset_sha256": "cbce82c47ebdb08eeed55ed60a98f17cc5aea0d4bdf616a38fbb3fbb4ab02764",
+  "all_full_document_pages_attached": true,
+  "shortfalls": [],
+  "source_equivalent_engine_adapter": "pending",
+  "final_experiment_ready": false
+}

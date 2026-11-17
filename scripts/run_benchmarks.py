@@ -31,6 +31,8 @@ def main():
                         help="Directory to store run manifests and results.jsonl")
     parser.add_argument("--max-cases", type=int, default=None,
                         help="Optional limit on number of cases (e.g. for smoke/pilot runs)")
+    parser.add_argument("--data-path", type=Path,
+                        help="Explicit normalized dataset, e.g. output/benchmarks/official/finqa_candidate_universe.json; fixtures remain separate")
     parser.add_argument("--model-config", default="configs/gemma3-4b.json",
                         help="Model configuration JSON profile.")
     parser.add_argument("--gate", action="append", dest="available_gates", default=[],
@@ -68,6 +70,7 @@ def main():
         benchmark=args.benchmark,
         model_config_path=args.model_config,
         available_gates=detected_gates,
+        data_path=args.data_path,
     )
 
     print(f"Starting or resuming run for Variant {args.variant} on {args.benchmark} (available gates: {sorted(detected_gates)})...")

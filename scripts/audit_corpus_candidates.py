@@ -1,5 +1,11 @@
-"""Inspect and independently audit Likhit's Nov 13 corpus candidates with actual byte re-hashing."""
+"""R1/R2/R3/R13: reproduce sources/packages without manufacturing human acceptance.
 
+A successful automated byte/schema/count check is review preparation. Historical
+November15 reports are preserved. Original-source interpretation and independent
+human approval are separate from these checks.
+"""
+
+import argparse
 import gzip
 import hashlib
 import json
@@ -8,134 +14,89 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT))
+
+from src.indexing.store import validate_records  # noqa: E402
+
+
+def sha256(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def audit_candidates(coverage_path, output_path):
+    coverage_path, output_path = Path(coverage_path), Path(output_path)
+    coverage = json.loads(coverage_path.read_bytes())
+    profiles_path = ROOT / "data/corpus_html_profiles.json"
+    profiles = json.loads(profiles_path.read_bytes())
+    filings = {r["accession"]: r for r in json.loads((ROOT / "data/application_filings.json").read_bytes())}
+    rows, seen = [], set()
+    for row in coverage["filings"]:
+        accession = row["accession"]
+        errors = []
+        if accession in seen:
+            raise ValueError("Duplicate filing in coverage ledger")
+        seen.add(accession)
+        profile = profiles[accession]
+        raw = gzip.decompress((ROOT / "data/source/corpus" / f"{accession}.html.gz").read_bytes())
+        source_hashes = {"html": sha256(raw)}
+        if source_hashes["html"] != profile["sha256"]:
+            errors.append("Pinned source HTML hash mismatch")
+        if exhibit := profile.get("exhibit"):
+            payload = gzip.decompress((ROOT / "data/source/corpus" / (exhibit["filename"] + ".gz")).read_bytes())
+            source_hashes["exhibit_html"] = sha256(payload)
+            if source_hashes["exhibit_html"] != exhibit["sha256"]:
+                errors.append("Pinned exhibit hash mismatch")
+        filing = filings[accession]
+        if any(row.get(k) != filing[k] for k in ("ticker", "issuer", "period_end", "source_url")):
+            errors.append("Coverage filing identity mismatch")
+        package_path = coverage_path.parent / "records" / f"{accession}.json"
+        payload = package_path.read_bytes()
+        package = json.loads(payload)
+        if sha256(payload) != row.get("package_sha256"):
+            errors.append("Parsed package changed since coverage was recorded")
+        if any(package.get("source_sha256", {}).get(k) != v for k, v in source_hashes.items()):
+            errors.append("Package bound to different source bytes")
+        counts = {}
+        for variant in "ABC":
+            records = package["variants"][variant]["records"]
+            parents = package["variants"][variant]["parents"]
+            validate_records(records, parents)
+            counts[variant] = len(records)
+        if counts != row.get("candidate_counts"):
+            errors.append("Actual variant counts differ from coverage ledger")
+        if len(package["cells"]) != row.get("cells") or len(package["parents"]) != row.get("parent_tables"):
+            errors.append("Actual cell/parent counts differ from coverage ledger")
+        rows.append({"accession": accession, "ticker": filing["ticker"],
+                     "source_hashes": source_hashes, "package_sha256": sha256(payload),
+                     "counts": counts, "cells": len(package["cells"]),
+                     "parents": len(package["parents"]), "automated_checks_passed": not errors,
+                     "errors": errors, "independent_human_acceptance": "not_established"})
+    report = {
+        "schema_version": 2, "audit_type": "automated_source_and_package_reproduction",
+        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "coverage_sha256": sha256(coverage_path.read_bytes()),
+        "profiles_sha256": sha256(profiles_path.read_bytes()),
+        "declared_filings": len(filings), "checked_filings": len(rows),
+        "passed_filings": sum(r["automated_checks_passed"] for r in rows),
+        "all_declared_filings_present": seen == set(filings), "filings": rows,
+        "automated_checks_passed": bool(rows) and seen == set(filings) and all(r["automated_checks_passed"] for r in rows),
+        "independent_human_acceptance": "not_established", "index_acceptance": "not_established",
+        "note": "Automated predicates do not identify a human reviewer, certify source interpretation or open final experiment gates.",
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(report, indent=2) + "\n")
+    return report
 
 
 def main():
-    cov_path = ROOT / "docs/reports/2026-11-14_corpus-coverage.json"
-    profiles_path = ROOT / "data/corpus_html_profiles.json"
-    if not profiles_path.is_file():
-        raise FileNotFoundError(f"Pinned profiles file missing: {profiles_path}")
-
-    profiles = json.loads(profiles_path.read_text(encoding="utf-8"))
-    data = json.loads(cov_path.read_text(encoding="utf-8"))
-
-    print(f"Declared filings: {data['declared_filings']}")
-    print(f"Schema sha256: {data.get('schema_sha256')}")
-    print(f"Reload order verified: {data.get('reload_order_verified')}")
-
-    audit_records = []
-    total_a = 0
-    total_b = 0
-    total_c = 0
-    total_cells = 0
-    total_parents = 0
-
-    for f in data["filings"]:
-        acc = f["accession"]
-        ticker = f["ticker"]
-        parsed = f["parsed"]
-        indexed = f["indexed_for_review"]
-        cells = f.get("cells", 0)
-        parents = f.get("parent_tables", 0)
-        counts = f["candidate_counts"]
-        total_a += counts["A"]
-        total_b += counts["B"]
-        total_c += counts["C"]
-        total_cells += cells
-        total_parents += parents
-
-        # Strictly require a pinned profile in corpus_html_profiles.json
-        if acc not in profiles:
-            raise ValueError(f"Filing {acc} has no pinned profile in data/corpus_html_profiles.json")
-
-        expected_profile = profiles[acc]
-        profile_sha = expected_profile.get("sha256")
-        if not profile_sha:
-            raise ValueError(f"Profile for {acc} is missing 'sha256'")
-
-        # Re-hash actual uncompressed source HTML bytes from disk
-        gz_path = ROOT / "data/source/corpus" / f"{acc}.html.gz"
-        if gz_path.is_file():
-            raw_bytes = gzip.decompress(gz_path.read_bytes())
-        elif acc == "0000320193-21-000105":
-            fallback_raw = ROOT / "data/raw/aapl-20210925.browser.html"
-            fallback_gz = ROOT / "data/source/aapl-20210925.browser.html.gz"
-            if fallback_gz.is_file():
-                raw_bytes = gzip.decompress(fallback_gz.read_bytes())
-            elif fallback_raw.is_file():
-                raw_bytes = fallback_raw.read_bytes()
-            else:
-                raise FileNotFoundError(f"Missing source file for {acc}")
-        else:
-            raise FileNotFoundError(f"Missing source file for {acc} at {gz_path}")
-
-        computed_sha = hashlib.sha256(raw_bytes).hexdigest()
-        sha_match = computed_sha == profile_sha
-        if not sha_match:
-            raise ValueError(
-                f"Source byte hash {computed_sha} does not match pinned profile {profile_sha} for {acc}"
-            )
-
-        audit_entry = {
-            "accession": acc,
-            "ticker": ticker,
-            "issuer": f["issuer"],
-            "period_end": f["period_end"],
-            "parsed": parsed,
-            "indexed_for_review": indexed,
-            "candidate_counts": counts,
-            "cells": cells,
-            "parent_tables": parents,
-            "rehashed_source_sha256": computed_sha,
-            "profile_sha256": profile_sha,
-            "source_sha256_match": sha_match,
-            "independent_audit_decision": "ai_assisted_accepted",
-            "auditor_notes": (
-                f"Re-hashed {len(raw_bytes)} source bytes for {ticker} ({acc}) -> SHA-256 {computed_sha[:12]}... "
-                f"matches pinned profile. Matched counts: A={counts['A']}, B={counts['B']}, C={counts['C']}. "
-                f"Cells: {cells}, Parent tables: {parents}."
-            ),
-        }
-        audit_records.append(audit_entry)
-        print(f"  [OK] {ticker} ({acc}): {len(raw_bytes)} bytes re-hashed, sha256={computed_sha[:12]}... matches profile.")
-
-    print("\n--- Summary Totals ---")
-    print(f"Total Filings: {len(audit_records)}")
-    print(f"Total Passages A: {total_a}")
-    print(f"Total Passages B: {total_b}")
-    print(f"Total Passages C: {total_c}")
-    print(f"Total Table Cells: {total_cells}")
-    print(f"Total Parent Tables: {total_parents}")
-
-    report = {
-        "schema_version": 1,
-        "audit_type": "independent_corpus_and_index_audit",
-        "auditor_identity": "Ujjwal Chandak",
-        "auditor_github": "chandakujjwal6",
-        "audited_at": datetime.now(UTC).isoformat(),
-        "preceding_author": "Sri Sai Likhit Boddada (likhit-09B)",
-        "preceding_pr": "PR #12 (merged)",
-        "status": "ai_assisted_accepted",
-        "declared_filings_count": len(audit_records),
-        "total_passages_a": total_a,
-        "total_passages_b": total_b,
-        "total_passages_c": total_c,
-        "total_table_cells": total_cells,
-        "total_parent_tables": total_parents,
-        "filing_audits": audit_records,
-        "conclusion": (
-            f"All {len(audit_records)} filings (5 Apple, 5 Microsoft, and 8 technology issuers) independently "
-            "re-hashed from disk and verified against pinned SHA-256 profiles under AI-assisted inspection. "
-            "Matched representations A, B, and C verified with stable source-equivalent identities and valid parent grids."
-        ),
-    }
-
-    audit_out = ROOT / "docs/reports/2026-11-15_corpus_audit.json"
-    audit_out.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    print(f"\nSaved independent corpus audit report to {audit_out}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--coverage", type=Path, default=ROOT / "output/nov17/corpus/coverage.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/nov17/corpus/reproduction_audit.json")
+    args = parser.parse_args()
+    report = audit_candidates(args.coverage, args.output)
+    print(json.dumps({k: v for k, v in report.items() if k != "filings"}, indent=2))
+    return int(not report["automated_checks_passed"])
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

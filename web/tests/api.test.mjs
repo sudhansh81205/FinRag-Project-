@@ -67,3 +67,16 @@ test('local model gets a bounded answer deadline, separate from health', async (
   const r=await handle(req('health'),{env:{FINRAG_BACKEND_TIMEOUT_MS:limit}});assert.equal(r.status,502);
  }
 });
+
+test('loopback HTTP backend is explicit local development only; production remains HTTPS', async () => {
+  let calls = 0;
+  const localEnv = { FINRAG_BACKEND_URL: 'http://127.0.0.1:8000', FINRAG_BACKEND_TOKEN: 'private-test' };
+  const fetchImpl = async () => { calls++;return Response.json(answer); };
+  assert.equal((await handle(req('answer', valid), { env: localEnv, fetchImpl })).status, 502);
+  assert.equal(calls, 0);
+  assert.equal((await handle(req('answer', valid), { env: localEnv, fetchImpl, allowLocalBackend: true })).status, 200);
+  assert.equal(calls, 1);
+  const remoteEnv = { ...localEnv, FINRAG_BACKEND_URL: 'http://remote.example' };
+  assert.equal((await handle(req('answer', valid), { env: remoteEnv, fetchImpl, allowLocalBackend: true })).status, 502);
+  assert.equal(calls, 1);
+});

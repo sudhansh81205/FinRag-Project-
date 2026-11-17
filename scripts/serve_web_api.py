@@ -10,22 +10,45 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.config import load_settings  # noqa: E402
-from src.web_api import WebApplication, build_prepared_engine  # noqa: E402
+from src.web_api import WebApplication, build_prepared_engine, build_source_checked_engine  # noqa: E402
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
-    parser.add_argument("--enable-engine", action="store_true")
+    runtime = parser.add_mutually_exclusive_group()
+    runtime.add_argument("--enable-engine", action="store_true")
+    runtime.add_argument("--source-audit", type=Path,
+                         help="Bounded checked Apple development runtime; never final experiment acceptance")
     parser.add_argument("--variant", choices=["C", "D"], default="D")
     parser.add_argument("--tokenizer-dir")
+    parser.add_argument("--tokenizer-url", help="Existing local llama.cpp tokenizer service")
+    parser.add_argument("--gguf", type=Path, help="Existing generator GGUF file used by that service")
+    parser.add_argument("--gguf-sha256", help="Expected SHA-256 of the installed generator GGUF")
+    parser.add_argument("--model-cache", type=Path)
     args = parser.parse_args()
     token = os.environ.get("FINRAG_API_TOKEN", "")
     if len(token) < 32:
         parser.error("Set FINRAG_API_TOKEN to a private value of at least 32 characters.")
     settings = load_settings()
-    engine = build_prepared_engine(settings, variant=args.variant, tokenizer_dir=args.tokenizer_dir) if args.enable_engine else None
+    counter, tokenizer_id = None, None
+    if args.tokenizer_url:
+        if not args.gguf or not args.gguf_sha256:
+            parser.error("--tokenizer-url requires --gguf and --gguf-sha256")
+        from src.llm.token_budget import GGUFTokenCounter
+        counter = GGUFTokenCounter(args.tokenizer_url, args.gguf, args.gguf_sha256, server_root=ROOT)
+        tokenizer_id = counter.identity
+    if args.source_audit:
+        if counter is None:
+            parser.error("The bounded source runtime requires the identified installed GGUF tokenizer")
+        engine = build_source_checked_engine(settings, args.source_audit, token_counter=counter,
+                                              tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+    elif args.enable_engine:
+        engine = build_prepared_engine(settings, variant=args.variant, tokenizer_dir=args.tokenizer_dir,
+                                        token_counter=counter, tokenizer_id=tokenizer_id, model_cache=args.model_cache)
+    else:
+        engine = None
     app = WebApplication(settings, engine)
 
     class Handler(BaseHTTPRequestHandler):

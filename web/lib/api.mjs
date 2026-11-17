@@ -23,6 +23,7 @@ export function validateQuery(body) {
   const delta = (new Date(filing.period_end) - date) / 86400000;
   if (!(delta >= 0 && delta <= 10 || delta >= 355 && delta <= 375 || delta >= 720 && delta <= 745)) return 'The value period must belong to this filing or its prior two comparatives.';
   if (body.scope !== 'consolidated') return 'Only consolidated statements are supported.';
+  if (body.period_kind !== undefined && !['duration', 'instant'].includes(body.period_kind)) return 'Choose a fiscal-year total or year-end balance.';
   if (!['auto', 'narrative', 'numerical', 'chart'].includes(body.mode || 'auto')) return 'Choose a supported question type.';
   return '';
 }
@@ -37,9 +38,9 @@ async function upstream(fetchImpl, url, options = {}, timeout = 22000) {
 }
 function requestMatches(result, body) {
   const r = result.request;
-  return r && r.ticker === body.ticker && r.accession === body.accession && r.value_period_end === body.value_period_end && r.scope === body.scope;
+  return r && r.ticker === body.ticker && r.accession === body.accession && r.value_period_end === body.value_period_end && r.scope === body.scope && (body.period_kind === undefined || r.period_kind === body.period_kind);
 }
-export async function handle(request, { env = process.env, fetchImpl = fetch } = {}) {
+export async function handle(request, { env = process.env, fetchImpl = fetch, allowLocalBackend = false } = {}) {
   const url = new URL(request.url);
   const route = (url.searchParams.get('route') || url.pathname.replace(/^\/api\/?/, '')).replace(/^\/+|\/+$/g, '');
   try {
@@ -48,7 +49,7 @@ export async function handle(request, { env = process.env, fetchImpl = fetch } =
     const publicKey = env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY;
     const dbReady = Boolean(supabase && publicKey);
     const authReady = dbReady && env.SUPABASE_AUTH_READY === "true";
-    const backend = endpoint(env.FINRAG_BACKEND_URL, env.NODE_ENV !== 'production' && env.FINRAG_ALLOW_LOOPBACK_HTTP === 'true');
+    const backend = endpoint(env.FINRAG_BACKEND_URL, env.NODE_ENV !== 'production' && (allowLocalBackend || env.FINRAG_ALLOW_LOOPBACK_HTTP === 'true'));
     const answerTimeout = Number(env.FINRAG_BACKEND_TIMEOUT_MS || 240000);
     if (!Number.isInteger(answerTimeout) || answerTimeout < 1000 || answerTimeout > 240000) throw new Error('Invalid answer timeout');
     if (route === 'health' && request.method === 'GET') {

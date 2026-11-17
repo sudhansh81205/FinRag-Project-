@@ -1,0 +1,427 @@
+{
+  "repository": "patronus-ai/financebench",
+  "revision": "cc39aeb4afdf33909ee1412188bf89035950c2eb",
+  "selection": "all84documents_named_in_the_150_open_questions",
+  "files": [
+    {
+      "path": "pdfs/3M_2018_10K.pdf",
+      "sha": "abb98c81799b979c65b18c863a7a783d053945b6",
+      "size": 1252586
+    },
+    {
+      "path": "pdfs/3M_2022_10K.pdf",
+      "sha": "ac32e3076d5fc0378b5123b204eece5fc5d39dac",
+      "size": 1655681
+    },
+    {
+      "path": "pdfs/3M_2023Q2_10Q.pdf",
+      "sha": "d902fe2dc015721ce474b354fb3c8d6fb7a6501b",
+      "size": 5287301
+    },
+    {
+      "path": "pdfs/ACTIVISIONBLIZZARD_2019_10K.pdf",
+      "sha": "4ea850e23e0921c8df3376f5a8093fbeaa169045",
+      "size": 1274941
+    },
+    {
+      "path": "pdfs/ADOBE_2015_10K.pdf",
+      "sha": "aa6c90ecf4b620f14e78a013a53a836a64c8cee7",
+      "size": 1457725
+    },
+    {
+      "path": "pdfs/ADOBE_2016_10K.pdf",
+      "sha": "caf61c8dd39694a5e379c5ff74c108b2e83f2cc9",
+      "size": 4171413
+    },
+    {
+      "path": "pdfs/ADOBE_2017_10K.pdf",
+      "sha": "e126b7b52116e1a5650e7ac25469d6f55e07d679",
+      "size": 4028448
+    },
+    {
+      "path": "pdfs/ADOBE_2022_10K.pdf",
+      "sha": "76bc2937b5264bb3b92b1074912d069cc1cf9976",
+      "size": 620288
+    },
+    {
+      "path": "pdfs/AES_2022_10K.pdf",
+      "sha": "65ea6bb7e1ed0474779b0160a6f5101a47aec9c3",
+      "size": 4479324
+    },
+    {
+      "path": "pdfs/AMAZON_2017_10K.pdf",
+      "sha": "590ff1725b8f51a3809157db039da074c912b6c8",
+      "size": 627047
+    },
+    {
+      "path": "pdfs/AMAZON_2019_10K.pdf",
+      "sha": "aeb8567b4522635d943e02f367e610cff9fd9246",
+      "size": 619184
+    },
+    {
+      "path": "pdfs/AMCOR_2020_10K.pdf",
+      "sha": "001df3e4572424f8ca4b8e89370ea3a535c8d67c",
+      "size": 8364895
+    },
+    {
+      "path": "pdfs/AMCOR_2022_8K_dated-2022-07-01.pdf",
+      "sha": "778c0024d0e49abffa4b1adb0ea9f20c5bdf0248",
+      "size": 147921
+    },
+    {
+      "path": "pdfs/AMCOR_2023Q2_10Q.pdf",
+      "sha": "8ed88c1adf345b7be08217dcd64b4cb809afde03",
+      "size": 455017
+    },
+    {
+      "path": "pdfs/AMCOR_2023Q4_EARNINGS.pdf",
+      "sha": "3868d350122c8be7f7db63de5d7f875d826bf7b7",
+      "size": 244702
+    },
+    {
+      "path": "pdfs/AMCOR_2023_10K.pdf",
+      "sha": "3c8596d39a39cebdeef84e8fbfedc7231cbd8b7e",
+      "size": 1108309
+    },
+    {
+      "path": "pdfs/AMD_2015_10K.pdf",
+      "sha": "dacb9e66dab18b6da798eee9aacde2ba9162b3b7",
+      "size": 2474122
+    },
+    {
+      "path": "pdfs/AMD_2022_10K.pdf",
+      "sha": "9cc40ffc8ed20286a2c8ae5cc860816f05b9ce6e",
+      "size": 5122473
+    },
+    {
+      "path": "pdfs/AMERICANEXPRESS_2022_10K.pdf",
+      "sha": "da116dc7c7b79585ece010858ed1241b18d5353e",
+      "size": 2436166
+    },
+    {
+      "path": "pdfs/AMERICANWATERWORKS_2020_10K.pdf",
+      "sha": "9bd247cf7e924645df16b1856e14888671fa1777",
+      "size": 1437123
+    },
+    {
+      "path": "pdfs/AMERICANWATERWORKS_2021_10K.pdf",
+      "sha": "b716b0e0aece594ccb45d0006b183e49e24a1595",
+      "size": 1975636
+    },
+    {
+      "path": "pdfs/AMERICANWATERWORKS_2022_10K.pdf",
+      "sha": "36c472d4671d6bf59a1284cb477de17e0dc4872c",
+      "size": 2729077
+    },
+    {
+      "path": "pdfs/BESTBUY_2017_10K.pdf",
+      "sha": "1f876ed043f4e1c8dc146bc8aff1a66f5c5120a5",
+      "size": 776434
+    },
+    {
+      "path": "pdfs/BESTBUY_2019_10K.pdf",
+      "sha": "8c6aa64ecbca0b67df20e9dcf12442646e05de99",
+      "size": 782117
+    },
+    {
+      "path": "pdfs/BESTBUY_2023_10K.pdf",
+      "sha": "bf024d862a895af1fb75bdb632fa31aa04d746ad",
+      "size": 703034
+    },
+    {
+      "path": "pdfs/BESTBUY_2024Q2_10Q.pdf",
+      "sha": "7abf896d4a58dfd3ced2d3a03fe877351a94c3cf",
+      "size": 442386
+    },
+    {
+      "path": "pdfs/BLOCK_2016_10K.pdf",
+      "sha": "835a85395c69dd0462ed66c536d90d2e2310f707",
+      "size": 864350
+    },
+    {
+      "path": "pdfs/BLOCK_2020_10K.pdf",
+      "sha": "e5e8c07502b2be3b886ae79d7e67ccd6612ead1b",
+      "size": 1159158
+    },
+    {
+      "path": "pdfs/BOEING_2018_10K.pdf",
+      "sha": "1496f6ad88950b37f0733fcdad091097f9a4bd32",
+      "size": 967741
+    },
+    {
+      "path": "pdfs/BOEING_2022_10K.pdf",
+      "sha": "17884be94225d64ef32cf97edcf2ee5164251d00",
+      "size": 1366995
+    },
+    {
+      "path": "pdfs/COCACOLA_2017_10K.pdf",
+      "sha": "340399e1fd68b05f4efbdba60985302d23c6689e",
+      "size": 1790599
+    },
+    {
+      "path": "pdfs/COCACOLA_2021_10K.pdf",
+      "sha": "ed330eb7fa976673895294e6d5162691b1fce08b",
+      "size": 9762541
+    },
+    {
+      "path": "pdfs/COCACOLA_2022_10K.pdf",
+      "sha": "eceb731f67dd9ca43bdab6b2eb40e6fff957022e",
+      "size": 9485744
+    },
+    {
+      "path": "pdfs/CORNING_2020_10K.pdf",
+      "sha": "5f0f7ff9d8d990ff72bf183fdb64c2d898b9d6e4",
+      "size": 1180865
+    },
+    {
+      "path": "pdfs/CORNING_2021_10K.pdf",
+      "sha": "f8db7c6e99706f8cb81ab5c6eb18a156daaeff29",
+      "size": 1131912
+    },
+    {
+      "path": "pdfs/CORNING_2022_10K.pdf",
+      "sha": "feb04ff6269eff891b771c5ee082654bf78fe504",
+      "size": 1399926
+    },
+    {
+      "path": "pdfs/COSTCO_2021_10K.pdf",
+      "sha": "8969f7a2601c92a9a1a65fcd137b94a868074e29",
+      "size": 765319
+    },
+    {
+      "path": "pdfs/CVSHEALTH_2018_10K.pdf",
+      "sha": "86b69cd2963a6b0a35491d8ffcf08da01c9680eb",
+      "size": 1868195
+    },
+    {
+      "path": "pdfs/CVSHEALTH_2022_10K.pdf",
+      "sha": "305551b7e76f8ba9c4b43892b13d978c58b3f3de",
+      "size": 1898137
+    },
+    {
+      "path": "pdfs/FOOTLOCKER_2022_8K_dated-2022-05-20.pdf",
+      "sha": "b9ca923a7e0e728e8656613c4f27b24c52a2ce8a",
+      "size": 116133
+    },
+    {
+      "path": "pdfs/FOOTLOCKER_2022_8K_dated_2022-08-19.pdf",
+      "sha": "924c90464df67e3f65c9ffe47df6e3f2cf3f087d",
+      "size": 316459
+    },
+    {
+      "path": "pdfs/GENERALMILLS_2019_10K.pdf",
+      "sha": "54ff2e0b33984f2b4ce028005d39d1fb7c057b37",
+      "size": 920782
+    },
+    {
+      "path": "pdfs/GENERALMILLS_2020_10K.pdf",
+      "sha": "aa43c2cd625b8823619e216003cd9673fbe9f37c",
+      "size": 2342475
+    },
+    {
+      "path": "pdfs/GENERALMILLS_2022_10K.pdf",
+      "sha": "5f269a36d3d616eef9b08466badd76db0ae607ff",
+      "size": 1083414
+    },
+    {
+      "path": "pdfs/JOHNSON_JOHNSON_2022Q4_EARNINGS.pdf",
+      "sha": "759d000650c2aea41356f9a6f4229be62fe977f3",
+      "size": 729392
+    },
+    {
+      "path": "pdfs/JOHNSON_JOHNSON_2022_10K.pdf",
+      "sha": "eba313ca98f81a2cabc19c7dd931c92c3def3a66",
+      "size": 1941368
+    },
+    {
+      "path": "pdfs/JOHNSON_JOHNSON_2023Q2_EARNINGS.pdf",
+      "sha": "0da3128432142f265e2b703a40d2f8adc904300a",
+      "size": 1212840
+    },
+    {
+      "path": "pdfs/JOHNSON_JOHNSON_2023_8K_dated-2023-08-30.pdf",
+      "sha": "f4fa338d9d15baa099a60468e66df0c87e106d52",
+      "size": 455282
+    },
+    {
+      "path": "pdfs/JPMORGAN_2021Q1_10Q.pdf",
+      "sha": "ae433e63725e78d0132001bfafe5bcdc97f65b26",
+      "size": 2285253
+    },
+    {
+      "path": "pdfs/JPMORGAN_2022Q2_10Q.pdf",
+      "sha": "f6b21788fd5277349db5e3e513d9326a5f811769",
+      "size": 2290421
+    },
+    {
+      "path": "pdfs/JPMORGAN_2022_10K.pdf",
+      "sha": "d5261349ab800bad30422bc05dedaa8ad2a329b5",
+      "size": 6947859
+    },
+    {
+      "path": "pdfs/JPMORGAN_2023Q2_10Q.pdf",
+      "sha": "c43dd56d3917d866ad3404b102bf6ea769000360",
+      "size": 2573600
+    },
+    {
+      "path": "pdfs/KRAFTHEINZ_2019_10K.pdf",
+      "sha": "4068e6bd710c89d1752497245b0a9b6deff58a93",
+      "size": 1531923
+    },
+    {
+      "path": "pdfs/LOCKHEEDMARTIN_2020_10K.pdf",
+      "sha": "bc86a5da3b2ddc9cc829da67958f69b922afa4ad",
+      "size": 1372193
+    },
+    {
+      "path": "pdfs/LOCKHEEDMARTIN_2021_10K.pdf",
+      "sha": "9360fa058239be76eaa65278a140af57088f84d0",
+      "size": 1347017
+    },
+    {
+      "path": "pdfs/LOCKHEEDMARTIN_2022_10K.pdf",
+      "sha": "4f9c32b55353726417b1021c919012020fcb102b",
+      "size": 1398312
+    },
+    {
+      "path": "pdfs/MGMRESORTS_2018_10K.pdf",
+      "sha": "80764cd60ba86b4f343dd29d3fbabc38c1570138",
+      "size": 1421540
+    },
+    {
+      "path": "pdfs/MGMRESORTS_2020_10K.pdf",
+      "sha": "efd195f187164ad95b4251e15f67985adf1f78d9",
+      "size": 1383002
+    },
+    {
+      "path": "pdfs/MGMRESORTS_2022Q4_EARNINGS.pdf",
+      "sha": "8fee8e110352e31f9e9a3c04d5a26d1a7926a361",
+      "size": 737922
+    },
+    {
+      "path": "pdfs/MGMRESORTS_2022_10K.pdf",
+      "sha": "87bc94d8dbfa31ca1bc93ff138b448823845d4ca",
+      "size": 1755866
+    },
+    {
+      "path": "pdfs/MGMRESORTS_2023Q2_10Q.pdf",
+      "sha": "4c1d85b158083977504d11fb8a39612b4d424c89",
+      "size": 661891
+    },
+    {
+      "path": "pdfs/MICROSOFT_2016_10K.pdf",
+      "sha": "9518394bd80b8e55ae50374045e7d6d2bd42bcce",
+      "size": 838415
+    },
+    {
+      "path": "pdfs/MICROSOFT_2023_10K.pdf",
+      "sha": "6f854500dd98a858d01eb81e4be859548d06c91e",
+      "size": 726155
+    },
+    {
+      "path": "pdfs/NETFLIX_2015_10K.pdf",
+      "sha": "760e1d5c344c3fe31c14ac367a4a8789f239b5b0",
+      "size": 578489
+    },
+    {
+      "path": "pdfs/NETFLIX_2017_10K.pdf",
+      "sha": "8e5a584c32cd03d8ca615018fdbe14556e7eda63",
+      "size": 651011
+    },
+    {
+      "path": "pdfs/NIKE_2018_10K.pdf",
+      "sha": "273e6ebbedcb48346495f4bb50ac887991a5c858",
+      "size": 962221
+    },
+    {
+      "path": "pdfs/NIKE_2019_10K.pdf",
+      "sha": "1171f82c2fe1db05766014612150a703225362a4",
+      "size": 909932
+    },
+    {
+      "path": "pdfs/NIKE_2021_10K.pdf",
+      "sha": "63761b6954735b2d057424e8a056c82bb58ffdb7",
+      "size": 877882
+    },
+    {
+      "path": "pdfs/NIKE_2023_10K.pdf",
+      "sha": "a37516e7887338a6640bba36dae93943ff08aa97",
+      "size": 3463188
+    },
+    {
+      "path": "pdfs/PAYPAL_2022_10K.pdf",
+      "sha": "386c8e47ac482e2ffb6dad3b5be1bb2af3ecfd2d",
+      "size": 4371232
+    },
+    {
+      "path": "pdfs/PEPSICO_2021_10K.pdf",
+      "sha": "e59a31ad864f615431502b54118979a3d59ade78",
+      "size": 2139398
+    },
+    {
+      "path": "pdfs/PEPSICO_2022_10K.pdf",
+      "sha": "134ea1bdc7845749d42407fe0eade31034e117c6",
+      "size": 2993516
+    },
+    {
+      "path": "pdfs/PEPSICO_2023Q1_EARNINGS.pdf",
+      "sha": "3d804f262df68fc7fdc08ea53ff020fd828256ba",
+      "size": 987394
+    },
+    {
+      "path": "pdfs/PEPSICO_2023_8K_dated-2023-05-05.pdf",
+      "sha": "62aa4249b7ac0f2f12a7028ff7c74511ea7d1e71",
+      "size": 102321
+    },
+    {
+      "path": "pdfs/PEPSICO_2023_8K_dated-2023-05-30.pdf",
+      "sha": "f052f1a5162fdb989d095e68d338a3c053a1e5db",
+      "size": 1460889
+    },
+    {
+      "path": "pdfs/PFIZER_2021_10K.pdf",
+      "sha": "48068532737cfa8ea27f898c1572b8901b7ccf1d",
+      "size": 1171782
+    },
+    {
+      "path": "pdfs/Pfizer_2023Q2_10Q.pdf",
+      "sha": "3b81e029708bab90de3e511dbc1bb029e744aee3",
+      "size": 743533
+    },
+    {
+      "path": "pdfs/ULTABEAUTY_2023Q4_EARNINGS.pdf",
+      "sha": "d88813e10c0992f31c683a1f6a73ba37632f45d7",
+      "size": 99758
+    },
+    {
+      "path": "pdfs/ULTABEAUTY_2023_10K.pdf",
+      "sha": "da46ba0a72de42552a5c0f9ae0801f19e513d494",
+      "size": 4954215
+    },
+    {
+      "path": "pdfs/VERIZON_2021_10K.pdf",
+      "sha": "b881c9eb795f024055ffdb16b3e7d43af59a50b3",
+      "size": 2098068
+    },
+    {
+      "path": "pdfs/VERIZON_2022_10K.pdf",
+      "sha": "92473150ab26a2f8419989bcd2d825c760424f8c",
+      "size": 2315268
+    },
+    {
+      "path": "pdfs/WALMART_2018_10K.pdf",
+      "sha": "b2a5c9c96d60f8c1c689437a26f9b409ce3f8f17",
+      "size": 1599075
+    },
+    {
+      "path": "pdfs/WALMART_2019_10K.pdf",
+      "sha": "7da6857bbca8b38efba99ee22a3ee14630f6a839",
+      "size": 7211754
+    },
+    {
+      "path": "pdfs/WALMART_2020_10K.pdf",
+      "sha": "d72cdbf95f9163423470c284cdda3550daeba4df",
+      "size": 1132390
+    }
+  ]
+}
