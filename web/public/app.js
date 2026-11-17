@@ -187,7 +187,7 @@ function renderAnswer(result) {
   card.append(content);
   if (checkedValue) {
     const displayValue = checkedValue.replace(/^(-?\d+)(.*)$/, (_match, integer, rest) => integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + rest);
-    content.replaceChildren(element('div', displayValue, 'answer-value'), element('p', 'Calculated from the cited filing values.'));
+    content.replaceChildren(element('div', displayValue, 'answer-value'), element('p', result.generation?.executed === false ? 'Calculated from cited filing values. No model-written explanation was used.' : 'Calculated from the cited filing values.'));
     const exact = element('details', undefined, 'technical-details');exact.append(element('summary', 'Exact answer and source identifiers'), element('pre', result.answer));content.append(exact);
   }
   if (result.status === 'ok') {

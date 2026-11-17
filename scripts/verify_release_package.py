@@ -31,6 +31,7 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "tests/test_calculation_explanation.py",
     "START_HERE.txt",
     "ATTRIBUTION.md",
     "docs/SETUP.md",

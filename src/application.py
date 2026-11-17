@@ -386,11 +386,12 @@ class InteractiveApplication:
             if retrieval_options is not None:
                 if (not isinstance(retrieval_options, dict)
                         or not {"top_k_text", "top_k_tables"} <= set(retrieval_options)
-                        or set(retrieval_options) - {"top_k_text", "top_k_tables", "chart_only", "chart_asset_id", "expand_named_metric"}
+                        or set(retrieval_options) - {"top_k_text", "top_k_tables", "chart_only", "chart_asset_id", "expand_named_metric", "skip_calculation_explanation"}
                         or any(type(retrieval_options[key]) is not int or not 0 <= retrieval_options[key] <= 10
                                for key in ("top_k_text", "top_k_tables"))
                         or sum(retrieval_options[key] for key in ("top_k_text", "top_k_tables")) < 1
                         or type(retrieval_options.get("expand_named_metric", False)) is not bool
+                        or type(retrieval_options.get("skip_calculation_explanation", False)) is not bool
                         or type(retrieval_options.get("chart_only", False)) is not bool
                         or ("chart_asset_id" in retrieval_options and not isinstance(retrieval_options["chart_asset_id"], str))):
                     return finish("invalid_request", "Use bounded explicit narrative/table retrieval limits.")
@@ -449,6 +450,8 @@ class InteractiveApplication:
         if conflict:
             return finish("invalid_request", conflict)
         result.update(evidence=evidence, calculations=engine_res.get("calculations", []))
+        if isinstance(engine_res.get("generation"), dict):
+            result["generation"] = engine_res["generation"]
         finish("ok", engine_res.get("message", ""), answer=engine_res.get("answer", ""))
         result["latency_seconds"] = engine_res.get("latency_seconds", round(time.monotonic() - start, 3))
         return result

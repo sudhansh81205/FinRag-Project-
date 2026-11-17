@@ -1,0 +1,252 @@
+{
+  "status": "ok",
+  "question": "What was NVIDIA gross margin in FY2024?",
+  "answer": "Verified result: 72.72%. Exact result: 72.71757329043695216834641016 percent.\nProgram (normalized source values): ratio_percent(44301000000, 60922000000).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4], [0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0]",
+  "message": "Calculated from cited source values with checked financial rules.",
+  "latency_seconds": 0.28,
+  "route": "exact_engine",
+  "provider": "typed_calculator",
+  "model": null,
+  "evidence": [
+    {
+      "evidence_id": "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4",
+      "metadata": {
+        "accession": "0001045810-24-000029",
+        "ticker": "NVDA",
+        "cik": "0001045810",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+        "filing_id": "0001045810-24-000029",
+        "company": "NVIDIA Corporation",
+        "fiscal_year": 2024,
+        "filing_period_end": "2024-01-28",
+        "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+        "source_file": "0001045810-24-000029.html",
+        "record_schema_version": 1,
+        "parser_version": "sec-ixbrl-corpus-v1",
+        "section": "Item 8",
+        "period_kind": "duration",
+        "period_start": "2023-01-30",
+        "period_end": "2024-01-28",
+        "metric": "us-gaap:GrossProfit",
+        "unit": "USD",
+        "currency": "USD",
+        "scale_power10": 6,
+        "normalized_value": 44301000000,
+        "xbrl_sign": null,
+        "context_ref": "c-1",
+        "unit_ref": "usd",
+        "dimensions": {},
+        "table_title": "Income statement",
+        "column_header": "2024-01-28",
+        "periods_json": "[2024, 2023, 2022]",
+        "headers_json": "[\"2024-01-28\", \"2023-01-29\", \"2022-01-30\"]",
+        "normalized_value_decimal": "44301000000",
+        "raw_unit": "(In millions, except per share data)",
+        "normalized_unit": "USD",
+        "scale": 1000000,
+        "scope": "consolidated",
+        "row_label": "Gross profit",
+        "row_headers": [
+          "Gross profit"
+        ],
+        "row_group": "",
+        "column_headers": [
+          "2024-01-28"
+        ],
+        "row_index": 5,
+        "column_index": 3,
+        "raw_value": "44,301",
+        "footnote_links": [],
+        "type": "table_cell",
+        "content_sha256": "16b674edec0bfdf484016c4b5b8dcd867b2ece8afb326b1dcdfad98efbadc2f8",
+        "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(785) > table:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2)",
+        "source_anchor": null,
+        "parent_table_id": "0001045810-24-000029:financial_table:4e4301ef0cf3e1a2:503d7837f22e9913",
+        "units_json": "{\"declared_text\": \"(In millions, except per share data)\"}"
+      },
+      "content": "NVIDIA Corporation | Income statement | Gross profit | 2024-01-28 | 44,301 | (In millions, except per share data) | us-gaap:GrossProfit | 44301000000 USD"
+    },
+    {
+      "evidence_id": "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0",
+      "metadata": {
+        "accession": "0001045810-24-000029",
+        "ticker": "NVDA",
+        "cik": "0001045810",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+        "filing_id": "0001045810-24-000029",
+        "company": "NVIDIA Corporation",
+        "fiscal_year": 2024,
+        "filing_period_end": "2024-01-28",
+        "source_sha256": "848799566c7f5ca7e0fcf0ec771f936d7b567bac659baac4a62cfd96d4311235",
+        "source_file": "0001045810-24-000029.html",
+        "record_schema_version": 1,
+        "parser_version": "sec-ixbrl-corpus-v1",
+        "section": "Item 8",
+        "period_kind": "duration",
+        "period_start": "2023-01-30",
+        "period_end": "2024-01-28",
+        "metric": "us-gaap:Revenues",
+        "unit": "USD",
+        "currency": "USD",
+        "scale_power10": 6,
+        "normalized_value": 60922000000,
+        "xbrl_sign": null,
+        "context_ref": "c-1",
+        "unit_ref": "usd",
+        "dimensions": {},
+        "table_title": "Income statement",
+        "column_header": "2024-01-28",
+        "periods_json": "[2024, 2023, 2022]",
+        "headers_json": "[\"2024-01-28\", \"2023-01-29\", \"2022-01-30\"]",
+        "normalized_value_decimal": "60922000000",
+        "raw_unit": "(In millions, except per share data)",
+        "normalized_unit": "USD",
+        "scale": 1000000,
+        "scope": "consolidated",
+        "row_label": "Revenue",
+        "row_headers": [
+          "Revenue"
+        ],
+        "row_group": "",
+        "column_headers": [
+          "2024-01-28"
+        ],
+        "row_index": 3,
+        "column_index": 4,
+        "raw_value": "$ 60,922",
+        "footnote_links": [],
+        "type": "table_cell",
+        "content_sha256": "c2c6bbe602fc9da05c5042ca3973aaf55f9e590bf19b1501b7da9876589d44f7",
+        "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(785) > table:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3)",
+        "source_anchor": null,
+        "parent_table_id": "0001045810-24-000029:financial_table:4e4301ef0cf3e1a2:503d7837f22e9913",
+        "units_json": "{\"declared_text\": \"(In millions, except per share data)\"}"
+      },
+      "content": "NVIDIA Corporation | Income statement | Revenue | 2024-01-28 | $ 60,922 | (In millions, except per share data) | us-gaap:Revenues | 60922000000 USD"
+    }
+  ],
+  "calculations": [
+    {
+      "status": "ok",
+      "result": "72.71757329043695216834641016",
+      "unit": "percent",
+      "currency": null,
+      "expression": "ratio_percent([0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4], [0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0])",
+      "program": {
+        "issuer": "NVIDIA Corporation",
+        "scope": "consolidated",
+        "periods": [
+          {
+            "kind": "duration",
+            "start": "2023-01-30",
+            "end": "2024-01-28"
+          }
+        ],
+        "expression": {
+          "op": "ratio_percent",
+          "args": [
+            {
+              "evidence_id": "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4"
+            },
+            {
+              "evidence_id": "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+            }
+          ]
+        }
+      },
+      "operand_ids": [
+        "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4",
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+      ],
+      "operands": {
+        "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4": {
+          "company": "NVIDIA Corporation",
+          "metric": "us-gaap:GrossProfit",
+          "scope": "consolidated",
+          "table_title": "Income statement",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(785) > table:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2)",
+          "accession": "0001045810-24-000029",
+          "raw_value": "44,301",
+          "raw_unit": "(In millions, except per share data)",
+          "normalized_unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value_decimal": "44301000000",
+          "period_kind": "duration",
+          "period_start": "2023-01-30",
+          "period_end": "2024-01-28"
+        },
+        "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0": {
+          "company": "NVIDIA Corporation",
+          "metric": "us-gaap:Revenues",
+          "scope": "consolidated",
+          "table_title": "Income statement",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+          "source_locator": "html:nth-of-type(1) > body:nth-of-type(1) > div:nth-of-type(785) > table:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3)",
+          "accession": "0001045810-24-000029",
+          "raw_value": "$ 60,922",
+          "raw_unit": "(In millions, except per share data)",
+          "normalized_unit": "USD",
+          "currency": "USD",
+          "scale_power10": 6,
+          "normalized_value_decimal": "60922000000",
+          "period_kind": "duration",
+          "period_start": "2023-01-30",
+          "period_end": "2024-01-28"
+        }
+      },
+      "rule_trace": [
+        {
+          "rule_id": "cited_value_fact",
+          "premises": [
+            "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4"
+          ],
+          "outcome": "pass"
+        },
+        {
+          "rule_id": "cited_value_fact",
+          "premises": [
+            "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+          ],
+          "outcome": "pass"
+        },
+        {
+          "rule_id": "ratio_percent",
+          "premises": [
+            "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4",
+            "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+          ],
+          "outcome": "pass",
+          "normalized_inputs": [
+            "44301000000",
+            "60922000000"
+          ],
+          "result": "72.71757329043695216834641016",
+          "unit": "percent",
+          "note": null
+        }
+      ],
+      "decimal_precision": 28
+    }
+  ],
+  "chart_info": null,
+  "request": {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corporation",
+    "accession": "0001045810-24-000029",
+    "filing_period_end": "2024-01-28",
+    "value_period_end": "2024-01-28",
+    "scope": "consolidated",
+    "period_kind": "duration"
+  },
+  "evidence_origin": "engine_retrieved",
+  "generation": {
+    "executed": false,
+    "reason": "Source-bound calculation; model explanation was not requested."
+  },
+  "included_evidence_ids": [
+    "0001045810-24-000029:table_cell:232fc8cb0c37fb9f:16b674edec0bfdf4",
+    "0001045810-24-000029:table_cell:c93dd52bf771bca8:c2c6bbe602fc9da0"
+  ]
+}

@@ -137,6 +137,14 @@ expired sessions clear the signed-in label. No refresh token/service-role key is
 stored in browser storage. Two approved synthetic accounts previously passed actual
 local/production sign-in and owner-isolation tests and were then deleted.
 
+Known numerical questions use the explicitly identified typed-calculator route:
+the original source values, licensed expression and exact Decimal result are the
+answer, with no optional model-written explanation. This avoids losing a valid
+calculation to a prose-generation timeout. Narrative answers still use the pinned
+model. Matched A-G defaults remain unchanged and cannot reuse interactive timing
+as controlled-experiment evidence. Unknown programs may still require a real
+model proposal; missing/ambiguous premises must refuse.
+
 5. FILING PREPARATION AND SELECTION
 
 The data/application_filings.json registry lists exact issuer/accession/form/period

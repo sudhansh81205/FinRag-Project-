@@ -14,3 +14,5 @@ git status --short
 .venv/bin/python scripts/run_local_workspace.py --status
 Read docs/reports/2026-11-18_final-completion.md and output/final-checks/.
 Use .venv/bin/python; system Python lacks requests. Keep .env/local-service.json private. Reuse healthy services; no automatic resumption/scheduler configured.
+
+Late repair: known interactive calculations no longer wait for optional model prose. Provider typed_calculator/model null/generation false are explicit; narrative and A-G defaults unchanged. All18 revenues passed in4.48s, NVIDIA72.72%in0.28s, five focused regressions pass. Full regression rerun is still running in output/final-checks/pytest-final.txt. PR22 Final commit is open; oldPR21closed/unmerged; CF05 deployment and first CI passed. Publish the follow-up repair, reload verified API after tests/no active jobs, redeploy22reviewedfiles, then complete hosted/CI/receipt/WorkHub updates.

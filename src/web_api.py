@@ -88,7 +88,7 @@ class WebApplication:
             return failure("invalid_request", "The year in your question differs from the selected filing period. Select matching evidence first.")
         options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" or mode == "auto" and not numerical else None
         if numerical:
-            options = {"top_k_text": 0, "top_k_tables": 5, "expand_named_metric": True}
+            options = {"top_k_text": 0, "top_k_tables": 5, "expand_named_metric": True, "skip_calculation_explanation": True}
         if mode == "chart":
             options = {"top_k_text": 1, "top_k_tables": 0, "chart_only": True}
         result = self.app.answer_interactive(payload["question"], request=request,

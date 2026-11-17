@@ -52,4 +52,12 @@ Mapping: R1/R2/R3/R6/R13 use source-bound registry/index eligibility (commonA-G)
 
 Remaining manual/external limits: original-chart/source acceptance; complete source-bound final experiments and independent outputaudit; actual end-user confirmationemail; owner collaborator/settings/merge actions; permanent unattended backend; clean-machinefullrestore and course submission/acknowledgement. The approved laptop-backed HTTPS path must remain running. No claim of universal question answering, final study completion or coursework submission is made.
 
+## Late numerical explanation-timeout repair
+
+The first protected deployment (`cf05be8`, deployment `dpl_4fyePCkNxv4C6czeF1zACV3mUQjt`) passed Apple2025 and IBM2024 queued answers, but NVIDIA gross margin exposed an unnecessary dependency: validated math was waiting for optional generated prose and eventually returned a real model timeout. Polling also encountered transient CLI transport timeouts; failed attempts were retained in the work record, not counted as successes.
+
+Known interactive numerical programs now return the checked calculation directly, with `provider=typed_calculator`, `model=null` and `generation.executed=false`. The interface explicitly says no model-written explanation was used. No provider fallback or fabricated text is involved. Missing/wrong-source operands still fail, mock engines cannot become live successes, narrative answers still generate, and the default A-G/model-failure path is unchanged. The application rechecks the operation and source premises before publishing the result.
+
+Actual post-repair checks: all18filing revenues passed with accession isolation in4.48seconds total; NVIDIA gross margin72.72%passed locally in0.28seconds. These are interactive application timings, not A-G benchmark results. Five focused regression cases passed; final full-suite and hosted recheck receipts follow with the final implementation revision.
+
 Final local regression: **567 Python tests passed**,3 FAISS/SWIG deprecation warnings,72.77 seconds. **22 Node tests passed**; Ruff,JavaScriptsyntax,source/indexcoverage,chartintegrity and PDFtextbounds passed. All three workbook sheets were rendered and inspected; formulas showed no errors. The PDF has20 pages,allrendered and visually checked. The earlier cleanup collection failure was corrected by restoring the required refusal-only compatibility function.

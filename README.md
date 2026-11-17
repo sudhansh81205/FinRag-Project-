@@ -10,6 +10,7 @@ Start with [START_HERE.txt](START_HERE.txt), the current plain-text startup and 
 - The source-checked runtime exposes every indexed filing. Both web and Gradio derive selections from the registry. Each question stays bound to the selected company, exact accession and value period.
 - Research, Filings and Saved Questions; original source/citation inspector, checked calculations and JSON export. Selection edits clear prior answers.
 - Email/password sign-in and private per-user save/read/delete. Records live in Supabase and survive page refresh; session expiry requires signing in again. No service-role key is used.
+- Known numerical questions return the validated source-bound calculation without optional model-written prose. The result explicitly identifies the typed calculator; narrative questions and matched experiment defaults retain model generation.
 - Hosted workspace: https://finrag-workspace.vercel.app/ (Vercel Authentication). The approved temporary HTTPS backend still depends on Rushil's laptop remaining awake.
 
 ## Start on the prepared laptop

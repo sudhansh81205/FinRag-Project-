@@ -47,7 +47,7 @@ class FinRAGEngine:
         self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
         rerank_top_n: int = 5, *, _baseline: bool = False, calculation_plan=None, calculation_request=None,
         filters=None,
-        chart_only=False, chart_asset_id=None, expand_named_metric=False,
+        chart_only=False, chart_asset_id=None, expand_named_metric=False, skip_calculation_explanation=False,
     ) -> dict[str, Any]:
         start = time.monotonic()
         result = {
@@ -68,6 +68,8 @@ class FinRAGEngine:
 
         if calculation_plan is not None and calculation_request is not None:
             return finish("invalid_request", "Supply a calculation plan or a constrained planning request, not both.")
+        if type(skip_calculation_explanation) is not bool:
+            return finish("invalid_request", "Calculation explanation selection must be boolean.")
         if (type(chart_only) is not bool or chart_only and not self.enable_chart_descriptions
                 or chart_asset_id is not None and not isinstance(chart_asset_id, str)):
             return finish("index_not_ready", "Approved chart execution is unavailable for this engine.")
@@ -236,6 +238,14 @@ class FinRAGEngine:
                 if calculation["status"] != "ok":
                     result["error_code"] = calculation["error_code"]
                     return finish("service_error" if calculation["status"] == "service_error" else "insufficient_evidence", calculation["message"])
+                if skip_calculation_explanation and program is not None:
+                    if self.llm_client.provider not in {"gemini", "ollama"}:
+                        return finish("service_error", "An explicitly configured real provider is required; mock/automatic engines are not live sources.")
+                    # Interactive mode explicitly requests the licensed calculation,
+                    # not optional generated prose. Matched A-G defaults still generate.
+                    result.update(answer=render_result(calculation), provider="typed_calculator", model=None,
+                                  generation={"executed": False, "reason": "Source-bound calculation; model explanation was not requested."})
+                    return finish("ok", "Calculated from cited source values with checked financial rules.")
                 import json
                 summary = {k: calculation[k] for k in ("program", "result", "unit", "operand_ids")}
                 summary["rule_notes"] = [r["note"] for r in calculation["rule_trace"] if r.get("note")]
