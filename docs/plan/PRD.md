@@ -10,7 +10,7 @@ November 17 is the operative user-requested submission deadline. Its exact cutof
 
 Exactly one named member owns project work on each date, including implementation, reviews, meetings, monitoring and handoffs. No off-day background tasks are assigned. Frozen deterministic jobs may run unattended; only the current owner actively manages or validates them. Hours are estimates, not measured effort. Preserve the seven-member roster without Harshil, historical assignments through November 11, and authorized early completion of the first Sudhansh and Shanay tasks.
 
-PRD.md and FinRAG_PRD.docx are the current canonical representations. TASK_REQUIREMENTS.md and schedule.json derive the execution plan; COURSE_ALIGNMENT.md and EVIDENCE_CONTRACT.md explain controls. Archive old plans and preserve dated reviews. Source documents do not themselves authorize publication, messages, spending or credential use.
+This is the canonical PRD. COURSE_ALIGNMENT.md and EVIDENCE_CONTRACT.md explain controls. Earlier PRD versions and daily reviews are recorded in Git history. Source documents do not themselves authorize publication, messages, spending or credential use.
 
 ## What the project does
 
@@ -106,7 +106,7 @@ Capacity separates generation, extraction/captioning and RAGAS machine time. Mul
 
 ## Remaining daily plan
 
-TASK_REQUIREMENTS.md gives ordered steps and verification. Each block includes reading prior handoff, work, checks and a new handoff; failed dependencies stay explicit.
+Each block includes checking prior outputs, implementation and verification. Failed dependencies stay explicit.
 
 | Date | Sole owner | Estimate | Deliverable |
 | --- | --- | --- | --- |

@@ -8,7 +8,7 @@
 
 ---
 
-Review update: the current implementation,530Python/17Node checks, queued real narrative/numerical demonstration and hosting blockers are documented in [the deployment review](2026-11-17_code-review.md). Historical observations below retain their original scope; no final evaluation or submission is inferred.
+For the subsequent application delivery and research acceptance status, see the [final completion report](2026-11-18_final-completion.md).
 
 ## 1. Introduction
 
@@ -170,7 +170,7 @@ AI coding assistants (Claude Code, Antigravity and Codex) were utilized for code
 
 
 ## November17 implementation evidence
-See `docs/handoffs/2026-11-17_runtime-completion.md` and `docs/reports/2026-11-17_runtime-verification.json` for current checks, exact hashes and reproducible commands. The refreshed six-slide binary has been rendered and visually inspected as recorded there. The backup walkthrough remains a written procedure, not a recorded video. The acknowledgement remains PREPARED_NOT_SUBMITTED. Historical files remain in Git history.
+See `START_HERE.txt` and `docs/reports/2026-11-17_runtime-verification.json` for current checks, exact hashes and reproducible commands. The refreshed six-slide binary has been rendered and visually inspected as recorded there. The backup walkthrough remains a written procedure, not a recorded video. The acknowledgement remains PREPARED_NOT_SUBMITTED. Historical files remain in Git history.
 
 
 ## Primary bibliography checked17November2026

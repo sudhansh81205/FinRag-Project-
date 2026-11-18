@@ -10,3 +10,5 @@ The [protocol](2026-11-18_protocol.md) and [actual results/presentation defence]
 -Raw cases, responses, references, ranking IDs, hashes and the disclosed retrieval API-binding correction are retained with the report.
 
 Use `scripts/evaluate_workspace.py --help` to reproduce on a prepared machine. Never add the source references to a model prompt or reclassify the development questions as held-out. No application code, deployment, independent approvals or original PRD scope was changed by this study.
+
+[Plain-text benchmark report](../../BENCHMARK_RESULTS.txt) summarizes the application and retrieval metrics. Reproduce the supplemental operand-level nDCG@10 from the saved rankings with `python scripts/score_development_rankings.py`. The [per-question scores and paired interval](2026-11-18-results/operand-ndcg.json) use the original labels and rankings. No new retrieval or generation runs were used for this supplemental metric.
