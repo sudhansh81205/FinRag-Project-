@@ -35,6 +35,7 @@ Open http://127.0.0.1:4180/ or the shared-engine Gradio workspace at http://127.
 - [Question spreadsheet](outputs/finrag-final-20261118/FinRAG_Sample_Questions.xlsx):108 source-derived questions, per-filing coverage, exact expected results/source IDs and three explicitly manual cross-filing exercises.
 - [Demonstration PDF](outputs/finrag-final-20261118/FinRAG_Demonstration_Questions.pdf):20 printable pages, including a page for every filing.
 - [Machine-readable question bank](outputs/finrag-final-20261118/sample-questions.json).
+- [Apple and Microsoft demo checks](docs/validation/apple-microsoft-demo.md), including workforce, financial, narrative and refusal examples.
 - [Current verification and blockers](docs/reports/2026-11-18_final-completion.md).
 
 ## Official-source retrieval benchmarks

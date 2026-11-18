@@ -199,3 +199,21 @@ def test_gemini_credential_failure_is_sanitized_without_fallback(monkeypatch):
 def test_missing_key_and_model_never_succeed():
     assert UnifiedLLMClient(provider="gemini", gemini_model="model").generate("q")["error_code"] == "credentials_missing"
     assert UnifiedLLMClient(provider="ollama").generate("q")["error_code"] == "not_configured"
+
+
+@pytest.mark.parametrize(("selection", "status"), [("[1]", "ok"), ("[2]", "insufficient_evidence"),
+                                                   ("Invented response", "insufficient_evidence")])
+def test_interactive_narrative_only_renders_verbatim_selected_evidence(selection, status):
+    client = real_stub()
+    client.generate.return_value["text"] = selection
+    source = {"evidence_id": "source-1", "content": "Component shortages can affect production capacity.",
+              "metadata": {"type": "narrative_text"}}
+    response = engine_with([source], client).answer_financial_question(
+        "How does component supply affect the company?",
+        top_k_text=1, top_k_tables=0, concise_narrative=True,
+    )
+    assert response["status"] == status
+    if status == "ok":
+        assert response["answer"] == "“Component shortages can affect production capacity.” [source-1]"
+    else:
+        assert not response["answer"]

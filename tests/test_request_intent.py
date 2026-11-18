@@ -60,3 +60,20 @@ def test_live_prediction_and_quarter_requests_refuse_before_inference(question):
         'ticker':'AAPL','accession':'0000320193-21-000105','value_period_end':'2021-09-25',
         'scope':'consolidated','period_kind':'duration','mode':'auto'})
     assert result['status'] == 'invalid_request' and not result['answer']
+
+
+def test_relative_margin_change_requires_the_relative_formula():
+    records, request = facts_and_request()
+    prior = copy.deepcopy(records)
+    for record in prior:
+        record["evidence_id"] += "-prior"
+        record["metadata"].update(period_start="2019-09-29", period_end="2020-09-26")
+    request["periods"].append({"kind": "duration", "start": "2019-09-29", "end": "2020-09-26"})
+    sources = records + prior
+    relative = "By what percentage did gross margin increase from FY2020 to FY2021?"
+    points = "By how many percentage points did gross margin increase from FY2020 to FY2021?"
+    program = known_source_program(relative, request, sources)
+    assert evaluate(program, sources)["unit"] == "percent"
+    assert not validate_named_formula(relative, program, sources)
+    assert validate_named_formula(points, program, sources)
+    assert validate_named_formula(relative, known_source_program(points, request, sources), sources)

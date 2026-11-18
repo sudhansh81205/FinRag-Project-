@@ -135,18 +135,19 @@ def evaluate(plan, included_records):
                                 (m["metric"],), (identity,), f"[{identity}]")
             require(set(node) == {"op", "args"} and isinstance(node["args"], list)
                     and len(node["args"]) == 2 and node["op"] in {
-                        "add", "subtract", "multiply", "divide", "ratio_percent", "change", "percent_change", "percentage_point_change"},
+                        "add", "subtract", "multiply", "divide", "ratio_percent", "change", "percent_change", "percentage_point_change", "relative_percentage_change"},
                     "allowed_operation", "Only allowlisted binary operation trees are accepted.")
             left, right = (visit(child, depth + 1) for child in node["args"])
             op = node["op"]
             require((left.issuer, left.scope) == (right.issuer, right.scope),
                     "comparable_identity", "Issuer or scope differs.")
-            cross_period = op in {"change", "percent_change", "percentage_point_change"}
+            percentage_comparison = op in {"percentage_point_change", "relative_percentage_change"}
+            cross_period = percentage_comparison or op in {"change", "percent_change"}
             require(left.unit == right.unit and left.currency == right.currency
                     or op == "multiply" and "ratio" in (left.unit, right.unit),
                     "comparable_units", "Operands have incompatible units/currency.")
             if cross_period:
-                require(left.metrics == right.metrics and (left.unit != "percent" or op == "percentage_point_change"),
+                require(left.metrics == right.metrics and (left.unit != "percent" or percentage_comparison),
                         "comparable_metric", "Annual comparison requires matching metric meaning.")
                 require(left.period[0] == right.period[0]
                         and date.fromisoformat(left.period[2]).year == date.fromisoformat(right.period[2]).year + 1
@@ -158,7 +159,12 @@ def evaluate(plan, included_records):
                             "annual_duration", "Quarterly or unequal duration comparison is unsupported.")
             else:
                 require(left.period == right.period, "same_period", "Operation requires the same period.")
-            require(left.unit != "percent" and right.unit != "percent" or op == "percentage_point_change" and left.unit == right.unit == "percent", "percent_terminal", "Percentage outputs are terminal.")
+            require(left.unit != "percent" and right.unit != "percent"
+                    or percentage_comparison and left.unit == right.unit == "percent",
+                    "percent_terminal", "Percentage outputs are terminal except for approved comparisons.")
+            if op == "relative_percentage_change":
+                require(left.unit == right.unit == "percent" and right.value > 0,
+                        "relative_percent_prior", "Relative margin change requires two percentages and a positive prior.")
             unit, currency = left.unit, left.currency
             note = None
             if op == "percentage_point_change":
@@ -177,9 +183,10 @@ def evaluate(plan, included_records):
                     value = left.value - right.value
                     note = "Negative prior: report absolute change only; ordinary percentage growth is undefined by policy."
                 else:
-                    value = ((left.value - right.value) if op == "percent_change" else left.value) / right.value
+                    value = ((left.value - right.value) if op in {
+                        "percent_change", "relative_percentage_change"} else left.value) / right.value
                     unit, currency = "ratio", None
-                    if op in {"percent_change", "ratio_percent"}:
+                    if op in {"percent_change", "ratio_percent", "relative_percentage_change"}:
                         value *= 100
                         unit = "percent"
             value = decimal(format(value, "f"))
@@ -221,6 +228,8 @@ def render_result(calculation):
         definitions.append("ratio_percent(x, y) = x / y × 100.")
     if 'percent_change(' in expression:
         definitions.append("For a positive prior, percent_change(current, prior) = (current − prior) / prior × 100.")
+    if 'relative_percentage_change(' in expression:
+        definitions.append("Relative change = (current margin − prior margin) / prior margin × 100.")
     notes = [t["note"] for t in calculation["rule_trace"] if t.get("note")]
     return (f"Verified result: {display}. Exact result: {value} {unit}.\n"
             f"Program (normalized source values): {expression}.\n"
