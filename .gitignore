@@ -17,3 +17,8 @@ __pycache__/
 *.log
 .env.*
 !.env.example
+
+# Local browser builds and macOS metadata
+node_modules/
+.vercel/
+.DS_Store

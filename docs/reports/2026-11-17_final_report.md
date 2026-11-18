@@ -8,7 +8,7 @@
 
 ---
 
-For the subsequent application delivery and research acceptance status, see the [final completion report](2026-11-18_final-completion.md).
+For subsequent results, see the [application delivery report](2026-11-18_final-completion.md), [benchmark results](../validation/official-source/README.md), and [submission attribution](../../ATTRIBUTION.md).
 
 ## 1. Introduction
 
@@ -104,8 +104,8 @@ The schedule assigns one owner per day. Actual commit timestamps, attribution an
 | **Sri Sai Likhit Boddada** | 20h | 10h | **30h** | SEC filing parser (Nov 4); BGE/FAISS exact indexing (Nov 6); corpus expansion & A/B/C representations (Nov 13) |
 | **Ujjwal Chandak** | 18h | 10h | **28h** | Environment contracts (Nov 5); independent chart reviews, gate freezing & run launch (Nov 15) |
 | **Muppidi Gowtham Sai** | 8h | 10h | **18h** | UI setup and question interface (Nov 5); benchmark loaders and capacity measurement (Nov 14) |
-| **B Rushil Mohan** | 10h | 0h | **10h** | Real model client and failure states (Nov 1); Decimal calculator and chart dataset (Nov 8) |
-| **Shanay Ghodasara** | 8h | 0h | **8h** | Reproducible setup & entry point (Oct 31); canonical data acceptance audit (Nov 5) |
+| **B Rushil Mohan** | 10h | 0h | **10h** | Real model client and failure states (Nov 1); Decimal calculator and chart dataset (Nov 8); later HTML/CSS/JavaScript contributions to the research workspace, filing controls, evidence display and Saved Questions |
+| **Shanay Ghodasara** | 8h | 0h | **8h** | Reproducible setup and early Gradio frontend with question, readiness and evidence controls (Oct 31); UI smoke checks and canonical data acceptance audit (Nov 5) |
 | **Total** | **82h** | **58h** | **140h** | |
 
 ---

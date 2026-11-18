@@ -24,7 +24,6 @@ CRITICAL_RELEASE_FILES = [
     "docs/reports/2026-11-17_backup_demo_walkthrough.md",
     "docs/reports/2026-11-17_independent_audit_reconciliation.json",
     "docs/reports/2026-11-17_submission_acknowledgement.json",
-    "scripts/build_final_slides.py",
 ]
 
 CORE_SOURCE_FILES = [
@@ -80,7 +79,6 @@ CORE_SOURCE_FILES = [
     "web/public/review/18b7538a6a3bb7b25dbab03a1b764a17a0d52941feba6f1ef157b34a37c3bb97.png",
     "docs/reports/2026-11-18_deployment-receipt.json",
     "docs/reports/2026-11-17-deployment/https-gateway.json",
-    "docs/reports/2026-11-17-deployment/https-gateway-initial-failure.json",
     "README.md",
     "docs/validation/official-source/BENCHMARK_RESULTS.txt",
     "docs/validation/official-source/CHECKPOINT.txt",

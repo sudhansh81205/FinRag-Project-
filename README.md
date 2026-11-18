@@ -23,6 +23,12 @@ Start with [START_HERE.txt](START_HERE.txt), the current plain-text startup and 
 
 Open http://127.0.0.1:4180/ or the shared-engine Gradio workspace at http://127.0.0.1:7860/. No npm install is needed. The launcher checks installed model bytes and uses existing pinned BGE/FAISS/Gemma assets; it never silently downloads or substitutes models. See the manual for another machine, environment configuration and rebuilding parsed/indexed packages.
 
+## Submission materials
+
+- [Project report](docs/reports/2026-11-17_final_report.md) and [verified six-slide deck](docs/reports/2026-11-17_verified_slides.pptx).
+- [Latest benchmark results and reproduction steps](docs/validation/official-source/README.md).
+- [Team contributions and commit provenance](ATTRIBUTION.md).
+
 ## Demonstration files
 
 - [Question spreadsheet](outputs/finrag-final-20261118/FinRAG_Sample_Questions.xlsx):108 source-derived questions, per-filing coverage, exact expected results/source IDs and three explicitly manual cross-filing exercises.
@@ -90,4 +96,4 @@ node --test web/tests/*.test.mjs
 
 Application processing/count coverage meets the five-Apple/five-Microsoft/ten-company scope. Independent wider source acceptance remains separate. Source-backed annual numerical and narrative questions are available; not every metric, question or comparison has sufficient evidence. Oracle's aggregate gross-margin operands are not supplied by the current typed package, so that question refuses. Within-filing adjacent-year comparisons are supported where both typed periods exist. Automatic aggregation across separate filings/companies is not supported; compare separate cited answers explicitly.
 
-Original-chart answers remain gated on genuine independent question/caption review. Final A-G benchmark execution, source-equivalent official-context binding, RAGAS, separate Llama comparison and the independent fifty-output audit are incomplete. Tests and live application probes do not constitute these experiments. New-user confirmation-email delivery and permanent unattended hosting require separate verification/setup. Historical reports are dated snapshots; use the current report/manual for present status.
+Original-chart answers remain gated on genuine independent question/caption review. The full A-G runner still needs validated official-context binding. RAGAS, the separate Llama comparison and the independent fifty-output audit are also incomplete. Tests and live application probes do not constitute these experiments. New-user confirmation-email delivery and permanent unattended hosting require separate verification/setup. Historical reports are dated snapshots; use the current report/manual for present status.
