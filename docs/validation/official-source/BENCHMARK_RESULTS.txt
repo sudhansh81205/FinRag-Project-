@@ -1,0 +1,130 @@
+FinRAG official-source evaluation
+Measured 18 November 2026
+
+These runs use the restored official benchmark source pools.
+The primary lexical baseline attempted all 2,960 questions.
+Tables are ranked as whole tables and FinanceBench at page level.
+Labels enter scoring only. Three TAT-QA questions have no mapped
+gold evidence IDs, so their retrieval metrics are undefined.
+
+BM25 retrieval results
+
+Suite         Attempted   Labelled  Recall@5  Recall@10  MRR@10  nDCG@10
+FinanceBench    150         150     0.1133    0.1433    0.1012  0.1108
+FinQA          1147        1147     0.5104    0.5889    0.4425  0.4523
+TAT-QA         1663        1660     0.6401    0.7223    0.5075  0.5582
+
+95% intervals use 10,000 whole-document bootstrap resamples, seed 42.
+The per-suite summary JSON retains intervals and case counts.
+
+BGE dense and BM25/RRF60 comparison
+
+FinanceBench: execution incomplete; check dense-cache checkpoints.
+FinQA: 1147 questions
+  recall_at_5: dense 0.6272, hybrid 0.6117, delta -0.0155 [-0.0372, +0.0056]
+  recall_at_10: dense 0.7161, hybrid 0.7212, delta +0.0051 [-0.0112, +0.0218]
+  complete_at_10: dense 0.6556, hybrid 0.6574, delta +0.0017 [-0.0151, +0.0188]
+  mrr_at_10: dense 0.5425, hybrid 0.5286, delta -0.0139 [-0.0339, +0.0056]
+  ndcg_at_10: dense 0.5593, hybrid 0.5482, delta -0.0111 [-0.0266, +0.0040]
+TAT-QA: 1663 questions
+  recall_at_5: dense 0.6454, hybrid 0.6870, delta +0.0417 [+0.0240, +0.0601]
+  recall_at_10: dense 0.7182, hybrid 0.7654, delta +0.0472 [+0.0290, +0.0661]
+  complete_at_10: dense 0.7169, hybrid 0.7645, delta +0.0476 [+0.0295, +0.0663]
+  mrr_at_10: dense 0.4937, hybrid 0.5502, delta +0.0564 [+0.0421, +0.0711]
+  ndcg_at_10: dense 0.5469, hybrid 0.6010, delta +0.0541 [+0.0415, +0.0671]
+
+Generation pilot
+
+FinanceBench: ok (89.6 seconds)
+  financebench_id_03029
+  Here's the breakdown of 3M's FY2018 capital expenditure amount, based solely on the provided source passages:
+
+**Response:**
+
+The FY2018 capital expenditure amount for 3M was $1,888 million (USD).
+
+**Calculation & Source Identification:**
+
+*   **Source:** [FinanceBench:3M_2018_10K:page:82]
+*   **Details:** The table on page 82 lists "Reclassifications out of Accumulated Other Comprehensive Income Attributable to 3M." Within this table, under "Year ended December 31, 2018," the "Cost of Sales" line shows "$1,888 (Millions)."
+
+**Insufficient Evidence:**
+
+*   The other provided passages do not contain the specific capital expenditure amount. They provide general information about 3M's financial flexibility, cash flow, and debt management, but not the detailed capital expenditure figure.
+FinQA: ok (40.1 seconds)
+  FinQA:ETR/2016/page_23.pdf-2
+  Based on the provided sources, we can determine the net change in net revenue for Entergy Corporation during 2015 by comparing 2015 to 2014.
+
+[FinQA:ETR/2015/page_17.pdf:text:be371c8b303cd9e2b9fe87a5] states: “net revenue utility following is an analysis of the change in net revenue comparing 2015 to 2014.”
+
+However, the passage does not provide the actual numerical value of the change in net revenue. Therefore, insufficient evidence can be provided to answer the question.
+TAT-QA: ok (80.2 seconds)
+  TAT-QA:a1b54eff7de3dc7bfab148325c7a940b
+  The company used the modified retrospective method when Topic 606 was adopted in fiscal 2019. [TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:bd212b2ba276fc5056de54f6]
+
+Specifically, the company recorded a $0.5 million cumulative effect adjustment, net of tax, to the opening balance of fiscal 2019 retained earnings, a decrease to receivables of $7.6 million, an increase to inventories of $2.8 million, an increase to prepaid expenses and other current assets of $6.9 million, an increase to other accrued liabilities of $1.4 million, and an increase to other noncurrent liabilities of $0.2 million. [TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:26f8a13c4e898f80dddd8453]
+
+The company adopted the provisions of Topic 606 in fiscal 2019 utilizing the modified retrospective method. [TAT-QA:a06963067573666d15cc4484808dd226:text:b47a86fdd0382dcb95dc5c14]
+
+Pilot observations
+
+FinanceBench returned 1,888 for capital expenditure; the official reference is
+1,577. The cited output used a cost-of-sales value. FinQA refused for
+insufficient evidence. TAT-QA returned the expected modified retrospective
+method. These are three observed cases; no overall answer-accuracy
+estimate is supported by this pilot.
+
+Execution status
+
+FinanceBench dense/hybrid was stopped at the user request after 2,304
+of 25,950 chunks were checkpointed. No FinanceBench dense score is reported.
+
+Computational budget and evaluation scope
+
+The full generated-answer benchmark could not be completed within the
+time available for this evaluation. We prioritised the complete keyword
+retrieval baseline, the FinQA and TAT-QA dense/hybrid comparisons, and
+three source-grounded generation pilots to obtain reproducible results.
+
+The three Gemma pilots took 89.59, 40.11 and
+80.24 seconds, averaging 69.98 seconds per question.
+Applying this observed average to the 2,960 text/table questions across
+the seven A-G variants gives 20,720 answer-generation requests.
+20,720 x 69.98 / 3,600 = 402.7 machine-hours
+(approximately 16.8 days of continuous sequential execution).
+
+This preliminary capacity estimate uses one pilot question per dataset.
+Actual runtime will vary with context length, variant, model residency,
+failures and hardware. The estimate excludes chart processing, RAGAS
+judging, the separate Llama comparison, reruns and independent human review.
+The 403-hour figure describes projected workload; those hours were not run.
+
+The completed retrieval results therefore support a bounded evaluation
+of evidence ranking. Full A-G answer generation and acceptance remain
+future work, together with the remaining representation integration,
+evaluator implementation and independent audit.
+
+PRD acceptance
+
+The benchmark sources are now consumed directly by this isolated adapter.
+Each ranking retains original source IDs and has no missing labelled sources.
+The cumulative A-G representations, complete generated-answer runs,
+pinned RAGAS evaluation, separate Llama comparison and 50-output audit
+remain unfinished. These retrieval baselines cannot complete the 28-cell
+final experiment matrix. Full narrative scoring requires claim review.
+
+Chart review
+
+The user reports that the team reviewed the charts. No reviewer name,
+approved item IDs or completed review record has been supplied.
+This report records that statement without generating reviewer signatures.
+
+Reproduce
+
+Use the existing FinRAG .venv Python and installed BGE/Gemma assets.
+python scripts/official_benchmarks/run_evaluation.py          Recompute lexical baseline
+python scripts/official_benchmarks/compare_dense.py           Run dense/hybrid retrieval
+python scripts/official_benchmarks/run_evaluation.py --pilot  Run three Gemma pilots
+python scripts/official_benchmarks/make_report.py             Refresh this report
+
+See README.md in this report folder for source assets and reproduction settings.

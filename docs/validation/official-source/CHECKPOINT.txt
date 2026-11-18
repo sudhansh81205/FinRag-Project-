@@ -1,0 +1,16 @@
+Official-source evaluation checkpoint, 18 November 2026
+
+Completed: BM25 on all 2,960 cases; BGE dense/hybrid on FinQA and TAT-QA;
+one Gemma generation pilot per suite. Scores and contexts are in results/.
+
+FinanceBench dense/hybrid was stopped at user request. 2,304 of 25,950
+chunks were saved locally. These embedding caches were kept on the prepared
+machine, in work/finrag-official-evaluation-20261118/results/FinanceBench/.
+
+For a fresh run or resume on a prepared checkout, follow README.md in this
+folder. Set FINRAG_BENCHMARK_OUTPUT to the directory containing matching
+per-suite manifests and device-specific dense checkpoints, then run
+python scripts/official_benchmarks/compare_dense.py.
+
+The original A-G generated-answer matrix, RAGAS, separate Llama comparison,
+and independent audit remain unfinished. No automatic run is scheduled.

@@ -1,0 +1,17 @@
+{
+  "suite": "FinanceBench",
+  "cases": 150,
+  "records": 11948,
+  "input_sha256": {
+    "financebench_full_document_150.json": "cbce82c47ebdb08eeed55ed60a98f17cc5aea0d4bdf616a38fbb3fbb4ab02764",
+    "financebench_full_pages.json": "3835be4be33b9abf6d4f655b54a91ca574f3d1669a6e3dd79483362112a9bd1a"
+  },
+  "scope": "Pooled official pages, paragraphs and whole tables; BM25 baseline",
+  "query": "original question only",
+  "filters": "none; whole declared suite corpus",
+  "ranking": "BM25 k1=1.5 b=0.75; positive scores; tie break by evidence ID",
+  "gold_used_for": "scoring only",
+  "model_calls": 0,
+  "prd_mapping": "R7/R12 official-source retrieval baseline; outside cumulative A-G representation controls",
+  "manual_acceptance": "User reported team chart review; reviewer and exact approved IDs unspecified"
+}

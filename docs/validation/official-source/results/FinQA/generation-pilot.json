@@ -1,0 +1,57 @@
+{
+  "case_id": "FinQA:ETR/2016/page_23.pdf-2",
+  "question": "what is the net change in net revenue during 2015 for entergy corporation?",
+  "included_context": [
+    {
+      "evidence_id": "FinQA:ETR/2011/page_17.pdf:text:0ce42d17e39368db7c222bf3",
+      "text": "entergy corporation and subsidiaries management's financial discussion and analysis net revenue utility following is an analysis of the change in net revenue comparing 2011 to 2010 ."
+    },
+    {
+      "evidence_id": "FinQA:ETR/2015/page_17.pdf:text:be371c8b303cd9e2b9fe87a5",
+      "text": "net revenue utility following is an analysis of the change in net revenue comparing 2015 to 2014 ."
+    },
+    {
+      "evidence_id": "FinQA:ETR/2016/page_23.pdf:text:be371c8b303cd9e2b9fe87a5",
+      "text": "net revenue utility following is an analysis of the change in net revenue comparing 2015 to 2014 ."
+    },
+    {
+      "evidence_id": "FinQA:ETR/2016/page_374.pdf:text:1a08d5425abcbb41892fcf75",
+      "text": "following is an analysis of the change in net revenue comparing 2016 to 2015 ."
+    },
+    {
+      "evidence_id": "FinQA:ETR/2013/page_21.pdf:text:09b7e9aa0f98b73a09cc7709",
+      "text": "entergy wholesale commodities following is an analysis of the change in net revenue comparing 2012 to 2011 ."
+    }
+  ],
+  "prompt_sha256": "ece8bd7d93a6a6156e061f182cb6ccec7cc47ea9af2dbb6790ee458b92379825",
+  "model_profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "latency_seconds": 40.10614679096034,
+  "result": {
+    "success": true,
+    "status": "ok",
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "text": "Based on the provided sources, we can determine the net change in net revenue for Entergy Corporation during 2015 by comparing 2015 to 2014.\n\n[FinQA:ETR/2015/page_17.pdf:text:be371c8b303cd9e2b9fe87a5] states: \u201cnet revenue utility following is an analysis of the change in net revenue comparing 2015 to 2014.\u201d \n\nHowever, the passage does not provide the actual numerical value of the change in net revenue. Therefore, insufficient evidence can be provided to answer the question.",
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "timing": {
+      "total_duration": 39695307583,
+      "load_duration": 21366000,
+      "prompt_eval_count": 439,
+      "prompt_eval_duration": 7523719000,
+      "eval_count": 145,
+      "eval_duration": 29497688000
+    }
+  },
+  "semantic_score": "Pending claim-level review; automatic answer accuracy not established"
+}

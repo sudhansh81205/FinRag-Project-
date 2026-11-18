@@ -1,0 +1,71 @@
+{
+  "suite": "FinanceBench",
+  "attempted": 150,
+  "labelled": 150,
+  "unlabelled": 0,
+  "missing_source_cases": 0,
+  "index_build_seconds": 7.74321416701423,
+  "median_retrieval_seconds": 0.009093041997402906,
+  "metrics": {
+    "recall_at_5": {
+      "estimate": 0.11333333333333333,
+      "low": 0.056962025316455694,
+      "high": 0.183206106870229,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "recall_at_10": {
+      "estimate": 0.14333333333333334,
+      "low": 0.0851063829787234,
+      "high": 0.2116788321167883,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_5": {
+      "estimate": 0.11333333333333333,
+      "low": 0.056962025316455694,
+      "high": 0.183206106870229,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_10": {
+      "estimate": 0.14,
+      "low": 0.08176100628930817,
+      "high": 0.2080536912751678,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "mrr_at_10": {
+      "estimate": 0.10124867724867725,
+      "low": 0.04866332497911445,
+      "high": 0.16694712972908463,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "ndcg_at_10": {
+      "estimate": 0.11080836935020727,
+      "low": 0.058002701181149835,
+      "high": 0.17648132835936675,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 84,
+      "sampling_unit": "filing; development-set uncertainty only"
+    }
+  }
+}

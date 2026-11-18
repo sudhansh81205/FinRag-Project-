@@ -1,0 +1,71 @@
+{
+  "suite": "TAT-QA",
+  "attempted": 1663,
+  "labelled": 1660,
+  "unlabelled": 3,
+  "missing_source_cases": 0,
+  "index_build_seconds": 0.13427124998997897,
+  "median_retrieval_seconds": 0.0008464999846182764,
+  "metrics": {
+    "recall_at_5": {
+      "estimate": 0.6400602409638554,
+      "low": 0.6067551266586249,
+      "high": 0.6726010863005432,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "recall_at_10": {
+      "estimate": 0.7222891566265061,
+      "low": 0.6911499096929561,
+      "high": 0.7528597230583985,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_5": {
+      "estimate": 0.6385542168674698,
+      "low": 0.605294825511432,
+      "high": 0.6710923355461678,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_10": {
+      "estimate": 0.7210843373493976,
+      "low": 0.6901323706377858,
+      "high": 0.7518072289156627,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "mrr_at_10": {
+      "estimate": 0.5074674890036336,
+      "low": 0.4766320042073054,
+      "high": 0.5380504274978912,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "ndcg_at_10": {
+      "estimate": 0.5581684090011435,
+      "low": 0.5285594792274126,
+      "high": 0.5875668762427673,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 277,
+      "sampling_unit": "filing; development-set uncertainty only"
+    }
+  }
+}

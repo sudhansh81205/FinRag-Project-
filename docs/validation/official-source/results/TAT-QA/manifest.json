@@ -1,0 +1,17 @@
+{
+  "suite": "TAT-QA",
+  "cases": 1663,
+  "records": 1553,
+  "input_sha256": {
+    "tatqa_candidate_universe.json": "0c3c4767143438b722027d7f1baaea3949d21f336501a1d23624b746db8746e4",
+    "tatqa_context_corpus.json": "1810fa50827359d5648d27266fdbdb49f644997956e20133470872d26b05bcfa"
+  },
+  "scope": "Pooled official pages, paragraphs and whole tables; BM25 baseline",
+  "query": "original question only",
+  "filters": "none; whole declared suite corpus",
+  "ranking": "BM25 k1=1.5 b=0.75; positive scores; tie break by evidence ID",
+  "gold_used_for": "scoring only",
+  "model_calls": 0,
+  "prd_mapping": "R7/R12 official-source retrieval baseline; outside cumulative A-G representation controls",
+  "manual_acceptance": "User reported team chart review; reviewer and exact approved IDs unspecified"
+}
