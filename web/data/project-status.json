@@ -1,0 +1,90 @@
+{
+  "generated_at_utc": "2026-11-17T23:09:37.768550+00:00",
+  "coverage": {
+    "declared": 18,
+    "source_checked": 18,
+    "connected": 18,
+    "companies": 10,
+    "by_company": {
+      "CSCO": 1,
+      "ADBE": 1,
+      "ORCL": 1,
+      "AAPL": 5,
+      "IBM": 1,
+      "NVDA": 1,
+      "CRM": 1,
+      "MSFT": 5,
+      "AMD": 1,
+      "INTC": 1
+    },
+    "prd_application_counts_met": true,
+    "independently_accepted": 1,
+    "canonical_records": 15411,
+    "matched_indexes": {
+      "A": 5213,
+      "B": 12077,
+      "C": 15411
+    }
+  },
+  "experiments": {
+    "status": "acceptance_required",
+    "gates": {
+      "fixed_overlap_index_representation": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "section_aware_index_representation": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "canonical_cells_and_parents": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "bm25_index": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "bge_reranker_base": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "frozen_routing_thresholds": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      },
+      "independent_chart_approval": {
+        "open": false,
+        "reasons": [
+          "No acceptance record at ./docs/reports/2026-11-16_gate_acceptance.json."
+        ]
+      }
+    },
+    "final_matrix_completed": 0,
+    "final_matrix_required": 28,
+    "independent_output_audit_completed": 0,
+    "independent_output_audit_required": 50,
+    "manual_requirements": [
+      "Eligible independent source and chart-question/caption decisions on original sources",
+      "Hash-bound gate acceptance and development routing freeze",
+      "Review official source-equivalent benchmark bindings before complete A-G/RAGAS/Llama runs",
+      "Independent predeclared fifty-output audit after actual final runs"
+    ],
+    "note": "No completed final run ledger or independent acceptance exists. Tests and application probes are separate."
+  },
+  "inputs": {
+    "coverage_sha256": "b1a4442344be9efefa0ce89b7739cc0b2c4bd91bf315b970ece1b0330cf7b6c4"
+  }
+}

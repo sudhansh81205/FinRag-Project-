@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "admin": false,
+    "maintain": false,
+    "push": false,
+    "triage": false,
+    "pull": true
+  },
+  "collaborators": {
+    "http_status": 403
+  },
+  "history_observation": "Git history contains Codex/Codex AI-assisted author labels; contributor history is distinct from collaborator access. No author history was rewritten."
+}

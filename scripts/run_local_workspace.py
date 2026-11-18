@@ -110,7 +110,7 @@ def start(args):
         wait_ready(process, "http://127.0.0.1:8000/health", token=token)
         env = dict(os.environ, FINRAG_BACKEND_URL="http://127.0.0.1:8000", FINRAG_BACKEND_TOKEN=token,
                    FINRAG_WEB_PORT=str(args.web_port), FINRAG_BACKEND_TIMEOUT_MS="240000")
-        process = launch("web", [args.node, "dev.mjs"], env, ROOT / "web")
+        process = launch("web", [args.node, "--env-file-if-exists=.env", "dev.mjs"], env, ROOT / "web")
         wait_ready(process, f"http://127.0.0.1:{args.web_port}/api/health")
         # This process manifest contains no secret and does not license killing a reused PID.
         (state / "local-processes.json").write_text(json.dumps({"pids": [p.pid for p in children],
@@ -134,7 +134,7 @@ def main():
     }
     for name, default in defaults.items():
         parser.add_argument("--" + name, default=str(default), help="Existing asset path; override for another machine")
-    parser.add_argument("--workspace-corpus", default=str(ROOT / "output/nov17/corpus"), help="Prepared two-filing demonstration corpus")
+    parser.add_argument("--workspace-corpus", default=str(ROOT / "output/nov17/corpus"), help="Prepared source-checked application corpus")
     parser.add_argument("--status", action="store_true", help="Check the local workspace without starting services")
     parser.add_argument("--node", default="node")
     parser.add_argument("--web-port", type=int, default=4180)

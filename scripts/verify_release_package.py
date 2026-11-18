@@ -11,6 +11,7 @@ import hashlib
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,6 +31,31 @@ CRITICAL_RELEASE_FILES = [
 ]
 
 CORE_SOURCE_FILES = [
+    "tests/test_calculation_explanation.py",
+    "START_HERE.txt",
+    "ATTRIBUTION.md",
+    "docs/SETUP.md",
+    "docs/FINAL_CHECKPOINT.md",
+    "scripts/check_project_readiness.py",
+    "scripts/check_experiment_acceptance.py",
+    "scripts/build_demo_questions.py",
+    "web/data/project-status.json",
+    "web/tests/saved-persistence.test.mjs",
+    "docs/reports/2026-11-18_final-completion.md",
+    "docs/review/final-input-review/index.html",
+    "docs/review/final-input-review/review-marks-template.json",
+    "outputs/finrag-final-20261118/FinRAG_Sample_Questions.xlsx",
+    "outputs/finrag-final-20261118/FinRAG_Demonstration_Questions.pdf",
+    "outputs/finrag-final-20261118/sample-questions.json",
+    "docs/reports/2026-11-18-functional-checks/production.json",
+    "docs/reports/2026-11-18-functional-checks/deployment.json",
+    "src/llm/request_intent.py",
+    "tests/test_request_intent.py",
+    "docs/reports/2026-11-18_functional-repair.md",
+    "docs/reports/2026-11-18-functional-checks/live-core.json",
+    "docs/reports/2026-11-18-functional-checks/saved-isolation.json",
+    "docs/reports/2026-11-18-functional-checks/pytest.txt",
+    "docs/reports/2026-11-18-functional-checks/node.txt",
     "docs/reports/2026-11-18-checks/hosted-limited-verification.json",
     "docs/reports/2026-11-18-checks/limited-pytest.txt",
     "docs/reports/2026-11-18-checks/limited-node.txt",
@@ -223,10 +249,10 @@ def main() -> int:
     if args.write_manifest:
         file_hashes = generate_manifest()
         manifest_data = {
-            "release": "FinRAG November 17 Final Release",
+            "release": "FinRAG application delivery and research acceptance status",
             "release_owner": "Sudhansh Khandelwal",
             "release_designation": "TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE",
-            "date": "2026-11-17",
+            "date": date.today().isoformat(),
             "file_count": len(file_hashes),
             "file_hashes": file_hashes,
         }

@@ -18,11 +18,6 @@ from src.config import Settings
 ROOT = Path(__file__).resolve().parents[1]
 FILINGS_PATH = ROOT / "data" / "application_filings.json"
 
-# Filings the interface offers (exact accessions); issuer/period come from the filing registry.
-UI_FILING_ACCESSIONS: tuple[str, ...] = (
-    "0000320193-21-000105", "0000320193-22-000108", "0000320193-23-000106",
-    "0001564590-21-039151", "0001564590-22-026876",
-)
 SUPPORTED_SCOPES = frozenset({"consolidated"})
 
 
@@ -40,7 +35,7 @@ def load_filing_options(path: Path | str = FILINGS_PATH) -> tuple[FilingOption, 
     """Selectable filings, each bound to its exact registry tuple (never inferred from a ticker)."""
     registry = {r["accession"]: r for r in json.loads(Path(path).read_text(encoding="utf-8"))}
     options = []
-    for accession in UI_FILING_ACCESSIONS:
+    for accession in registry:
         r = registry[accession]
         options.append(FilingOption(
             label=f"{r['issuer']} ({r['ticker']}) — {r['period_end'][:4]} {r['form']}",
@@ -300,6 +295,10 @@ class InteractiveApplication:
                 "to bind evidence and calculations; select a supported filing.",
             )
         if constraints is not None:
+            if calculation_plan is None:
+                conflict = self._question_conflict(question, constraints, calculation_request)
+                if conflict:
+                    return finish("invalid_request", conflict)
             result["request"] = asdict(constraints)
 
         if self.engine is not None:
@@ -330,6 +329,10 @@ class InteractiveApplication:
                 if problem:
                     return finish("insufficient_evidence", problem)
 
+            if constraints is not None:
+                conflict = self._question_conflict(question, constraints, calculation_plan)
+                if conflict:
+                    return finish("invalid_request", conflict)
             included_ids = [r.get("evidence_id", r.get("id")) for r in records]
             valid_operands, err_msg = verify_included_operands(calculation_plan, included_ids)
             if not valid_operands:
@@ -355,6 +358,17 @@ class InteractiveApplication:
         blockers = self._setup_app.readiness()["blockers"]
         return finish("index_not_ready", "\n".join(blockers))
 
+    def _question_conflict(self, question, constraints, declared=None):
+        from src.llm.request_intent import company_conflict, named_years
+        conflict = company_conflict(question, constraints, load_filing_options(self.settings.root / "data/application_filings.json"))
+        if conflict:
+            return conflict
+        years = named_years(question)
+        allowed = {int(p["end"][:4]) for p in declared.get("periods", [])} if isinstance(declared, dict) else {int(constraints.value_period_end[:4])}
+        if years and (set(years) != allowed or max(years) != int(constraints.value_period_end[:4])):
+            return "The company/year in the question must match the selected filing and requested value periods."
+        return ""
+
     @staticmethod
     def _constraints_from_loose_args(company, filing, period_end, scope) -> RequestConstraints | None:
         """Build constraints only when company/filing agree with the filing registry tuple."""
@@ -372,11 +386,12 @@ class InteractiveApplication:
             if retrieval_options is not None:
                 if (not isinstance(retrieval_options, dict)
                         or not {"top_k_text", "top_k_tables"} <= set(retrieval_options)
-                        or set(retrieval_options) - {"top_k_text", "top_k_tables", "chart_only", "chart_asset_id", "expand_named_metric"}
+                        or set(retrieval_options) - {"top_k_text", "top_k_tables", "chart_only", "chart_asset_id", "expand_named_metric", "skip_calculation_explanation"}
                         or any(type(retrieval_options[key]) is not int or not 0 <= retrieval_options[key] <= 10
                                for key in ("top_k_text", "top_k_tables"))
                         or sum(retrieval_options[key] for key in ("top_k_text", "top_k_tables")) < 1
                         or type(retrieval_options.get("expand_named_metric", False)) is not bool
+                        or type(retrieval_options.get("skip_calculation_explanation", False)) is not bool
                         or type(retrieval_options.get("chart_only", False)) is not bool
                         or ("chart_asset_id" in retrieval_options and not isinstance(retrieval_options["chart_asset_id"], str))):
                     return finish("invalid_request", "Use bounded explicit narrative/table retrieval limits.")
@@ -431,7 +446,12 @@ class InteractiveApplication:
             problem = validate_request_binding(constraints, calculation_plan, evidence)
         if problem:
             return finish("insufficient_evidence", f"Engine evidence does not satisfy the request: {problem}")
+        conflict = self._question_conflict(question, constraints, calculation_request or calculation_plan)
+        if conflict:
+            return finish("invalid_request", conflict)
         result.update(evidence=evidence, calculations=engine_res.get("calculations", []))
+        if isinstance(engine_res.get("generation"), dict):
+            result["generation"] = engine_res["generation"]
         finish("ok", engine_res.get("message", ""), answer=engine_res.get("answer", ""))
         result["latency_seconds"] = engine_res.get("latency_seconds", round(time.monotonic() - start, 3))
         return result

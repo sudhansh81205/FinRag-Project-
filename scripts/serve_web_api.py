@@ -20,7 +20,7 @@ def main():
     parser.add_argument("--port", type=int, default=8000)
     runtime = parser.add_mutually_exclusive_group()
     runtime.add_argument("--enable-engine", action="store_true")
-    runtime.add_argument("--workspace-corpus", type=Path, help="Source-checked two-filing development workspace")
+    runtime.add_argument("--workspace-corpus", type=Path, help="Source-checked application corpus with per-filing exact indexes")
     runtime.add_argument("--source-audit", type=Path,
                          help="Bounded checked Apple development runtime; never final experiment acceptance")
     parser.add_argument("--variant", choices=list("ABCDEFG"), default="D")

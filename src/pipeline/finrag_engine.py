@@ -6,11 +6,11 @@ from typing import Any
 from ..llm.calculation_planner import propose_calculation
 from ..llm.client import UnifiedLLMClient
 from ..llm.financial_semantics import (
+    interactive_source_fact,
     is_gross_margin,
-    is_margin_comparison,
     known_source_program,
+    named_metric,
     role,
-    total_revenue_fact,
     validate_named_formula,
 )
 from ..llm.prompts import build_baseline_prompt, build_finrag_prompt
@@ -47,7 +47,7 @@ class FinRAGEngine:
         self, question: str, top_k_text: int = 3, top_k_tables: int = 3,
         rerank_top_n: int = 5, *, _baseline: bool = False, calculation_plan=None, calculation_request=None,
         filters=None,
-        chart_only=False, chart_asset_id=None, expand_named_metric=False,
+        chart_only=False, chart_asset_id=None, expand_named_metric=False, skip_calculation_explanation=False,
     ) -> dict[str, Any]:
         start = time.monotonic()
         result = {
@@ -68,6 +68,8 @@ class FinRAGEngine:
 
         if calculation_plan is not None and calculation_request is not None:
             return finish("invalid_request", "Supply a calculation plan or a constrained planning request, not both.")
+        if type(skip_calculation_explanation) is not bool:
+            return finish("invalid_request", "Calculation explanation selection must be boolean.")
         if (type(chart_only) is not bool or chart_only and not self.enable_chart_descriptions
                 or chart_asset_id is not None and not isinstance(chart_asset_id, str)):
             return finish("index_not_ready", "Approved chart execution is unavailable for this engine.")
@@ -102,8 +104,8 @@ class FinRAGEngine:
             # Interactive metric expansion is explicit; frozen benchmark defaults are unchanged.
             search_query = question
             if (expand_named_metric and calculation_request is not None
-                    and is_gross_margin(question) and not is_margin_comparison(question)):
-                search_query = "gross profit total net sales revenue cost of sales"
+                    and (is_gross_margin(question) or named_metric(question))):
+                search_query = "gross profit total net sales revenue cost of sales" if is_gross_margin(question) else "source-bound named metric"
             result["retrieval_query"] = search_query
             retrieval_args = {"query": search_query, "top_k_text": top_k_text,
                               "top_k_tables": top_k_tables}
@@ -115,10 +117,19 @@ class FinRAGEngine:
             if search_query != question and hasattr(self, "web_source_records"):
                 # Exact typed lookup over verified index records, with the same filing/period ceiling.
                 source_operands = [r for r in self.web_source_records if eligible(r, filters or {})
-                                   and (role(r) in {"gross_profit", "cost"} or total_revenue_fact(r))]
-                if known_source_program(question, calculation_request, source_operands) is None:
-                    return finish("insufficient_evidence", "Matching total revenue and gross-profit/cost cells are missing or ambiguous for this filing and period.")
-                source_operands.sort(key=lambda r: ({"gross_profit": 0, "revenue": 1, "cost": 2}[role(r)], r.get("evidence_id", "")))
+                                   and interactive_source_fact(question, r)]
+                source_program = known_source_program(question, calculation_request, source_operands)
+                if source_program is None:
+                    return finish("insufficient_evidence", "Matching typed values are missing or ambiguous for the requested metric, filing and period.")
+                required_ids = set()
+                def collect(node):
+                    if "evidence_id" in node:
+                        required_ids.add(node["evidence_id"])
+                    for child in node.get("args", []):
+                        collect(child)
+                collect(source_program["expression"])
+                source_operands = [r for r in source_operands if r.get("evidence_id", r.get("id")) in required_ids]
+                source_operands.sort(key=lambda r: ({"gross_profit": 0, "revenue": 1, "cost": 2}.get(role(r), 0), r.get("evidence_id", "")))
             retrieval = ({"all_evidence": source_operands, "ranking_applied": True,
                           "stages": ["interactive_typed_metric_lookup"], "eligibility_filters": filters}
                          if source_operands is not None else self.retriever.retrieve(**retrieval_args))
@@ -227,6 +238,14 @@ class FinRAGEngine:
                 if calculation["status"] != "ok":
                     result["error_code"] = calculation["error_code"]
                     return finish("service_error" if calculation["status"] == "service_error" else "insufficient_evidence", calculation["message"])
+                if skip_calculation_explanation and program is not None:
+                    if self.llm_client.provider not in {"gemini", "ollama"}:
+                        return finish("service_error", "An explicitly configured real provider is required; mock/automatic engines are not live sources.")
+                    # Interactive mode explicitly requests the licensed calculation,
+                    # not optional generated prose. Matched A-G defaults still generate.
+                    result.update(answer=render_result(calculation), provider="typed_calculator", model=None,
+                                  generation={"executed": False, "reason": "Source-bound calculation; model explanation was not requested."})
+                    return finish("ok", "Calculated from cited source values with checked financial rules.")
                 import json
                 summary = {k: calculation[k] for k in ("program", "result", "unit", "operand_ids")}
                 summary["rule_notes"] = [r["note"] for r in calculation["rule_trace"] if r.get("note")]

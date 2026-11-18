@@ -1,11 +1,10 @@
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
-const state = { filings: [], health: null, mode: 'auto', result: null, busy: false, token: null, lastQuery: null };
+const state = { filings: [], health: null, project: null, mode: 'auto', result: null, busy: false, token: null, lastQuery: null };
 const element = (tag, text, cls) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (cls) node.className = cls; return node; };
 let toastTimer;
 let savedRevision = 0;
 let chartsLoaded = false;
-const canonicalAccession = '0000320193-21-000105';
 function closeMenu(restoreFocus = false) {
   const wasOpen = $('.sidebar').classList.contains('open');
   $('.sidebar').classList.remove('open');$('#menu-backdrop').hidden = true;
@@ -21,7 +20,7 @@ function openMenu() {
 }
 function availableFiling(accession) {
   const connected = state.health?.runtime.supported_filings;
-  return Array.isArray(connected) ? connected.includes(accession) : accession === canonicalAccession;
+  return Array.isArray(connected) && connected.includes(accession);
 }
 function updateAvailability() {
   const supported = availableFiling($('#filing').value);
@@ -40,7 +39,12 @@ function toast(text) { $('#toast').textContent = text; $('#toast').hidden = fals
 async function api(route, options = {}) {
   const response = await fetch(`/api/${route}`, { ...options, headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(state.token ? { Authorization: `Bearer ${state.token}` } : {}), ...options.headers }, signal: options.signal || AbortSignal.timeout(route === 'answer' ? state.health?.answer_timeout_ms || 250000 : 28000) });
   const data = await response.json();
+  if (response.status === 401 && (route.startsWith('saved') || route === 'auth/session')) clearSession();
   return data;
+}
+function clearSession() {
+  state.token = null;savedRevision++;sessionStorage.removeItem('finrag_token');
+  $('#account-label').textContent = 'Your workspace';$('#account-detail').textContent = 'Sign in to save questions';
 }
 function view(name) {
   if (!['research', 'library', 'saved', 'method', 'system'].includes(name)) return;
@@ -114,7 +118,7 @@ function renderLibrary() {
   const needle = $('#filing-search').value.toLowerCase();const matched = state.filings.filter(f => `${f.issuer} ${f.ticker} ${f.accession} ${f.period_end}`.toLowerCase().includes(needle));
   $('#library-count').textContent = `${matched.length} FILINGS`;
   $('#filing-grid').replaceChildren(...matched.map((f, index) => {
-  const card = element('article', undefined, 'filing-card');card.append(element('span', f.ticker, 'eyebrow'), element('h2', f.issuer), element('div', `FY${f.period_end.slice(0, 4)} · ${f.form}\n${f.accession}`, 'filing-meta'), element('span', availableFiling(f.accession) ? '✓ Available for bounded research' : '○ Inventory only · acceptance pending', 'inventory-tag'));
+  const card = element('article', undefined, 'filing-card');card.append(element('span', f.ticker, 'eyebrow'), element('h2', f.issuer), element('div', `FY${f.period_end.slice(0, 4)} · ${f.form}\n${f.accession}`, 'filing-meta'), element('span', availableFiling(f.accession) ? '✓ Available for source-checked research' : f.processing_status === 'source_checked_indexed' ? '○ Processed · engine not connected' : '○ Processing required', 'inventory-tag'));
     const actions = element('div', undefined, 'filing-actions');const use = element('button', availableFiling(f.accession) ? 'Research this filing' : 'Research unavailable');use.disabled = !availableFiling(f.accession);use.title = availableFiling(f.accession) ? '' : 'Accepted evidence is not connected for this filing.';use.addEventListener('click', () => loadQuery({ ...f, value_period_end: f.period_end, question: '' }));actions.append(sourceLink(f.source_url, 'Open original filing ↗'), use);card.append(actions);return card;
   }));
 }
@@ -183,7 +187,7 @@ function renderAnswer(result) {
   card.append(content);
   if (checkedValue) {
     const displayValue = checkedValue.replace(/^(-?\d+)(.*)$/, (_match, integer, rest) => integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + rest);
-    content.replaceChildren(element('div', displayValue, 'answer-value'), element('p', 'Calculated from the cited filing values.'));
+    content.replaceChildren(element('div', displayValue, 'answer-value'), element('p', result.generation?.executed === false ? 'Calculated from cited filing values. No model-written explanation was used.' : 'Calculated from the cited filing values.'));
     const exact = element('details', undefined, 'technical-details');exact.append(element('summary', 'Exact answer and source identifiers'), element('pre', result.answer));content.append(exact);
   }
   if (result.status === 'ok') {
@@ -240,28 +244,36 @@ function systemRow(title, message, status) { const row = element('article', unde
 function renderSystem() {
   const health = state.health;const body = $('#system-body');body.replaceChildren();
   if (!health) { body.append(systemRow('Connection check', 'The status endpoint could not be reached.', 'UNAVAILABLE'));return; }
-  body.append(systemRow('Financial engine', health.runtime.message || 'The configured backend reports readiness. Individual answer evidence is validated separately.', health.runtime.status === 'ready' ? 'CONNECTED' : 'SETUP REQUIRED'), systemRow('Saved questions', health.saved_queries.configured ? 'Private row-level access is configured. Email sign-in requires separate redirect and delivery verification.' : 'Connect a Supabase project and apply the saved-query schema to enable this feature.', health.saved_queries.configured ? 'SUPABASE CONFIGURED' : 'NOT CONFIGURED'), systemRow('Filing coverage', `${health.corpus.inventory} inventory entries across ${health.corpus.companies} companies. ${(health.runtime.supported_filings || []).length} connected for source-checked research. Independent final-study acceptance remains separate.`, 'PARTIAL'), systemRow('Experiment acceptance', 'Full A–G benchmark runs, the independent fifty-output audit and RAGAS results remain pending. Candidate chart integrity is separate from independent label approval.', 'NOT COMPLETE'));
+  const connected = (health.runtime.supported_filings || []).filter(id => state.filings.some(f => f.accession === id)).length;
+  const coverage = state.project?.coverage;const experiments = state.project?.experiments;
+  body.append(systemRow('Financial engine', health.runtime.message || 'The configured backend reports readiness. Individual answer evidence is validated separately.', health.runtime.status === 'ready' ? 'CONNECTED' : 'SETUP REQUIRED'),
+    systemRow('Saved questions', health.saved_queries.sign_in_configured ? 'Sign in with email and password, ask a question, then choose Save question. Saved Questions reads your private Supabase records after a refresh. Sessions expire; sign in again to reconnect. New accounts require email confirmation.' : 'Configure SUPABASE_URL, a publishable key and password auth; apply supabase/schema.sql using the project owner account.', health.saved_queries.sign_in_configured ? 'PRIVATE SAVING CONNECTED' : 'SETUP REQUIRED'),
+    systemRow('Application filing coverage', `${health.corpus.inventory} filings across ${health.corpus.companies} companies; ${connected} connected now. ${coverage ? `${coverage.source_checked} source/package checks passed; ${coverage.canonical_records.toLocaleString()} indexed records. PRD requires five Apple, five Microsoft and ten companies.` : 'Load the processing snapshot to inspect per-filing preparation.'}`, connected === health.corpus.inventory && connected > 0 ? 'ALL FILINGS CONNECTED' : 'CONNECTION OR PROCESSING REQUIRED'),
+    systemRow('Independent source acceptance', `${coverage?.independently_accepted ?? health.corpus.accepted} filing independently accepted. Automated processing does not complete the wider independent source review.`, 'REVIEW REQUIRED'),
+    systemRow('Experiment acceptance', experiments ? `${experiments.final_matrix_completed}/${experiments.final_matrix_required} final A–G suite runs; ${experiments.independent_output_audit_completed}/${experiments.independent_output_audit_required} independently reviewed outputs. Missing hash-bound acceptance, original chart review and benchmark source bindings prevent final execution. See the startup manual for the exact review and run commands.` : 'The experiment snapshot could not be loaded. Check project-status and the startup manual.', 'ACCEPTANCE REQUIRED'));
 }
 async function refreshHealth() {
   try { state.health = await api('health');if (!state.health.runtime) throw new Error();const ready = state.health.runtime.status === 'ready';$('#health-pill').classList.toggle('ready', ready);$('#health-pill span').textContent = ready ? 'Engine connected' : 'Engine setup required'; }
   catch { state.health = null;$('#health-pill span').textContent = 'Connection unavailable'; }
-  renderSystem();
+  renderSystem();if (state.filings.length) renderLibrary();
   updateAvailability();
 }
 function showAuth() {
   $('#auth-message').textContent = state.health?.saved_queries.sign_in_configured ? '' : state.health?.saved_queries.configured ? 'Email sign-in is pending redirect and delivery verification. Research remains available without an account.' : 'Private saving is not connected. You can still ask questions and inspect filing evidence without signing in.';
-  $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#sign-out').hidden = !state.token;$('#auth-dialog').showModal();
+  $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#auth-signup').disabled = $('#auth-submit').disabled;$('#auth-verify').disabled = $('#auth-submit').disabled;$('#sign-out').hidden = !state.token;$('#auth-dialog').showModal();
 }
-async function renderSaved() {
+async function renderSaved(offset = 0) {
   const revision = ++savedRevision;const token = state.token;
   const body = $('#saved-body');body.replaceChildren();
-  if (!state.token || !state.health?.saved_queries.configured) { const box = element('div', undefined, 'saved-empty');box.append(element('h2', state.health?.saved_queries.sign_in_configured ? 'Your questions, in one place.' : 'Private saving is unavailable.'), element('p', state.health?.saved_queries.sign_in_configured ? 'Sign in with an email link to see and save your private questions.' : 'Sign-in setup needs to be completed and verified. You can continue research and export answers without an account.'));const button = element('button', state.health?.saved_queries.sign_in_configured ? 'Sign in to your workspace' : 'Sign-in unavailable', 'outline-button');button.disabled = !state.health?.saved_queries.sign_in_configured;button.addEventListener('click', showAuth);const back = element('button', 'Back to research', 'text-button');back.addEventListener('click', () => view('research'));box.append(button, back);body.append(box);return; }
+  if (!state.token || !state.health?.saved_queries.configured) { const box = element('div', undefined, 'saved-empty');box.append(element('h2', state.health?.saved_queries.sign_in_configured ? 'Your questions, in one place.' : 'Private saving is unavailable.'), element('p', state.health?.saved_queries.sign_in_configured ? 'Sign in with your account to see and save your private questions.' : 'Sign-in setup needs to be completed and verified. You can continue research and export answers without an account.'));const button = element('button', state.health?.saved_queries.sign_in_configured ? 'Sign in to your workspace' : 'Sign-in unavailable', 'outline-button');button.disabled = !state.health?.saved_queries.sign_in_configured;button.addEventListener('click', showAuth);const back = element('button', 'Back to research', 'text-button');back.addEventListener('click', () => view('research'));box.append(button, back);body.append(box);return; }
   body.append(element('p', 'Loading your saved questions…'));
   try {
-    const result = await api('saved');if (revision !== savedRevision || token !== state.token) return;body.replaceChildren();
+    const result = await api(`saved?offset=${offset}`);if (token !== state.token) { body.replaceChildren(element('p', 'Your sign-in expired. Sign in again to view your saved questions.'));return; }if (revision !== savedRevision) return;body.replaceChildren();
     if (result.status !== 'ok') { body.append(element('p', result.message || 'Saved questions could not be loaded.'));return; }
     if (!result.data.length) { body.append(element('p', 'No saved questions yet. Start a new research question and choose Save question.'));return; }
-    result.data.forEach(item => { const row = element('article', undefined, 'saved-row');const open = element('button', item.question);open.append(element('small', `${item.request.ticker} · ${item.request.value_period_end} · ${new Date(item.created_at).toLocaleDateString()}`));open.addEventListener('click', () => loadQuery({ question: item.question, ...item.request }));const remove = element('button', 'Delete', 'text-button');remove.addEventListener('click', async () => { const r = await api(`saved?id=${encodeURIComponent(item.id)}`, { method: 'DELETE' });if (r.status === 'ok') renderSaved();else toast(r.message || 'Could not delete the question.'); });row.append(open, remove);body.append(row); });
+    result.data.forEach(item => { const row = element('article', undefined, 'saved-row');const open = element('button', item.question);open.append(element('small', `${item.request.ticker} · ${item.request.value_period_end} · ${new Date(item.created_at).toLocaleDateString()}`));open.addEventListener('click', () => loadQuery({ question: item.question, ...item.request }));const remove = element('button', 'Delete', 'text-button');remove.addEventListener('click', async () => { remove.disabled = true;try { const r = await api(`saved?id=${encodeURIComponent(item.id)}`, { method: 'DELETE' });if (r.status === 'ok') renderSaved();else toast(r.message || 'Could not delete the question.'); } catch { toast('Could not delete the question. Try again.'); }finally { remove.disabled = false; } });row.append(open, remove);body.append(row); });
+    if (offset > 0) { const previous = element('button', 'Previous questions', 'outline-button');previous.addEventListener('click', () => renderSaved(Math.max(0, offset - 30)));body.append(previous); }
+    if (result.has_more) { const next = element('button', 'More questions', 'outline-button');next.addEventListener('click', () => renderSaved(offset + 30));body.append(next); }
   } catch { if (revision === savedRevision && token === state.token) body.replaceChildren(element('p', 'Your saved questions could not be reached.')); }
 }
 $$('[data-view]').forEach(button => button.addEventListener('click', () => view(button.dataset.view)));
@@ -278,10 +290,26 @@ $$('[data-example]').forEach(button => button.addEventListener('click', () => {
 }));
 $('#copy-answer').addEventListener('click', async () => { try { await navigator.clipboard.writeText(state.result?.answer || '');toast('Answer copied.'); } catch { toast('Clipboard access is unavailable.'); } });
 $('#export-answer').addEventListener('click', () => { if (!state.result) return;const blob = new Blob([JSON.stringify({ query: state.lastQuery, result: state.result }, null, 2)], { type: 'application/json' });const url = URL.createObjectURL(blob);const link = element('a');link.href = url;link.download = 'finrag-research.json';link.click();setTimeout(() => URL.revokeObjectURL(url), 1000); });
-$('#save-question').addEventListener('click', async () => { if (!state.token) { showAuth();return; }try { const result = await api('saved', { method: 'POST', body: JSON.stringify(state.lastQuery || query()) });toast(result.status === 'ok' ? 'Question saved privately.' : result.message || 'Could not save the question.'); } catch { toast('Could not reach saved questions.'); } });
+$('#save-question').addEventListener('click', async () => { if (!state.token) { showAuth();return; }$('#save-question').disabled = true;try { const result = await api('saved', { method: 'POST', body: JSON.stringify(state.lastQuery || query()) });toast(result.status === 'ok' ? 'Question saved privately.' : result.message || 'Could not save the question.'); } catch { toast('Could not reach saved questions.'); }finally { updateAvailability(); } });
 $('#account-button').addEventListener('click', showAuth);$('#close-auth').addEventListener('click', () => $('#auth-dialog').close());$('#refresh-status').addEventListener('click', refreshHealth);
-$('#auth-form').addEventListener('submit', async event => { event.preventDefault();$('#auth-submit').disabled = true;try { const result = await api('auth/start', { method: 'POST', body: JSON.stringify({ email: $('#email').value.trim() }) });$('#auth-message').textContent = result.message; } catch { $('#auth-message').textContent = 'Sign-in could not be reached.'; }finally { $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured; } });
-$('#sign-out').addEventListener('click', () => { state.token = null;sessionStorage.removeItem('finrag_token');$('#account-label').textContent = 'Your workspace';$('#account-detail').textContent = 'Sign in to save questions';$('#auth-dialog').close();renderSaved();toast('Signed out of this browser.'); });
+async function accountAction(route) {
+  $('#auth-submit').disabled = true;$('#auth-signup').disabled = true;$('#auth-verify').disabled = true;
+  try {
+    const body = route === 'verify' ? {confirmation_url:$('#confirmation-link').value.trim()} : {email:$('#email').value.trim(),password:$('#password').value};
+    const result = await api(`auth/${route}`, {method:'POST',body:JSON.stringify(body)});
+    $('#auth-message').textContent = result.message || '';
+    if (result.status === 'ok' && result.access_token) {
+      state.token = result.access_token;sessionStorage.setItem('finrag_token',state.token);$('#password').value = '';$('#confirmation-link').value = '';
+      $('#account-label').textContent = 'Signed-in workspace';$('#account-detail').textContent = 'Private saved questions';$('#auth-dialog').close();
+      if (state.result) $('#save-question').disabled = false;renderSaved();toast('Signed in. Your saved questions are private.');
+    }
+  } catch { $('#auth-message').textContent = 'The account service could not be reached. Try again.'; }
+  finally { $('#auth-submit').disabled = !state.health?.saved_queries.sign_in_configured;$('#auth-signup').disabled = $('#auth-submit').disabled;$('#auth-verify').disabled = $('#auth-submit').disabled; }
+}
+$('#auth-form').addEventListener('submit', event => {event.preventDefault();accountAction('password');});
+$('#auth-signup').addEventListener('click', () => {if ($('#auth-form').reportValidity()) accountAction('signup');});
+$('#auth-verify').addEventListener('click', () => accountAction('verify'));
+$('#sign-out').addEventListener('click', () => { clearSession();$('#auth-dialog').close();renderSaved();toast('Signed out of this browser.'); });
 $('#mobile-menu').addEventListener('click', openMenu);$('#close-menu').addEventListener('click', () => closeMenu(true));$('#menu-backdrop').addEventListener('click', () => closeMenu(true));
 document.addEventListener('keydown', event => {
   if (!$('.sidebar').classList.contains('open')) return;
@@ -299,10 +327,11 @@ function setMotion() { document.body.classList.toggle('reduced-motion', reduced)
 $('#motion-toggle').addEventListener('click', () => { reduced = !reduced;setMotion(); });setMotion();
 // Only session-scoped access tokens; refresh tokens never enter storage. The API verifies users.
 try { const hash = new URLSearchParams(location.hash.slice(1));const token = hash.get('access_token');if (token && /^[A-Za-z0-9_.-]{20,4096}$/.test(token)) sessionStorage.setItem('finrag_token', token);if (hash.has('access_token') || hash.has('error')) history.replaceState(null, '', location.pathname);state.token = sessionStorage.getItem('finrag_token'); } catch { state.token = null; }
-if (state.token) { $('#account-label').textContent = 'Signed-in workspace';$('#account-detail').textContent = 'Private saved questions'; }
 async function start() {
   await refreshHealth();
-  try { const data = await api('filings');if (!Array.isArray(data.filings)) throw new Error();state.filings = data.filings;const companies = [...new Map(state.filings.map(f => [f.ticker, f])).values()];$('#company').replaceChildren(...companies.map(f => { const o = element('option', f.issuer);o.value = f.ticker;return o; }));updateFilings();$('#nav-count').textContent = String(state.filings.length).padStart(2, '0');renderLibrary(); }
+  if (state.token) { try { const session = await api('auth/session');if (session.status === 'ok') { $('#account-label').textContent = 'Signed-in workspace';$('#account-detail').textContent = 'Private saved questions'; }else clearSession(); }catch { clearSession(); } }
+  try { state.project = await api('project-status');renderSystem(); }catch { /* Health remains available when the study snapshot cannot load. */ }
+  try { const data = await api('filings');if (!Array.isArray(data.filings)) throw new Error();state.filings = data.filings;const companies = [...new Map(state.filings.map(f => [f.ticker, f])).values()];$('#company').replaceChildren(...companies.map(f => { const o = element('option', f.issuer);o.value = f.ticker;return o; }));updateFilings();$('#nav-count').textContent = String(state.filings.length).padStart(2, '0');renderLibrary();renderSystem(); }
   catch { $('#ask').disabled = true;toast('The filing inventory could not be loaded. Please refresh.'); }
 }
 start();

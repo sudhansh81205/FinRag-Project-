@@ -12,7 +12,7 @@ test('missing engine never produces a financial answer or model call', async () 
   assert.equal(result.status, 503);assert.equal(body.status, 'index_not_ready');assert.equal(body.answer, '');assert.equal(calls, 0);
 });
 test('inventory and status are actual separate acceptance levels', async () => {
-  const body = await (await handle(req('filings'), { env: {} })).json();assert.equal(body.filings.length, 2);assert.equal(body.status, 'limited_workspace');
+  const body = await (await handle(req('filings'), { env: {} })).json();assert.equal(body.filings.length, 18);assert.equal(body.status, 'application_inventory');assert.equal(new Set(body.filings.map(f => f.ticker)).size, 10);
   const health = await (await handle(req('health'), { env: {} })).json();assert.equal(health.saved_queries.configured, false);assert.equal(health.runtime.status, 'index_not_ready');
 });
 const env = { FINRAG_BACKEND_URL: 'https://engine.example', FINRAG_BACKEND_TOKEN: 'private-test-token' };
@@ -136,4 +136,19 @@ test('only polling transport failures are retryable; completed model failures an
  assert.equal(failure.retryable, undefined); assert.equal(failure.answer, '');
  const unauthorized = await (await handle(req('jobs/poll', { ...valid, job_id }), { env, fetchImpl: async () => Response.json({ status: 'unauthorized' }, { status: 401 }) })).json();
  assert.equal(unauthorized.retryable, undefined);
+});
+
+test('password sign-in returns only a session access token; refresh tokens and identities stay private', async () => {
+ const db={SUPABASE_URL:'https://db.example',SUPABASE_PUBLISHABLE_KEY:'pub',SUPABASE_PASSWORD_AUTH_READY:'true'};
+ let sent;
+ const response=await handle(req('auth/password',{email:'fixture@example.invalid',password:'long-fixture-password'}),{env:db,fetchImpl:async(url,options)=>{sent={url,body:JSON.parse(options.body)};return Response.json({access_token:'a'.repeat(40),refresh_token:'private-refresh',user:{id:'private-id'},expires_in:3600});}});
+ const result=await response.json();assert.equal(result.status,'ok');assert.equal(result.access_token.length,40);assert.equal(result.refresh_token,undefined);assert.equal(result.user,undefined);assert.match(sent.url,/grant_type=password/);
+ const rejected=await handle(req('auth/password',{email:'x',password:'short'}),{env:db,fetchImpl:()=>{throw Error('must not call');}});assert.equal(rejected.status,400);
+});
+
+test('new accounts require actual email confirmation; confirmation links are origin scoped',async()=>{
+ const db={SUPABASE_URL:'https://db.example',SUPABASE_PUBLISHABLE_KEY:'pub',SUPABASE_PASSWORD_AUTH_READY:'true'};
+ const signup=await handle(req('auth/signup',{email:'fixture@example.invalid',password:'long-fixture-password'}),{env:db,fetchImpl:async()=>Response.json({user:{id:'fixture'}})});assert.equal((await signup.json()).status,'confirmation_required');
+ const foreign=await handle(req('auth/verify',{confirmation_url:'https://foreign.example/auth/v1/verify?token='+'a'.repeat(64)+'&type=signup'}),{env:db,fetchImpl:()=>{throw Error('must not call')}});assert.equal(foreign.status,400);
+ const verified=await handle(req('auth/verify',{confirmation_url:'https://db.example/auth/v1/verify?token='+'a'.repeat(64)+'&type=signup'}),{env:db,fetchImpl:async()=>Response.json({access_token:'a'.repeat(40),refresh_token:'secret'})});const body=await verified.json();assert.equal(body.status,'ok');assert.equal(body.refresh_token,undefined);
 });
