@@ -1,0 +1,11 @@
+{
+  "amended_at_utc": "2026-11-18T07:54:50.169921+00:00",
+  "reason": "First retrieval attempt stopped before producing any rankings: BM25 stream API rejects an explicit type filter. Fixed the adapter to select table_cell using top_k_tables=10/top_k_text=0, preserving the originally declared identical cell universe. No tuning, questions, labels, references, HTTP answers, candidate depths, source filters or scoring were changed.",
+  "original_manifest_sha256": "1b2ee6665f6f4274c8f28713783ef1429cfc19debab7ddbcc8671fd2e8fcb128",
+  "original_runner_sha256": "270690b63bfda93e4c85fa45c713f613ab085d3e4a72b699ee9bad18aab8731c",
+  "corrected_runner_sha256": "4edb52f2f7ccbcfa62e4b5ec804fdfb81b39ae472ba0f66d809b25cf5801be04",
+  "inherited_http_ledger_sha256": "0b854acb8030dd712eb3aa3bc8c8174d50f3d1af967c4465f0800a666aa6733c",
+  "inherited_cases_sha256": "890795f9276562b6e3bf41ead604c047beb9e79f2162f422803cff0b0bc85d75",
+  "original_http_cases": 90,
+  "retrieval_rows_before_fix": 0
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "narrative-AAPL-2025",
+    "output_sha256": "86111e204a2cc1bb7e226d337d93ee64aac62fc497e1909503a368c6aa88d32f",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  },
+  {
+    "id": "narrative-MSFT-2025",
+    "output_sha256": "b62ded84195e65afba998a952a104955f845634ed0db36da39c91fec01c6cee7",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  },
+  {
+    "id": "narrative-NVDA-2024",
+    "output_sha256": "541453339289abfeca12c17e80c302a0cea4b33d7af48f0c9ecbec46aa4b0be8",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  },
+  {
+    "id": "narrative-IBM-2024",
+    "output_sha256": "525c7ed127ef561e80c61331cb3597caffb31dbf3c1cd763423c1b0f03e439fa",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  },
+  {
+    "id": "narrative-CSCO-2024",
+    "output_sha256": "89fa00da2934476ada73e85983633fb0174dfd599b9dc24db36cdf675604aef0",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  },
+  {
+    "id": "narrative-ORCL-2024",
+    "output_sha256": "3b3a5a44b16bd415da2b793a09b47883c1f953b2fe35b30f9efea8a31fd80f18",
+    "reviewer": null,
+    "reviewed_at": null,
+    "decision": "unreviewed",
+    "claims_checked": false,
+    "original_sources_checked": false,
+    "supported_claims": null,
+    "unsupported_claims": null,
+    "notes": ""
+  }
+]

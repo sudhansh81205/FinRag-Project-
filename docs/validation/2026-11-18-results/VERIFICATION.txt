@@ -1,0 +1,9 @@
+Validation tooling verification,18November2026
+578Python tests passed,3FAISS/SWIGdeprecation warnings,122.22seconds.
+22Node tests passed. Ruff, git diff --check and prior release hashes passed.
+Both presentation figures were visually inspected. No application code or live
+deployment was changed. The actual evaluation application revision is main4d168800.
+Evaluation runner/scoring/code/source/cases are bound by the supplied manifests.
+Original90HTTPoutputs retained; only the documented BM25 API-binding correction
+was made before any retrieval rankings existed. Originalmanifest/runner retained.
+Six narrative reviewer identities/decisions remain blank; no independent score.
