@@ -161,3 +161,32 @@ def test_employee_headcount_uses_original_filing_not_monetary_planner():
     ):
         refused = app.answer({**payload, "question": question})
         assert refused["status"] == "insufficient_evidence" and not refused["answer"] and not refused["evidence"]
+
+
+def test_product_amount_requires_its_own_source_and_cannot_use_company_total():
+    class Engine:
+        web_source_records = [
+            {"metadata": {"accession": "0000320193-25-000079"}},
+            {"metadata": {"accession": "0000950170-25-100235"}},
+        ]
+
+        def answer_financial_question(self, **kwargs):
+            raise AssertionError("Product disclosures must never use a consolidated total")
+
+    app = WebApplication(load_settings(environ={}), Engine())
+    apple = {
+        "question": "How much revenue did Apple report from iPhone in FY2025?",
+        "ticker": "AAPL", "accession": "0000320193-25-000079", "value_period_end": "2025-09-27",
+        "scope": "consolidated", "mode": "auto", "period_kind": "duration",
+    }
+    answer = app.answer(apple)
+    assert answer["status"] == "ok" and "$209,586,000,000" in answer["answer"]
+    evidence, = answer["evidence"]
+    assert evidence["metadata"]["dimensions"] == {"srt:ProductOrServiceAxis": "aapl:IPhoneMember"}
+    assert evidence["metadata"]["scope"] == "product"
+    assert app.answer({**apple, "question": "How much revenue did Apple report from iPhone in China in FY2025?"})["status"] == "insufficient_evidence"
+    azure = app.answer({
+        **apple, "question": "How much revenue did Microsoft report from Azure in FY2025?",
+        "ticker": "MSFT", "accession": "0000950170-25-100235", "value_period_end": "2025-06-30",
+    })
+    assert azure["status"] == "insufficient_evidence" and not azure["answer"] and not azure["evidence"]

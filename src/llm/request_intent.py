@@ -67,7 +67,7 @@ def requested_periods(question, request, records, period_kind):
     return [{'kind': k, 'start': s, 'end': e} for k, s, e in sorted(found, key=lambda p: p[2])], ''
 
 _COUNT_WORDING = re.compile(r"\b(?:how many|(?:total )?number of|count|headcount)\b", re.I)
-_HEADCOUNT_TERMS = re.compile(r"\b(?:employees?|headcount|workforce)\b", re.I)
+_HEADCOUNT_TERMS = re.compile(r"\b(?:employees?|headcount|workforce|employ(?:ed)?)\b", re.I)
 _MONTH = r"January|February|March|April|May|June|July|August|September|October|November|December"
 _CALENDAR_DATE = re.compile(
     rf"\b(?P<month>{_MONTH})(?:\s+(?P<day>\d{{1,2}}),?)?\s+(?P<year>\d{{4}})\b"
@@ -77,7 +77,7 @@ _HEADCOUNT_WORDS = frozenset("""
     a an as at by cite company count did does employee employees end fiscal for
     give global had has have headcount how in is it many me of on please report
     reported s source tell the total was were what workforce worldwide year number
-    and with provide size
+    and with provide size full time equivalent on basis employ employed people
 """.split())
 
 
@@ -114,3 +114,22 @@ def headcount_scope_matches(question, request):
     for name in sorted(names, key=len, reverse=True):
         question = re.sub(r"(?<!\w)" + re.escape(name) + r"(?!\w)", "", question, flags=re.I)
     return set(re.findall(r"\w+", question.lower())) <= _HEADCOUNT_WORDS
+
+def asks_for_revenue_component(question):
+    return bool(re.search(r"\b(?:revenue|revenues|net sales)\b", question, re.I)
+                and re.search(r"\b(?:iphone|azure|(?:revenue|revenues|net sales)\s+(?:from|of)\s+(?!(?:fy|fiscal|20\d{2})\b))",
+                              question, re.I))
+
+
+def asks_for_revenue_and_income(question):
+    return bool(re.search(
+        r"\b(?:revenue and net income|net income and revenue)\b", question, re.I))
+
+def asks_for_iphone_revenue(question):
+    if not (asks_for_revenue_component(question) and re.search(r"\biphone\b", question, re.I)):
+        return False
+    wording = re.sub(r"\b(?:fy\s*)?20\d{2}\b", "", question, flags=re.I)
+    return set(re.findall(r"\w+", wording.lower())) <= set(
+        "apple inc s iphone revenue net sales fiscal year how much what was were total the "
+        "in for from its did report reported cite source".split()
+    )
