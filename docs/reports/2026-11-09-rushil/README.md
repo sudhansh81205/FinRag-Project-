@@ -1,6 +1,6 @@
 # Rushil implementation verification — 9 November 2026
 
-> Initial-delivery snapshot: its chart shortfall was subsequently closed by the [50-question follow-up](../2026-11-09-chart-set/README.md). Original JSON traces are retained unchanged.
+> Initial-delivery snapshot: its chart shortfall was subsequently closed by the [50-question follow-up](../2026-11-09-chart-set/README.md). Final JSON traces are retained unchanged. Earlier attempts and logs are available in [Git history](https://github.com/sudhansh81205/FinRag-Project-/tree/eb711f5/docs/reports/2026-11-09-rushil).
 
 Final live run: **8/8 checks passed** on clean code revision
 `23a046b1a4f1fa792ed55b61f0e40154ed5a2923`.
@@ -30,7 +30,7 @@ values are recorded in `final/report.json` for exact correspondence.
   while inference was also running. This suite began at pre-renderer revision
   `34c99ce`; the final renderer/source-context/provider/planner/chart paths passed
   **111 focused tests** again on `23a046b`. No full-suite repeat after that small
-  display-only change is claimed. See `verification.json` and saved logs.
+  display-only change is claimed. See `verification.json` and the historical logs linked above.
 - Ruff, pip dependency check, `git diff --check`: passed.
 - `python app.py --check`: exit 0, honestly `index_not_ready`.
 - Credential-pattern scan of publishable text: passed. Private `.env`, credentials,
@@ -51,7 +51,7 @@ values are recorded in `final/report.json` for exact correspondence.
 - Gemma12B was not attempted on 8 GiB. Llama3.2 comparison has a separate planned
   configuration, no installed digest or measured score.
 
-## Failed attempts retained
+## Earlier failed attempts
 
 1. `attempt1/`: first real caption guessed curve values, misread dollar units as
    percent and reached its output limit, producing invalid JSON. Rejected; never

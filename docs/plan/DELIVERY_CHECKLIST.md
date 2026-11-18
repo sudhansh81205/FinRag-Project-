@@ -13,7 +13,7 @@ Release Status: **TRANSPARENTLY PARTIAL REPRODUCIBLE PACKAGE** (All software, te
 - [x] **R12: Course concept mapping & viva defense**: Implemented KR&R and DL course mapping, verified success/failure examples, and individual viva defense preparation guide.
 - [x] **R13: Reproducibility & governance**: CI workflow, linting clean (`ruff`), 459 passing tests, DVC/MLflow records, contribution ledger (140 team hours), source/license acknowledgments, and ethical AI disclosure.
 - [x] **Written academic final report**: Complete 10-section academic paper (`docs/reports/2026-11-17_final_report.md`) covering all required sections, course alignment, research question, software results, and honest limitations.
-- [x] **Presentation deck**: Exactly six slides in guideline order (`docs/reports/2026-11-17_slides.md` and `docs/reports/2026-11-17_final_slides.pptx`).
+- [x] **Presentation deck**: Exactly six slides in guideline order ([slide outline](../reports/2026-11-17_slides.md) and [verified deck](../reports/2026-11-17_verified_slides.pptx)).
 - [x] **Deterministic backup demo**: Complete offline verification transcript (`docs/reports/2026-11-17_backup_demo_walkthrough.md`) covering setup diagnosis, Apple FY2021 calculation, chart provenance, and 4 explicit refusal paths.
 - [x] **Official roster & contributions**: Reconciled across 7 team members (140 hours planned); Sudhansh 26h, Pavan 20h, Likhit 30h, Ujjwal 28h, Gowtham 18h, Rushil 10h, Shanay 8h.
 - [x] **Submission acknowledgement & release manifest**: Hash-bound release manifest (`docs/reports/2026-11-17_release_manifest.json`) and formal sign-off receipt (`docs/reports/2026-11-17_submission_acknowledgement.json`).
