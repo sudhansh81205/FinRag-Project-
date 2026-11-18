@@ -1,0 +1,89 @@
+FinRAG benchmark results
+=========================
+
+Measured November 18, 2026 on application revision 4d168800.
+Study type: PRD-aligned development validation.
+
+Application checks
+------------------
+90 local requests: 72 numerical, 12 adversarial and 6 narrative.
+Coverage: 18 indexed SEC Form 10-K filings from 10 companies.
+
+Numerical agreement: 59 of 71 labelled requests (83.10%).
+95% filing-cluster interval: 66.67% to 95.83%.
+A pass needed a value within 1% relative error, correct units and
+value period, the selected filing, and all required cited operands.
+The remaining numerical request correctly refused to answer Oracle
+gross margin due to missing aggregate evidence. None of the 59
+successful labelled responses returned an incorrect numeric value.
+The 12 other labelled requests are retained as failures.
+
+Strict adversarial outcomes: 7 of 12 passed (58.33%). The failures
+included a refusal with the wrong status, component revenue answered
+with consolidated totals, confusion between relative percent and
+percentage points, and an incomplete multi-metric answer.
+
+Narrative: all 6 requests returned answers whose evidence IDs and
+filing matched the included context. Claim-level correctness remains
+unreviewed. These counts are structural citation checks.
+Observed local median / p95 latency: 0.028 / 0.050 s for labelled
+numerical requests and 102.997 / 157.759 s for narrative requests.
+The numerical path used validated Decimal operations. Model residency
+and production load were outside the timing protocol.
+
+Retrieval benchmark
+-------------------
+71 labelled questions shared the original query, pinned BGE embeddings,
+exact FAISS, fixed canonical table cells and the same filing filters.
+Hybrid added BM25 and reciprocal rank fusion with rank constant 60.
+
+Metric                           Dense only      Dense + BM25/RRF
+Operand nDCG@10                       0.6029                0.5893
+Required-operand recall@5             75.35%                75.35%
+Required-operand recall@10            90.14%                88.73%
+All required operands, top 5          61.97%                61.97%
+All required operands, top 10         83.10%                77.46%
+MRR@10                                0.5410                0.5308
+
+nDCG gives more credit to a relevant result near the top. Each
+required operand earns one discounted gain at its first occurrence.
+Equivalent rows for the same operand cannot earn repeated credit.
+The supplemental nDCG scores were computed from the original saved
+rankings and source labels, with both input digests verified. There
+were no new model calls or ranking changes.
+
+Paired nDCG@10 difference (hybrid minus dense): -0.0136.
+95% interval: [-0.0598, +0.0383], from 10,000 whole-filing bootstrap
+resamples with seed 42. The comparison found no evidence that adding
+BM25/RRF improved this retrieval metric on these questions.
+
+PRD and presentation
+--------------------
+The study covers a retrieval component of the PRD's C-to-D transition
+and the supported application's answer checks. The questions are a frozen
+development set, including cases used during implementation. Official
+FinanceBench, FinQA, TAT-QA and chart benchmark scores remain pending.
+The PRD acceptance preflight found 150 FinanceBench, 1,147 FinQA and
+1,663 TAT-QA candidate cases. It checked all 28 suite/variant paths:
+21 text/table paths were blocked and 7 chart paths awaited independent
+review. Zero final runs completed. The benchmark runner does not yet
+retrieve from validated source-equivalent official contexts. Accepted
+representations, chart execution, RAGAS, the separate Llama comparison
+and the independent 50-output audit remain outstanding.
+
+In the viva, show numerical agreement and the dense/hybrid table. Then
+explain that the retrieval experiment held the questions, sources and
+embeddings fixed. Open a correct answer and a failure from the actual
+ledger to show how period, units, and evidence affect scoring. Label
+the results as development validation and identify the official runs
+and independent reviews still needed to meet the full PRD.
+
+Reproduce and inspect
+---------------------
+python scripts/score_development_rankings.py
+python scripts/check_experiment_acceptance.py
+  Exit 2 indicates blocked acceptance. Preflight does not run models.
+
+docs/plan/PRD.md                     Canonical project requirements
+docs/validation/README.md            Protocol, evidence and rerun commands
+docs/validation/2026-11-18-results/  Summary, ranked IDs and per-case outputs

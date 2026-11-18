@@ -1,0 +1,461 @@
+{
+  "study": "PRD-aligned development application validation and table-cell retrieval component comparison",
+  "final_prd_experiment": false,
+  "held_out": false,
+  "independent_human_review": false,
+  "numerical_reference_agreement": {
+    "passed": 59,
+    "total": 71
+  },
+  "expected_numeric_refusal": {
+    "passed": 1,
+    "total": 1
+  },
+  "robustness": {
+    "passed": 7,
+    "total": 12
+  },
+  "numerical_agreement_95ci": {
+    "estimate": 0.8309859154929577,
+    "low": 0.6666666666666666,
+    "high": 0.9583333333333334,
+    "confidence": 0.95,
+    "resamples": 10000,
+    "seed": 42,
+    "clusters": 18,
+    "sampling_unit": "filing; development-set uncertainty only"
+  },
+  "numerical_latency": {
+    "median_seconds": 0.02826824999647215,
+    "p95_seconds": 0.049816499988082796,
+    "n": 71,
+    "scope": "One local HTTP request per case; warm prepared runtime. No Vercel/network/cold-start claim."
+  },
+  "robustness_latency": {
+    "median_seconds": 0.001526458014268428,
+    "p95_seconds": 0.023929250019136816,
+    "n": 12,
+    "scope": "One local HTTP request per case; warm prepared runtime. No Vercel/network/cold-start claim."
+  },
+  "narrative_latency": {
+    "median_seconds": 102.99673170800088,
+    "p95_seconds": 157.7589537499589,
+    "n": 6,
+    "scope": "One local HTTP request per case; warm prepared runtime. No Vercel/network/cold-start claim."
+  },
+  "narrative": {
+    "requests": 6,
+    "successful_responses": 6,
+    "citation_identity_passed": 6,
+    "semantic_correctness": "UNREVIEWED; inspect claim-level original sources. Not RAGAS or an independent human score."
+  },
+  "failures": [
+    {
+      "id": "CRM-2024-074",
+      "question": "What was Salesforce, Inc.'s net income in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "CRM-2024-075",
+      "question": "What was Salesforce, Inc.'s gross margin in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "CRM-2024-076",
+      "question": "What was Salesforce, Inc.'s revenue growth from FY2023 to FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "AMD-2024-080",
+      "question": "What was Advanced Micro Devices, Inc.'s net income in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "AMD-2024-081",
+      "question": "What was Advanced Micro Devices, Inc.'s gross margin in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "AMD-2024-082",
+      "question": "What was Advanced Micro Devices, Inc.'s revenue growth from FY2023 to FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "CSCO-2024-092",
+      "question": "What was Cisco Systems, Inc.'s net income in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "CSCO-2024-093",
+      "question": "What was Cisco Systems, Inc.'s gross margin in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "CSCO-2024-094",
+      "question": "What was Cisco Systems, Inc.'s revenue growth from FY2023 to FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "IBM-2024-104",
+      "question": "What was International Business Machines Corporation's net income in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "IBM-2024-105",
+      "question": "What was International Business Machines Corporation's gross margin in FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "IBM-2024-106",
+      "question": "What was International Business Machines Corporation's revenue growth from FY2023 to FY2024?",
+      "status": "invalid_request",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "non-adjacent",
+      "question": "What was Apple's revenue growth from FY2021 to FY2025?",
+      "status": "insufficient_evidence",
+      "answer": "",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": false,
+        "accession_isolated": false
+      }
+    },
+    {
+      "id": "component-azure",
+      "question": "How much revenue did Microsoft report from Azure in FY2025?",
+      "status": "ok",
+      "answer": "Verified result: 281724000000 USD. Exact result: 281724000000 USD.\nProgram (normalized source values): 281724000000.\n\nSources: [0000950170-25-100235:table_cell:686593a763c73e8a:091b2a3815af7e90]",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": true,
+        "accession_isolated": true
+      }
+    },
+    {
+      "id": "component-iphone",
+      "question": "How much revenue did Apple report from iPhone in FY2025?",
+      "status": "ok",
+      "answer": "Verified result: 416161000000 USD. Exact result: 416161000000 USD.\nProgram (normalized source values): 416161000000.\n\nSources: [0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787]",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": true,
+        "accession_isolated": true
+      }
+    },
+    {
+      "id": "margin-relative-percent",
+      "question": "By what percentage did Apple's gross margin increase from FY2020 to FY2021?",
+      "status": "ok",
+      "answer": "Verified result: 3.55 percentage points. Exact result: 3.54611189735690870723179180 percentage points.\nProgram (normalized source values): percentage_point_change(ratio_percent(152836000000, 365817000000), ratio_percent(104956000000, 274515000000)).\nratio_percent(x, y) = x / y \u00d7 100.\nSources: [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c3], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r12:c9], [0000320193-21-000105:item8:financial_table:5ce1fad1084a:0f84779b6789d147:r6:c9]",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": true,
+        "relative_error": "0.6176675227218913356282898931",
+        "citation_identity": true,
+        "accession_isolated": true
+      }
+    },
+    {
+      "id": "compound-metrics",
+      "question": "What were Apple's revenue and net income in FY2025?",
+      "status": "ok",
+      "answer": "Verified result: 416161000000 USD. Exact result: 416161000000 USD.\nProgram (normalized source values): 416161000000.\n\nSources: [0000320193-25-000079:table_cell:3a6e620018da8987:b1971889be8f5787]",
+      "score": {
+        "automated_correct": false,
+        "unit_correct": false,
+        "period_correct": false,
+        "relative_error": null,
+        "citation_identity": true,
+        "accession_isolated": true
+      }
+    }
+  ],
+  "retrieval": {
+    "n": 71,
+    "scope": "Retrieval-only component comparison, fixed canonical C table cells and per-filing consolidated eligibility. Not full C/D generation or final A-G runs.",
+    "metrics": {
+      "recall_at_5": {
+        "dense": {
+          "estimate": 0.7535211267605634,
+          "low": 0.6901408450704225,
+          "high": 0.8098591549295775,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "hybrid": {
+          "estimate": 0.7535211267605634,
+          "low": 0.6458333333333334,
+          "high": 0.8402777777777778,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "paired_delta": {
+          "estimate": 0.0,
+          "low": -0.09154929577464789,
+          "high": 0.09027777777777778,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        }
+      },
+      "recall_at_10": {
+        "dense": {
+          "estimate": 0.9014084507042254,
+          "low": 0.8450704225352113,
+          "high": 0.95,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "hybrid": {
+          "estimate": 0.8873239436619719,
+          "low": 0.8541666666666666,
+          "high": 0.9225352112676056,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "paired_delta": {
+          "estimate": -0.014084507042253521,
+          "low": -0.056338028169014086,
+          "high": 0.034722222222222224,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        }
+      },
+      "complete_at_5": {
+        "dense": {
+          "estimate": 0.6197183098591549,
+          "low": 0.5428571428571428,
+          "high": 0.6901408450704225,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "hybrid": {
+          "estimate": 0.6197183098591549,
+          "low": 0.5070422535211268,
+          "high": 0.7183098591549296,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "paired_delta": {
+          "estimate": 0.0,
+          "low": -0.08450704225352113,
+          "high": 0.08571428571428572,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        }
+      },
+      "complete_at_10": {
+        "dense": {
+          "estimate": 0.8309859154929577,
+          "low": 0.75,
+          "high": 0.9027777777777778,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "hybrid": {
+          "estimate": 0.7746478873239436,
+          "low": 0.7083333333333334,
+          "high": 0.8450704225352113,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "paired_delta": {
+          "estimate": -0.056338028169014086,
+          "low": -0.11594202898550725,
+          "high": 0.0,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        }
+      },
+      "mrr_at_10": {
+        "dense": {
+          "estimate": 0.5409959758551308,
+          "low": 0.4593896713615023,
+          "high": 0.6308503401360545,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "hybrid": {
+          "estimate": 0.5307623518891125,
+          "low": 0.43186899172814663,
+          "high": 0.6351410934744268,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        },
+        "paired_delta": {
+          "estimate": -0.010233623966018337,
+          "low": -0.07459758551307848,
+          "high": 0.05854308390022676,
+          "confidence": 0.95,
+          "resamples": 10000,
+          "seed": 42,
+          "clusters": 18,
+          "sampling_unit": "filing; development-set uncertainty only"
+        }
+      }
+    },
+    "embedding_batch_seconds": 1.5068624999839813,
+    "median_dense_search_ms": 9.239332983270288,
+    "median_added_bm25_rrf_ms": 5.142166977748275
+  }
+}

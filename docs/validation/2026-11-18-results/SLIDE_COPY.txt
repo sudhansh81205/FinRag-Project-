@@ -1,0 +1,43 @@
+RESULTS SLIDE - PRD-ALIGNED DEVELOPMENT SUBSET
+
+Scope: 90 frozen development requests, 18 filings, 10 companies.
+Numerical: 59/71 (83.10%); correct values,
+units, period and cited operands required. Separate missing-evidence refusal:1/1.
+Adversarial strict contracts: 7/12 (58.33%); all8scope-guard
+requests safely refused, but4semantic traps produced wrong/incomplete answers and
+one safe refusal used a different status subtype. Twelve normal questions falsely
+refused because of full-company-name wording. No failed case was dropped.
+
+Retrieval-only, n=71, identical BGE/cells/questions/filters/depth:
+Recall@5: dense 0.7535; hybrid 0.7535.
+Recall@10: dense 0.9014; hybrid 0.8873.
+Complete operands@10: dense 0.8310; hybrid 0.7746.
+MRR@10: dense 0.5410; hybrid 0.5308.
+10,000 paired filing-cluster bootstrap resamples; see full intervals in report.
+Interpretation: this subset does not show an improvement from lexical fusion.
+
+Observed local median latency: calculator 0.028s;
+narrative 103.0s. Different answer paths;
+not an LLM arithmetic speed comparison or controlled cold-start benchmark.
+Narrative:6actualresponses with matching filing citations; semantic review pending.
+
+FOOTNOTE: Development set, not held-out or independently approved. Retrieval-only
+component comparison; not full A-G/official benchmarks/RAGAS/Llama/50-output audit.
+Original PRD remains broader; these are measured partial results, not full compliance.
+
+SPEAKING SCRIPT
+We tested the original idea that source structure and retrieval affect grounded
+financial QA. We froze the questions and original-source references, used the PRD's
+1% numerical tolerance with unit/period/source checks, and compared dense retrieval
+against BM25/RRF60 under identical controls. Our numeric reference agreement was
+83.1%, with false refusals and semantic traps kept in the denominator. Lexical
+fusion did not improve retrieval on this subset. We therefore report a bounded
+development result and documented limitations, not a claimed full A-G success.
+
+DEFEND THE PROPOSAL HONESTLY
+The PRD defines the research objective and matched controls. This study follows
+those controls for one component and validates the actual application. It does
+not prove the entire proposal complete. Positive retrieval improvement was a
+hypothesis, not a result we were entitled to assume. Full accepted corpora,
+source-equivalent official benchmark adapters, independent review and the remaining
+experiments are still required before making the broader original claims.

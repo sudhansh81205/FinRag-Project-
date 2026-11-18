@@ -142,7 +142,7 @@ def inventory(root=ROOT, *, profile_path=None, tokenizer_dir=None, probe_ollama=
             "checks": checks, "runtime_prerequisites_ready": runtime_ready,
             "full_project_complete": False,
             "scope": "Machine inventory only. Full A-G/context binding, independent reviews, results and release proof are separate.",
-            "next": "Read docs/handoffs/RUSHIL_START_HERE.md; never edit acceptance marks to bypass a blocker."}
+            "next": "See START_HERE.txt for local runtime setup. Never edit acceptance marks to bypass a blocker."}
 
 
 def main():

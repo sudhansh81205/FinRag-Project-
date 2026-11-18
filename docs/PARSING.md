@@ -122,8 +122,7 @@ Run `python -m pip install -r requirements-parser.txt` in the project environmen
 then `python scripts/prepare_evidence.py`. The command reads bundled source files
 offline and writes `data/processed/nov04/evidence.json`, a source HTML copy, a hashed
 package manifest and the original chart JPEG. Use
-`--output DIRECTORY` for a separate build. See the [Nov 4 handoff](handoffs/2026-11-04_likhit.md)
-for canonical record semantics, source coverage and the next independent audit.
+`--output DIRECTORY` for a separate build. See the [evidence contract](plan/EVIDENCE_CONTRACT.md) for canonical record semantics and source checks.
 The command validates the merged schema from `data/contracts/`, preserves all
 parent grids, and corroborates 11 cell values using Docling PDF word coordinates.
 It does not make the index or the application ready.
@@ -155,5 +154,4 @@ rerun succeeds; changed or unrelated contents require a fresh output directory.
 Use versioned directories for new filings and validate them before consumption.
 An interrupted/incomplete build is rejected; use a fresh directory to rebuild it.
 
-The [November 5 handoff](handoffs/2026-11-05_shanay.md) describes the checked
-profile, seven source fixtures, failures, commands and remaining index gate.
+See the [indexing guide](INDEXING.md) for the source checks required before indexing.

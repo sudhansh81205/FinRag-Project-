@@ -30,6 +30,32 @@ Open http://127.0.0.1:4180/ or the shared-engine Gradio workspace at http://127.
 - [Machine-readable question bank](outputs/finrag-final-20261118/sample-questions.json).
 - [Current verification and blockers](docs/reports/2026-11-18_final-completion.md).
 
+## Benchmark results
+
+The development study ran **90 local application requests** across 18 SEC filings from 10 companies. Its separate retrieval comparison used **71 labelled questions** with fixed BGE embeddings, exact FAISS, filing filters and ranked depth. The hybrid run added BM25 and reciprocal rank fusion.
+
+| Retrieval metric | Dense only | Dense + BM25/RRF |
+| --- | ---: | ---: |
+| Operand nDCG@10 | 0.6029 | 0.5893 |
+| Required-operand recall@5 | 75.35% | 75.35% |
+| Required-operand recall@10 | 90.14% | 88.73% |
+| All required operands in the top 10 | 83.10% | 77.46% |
+| MRR@10 | 0.5410 | 0.5308 |
+
+The measured hybrid nDCG@10 difference was **−0.0136**, with a paired 95% filing-cluster interval of **[−0.0598, +0.0383]**. This comparison found no evidence of a hybrid improvement on the selected questions.
+
+| Application check | Result |
+| --- | ---: |
+| Numerical source-reference agreement | 59/71 (83.10%) |
+| Expected refusal for missing aggregate evidence | 1/1 |
+| Strict adversarial checks | 7/12 (58.33%) |
+| Narrative responses with matching citation IDs and filing | 6/6 |
+| Median local latency, numerical / narrative | 0.028 s / 102.997 s |
+
+Numerical agreement requires the PRD's 1% relative tolerance, the correct units and period, and the cited source operands. Narrative checks measured response and citation structure. Claim-level assessment is pending. The study uses development questions from the application's supported filings. The official A–G matrix remains **0/28 complete**, with RAGAS, independent review and the separate Llama comparison outstanding.
+
+[Plain-text benchmark report](BENCHMARK_RESULTS.txt) · [Protocol, raw results and reproduction](docs/validation/README.md)
+
 ## Verify
 
 ```sh

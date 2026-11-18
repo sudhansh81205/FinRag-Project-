@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: filing contract validates company, exact filing and comparative date
+ok 1 - filing contract validates company, exact filing and comparative date
+  ---
+  duration_ms: 12.108875
+  ...
+# Subtest: missing engine never produces a financial answer or model call
+ok 2 - missing engine never produces a financial answer or model call
+  ---
+  duration_ms: 43.596292
+  ...
+# Subtest: inventory and status are actual separate acceptance levels
+ok 3 - inventory and status are actual separate acceptance levels
+  ---
+  duration_ms: 1.322625
+  ...
+# Subtest: correct request-bound engine response is preserved
+ok 4 - correct request-bound engine response is preserved
+  ---
+  duration_ms: 1.485541
+  ...
+# Subtest: wrong period and excluded citations are refused at gateway
+ok 5 - wrong period and excluded citations are refused at gateway
+  ---
+  duration_ms: 3.858584
+  ...
+# Subtest: upstream provider errors are visible without fallback or leaked credentials
+ok 6 - upstream provider errors are visible without fallback or leaked credentials
+  ---
+  duration_ms: 1.207625
+  ...
+# Subtest: unconfigured database and anonymous access do not expose private rows
+ok 7 - unconfigured database and anonymous access do not expose private rows
+  ---
+  duration_ms: 0.635625
+  ...
+# Subtest: expired auth is denied before any database query
+ok 8 - expired auth is denied before any database query
+  ---
+  duration_ms: 0.555791
+  ...
+# Subtest: invalid JSON and malformed configured endpoints fail closed
+ok 9 - invalid JSON and malformed configured endpoints fail closed
+  ---
+  duration_ms: 1.130417
+  ...
+# Subtest: database connectivity does not enable unverified email sign-in
+ok 10 - database connectivity does not enable unverified email sign-in
+  ---
+  duration_ms: 1.41875
+  ...
+# Subtest: local demo permits only explicitly opted-in development loopback HTTP
+ok 11 - local demo permits only explicitly opted-in development loopback HTTP
+  ---
+  duration_ms: 2.849917
+  ...
+# Subtest: local model gets a bounded answer deadline, separate from health
+ok 12 - local model gets a bounded answer deadline, separate from health
+  ---
+  duration_ms: 6.180833
+  ...
+# Subtest: saved instant questions retain the selected period type
+ok 13 - saved instant questions retain the selected period type
+  ---
+  duration_ms: 1.700667
+  ...
+# Subtest: job transport keeps provider credentials server-side and binds completed results to the exact question
+ok 14 - job transport keeps provider credentials server-side and binds completed results to the exact question
+  ---
+  duration_ms: 8.184208
+  ...
+# Subtest: full queues, expired jobs and malformed capabilities fail with no answer
+ok 15 - full queues, expired jobs and malformed capabilities fail with no answer
+  ---
+  duration_ms: 1.883166
+  ...
+# Subtest: loopback HTTP backend is explicit local development only; production remains HTTPS
+ok 16 - loopback HTTP backend is explicit local development only; production remains HTTPS
+  ---
+  duration_ms: 2.148875
+  ...
+# Subtest: only polling transport failures are retryable; completed model failures and submission are final
+ok 17 - only polling transport failures are retryable; completed model failures and submission are final
+  ---
+  duration_ms: 2.215
+  ...
+# Subtest: password sign-in returns only a session access token; refresh tokens and identities stay private
+ok 18 - password sign-in returns only a session access token; refresh tokens and identities stay private
+  ---
+  duration_ms: 1.456542
+  ...
+# Subtest: new accounts require actual email confirmation; confirmation links are origin scoped
+ok 19 - new accounts require actual email confirmation; confirmation links are origin scoped
+  ---
+  duration_ms: 2.67225
+  ...
+# Subtest: a fresh request/session reads server-persisted questions and delete survives another refresh
+ok 20 - a fresh request/session reads server-persisted questions and delete survives another refresh
+  ---
+  duration_ms: 65.229083
+  ...
+# Subtest: saved pages are bounded and every page revalidates the current user
+ok 21 - saved pages are bounded and every page revalidates the current user
+  ---
+  duration_ms: 1.634
+  ...
+# Subtest: the filing library validates every registered source selection
+ok 22 - the filing library validates every registered source selection
+  ---
+  duration_ms: 2.157291
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 263.771459

@@ -11,4 +11,4 @@ The proposal-aligned PRD supersedes the earlier reduced stack/scope decision. Pr
 7. Freeze independently checked gold/data/configuration; pass the runtime capacity gate before full evaluation.
 8. Save real outputs, failed cases, all metrics, confidence intervals and independent audit records; then freeze the course-linked report and six slides.
 
-See TASK_REQUIREMENTS.md for the sole assigned owner on each date. R9 remains separate. The existing record_examples.json is an earlier minimal contract example; expand against the new PRD before treating it as the full final schema.
+See the daily ownership table in PRD.md. R9 remains separate. The existing record_examples.json is an earlier minimal contract example; expand against the new PRD before treating it as the full final schema.
