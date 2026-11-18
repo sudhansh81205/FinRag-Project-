@@ -14,4 +14,21 @@ AI assisted with code writing, tests and documentation. Contributions below are 
 
 ## Commit provenance
 
-The AI-assisted work was done under the supervision of Rushil Mohan Bellamkonda and Shanay Ghodasara.
+Three early drafts with the Git author label `Codex AI-assisted` have matching Git patch IDs under Rushil’s account on `main`. Those published commits carry the credit for that work.
+
+| Earlier draft | Published commit on main | Work |
+| --- | --- | --- |
+| `a6cb9ea` | [`7f51331`](https://github.com/sudhansh81205/FinRag-Project-/commit/7f51331) | Real generation and failure handling |
+| `a4d5b9e` | [`2a380a4`](https://github.com/sudhansh81205/FinRag-Project-/commit/2a380a4) | Malformed generation response handling |
+| `a3e624c` | [`bc2665f`](https://github.com/sudhansh81205/FinRag-Project-/commit/bc2665f) | Day 3 verification |
+
+Four other patches entered shared history through [PR #16](https://github.com/sudhansh81205/FinRag-Project-/pull/16). Their recorded Git author is `Codex`. The pull request establishes their integration path. Evidence of individual human authorship for each patch is unavailable.
+
+| Commit | Change |
+| --- | --- |
+| [`4849dbd`](https://github.com/sudhansh81205/FinRag-Project-/commit/4849dbd) | Evaluation integrity and initial monochrome workspace |
+| [`fdd6b90`](https://github.com/sudhansh81205/FinRag-Project-/commit/fdd6b90) | Cross-platform release hash handling |
+| [`87fd821`](https://github.com/sudhansh81205/FinRag-Project-/commit/87fd821) | Calculation-plan verification and compatibility |
+| [`131efa2`](https://github.com/sudhansh81205/FinRag-Project-/commit/131efa2) | Runtime preflight and demo handoff |
+
+GitHub’s commit author labels come from Git history. Repository collaborator permissions are managed separately.
