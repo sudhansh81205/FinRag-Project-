@@ -40,6 +40,14 @@ def is_margin_comparison(question):
     return bool(re.search(r"\b(change|changed|increase|increased|decrease|decreased|difference|growth|compare|compared|versus|vs)\b", question, re.I))
 
 
+def margin_change_operation(question):
+    if re.search(r"\bpercentage[ -]+points?\b", question, re.I):
+        return "percentage_point_change"
+    if re.search(r"\b(percent|percentage|relative|growth)\b", question, re.I):
+        return "relative_percentage_change"
+    return "percentage_point_change"
+
+
 def role(record):
     metadata = record.get("metadata", {})
     if metadata.get("type") != "table_cell":
@@ -67,8 +75,10 @@ def validate_named_formula(question, program, records):
         return ""
     if is_margin_comparison(question):
         expression = program.get("expression") if isinstance(program, dict) else None
-        if not isinstance(expression, dict) or expression.get("op") != "percentage_point_change" or len(expression.get("args", [])) != 2:
-            return "Gross-margin changes require two source-bound margins and a percentage-point change formula."
+        expected = margin_change_operation(question)
+        if not isinstance(expression, dict) or expression.get("op") != expected or len(expression.get("args", [])) != 2:
+            label = "percentage-point change" if expected == "percentage_point_change" else "relative percent change"
+            return f"Gross-margin changes require two source-bound margins and the requested {label} formula."
         return next((problem for node in expression["args"] if (problem := validate_named_formula("gross margin", {"expression": node}, records))), "")
     by_id = {r.get("evidence_id", r.get("id")): r for r in records}
 
@@ -131,7 +141,7 @@ def known_source_program(question, request, records):
         levels = [known_source_program("gross margin", {**request, "periods": [p]}, records) for p in periods]
         if any(level is None for level in levels):
             return None
-        return {**request, "expression": {"op": "percentage_point_change", "args": [levels[1]["expression"], levels[0]["expression"]]}}
+        return {**request, "expression": {"op": margin_change_operation(question), "args": [levels[1]["expression"], levels[0]["expression"]]}}
     if not revenue_lookup and not is_gross_margin(question):
         return None
     periods = request.get("periods", [])

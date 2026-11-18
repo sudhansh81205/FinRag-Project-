@@ -6,6 +6,7 @@ Gemma machine. Common A-G source identity and KR typed request/period rules rema
 import json
 import re
 import threading
+from decimal import Decimal
 from pathlib import Path
 
 from src.application import FilingOption, InteractiveApplication, resolve_request
@@ -59,6 +60,9 @@ class WebApplication:
         from src.llm.request_intent import (
             asks_for_count,
             asks_for_headcount,
+            asks_for_iphone_revenue,
+            asks_for_revenue_and_income,
+            asks_for_revenue_component,
             company_conflict,
             headcount_scope_matches,
             named_years,
@@ -83,34 +87,69 @@ class WebApplication:
         if period_kind is not None and period_kind not in {"instant", "duration"}:
             return failure("invalid_request", "Choose a fiscal-year total or year-end balance.")
         question = payload["question"]
-        if mode != "chart" and asks_for_headcount(question):
-            if not headcount_scope_matches(question, request):
-                return failure("insufficient_evidence",
-                               "Choose the filing's year-end date and ask for total company employees.")
+        headcount = mode != "chart" and asks_for_headcount(question)
+        iphone_sales = mode != "chart" and request.ticker == "AAPL" and asks_for_iphone_revenue(question)
+        if headcount or iphone_sales:
+            if headcount and not headcount_scope_matches(question, request):
+                return failure("insufficient_evidence", "Choose the filing's year-end date and ask for total company employees.")
+            if iphone_sales and (period_kind == "instant" or named_years(question) not in ([], [int(request.value_period_end[:4])])):
+                return failure("invalid_request", "Select the requested fiscal-year total to look up iPhone net sales.")
             if self.app.engine is None:
-                return failure("index_not_ready", "Connect the selected filing to research its reported employee count.")
+                return failure("index_not_ready", "Connect the selected filing to research its disclosures.")
+            from src.ingestion.filing_facts import iphone_revenue_evidence
             from src.ingestion.headcount import headcount_evidence
 
+            extractor = headcount_evidence if headcount else iphone_revenue_evidence
             try:
                 profiles = json.loads((self.settings.root / "data/corpus_html_profiles.json").read_bytes())
-                evidence = headcount_evidence(self.settings.root, self.filings[request.accession],
-                                              profiles[request.accession], request.value_period_end)
+                evidence = extractor(self.settings.root, self.filings[request.accession],
+                                     profiles[request.accession], request.value_period_end)
             except (OSError, KeyError, ValueError):
-                return failure("insufficient_evidence", "Could not verify the source needed for employee headcount.")
+                return failure("insufficient_evidence", "Could not verify the original filing disclosure.")
             if evidence is None:
-                return failure("insufficient_evidence", "No unambiguous total employee count was found in this filing.")
+                return failure("insufficient_evidence", "No unambiguous disclosure matches this question and date.")
             metadata = evidence["metadata"]
-            count = f"{metadata['raw_value']:,}"
-            qualifier = "approximately " if metadata["approximate"] else ""
+            if headcount:
+                count = f"{metadata['raw_value']:,}"
+                qualifier = "approximately " if metadata["approximate"] else ""
+                answer = f"{request.company} reported {qualifier}{count} {metadata['raw_unit']} as of {request.value_period_end}."
+            else:
+                sales = Decimal(metadata["normalized_value_decimal"])
+                answer = f"Apple reported ${sales:,} in iPhone net sales for the fiscal year ended {request.value_period_end}."
             return {
-                "status": "ok", "question": question,
-                "answer": f"{request.company} reported {qualifier}{count} employees as of {request.value_period_end}.",
-                "message": "Employee count read directly from the selected 10-K.",
+                "status": "ok", "question": question, "answer": answer,
+                "message": "Value read directly from the selected 10-K.",
                 "request": {**vars(request), "period_kind": period_kind},
                 "evidence": [evidence], "calculations": [],
                 "included_evidence_ids": [evidence["evidence_id"]],
                 "route": "source_extraction",
             }
+
+        if mode != "chart" and asks_for_revenue_component(question):
+            if re.search(r"\bgrowth rate\b", question, re.I) and mode != "numerical":
+                mode = "narrative"
+            else:
+                return failure("insufficient_evidence",
+                               "The selected filing has no verified standalone amount for this component. A company-wide total cannot answer this request.")
+
+        if mode in {"auto", "numerical"} and asks_for_revenue_and_income(question):
+            year = int(request.value_period_end[:4])
+            if period_kind == "instant" or named_years(question) not in ([], [year]):
+                return failure("invalid_request", "Choose one matching fiscal-year total for revenue and net income.")
+            if (len(re.findall(r"\band\b", question, re.I)) != 1
+                    or re.search(r"\b(growth|change|compare|per share|adjusted|segment|product|excluding|before|after)\b", question, re.I)):
+                return failure("invalid_request", "Ask separately for comparisons, adjusted figures, or other metrics.")
+            revenue = self._answer({**payload, "question": f"What was total revenue in FY{year}?", "mode": "numerical"})
+            if revenue["status"] != "ok":
+                return revenue
+            income = self._answer({**payload, "question": f"What was net income in FY{year}?", "mode": "numerical"})
+            if income["status"] != "ok":
+                return income
+            evidence = {record["evidence_id"]: record for item in (revenue, income) for record in item["evidence"]}
+            return {**revenue, "question": question,
+                    "answer": f"Total revenue: {revenue['answer']}\n\nNet income: {income['answer']}",
+                    "evidence": list(evidence.values()), "included_evidence_ids": list(evidence),
+                    "calculations": revenue["calculations"] + income["calculations"]}
         financial_metric = re.search(
             r"\b(margin|growth|percent|ratio|revenue|cost|earnings|income|cash flow|assets|liabilities|equity|dollars?)\b",
             question, re.I)
@@ -128,7 +167,7 @@ class WebApplication:
             planning_request = {"issuer": request.company, "scope": request.scope, "periods": periods}
         elif named_years(payload["question"]) and named_years(payload["question"]) != [int(request.value_period_end[:4])]:
             return failure("invalid_request", "The year in your question differs from the selected filing period. Select matching evidence first.")
-        options = {"top_k_text": 5, "top_k_tables": 0} if mode == "narrative" or mode == "auto" and not numerical else None
+        options = {"top_k_text": 5, "top_k_tables": 0, "concise_narrative": True} if mode == "narrative" or mode == "auto" and not numerical else None
         if numerical:
             options = {"top_k_text": 0, "top_k_tables": 5, "expand_named_metric": True, "skip_calculation_explanation": True}
         if mode == "chart":
