@@ -30,7 +30,23 @@ Open http://127.0.0.1:4180/ or the shared-engine Gradio workspace at http://127.
 - [Machine-readable question bank](outputs/finrag-final-20261118/sample-questions.json).
 - [Current verification and blockers](docs/reports/2026-11-18_final-completion.md).
 
-## Benchmark results
+## Official-source retrieval benchmarks
+
+The new evaluation attempted all **2,960 questions** from the restored FinanceBench, FinQA and TAT-QA source pools. Retrieval used the complete declared corpus for each suite, original questions and source IDs. FinanceBench ranks pages, while FinQA and TAT-QA rank paragraphs and whole tables.
+
+| Dataset | Questions attempted | BM25 Recall@10 | BGE dense Recall@10 | Hybrid Recall@10 |
+| --- | ---: | ---: | ---: | ---: |
+| FinanceBench | 150 | 14.33% | Incomplete | Incomplete |
+| FinQA | 1,147 | 58.89% | 71.61% | 72.12% |
+| TAT-QA | 1,663 | 72.23% | 71.82% | 76.54% |
+
+Three TAT-QA questions have no mapped evidence labels, leaving 1,660 scored retrieval cases. Dense/hybrid nDCG@10 was **0.5593/0.5482** on FinQA and **0.5469/0.6010** on TAT-QA. The report retains the paired 95% document-cluster intervals and per-question rankings. FinanceBench dense execution stopped after checkpointing 2,304 of 25,950 chunks.
+
+Three real Gemma generation pilots averaged **69.98 seconds**. Extrapolating to 2,960 questions across seven variants gives **approximately 403 machine-hours** of sequential answer generation. This preliminary estimate uses one question per dataset and excludes charts, RAGAS, Llama comparison, reruns and human review. The available evaluation time was used for the completed retrieval comparisons and generation pilots. Full cumulative A-G implementation, execution and independent acceptance remain outstanding.
+
+[Official-source report and reproduction](docs/validation/official-source/README.md) · [Plain-text results and runtime analysis](docs/validation/official-source/BENCHMARK_RESULTS.txt)
+
+## Development benchmark results
 
 The development study ran **90 local application requests** across 18 SEC filings from 10 companies. Its separate retrieval comparison used **71 labelled questions** with fixed BGE embeddings, exact FAISS, filing filters and ranked depth. The hybrid run added BM25 and reciprocal rank fusion.
 

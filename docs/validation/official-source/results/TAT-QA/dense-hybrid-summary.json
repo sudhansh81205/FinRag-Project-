@@ -1,0 +1,201 @@
+{
+  "suite": "TAT-QA",
+  "cases": 1663,
+  "embedding_and_search_seconds": 76.88238170900149,
+  "representation": "440-token windows, stride 400; rank original pages/paragraphs/whole tables by first chunk hit",
+  "scope": "Pooled source retrieval baseline; cumulative PRD A-G representations pending",
+  "metrics": {
+    "recall_at_5": {
+      "dense": {
+        "estimate": 0.6453815261044177,
+        "low": 0.6109101868595539,
+        "high": 0.6789863782051282,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.6870481927710843,
+        "low": 0.6557228915662651,
+        "high": 0.7178098676293622,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.041666666666666664,
+        "low": 0.02403846153846154,
+        "high": 0.060076351215591725,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    },
+    "recall_at_10": {
+      "dense": {
+        "estimate": 0.7181726907630522,
+        "low": 0.6861094407696934,
+        "high": 0.7493975903614458,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.7653614457831325,
+        "low": 0.735524728588661,
+        "high": 0.7939759036144578,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.04718875502008032,
+        "low": 0.02904647435897436,
+        "high": 0.06606425702811244,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    },
+    "complete_at_5": {
+      "dense": {
+        "estimate": 0.6433734939759036,
+        "low": 0.6088004822182037,
+        "high": 0.6767189384800965,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.6855421686746987,
+        "low": 0.6542393265183404,
+        "high": 0.7161755862898377,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.04216867469879518,
+        "low": 0.024639423076923076,
+        "high": 0.06042296072507553,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    },
+    "complete_at_10": {
+      "dense": {
+        "estimate": 0.7168674698795181,
+        "low": 0.6849067949488875,
+        "high": 0.7481927710843373,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.7644578313253012,
+        "low": 0.7346570397111913,
+        "high": 0.7930204572803851,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.04759036144578313,
+        "low": 0.029482551143200964,
+        "high": 0.06630500301386377,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    },
+    "mrr_at_10": {
+      "dense": {
+        "estimate": 0.4937497609485561,
+        "low": 0.46296391974511325,
+        "high": 0.5239295276343469,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.5501845477146682,
+        "low": 0.5199058137311149,
+        "high": 0.5804265454927706,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.05643478676611207,
+        "low": 0.042081213897749804,
+        "high": 0.07109075619009395,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    },
+    "ndcg_at_10": {
+      "dense": {
+        "estimate": 0.54688366998882,
+        "low": 0.5172436721647308,
+        "high": 0.5758552321656841,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "hybrid": {
+        "estimate": 0.6009995280002824,
+        "low": 0.572123027691954,
+        "high": 0.62924702910508,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      },
+      "delta": {
+        "estimate": 0.054115858011462424,
+        "low": 0.041506248150100504,
+        "high": 0.067065840945343,
+        "confidence": 0.95,
+        "resamples": 10000,
+        "seed": 42,
+        "clusters": 277,
+        "sampling_unit": "filing; development-set uncertainty only"
+      }
+    }
+  }
+}

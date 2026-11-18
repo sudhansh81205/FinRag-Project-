@@ -1,0 +1,57 @@
+{
+  "case_id": "TAT-QA:a1b54eff7de3dc7bfab148325c7a940b",
+  "question": "What method did the company use when Topic 606 in fiscal 2019 was adopted?",
+  "included_context": [
+    {
+      "evidence_id": "TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:26f8a13c4e898f80dddd8453",
+      "text": "The effect of the changes made to our Consolidated Balance Sheet as of May 26, 2019 for the adoption of Topic 606 was as follows:"
+    },
+    {
+      "evidence_id": "TAT-QA:a06963067573666d15cc4484808dd226:text:b47a86fdd0382dcb95dc5c14",
+      "text": "Sales related reserves represent price concessions and stock rotation rights that the Company offers to many of its distributors. For the fiscal year ending March 31, 2018, these sales related reserves were recorded within accounts receivable, and therefore did not exist within accrued liabilities. The Company made this change in classification as part of its adoption of ASC 606. For additional information regarding the Company's adoption of ASC 606, refer to Note 1 of the consolidated financial statements."
+    },
+    {
+      "evidence_id": "TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:bd212b2ba276fc5056de54f6",
+      "text": "We utilized a comprehensive approach to evaluate and document the impact of the guidance on our current accounting policies and practices in order to identify material differences, if any, that would result from applying the new requirements\u00a0to our revenue contracts. We did not identify any material differences resulting from applying the new requirements to our revenue contracts. In addition, we did not identify any significant changes to our business processes, systems, and controls to support recognition and disclosure requirements under the new guidance. We adopted the provisions of Topic 606 in fiscal 2019 utilizing the modified retrospective method. We recorded a $0.5 million cumulative effect adjustment, net of tax, to the opening balance of fiscal 2019 retained earnings, a decrease to receivables of $7.6 million, an increase to inventories of $2.8 million, an increase to prepaid expenses and other current assets of $6.9 million, an increase to other accrued liabilities of $1.4 million, and an increase to other noncurrent liabilities of $0.2 million. The adjustments primarily related to the timing of recognition of certain customer charges, trade promotional expenditures, and volume discounts."
+    },
+    {
+      "evidence_id": "TAT-QA:930920fe5224bbd051390e4e332fb0cc:text:b7119d89695779af8cf66ed3",
+      "text": "(2) On January 1, 2018, we adopted ASC 606, Revenue from Contracts with Customers, using the modified retrospective method applied to those contracts that were not substantially complete as of January 1, 2018. Results for reporting periods beginning after January 1, 2018 are presented under ASC 606, while prior period amounts were not adjusted and continue to be reported in accordance with ASC 605, Revenue Recognition."
+    },
+    {
+      "evidence_id": "TAT-QA:930920fe5224bbd051390e4e332fb0cc:text:8a8a45f81e10d51c8def9387",
+      "text": "(1) On January 1, 2019, we adopted Accounting Standards Codification (ASC) 842, Leases, using the modified retrospective method at the beginning of the period of adoption, January 1, 2019, through the recognition of a lease obligation and corresponding right of use asset. Results for reporting periods beginning after January 1, 2019 are presented under ASC 842, while prior periods amount were not adjusted and continue to be reported in accordance with ASC 840, Leases."
+    }
+  ],
+  "prompt_sha256": "94d9d77eff2fa91da1aeb9b6cc5cc1393d3fa45d9c477f12369709597be063cc",
+  "model_profile_sha256": "b607e490b500bd5778455a3bc471a2761c98d6e49b54944b061e082d05402d35",
+  "latency_seconds": 80.23545537504833,
+  "result": {
+    "success": true,
+    "status": "ok",
+    "provider": "ollama",
+    "model": "gemma3:4b",
+    "text": "The company used the modified retrospective method when Topic 606 was adopted in fiscal 2019. [TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:bd212b2ba276fc5056de54f6]\n\nSpecifically, the company recorded a $0.5 million cumulative effect adjustment, net of tax, to the opening balance of fiscal 2019 retained earnings, a decrease to receivables of $7.6 million, an increase to inventories of $2.8 million, an increase to prepaid expenses and other current assets of $6.9 million, an increase to other accrued liabilities of $1.4 million, and an increase to other noncurrent liabilities of $0.2 million. [TAT-QA:dc9d58a4e24a74d52f719372c1a16e7f:text:26f8a13c4e898f80dddd8453]\n\nThe company adopted the provisions of Topic 606 in fiscal 2019 utilizing the modified retrospective method. [TAT-QA:a06963067573666d15cc4484808dd226:text:b47a86fdd0382dcb95dc5c14]",
+    "model_fingerprint": {
+      "model": "gemma3:4b",
+      "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+      "family": "gemma3",
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "model_context_length": 131072
+    },
+    "timing": {
+      "total_duration": 79657646333,
+      "load_duration": 6872042,
+      "prompt_eval_count": 976,
+      "prompt_eval_duration": 13542947000,
+      "eval_count": 333,
+      "eval_duration": 64053432000
+    }
+  },
+  "semantic_score": "Pending claim-level review; automatic answer accuracy not established"
+}

@@ -1,0 +1,17 @@
+{
+  "suite": "FinQA",
+  "cases": 1147,
+  "records": 8720,
+  "input_sha256": {
+    "finqa_candidate_universe.json": "9e3a90800ee344a4778f96dd711e760c3ed062e32f8630a323ed2fa66ba9960f",
+    "finqa_context_corpus.json": "77219fa3467d7b8ca7696377fbf81451d05cfd81690da7d077fb006df1ad7eff"
+  },
+  "scope": "Pooled official pages, paragraphs and whole tables; BM25 baseline",
+  "query": "original question only",
+  "filters": "none; whole declared suite corpus",
+  "ranking": "BM25 k1=1.5 b=0.75; positive scores; tie break by evidence ID",
+  "gold_used_for": "scoring only",
+  "model_calls": 0,
+  "prd_mapping": "R7/R12 official-source retrieval baseline; outside cumulative A-G representation controls",
+  "manual_acceptance": "User reported team chart review; reviewer and exact approved IDs unspecified"
+}

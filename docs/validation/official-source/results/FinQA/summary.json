@@ -1,0 +1,71 @@
+{
+  "suite": "FinQA",
+  "attempted": 1147,
+  "labelled": 1147,
+  "unlabelled": 0,
+  "missing_source_cases": 0,
+  "index_build_seconds": 0.47138445801101625,
+  "median_retrieval_seconds": 0.005580625031143427,
+  "metrics": {
+    "recall_at_5": {
+      "estimate": 0.5104122555735459,
+      "low": 0.4746446949277138,
+      "high": 0.5462281545614879,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "recall_at_10": {
+      "estimate": 0.5889297131232615,
+      "low": 0.5541984409422132,
+      "high": 0.6234130372900655,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_5": {
+      "estimate": 0.45161290322580644,
+      "low": 0.41370106761565834,
+      "high": 0.48967297762478484,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "complete_at_10": {
+      "estimate": 0.5257192676547515,
+      "low": 0.4879356568364611,
+      "high": 0.5636057287278854,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "mrr_at_10": {
+      "estimate": 0.4424824594179433,
+      "low": 0.4109498581792396,
+      "high": 0.4744309868875086,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    },
+    "ndcg_at_10": {
+      "estimate": 0.4522860564485607,
+      "low": 0.4223920963237757,
+      "high": 0.4829477122715308,
+      "confidence": 0.95,
+      "resamples": 10000,
+      "seed": 42,
+      "clusters": 380,
+      "sampling_unit": "filing; development-set uncertainty only"
+    }
+  }
+}
