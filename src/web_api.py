@@ -17,6 +17,7 @@ class WebApplication:
         self.app = InteractiveApplication(settings, engine)
         self.settings = settings
         registry = json.loads((settings.root / "data/application_filings.json").read_text(encoding="utf-8"))
+        self.filings = {f["accession"]: f for f in registry}
         self.options = tuple(FilingOption(f["accession"], f["ticker"], f["issuer"], f["cik"],
                                          f["accession"], f["period_end"]) for f in registry)
 
@@ -55,7 +56,14 @@ class WebApplication:
                                            payload.get("scope"), options=self.options)
         if problem or request.ticker != payload.get("ticker"):
             return failure("invalid_request", problem or "Company and filing disagree.")
-        from src.llm.request_intent import company_conflict, named_years, requested_periods
+        from src.llm.request_intent import (
+            asks_for_count,
+            asks_for_headcount,
+            company_conflict,
+            headcount_scope_matches,
+            named_years,
+            requested_periods,
+        )
         conflict = company_conflict(payload["question"], request, self.options)
         if conflict:
             return failure("invalid_request", conflict)
@@ -74,9 +82,43 @@ class WebApplication:
         period_kind = payload.get("period_kind")
         if period_kind is not None and period_kind not in {"instant", "duration"}:
             return failure("invalid_request", "Choose a fiscal-year total or year-end balance.")
-        numerical = mode == "numerical" or mode == "auto" and re.search(
-            r"\b(margin|growth|percent|ratio|how much|how many|revenue|cost|earnings|income|cash flow|assets|liabilities|equity)\b",
-            payload["question"], re.I)
+        question = payload["question"]
+        if mode != "chart" and asks_for_headcount(question):
+            if not headcount_scope_matches(question, request):
+                return failure("insufficient_evidence",
+                               "Choose the filing's year-end date and ask for total company employees.")
+            if self.app.engine is None:
+                return failure("index_not_ready", "Connect the selected filing to research its reported employee count.")
+            from src.ingestion.headcount import headcount_evidence
+
+            try:
+                profiles = json.loads((self.settings.root / "data/corpus_html_profiles.json").read_bytes())
+                evidence = headcount_evidence(self.settings.root, self.filings[request.accession],
+                                              profiles[request.accession], request.value_period_end)
+            except (OSError, KeyError, ValueError):
+                return failure("insufficient_evidence", "Could not verify the source needed for employee headcount.")
+            if evidence is None:
+                return failure("insufficient_evidence", "No unambiguous total employee count was found in this filing.")
+            metadata = evidence["metadata"]
+            count = f"{metadata['raw_value']:,}"
+            qualifier = "approximately " if metadata["approximate"] else ""
+            return {
+                "status": "ok", "question": question,
+                "answer": f"{request.company} reported {qualifier}{count} employees as of {request.value_period_end}.",
+                "message": "Employee count read directly from the selected 10-K.",
+                "request": {**vars(request), "period_kind": period_kind},
+                "evidence": [evidence], "calculations": [],
+                "included_evidence_ids": [evidence["evidence_id"]],
+                "route": "source_extraction",
+            }
+        financial_metric = re.search(
+            r"\b(margin|growth|percent|ratio|revenue|cost|earnings|income|cash flow|assets|liabilities|equity|dollars?)\b",
+            question, re.I)
+        if mode != "narrative" and mode != "chart" and asks_for_count(question) and not financial_metric:
+            return failure("insufficient_evidence",
+                           "No checked count is available for this question. Try Narrative mode for a filing disclosure.")
+        numerical = mode == "numerical" or mode == "auto" and (
+            financial_metric or re.search(r"\bhow much\b", question, re.I))
         planning_request = None
         if numerical and self.app.engine is not None:
             periods, problem = requested_periods(payload["question"], request,

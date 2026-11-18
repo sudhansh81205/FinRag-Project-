@@ -123,3 +123,41 @@ def test_sync_and_job_entry_points_never_run_the_model_concurrently():
         worker.join(5)
     assert not worker.is_alive() and results[0]["status"] == "insufficient_evidence"
     assert app.answer(payload)["status"] == "insufficient_evidence"
+
+
+def test_employee_headcount_uses_original_filing_not_monetary_planner():
+    class Engine:
+        web_source_records = [{"metadata": {"accession": "0000858877-24-000017"}}]
+
+        def answer_financial_question(self, **kwargs):
+            raise AssertionError("Count requests must never use an unrelated monetary fact")
+
+    app = WebApplication(load_settings(environ={}), Engine())
+    payload = {
+        "question": "how many total employees in cisco as of july 2024",
+        "ticker": "CSCO", "accession": "0000858877-24-000017", "value_period_end": "2024-07-27",
+        "scope": "consolidated", "mode": "auto", "period_kind": "duration",
+    }
+    answer = app.answer(payload)
+    assert answer["status"] == "ok" and "approximately 90,400 employees" in answer["answer"]
+    assert answer["request"]["accession"] == payload["accession"]
+    assert answer["request"]["period_kind"] == payload["period_kind"]
+    evidence, = answer["evidence"]
+    assert evidence["metadata"]["raw_unit"] == "employees"
+    assert evidence["metadata"]["period_end"] == "2024-07-27"
+    assert evidence["metadata"]["section"] == "Item 1"
+    assert "90,400 employees" in evidence["content"]
+    assert answer["included_evidence_ids"] == [evidence["evidence_id"]]
+    assert not answer["calculations"]
+
+    other = app.answer({**payload, "question": "How many employees did Cisco have as of July 27, 2024?",
+                        "mode": "numerical", "period_kind": "instant"})
+    assert other["status"] == "ok" and other["answer"] == answer["answer"]
+    for question in (
+        "How many employees did Cisco have in the United States in July 2024?",
+        "How many employees did Cisco have as of July 31, 2024?",
+        "How many employees did Cisco have as of July 2023?",
+        "How many offices did Cisco have in FY2024?",
+    ):
+        refused = app.answer({**payload, "question": question})
+        assert refused["status"] == "insufficient_evidence" and not refused["answer"] and not refused["evidence"]
