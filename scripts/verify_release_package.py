@@ -183,6 +183,7 @@ CORE_SOURCE_FILES = [
     "src/indexing/bge.py",
     "tests/test_runtime_completion.py",
     "src/web_api.py",
+    "src/ingestion/headcount.py",
     "web/public/index.html",
     "web/public/app.js",
     "web/public/style.css",
